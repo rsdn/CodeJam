@@ -1,0 +1,192 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  commentId: T:CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  id: ConcurrentRunBehavior
+  parent: CodeJam.PerfTests.Configs
+  children:
+  - CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Default
+  - CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Fail
+  - CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Lock
+  - CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Skip
+  langs:
+  - csharp
+  - vb
+  name: ConcurrentRunBehavior
+  nameWithType: ConcurrentRunBehavior
+  fullName: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  type: Enum
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ConcurrentRunBehavior
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+    startLine: 5
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Behavior for concurrent competition runs.
+  example: []
+  syntax:
+    content: public enum ConcurrentRunBehavior
+    content.vb: Public Enum ConcurrentRunBehavior
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Lock
+  commentId: F:CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Lock
+  id: Lock
+  parent: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  langs:
+  - csharp
+  - vb
+  name: Lock
+  nameWithType: ConcurrentRunBehavior.Lock
+  fullName: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Lock
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Lock
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+    startLine: 8
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Use global (cross-process) lock to prevent concurrent runs.
+  example: []
+  syntax:
+    content: Lock = 0
+    return:
+      type: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Skip
+  commentId: F:CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Skip
+  id: Skip
+  parent: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  langs:
+  - csharp
+  - vb
+  name: Skip
+  nameWithType: ConcurrentRunBehavior.Skip
+  fullName: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Skip
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Skip
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+    startLine: 11
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Competition will be skipped.
+  example: []
+  syntax:
+    content: Skip = 1
+    return:
+      type: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Fail
+  commentId: F:CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Fail
+  id: Fail
+  parent: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  langs:
+  - csharp
+  - vb
+  name: Fail
+  nameWithType: ConcurrentRunBehavior.Fail
+  fullName: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Fail
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Fail
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Competition will be failed.
+  example: []
+  syntax:
+    content: Fail = 2
+    return:
+      type: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Default
+  commentId: F:CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Default
+  id: Default
+  parent: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: ConcurrentRunBehavior.Default
+  fullName: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Default
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Default
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/ConcurrentRunBehavior.cs
+    startLine: 17
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: 'Same as <xref href="CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Lock" data-throw-if-not-resolved="false"></xref>: use global (cross-process) lock to prevent concurrent runs.'
+  example: []
+  syntax:
+    content: Default = 0
+    return:
+      type: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: CodeJam.PerfTests.Configs
+  commentId: N:CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CodeJam.PerfTests.Configs
+  nameWithType: CodeJam.PerfTests.Configs
+  fullName: CodeJam.PerfTests.Configs
+- uid: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  commentId: T:CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: ConcurrentRunBehavior
+  nameWithType: ConcurrentRunBehavior
+  fullName: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+- uid: CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Lock
+  commentId: F:CodeJam.PerfTests.Configs.ConcurrentRunBehavior.Lock

@@ -1,0 +1,1600 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Threading.AsyncLock
+  commentId: T:CodeJam.Threading.AsyncLock
+  id: AsyncLock
+  parent: CodeJam.Threading
+  children:
+  - CodeJam.Threading.AsyncLock.AcquireAsync
+  - CodeJam.Threading.AsyncLock.AcquireAsync(System.Int32)
+  - CodeJam.Threading.AsyncLock.AcquireAsync(System.Int32,System.Threading.CancellationToken)
+  - CodeJam.Threading.AsyncLock.AcquireAsync(System.Threading.CancellationToken)
+  - CodeJam.Threading.AsyncLock.AcquireAsync(System.TimeSpan)
+  - CodeJam.Threading.AsyncLock.AcquireAsync(System.TimeSpan,System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: AsyncLock
+  nameWithType: AsyncLock
+  fullName: CodeJam.Threading.AsyncLock
+  type: Class
+  source:
+    remote:
+      path: Main/src/Threading/AsyncLock.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AsyncLock
+    path: ../Main/src/Threading/AsyncLock.cs
+    startLine: 12
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nLock, that can be used with async/await code.\n"
+  example: []
+  syntax:
+    content: public class AsyncLock
+    content.vb: Public Class AsyncLock
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.Threading.AsyncLock.AcquireAsync(System.TimeSpan,System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.AsyncLock.AcquireAsync(System.TimeSpan,System.Threading.CancellationToken)
+  id: AcquireAsync(System.TimeSpan,System.Threading.CancellationToken)
+  parent: CodeJam.Threading.AsyncLock
+  langs:
+  - csharp
+  - vb
+  name: AcquireAsync(TimeSpan, CancellationToken)
+  nameWithType: AsyncLock.AcquireAsync(TimeSpan, CancellationToken)
+  fullName: CodeJam.Threading.AsyncLock.AcquireAsync(System.TimeSpan, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncLock.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AcquireAsync
+    path: ../Main/src/Threading/AsyncLock.cs
+    startLine: 29
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nAcquires async lock.\n"
+  example: []
+  syntax:
+    content: public Task<IDisposable> AcquireAsync(TimeSpan timeout, CancellationToken cancellation)
+    parameters:
+    - id: timeout
+      type: System.TimeSpan
+      description: "\nA <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents the timeout to wait if lock already acquired, a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref>\nthat represents -1 milliseconds to wait indefinitely, or a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents 0 milliseconds\nto return immediately.\n"
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: The CancellationToken token to observe.
+    return:
+      type: System.Threading.Tasks.Task{System.IDisposable}
+      description: A task that returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to release the lock.
+    content.vb: Public Function AcquireAsync(timeout As TimeSpan, cancellation As CancellationToken) As Task(Of IDisposable)
+  overload: CodeJam.Threading.AsyncLock.AcquireAsync*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: The token has had cancellation requested.
+  - type: System.TimeoutException
+    commentId: T:System.TimeoutException
+    description: The timeout has expired.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Threading.AsyncLock.AcquireAsync(System.Int32,System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.AsyncLock.AcquireAsync(System.Int32,System.Threading.CancellationToken)
+  id: AcquireAsync(System.Int32,System.Threading.CancellationToken)
+  parent: CodeJam.Threading.AsyncLock
+  langs:
+  - csharp
+  - vb
+  name: AcquireAsync(Int32, CancellationToken)
+  nameWithType: AsyncLock.AcquireAsync(Int32, CancellationToken)
+  fullName: CodeJam.Threading.AsyncLock.AcquireAsync(System.Int32, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncLock.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AcquireAsync
+    path: ../Main/src/Threading/AsyncLock.cs
+    startLine: 52
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nAcquires async lock.\n"
+  example: []
+  syntax:
+    content: public Task<IDisposable> AcquireAsync(int timeout, CancellationToken cancellation)
+    parameters:
+    - id: timeout
+      type: System.Int32
+      description: "\nA number of milliseconds that represents the timeout to wait if lock already acquired, a  -1 to wait\nindefinitely, or a 0 to return immediately.\n"
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: The CancellationToken token to observe.
+    return:
+      type: System.Threading.Tasks.Task{System.IDisposable}
+      description: A task that returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to release the lock.
+    content.vb: Public Function AcquireAsync(timeout As Integer, cancellation As CancellationToken) As Task(Of IDisposable)
+  overload: CodeJam.Threading.AsyncLock.AcquireAsync*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: The token has had cancellation requested.
+  - type: System.TimeoutException
+    commentId: T:System.TimeoutException
+    description: The timeout has expired.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Threading.AsyncLock.AcquireAsync(System.Int32)
+  commentId: M:CodeJam.Threading.AsyncLock.AcquireAsync(System.Int32)
+  id: AcquireAsync(System.Int32)
+  parent: CodeJam.Threading.AsyncLock
+  langs:
+  - csharp
+  - vb
+  name: AcquireAsync(Int32)
+  nameWithType: AsyncLock.AcquireAsync(Int32)
+  fullName: CodeJam.Threading.AsyncLock.AcquireAsync(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncLock.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AcquireAsync
+    path: ../Main/src/Threading/AsyncLock.cs
+    startLine: 65
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nAcquires async lock.\n"
+  example: []
+  syntax:
+    content: public Task<IDisposable> AcquireAsync(int timeout)
+    parameters:
+    - id: timeout
+      type: System.Int32
+      description: "\nA number of milliseconds that represents the timeout to wait if lock already acquired, a  -1 to wait\nindefinitely, or a 0 to return immediately.\n"
+    return:
+      type: System.Threading.Tasks.Task{System.IDisposable}
+      description: A task that returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to release the lock.
+    content.vb: Public Function AcquireAsync(timeout As Integer) As Task(Of IDisposable)
+  overload: CodeJam.Threading.AsyncLock.AcquireAsync*
+  exceptions:
+  - type: System.TimeoutException
+    commentId: T:System.TimeoutException
+    description: The timeout has expired.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Threading.AsyncLock.AcquireAsync(System.TimeSpan)
+  commentId: M:CodeJam.Threading.AsyncLock.AcquireAsync(System.TimeSpan)
+  id: AcquireAsync(System.TimeSpan)
+  parent: CodeJam.Threading.AsyncLock
+  langs:
+  - csharp
+  - vb
+  name: AcquireAsync(TimeSpan)
+  nameWithType: AsyncLock.AcquireAsync(TimeSpan)
+  fullName: CodeJam.Threading.AsyncLock.AcquireAsync(System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncLock.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AcquireAsync
+    path: ../Main/src/Threading/AsyncLock.cs
+    startLine: 78
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nAcquires async lock.\n"
+  example: []
+  syntax:
+    content: public Task<IDisposable> AcquireAsync(TimeSpan timeout)
+    parameters:
+    - id: timeout
+      type: System.TimeSpan
+      description: "\nA <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents the timeout to wait if lock already acquired, a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref>\nthat represents -1 milliseconds to wait indefinitely, or a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents 0 milliseconds\nto return immediately.\n"
+    return:
+      type: System.Threading.Tasks.Task{System.IDisposable}
+      description: A task that returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to release the lock.
+    content.vb: Public Function AcquireAsync(timeout As TimeSpan) As Task(Of IDisposable)
+  overload: CodeJam.Threading.AsyncLock.AcquireAsync*
+  exceptions:
+  - type: System.TimeoutException
+    commentId: T:System.TimeoutException
+    description: The timeout has expired.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Threading.AsyncLock.AcquireAsync(System.Threading.CancellationToken)
+  commentId: M:CodeJam.Threading.AsyncLock.AcquireAsync(System.Threading.CancellationToken)
+  id: AcquireAsync(System.Threading.CancellationToken)
+  parent: CodeJam.Threading.AsyncLock
+  langs:
+  - csharp
+  - vb
+  name: AcquireAsync(CancellationToken)
+  nameWithType: AsyncLock.AcquireAsync(CancellationToken)
+  fullName: CodeJam.Threading.AsyncLock.AcquireAsync(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncLock.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AcquireAsync
+    path: ../Main/src/Threading/AsyncLock.cs
+    startLine: 87
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nAcquires async lock.\n"
+  example: []
+  syntax:
+    content: public Task<IDisposable> AcquireAsync(CancellationToken cancellation)
+    parameters:
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: The CancellationToken token to observe.
+    return:
+      type: System.Threading.Tasks.Task{System.IDisposable}
+      description: A task that returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to release the lock.
+    content.vb: Public Function AcquireAsync(cancellation As CancellationToken) As Task(Of IDisposable)
+  overload: CodeJam.Threading.AsyncLock.AcquireAsync*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: The token has had cancellation requested.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Threading.AsyncLock.AcquireAsync
+  commentId: M:CodeJam.Threading.AsyncLock.AcquireAsync
+  id: AcquireAsync
+  parent: CodeJam.Threading.AsyncLock
+  langs:
+  - csharp
+  - vb
+  name: AcquireAsync()
+  nameWithType: AsyncLock.AcquireAsync()
+  fullName: CodeJam.Threading.AsyncLock.AcquireAsync()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Threading/AsyncLock.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AcquireAsync
+    path: ../Main/src/Threading/AsyncLock.cs
+    startLine: 94
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Threading
+  summary: "\nAcquires async lock.\n"
+  example: []
+  syntax:
+    content: public Task<IDisposable> AcquireAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.IDisposable}
+      description: A task that returns <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to release the lock.
+    content.vb: Public Function AcquireAsync As Task(Of IDisposable)
+  overload: CodeJam.Threading.AsyncLock.AcquireAsync*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: CodeJam.Threading
+  commentId: N:CodeJam.Threading
+  isExternal: false
+  name: CodeJam.Threading
+  nameWithType: CodeJam.Threading
+  fullName: CodeJam.Threading
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  name: Contains<T, AsyncLock>(Range<T>)
+  nameWithType: RangeExtensions.Contains<T, AsyncLock>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Threading.AsyncLock>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, AsyncLock)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Threading.AsyncLock)(CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, AsyncLock)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains<T, AsyncLock>
+    nameWithType: RangeExtensions.Contains<T, AsyncLock>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Threading.AsyncLock>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, AsyncLock)
+    nameWithType: RangeExtensions.Contains(Of T, AsyncLock)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Threading.AsyncLock)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  name: StartsAfter<T, AsyncLock>(Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, AsyncLock>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Threading.AsyncLock>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, AsyncLock)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Threading.AsyncLock)(CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, AsyncLock)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, AsyncLock>
+    nameWithType: RangeExtensions.StartsAfter<T, AsyncLock>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Threading.AsyncLock>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, AsyncLock)
+    nameWithType: RangeExtensions.StartsAfter(Of T, AsyncLock)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Threading.AsyncLock)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  name: EndsBefore<T, AsyncLock>(Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, AsyncLock>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Threading.AsyncLock>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, AsyncLock)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Threading.AsyncLock)(CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, AsyncLock)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, AsyncLock>
+    nameWithType: RangeExtensions.EndsBefore<T, AsyncLock>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Threading.AsyncLock>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, AsyncLock)
+    nameWithType: RangeExtensions.EndsBefore(Of T, AsyncLock)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Threading.AsyncLock)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: Contains<T, TKey, AsyncLock>(Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, AsyncLock>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Threading.AsyncLock>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, AsyncLock)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Threading.AsyncLock)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, AsyncLock)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, AsyncLock>
+    nameWithType: RangeExtensions.Contains<T, TKey, AsyncLock>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Threading.AsyncLock>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, AsyncLock)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, AsyncLock)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Threading.AsyncLock)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: StartsAfter<T, TKey, AsyncLock>(Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, AsyncLock>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Threading.AsyncLock>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, AsyncLock)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Threading.AsyncLock)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, AsyncLock)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, AsyncLock>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, AsyncLock>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Threading.AsyncLock>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, AsyncLock)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, AsyncLock)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Threading.AsyncLock)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Threading.AsyncLock.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: EndsBefore<T, TKey, AsyncLock>(Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, AsyncLock>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Threading.AsyncLock>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, AsyncLock)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Threading.AsyncLock)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, AsyncLock)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, AsyncLock>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, AsyncLock>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Threading.AsyncLock>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, AsyncLock)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, AsyncLock)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Threading.AsyncLock)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: Contains<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains<T, TRange>
+    nameWithType: RangeExtensions.Contains<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions
+  commentId: T:CodeJam.Ranges.RangeExtensions
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeExtensions
+  nameWithType: RangeExtensions
+  fullName: CodeJam.Ranges.RangeExtensions
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: StartsAfter<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: EndsBefore<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TRange>
+    nameWithType: RangeExtensions.Contains<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: CodeJam.Threading.AsyncLock.AcquireAsync*
+  commentId: Overload:CodeJam.Threading.AsyncLock.AcquireAsync
+  isExternal: false
+  name: AcquireAsync
+  nameWithType: AsyncLock.AcquireAsync
+  fullName: CodeJam.Threading.AsyncLock.AcquireAsync
+- uid: System.OperationCanceledException
+  commentId: T:System.OperationCanceledException
+- uid: System.TimeoutException
+  commentId: T:System.TimeoutException
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.IDisposable}
+  commentId: T:System.Threading.Tasks.Task{System.IDisposable}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<IDisposable>
+  nameWithType: Task<IDisposable>
+  fullName: System.Threading.Tasks.Task<System.IDisposable>
+  nameWithType.vb: Task(Of IDisposable)
+  fullName.vb: System.Threading.Tasks.Task(Of System.IDisposable)
+  name.vb: Task(Of IDisposable)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: System.IDisposable
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: System.IDisposable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: false
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: false
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

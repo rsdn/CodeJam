@@ -1,0 +1,2828 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Expressions.Expr
+  commentId: T:CodeJam.Expressions.Expr
+  id: Expr
+  parent: CodeJam.Expressions
+  children:
+  - CodeJam.Expressions.Expr.Action(System.Linq.Expressions.Expression{System.Action})
+  - CodeJam.Expressions.Expr.Action``1(System.Linq.Expressions.Expression{System.Action{``0}})
+  - CodeJam.Expressions.Expr.Action``2(System.Linq.Expressions.Expression{System.Action{``0,``1}})
+  - CodeJam.Expressions.Expr.Action``3(System.Linq.Expressions.Expression{System.Action{``0,``1,``2}})
+  - CodeJam.Expressions.Expr.Action``4(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}})
+  - CodeJam.Expressions.Expr.Action``5(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4}})
+  - CodeJam.Expressions.Expr.Action``6(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5}})
+  - CodeJam.Expressions.Expr.Action``7(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5,``6}})
+  - CodeJam.Expressions.Expr.Func``1(System.Linq.Expressions.Expression{System.Func{``0}})
+  - CodeJam.Expressions.Expr.Func``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  - CodeJam.Expressions.Expr.Func``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
+  - CodeJam.Expressions.Expr.Func``4(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
+  - CodeJam.Expressions.Expr.Func``5(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}})
+  - CodeJam.Expressions.Expr.Func``6(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5}})
+  - CodeJam.Expressions.Expr.Func``7(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6}})
+  - CodeJam.Expressions.Expr.Func``8(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7}})
+  langs:
+  - csharp
+  - vb
+  name: Expr
+  nameWithType: Expr
+  fullName: CodeJam.Expressions.Expr
+  type: Class
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Expr
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 19
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: "\nProvides helper methods for Action and Func delegates.\n"
+  example: []
+  syntax:
+    content: public static class Expr
+    content.vb: Public Module Expr
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Expressions.Expr.Action(System.Linq.Expressions.Expression{System.Action})
+  commentId: M:CodeJam.Expressions.Expr.Action(System.Linq.Expressions.Expression{System.Action})
+  id: Action(System.Linq.Expressions.Expression{System.Action})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Action(Expression<Action>)
+  nameWithType: Expr.Action(Expression<Action>)
+  fullName: CodeJam.Expressions.Expr.Action(System.Linq.Expressions.Expression<System.Action>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 25
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Action> Action(Expression<Action> actionExpression)
+    parameters:
+    - id: actionExpression
+      type: System.Linq.Expressions.Expression{System.Action}
+      description: The lambda expression.
+    return:
+      type: System.Linq.Expressions.Expression{System.Action}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Action(actionExpression As Expression(Of Action)) As Expression(Of Action)
+  overload: CodeJam.Expressions.Expr.Action*
+  nameWithType.vb: Expr.Action(Expression(Of Action))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Action(System.Linq.Expressions.Expression(Of System.Action))
+  name.vb: Action(Expression(Of Action))
+- uid: CodeJam.Expressions.Expr.Action``1(System.Linq.Expressions.Expression{System.Action{``0}})
+  commentId: M:CodeJam.Expressions.Expr.Action``1(System.Linq.Expressions.Expression{System.Action{``0}})
+  id: Action``1(System.Linq.Expressions.Expression{System.Action{``0}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Action<T1>(Expression<Action<T1>>)
+  nameWithType: Expr.Action<T1>(Expression<Action<T1>>)
+  fullName: CodeJam.Expressions.Expr.Action<T1>(System.Linq.Expressions.Expression<System.Action<T1>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 37
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Action<T1>> Action<T1>(Expression<Action<T1>> actionExpression)
+    parameters:
+    - id: actionExpression
+      type: System.Linq.Expressions.Expression{System.Action{{T1}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    return:
+      type: System.Linq.Expressions.Expression{System.Action{{T1}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Action(Of T1)(actionExpression As Expression(Of Action(Of T1))) As Expression(Of Action(Of T1))
+  overload: CodeJam.Expressions.Expr.Action*
+  nameWithType.vb: Expr.Action(Of T1)(Expression(Of Action(Of T1)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Action(Of T1)(System.Linq.Expressions.Expression(Of System.Action(Of T1)))
+  name.vb: Action(Of T1)(Expression(Of Action(Of T1)))
+- uid: CodeJam.Expressions.Expr.Action``2(System.Linq.Expressions.Expression{System.Action{``0,``1}})
+  commentId: M:CodeJam.Expressions.Expr.Action``2(System.Linq.Expressions.Expression{System.Action{``0,``1}})
+  id: Action``2(System.Linq.Expressions.Expression{System.Action{``0,``1}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2>(Expression<Action<T1, T2>>)
+  nameWithType: Expr.Action<T1, T2>(Expression<Action<T1, T2>>)
+  fullName: CodeJam.Expressions.Expr.Action<T1, T2>(System.Linq.Expressions.Expression<System.Action<T1, T2>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 50
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Action<T1, T2>> Action<T1, T2>(Expression<Action<T1, T2>> actionExpression)
+    parameters:
+    - id: actionExpression
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    return:
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Action(Of T1, T2)(actionExpression As Expression(Of Action(Of T1, T2))) As Expression(Of Action(Of T1, T2))
+  overload: CodeJam.Expressions.Expr.Action*
+  nameWithType.vb: Expr.Action(Of T1, T2)(Expression(Of Action(Of T1, T2)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Action(Of T1, T2)(System.Linq.Expressions.Expression(Of System.Action(Of T1, T2)))
+  name.vb: Action(Of T1, T2)(Expression(Of Action(Of T1, T2)))
+- uid: CodeJam.Expressions.Expr.Action``3(System.Linq.Expressions.Expression{System.Action{``0,``1,``2}})
+  commentId: M:CodeJam.Expressions.Expr.Action``3(System.Linq.Expressions.Expression{System.Action{``0,``1,``2}})
+  id: Action``3(System.Linq.Expressions.Expression{System.Action{``0,``1,``2}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3>(Expression<Action<T1, T2, T3>>)
+  nameWithType: Expr.Action<T1, T2, T3>(Expression<Action<T1, T2, T3>>)
+  fullName: CodeJam.Expressions.Expr.Action<T1, T2, T3>(System.Linq.Expressions.Expression<System.Action<T1, T2, T3>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 64
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Action<T1, T2, T3>> Action<T1, T2, T3>(Expression<Action<T1, T2, T3>> actionExpression)
+    parameters:
+    - id: actionExpression
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    return:
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3)(actionExpression As Expression(Of Action(Of T1, T2, T3))) As Expression(Of Action(Of T1, T2, T3))
+  overload: CodeJam.Expressions.Expr.Action*
+  nameWithType.vb: Expr.Action(Of T1, T2, T3)(Expression(Of Action(Of T1, T2, T3)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Action(Of T1, T2, T3)(System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3)))
+  name.vb: Action(Of T1, T2, T3)(Expression(Of Action(Of T1, T2, T3)))
+- uid: CodeJam.Expressions.Expr.Action``4(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}})
+  commentId: M:CodeJam.Expressions.Expr.Action``4(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}})
+  id: Action``4(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3, T4>(Expression<Action<T1, T2, T3, T4>>)
+  nameWithType: Expr.Action<T1, T2, T3, T4>(Expression<Action<T1, T2, T3, T4>>)
+  fullName: CodeJam.Expressions.Expr.Action<T1, T2, T3, T4>(System.Linq.Expressions.Expression<System.Action<T1, T2, T3, T4>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 79
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Action<T1, T2, T3, T4>> Action<T1, T2, T3, T4>(Expression<Action<T1, T2, T3, T4>> actionExpression)
+    parameters:
+    - id: actionExpression
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    return:
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3, T4)(actionExpression As Expression(Of Action(Of T1, T2, T3, T4))) As Expression(Of Action(Of T1, T2, T3, T4))
+  overload: CodeJam.Expressions.Expr.Action*
+  nameWithType.vb: Expr.Action(Of T1, T2, T3, T4)(Expression(Of Action(Of T1, T2, T3, T4)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Action(Of T1, T2, T3, T4)(System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3, T4)))
+  name.vb: Action(Of T1, T2, T3, T4)(Expression(Of Action(Of T1, T2, T3, T4)))
+- uid: CodeJam.Expressions.Expr.Action``5(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4}})
+  commentId: M:CodeJam.Expressions.Expr.Action``5(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4}})
+  id: Action``5(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3, T4, T5>(Expression<Action<T1, T2, T3, T4, T5>>)
+  nameWithType: Expr.Action<T1, T2, T3, T4, T5>(Expression<Action<T1, T2, T3, T4, T5>>)
+  fullName: CodeJam.Expressions.Expr.Action<T1, T2, T3, T4, T5>(System.Linq.Expressions.Expression<System.Action<T1, T2, T3, T4, T5>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 95
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Action<T1, T2, T3, T4, T5>> Action<T1, T2, T3, T4, T5>(Expression<Action<T1, T2, T3, T4, T5>> actionExpression)
+    parameters:
+    - id: actionExpression
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    return:
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3, T4, T5)(actionExpression As Expression(Of Action(Of T1, T2, T3, T4, T5))) As Expression(Of Action(Of T1, T2, T3, T4, T5))
+  overload: CodeJam.Expressions.Expr.Action*
+  nameWithType.vb: Expr.Action(Of T1, T2, T3, T4, T5)(Expression(Of Action(Of T1, T2, T3, T4, T5)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Action(Of T1, T2, T3, T4, T5)(System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3, T4, T5)))
+  name.vb: Action(Of T1, T2, T3, T4, T5)(Expression(Of Action(Of T1, T2, T3, T4, T5)))
+- uid: CodeJam.Expressions.Expr.Action``6(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5}})
+  commentId: M:CodeJam.Expressions.Expr.Action``6(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5}})
+  id: Action``6(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3, T4, T5, T6>(Expression<Action<T1, T2, T3, T4, T5, T6>>)
+  nameWithType: Expr.Action<T1, T2, T3, T4, T5, T6>(Expression<Action<T1, T2, T3, T4, T5, T6>>)
+  fullName: CodeJam.Expressions.Expr.Action<T1, T2, T3, T4, T5, T6>(System.Linq.Expressions.Expression<System.Action<T1, T2, T3, T4, T5, T6>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 112
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Action<T1, T2, T3, T4, T5, T6>> Action<T1, T2, T3, T4, T5, T6>(Expression<Action<T1, T2, T3, T4, T5, T6>> actionExpression)
+    parameters:
+    - id: actionExpression
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5},{T6}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: T6
+      description: 'The type of argument #6.'
+    return:
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5},{T6}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3, T4, T5, T6)(actionExpression As Expression(Of Action(Of T1, T2, T3, T4, T5, T6))) As Expression(Of Action(Of T1, T2, T3, T4, T5, T6))
+  overload: CodeJam.Expressions.Expr.Action*
+  nameWithType.vb: Expr.Action(Of T1, T2, T3, T4, T5, T6)(Expression(Of Action(Of T1, T2, T3, T4, T5, T6)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Action(Of T1, T2, T3, T4, T5, T6)(System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3, T4, T5, T6)))
+  name.vb: Action(Of T1, T2, T3, T4, T5, T6)(Expression(Of Action(Of T1, T2, T3, T4, T5, T6)))
+- uid: CodeJam.Expressions.Expr.Action``7(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5,``6}})
+  commentId: M:CodeJam.Expressions.Expr.Action``7(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5,``6}})
+  id: Action``7(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5,``6}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Action<T1, T2, T3, T4, T5, T6, T7>(Expression<Action<T1, T2, T3, T4, T5, T6, T7>>)
+  nameWithType: Expr.Action<T1, T2, T3, T4, T5, T6, T7>(Expression<Action<T1, T2, T3, T4, T5, T6, T7>>)
+  fullName: CodeJam.Expressions.Expr.Action<T1, T2, T3, T4, T5, T6, T7>(System.Linq.Expressions.Expression<System.Action<T1, T2, T3, T4, T5, T6, T7>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Action
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 130
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Action<T1, T2, T3, T4, T5, T6, T7>> Action<T1, T2, T3, T4, T5, T6, T7>(Expression<Action<T1, T2, T3, T4, T5, T6, T7>> actionExpression)
+    parameters:
+    - id: actionExpression
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: T6
+      description: 'The type of argument #6.'
+    - id: T7
+      description: 'The type of argument #7.'
+    return:
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Action(Of T1, T2, T3, T4, T5, T6, T7)(actionExpression As Expression(Of Action(Of T1, T2, T3, T4, T5, T6, T7))) As Expression(Of Action(Of T1, T2, T3, T4, T5, T6, T7))
+  overload: CodeJam.Expressions.Expr.Action*
+  nameWithType.vb: Expr.Action(Of T1, T2, T3, T4, T5, T6, T7)(Expression(Of Action(Of T1, T2, T3, T4, T5, T6, T7)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Action(Of T1, T2, T3, T4, T5, T6, T7)(System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3, T4, T5, T6, T7)))
+  name.vb: Action(Of T1, T2, T3, T4, T5, T6, T7)(Expression(Of Action(Of T1, T2, T3, T4, T5, T6, T7)))
+- uid: CodeJam.Expressions.Expr.Func``1(System.Linq.Expressions.Expression{System.Func{``0}})
+  commentId: M:CodeJam.Expressions.Expr.Func``1(System.Linq.Expressions.Expression{System.Func{``0}})
+  id: Func``1(System.Linq.Expressions.Expression{System.Func{``0}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Func<TResult>(Expression<Func<TResult>>)
+  nameWithType: Expr.Func<TResult>(Expression<Func<TResult>>)
+  fullName: CodeJam.Expressions.Expr.Func<TResult>(System.Linq.Expressions.Expression<System.Func<TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 144
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Func<TResult>> Func<TResult>(Expression<Func<TResult>> funcExpression)
+    parameters:
+    - id: funcExpression
+      type: System.Linq.Expressions.Expression{System.Func{{TResult}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{TResult}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Func(Of TResult)(funcExpression As Expression(Of Func(Of TResult))) As Expression(Of Func(Of TResult))
+  overload: CodeJam.Expressions.Expr.Func*
+  nameWithType.vb: Expr.Func(Of TResult)(Expression(Of Func(Of TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Func(Of TResult)(System.Linq.Expressions.Expression(Of System.Func(Of TResult)))
+  name.vb: Func(Of TResult)(Expression(Of Func(Of TResult)))
+- uid: CodeJam.Expressions.Expr.Func``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  commentId: M:CodeJam.Expressions.Expr.Func``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  id: Func``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, TResult>(Expression<Func<T1, TResult>>)
+  nameWithType: Expr.Func<T1, TResult>(Expression<Func<T1, TResult>>)
+  fullName: CodeJam.Expressions.Expr.Func<T1, TResult>(System.Linq.Expressions.Expression<System.Func<T1, TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 157
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Func<T1, TResult>> Func<T1, TResult>(Expression<Func<T1, TResult>> funcExpression)
+    parameters:
+    - id: funcExpression
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{TResult}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{TResult}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Func(Of T1, TResult)(funcExpression As Expression(Of Func(Of T1, TResult))) As Expression(Of Func(Of T1, TResult))
+  overload: CodeJam.Expressions.Expr.Func*
+  nameWithType.vb: Expr.Func(Of T1, TResult)(Expression(Of Func(Of T1, TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Func(Of T1, TResult)(System.Linq.Expressions.Expression(Of System.Func(Of T1, TResult)))
+  name.vb: Func(Of T1, TResult)(Expression(Of Func(Of T1, TResult)))
+- uid: CodeJam.Expressions.Expr.Func``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
+  commentId: M:CodeJam.Expressions.Expr.Func``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
+  id: Func``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, TResult>(Expression<Func<T1, T2, TResult>>)
+  nameWithType: Expr.Func<T1, T2, TResult>(Expression<Func<T1, T2, TResult>>)
+  fullName: CodeJam.Expressions.Expr.Func<T1, T2, TResult>(System.Linq.Expressions.Expression<System.Func<T1, T2, TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 171
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Func<T1, T2, TResult>> Func<T1, T2, TResult>(Expression<Func<T1, T2, TResult>> funcExpression)
+    parameters:
+    - id: funcExpression
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{TResult}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{TResult}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Func(Of T1, T2, TResult)(funcExpression As Expression(Of Func(Of T1, T2, TResult))) As Expression(Of Func(Of T1, T2, TResult))
+  overload: CodeJam.Expressions.Expr.Func*
+  nameWithType.vb: Expr.Func(Of T1, T2, TResult)(Expression(Of Func(Of T1, T2, TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Func(Of T1, T2, TResult)(System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, TResult)))
+  name.vb: Func(Of T1, T2, TResult)(Expression(Of Func(Of T1, T2, TResult)))
+- uid: CodeJam.Expressions.Expr.Func``4(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
+  commentId: M:CodeJam.Expressions.Expr.Func``4(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
+  id: Func``4(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, TResult>(Expression<Func<T1, T2, T3, TResult>>)
+  nameWithType: Expr.Func<T1, T2, T3, TResult>(Expression<Func<T1, T2, T3, TResult>>)
+  fullName: CodeJam.Expressions.Expr.Func<T1, T2, T3, TResult>(System.Linq.Expressions.Expression<System.Func<T1, T2, T3, TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 186
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Func<T1, T2, T3, TResult>> Func<T1, T2, T3, TResult>(Expression<Func<T1, T2, T3, TResult>> funcExpression)
+    parameters:
+    - id: funcExpression
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{TResult}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{TResult}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, TResult)(funcExpression As Expression(Of Func(Of T1, T2, T3, TResult))) As Expression(Of Func(Of T1, T2, T3, TResult))
+  overload: CodeJam.Expressions.Expr.Func*
+  nameWithType.vb: Expr.Func(Of T1, T2, T3, TResult)(Expression(Of Func(Of T1, T2, T3, TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Func(Of T1, T2, T3, TResult)(System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, TResult)))
+  name.vb: Func(Of T1, T2, T3, TResult)(Expression(Of Func(Of T1, T2, T3, TResult)))
+- uid: CodeJam.Expressions.Expr.Func``5(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}})
+  commentId: M:CodeJam.Expressions.Expr.Func``5(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}})
+  id: Func``5(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, T4, TResult>(Expression<Func<T1, T2, T3, T4, TResult>>)
+  nameWithType: Expr.Func<T1, T2, T3, T4, TResult>(Expression<Func<T1, T2, T3, T4, TResult>>)
+  fullName: CodeJam.Expressions.Expr.Func<T1, T2, T3, T4, TResult>(System.Linq.Expressions.Expression<System.Func<T1, T2, T3, T4, TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 202
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Func<T1, T2, T3, T4, TResult>> Func<T1, T2, T3, T4, TResult>(Expression<Func<T1, T2, T3, T4, TResult>> funcExpression)
+    parameters:
+    - id: funcExpression
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{TResult}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{TResult}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, T4, TResult)(funcExpression As Expression(Of Func(Of T1, T2, T3, T4, TResult))) As Expression(Of Func(Of T1, T2, T3, T4, TResult))
+  overload: CodeJam.Expressions.Expr.Func*
+  nameWithType.vb: Expr.Func(Of T1, T2, T3, T4, TResult)(Expression(Of Func(Of T1, T2, T3, T4, TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Func(Of T1, T2, T3, T4, TResult)(System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, T4, TResult)))
+  name.vb: Func(Of T1, T2, T3, T4, TResult)(Expression(Of Func(Of T1, T2, T3, T4, TResult)))
+- uid: CodeJam.Expressions.Expr.Func``6(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5}})
+  commentId: M:CodeJam.Expressions.Expr.Func``6(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5}})
+  id: Func``6(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, T4, T5, TResult>(Expression<Func<T1, T2, T3, T4, T5, TResult>>)
+  nameWithType: Expr.Func<T1, T2, T3, T4, T5, TResult>(Expression<Func<T1, T2, T3, T4, T5, TResult>>)
+  fullName: CodeJam.Expressions.Expr.Func<T1, T2, T3, T4, T5, TResult>(System.Linq.Expressions.Expression<System.Func<T1, T2, T3, T4, T5, TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 219
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Func<T1, T2, T3, T4, T5, TResult>> Func<T1, T2, T3, T4, T5, TResult>(Expression<Func<T1, T2, T3, T4, T5, TResult>> funcExpression)
+    parameters:
+    - id: funcExpression
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{TResult}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{TResult}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, T4, T5, TResult)(funcExpression As Expression(Of Func(Of T1, T2, T3, T4, T5, TResult))) As Expression(Of Func(Of T1, T2, T3, T4, T5, TResult))
+  overload: CodeJam.Expressions.Expr.Func*
+  nameWithType.vb: Expr.Func(Of T1, T2, T3, T4, T5, TResult)(Expression(Of Func(Of T1, T2, T3, T4, T5, TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Func(Of T1, T2, T3, T4, T5, TResult)(System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, T4, T5, TResult)))
+  name.vb: Func(Of T1, T2, T3, T4, T5, TResult)(Expression(Of Func(Of T1, T2, T3, T4, T5, TResult)))
+- uid: CodeJam.Expressions.Expr.Func``7(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6}})
+  commentId: M:CodeJam.Expressions.Expr.Func``7(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6}})
+  id: Func``7(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, T4, T5, T6, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, TResult>>)
+  nameWithType: Expr.Func<T1, T2, T3, T4, T5, T6, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, TResult>>)
+  fullName: CodeJam.Expressions.Expr.Func<T1, T2, T3, T4, T5, T6, TResult>(System.Linq.Expressions.Expression<System.Func<T1, T2, T3, T4, T5, T6, TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 237
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Func<T1, T2, T3, T4, T5, T6, TResult>> Func<T1, T2, T3, T4, T5, T6, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, TResult>> funcExpression)
+    parameters:
+    - id: funcExpression
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{TResult}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: T6
+      description: 'The type of argument #6.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{TResult}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, T4, T5, T6, TResult)(funcExpression As Expression(Of Func(Of T1, T2, T3, T4, T5, T6, TResult))) As Expression(Of Func(Of T1, T2, T3, T4, T5, T6, TResult))
+  overload: CodeJam.Expressions.Expr.Func*
+  nameWithType.vb: Expr.Func(Of T1, T2, T3, T4, T5, T6, TResult)(Expression(Of Func(Of T1, T2, T3, T4, T5, T6, TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Func(Of T1, T2, T3, T4, T5, T6, TResult)(System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, T4, T5, T6, TResult)))
+  name.vb: Func(Of T1, T2, T3, T4, T5, T6, TResult)(Expression(Of Func(Of T1, T2, T3, T4, T5, T6, TResult)))
+- uid: CodeJam.Expressions.Expr.Func``8(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7}})
+  commentId: M:CodeJam.Expressions.Expr.Func``8(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7}})
+  id: Func``8(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7}})
+  parent: CodeJam.Expressions.Expr
+  langs:
+  - csharp
+  - vb
+  name: Func<T1, T2, T3, T4, T5, T6, T7, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>>)
+  nameWithType: Expr.Func<T1, T2, T3, T4, T5, T6, T7, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>>)
+  fullName: CodeJam.Expressions.Expr.Func<T1, T2, T3, T4, T5, T6, T7, TResult>(System.Linq.Expressions.Expression<System.Func<T1, T2, T3, T4, T5, T6, T7, TResult>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Expressions/Expr.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Func
+    path: ../Main/src/Expressions/Expr.generated.cs
+    startLine: 256
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Expressions
+  summary: Helper for type inference from the lambda expression.
+  example: []
+  syntax:
+    content: public static Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>> Func<T1, T2, T3, T4, T5, T6, T7, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>> funcExpression)
+    parameters:
+    - id: funcExpression
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{T7},{TResult}}}
+      description: The lambda expression.
+    typeParameters:
+    - id: T1
+      description: 'The type of argument #1.'
+    - id: T2
+      description: 'The type of argument #2.'
+    - id: T3
+      description: 'The type of argument #3.'
+    - id: T4
+      description: 'The type of argument #4.'
+    - id: T5
+      description: 'The type of argument #5.'
+    - id: T6
+      description: 'The type of argument #6.'
+    - id: T7
+      description: 'The type of argument #7.'
+    - id: TResult
+      description: The result type.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{T7},{TResult}}}
+      description: The lambda expression passed.
+    content.vb: Public Shared Function Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)(funcExpression As Expression(Of Func(Of T1, T2, T3, T4, T5, T6, T7, TResult))) As Expression(Of Func(Of T1, T2, T3, T4, T5, T6, T7, TResult))
+  overload: CodeJam.Expressions.Expr.Func*
+  nameWithType.vb: Expr.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)(Expression(Of Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Expressions.Expr.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)(System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)))
+  name.vb: Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)(Expression(Of Func(Of T1, T2, T3, T4, T5, T6, T7, TResult)))
+references:
+- uid: CodeJam.Expressions
+  commentId: N:CodeJam.Expressions
+  isExternal: false
+  name: CodeJam.Expressions
+  nameWithType: CodeJam.Expressions
+  fullName: CodeJam.Expressions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Expressions.Expr.Action*
+  commentId: Overload:CodeJam.Expressions.Expr.Action
+  isExternal: false
+  name: Action
+  nameWithType: Expr.Action
+  fullName: CodeJam.Expressions.Expr.Action
+- uid: System.Linq.Expressions.Expression{System.Action}
+  commentId: T:System.Linq.Expressions.Expression{System.Action}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action>
+  nameWithType: Expression<Action>
+  fullName: System.Linq.Expressions.Expression<System.Action>
+  nameWithType.vb: Expression(Of Action)
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action)
+  name.vb: Expression(Of Action)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: false
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+- uid: System.Linq.Expressions.Expression{System.Action{{T1}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Action{``0}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action<T1>>
+  nameWithType: Expression<Action<T1>>
+  fullName: System.Linq.Expressions.Expression<System.Action<T1>>
+  nameWithType.vb: Expression(Of Action(Of T1))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action(Of T1))
+  name.vb: Expression(Of Action(Of T1))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Action{{T1},{T2}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Action{``0,``1}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action<T1, T2>>
+  nameWithType: Expression<Action<T1, T2>>
+  fullName: System.Linq.Expressions.Expression<System.Action<T1, T2>>
+  nameWithType.vb: Expression(Of Action(Of T1, T2))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action(Of T1, T2))
+  name.vb: Expression(Of Action(Of T1, T2))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action<T1, T2, T3>>
+  nameWithType: Expression<Action<T1, T2, T3>>
+  fullName: System.Linq.Expressions.Expression<System.Action<T1, T2, T3>>
+  nameWithType.vb: Expression(Of Action(Of T1, T2, T3))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3))
+  name.vb: Expression(Of Action(Of T1, T2, T3))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action`3
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action`3
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action<T1, T2, T3, T4>>
+  nameWithType: Expression<Action<T1, T2, T3, T4>>
+  fullName: System.Linq.Expressions.Expression<System.Action<T1, T2, T3, T4>>
+  nameWithType.vb: Expression(Of Action(Of T1, T2, T3, T4))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3, T4))
+  name.vb: Expression(Of Action(Of T1, T2, T3, T4))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action`4
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action`4
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action<T1, T2, T3, T4, T5>>
+  nameWithType: Expression<Action<T1, T2, T3, T4, T5>>
+  fullName: System.Linq.Expressions.Expression<System.Action<T1, T2, T3, T4, T5>>
+  nameWithType.vb: Expression(Of Action(Of T1, T2, T3, T4, T5))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3, T4, T5))
+  name.vb: Expression(Of Action(Of T1, T2, T3, T4, T5))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action`5
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action`5
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5},{T6}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action<T1, T2, T3, T4, T5, T6>>
+  nameWithType: Expression<Action<T1, T2, T3, T4, T5, T6>>
+  fullName: System.Linq.Expressions.Expression<System.Action<T1, T2, T3, T4, T5, T6>>
+  nameWithType.vb: Expression(Of Action(Of T1, T2, T3, T4, T5, T6))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3, T4, T5, T6))
+  name.vb: Expression(Of Action(Of T1, T2, T3, T4, T5, T6))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action`6
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action`6
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{T3},{T4},{T5},{T6},{T7}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5,``6}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action<T1, T2, T3, T4, T5, T6, T7>>
+  nameWithType: Expression<Action<T1, T2, T3, T4, T5, T6, T7>>
+  fullName: System.Linq.Expressions.Expression<System.Action<T1, T2, T3, T4, T5, T6, T7>>
+  nameWithType.vb: Expression(Of Action(Of T1, T2, T3, T4, T5, T6, T7))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, T3, T4, T5, T6, T7))
+  name.vb: Expression(Of Action(Of T1, T2, T3, T4, T5, T6, T7))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action`7
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action`7
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Expressions.Expr.Func*
+  commentId: Overload:CodeJam.Expressions.Expr.Func
+  isExternal: false
+  name: Func
+  nameWithType: Expr.Func
+  fullName: CodeJam.Expressions.Expr.Func
+- uid: System.Linq.Expressions.Expression{System.Func{{TResult}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<TResult>>
+  nameWithType: Expression<Func<TResult>>
+  fullName: System.Linq.Expressions.Expression<System.Func<TResult>>
+  nameWithType.vb: Expression(Of Func(Of TResult))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TResult))
+  name.vb: Expression(Of Func(Of TResult))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T1},{TResult}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T1, TResult>>
+  nameWithType: Expression<Func<T1, TResult>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T1, TResult>>
+  nameWithType.vb: Expression(Of Func(Of T1, TResult))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T1, TResult))
+  name.vb: Expression(Of Func(Of T1, TResult))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{TResult}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T1, T2, TResult>>
+  nameWithType: Expression<Func<T1, T2, TResult>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T1, T2, TResult>>
+  nameWithType.vb: Expression(Of Func(Of T1, T2, TResult))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, TResult))
+  name.vb: Expression(Of Func(Of T1, T2, TResult))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{TResult}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T1, T2, T3, TResult>>
+  nameWithType: Expression<Func<T1, T2, T3, TResult>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T1, T2, T3, TResult>>
+  nameWithType.vb: Expression(Of Func(Of T1, T2, T3, TResult))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, TResult))
+  name.vb: Expression(Of Func(Of T1, T2, T3, TResult))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`4
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`4
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{TResult}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T1, T2, T3, T4, TResult>>
+  nameWithType: Expression<Func<T1, T2, T3, T4, TResult>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T1, T2, T3, T4, TResult>>
+  nameWithType.vb: Expression(Of Func(Of T1, T2, T3, T4, TResult))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, T4, TResult))
+  name.vb: Expression(Of Func(Of T1, T2, T3, T4, TResult))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`5
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`5
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{TResult}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T1, T2, T3, T4, T5, TResult>>
+  nameWithType: Expression<Func<T1, T2, T3, T4, T5, TResult>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T1, T2, T3, T4, T5, TResult>>
+  nameWithType.vb: Expression(Of Func(Of T1, T2, T3, T4, T5, TResult))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, T4, T5, TResult))
+  name.vb: Expression(Of Func(Of T1, T2, T3, T4, T5, TResult))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`6
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`6
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{TResult}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T1, T2, T3, T4, T5, T6, TResult>>
+  nameWithType: Expression<Func<T1, T2, T3, T4, T5, T6, TResult>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T1, T2, T3, T4, T5, T6, TResult>>
+  nameWithType.vb: Expression(Of Func(Of T1, T2, T3, T4, T5, T6, TResult))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, T4, T5, T6, TResult))
+  name.vb: Expression(Of Func(Of T1, T2, T3, T4, T5, T6, TResult))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`7
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`7
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{T3},{T4},{T5},{T6},{T7},{TResult}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>>
+  nameWithType: Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T1, T2, T3, T4, T5, T6, T7, TResult>>
+  nameWithType.vb: Expression(Of Func(Of T1, T2, T3, T4, T5, T6, T7, TResult))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, T3, T4, T5, T6, T7, TResult))
+  name.vb: Expression(Of Func(Of T1, T2, T3, T4, T5, T6, T7, TResult))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`8
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`8
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T3
+    nameWithType: T3
+    fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T4
+    nameWithType: T4
+    fullName: T4
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T5
+    nameWithType: T5
+    fullName: T5
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T6
+    nameWithType: T6
+    fullName: T6
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T7
+    nameWithType: T7
+    fullName: T7
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )

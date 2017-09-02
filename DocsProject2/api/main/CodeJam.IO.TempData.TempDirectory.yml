@@ -1,0 +1,1589 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.IO.TempData.TempDirectory
+  commentId: T:CodeJam.IO.TempData.TempDirectory
+  id: TempData.TempDirectory
+  parent: CodeJam.IO
+  children:
+  - CodeJam.IO.TempData.TempDirectory.DisposePath(System.String,System.Boolean)
+  - CodeJam.IO.TempData.TempDirectory.Info
+  langs:
+  - csharp
+  - vb
+  name: TempData.TempDirectory
+  nameWithType: TempData.TempDirectory
+  fullName: CodeJam.IO.TempData.TempDirectory
+  type: Class
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TempDirectory
+    path: ../Main/src/IO/TempData.cs
+    startLine: 102
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Wraps reference on a temp directory meant to be deleted on dispose
+  example: []
+  syntax:
+    content: 'public sealed class TempDirectory : TempData.TempBase, IDisposable'
+    content.vb: >-
+      Public NotInheritable Class TempDirectory
+          Inherits TempData.TempBase
+          Implements IDisposable
+  inheritance:
+  - System.Object
+  - System.Runtime.ConstrainedExecution.CriticalFinalizerObject
+  - CodeJam.IO.TempData.TempBase
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - CodeJam.IO.TempData.TempBase.DebugAssertValidPath(System.String)
+  - CodeJam.IO.TempData.TempBase.AssertNotDisposed
+  - CodeJam.IO.TempData.TempBase.Path
+  - CodeJam.IO.TempData.TempBase.SuppressDelete
+  - CodeJam.IO.TempData.TempBase.Dispose
+  - CodeJam.IO.TempData.TempBase.Dispose(System.Boolean)
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: CodeJam.IO.TempData.TempDirectory.Info
+  commentId: P:CodeJam.IO.TempData.TempDirectory.Info
+  id: Info
+  parent: CodeJam.IO.TempData.TempDirectory
+  langs:
+  - csharp
+  - vb
+  name: Info
+  nameWithType: TempData.TempDirectory.Info
+  fullName: CodeJam.IO.TempData.TempDirectory.Info
+  type: Property
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Info
+    path: ../Main/src/IO/TempData.cs
+    startLine: 116
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: DirectoryInfo object
+  example: []
+  syntax:
+    content: public DirectoryInfo Info { get; }
+    parameters: []
+    return:
+      type: System.IO.DirectoryInfo
+      description: The DirectoryInfo object.
+    content.vb: Public ReadOnly Property Info As DirectoryInfo
+  overload: CodeJam.IO.TempData.TempDirectory.Info*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.IO.TempData.TempDirectory.DisposePath(System.String,System.Boolean)
+  commentId: M:CodeJam.IO.TempData.TempDirectory.DisposePath(System.String,System.Boolean)
+  id: DisposePath(System.String,System.Boolean)
+  parent: CodeJam.IO.TempData.TempDirectory
+  langs:
+  - csharp
+  - vb
+  name: DisposePath(String, Boolean)
+  nameWithType: TempData.TempDirectory.DisposePath(String, Boolean)
+  fullName: CodeJam.IO.TempData.TempDirectory.DisposePath(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/TempData.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DisposePath
+    path: ../Main/src/IO/TempData.cs
+    startLine: 131
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Temp path disposal
+  example: []
+  syntax:
+    content: protected override void DisposePath(string path, bool disposing)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    - id: disposing
+      type: System.Boolean
+      description: "\n<code>true</code> to release both managed and unmanaged resources; <code>false</code> to release only unmanaged resources.\n"
+    content.vb: Protected Overrides Sub DisposePath(path As String, disposing As Boolean)
+  overridden: CodeJam.IO.TempData.TempBase.DisposePath(System.String,System.Boolean)
+  overload: CodeJam.IO.TempData.TempDirectory.DisposePath*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+references:
+- uid: CodeJam.IO
+  commentId: N:CodeJam.IO
+  isExternal: false
+  name: CodeJam.IO
+  nameWithType: CodeJam.IO
+  fullName: CodeJam.IO
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Runtime.ConstrainedExecution.CriticalFinalizerObject
+  commentId: T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject
+  parent: System.Runtime.ConstrainedExecution
+  isExternal: true
+  name: CriticalFinalizerObject
+  nameWithType: CriticalFinalizerObject
+  fullName: System.Runtime.ConstrainedExecution.CriticalFinalizerObject
+- uid: CodeJam.IO.TempData.TempBase
+  commentId: T:CodeJam.IO.TempData.TempBase
+  parent: CodeJam.IO
+  isExternal: false
+  name: TempData.TempBase
+  nameWithType: TempData.TempBase
+  fullName: CodeJam.IO.TempData.TempBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: CodeJam.IO.TempData.TempBase.DebugAssertValidPath(System.String)
+  commentId: M:CodeJam.IO.TempData.TempBase.DebugAssertValidPath(System.String)
+  parent: CodeJam.IO.TempData.TempBase
+  isExternal: true
+  name: DebugAssertValidPath(String)
+  nameWithType: TempData.TempBase.DebugAssertValidPath(String)
+  fullName: CodeJam.IO.TempData.TempBase.DebugAssertValidPath(System.String)
+  spec.csharp:
+  - uid: CodeJam.IO.TempData.TempBase.DebugAssertValidPath(System.String)
+    name: DebugAssertValidPath
+    nameWithType: TempData.TempBase.DebugAssertValidPath
+    fullName: CodeJam.IO.TempData.TempBase.DebugAssertValidPath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IO.TempData.TempBase.DebugAssertValidPath(System.String)
+    name: DebugAssertValidPath
+    nameWithType: TempData.TempBase.DebugAssertValidPath
+    fullName: CodeJam.IO.TempData.TempBase.DebugAssertValidPath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempBase.AssertNotDisposed
+  commentId: M:CodeJam.IO.TempData.TempBase.AssertNotDisposed
+  parent: CodeJam.IO.TempData.TempBase
+  isExternal: false
+  name: AssertNotDisposed()
+  nameWithType: TempData.TempBase.AssertNotDisposed()
+  fullName: CodeJam.IO.TempData.TempBase.AssertNotDisposed()
+  spec.csharp:
+  - uid: CodeJam.IO.TempData.TempBase.AssertNotDisposed
+    name: AssertNotDisposed
+    nameWithType: TempData.TempBase.AssertNotDisposed
+    fullName: CodeJam.IO.TempData.TempBase.AssertNotDisposed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IO.TempData.TempBase.AssertNotDisposed
+    name: AssertNotDisposed
+    nameWithType: TempData.TempBase.AssertNotDisposed
+    fullName: CodeJam.IO.TempData.TempBase.AssertNotDisposed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempBase.Path
+  commentId: P:CodeJam.IO.TempData.TempBase.Path
+  parent: CodeJam.IO.TempData.TempBase
+  isExternal: false
+  name: Path
+  nameWithType: TempData.TempBase.Path
+  fullName: CodeJam.IO.TempData.TempBase.Path
+- uid: CodeJam.IO.TempData.TempBase.SuppressDelete
+  commentId: M:CodeJam.IO.TempData.TempBase.SuppressDelete
+  parent: CodeJam.IO.TempData.TempBase
+  isExternal: false
+  name: SuppressDelete()
+  nameWithType: TempData.TempBase.SuppressDelete()
+  fullName: CodeJam.IO.TempData.TempBase.SuppressDelete()
+  spec.csharp:
+  - uid: CodeJam.IO.TempData.TempBase.SuppressDelete
+    name: SuppressDelete
+    nameWithType: TempData.TempBase.SuppressDelete
+    fullName: CodeJam.IO.TempData.TempBase.SuppressDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IO.TempData.TempBase.SuppressDelete
+    name: SuppressDelete
+    nameWithType: TempData.TempBase.SuppressDelete
+    fullName: CodeJam.IO.TempData.TempBase.SuppressDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempBase.Dispose
+  commentId: M:CodeJam.IO.TempData.TempBase.Dispose
+  parent: CodeJam.IO.TempData.TempBase
+  isExternal: false
+  name: Dispose()
+  nameWithType: TempData.TempBase.Dispose()
+  fullName: CodeJam.IO.TempData.TempBase.Dispose()
+  spec.csharp:
+  - uid: CodeJam.IO.TempData.TempBase.Dispose
+    name: Dispose
+    nameWithType: TempData.TempBase.Dispose
+    fullName: CodeJam.IO.TempData.TempBase.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IO.TempData.TempBase.Dispose
+    name: Dispose
+    nameWithType: TempData.TempBase.Dispose
+    fullName: CodeJam.IO.TempData.TempBase.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempBase.Dispose(System.Boolean)
+  commentId: M:CodeJam.IO.TempData.TempBase.Dispose(System.Boolean)
+  parent: CodeJam.IO.TempData.TempBase
+  isExternal: true
+  name: Dispose(Boolean)
+  nameWithType: TempData.TempBase.Dispose(Boolean)
+  fullName: CodeJam.IO.TempData.TempBase.Dispose(System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.IO.TempData.TempBase.Dispose(System.Boolean)
+    name: Dispose
+    nameWithType: TempData.TempBase.Dispose
+    fullName: CodeJam.IO.TempData.TempBase.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IO.TempData.TempBase.Dispose(System.Boolean)
+    name: Dispose
+    nameWithType: TempData.TempBase.Dispose
+    fullName: CodeJam.IO.TempData.TempBase.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  name: Contains<T, TempData.TempDirectory>(Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TempData.TempDirectory>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.IO.TempData.TempDirectory>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TempData.TempDirectory)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.IO.TempData.TempDirectory)(CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TempData.TempDirectory)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains<T, TempData.TempDirectory>
+    nameWithType: RangeExtensions.Contains<T, TempData.TempDirectory>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.IO.TempData.TempDirectory>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TempData.TempDirectory)
+    nameWithType: RangeExtensions.Contains(Of T, TempData.TempDirectory)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.IO.TempData.TempDirectory)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  name: StartsAfter<T, TempData.TempDirectory>(Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TempData.TempDirectory>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.IO.TempData.TempDirectory>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TempData.TempDirectory)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.IO.TempData.TempDirectory)(CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TempData.TempDirectory)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TempData.TempDirectory>
+    nameWithType: RangeExtensions.StartsAfter<T, TempData.TempDirectory>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.IO.TempData.TempDirectory>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TempData.TempDirectory)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TempData.TempDirectory)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.IO.TempData.TempDirectory)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  name: EndsBefore<T, TempData.TempDirectory>(Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TempData.TempDirectory>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.IO.TempData.TempDirectory>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TempData.TempDirectory)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.IO.TempData.TempDirectory)(CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TempData.TempDirectory)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TempData.TempDirectory>
+    nameWithType: RangeExtensions.EndsBefore<T, TempData.TempDirectory>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.IO.TempData.TempDirectory>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TempData.TempDirectory)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TempData.TempDirectory)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.IO.TempData.TempDirectory)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: Contains<T, TKey, TempData.TempDirectory>(Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TempData.TempDirectory>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.IO.TempData.TempDirectory>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TempData.TempDirectory)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.IO.TempData.TempDirectory)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TempData.TempDirectory)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TempData.TempDirectory>
+    nameWithType: RangeExtensions.Contains<T, TKey, TempData.TempDirectory>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.IO.TempData.TempDirectory>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TempData.TempDirectory)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TempData.TempDirectory)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.IO.TempData.TempDirectory)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: StartsAfter<T, TKey, TempData.TempDirectory>(Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TempData.TempDirectory>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.IO.TempData.TempDirectory>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TempData.TempDirectory)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.IO.TempData.TempDirectory)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TempData.TempDirectory)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TempData.TempDirectory>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TempData.TempDirectory>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.IO.TempData.TempDirectory>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TempData.TempDirectory)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TempData.TempDirectory)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.IO.TempData.TempDirectory)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempDirectory.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: EndsBefore<T, TKey, TempData.TempDirectory>(Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TempData.TempDirectory>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.IO.TempData.TempDirectory>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TempData.TempDirectory)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.IO.TempData.TempDirectory)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TempData.TempDirectory)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TempData.TempDirectory>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TempData.TempDirectory>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.IO.TempData.TempDirectory>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TempData.TempDirectory)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TempData.TempDirectory)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.IO.TempData.TempDirectory)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Runtime.ConstrainedExecution
+  commentId: N:System.Runtime.ConstrainedExecution
+  isExternal: false
+  name: System.Runtime.ConstrainedExecution
+  nameWithType: System.Runtime.ConstrainedExecution
+  fullName: System.Runtime.ConstrainedExecution
+- uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: Contains<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains<T, TRange>
+    nameWithType: RangeExtensions.Contains<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions
+  commentId: T:CodeJam.Ranges.RangeExtensions
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeExtensions
+  nameWithType: RangeExtensions
+  fullName: CodeJam.Ranges.RangeExtensions
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: StartsAfter<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: EndsBefore<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TRange>
+    nameWithType: RangeExtensions.Contains<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: CodeJam.IO.TempData.TempDirectory.Info*
+  commentId: Overload:CodeJam.IO.TempData.TempDirectory.Info
+  isExternal: false
+  name: Info
+  nameWithType: TempData.TempDirectory.Info
+  fullName: CodeJam.IO.TempData.TempDirectory.Info
+- uid: System.IO.DirectoryInfo
+  commentId: T:System.IO.DirectoryInfo
+  parent: System.IO
+  isExternal: true
+  name: DirectoryInfo
+  nameWithType: DirectoryInfo
+  fullName: System.IO.DirectoryInfo
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: false
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: CodeJam.IO.TempData.TempBase.DisposePath(System.String,System.Boolean)
+  commentId: M:CodeJam.IO.TempData.TempBase.DisposePath(System.String,System.Boolean)
+  parent: CodeJam.IO.TempData.TempBase
+  isExternal: true
+  name: DisposePath(String, Boolean)
+  nameWithType: TempData.TempBase.DisposePath(String, Boolean)
+  fullName: CodeJam.IO.TempData.TempBase.DisposePath(System.String, System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.IO.TempData.TempBase.DisposePath(System.String,System.Boolean)
+    name: DisposePath
+    nameWithType: TempData.TempBase.DisposePath
+    fullName: CodeJam.IO.TempData.TempBase.DisposePath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.IO.TempData.TempBase.DisposePath(System.String,System.Boolean)
+    name: DisposePath
+    nameWithType: TempData.TempBase.DisposePath
+    fullName: CodeJam.IO.TempData.TempBase.DisposePath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.IO.TempData.TempDirectory.DisposePath*
+  commentId: Overload:CodeJam.IO.TempData.TempDirectory.DisposePath
+  isExternal: false
+  name: DisposePath
+  nameWithType: TempData.TempDirectory.DisposePath
+  fullName: CodeJam.IO.TempData.TempDirectory.DisposePath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

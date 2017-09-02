@@ -1,0 +1,1508 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.CodeExceptions
+  commentId: T:CodeJam.CodeExceptions
+  id: CodeExceptions
+  parent: CodeJam
+  children:
+  - CodeJam.CodeExceptions.Argument(System.String,System.String,System.Object[])
+  - CodeJam.CodeExceptions.ArgumentItemNull(System.String)
+  - CodeJam.CodeExceptions.ArgumentNull(System.String)
+  - CodeJam.CodeExceptions.ArgumentNullOrEmpty(System.String)
+  - CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace(System.String)
+  - CodeJam.CodeExceptions.ArgumentOutOfRange(System.String,System.Double,System.Double,System.Double)
+  - CodeJam.CodeExceptions.ArgumentOutOfRange(System.String,System.Int32,System.Int32,System.Int32)
+  - CodeJam.CodeExceptions.ArgumentOutOfRange``1(System.String,``0,``0,``0)
+  - CodeJam.CodeExceptions.BreakIfAttached
+  - CodeJam.CodeExceptions.BreakOnException
+  - CodeJam.CodeExceptions.CodeTraceSource
+  - CodeJam.CodeExceptions.IndexOutOfRange(System.String,System.Int32,System.Int32,System.Int32)
+  - CodeJam.CodeExceptions.InvalidOperation(System.String,System.Object[])
+  - CodeJam.CodeExceptions.ObjectDisposed(System.Type)
+  - CodeJam.CodeExceptions.ObjectDisposed(System.Type,System.String,System.Object[])
+  - CodeJam.CodeExceptions.UnexpectedArgumentValue``1(System.String,``0)
+  - CodeJam.CodeExceptions.UnexpectedArgumentValue``1(System.String,``0,System.String,System.Object[])
+  - CodeJam.CodeExceptions.UnexpectedValue(System.String,System.Object[])
+  - CodeJam.CodeExceptions.UnexpectedValue``1(``0)
+  - CodeJam.CodeExceptions.Unreachable(System.String,System.Object[])
+  langs:
+  - csharp
+  - vb
+  name: CodeExceptions
+  nameWithType: CodeExceptions
+  fullName: CodeJam.CodeExceptions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CodeExceptions
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 14
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Exception factory class
+  example: []
+  syntax:
+    content: public static class CodeExceptions
+    content.vb: Public Module CodeExceptions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.CodeExceptions.BreakOnException
+  commentId: P:CodeJam.CodeExceptions.BreakOnException
+  id: BreakOnException
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: BreakOnException
+  nameWithType: CodeExceptions.BreakOnException
+  fullName: CodeJam.CodeExceptions.BreakOnException
+  type: Property
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BreakOnException
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 23
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nIf true, breaks execution if debugger is attached and assertion is failed.\nEnabled by default.\n"
+  example: []
+  syntax:
+    content: public static bool BreakOnException { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the execution will break on exception creation; otherwise, <code>false</code>.
+    content.vb: Public Shared Property BreakOnException As Boolean
+  overload: CodeJam.CodeExceptions.BreakOnException*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.BreakIfAttached
+  commentId: M:CodeJam.CodeExceptions.BreakIfAttached
+  id: BreakIfAttached
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: BreakIfAttached()
+  nameWithType: CodeExceptions.BreakIfAttached()
+  fullName: CodeJam.CodeExceptions.BreakIfAttached()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BreakIfAttached
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 26
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: BreaksExecution if debugger attached.
+  example: []
+  syntax:
+    content: public static void BreakIfAttached()
+    content.vb: Public Shared Sub BreakIfAttached
+  overload: CodeJam.CodeExceptions.BreakIfAttached*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.CodeTraceSource
+  commentId: P:CodeJam.CodeExceptions.CodeTraceSource
+  id: CodeTraceSource
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: CodeTraceSource
+  nameWithType: CodeExceptions.CodeTraceSource
+  fullName: CodeJam.CodeExceptions.CodeTraceSource
+  type: Property
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CodeTraceSource
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 56
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Returns trace source for code exceptions.
+  example: []
+  syntax:
+    content: public static TraceSource CodeTraceSource { get; }
+    parameters: []
+    return:
+      type: System.Diagnostics.TraceSource
+      description: The code trace source.
+    content.vb: Public Shared ReadOnly Property CodeTraceSource As TraceSource
+  overload: CodeJam.CodeExceptions.CodeTraceSource*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.CodeExceptions.ArgumentNull(System.String)
+  commentId: M:CodeJam.CodeExceptions.ArgumentNull(System.String)
+  id: ArgumentNull(System.String)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentNull(String)
+  nameWithType: CodeExceptions.ArgumentNull(String)
+  fullName: CodeJam.CodeExceptions.ArgumentNull(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentNull
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 114
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentNullException" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static ArgumentNullException ArgumentNull(string argumentName)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    return:
+      type: System.ArgumentNullException
+      description: Initialized instance of <xref href="System.ArgumentNullException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentNull(argumentName As String) As ArgumentNullException
+  overload: CodeJam.CodeExceptions.ArgumentNull*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.ArgumentItemNull(System.String)
+  commentId: M:CodeJam.CodeExceptions.ArgumentItemNull(System.String)
+  id: ArgumentItemNull(System.String)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentItemNull(String)
+  nameWithType: CodeExceptions.ArgumentItemNull(String)
+  fullName: CodeJam.CodeExceptions.ArgumentItemNull(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentItemNull
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 125
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentNullException" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static ArgumentException ArgumentItemNull(string argumentName)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    return:
+      type: System.ArgumentException
+      description: Initialized instance of <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentItemNull(argumentName As String) As ArgumentException
+  overload: CodeJam.CodeExceptions.ArgumentItemNull*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.ArgumentNullOrEmpty(System.String)
+  commentId: M:CodeJam.CodeExceptions.ArgumentNullOrEmpty(System.String)
+  id: ArgumentNullOrEmpty(System.String)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentNullOrEmpty(String)
+  nameWithType: CodeExceptions.ArgumentNullOrEmpty(String)
+  fullName: CodeJam.CodeExceptions.ArgumentNullOrEmpty(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentNullOrEmpty
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 138
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref> for empty string.
+  example: []
+  syntax:
+    content: public static ArgumentException ArgumentNullOrEmpty(string argumentName)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    return:
+      type: System.ArgumentException
+      description: Initialized instance of <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentNullOrEmpty(argumentName As String) As ArgumentException
+  overload: CodeJam.CodeExceptions.ArgumentNullOrEmpty*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace(System.String)
+  commentId: M:CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace(System.String)
+  id: ArgumentNullOrWhiteSpace(System.String)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentNullOrWhiteSpace(String)
+  nameWithType: CodeExceptions.ArgumentNullOrWhiteSpace(String)
+  fullName: CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentNullOrWhiteSpace
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 152
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref> for empty (or whitespace) string.
+  example: []
+  syntax:
+    content: public static ArgumentException ArgumentNullOrWhiteSpace(string argumentName)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    return:
+      type: System.ArgumentException
+      description: Initialized instance of <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentNullOrWhiteSpace(argumentName As String) As ArgumentException
+  overload: CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.ArgumentOutOfRange(System.String,System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.CodeExceptions.ArgumentOutOfRange(System.String,System.Int32,System.Int32,System.Int32)
+  id: ArgumentOutOfRange(System.String,System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentOutOfRange(String, Int32, Int32, Int32)
+  nameWithType: CodeExceptions.ArgumentOutOfRange(String, Int32, Int32, Int32)
+  fullName: CodeJam.CodeExceptions.ArgumentOutOfRange(System.String, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentOutOfRange
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 169
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static ArgumentOutOfRangeException ArgumentOutOfRange(string argumentName, int value, int fromValue, int toValue)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: System.Int32
+      description: The value.
+    - id: fromValue
+      type: System.Int32
+      description: From value (inclusive).
+    - id: toValue
+      type: System.Int32
+      description: To value (inclusive).
+    return:
+      type: System.ArgumentOutOfRangeException
+      description: Initialized instance of <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentOutOfRange(argumentName As String, value As Integer, fromValue As Integer, toValue As Integer) As ArgumentOutOfRangeException
+  overload: CodeJam.CodeExceptions.ArgumentOutOfRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.ArgumentOutOfRange(System.String,System.Double,System.Double,System.Double)
+  commentId: M:CodeJam.CodeExceptions.ArgumentOutOfRange(System.String,System.Double,System.Double,System.Double)
+  id: ArgumentOutOfRange(System.String,System.Double,System.Double,System.Double)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentOutOfRange(String, Double, Double, Double)
+  nameWithType: CodeExceptions.ArgumentOutOfRange(String, Double, Double, Double)
+  fullName: CodeJam.CodeExceptions.ArgumentOutOfRange(System.String, System.Double, System.Double, System.Double)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentOutOfRange
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 189
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static ArgumentOutOfRangeException ArgumentOutOfRange(string argumentName, double value, double fromValue, double toValue)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: System.Double
+      description: The value.
+    - id: fromValue
+      type: System.Double
+      description: From value (inclusive).
+    - id: toValue
+      type: System.Double
+      description: To value (inclusive).
+    return:
+      type: System.ArgumentOutOfRangeException
+      description: Initialized instance of <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentOutOfRange(argumentName As String, value As Double, fromValue As Double, toValue As Double) As ArgumentOutOfRangeException
+  overload: CodeJam.CodeExceptions.ArgumentOutOfRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.ArgumentOutOfRange``1(System.String,``0,``0,``0)
+  commentId: M:CodeJam.CodeExceptions.ArgumentOutOfRange``1(System.String,``0,``0,``0)
+  id: ArgumentOutOfRange``1(System.String,``0,``0,``0)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentOutOfRange<T>(String, T, T, T)
+  nameWithType: CodeExceptions.ArgumentOutOfRange<T>(String, T, T, T)
+  fullName: CodeJam.CodeExceptions.ArgumentOutOfRange<T>(System.String, T, T, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentOutOfRange
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 210
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static ArgumentOutOfRangeException ArgumentOutOfRange<T>(string argumentName, T value, T fromValue, T toValue)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: '{T}'
+      description: The value.
+    - id: fromValue
+      type: '{T}'
+      description: From value (inclusive).
+    - id: toValue
+      type: '{T}'
+      description: To value (inclusive).
+    typeParameters:
+    - id: T
+      description: ''
+    return:
+      type: System.ArgumentOutOfRangeException
+      description: Initialized instance of <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentOutOfRange(Of T)(argumentName As String, value As T, fromValue As T, toValue As T) As ArgumentOutOfRangeException
+  overload: CodeJam.CodeExceptions.ArgumentOutOfRange*
+  nameWithType.vb: CodeExceptions.ArgumentOutOfRange(Of T)(String, T, T, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.ArgumentOutOfRange(Of T)(System.String, T, T, T)
+  name.vb: ArgumentOutOfRange(Of T)(String, T, T, T)
+- uid: CodeJam.CodeExceptions.IndexOutOfRange(System.String,System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.CodeExceptions.IndexOutOfRange(System.String,System.Int32,System.Int32,System.Int32)
+  id: IndexOutOfRange(System.String,System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: IndexOutOfRange(String, Int32, Int32, Int32)
+  nameWithType: CodeExceptions.IndexOutOfRange(String, Int32, Int32, Int32)
+  fullName: CodeJam.CodeExceptions.IndexOutOfRange(System.String, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IndexOutOfRange
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 230
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.IndexOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static IndexOutOfRangeException IndexOutOfRange(string argumentName, int value, int startIndex, int length)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: System.Int32
+      description: The value.
+    - id: startIndex
+      type: System.Int32
+      description: The start index.
+    - id: length
+      type: System.Int32
+      description: The length.
+    return:
+      type: System.IndexOutOfRangeException
+      description: Initialized instance of <xref href="System.IndexOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function IndexOutOfRange(argumentName As String, value As Integer, startIndex As Integer, length As Integer) As IndexOutOfRangeException
+  overload: CodeJam.CodeExceptions.IndexOutOfRange*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.Argument(System.String,System.String,System.Object[])
+  commentId: M:CodeJam.CodeExceptions.Argument(System.String,System.String,System.Object[])
+  id: Argument(System.String,System.String,System.Object[])
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: Argument(String, String, Object[])
+  nameWithType: CodeExceptions.Argument(String, String, Object[])
+  fullName: CodeJam.CodeExceptions.Argument(System.String, System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Argument
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 249
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static ArgumentException Argument(string argumentName, string messageFormat, params object[] args)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    return:
+      type: System.ArgumentException
+      description: Initialized instance of <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Argument(argumentName As String, messageFormat As String, ParamArray args As Object()) As ArgumentException
+  overload: CodeJam.CodeExceptions.Argument*
+  nameWithType.vb: CodeExceptions.Argument(String, String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.Argument(System.String, System.String, System.Object())
+  name.vb: Argument(String, String, Object())
+- uid: CodeJam.CodeExceptions.InvalidOperation(System.String,System.Object[])
+  commentId: M:CodeJam.CodeExceptions.InvalidOperation(System.String,System.Object[])
+  id: InvalidOperation(System.String,System.Object[])
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: InvalidOperation(String, Object[])
+  nameWithType: CodeExceptions.InvalidOperation(String, Object[])
+  fullName: CodeJam.CodeExceptions.InvalidOperation(System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: InvalidOperation
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 267
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static InvalidOperationException InvalidOperation(string messageFormat, params object[] args)
+    parameters:
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    return:
+      type: System.InvalidOperationException
+      description: Initialized instance of <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function InvalidOperation(messageFormat As String, ParamArray args As Object()) As InvalidOperationException
+  overload: CodeJam.CodeExceptions.InvalidOperation*
+  nameWithType.vb: CodeExceptions.InvalidOperation(String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.InvalidOperation(System.String, System.Object())
+  name.vb: InvalidOperation(String, Object())
+- uid: CodeJam.CodeExceptions.UnexpectedArgumentValue``1(System.String,``0)
+  commentId: M:CodeJam.CodeExceptions.UnexpectedArgumentValue``1(System.String,``0)
+  id: UnexpectedArgumentValue``1(System.String,``0)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: UnexpectedArgumentValue<T>(String, T)
+  nameWithType: CodeExceptions.UnexpectedArgumentValue<T>(String, T)
+  fullName: CodeJam.CodeExceptions.UnexpectedArgumentValue<T>(System.String, T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UnexpectedArgumentValue
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 290
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates <xref href=\"System.ArgumentOutOfRangeException\" data-throw-if-not-resolved=\"false\"></xref>.\nUsed to be thrown from the default: switch clause\n"
+  example: []
+  syntax:
+    content: public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(string argumentName, T value)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: '{T}'
+      description: The value.
+    typeParameters:
+    - id: T
+      description: The type of the value. Auto-inferred.
+    return:
+      type: System.ArgumentOutOfRangeException
+      description: Initialized instance of <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function UnexpectedArgumentValue(Of T)(argumentName As String, value As T) As ArgumentOutOfRangeException
+  overload: CodeJam.CodeExceptions.UnexpectedArgumentValue*
+  nameWithType.vb: CodeExceptions.UnexpectedArgumentValue(Of T)(String, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.UnexpectedArgumentValue(Of T)(System.String, T)
+  name.vb: UnexpectedArgumentValue(Of T)(String, T)
+- uid: CodeJam.CodeExceptions.UnexpectedArgumentValue``1(System.String,``0,System.String,System.Object[])
+  commentId: M:CodeJam.CodeExceptions.UnexpectedArgumentValue``1(System.String,``0,System.String,System.Object[])
+  id: UnexpectedArgumentValue``1(System.String,``0,System.String,System.Object[])
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: UnexpectedArgumentValue<T>(String, T, String, Object[])
+  nameWithType: CodeExceptions.UnexpectedArgumentValue<T>(String, T, String, Object[])
+  fullName: CodeJam.CodeExceptions.UnexpectedArgumentValue<T>(System.String, T, System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UnexpectedArgumentValue
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 313
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates <xref href=\"System.ArgumentOutOfRangeException\" data-throw-if-not-resolved=\"false\"></xref>.\nUsed to be thrown from default: switch clause\n"
+  example: []
+  syntax:
+    content: public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(string argumentName, T value, string messageFormat, params object[] args)
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: '{T}'
+      description: The value.
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    typeParameters:
+    - id: T
+      description: The type of the value. Auto-inferred.
+    return:
+      type: System.ArgumentOutOfRangeException
+      description: Initialized instance of <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function UnexpectedArgumentValue(Of T)(argumentName As String, value As T, messageFormat As String, ParamArray args As Object()) As ArgumentOutOfRangeException
+  overload: CodeJam.CodeExceptions.UnexpectedArgumentValue*
+  nameWithType.vb: CodeExceptions.UnexpectedArgumentValue(Of T)(String, T, String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.UnexpectedArgumentValue(Of T)(System.String, T, System.String, System.Object())
+  name.vb: UnexpectedArgumentValue(Of T)(String, T, String, Object())
+- uid: CodeJam.CodeExceptions.UnexpectedValue``1(``0)
+  commentId: M:CodeJam.CodeExceptions.UnexpectedValue``1(``0)
+  id: UnexpectedValue``1(``0)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: UnexpectedValue<T>(T)
+  nameWithType: CodeExceptions.UnexpectedValue<T>(T)
+  fullName: CodeJam.CodeExceptions.UnexpectedValue<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UnexpectedValue
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 335
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref>.\nUsed to be thrown from the default: switch clause\n"
+  example: []
+  syntax:
+    content: public static InvalidOperationException UnexpectedValue<T>(T value)
+    parameters:
+    - id: value
+      type: '{T}'
+      description: The value.
+    typeParameters:
+    - id: T
+      description: The type of the value. Auto-inferred.
+    return:
+      type: System.InvalidOperationException
+      description: Initialized instance of <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function UnexpectedValue(Of T)(value As T) As InvalidOperationException
+  overload: CodeJam.CodeExceptions.UnexpectedValue*
+  nameWithType.vb: CodeExceptions.UnexpectedValue(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.UnexpectedValue(Of T)(T)
+  name.vb: UnexpectedValue(Of T)(T)
+- uid: CodeJam.CodeExceptions.UnexpectedValue(System.String,System.Object[])
+  commentId: M:CodeJam.CodeExceptions.UnexpectedValue(System.String,System.Object[])
+  id: UnexpectedValue(System.String,System.Object[])
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: UnexpectedValue(String, Object[])
+  nameWithType: CodeExceptions.UnexpectedValue(String, Object[])
+  fullName: CodeJam.CodeExceptions.UnexpectedValue(System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UnexpectedValue
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 354
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: "\nCreates <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref>.\nUsed to be thrown from default: switch clause\n"
+  example: []
+  syntax:
+    content: public static InvalidOperationException UnexpectedValue(string messageFormat, params object[] args)
+    parameters:
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    return:
+      type: System.InvalidOperationException
+      description: Initialized instance of <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function UnexpectedValue(messageFormat As String, ParamArray args As Object()) As InvalidOperationException
+  overload: CodeJam.CodeExceptions.UnexpectedValue*
+  nameWithType.vb: CodeExceptions.UnexpectedValue(String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.UnexpectedValue(System.String, System.Object())
+  name.vb: UnexpectedValue(String, Object())
+- uid: CodeJam.CodeExceptions.ObjectDisposed(System.Type)
+  commentId: M:CodeJam.CodeExceptions.ObjectDisposed(System.Type)
+  id: ObjectDisposed(System.Type)
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ObjectDisposed(Type)
+  nameWithType: CodeExceptions.ObjectDisposed(Type)
+  fullName: CodeJam.CodeExceptions.ObjectDisposed(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ObjectDisposed
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 369
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Throw this if the object is disposed.
+  example: []
+  syntax:
+    content: public static ObjectDisposedException ObjectDisposed(Type typeofDisposedObject)
+    parameters:
+    - id: typeofDisposedObject
+      type: System.Type
+      description: The typeof disposed object.
+    return:
+      type: System.ObjectDisposedException
+      description: Initialized instance of <xref href="System.ObjectDisposedException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ObjectDisposed(typeofDisposedObject As Type) As ObjectDisposedException
+  overload: CodeJam.CodeExceptions.ObjectDisposed*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.CodeExceptions.ObjectDisposed(System.Type,System.String,System.Object[])
+  commentId: M:CodeJam.CodeExceptions.ObjectDisposed(System.Type,System.String,System.Object[])
+  id: ObjectDisposed(System.Type,System.String,System.Object[])
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ObjectDisposed(Type, String, Object[])
+  nameWithType: CodeExceptions.ObjectDisposed(Type, String, Object[])
+  fullName: CodeJam.CodeExceptions.ObjectDisposed(System.Type, System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ObjectDisposed
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 384
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Throw this if the object is disposed.
+  example: []
+  syntax:
+    content: public static ObjectDisposedException ObjectDisposed(Type typeofDisposedObject, string messageFormat, params object[] args)
+    parameters:
+    - id: typeofDisposedObject
+      type: System.Type
+      description: The typeof disposed object.
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    return:
+      type: System.ObjectDisposedException
+      description: Initialized instance of <xref href="System.ObjectDisposedException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ObjectDisposed(typeofDisposedObject As Type, messageFormat As String, ParamArray args As Object()) As ObjectDisposedException
+  overload: CodeJam.CodeExceptions.ObjectDisposed*
+  nameWithType.vb: CodeExceptions.ObjectDisposed(Type, String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.ObjectDisposed(System.Type, System.String, System.Object())
+  name.vb: ObjectDisposed(Type, String, Object())
+- uid: CodeJam.CodeExceptions.Unreachable(System.String,System.Object[])
+  commentId: M:CodeJam.CodeExceptions.Unreachable(System.String,System.Object[])
+  id: Unreachable(System.String,System.Object[])
+  parent: CodeJam.CodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: Unreachable(String, Object[])
+  nameWithType: CodeExceptions.Unreachable(String, Object[])
+  fullName: CodeJam.CodeExceptions.Unreachable(System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/CodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Unreachable
+    path: ../Main/src/Assertions/CodeExceptions.cs
+    startLine: 403
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Used to be thrown in places expected to be unreachable.
+  example: []
+  syntax:
+    content: public static NotSupportedException Unreachable(string messageFormat, params object[] args)
+    parameters:
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    return:
+      type: System.NotSupportedException
+      description: Initialized instance of <xref href="System.NotSupportedException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function Unreachable(messageFormat As String, ParamArray args As Object()) As NotSupportedException
+  overload: CodeJam.CodeExceptions.Unreachable*
+  nameWithType.vb: CodeExceptions.Unreachable(String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.CodeExceptions.Unreachable(System.String, System.Object())
+  name.vb: Unreachable(String, Object())
+references:
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.CodeExceptions.BreakOnException*
+  commentId: Overload:CodeJam.CodeExceptions.BreakOnException
+  isExternal: false
+  name: BreakOnException
+  nameWithType: CodeExceptions.BreakOnException
+  fullName: CodeJam.CodeExceptions.BreakOnException
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.CodeExceptions.BreakIfAttached*
+  commentId: Overload:CodeJam.CodeExceptions.BreakIfAttached
+  isExternal: false
+  name: BreakIfAttached
+  nameWithType: CodeExceptions.BreakIfAttached
+  fullName: CodeJam.CodeExceptions.BreakIfAttached
+- uid: CodeJam.CodeExceptions.CodeTraceSource*
+  commentId: Overload:CodeJam.CodeExceptions.CodeTraceSource
+  isExternal: false
+  name: CodeTraceSource
+  nameWithType: CodeExceptions.CodeTraceSource
+  fullName: CodeJam.CodeExceptions.CodeTraceSource
+- uid: System.Diagnostics.TraceSource
+  commentId: T:System.Diagnostics.TraceSource
+  parent: System.Diagnostics
+  isExternal: true
+  name: TraceSource
+  nameWithType: TraceSource
+  fullName: System.Diagnostics.TraceSource
+- uid: System.Diagnostics
+  commentId: N:System.Diagnostics
+  isExternal: false
+  name: System.Diagnostics
+  nameWithType: System.Diagnostics
+  fullName: System.Diagnostics
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  parent: System
+  isExternal: true
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: CodeJam.CodeExceptions.ArgumentNull*
+  commentId: Overload:CodeJam.CodeExceptions.ArgumentNull
+  isExternal: false
+  name: ArgumentNull
+  nameWithType: CodeExceptions.ArgumentNull
+  fullName: CodeJam.CodeExceptions.ArgumentNull
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: CodeJam.CodeExceptions.ArgumentItemNull*
+  commentId: Overload:CodeJam.CodeExceptions.ArgumentItemNull
+  isExternal: false
+  name: ArgumentItemNull
+  nameWithType: CodeExceptions.ArgumentItemNull
+  fullName: CodeJam.CodeExceptions.ArgumentItemNull
+- uid: CodeJam.CodeExceptions.ArgumentNullOrEmpty*
+  commentId: Overload:CodeJam.CodeExceptions.ArgumentNullOrEmpty
+  isExternal: false
+  name: ArgumentNullOrEmpty
+  nameWithType: CodeExceptions.ArgumentNullOrEmpty
+  fullName: CodeJam.CodeExceptions.ArgumentNullOrEmpty
+- uid: CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace*
+  commentId: Overload:CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace
+  isExternal: false
+  name: ArgumentNullOrWhiteSpace
+  nameWithType: CodeExceptions.ArgumentNullOrWhiteSpace
+  fullName: CodeJam.CodeExceptions.ArgumentNullOrWhiteSpace
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: CodeJam.CodeExceptions.ArgumentOutOfRange*
+  commentId: Overload:CodeJam.CodeExceptions.ArgumentOutOfRange
+  isExternal: false
+  name: ArgumentOutOfRange
+  nameWithType: CodeExceptions.ArgumentOutOfRange
+  fullName: CodeJam.CodeExceptions.ArgumentOutOfRange
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.IndexOutOfRangeException
+  commentId: T:System.IndexOutOfRangeException
+  parent: System
+  isExternal: true
+  name: IndexOutOfRangeException
+  nameWithType: IndexOutOfRangeException
+  fullName: System.IndexOutOfRangeException
+- uid: CodeJam.CodeExceptions.IndexOutOfRange*
+  commentId: Overload:CodeJam.CodeExceptions.IndexOutOfRange
+  isExternal: false
+  name: IndexOutOfRange
+  nameWithType: CodeExceptions.IndexOutOfRange
+  fullName: CodeJam.CodeExceptions.IndexOutOfRange
+- uid: CodeJam.CodeExceptions.Argument*
+  commentId: Overload:CodeJam.CodeExceptions.Argument
+  isExternal: false
+  name: Argument
+  nameWithType: CodeExceptions.Argument
+  fullName: CodeJam.CodeExceptions.Argument
+- uid: System.Object[]
+  name: Object[]
+  nameWithType: Object[]
+  fullName: System.Object[]
+  nameWithType.vb: Object()
+  fullName.vb: System.Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  parent: System
+  isExternal: true
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: CodeJam.CodeExceptions.InvalidOperation*
+  commentId: Overload:CodeJam.CodeExceptions.InvalidOperation
+  isExternal: false
+  name: InvalidOperation
+  nameWithType: CodeExceptions.InvalidOperation
+  fullName: CodeJam.CodeExceptions.InvalidOperation
+- uid: CodeJam.CodeExceptions.UnexpectedArgumentValue*
+  commentId: Overload:CodeJam.CodeExceptions.UnexpectedArgumentValue
+  isExternal: false
+  name: UnexpectedArgumentValue
+  nameWithType: CodeExceptions.UnexpectedArgumentValue
+  fullName: CodeJam.CodeExceptions.UnexpectedArgumentValue
+- uid: CodeJam.CodeExceptions.UnexpectedValue*
+  commentId: Overload:CodeJam.CodeExceptions.UnexpectedValue
+  isExternal: false
+  name: UnexpectedValue
+  nameWithType: CodeExceptions.UnexpectedValue
+  fullName: CodeJam.CodeExceptions.UnexpectedValue
+- uid: System.ObjectDisposedException
+  commentId: T:System.ObjectDisposedException
+  parent: System
+  isExternal: true
+  name: ObjectDisposedException
+  nameWithType: ObjectDisposedException
+  fullName: System.ObjectDisposedException
+- uid: CodeJam.CodeExceptions.ObjectDisposed*
+  commentId: Overload:CodeJam.CodeExceptions.ObjectDisposed
+  isExternal: false
+  name: ObjectDisposed
+  nameWithType: CodeExceptions.ObjectDisposed
+  fullName: CodeJam.CodeExceptions.ObjectDisposed
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  parent: System
+  isExternal: true
+  name: NotSupportedException
+  nameWithType: NotSupportedException
+  fullName: System.NotSupportedException
+- uid: CodeJam.CodeExceptions.Unreachable*
+  commentId: Overload:CodeJam.CodeExceptions.Unreachable
+  isExternal: false
+  name: Unreachable
+  nameWithType: CodeExceptions.Unreachable
+  fullName: CodeJam.CodeExceptions.Unreachable

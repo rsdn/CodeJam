@@ -1,0 +1,311 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  id: CodeJam.PerfTests.Metrics
+  children:
+  - CodeJam.PerfTests.Metrics.GcMetricSource
+  - CodeJam.PerfTests.Metrics.GcMetricValuesProvider
+  - CodeJam.PerfTests.Metrics.IMetricAttribute`1
+  - CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  - CodeJam.PerfTests.Metrics.IMetricCalculator
+  - CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  - CodeJam.PerfTests.Metrics.IStoredMetricValue
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  - CodeJam.PerfTests.Metrics.MetricAttributeBase
+  - CodeJam.PerfTests.Metrics.MetricInfo
+  - CodeJam.PerfTests.Metrics.MetricInfo`1
+  - CodeJam.PerfTests.Metrics.MetricInfoAttribute
+  - CodeJam.PerfTests.Metrics.MetricInfoHelpers
+  - CodeJam.PerfTests.Metrics.MetricRange
+  - CodeJam.PerfTests.Metrics.MetricSingleValueMode
+  - CodeJam.PerfTests.Metrics.MetricUnit
+  - CodeJam.PerfTests.Metrics.MetricUnitAttribute
+  - CodeJam.PerfTests.Metrics.MetricUnitScale
+  - CodeJam.PerfTests.Metrics.MetricValueColumns
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers
+  - CodeJam.PerfTests.Metrics.MetricValuesProviderBase
+  - CodeJam.PerfTests.Metrics.PercentileMetricCalculator
+  - CodeJam.PerfTests.Metrics.SingleValueMetricCalculator
+  - CodeJam.PerfTests.Metrics.TimeMetricValuesProvider
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: CodeJam.PerfTests.Metrics.MetricValueColumns
+  commentId: T:CodeJam.PerfTests.Metrics.MetricValueColumns
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricValueColumns
+  nameWithType: MetricValueColumns
+  fullName: CodeJam.PerfTests.Metrics.MetricValueColumns
+- uid: CodeJam.PerfTests.Metrics.MetricInfoHelpers
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfoHelpers
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricInfoHelpers
+  nameWithType: MetricInfoHelpers
+  fullName: CodeJam.PerfTests.Metrics.MetricInfoHelpers
+- uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo`1
+  isExternal: false
+  name: MetricInfo<TAttribute>
+  nameWithType: MetricInfo<TAttribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<TAttribute>
+  nameWithType.vb: MetricInfo(Of TAttribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of TAttribute)
+  name.vb: MetricInfo(Of TAttribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TAttribute
+    nameWithType: TAttribute
+    fullName: TAttribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TAttribute
+    nameWithType: TAttribute
+    fullName: TAttribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`1
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`1
+  isExternal: false
+  name: IMetricAttribute<TMetricProvider>
+  nameWithType: IMetricAttribute<TMetricProvider>
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider>
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider)
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider)
+  name.vb: IMetricAttribute(Of TMetricProvider)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`1
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`1
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  isExternal: false
+  name: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  name.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TUnitOfMeasurement
+    nameWithType: TUnitOfMeasurement
+    fullName: TUnitOfMeasurement
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TUnitOfMeasurement
+    nameWithType: TUnitOfMeasurement
+    fullName: TUnitOfMeasurement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  commentId: T:CodeJam.PerfTests.Metrics.IStoredMetricValue
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: IStoredMetricValue
+  nameWithType: IStoredMetricValue
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue
+- uid: CodeJam.PerfTests.Metrics.MetricInfoAttribute
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfoAttribute
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricInfoAttribute
+  nameWithType: MetricInfoAttribute
+  fullName: CodeJam.PerfTests.Metrics.MetricInfoAttribute
+- uid: CodeJam.PerfTests.Metrics.MetricSingleValueMode
+  commentId: T:CodeJam.PerfTests.Metrics.MetricSingleValueMode
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricSingleValueMode
+  nameWithType: MetricSingleValueMode
+  fullName: CodeJam.PerfTests.Metrics.MetricSingleValueMode
+- uid: CodeJam.PerfTests.Metrics.SingleValueMetricCalculator
+  commentId: T:CodeJam.PerfTests.Metrics.SingleValueMetricCalculator
+  isExternal: false
+  name: SingleValueMetricCalculator
+  nameWithType: SingleValueMetricCalculator
+  fullName: CodeJam.PerfTests.Metrics.SingleValueMetricCalculator
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  commentId: T:CodeJam.PerfTests.Metrics.MetricValueHelpers
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricValueHelpers
+  nameWithType: MetricValueHelpers
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers
+- uid: CodeJam.PerfTests.Metrics.MetricUnitScale
+  commentId: T:CodeJam.PerfTests.Metrics.MetricUnitScale
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricUnitScale
+  nameWithType: MetricUnitScale
+  fullName: CodeJam.PerfTests.Metrics.MetricUnitScale
+- uid: CodeJam.PerfTests.Metrics.MetricUnitAttribute
+  commentId: T:CodeJam.PerfTests.Metrics.MetricUnitAttribute
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricUnitAttribute
+  nameWithType: MetricUnitAttribute
+  fullName: CodeJam.PerfTests.Metrics.MetricUnitAttribute
+- uid: CodeJam.PerfTests.Metrics.MetricAttributeBase
+  commentId: T:CodeJam.PerfTests.Metrics.MetricAttributeBase
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricAttributeBase
+  nameWithType: MetricAttributeBase
+  fullName: CodeJam.PerfTests.Metrics.MetricAttributeBase
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricCalculator
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: IMetricCalculator
+  nameWithType: IMetricCalculator
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: IMetricValuesProvider
+  nameWithType: IMetricValuesProvider
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+- uid: CodeJam.PerfTests.Metrics.MetricInfo
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricInfo
+  nameWithType: MetricInfo
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  commentId: T:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  isExternal: false
+  name: LogNormalMetricCalculator
+  nameWithType: LogNormalMetricCalculator
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+- uid: CodeJam.PerfTests.Metrics.MetricRange
+  commentId: T:CodeJam.PerfTests.Metrics.MetricRange
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricRange
+  nameWithType: MetricRange
+  fullName: CodeJam.PerfTests.Metrics.MetricRange
+- uid: CodeJam.PerfTests.Metrics.MetricUnit
+  commentId: T:CodeJam.PerfTests.Metrics.MetricUnit
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricUnit
+  nameWithType: MetricUnit
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit
+- uid: CodeJam.PerfTests.Metrics.PercentileMetricCalculator
+  commentId: T:CodeJam.PerfTests.Metrics.PercentileMetricCalculator
+  isExternal: false
+  name: PercentileMetricCalculator
+  nameWithType: PercentileMetricCalculator
+  fullName: CodeJam.PerfTests.Metrics.PercentileMetricCalculator
+- uid: CodeJam.PerfTests.Metrics.MetricValuesProviderBase
+  commentId: T:CodeJam.PerfTests.Metrics.MetricValuesProviderBase
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricValuesProviderBase
+  nameWithType: MetricValuesProviderBase
+  fullName: CodeJam.PerfTests.Metrics.MetricValuesProviderBase
+- uid: CodeJam.PerfTests.Metrics.GcMetricSource
+  commentId: T:CodeJam.PerfTests.Metrics.GcMetricSource
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: GcMetricSource
+  nameWithType: GcMetricSource
+  fullName: CodeJam.PerfTests.Metrics.GcMetricSource
+- uid: CodeJam.PerfTests.Metrics.GcMetricValuesProvider
+  commentId: T:CodeJam.PerfTests.Metrics.GcMetricValuesProvider
+  isExternal: false
+  name: GcMetricValuesProvider
+  nameWithType: GcMetricValuesProvider
+  fullName: CodeJam.PerfTests.Metrics.GcMetricValuesProvider
+- uid: CodeJam.PerfTests.Metrics.TimeMetricValuesProvider
+  commentId: T:CodeJam.PerfTests.Metrics.TimeMetricValuesProvider
+  isExternal: false
+  name: TimeMetricValuesProvider
+  nameWithType: TimeMetricValuesProvider
+  fullName: CodeJam.PerfTests.Metrics.TimeMetricValuesProvider
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics

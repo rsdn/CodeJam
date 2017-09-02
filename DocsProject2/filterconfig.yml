@@ -1,0 +1,3 @@
+﻿apiRules:
+- exclude:
+      uidRegex: ^CodeJam\.PerfTests\.BinarySizeUnit$

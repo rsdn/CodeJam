@@ -1,0 +1,1366 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  commentId: T:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  id: CompetitionCharacteristicColumn
+  parent: CodeJam.PerfTests.Columns
+  children:
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.#ctor(BenchmarkDotNet.Characteristics.Characteristic)
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.AlwaysShow
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Category
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.ColumnName
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Id
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsNumeric
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Legend
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.PriorityInCategory
+  - CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.UnitType
+  langs:
+  - csharp
+  - vb
+  name: CompetitionCharacteristicColumn
+  nameWithType: CompetitionCharacteristicColumn
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CompetitionCharacteristicColumn
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 19
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: "\nColumn that displays one of <xref href=\"CodeJam.PerfTests.Configs.CompetitionOptions\" data-throw-if-not-resolved=\"false\"></xref> characteristic.\n"
+  example: []
+  syntax:
+    content: 'public class CompetitionCharacteristicColumn : IColumn'
+    content.vb: >-
+      Public Class CompetitionCharacteristicColumn
+          Implements IColumn
+  seealso:
+  - linkId: BenchmarkDotNet.Columns.IColumn
+    commentId: T:BenchmarkDotNet.Columns.IColumn
+  inheritance:
+  - System.Object
+  implements:
+  - BenchmarkDotNet.Columns.IColumn
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.#ctor(BenchmarkDotNet.Characteristics.Characteristic)
+  commentId: M:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.#ctor(BenchmarkDotNet.Characteristics.Characteristic)
+  id: '#ctor(BenchmarkDotNet.Characteristics.Characteristic)'
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: CompetitionCharacteristicColumn(Characteristic)
+  nameWithType: CompetitionCharacteristicColumn.CompetitionCharacteristicColumn(Characteristic)
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.CompetitionCharacteristicColumn(BenchmarkDotNet.Characteristics.Characteristic)
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 45
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public CompetitionCharacteristicColumn(Characteristic characteristic)
+    parameters:
+    - id: characteristic
+      type: BenchmarkDotNet.Characteristics.Characteristic
+      description: The characteristic.
+    content.vb: Public Sub New(characteristic As Characteristic)
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.ColumnName
+  commentId: P:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.ColumnName
+  id: ColumnName
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: ColumnName
+  nameWithType: CompetitionCharacteristicColumn.ColumnName
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.ColumnName
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ColumnName
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 63
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Display column title in the summary.
+  example: []
+  syntax:
+    content: public string ColumnName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: Display column title in the summary.
+    content.vb: Public ReadOnly Property ColumnName As String
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.ColumnName*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.ColumnName
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Legend
+  commentId: P:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Legend
+  id: Legend
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: Legend
+  nameWithType: CompetitionCharacteristicColumn.Legend
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Legend
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Legend
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 67
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Column description.
+  example: []
+  syntax:
+    content: public string Legend { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The column description.
+    content.vb: Public ReadOnly Property Legend As String
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Legend*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.Legend
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Id
+  commentId: P:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Id
+  id: Id
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: CompetitionCharacteristicColumn.Id
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Id
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Id
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 74
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: "\nAn unique identificator of the column.\n<remarks>If there are several columns with the same Id, only one of them will be shown in the summary.</remarks>\n"
+  example: []
+  syntax:
+    content: public string Id { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The unique identificator of the column.
+    content.vb: Public ReadOnly Property Id As String
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Id*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.Id
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.AlwaysShow
+  commentId: P:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.AlwaysShow
+  id: AlwaysShow
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: AlwaysShow
+  nameWithType: CompetitionCharacteristicColumn.AlwaysShow
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.AlwaysShow
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AlwaysShow
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 78
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Gets a value indicating whether [always show].
+  example: []
+  syntax:
+    content: public bool AlwaysShow { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <code>true</code> if [always show]; otherwise, <code>false</code>.
+    content.vb: Public ReadOnly Property AlwaysShow As Boolean
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.AlwaysShow*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.AlwaysShow
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Category
+  commentId: P:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Category
+  id: Category
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: Category
+  nameWithType: CompetitionCharacteristicColumn.Category
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Category
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Category
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 82
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Gets the category.
+  example: []
+  syntax:
+    content: public ColumnCategory Category { get; }
+    parameters: []
+    return:
+      type: BenchmarkDotNet.Columns.ColumnCategory
+      description: The category.
+    content.vb: Public ReadOnly Property Category As ColumnCategory
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Category*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.Category
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.PriorityInCategory
+  commentId: P:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.PriorityInCategory
+  id: PriorityInCategory
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: PriorityInCategory
+  nameWithType: CompetitionCharacteristicColumn.PriorityInCategory
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.PriorityInCategory
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: PriorityInCategory
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 86
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Defines order of column in the same category.
+  example: []
+  syntax:
+    content: public int PriorityInCategory { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: Order of column in the same category.
+    content.vb: Public ReadOnly Property PriorityInCategory As Integer
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.PriorityInCategory*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.PriorityInCategory
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsNumeric
+  commentId: P:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsNumeric
+  id: IsNumeric
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: IsNumeric
+  nameWithType: CompetitionCharacteristicColumn.IsNumeric
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsNumeric
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsNumeric
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 90
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Defines if the column&apos;s value represents a number.
+  example: []
+  syntax:
+    content: public bool IsNumeric { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the column&apos;s value represents a number.
+    content.vb: Public ReadOnly Property IsNumeric As Boolean
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsNumeric*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.IsNumeric
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.UnitType
+  commentId: P:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.UnitType
+  id: UnitType
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: UnitType
+  nameWithType: CompetitionCharacteristicColumn.UnitType
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.UnitType
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UnitType
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 94
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Defines how to format column&apos;s value.
+  example: []
+  syntax:
+    content: public UnitType UnitType { get; }
+    parameters: []
+    return:
+      type: BenchmarkDotNet.Columns.UnitType
+      description: Format column mode.
+    content.vb: Public ReadOnly Property UnitType As UnitType
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.UnitType*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.UnitType
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  commentId: M:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  id: GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: GetValue(Summary, Benchmark)
+  nameWithType: CompetitionCharacteristicColumn.GetValue(Summary, Benchmark)
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Running.Benchmark)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValue
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 101
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Returns value for the column.
+  example: []
+  syntax:
+    content: public string GetValue(Summary summary, Benchmark benchmark)
+    parameters:
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: Summary for the run.
+    - id: benchmark
+      type: BenchmarkDotNet.Running.Benchmark
+      description: The benchmark.
+    return:
+      type: System.String
+      description: The value for the column
+    content.vb: Public Function GetValue(summary As Summary, benchmark As Benchmark) As String
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+  commentId: M:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+  id: GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: GetValue(Summary, Benchmark, ISummaryStyle)
+  nameWithType: CompetitionCharacteristicColumn.GetValue(Summary, Benchmark, ISummaryStyle)
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Running.Benchmark, BenchmarkDotNet.Reports.ISummaryStyle)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValue
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 109
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Returns value for the column.
+  example: []
+  syntax:
+    content: public string GetValue(Summary summary, Benchmark benchmark, ISummaryStyle style)
+    parameters:
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: Summary for the run.
+    - id: benchmark
+      type: BenchmarkDotNet.Running.Benchmark
+      description: The benchmark.
+    - id: style
+      type: BenchmarkDotNet.Reports.ISummaryStyle
+      description: The summary style.
+    return:
+      type: System.String
+      description: The value for the column
+    content.vb: Public Function GetValue(summary As Summary, benchmark As Benchmark, style As ISummaryStyle) As String
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  commentId: M:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  id: IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: IsDefault(Summary, Benchmark)
+  nameWithType: CompetitionCharacteristicColumn.IsDefault(Summary, Benchmark)
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsDefault(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Running.Benchmark)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsDefault
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 119
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Determines whether the specified summary is default.
+  example: []
+  syntax:
+    content: public bool IsDefault(Summary summary, Benchmark benchmark)
+    parameters:
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: The summary.
+    - id: benchmark
+      type: BenchmarkDotNet.Running.Benchmark
+      description: The benchmark.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified summary is default; otherwise, <code>false</code>.
+    content.vb: Public Function IsDefault(summary As Summary, benchmark As Benchmark) As Boolean
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsDefault*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+  id: IsAvailable(BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  langs:
+  - csharp
+  - vb
+  name: IsAvailable(Summary)
+  nameWithType: CompetitionCharacteristicColumn.IsAvailable(Summary)
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsAvailable
+    path: ../PerfTests/src/[L1_CompetitionApi]/Columns/CompetitionCharacteristicColumn.cs
+    startLine: 125
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Columns
+  summary: Determines whether the specified summary is available.
+  example: []
+  syntax:
+    content: public bool IsAvailable(Summary summary)
+    parameters:
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: The summary.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified summary is available; otherwise, <code>false</code>.
+    content.vb: Public Function IsAvailable(summary As Summary) As Boolean
+  overload: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsAvailable*
+  implements:
+  - BenchmarkDotNet.Columns.IColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: CodeJam.PerfTests.Configs.CompetitionOptions
+  commentId: T:CodeJam.PerfTests.Configs.CompetitionOptions
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CompetitionOptions
+  nameWithType: CompetitionOptions
+  fullName: CodeJam.PerfTests.Configs.CompetitionOptions
+- uid: BenchmarkDotNet.Columns.IColumn
+  commentId: T:BenchmarkDotNet.Columns.IColumn
+  parent: BenchmarkDotNet.Columns
+  isExternal: true
+  name: IColumn
+  nameWithType: IColumn
+  fullName: BenchmarkDotNet.Columns.IColumn
+- uid: CodeJam.PerfTests.Columns
+  commentId: N:CodeJam.PerfTests.Columns
+  isExternal: false
+  name: CodeJam.PerfTests.Columns
+  nameWithType: CodeJam.PerfTests.Columns
+  fullName: CodeJam.PerfTests.Columns
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs
+  commentId: N:CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CodeJam.PerfTests.Configs
+  nameWithType: CodeJam.PerfTests.Configs
+  fullName: CodeJam.PerfTests.Configs
+- uid: BenchmarkDotNet.Columns
+  commentId: N:BenchmarkDotNet.Columns
+  isExternal: false
+  name: BenchmarkDotNet.Columns
+  nameWithType: BenchmarkDotNet.Columns
+  fullName: BenchmarkDotNet.Columns
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  commentId: T:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+  isExternal: false
+  name: CompetitionCharacteristicColumn
+  nameWithType: CompetitionCharacteristicColumn
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.#ctor*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.#ctor
+  isExternal: false
+  name: CompetitionCharacteristicColumn
+  nameWithType: CompetitionCharacteristicColumn.CompetitionCharacteristicColumn
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.CompetitionCharacteristicColumn
+- uid: BenchmarkDotNet.Characteristics.Characteristic
+  commentId: T:BenchmarkDotNet.Characteristics.Characteristic
+  parent: BenchmarkDotNet.Characteristics
+  isExternal: true
+  name: Characteristic
+  nameWithType: Characteristic
+  fullName: BenchmarkDotNet.Characteristics.Characteristic
+- uid: BenchmarkDotNet.Characteristics
+  commentId: N:BenchmarkDotNet.Characteristics
+  isExternal: false
+  name: BenchmarkDotNet.Characteristics
+  nameWithType: BenchmarkDotNet.Characteristics
+  fullName: BenchmarkDotNet.Characteristics
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.ColumnName*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.ColumnName
+  isExternal: false
+  name: ColumnName
+  nameWithType: CompetitionCharacteristicColumn.ColumnName
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.ColumnName
+- uid: BenchmarkDotNet.Columns.IColumn.ColumnName
+  commentId: P:BenchmarkDotNet.Columns.IColumn.ColumnName
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: ColumnName
+  nameWithType: IColumn.ColumnName
+  fullName: BenchmarkDotNet.Columns.IColumn.ColumnName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Legend*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Legend
+  isExternal: false
+  name: Legend
+  nameWithType: CompetitionCharacteristicColumn.Legend
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Legend
+- uid: BenchmarkDotNet.Columns.IColumn.Legend
+  commentId: P:BenchmarkDotNet.Columns.IColumn.Legend
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: Legend
+  nameWithType: IColumn.Legend
+  fullName: BenchmarkDotNet.Columns.IColumn.Legend
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Id*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Id
+  isExternal: false
+  name: Id
+  nameWithType: CompetitionCharacteristicColumn.Id
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Id
+- uid: BenchmarkDotNet.Columns.IColumn.Id
+  commentId: P:BenchmarkDotNet.Columns.IColumn.Id
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: Id
+  nameWithType: IColumn.Id
+  fullName: BenchmarkDotNet.Columns.IColumn.Id
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.AlwaysShow*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.AlwaysShow
+  isExternal: false
+  name: AlwaysShow
+  nameWithType: CompetitionCharacteristicColumn.AlwaysShow
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.AlwaysShow
+- uid: BenchmarkDotNet.Columns.IColumn.AlwaysShow
+  commentId: P:BenchmarkDotNet.Columns.IColumn.AlwaysShow
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: AlwaysShow
+  nameWithType: IColumn.AlwaysShow
+  fullName: BenchmarkDotNet.Columns.IColumn.AlwaysShow
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Category*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Category
+  isExternal: false
+  name: Category
+  nameWithType: CompetitionCharacteristicColumn.Category
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.Category
+- uid: BenchmarkDotNet.Columns.IColumn.Category
+  commentId: P:BenchmarkDotNet.Columns.IColumn.Category
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: Category
+  nameWithType: IColumn.Category
+  fullName: BenchmarkDotNet.Columns.IColumn.Category
+- uid: BenchmarkDotNet.Columns.ColumnCategory
+  commentId: T:BenchmarkDotNet.Columns.ColumnCategory
+  parent: BenchmarkDotNet.Columns
+  isExternal: true
+  name: ColumnCategory
+  nameWithType: ColumnCategory
+  fullName: BenchmarkDotNet.Columns.ColumnCategory
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.PriorityInCategory*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.PriorityInCategory
+  isExternal: false
+  name: PriorityInCategory
+  nameWithType: CompetitionCharacteristicColumn.PriorityInCategory
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.PriorityInCategory
+- uid: BenchmarkDotNet.Columns.IColumn.PriorityInCategory
+  commentId: P:BenchmarkDotNet.Columns.IColumn.PriorityInCategory
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: PriorityInCategory
+  nameWithType: IColumn.PriorityInCategory
+  fullName: BenchmarkDotNet.Columns.IColumn.PriorityInCategory
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsNumeric*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsNumeric
+  isExternal: false
+  name: IsNumeric
+  nameWithType: CompetitionCharacteristicColumn.IsNumeric
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsNumeric
+- uid: BenchmarkDotNet.Columns.IColumn.IsNumeric
+  commentId: P:BenchmarkDotNet.Columns.IColumn.IsNumeric
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: IsNumeric
+  nameWithType: IColumn.IsNumeric
+  fullName: BenchmarkDotNet.Columns.IColumn.IsNumeric
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.UnitType*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.UnitType
+  isExternal: false
+  name: UnitType
+  nameWithType: CompetitionCharacteristicColumn.UnitType
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.UnitType
+- uid: BenchmarkDotNet.Columns.IColumn.UnitType
+  commentId: P:BenchmarkDotNet.Columns.IColumn.UnitType
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: UnitType
+  nameWithType: IColumn.UnitType
+  fullName: BenchmarkDotNet.Columns.IColumn.UnitType
+- uid: BenchmarkDotNet.Columns.UnitType
+  commentId: T:BenchmarkDotNet.Columns.UnitType
+  parent: BenchmarkDotNet.Columns
+  isExternal: true
+  name: UnitType
+  nameWithType: UnitType
+  fullName: BenchmarkDotNet.Columns.UnitType
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue
+  isExternal: false
+  name: GetValue
+  nameWithType: CompetitionCharacteristicColumn.GetValue
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.GetValue
+- uid: BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  commentId: M:BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: GetValue(Summary, Benchmark)
+  nameWithType: IColumn.GetValue(Summary, Benchmark)
+  fullName: BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Running.Benchmark)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+    name: GetValue
+    nameWithType: IColumn.GetValue
+    fullName: BenchmarkDotNet.Columns.IColumn.GetValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Benchmark
+    name: Benchmark
+    nameWithType: Benchmark
+    fullName: BenchmarkDotNet.Running.Benchmark
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+    name: GetValue
+    nameWithType: IColumn.GetValue
+    fullName: BenchmarkDotNet.Columns.IColumn.GetValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Benchmark
+    name: Benchmark
+    nameWithType: Benchmark
+    fullName: BenchmarkDotNet.Running.Benchmark
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Reports.Summary
+  commentId: T:BenchmarkDotNet.Reports.Summary
+  parent: BenchmarkDotNet.Reports
+  isExternal: true
+  name: Summary
+  nameWithType: Summary
+  fullName: BenchmarkDotNet.Reports.Summary
+- uid: BenchmarkDotNet.Running.Benchmark
+  commentId: T:BenchmarkDotNet.Running.Benchmark
+  parent: BenchmarkDotNet.Running
+  isExternal: true
+  name: Benchmark
+  nameWithType: Benchmark
+  fullName: BenchmarkDotNet.Running.Benchmark
+- uid: BenchmarkDotNet.Reports
+  commentId: N:BenchmarkDotNet.Reports
+  isExternal: false
+  name: BenchmarkDotNet.Reports
+  nameWithType: BenchmarkDotNet.Reports
+  fullName: BenchmarkDotNet.Reports
+- uid: BenchmarkDotNet.Running
+  commentId: N:BenchmarkDotNet.Running
+  isExternal: false
+  name: BenchmarkDotNet.Running
+  nameWithType: BenchmarkDotNet.Running
+  fullName: BenchmarkDotNet.Running
+- uid: BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+  commentId: M:BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: GetValue(Summary, Benchmark, ISummaryStyle)
+  nameWithType: IColumn.GetValue(Summary, Benchmark, ISummaryStyle)
+  fullName: BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Running.Benchmark, BenchmarkDotNet.Reports.ISummaryStyle)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+    name: GetValue
+    nameWithType: IColumn.GetValue
+    fullName: BenchmarkDotNet.Columns.IColumn.GetValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Benchmark
+    name: Benchmark
+    nameWithType: Benchmark
+    fullName: BenchmarkDotNet.Running.Benchmark
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Reports.ISummaryStyle
+    name: ISummaryStyle
+    nameWithType: ISummaryStyle
+    fullName: BenchmarkDotNet.Reports.ISummaryStyle
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Columns.IColumn.GetValue(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.ISummaryStyle)
+    name: GetValue
+    nameWithType: IColumn.GetValue
+    fullName: BenchmarkDotNet.Columns.IColumn.GetValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Benchmark
+    name: Benchmark
+    nameWithType: Benchmark
+    fullName: BenchmarkDotNet.Running.Benchmark
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Reports.ISummaryStyle
+    name: ISummaryStyle
+    nameWithType: ISummaryStyle
+    fullName: BenchmarkDotNet.Reports.ISummaryStyle
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Reports.ISummaryStyle
+  commentId: T:BenchmarkDotNet.Reports.ISummaryStyle
+  parent: BenchmarkDotNet.Reports
+  isExternal: true
+  name: ISummaryStyle
+  nameWithType: ISummaryStyle
+  fullName: BenchmarkDotNet.Reports.ISummaryStyle
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsDefault*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsDefault
+  isExternal: false
+  name: IsDefault
+  nameWithType: CompetitionCharacteristicColumn.IsDefault
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsDefault
+- uid: BenchmarkDotNet.Columns.IColumn.IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  commentId: M:BenchmarkDotNet.Columns.IColumn.IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: IsDefault(Summary, Benchmark)
+  nameWithType: IColumn.IsDefault(Summary, Benchmark)
+  fullName: BenchmarkDotNet.Columns.IColumn.IsDefault(BenchmarkDotNet.Reports.Summary, BenchmarkDotNet.Running.Benchmark)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Columns.IColumn.IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+    name: IsDefault
+    nameWithType: IColumn.IsDefault
+    fullName: BenchmarkDotNet.Columns.IColumn.IsDefault
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Benchmark
+    name: Benchmark
+    nameWithType: Benchmark
+    fullName: BenchmarkDotNet.Running.Benchmark
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Columns.IColumn.IsDefault(BenchmarkDotNet.Reports.Summary,BenchmarkDotNet.Running.Benchmark)
+    name: IsDefault
+    nameWithType: IColumn.IsDefault
+    fullName: BenchmarkDotNet.Columns.IColumn.IsDefault
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Benchmark
+    name: Benchmark
+    nameWithType: Benchmark
+    fullName: BenchmarkDotNet.Running.Benchmark
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsAvailable*
+  commentId: Overload:CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsAvailable
+  isExternal: false
+  name: IsAvailable
+  nameWithType: CompetitionCharacteristicColumn.IsAvailable
+  fullName: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.IsAvailable
+- uid: BenchmarkDotNet.Columns.IColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+  commentId: M:BenchmarkDotNet.Columns.IColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+  parent: BenchmarkDotNet.Columns.IColumn
+  isExternal: true
+  name: IsAvailable(Summary)
+  nameWithType: IColumn.IsAvailable(Summary)
+  fullName: BenchmarkDotNet.Columns.IColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Columns.IColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+    name: IsAvailable
+    nameWithType: IColumn.IsAvailable
+    fullName: BenchmarkDotNet.Columns.IColumn.IsAvailable
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Columns.IColumn.IsAvailable(BenchmarkDotNet.Reports.Summary)
+    name: IsAvailable
+    nameWithType: IColumn.IsAvailable
+    fullName: BenchmarkDotNet.Columns.IColumn.IsAvailable
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

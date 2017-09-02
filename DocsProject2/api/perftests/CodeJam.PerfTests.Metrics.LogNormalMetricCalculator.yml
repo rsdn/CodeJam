@@ -1,0 +1,1406 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  commentId: T:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  id: LogNormalMetricCalculator
+  parent: CodeJam.PerfTests.Metrics
+  children:
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.Instance
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues(System.Double[])
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues(System.Double[])
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue(System.Double[])
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])
+  - CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance(System.Double[])
+  langs:
+  - csharp
+  - vb
+  name: LogNormalMetricCalculator
+  nameWithType: LogNormalMetricCalculator
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: LogNormalMetricCalculator
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 16
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nMetric calculator for relative metrics (especially for microbenchmarks).\nUses lognormal distribution for results estimation.\n"
+  example: []
+  syntax:
+    content: 'public sealed class LogNormalMetricCalculator : IMetricCalculator'
+    content.vb: >-
+      Public NotInheritable Class LogNormalMetricCalculator
+          Implements IMetricCalculator
+  seealso:
+  - linkId: CodeJam.PerfTests.Metrics.IMetricCalculator
+    commentId: T:CodeJam.PerfTests.Metrics.IMetricCalculator
+  inheritance:
+  - System.Object
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.Instance
+  commentId: F:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.Instance
+  id: Instance
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: Instance
+  nameWithType: LogNormalMetricCalculator.Instance
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.Instance
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Instance
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 19
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Instance of the provider.
+  example: []
+  syntax:
+    content: public static readonly IMetricCalculator Instance
+    return:
+      type: CodeJam.PerfTests.Metrics.IMetricCalculator
+    content.vb: Public Shared ReadOnly Instance As IMetricCalculator
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue(System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue(System.Double[])
+  id: TryGetMeanValue(System.Double[])
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: TryGetMeanValue(Double[])
+  nameWithType: LogNormalMetricCalculator.TryGetMeanValue(Double[])
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue(System.Double[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetMeanValue
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 50
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets actual value for the set of values.
+  example: []
+  syntax:
+    content: public double ? TryGetMeanValue(double[] values)
+    parameters:
+    - id: values
+      type: System.Double[]
+      description: Set of values.
+    return:
+      type: System.Nullable{System.Double}
+      description: Actual value for the set of values or <code>null</code> if none.
+    content.vb: Public Function TryGetMeanValue(values As Double()) As Double?
+  overload: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue*
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue(System.Double[])
+  nameWithType.vb: LogNormalMetricCalculator.TryGetMeanValue(Double())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue(System.Double())
+  name.vb: TryGetMeanValue(Double())
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])
+  id: TryGetRelativeMeanValue(System.Double[],System.Double[])
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: TryGetRelativeMeanValue(Double[], Double[])
+  nameWithType: LogNormalMetricCalculator.TryGetRelativeMeanValue(Double[], Double[])
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue(System.Double[], System.Double[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetRelativeMeanValue
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 64
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets actual value for the set of values (relative metric).
+  example: []
+  syntax:
+    content: public double ? TryGetRelativeMeanValue(double[] values, double[] baselineValues)
+    parameters:
+    - id: values
+      type: System.Double[]
+      description: Set of values.
+    - id: baselineValues
+      type: System.Double[]
+      description: The baseline values.
+    return:
+      type: System.Nullable{System.Double}
+      description: Actual value for the set of values or <code>null</code> if none.
+    content.vb: Public Function TryGetRelativeMeanValue(values As Double(), baselineValues As Double()) As Double?
+  overload: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue*
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])
+  nameWithType.vb: LogNormalMetricCalculator.TryGetRelativeMeanValue(Double(), Double())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue(System.Double(), System.Double())
+  name.vb: TryGetRelativeMeanValue(Double(), Double())
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance(System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance(System.Double[])
+  id: TryGetVariance(System.Double[])
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: TryGetVariance(Double[])
+  nameWithType: LogNormalMetricCalculator.TryGetVariance(Double[])
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance(System.Double[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetVariance
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 77
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets variance for the set of values.
+  example: []
+  syntax:
+    content: public double ? TryGetVariance(double[] values)
+    parameters:
+    - id: values
+      type: System.Double[]
+      description: Set of values.
+    return:
+      type: System.Nullable{System.Double}
+      description: Variance for the set of values or <code>null</code> if none.
+    content.vb: Public Function TryGetVariance(values As Double()) As Double?
+  overload: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance*
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance(System.Double[])
+  nameWithType.vb: LogNormalMetricCalculator.TryGetVariance(Double())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance(System.Double())
+  name.vb: TryGetVariance(Double())
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])
+  id: TryGetRelativeVariance(System.Double[],System.Double[])
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: TryGetRelativeVariance(Double[], Double[])
+  nameWithType: LogNormalMetricCalculator.TryGetRelativeVariance(Double[], Double[])
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance(System.Double[], System.Double[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetRelativeVariance
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 91
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets variance for the set of values (relative metric).
+  example: []
+  syntax:
+    content: public double ? TryGetRelativeVariance(double[] values, double[] baselineValues)
+    parameters:
+    - id: values
+      type: System.Double[]
+      description: Set of values.
+    - id: baselineValues
+      type: System.Double[]
+      description: The baseline values.
+    return:
+      type: System.Nullable{System.Double}
+      description: Variance for the set of values or <code>null</code> if none.
+    content.vb: Public Function TryGetRelativeVariance(values As Double(), baselineValues As Double()) As Double?
+  overload: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance*
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])
+  nameWithType.vb: LogNormalMetricCalculator.TryGetRelativeVariance(Double(), Double())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance(System.Double(), System.Double())
+  name.vb: TryGetRelativeVariance(Double(), Double())
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues(System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues(System.Double[])
+  id: TryGetActualValues(System.Double[])
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: TryGetActualValues(Double[])
+  nameWithType: LogNormalMetricCalculator.TryGetActualValues(Double[])
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues(System.Double[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetActualValues
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 117
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets actual values range for the set of values.
+  example: []
+  syntax:
+    content: public MetricRange TryGetActualValues(double[] values)
+    parameters:
+    - id: values
+      type: System.Double[]
+      description: Set of values.
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Actual values range for for the set of values (or empty range if none).
+    content.vb: Public Function TryGetActualValues(values As Double()) As MetricRange
+  overload: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues*
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues(System.Double[])
+  nameWithType.vb: LogNormalMetricCalculator.TryGetActualValues(Double())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues(System.Double())
+  name.vb: TryGetActualValues(Double())
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])
+  id: TryGetRelativeActualValues(System.Double[],System.Double[])
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: TryGetRelativeActualValues(Double[], Double[])
+  nameWithType: LogNormalMetricCalculator.TryGetRelativeActualValues(Double[], Double[])
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues(System.Double[], System.Double[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetRelativeActualValues
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 128
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets actual values range for the set of values (relative metric).
+  example: []
+  syntax:
+    content: public MetricRange TryGetRelativeActualValues(double[] values, double[] baselineValues)
+    parameters:
+    - id: values
+      type: System.Double[]
+      description: Set of values.
+    - id: baselineValues
+      type: System.Double[]
+      description: The baseline values.
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Actual values range for the set of values (or empty range if none).
+    content.vb: Public Function TryGetRelativeActualValues(values As Double(), baselineValues As Double()) As MetricRange
+  overload: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues*
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])
+  nameWithType.vb: LogNormalMetricCalculator.TryGetRelativeActualValues(Double(), Double())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues(System.Double(), System.Double())
+  name.vb: TryGetRelativeActualValues(Double(), Double())
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues(System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues(System.Double[])
+  id: TryGetLimitValues(System.Double[])
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: TryGetLimitValues(Double[])
+  nameWithType: LogNormalMetricCalculator.TryGetLimitValues(Double[])
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues(System.Double[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetLimitValues
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 138
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets expected limits range for the set of values.
+  example: []
+  syntax:
+    content: public MetricRange TryGetLimitValues(double[] values)
+    parameters:
+    - id: values
+      type: System.Double[]
+      description: Set of values.
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Limit values range for the set of values (or empty range if none).
+    content.vb: Public Function TryGetLimitValues(values As Double()) As MetricRange
+  overload: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues*
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues(System.Double[])
+  nameWithType.vb: LogNormalMetricCalculator.TryGetLimitValues(Double())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues(System.Double())
+  name.vb: TryGetLimitValues(Double())
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])
+  id: TryGetRelativeLimitValues(System.Double[],System.Double[])
+  parent: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+  langs:
+  - csharp
+  - vb
+  name: TryGetRelativeLimitValues(Double[], Double[])
+  nameWithType: LogNormalMetricCalculator.TryGetRelativeLimitValues(Double[], Double[])
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues(System.Double[], System.Double[])
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetRelativeLimitValues
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricCalculator]/LogNormalMetricCalculator.cs
+    startLine: 154
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets expected limits range for the set of values (relative metric).
+  example: []
+  syntax:
+    content: public MetricRange TryGetRelativeLimitValues(double[] values, double[] baselineValues)
+    parameters:
+    - id: values
+      type: System.Double[]
+      description: Set of values.
+    - id: baselineValues
+      type: System.Double[]
+      description: The baseline values.
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Limit values range for the set of values (or empty range if none).
+    content.vb: Public Function TryGetRelativeLimitValues(values As Double(), baselineValues As Double()) As MetricRange
+  overload: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues*
+  implements:
+  - CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])
+  nameWithType.vb: LogNormalMetricCalculator.TryGetRelativeLimitValues(Double(), Double())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues(System.Double(), System.Double())
+  name.vb: TryGetRelativeLimitValues(Double(), Double())
+references:
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricCalculator
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: IMetricCalculator
+  nameWithType: IMetricCalculator
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue*
+  commentId: Overload:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue
+  isExternal: false
+  name: TryGetMeanValue
+  nameWithType: LogNormalMetricCalculator.TryGetMeanValue
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetMeanValue
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue(System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue(System.Double[])
+  parent: CodeJam.PerfTests.Metrics.IMetricCalculator
+  isExternal: true
+  name: TryGetMeanValue(Double[])
+  nameWithType: IMetricCalculator.TryGetMeanValue(Double[])
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue(System.Double[])
+  nameWithType.vb: IMetricCalculator.TryGetMeanValue(Double())
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue(System.Double())
+  name.vb: TryGetMeanValue(Double())
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue(System.Double[])
+    name: TryGetMeanValue
+    nameWithType: IMetricCalculator.TryGetMeanValue
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue(System.Double[])
+    name: TryGetMeanValue
+    nameWithType: IMetricCalculator.TryGetMeanValue
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetMeanValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Double[]
+  name: Double[]
+  nameWithType: Double[]
+  fullName: System.Double[]
+  nameWithType.vb: Double()
+  fullName.vb: System.Double()
+  name.vb: Double()
+  spec.csharp:
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Nullable{System.Double}
+  commentId: T:System.Nullable{System.Double}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Double>
+  nameWithType: Nullable<Double>
+  fullName: System.Nullable<System.Double>
+  nameWithType.vb: Nullable(Of Double)
+  fullName.vb: System.Nullable(Of System.Double)
+  name.vb: Nullable(Of Double)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue*
+  commentId: Overload:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue
+  isExternal: false
+  name: TryGetRelativeMeanValue
+  nameWithType: LogNormalMetricCalculator.TryGetRelativeMeanValue
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeMeanValue
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])
+  parent: CodeJam.PerfTests.Metrics.IMetricCalculator
+  isExternal: true
+  name: TryGetRelativeMeanValue(Double[], Double[])
+  nameWithType: IMetricCalculator.TryGetRelativeMeanValue(Double[], Double[])
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue(System.Double[], System.Double[])
+  nameWithType.vb: IMetricCalculator.TryGetRelativeMeanValue(Double(), Double())
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue(System.Double(), System.Double())
+  name.vb: TryGetRelativeMeanValue(Double(), Double())
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])
+    name: TryGetRelativeMeanValue
+    nameWithType: IMetricCalculator.TryGetRelativeMeanValue
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue(System.Double[],System.Double[])
+    name: TryGetRelativeMeanValue
+    nameWithType: IMetricCalculator.TryGetRelativeMeanValue
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeMeanValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance*
+  commentId: Overload:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance
+  isExternal: false
+  name: TryGetVariance
+  nameWithType: LogNormalMetricCalculator.TryGetVariance
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetVariance
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance(System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance(System.Double[])
+  parent: CodeJam.PerfTests.Metrics.IMetricCalculator
+  isExternal: true
+  name: TryGetVariance(Double[])
+  nameWithType: IMetricCalculator.TryGetVariance(Double[])
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance(System.Double[])
+  nameWithType.vb: IMetricCalculator.TryGetVariance(Double())
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance(System.Double())
+  name.vb: TryGetVariance(Double())
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance(System.Double[])
+    name: TryGetVariance
+    nameWithType: IMetricCalculator.TryGetVariance
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance(System.Double[])
+    name: TryGetVariance
+    nameWithType: IMetricCalculator.TryGetVariance
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetVariance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance*
+  commentId: Overload:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance
+  isExternal: false
+  name: TryGetRelativeVariance
+  nameWithType: LogNormalMetricCalculator.TryGetRelativeVariance
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeVariance
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])
+  parent: CodeJam.PerfTests.Metrics.IMetricCalculator
+  isExternal: true
+  name: TryGetRelativeVariance(Double[], Double[])
+  nameWithType: IMetricCalculator.TryGetRelativeVariance(Double[], Double[])
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance(System.Double[], System.Double[])
+  nameWithType.vb: IMetricCalculator.TryGetRelativeVariance(Double(), Double())
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance(System.Double(), System.Double())
+  name.vb: TryGetRelativeVariance(Double(), Double())
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])
+    name: TryGetRelativeVariance
+    nameWithType: IMetricCalculator.TryGetRelativeVariance
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance(System.Double[],System.Double[])
+    name: TryGetRelativeVariance
+    nameWithType: IMetricCalculator.TryGetRelativeVariance
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeVariance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues*
+  commentId: Overload:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues
+  isExternal: false
+  name: TryGetActualValues
+  nameWithType: LogNormalMetricCalculator.TryGetActualValues
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetActualValues
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues(System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues(System.Double[])
+  parent: CodeJam.PerfTests.Metrics.IMetricCalculator
+  isExternal: true
+  name: TryGetActualValues(Double[])
+  nameWithType: IMetricCalculator.TryGetActualValues(Double[])
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues(System.Double[])
+  nameWithType.vb: IMetricCalculator.TryGetActualValues(Double())
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues(System.Double())
+  name.vb: TryGetActualValues(Double())
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues(System.Double[])
+    name: TryGetActualValues
+    nameWithType: IMetricCalculator.TryGetActualValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues(System.Double[])
+    name: TryGetActualValues
+    nameWithType: IMetricCalculator.TryGetActualValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetActualValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricRange
+  commentId: T:CodeJam.PerfTests.Metrics.MetricRange
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricRange
+  nameWithType: MetricRange
+  fullName: CodeJam.PerfTests.Metrics.MetricRange
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues*
+  commentId: Overload:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues
+  isExternal: false
+  name: TryGetRelativeActualValues
+  nameWithType: LogNormalMetricCalculator.TryGetRelativeActualValues
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeActualValues
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])
+  parent: CodeJam.PerfTests.Metrics.IMetricCalculator
+  isExternal: true
+  name: TryGetRelativeActualValues(Double[], Double[])
+  nameWithType: IMetricCalculator.TryGetRelativeActualValues(Double[], Double[])
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues(System.Double[], System.Double[])
+  nameWithType.vb: IMetricCalculator.TryGetRelativeActualValues(Double(), Double())
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues(System.Double(), System.Double())
+  name.vb: TryGetRelativeActualValues(Double(), Double())
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])
+    name: TryGetRelativeActualValues
+    nameWithType: IMetricCalculator.TryGetRelativeActualValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues(System.Double[],System.Double[])
+    name: TryGetRelativeActualValues
+    nameWithType: IMetricCalculator.TryGetRelativeActualValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeActualValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues*
+  commentId: Overload:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues
+  isExternal: false
+  name: TryGetLimitValues
+  nameWithType: LogNormalMetricCalculator.TryGetLimitValues
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetLimitValues
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues(System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues(System.Double[])
+  parent: CodeJam.PerfTests.Metrics.IMetricCalculator
+  isExternal: true
+  name: TryGetLimitValues(Double[])
+  nameWithType: IMetricCalculator.TryGetLimitValues(Double[])
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues(System.Double[])
+  nameWithType.vb: IMetricCalculator.TryGetLimitValues(Double())
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues(System.Double())
+  name.vb: TryGetLimitValues(Double())
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues(System.Double[])
+    name: TryGetLimitValues
+    nameWithType: IMetricCalculator.TryGetLimitValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues(System.Double[])
+    name: TryGetLimitValues
+    nameWithType: IMetricCalculator.TryGetLimitValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetLimitValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues*
+  commentId: Overload:CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues
+  isExternal: false
+  name: TryGetRelativeLimitValues
+  nameWithType: LogNormalMetricCalculator.TryGetRelativeLimitValues
+  fullName: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.TryGetRelativeLimitValues
+- uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])
+  parent: CodeJam.PerfTests.Metrics.IMetricCalculator
+  isExternal: true
+  name: TryGetRelativeLimitValues(Double[], Double[])
+  nameWithType: IMetricCalculator.TryGetRelativeLimitValues(Double[], Double[])
+  fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues(System.Double[], System.Double[])
+  nameWithType.vb: IMetricCalculator.TryGetRelativeLimitValues(Double(), Double())
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues(System.Double(), System.Double())
+  name.vb: TryGetRelativeLimitValues(Double(), Double())
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])
+    name: TryGetRelativeLimitValues
+    nameWithType: IMetricCalculator.TryGetRelativeLimitValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues(System.Double[],System.Double[])
+    name: TryGetRelativeLimitValues
+    nameWithType: IMetricCalculator.TryGetRelativeLimitValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricCalculator.TryGetRelativeLimitValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )

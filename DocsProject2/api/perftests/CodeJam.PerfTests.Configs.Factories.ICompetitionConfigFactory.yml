@@ -1,0 +1,173 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  id: ICompetitionConfigFactory
+  parent: CodeJam.PerfTests.Configs.Factories
+  children:
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  langs:
+  - csharp
+  - vb
+  name: ICompetitionConfigFactory
+  nameWithType: ICompetitionConfigFactory
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ICompetitionConfigFactory
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactory.cs
+    startLine: 8
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: Competition config factory
+  example: []
+  syntax:
+    content: public interface ICompetitionConfigFactory
+    content.vb: Public Interface ICompetitionConfigFactory
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  id: Create(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  langs:
+  - csharp
+  - vb
+  name: Create(Assembly, CompetitionFeatures)
+  nameWithType: ICompetitionConfigFactory.Create(Assembly, CompetitionFeatures)
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create(System.Reflection.Assembly, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactory.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: Creates competition config for type.
+  example: []
+  syntax:
+    content: ICompetitionConfig Create(Assembly targetAssembly, CompetitionFeatures competitionFeatures)
+    parameters:
+    - id: targetAssembly
+      type: System.Reflection.Assembly
+      description: Assembly to create config for.
+    - id: competitionFeatures
+      type: CodeJam.PerfTests.Configs.CompetitionFeatures
+      description: The competition features.
+    return:
+      type: CodeJam.PerfTests.Configs.ICompetitionConfig
+      description: Competition config for type.
+    content.vb: Function Create(targetAssembly As Assembly, competitionFeatures As CompetitionFeatures) As ICompetitionConfig
+  overload: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create*
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  id: Create(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  langs:
+  - csharp
+  - vb
+  name: Create(Type, CompetitionFeatures)
+  nameWithType: ICompetitionConfigFactory.Create(Type, CompetitionFeatures)
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create(System.Type, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactory.cs
+    startLine: 23
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: Creates competition config for type.
+  example: []
+  syntax:
+    content: ICompetitionConfig Create(Type benchmarkType, CompetitionFeatures competitionFeatures)
+    parameters:
+    - id: benchmarkType
+      type: System.Type
+      description: Benchmark class to run.
+    - id: competitionFeatures
+      type: CodeJam.PerfTests.Configs.CompetitionFeatures
+      description: The competition features.
+    return:
+      type: CodeJam.PerfTests.Configs.ICompetitionConfig
+      description: Competition config for type.
+    content.vb: Function Create(benchmarkType As Type, competitionFeatures As CompetitionFeatures) As ICompetitionConfig
+  overload: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create*
+references:
+- uid: CodeJam.PerfTests.Configs.Factories
+  commentId: N:CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: CodeJam.PerfTests.Configs.Factories
+  nameWithType: CodeJam.PerfTests.Configs.Factories
+  fullName: CodeJam.PerfTests.Configs.Factories
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create*
+  commentId: Overload:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create
+  isExternal: false
+  name: Create
+  nameWithType: ICompetitionConfigFactory.Create
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.Create
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+  commentId: T:CodeJam.PerfTests.Configs.CompetitionFeatures
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CompetitionFeatures
+  nameWithType: CompetitionFeatures
+  fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+  commentId: T:CodeJam.PerfTests.Configs.ICompetitionConfig
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: ICompetitionConfig
+  nameWithType: ICompetitionConfig
+  fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: CodeJam.PerfTests.Configs
+  commentId: N:CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CodeJam.PerfTests.Configs
+  nameWithType: CodeJam.PerfTests.Configs
+  fullName: CodeJam.PerfTests.Configs
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System

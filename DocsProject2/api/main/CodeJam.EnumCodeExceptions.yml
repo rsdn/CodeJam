@@ -1,0 +1,675 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.EnumCodeExceptions
+  commentId: T:CodeJam.EnumCodeExceptions
+  id: EnumCodeExceptions
+  parent: CodeJam
+  children:
+  - CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet``1(System.String,``0,``0)
+  - CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset``1(System.String,``0,``0)
+  - CodeJam.EnumCodeExceptions.ArgumentFlagSet``1(System.String,``0,``0)
+  - CodeJam.EnumCodeExceptions.ArgumentFlagUnset``1(System.String,``0,``0)
+  - CodeJam.EnumCodeExceptions.ArgumentNotDefinedException``1(System.String,``0)
+  langs:
+  - csharp
+  - vb
+  name: EnumCodeExceptions
+  nameWithType: EnumCodeExceptions
+  fullName: CodeJam.EnumCodeExceptions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: EnumCodeExceptions
+    path: ../Main/src/Assertions/EnumCodeExceptions.cs
+    startLine: 12
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Enum exception factory class
+  example: []
+  syntax:
+    content: public static class EnumCodeExceptions
+    content.vb: Public Module EnumCodeExceptions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.EnumCodeExceptions.ArgumentNotDefinedException``1(System.String,``0)
+  commentId: M:CodeJam.EnumCodeExceptions.ArgumentNotDefinedException``1(System.String,``0)
+  id: ArgumentNotDefinedException``1(System.String,``0)
+  parent: CodeJam.EnumCodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentNotDefinedException<TEnum>(String, TEnum)
+  nameWithType: EnumCodeExceptions.ArgumentNotDefinedException<TEnum>(String, TEnum)
+  fullName: CodeJam.EnumCodeExceptions.ArgumentNotDefinedException<TEnum>(System.String, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentNotDefinedException
+    path: ../Main/src/Assertions/EnumCodeExceptions.cs
+    startLine: 21
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref> for undefined enum value.
+  example: []
+  syntax:
+    content: 'public static ArgumentOutOfRangeException ArgumentNotDefinedException<TEnum>(string argumentName, TEnum value)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    return:
+      type: System.ArgumentOutOfRangeException
+      description: Initialized instance of <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentNotDefinedException(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(argumentName As String, value As TEnum) As ArgumentOutOfRangeException
+  overload: CodeJam.EnumCodeExceptions.ArgumentNotDefinedException*
+  nameWithType.vb: EnumCodeExceptions.ArgumentNotDefinedException(Of TEnum)(String, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCodeExceptions.ArgumentNotDefinedException(Of TEnum)(System.String, TEnum)
+  name.vb: ArgumentNotDefinedException(Of TEnum)(String, TEnum)
+- uid: CodeJam.EnumCodeExceptions.ArgumentFlagSet``1(System.String,``0,``0)
+  commentId: M:CodeJam.EnumCodeExceptions.ArgumentFlagSet``1(System.String,``0,``0)
+  id: ArgumentFlagSet``1(System.String,``0,``0)
+  parent: CodeJam.EnumCodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentFlagSet<TEnum>(String, TEnum, TEnum)
+  nameWithType: EnumCodeExceptions.ArgumentFlagSet<TEnum>(String, TEnum, TEnum)
+  fullName: CodeJam.EnumCodeExceptions.ArgumentFlagSet<TEnum>(System.String, TEnum, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentFlagSet
+    path: ../Main/src/Assertions/EnumCodeExceptions.cs
+    startLine: 44
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref> for flag is set case.
+  example: []
+  syntax:
+    content: 'public static ArgumentException ArgumentFlagSet<TEnum>(string argumentName, TEnum value, TEnum flag)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flag
+      type: '{TEnum}'
+      description: The flag.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    return:
+      type: System.ArgumentException
+      description: Initialized instance of <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentFlagSet(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(argumentName As String, value As TEnum, flag As TEnum) As ArgumentException
+  overload: CodeJam.EnumCodeExceptions.ArgumentFlagSet*
+  nameWithType.vb: EnumCodeExceptions.ArgumentFlagSet(Of TEnum)(String, TEnum, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCodeExceptions.ArgumentFlagSet(Of TEnum)(System.String, TEnum, TEnum)
+  name.vb: ArgumentFlagSet(Of TEnum)(String, TEnum, TEnum)
+- uid: CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset``1(System.String,``0,``0)
+  commentId: M:CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset``1(System.String,``0,``0)
+  id: ArgumentAnyFlagUnset``1(System.String,``0,``0)
+  parent: CodeJam.EnumCodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentAnyFlagUnset<TEnum>(String, TEnum, TEnum)
+  nameWithType: EnumCodeExceptions.ArgumentAnyFlagUnset<TEnum>(String, TEnum, TEnum)
+  fullName: CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset<TEnum>(System.String, TEnum, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentAnyFlagUnset
+    path: ../Main/src/Assertions/EnumCodeExceptions.cs
+    startLine: 64
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref> for any bit from flag is not set case.
+  example: []
+  syntax:
+    content: 'public static ArgumentException ArgumentAnyFlagUnset<TEnum>(string argumentName, TEnum value, TEnum flags)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    return:
+      type: System.ArgumentException
+      description: Initialized instance of <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentAnyFlagUnset(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(argumentName As String, value As TEnum, flags As TEnum) As ArgumentException
+  overload: CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset*
+  nameWithType.vb: EnumCodeExceptions.ArgumentAnyFlagUnset(Of TEnum)(String, TEnum, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset(Of TEnum)(System.String, TEnum, TEnum)
+  name.vb: ArgumentAnyFlagUnset(Of TEnum)(String, TEnum, TEnum)
+- uid: CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet``1(System.String,``0,``0)
+  commentId: M:CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet``1(System.String,``0,``0)
+  id: ArgumentAnyFlagSet``1(System.String,``0,``0)
+  parent: CodeJam.EnumCodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentAnyFlagSet<TEnum>(String, TEnum, TEnum)
+  nameWithType: EnumCodeExceptions.ArgumentAnyFlagSet<TEnum>(String, TEnum, TEnum)
+  fullName: CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet<TEnum>(System.String, TEnum, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentAnyFlagSet
+    path: ../Main/src/Assertions/EnumCodeExceptions.cs
+    startLine: 84
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref> for any bit from flag is set case.
+  example: []
+  syntax:
+    content: 'public static ArgumentException ArgumentAnyFlagSet<TEnum>(string argumentName, TEnum value, TEnum flags)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    return:
+      type: System.ArgumentException
+      description: Initialized instance of <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentAnyFlagSet(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(argumentName As String, value As TEnum, flags As TEnum) As ArgumentException
+  overload: CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet*
+  nameWithType.vb: EnumCodeExceptions.ArgumentAnyFlagSet(Of TEnum)(String, TEnum, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet(Of TEnum)(System.String, TEnum, TEnum)
+  name.vb: ArgumentAnyFlagSet(Of TEnum)(String, TEnum, TEnum)
+- uid: CodeJam.EnumCodeExceptions.ArgumentFlagUnset``1(System.String,``0,``0)
+  commentId: M:CodeJam.EnumCodeExceptions.ArgumentFlagUnset``1(System.String,``0,``0)
+  id: ArgumentFlagUnset``1(System.String,``0,``0)
+  parent: CodeJam.EnumCodeExceptions
+  langs:
+  - csharp
+  - vb
+  name: ArgumentFlagUnset<TEnum>(String, TEnum, TEnum)
+  nameWithType: EnumCodeExceptions.ArgumentFlagUnset<TEnum>(String, TEnum, TEnum)
+  fullName: CodeJam.EnumCodeExceptions.ArgumentFlagUnset<TEnum>(System.String, TEnum, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCodeExceptions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ArgumentFlagUnset
+    path: ../Main/src/Assertions/EnumCodeExceptions.cs
+    startLine: 104
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Creates <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref> for flag is not set case.
+  example: []
+  syntax:
+    content: 'public static ArgumentException ArgumentFlagUnset<TEnum>(string argumentName, TEnum value, TEnum flag)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: argumentName
+      type: System.String
+      description: Name of the argument.
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flag
+      type: '{TEnum}'
+      description: The flag.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    return:
+      type: System.ArgumentException
+      description: Initialized instance of <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function ArgumentFlagUnset(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(argumentName As String, value As TEnum, flag As TEnum) As ArgumentException
+  overload: CodeJam.EnumCodeExceptions.ArgumentFlagUnset*
+  nameWithType.vb: EnumCodeExceptions.ArgumentFlagUnset(Of TEnum)(String, TEnum, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCodeExceptions.ArgumentFlagUnset(Of TEnum)(System.String, TEnum, TEnum)
+  name.vb: ArgumentFlagUnset(Of TEnum)(String, TEnum, TEnum)
+references:
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  parent: System
+  isExternal: true
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: CodeJam.EnumCodeExceptions.ArgumentNotDefinedException*
+  commentId: Overload:CodeJam.EnumCodeExceptions.ArgumentNotDefinedException
+  isExternal: false
+  name: ArgumentNotDefinedException
+  nameWithType: EnumCodeExceptions.ArgumentNotDefinedException
+  fullName: CodeJam.EnumCodeExceptions.ArgumentNotDefinedException
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: '{TEnum}'
+  commentId: '!:TEnum'
+  definition: TEnum
+  name: TEnum
+  nameWithType: TEnum
+  fullName: TEnum
+- uid: TEnum
+  isExternal: false
+  name: TEnum
+  nameWithType: TEnum
+  fullName: TEnum
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: CodeJam.EnumCodeExceptions.ArgumentFlagSet*
+  commentId: Overload:CodeJam.EnumCodeExceptions.ArgumentFlagSet
+  isExternal: false
+  name: ArgumentFlagSet
+  nameWithType: EnumCodeExceptions.ArgumentFlagSet
+  fullName: CodeJam.EnumCodeExceptions.ArgumentFlagSet
+- uid: CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset*
+  commentId: Overload:CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset
+  isExternal: false
+  name: ArgumentAnyFlagUnset
+  nameWithType: EnumCodeExceptions.ArgumentAnyFlagUnset
+  fullName: CodeJam.EnumCodeExceptions.ArgumentAnyFlagUnset
+- uid: CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet*
+  commentId: Overload:CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet
+  isExternal: false
+  name: ArgumentAnyFlagSet
+  nameWithType: EnumCodeExceptions.ArgumentAnyFlagSet
+  fullName: CodeJam.EnumCodeExceptions.ArgumentAnyFlagSet
+- uid: CodeJam.EnumCodeExceptions.ArgumentFlagUnset*
+  commentId: Overload:CodeJam.EnumCodeExceptions.ArgumentFlagUnset
+  isExternal: false
+  name: ArgumentFlagUnset
+  nameWithType: EnumCodeExceptions.ArgumentFlagUnset
+  fullName: CodeJam.EnumCodeExceptions.ArgumentFlagUnset

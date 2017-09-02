@@ -1,0 +1,935 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.WellKnownMetrics
+  commentId: T:CodeJam.PerfTests.WellKnownMetrics
+  id: WellKnownMetrics
+  parent: CodeJam.PerfTests
+  children:
+  - CodeJam.PerfTests.WellKnownMetrics.ExpectedTime
+  - CodeJam.PerfTests.WellKnownMetrics.Gc0
+  - CodeJam.PerfTests.WellKnownMetrics.Gc1
+  - CodeJam.PerfTests.WellKnownMetrics.Gc2
+  - CodeJam.PerfTests.WellKnownMetrics.GcAllocations
+  - CodeJam.PerfTests.WellKnownMetrics.MeanTime
+  - CodeJam.PerfTests.WellKnownMetrics.RelativeTime
+  langs:
+  - csharp
+  - vb
+  name: WellKnownMetrics
+  nameWithType: WellKnownMetrics
+  fullName: CodeJam.PerfTests.WellKnownMetrics
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WellKnownMetrics
+    path: ../PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+    startLine: 7
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: "\nLists well known competition metrics\n"
+  example: []
+  syntax:
+    content: public static class WellKnownMetrics
+    content.vb: Public Module WellKnownMetrics
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.PerfTests.WellKnownMetrics.RelativeTime
+  commentId: F:CodeJam.PerfTests.WellKnownMetrics.RelativeTime
+  id: RelativeTime
+  parent: CodeJam.PerfTests.WellKnownMetrics
+  langs:
+  - csharp
+  - vb
+  name: RelativeTime
+  nameWithType: WellKnownMetrics.RelativeTime
+  fullName: CodeJam.PerfTests.WellKnownMetrics.RelativeTime
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RelativeTime
+    path: ../PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+    startLine: 10
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: 'The relative time metric. '
+  example: []
+  syntax:
+    content: public static readonly MetricInfo<CompetitionBenchmarkAttribute> RelativeTime
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.CompetitionBenchmarkAttribute}
+    content.vb: Public Shared ReadOnly RelativeTime As MetricInfo(Of CompetitionBenchmarkAttribute)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.WellKnownMetrics.ExpectedTime
+  commentId: F:CodeJam.PerfTests.WellKnownMetrics.ExpectedTime
+  id: ExpectedTime
+  parent: CodeJam.PerfTests.WellKnownMetrics
+  langs:
+  - csharp
+  - vb
+  name: ExpectedTime
+  nameWithType: WellKnownMetrics.ExpectedTime
+  fullName: CodeJam.PerfTests.WellKnownMetrics.ExpectedTime
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ExpectedTime
+    path: ../PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: The expected execution time metric based on 95th percentile.
+  example: []
+  syntax:
+    content: public static readonly MetricInfo<ExpectedTimeAttribute> ExpectedTime
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.ExpectedTimeAttribute}
+    content.vb: Public Shared ReadOnly ExpectedTime As MetricInfo(Of ExpectedTimeAttribute)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.WellKnownMetrics.MeanTime
+  commentId: F:CodeJam.PerfTests.WellKnownMetrics.MeanTime
+  id: MeanTime
+  parent: CodeJam.PerfTests.WellKnownMetrics
+  langs:
+  - csharp
+  - vb
+  name: MeanTime
+  nameWithType: WellKnownMetrics.MeanTime
+  fullName: CodeJam.PerfTests.WellKnownMetrics.MeanTime
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MeanTime
+    path: ../PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+    startLine: 18
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: The mean execution time metric.
+  example: []
+  syntax:
+    content: public static readonly MetricInfo<MeanTimeAttribute> MeanTime
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.MeanTimeAttribute}
+    content.vb: Public Shared ReadOnly MeanTime As MetricInfo(Of MeanTimeAttribute)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.WellKnownMetrics.GcAllocations
+  commentId: F:CodeJam.PerfTests.WellKnownMetrics.GcAllocations
+  id: GcAllocations
+  parent: CodeJam.PerfTests.WellKnownMetrics
+  langs:
+  - csharp
+  - vb
+  name: GcAllocations
+  nameWithType: WellKnownMetrics.GcAllocations
+  fullName: CodeJam.PerfTests.WellKnownMetrics.GcAllocations
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GcAllocations
+    path: ../PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+    startLine: 22
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: GC allocations metric, in bytes.
+  example: []
+  syntax:
+    content: public static readonly MetricInfo<GcAllocationsAttribute> GcAllocations
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.GcAllocationsAttribute}
+    content.vb: Public Shared ReadOnly GcAllocations As MetricInfo(Of GcAllocationsAttribute)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.WellKnownMetrics.Gc0
+  commentId: F:CodeJam.PerfTests.WellKnownMetrics.Gc0
+  id: Gc0
+  parent: CodeJam.PerfTests.WellKnownMetrics
+  langs:
+  - csharp
+  - vb
+  name: Gc0
+  nameWithType: WellKnownMetrics.Gc0
+  fullName: CodeJam.PerfTests.WellKnownMetrics.Gc0
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Gc0
+    path: ../PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+    startLine: 26
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: GC 0 count metric.
+  example: []
+  syntax:
+    content: public static readonly MetricInfo<Gc0Attribute> Gc0
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc0Attribute}
+    content.vb: Public Shared ReadOnly Gc0 As MetricInfo(Of Gc0Attribute)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.WellKnownMetrics.Gc1
+  commentId: F:CodeJam.PerfTests.WellKnownMetrics.Gc1
+  id: Gc1
+  parent: CodeJam.PerfTests.WellKnownMetrics
+  langs:
+  - csharp
+  - vb
+  name: Gc1
+  nameWithType: WellKnownMetrics.Gc1
+  fullName: CodeJam.PerfTests.WellKnownMetrics.Gc1
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Gc1
+    path: ../PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+    startLine: 30
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: GC 1 count metric.
+  example: []
+  syntax:
+    content: public static readonly MetricInfo<Gc1Attribute> Gc1
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc1Attribute}
+    content.vb: Public Shared ReadOnly Gc1 As MetricInfo(Of Gc1Attribute)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.WellKnownMetrics.Gc2
+  commentId: F:CodeJam.PerfTests.WellKnownMetrics.Gc2
+  id: Gc2
+  parent: CodeJam.PerfTests.WellKnownMetrics
+  langs:
+  - csharp
+  - vb
+  name: Gc2
+  nameWithType: WellKnownMetrics.Gc2
+  fullName: CodeJam.PerfTests.WellKnownMetrics.Gc2
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Gc2
+    path: ../PerfTests/src/[L4_Configuration]/WellKnownMetrics.cs
+    startLine: 34
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: GC 2 count metric.
+  example: []
+  syntax:
+    content: public static readonly MetricInfo<Gc2Attribute> Gc2
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc2Attribute}
+    content.vb: Public Shared ReadOnly Gc2 As MetricInfo(Of Gc2Attribute)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+references:
+- uid: CodeJam.PerfTests
+  commentId: N:CodeJam.PerfTests
+  isExternal: false
+  name: CodeJam.PerfTests
+  nameWithType: CodeJam.PerfTests
+  fullName: CodeJam.PerfTests
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.CompetitionBenchmarkAttribute}
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.CompetitionBenchmarkAttribute}
+  parent: CodeJam.PerfTests.Metrics
+  definition: CodeJam.PerfTests.Metrics.MetricInfo`1
+  name: MetricInfo<CompetitionBenchmarkAttribute>
+  nameWithType: MetricInfo<CompetitionBenchmarkAttribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<CodeJam.PerfTests.CompetitionBenchmarkAttribute>
+  nameWithType.vb: MetricInfo(Of CompetitionBenchmarkAttribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of CodeJam.PerfTests.CompetitionBenchmarkAttribute)
+  name.vb: MetricInfo(Of CompetitionBenchmarkAttribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.CompetitionBenchmarkAttribute
+    name: CompetitionBenchmarkAttribute
+    nameWithType: CompetitionBenchmarkAttribute
+    fullName: CodeJam.PerfTests.CompetitionBenchmarkAttribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.CompetitionBenchmarkAttribute
+    name: CompetitionBenchmarkAttribute
+    nameWithType: CompetitionBenchmarkAttribute
+    fullName: CodeJam.PerfTests.CompetitionBenchmarkAttribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo`1
+  isExternal: false
+  name: MetricInfo<TAttribute>
+  nameWithType: MetricInfo<TAttribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<TAttribute>
+  nameWithType.vb: MetricInfo(Of TAttribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of TAttribute)
+  name.vb: MetricInfo(Of TAttribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TAttribute
+    nameWithType: TAttribute
+    fullName: TAttribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TAttribute
+    nameWithType: TAttribute
+    fullName: TAttribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.ExpectedTimeAttribute}
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.ExpectedTimeAttribute}
+  parent: CodeJam.PerfTests.Metrics
+  definition: CodeJam.PerfTests.Metrics.MetricInfo`1
+  name: MetricInfo<ExpectedTimeAttribute>
+  nameWithType: MetricInfo<ExpectedTimeAttribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<CodeJam.PerfTests.ExpectedTimeAttribute>
+  nameWithType.vb: MetricInfo(Of ExpectedTimeAttribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of CodeJam.PerfTests.ExpectedTimeAttribute)
+  name.vb: MetricInfo(Of ExpectedTimeAttribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.ExpectedTimeAttribute
+    name: ExpectedTimeAttribute
+    nameWithType: ExpectedTimeAttribute
+    fullName: CodeJam.PerfTests.ExpectedTimeAttribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.ExpectedTimeAttribute
+    name: ExpectedTimeAttribute
+    nameWithType: ExpectedTimeAttribute
+    fullName: CodeJam.PerfTests.ExpectedTimeAttribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.MeanTimeAttribute}
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.MeanTimeAttribute}
+  parent: CodeJam.PerfTests.Metrics
+  definition: CodeJam.PerfTests.Metrics.MetricInfo`1
+  name: MetricInfo<MeanTimeAttribute>
+  nameWithType: MetricInfo<MeanTimeAttribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<CodeJam.PerfTests.MeanTimeAttribute>
+  nameWithType.vb: MetricInfo(Of MeanTimeAttribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of CodeJam.PerfTests.MeanTimeAttribute)
+  name.vb: MetricInfo(Of MeanTimeAttribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.MeanTimeAttribute
+    name: MeanTimeAttribute
+    nameWithType: MeanTimeAttribute
+    fullName: CodeJam.PerfTests.MeanTimeAttribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.MeanTimeAttribute
+    name: MeanTimeAttribute
+    nameWithType: MeanTimeAttribute
+    fullName: CodeJam.PerfTests.MeanTimeAttribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.GcAllocationsAttribute}
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.GcAllocationsAttribute}
+  parent: CodeJam.PerfTests.Metrics
+  definition: CodeJam.PerfTests.Metrics.MetricInfo`1
+  name: MetricInfo<GcAllocationsAttribute>
+  nameWithType: MetricInfo<GcAllocationsAttribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<CodeJam.PerfTests.GcAllocationsAttribute>
+  nameWithType.vb: MetricInfo(Of GcAllocationsAttribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of CodeJam.PerfTests.GcAllocationsAttribute)
+  name.vb: MetricInfo(Of GcAllocationsAttribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.GcAllocationsAttribute
+    name: GcAllocationsAttribute
+    nameWithType: GcAllocationsAttribute
+    fullName: CodeJam.PerfTests.GcAllocationsAttribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.GcAllocationsAttribute
+    name: GcAllocationsAttribute
+    nameWithType: GcAllocationsAttribute
+    fullName: CodeJam.PerfTests.GcAllocationsAttribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc0Attribute}
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc0Attribute}
+  parent: CodeJam.PerfTests.Metrics
+  definition: CodeJam.PerfTests.Metrics.MetricInfo`1
+  name: MetricInfo<Gc0Attribute>
+  nameWithType: MetricInfo<Gc0Attribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<CodeJam.PerfTests.Gc0Attribute>
+  nameWithType.vb: MetricInfo(Of Gc0Attribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of CodeJam.PerfTests.Gc0Attribute)
+  name.vb: MetricInfo(Of Gc0Attribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.Gc0Attribute
+    name: Gc0Attribute
+    nameWithType: Gc0Attribute
+    fullName: CodeJam.PerfTests.Gc0Attribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.Gc0Attribute
+    name: Gc0Attribute
+    nameWithType: Gc0Attribute
+    fullName: CodeJam.PerfTests.Gc0Attribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc1Attribute}
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc1Attribute}
+  parent: CodeJam.PerfTests.Metrics
+  definition: CodeJam.PerfTests.Metrics.MetricInfo`1
+  name: MetricInfo<Gc1Attribute>
+  nameWithType: MetricInfo<Gc1Attribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<CodeJam.PerfTests.Gc1Attribute>
+  nameWithType.vb: MetricInfo(Of Gc1Attribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of CodeJam.PerfTests.Gc1Attribute)
+  name.vb: MetricInfo(Of Gc1Attribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.Gc1Attribute
+    name: Gc1Attribute
+    nameWithType: Gc1Attribute
+    fullName: CodeJam.PerfTests.Gc1Attribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.Gc1Attribute
+    name: Gc1Attribute
+    nameWithType: Gc1Attribute
+    fullName: CodeJam.PerfTests.Gc1Attribute
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc2Attribute}
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo{CodeJam.PerfTests.Gc2Attribute}
+  parent: CodeJam.PerfTests.Metrics
+  definition: CodeJam.PerfTests.Metrics.MetricInfo`1
+  name: MetricInfo<Gc2Attribute>
+  nameWithType: MetricInfo<Gc2Attribute>
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo<CodeJam.PerfTests.Gc2Attribute>
+  nameWithType.vb: MetricInfo(Of Gc2Attribute)
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricInfo(Of CodeJam.PerfTests.Gc2Attribute)
+  name.vb: MetricInfo(Of Gc2Attribute)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.Gc2Attribute
+    name: Gc2Attribute
+    nameWithType: Gc2Attribute
+    fullName: CodeJam.PerfTests.Gc2Attribute
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo
+    nameWithType: MetricInfo
+    fullName: CodeJam.PerfTests.Metrics.MetricInfo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.Gc2Attribute
+    name: Gc2Attribute
+    nameWithType: Gc2Attribute
+    fullName: CodeJam.PerfTests.Gc2Attribute
+  - name: )
+    nameWithType: )
+    fullName: )

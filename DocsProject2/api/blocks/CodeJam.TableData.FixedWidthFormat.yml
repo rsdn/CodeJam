@@ -1,0 +1,762 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.TableData.FixedWidthFormat
+  commentId: T:CodeJam.TableData.FixedWidthFormat
+  id: FixedWidthFormat
+  parent: CodeJam.TableData
+  children:
+  - CodeJam.TableData.FixedWidthFormat.CreateParser(System.Int32[])
+  - CodeJam.TableData.FixedWidthFormat.Parse(System.IO.TextReader,System.Int32[])
+  - CodeJam.TableData.FixedWidthFormat.Print(System.IO.TextWriter,System.Collections.Generic.IEnumerable{System.String[]},System.Int32[],System.String)
+  langs:
+  - csharp
+  - vb
+  name: FixedWidthFormat
+  nameWithType: FixedWidthFormat
+  fullName: CodeJam.TableData.FixedWidthFormat
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/TableData/FixedWidthFormat.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FixedWidthFormat
+    path: ../Blocks/src/TableData/FixedWidthFormat.cs
+    startLine: 15
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.TableData
+  summary: "\nFixed width format support.\n"
+  example: []
+  syntax:
+    content: public static class FixedWidthFormat
+    content.vb: Public Module FixedWidthFormat
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.TableData.FixedWidthFormat.CreateParser(System.Int32[])
+  commentId: M:CodeJam.TableData.FixedWidthFormat.CreateParser(System.Int32[])
+  id: CreateParser(System.Int32[])
+  parent: CodeJam.TableData.FixedWidthFormat
+  langs:
+  - csharp
+  - vb
+  name: CreateParser(Int32[])
+  nameWithType: FixedWidthFormat.CreateParser(Int32[])
+  fullName: CodeJam.TableData.FixedWidthFormat.CreateParser(System.Int32[])
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/TableData/FixedWidthFormat.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateParser
+    path: ../Blocks/src/TableData/FixedWidthFormat.cs
+    startLine: 24
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.TableData
+  summary: "\nCreates fixed width format parser.\n"
+  example: []
+  syntax:
+    content: public static Parser CreateParser(int[] widths)
+    parameters:
+    - id: widths
+      type: System.Int32[]
+      description: Array of column widths
+    return:
+      type: CodeJam.TableData.Parser
+      description: Parser to use with <xref href="CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser%2cSystem.String)" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Shared Function CreateParser(widths As Integer()) As Parser
+  overload: CodeJam.TableData.FixedWidthFormat.CreateParser*
+  nameWithType.vb: FixedWidthFormat.CreateParser(Int32())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.TableData.FixedWidthFormat.CreateParser(System.Int32())
+  name.vb: CreateParser(Int32())
+- uid: CodeJam.TableData.FixedWidthFormat.Parse(System.IO.TextReader,System.Int32[])
+  commentId: M:CodeJam.TableData.FixedWidthFormat.Parse(System.IO.TextReader,System.Int32[])
+  id: Parse(System.IO.TextReader,System.Int32[])
+  parent: CodeJam.TableData.FixedWidthFormat
+  langs:
+  - csharp
+  - vb
+  name: Parse(TextReader, Int32[])
+  nameWithType: FixedWidthFormat.Parse(TextReader, Int32[])
+  fullName: CodeJam.TableData.FixedWidthFormat.Parse(System.IO.TextReader, System.Int32[])
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/TableData/FixedWidthFormat.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Parse
+    path: ../Blocks/src/TableData/FixedWidthFormat.cs
+    startLine: 41
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.TableData
+  summary: "\nParses table data.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<DataLine> Parse(TextReader reader, int[] widths)
+    parameters:
+    - id: reader
+      type: System.IO.TextReader
+      description: Text to parse
+    - id: widths
+      type: System.Int32[]
+      description: Array of column widths
+    return:
+      type: System.Collections.Generic.IEnumerable{CodeJam.TableData.DataLine}
+      description: Enumeration of <xref href="CodeJam.TableData.DataLine" data-throw-if-not-resolved="false"></xref> contained parsed data.
+    content.vb: Public Shared Function Parse(reader As TextReader, widths As Integer()) As IEnumerable(Of DataLine)
+  overload: CodeJam.TableData.FixedWidthFormat.Parse*
+  nameWithType.vb: FixedWidthFormat.Parse(TextReader, Int32())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.TableData.FixedWidthFormat.Parse(System.IO.TextReader, System.Int32())
+  name.vb: Parse(TextReader, Int32())
+- uid: CodeJam.TableData.FixedWidthFormat.Print(System.IO.TextWriter,System.Collections.Generic.IEnumerable{System.String[]},System.Int32[],System.String)
+  commentId: M:CodeJam.TableData.FixedWidthFormat.Print(System.IO.TextWriter,System.Collections.Generic.IEnumerable{System.String[]},System.Int32[],System.String)
+  id: Print(System.IO.TextWriter,System.Collections.Generic.IEnumerable{System.String[]},System.Int32[],System.String)
+  parent: CodeJam.TableData.FixedWidthFormat
+  langs:
+  - csharp
+  - vb
+  name: Print(TextWriter, IEnumerable<String[]>, Int32[], String)
+  nameWithType: FixedWidthFormat.Print(TextWriter, IEnumerable<String[]>, Int32[], String)
+  fullName: CodeJam.TableData.FixedWidthFormat.Print(System.IO.TextWriter, System.Collections.Generic.IEnumerable<System.String[]>, System.Int32[], System.String)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/TableData/FixedWidthFormat.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Print
+    path: ../Blocks/src/TableData/FixedWidthFormat.cs
+    startLine: 82
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.TableData
+  summary: "\nPrints full data table\n"
+  example: []
+  syntax:
+    content: public static void Print(TextWriter writer, IEnumerable<string[]> data, int[] widths, string indent = null)
+    parameters:
+    - id: writer
+      type: System.IO.TextWriter
+      description: Instance of <xref href="System.IO.TextWriter" data-throw-if-not-resolved="false"></xref> to write to.
+    - id: data
+      type: System.Collections.Generic.IEnumerable{System.String[]}
+      description: Data to write.
+    - id: widths
+      type: System.Int32[]
+      description: Array of column widths
+    - id: indent
+      type: System.String
+      description: The indent.
+    content.vb: Public Shared Sub Print(writer As TextWriter, data As IEnumerable(Of String()), widths As Integer(), indent As String = Nothing)
+  overload: CodeJam.TableData.FixedWidthFormat.Print*
+  nameWithType.vb: FixedWidthFormat.Print(TextWriter, IEnumerable(Of String()), Int32(), String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.TableData.FixedWidthFormat.Print(System.IO.TextWriter, System.Collections.Generic.IEnumerable(Of System.String()), System.Int32(), System.String)
+  name.vb: Print(TextWriter, IEnumerable(Of String()), Int32(), String)
+references:
+- uid: CodeJam.TableData
+  commentId: N:CodeJam.TableData
+  isExternal: false
+  name: CodeJam.TableData
+  nameWithType: CodeJam.TableData
+  fullName: CodeJam.TableData
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+  commentId: M:CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+  isExternal: true
+  name: Parse(Parser, String)
+  nameWithType: TableDataParser.Parse(Parser, String)
+  fullName: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser, System.String)
+  spec.csharp:
+  - uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.TableData.Parser
+    name: Parser
+    nameWithType: Parser
+    fullName: CodeJam.TableData.Parser
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.TableData.TableDataParser.Parse(CodeJam.TableData.Parser,System.String)
+    name: Parse
+    nameWithType: TableDataParser.Parse
+    fullName: CodeJam.TableData.TableDataParser.Parse
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.TableData.Parser
+    name: Parser
+    nameWithType: Parser
+    fullName: CodeJam.TableData.Parser
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.TableData.FixedWidthFormat.CreateParser*
+  commentId: Overload:CodeJam.TableData.FixedWidthFormat.CreateParser
+  isExternal: false
+  name: CreateParser
+  nameWithType: FixedWidthFormat.CreateParser
+  fullName: CodeJam.TableData.FixedWidthFormat.CreateParser
+- uid: System.Int32[]
+  name: Int32[]
+  nameWithType: Int32[]
+  fullName: System.Int32[]
+  nameWithType.vb: Int32()
+  fullName.vb: System.Int32()
+  name.vb: Int32()
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.TableData.Parser
+  commentId: T:CodeJam.TableData.Parser
+  parent: CodeJam.TableData
+  isExternal: false
+  name: Parser
+  nameWithType: Parser
+  fullName: CodeJam.TableData.Parser
+- uid: CodeJam.TableData.DataLine
+  commentId: T:CodeJam.TableData.DataLine
+  isExternal: false
+  name: DataLine
+  nameWithType: DataLine
+  fullName: CodeJam.TableData.DataLine
+- uid: CodeJam.TableData.FixedWidthFormat.Parse*
+  commentId: Overload:CodeJam.TableData.FixedWidthFormat.Parse
+  isExternal: false
+  name: Parse
+  nameWithType: FixedWidthFormat.Parse
+  fullName: CodeJam.TableData.FixedWidthFormat.Parse
+- uid: System.IO.TextReader
+  commentId: T:System.IO.TextReader
+  parent: System.IO
+  isExternal: true
+  name: TextReader
+  nameWithType: TextReader
+  fullName: System.IO.TextReader
+- uid: System.Collections.Generic.IEnumerable{CodeJam.TableData.DataLine}
+  commentId: T:System.Collections.Generic.IEnumerable{CodeJam.TableData.DataLine}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<DataLine>
+  nameWithType: IEnumerable<DataLine>
+  fullName: System.Collections.Generic.IEnumerable<CodeJam.TableData.DataLine>
+  nameWithType.vb: IEnumerable(Of DataLine)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of CodeJam.TableData.DataLine)
+  name.vb: IEnumerable(Of DataLine)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.TableData.DataLine
+    name: DataLine
+    nameWithType: DataLine
+    fullName: CodeJam.TableData.DataLine
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.TableData.DataLine
+    name: DataLine
+    nameWithType: DataLine
+    fullName: CodeJam.TableData.DataLine
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: false
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.IO.TextWriter
+  commentId: T:System.IO.TextWriter
+  parent: System.IO
+  isExternal: true
+  name: TextWriter
+  nameWithType: TextWriter
+  fullName: System.IO.TextWriter
+- uid: CodeJam.TableData.FixedWidthFormat.Print*
+  commentId: Overload:CodeJam.TableData.FixedWidthFormat.Print
+  isExternal: false
+  name: Print
+  nameWithType: FixedWidthFormat.Print
+  fullName: CodeJam.TableData.FixedWidthFormat.Print
+- uid: System.Collections.Generic.IEnumerable{System.String[]}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String[]}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<String[]>
+  nameWithType: IEnumerable<String[]>
+  fullName: System.Collections.Generic.IEnumerable<System.String[]>
+  nameWithType.vb: IEnumerable(Of String())
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.String())
+  name.vb: IEnumerable(Of String())
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

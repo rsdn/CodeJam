@@ -1,0 +1,1367 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Ranges.IRangeFactory`2
+  commentId: T:CodeJam.Ranges.IRangeFactory`2
+  id: IRangeFactory`2
+  parent: CodeJam.Ranges
+  children:
+  - CodeJam.Ranges.IRangeFactory`2.CreateRange(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})
+  - CodeJam.Ranges.IRangeFactory`2.TryCreateRange(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})
+  langs:
+  - csharp
+  - vb
+  name: IRangeFactory<T, TRange>
+  nameWithType: IRangeFactory<T, TRange>
+  fullName: CodeJam.Ranges.IRangeFactory<T, TRange>
+  type: Interface
+  source:
+    remote:
+      path: Main/src/Ranges/[Ranges]/IRangeFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IRangeFactory
+    path: ../Main/src/Ranges/[Ranges]/IRangeFactory.cs
+    startLine: 15
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: "\nCommon factory interface to enable &apos;derived&apos; range creation.\nUse case example: preserve the key of the range on range intersection.\n"
+  example: []
+  syntax:
+    content: 'public interface IRangeFactory<T, out TRange> : IRange<T> where TRange : IRange<T>'
+    typeParameters:
+    - id: T
+      description: "\nThe type of the value. Should implement <xref href=\"System.IComparable%601\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    - id: TRange
+      description: The type of the resulting range
+    content.vb: >-
+      Public Interface IRangeFactory(Of T, Out TRange As IRange(Of T))
+          Inherits IRange(Of T)
+  seealso:
+  - linkId: CodeJam.Ranges.IRange`1
+    commentId: T:CodeJam.Ranges.IRange`1
+  inheritedMembers:
+  - CodeJam.Ranges.IRange{{T}}.From
+  - CodeJam.Ranges.IRange{{T}}.To
+  - CodeJam.Ranges.IRange{{T}}.IsEmpty
+  - CodeJam.Ranges.IRange{{T}}.IsNotEmpty
+  extensionMethods:
+  - CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  nameWithType.vb: IRangeFactory(Of T, TRange)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+  fullName.vb: CodeJam.Ranges.IRangeFactory(Of T, TRange)
+  name.vb: IRangeFactory(Of T, TRange)
+- uid: CodeJam.Ranges.IRangeFactory`2.CreateRange(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})
+  commentId: M:CodeJam.Ranges.IRangeFactory`2.CreateRange(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})
+  id: CreateRange(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})
+  parent: CodeJam.Ranges.IRangeFactory`2
+  langs:
+  - csharp
+  - vb
+  name: CreateRange(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  nameWithType: IRangeFactory<T, TRange>.CreateRange(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  fullName: CodeJam.Ranges.IRangeFactory<T, TRange>.CreateRange(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryTo<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/[Ranges]/IRangeFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateRange
+    path: ../Main/src/Ranges/[Ranges]/IRangeFactory.cs
+    startLine: 22
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates a new instance of the range.
+  example: []
+  syntax:
+    content: TRange CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
+    parameters:
+    - id: from
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: Boundary From.
+    - id: to
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: Boundary To.
+    return:
+      type: '{TRange}'
+      description: A new instance of the range with specified From-To boundaries.
+    content.vb: Function CreateRange(from As RangeBoundaryFrom(Of T), to As RangeBoundaryTo(Of T)) As TRange
+  overload: CodeJam.Ranges.IRangeFactory`2.CreateRange*
+  nameWithType.vb: IRangeFactory(Of T, TRange).CreateRange(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+  fullName.vb: CodeJam.Ranges.IRangeFactory(Of T, TRange).CreateRange(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T))
+  name.vb: CreateRange(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+- uid: CodeJam.Ranges.IRangeFactory`2.TryCreateRange(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})
+  commentId: M:CodeJam.Ranges.IRangeFactory`2.TryCreateRange(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})
+  id: TryCreateRange(CodeJam.Ranges.RangeBoundaryFrom{`0},CodeJam.Ranges.RangeBoundaryTo{`0})
+  parent: CodeJam.Ranges.IRangeFactory`2
+  langs:
+  - csharp
+  - vb
+  name: TryCreateRange(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  nameWithType: IRangeFactory<T, TRange>.TryCreateRange(RangeBoundaryFrom<T>, RangeBoundaryTo<T>)
+  fullName: CodeJam.Ranges.IRangeFactory<T, TRange>.TryCreateRange(CodeJam.Ranges.RangeBoundaryFrom<T>, CodeJam.Ranges.RangeBoundaryTo<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Ranges/[Ranges]/IRangeFactory.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryCreateRange
+    path: ../Main/src/Ranges/[Ranges]/IRangeFactory.cs
+    startLine: 31
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Ranges
+  summary: Creates a new instance of the range, if possible.
+  example: []
+  syntax:
+    content: TRange TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
+    parameters:
+    - id: from
+      type: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+      description: Boundary From.
+    - id: to
+      type: CodeJam.Ranges.RangeBoundaryTo{{T}}
+      description: Boundary To.
+    return:
+      type: '{TRange}'
+      description: "\nA new instance of the range with specified From-To boundaries,\nor empty range, if from-to boundaries forms invalid range pair.\n"
+    content.vb: Function TryCreateRange(from As RangeBoundaryFrom(Of T), to As RangeBoundaryTo(Of T)) As TRange
+  overload: CodeJam.Ranges.IRangeFactory`2.TryCreateRange*
+  nameWithType.vb: IRangeFactory(Of T, TRange).TryCreateRange(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+  fullName.vb: CodeJam.Ranges.IRangeFactory(Of T, TRange).TryCreateRange(CodeJam.Ranges.RangeBoundaryFrom(Of T), CodeJam.Ranges.RangeBoundaryTo(Of T))
+  name.vb: TryCreateRange(RangeBoundaryFrom(Of T), RangeBoundaryTo(Of T))
+references:
+- uid: System.IComparable`1
+  commentId: T:System.IComparable`1
+  isExternal: true
+  name: IComparable<T>
+  nameWithType: IComparable<T>
+  fullName: System.IComparable<T>
+  nameWithType.vb: IComparable(Of T)
+  fullName.vb: System.IComparable(Of T)
+  name.vb: IComparable(Of T)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    nameWithType: IComparable
+    fullName: System.IComparable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    nameWithType: IComparable
+    fullName: System.IComparable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IComparable
+  commentId: T:System.IComparable
+  parent: System
+  isExternal: true
+  name: IComparable
+  nameWithType: IComparable
+  fullName: System.IComparable
+- uid: CodeJam.Ranges.IRange`1
+  commentId: T:CodeJam.Ranges.IRange`1
+  isExternal: false
+  name: IRange<T>
+  nameWithType: IRange<T>
+  fullName: CodeJam.Ranges.IRange<T>
+  nameWithType.vb: IRange(Of T)
+  fullName.vb: CodeJam.Ranges.IRange(Of T)
+  name.vb: IRange(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.IRange`1
+    name: IRange
+    nameWithType: IRange
+    fullName: CodeJam.Ranges.IRange
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.IRange`1
+    name: IRange
+    nameWithType: IRange
+    fullName: CodeJam.Ranges.IRange
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: CodeJam.Ranges.IRange{{T}}.From
+  commentId: P:CodeJam.Ranges.IRange{`0}.From
+  parent: CodeJam.Ranges.IRange{{T}}
+  definition: CodeJam.Ranges.IRange`1.From
+  name: From
+  nameWithType: IRange<T>.From
+  fullName: CodeJam.Ranges.IRange<T>.From
+  nameWithType.vb: IRange(Of T).From
+  fullName.vb: CodeJam.Ranges.IRange(Of T).From
+- uid: CodeJam.Ranges.IRange{{T}}.To
+  commentId: P:CodeJam.Ranges.IRange{`0}.To
+  parent: CodeJam.Ranges.IRange{{T}}
+  definition: CodeJam.Ranges.IRange`1.To
+  name: To
+  nameWithType: IRange<T>.To
+  fullName: CodeJam.Ranges.IRange<T>.To
+  nameWithType.vb: IRange(Of T).To
+  fullName.vb: CodeJam.Ranges.IRange(Of T).To
+- uid: CodeJam.Ranges.IRange{{T}}.IsEmpty
+  commentId: P:CodeJam.Ranges.IRange{`0}.IsEmpty
+  parent: CodeJam.Ranges.IRange{{T}}
+  definition: CodeJam.Ranges.IRange`1.IsEmpty
+  name: IsEmpty
+  nameWithType: IRange<T>.IsEmpty
+  fullName: CodeJam.Ranges.IRange<T>.IsEmpty
+  nameWithType.vb: IRange(Of T).IsEmpty
+  fullName.vb: CodeJam.Ranges.IRange(Of T).IsEmpty
+- uid: CodeJam.Ranges.IRange{{T}}.IsNotEmpty
+  commentId: P:CodeJam.Ranges.IRange{`0}.IsNotEmpty
+  parent: CodeJam.Ranges.IRange{{T}}
+  definition: CodeJam.Ranges.IRange`1.IsNotEmpty
+  name: IsNotEmpty
+  nameWithType: IRange<T>.IsNotEmpty
+  fullName: CodeJam.Ranges.IRange<T>.IsNotEmpty
+  nameWithType.vb: IRange(Of T).IsNotEmpty
+  fullName.vb: CodeJam.Ranges.IRange(Of T).IsNotEmpty
+- uid: CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  name: Contains<T, IRangeFactory<T, TRange>>(Range<T>)
+  nameWithType: RangeExtensions.Contains<T, IRangeFactory<T, TRange>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Ranges.IRangeFactory<T, TRange>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, IRangeFactory(Of T, TRange))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Ranges.IRangeFactory(Of T, TRange))(CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, IRangeFactory(Of T, TRange))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains<T, IRangeFactory<T, TRange>>
+    nameWithType: RangeExtensions.Contains<T, IRangeFactory<T, TRange>>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Ranges.IRangeFactory<T, TRange>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, IRangeFactory(Of T, TRange))
+    nameWithType: RangeExtensions.Contains(Of T, IRangeFactory(Of T, TRange))
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Ranges.IRangeFactory(Of T, TRange))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  name: StartsAfter<T, IRangeFactory<T, TRange>>(Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, IRangeFactory<T, TRange>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Ranges.IRangeFactory<T, TRange>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, IRangeFactory(Of T, TRange))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Ranges.IRangeFactory(Of T, TRange))(CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, IRangeFactory(Of T, TRange))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, IRangeFactory<T, TRange>>
+    nameWithType: RangeExtensions.StartsAfter<T, IRangeFactory<T, TRange>>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Ranges.IRangeFactory<T, TRange>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, IRangeFactory(Of T, TRange))
+    nameWithType: RangeExtensions.StartsAfter(Of T, IRangeFactory(Of T, TRange))
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Ranges.IRangeFactory(Of T, TRange))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  name: EndsBefore<T, IRangeFactory<T, TRange>>(Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, IRangeFactory<T, TRange>>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Ranges.IRangeFactory<T, TRange>>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, IRangeFactory(Of T, TRange))(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Ranges.IRangeFactory(Of T, TRange))(CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, IRangeFactory(Of T, TRange))(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, IRangeFactory<T, TRange>>
+    nameWithType: RangeExtensions.EndsBefore<T, IRangeFactory<T, TRange>>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Ranges.IRangeFactory<T, TRange>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, IRangeFactory(Of T, TRange))
+    nameWithType: RangeExtensions.EndsBefore(Of T, IRangeFactory(Of T, TRange))
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Ranges.IRangeFactory(Of T, TRange))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: Contains<T, TKey, IRangeFactory<T, TRange>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, IRangeFactory<T, TRange>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Ranges.IRangeFactory<T, TRange>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, IRangeFactory(Of T, TRange))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Ranges.IRangeFactory(Of T, TRange))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, IRangeFactory(Of T, TRange))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, IRangeFactory<T, TRange>>
+    nameWithType: RangeExtensions.Contains<T, TKey, IRangeFactory<T, TRange>>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Ranges.IRangeFactory<T, TRange>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, IRangeFactory(Of T, TRange))
+    nameWithType: RangeExtensions.Contains(Of T, TKey, IRangeFactory(Of T, TRange))
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Ranges.IRangeFactory(Of T, TRange))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: StartsAfter<T, TKey, IRangeFactory<T, TRange>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, IRangeFactory<T, TRange>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Ranges.IRangeFactory<T, TRange>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, IRangeFactory(Of T, TRange))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Ranges.IRangeFactory(Of T, TRange))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, IRangeFactory(Of T, TRange))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, IRangeFactory<T, TRange>>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, IRangeFactory<T, TRange>>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Ranges.IRangeFactory<T, TRange>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, IRangeFactory(Of T, TRange))
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, IRangeFactory(Of T, TRange))
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Ranges.IRangeFactory(Of T, TRange))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.IRangeFactory`2.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: EndsBefore<T, TKey, IRangeFactory<T, TRange>>(Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, IRangeFactory<T, TRange>>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Ranges.IRangeFactory<T, TRange>>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, IRangeFactory(Of T, TRange))(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Ranges.IRangeFactory(Of T, TRange))(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, IRangeFactory(Of T, TRange))(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, IRangeFactory<T, TRange>>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, IRangeFactory<T, TRange>>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Ranges.IRangeFactory<T, TRange>>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, IRangeFactory(Of T, TRange))
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, IRangeFactory(Of T, TRange))
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Ranges.IRangeFactory(Of T, TRange))
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Ranges.IRange`1.From
+  commentId: P:CodeJam.Ranges.IRange`1.From
+  isExternal: false
+  name: From
+  nameWithType: IRange<T>.From
+  fullName: CodeJam.Ranges.IRange<T>.From
+  nameWithType.vb: IRange(Of T).From
+  fullName.vb: CodeJam.Ranges.IRange(Of T).From
+- uid: CodeJam.Ranges.IRange{{T}}
+  commentId: T:CodeJam.Ranges.IRange{`0}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.IRange`1
+  name: IRange<T>
+  nameWithType: IRange<T>
+  fullName: CodeJam.Ranges.IRange<T>
+  nameWithType.vb: IRange(Of T)
+  fullName.vb: CodeJam.Ranges.IRange(Of T)
+  name.vb: IRange(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.IRange`1
+    name: IRange
+    nameWithType: IRange
+    fullName: CodeJam.Ranges.IRange
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.IRange`1
+    name: IRange
+    nameWithType: IRange
+    fullName: CodeJam.Ranges.IRange
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.IRange`1.To
+  commentId: P:CodeJam.Ranges.IRange`1.To
+  isExternal: false
+  name: To
+  nameWithType: IRange<T>.To
+  fullName: CodeJam.Ranges.IRange<T>.To
+  nameWithType.vb: IRange(Of T).To
+  fullName.vb: CodeJam.Ranges.IRange(Of T).To
+- uid: CodeJam.Ranges.IRange`1.IsEmpty
+  commentId: P:CodeJam.Ranges.IRange`1.IsEmpty
+  isExternal: false
+  name: IsEmpty
+  nameWithType: IRange<T>.IsEmpty
+  fullName: CodeJam.Ranges.IRange<T>.IsEmpty
+  nameWithType.vb: IRange(Of T).IsEmpty
+  fullName.vb: CodeJam.Ranges.IRange(Of T).IsEmpty
+- uid: CodeJam.Ranges.IRange`1.IsNotEmpty
+  commentId: P:CodeJam.Ranges.IRange`1.IsNotEmpty
+  isExternal: false
+  name: IsNotEmpty
+  nameWithType: IRange<T>.IsNotEmpty
+  fullName: CodeJam.Ranges.IRange<T>.IsNotEmpty
+  nameWithType.vb: IRange(Of T).IsNotEmpty
+  fullName.vb: CodeJam.Ranges.IRange(Of T).IsNotEmpty
+- uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: Contains<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains<T, TRange>
+    nameWithType: RangeExtensions.Contains<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions
+  commentId: T:CodeJam.Ranges.RangeExtensions
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeExtensions
+  nameWithType: RangeExtensions
+  fullName: CodeJam.Ranges.RangeExtensions
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: StartsAfter<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: EndsBefore<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TRange>
+    nameWithType: RangeExtensions.Contains<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.IRangeFactory`2.CreateRange*
+  commentId: Overload:CodeJam.Ranges.IRangeFactory`2.CreateRange
+  isExternal: false
+  name: CreateRange
+  nameWithType: IRangeFactory<T, TRange>.CreateRange
+  fullName: CodeJam.Ranges.IRangeFactory<T, TRange>.CreateRange
+  nameWithType.vb: IRangeFactory(Of T, TRange).CreateRange
+  fullName.vb: CodeJam.Ranges.IRangeFactory(Of T, TRange).CreateRange
+- uid: CodeJam.Ranges.RangeBoundaryFrom{{T}}
+  commentId: T:CodeJam.Ranges.RangeBoundaryFrom{``0}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.RangeBoundaryFrom`1
+  name: RangeBoundaryFrom<T>
+  nameWithType: RangeBoundaryFrom<T>
+  fullName: CodeJam.Ranges.RangeBoundaryFrom<T>
+  nameWithType.vb: RangeBoundaryFrom(Of T)
+  fullName.vb: CodeJam.Ranges.RangeBoundaryFrom(Of T)
+  name.vb: RangeBoundaryFrom(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeBoundaryFrom`1
+    name: RangeBoundaryFrom
+    nameWithType: RangeBoundaryFrom
+    fullName: CodeJam.Ranges.RangeBoundaryFrom
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeBoundaryFrom`1
+    name: RangeBoundaryFrom
+    nameWithType: RangeBoundaryFrom
+    fullName: CodeJam.Ranges.RangeBoundaryFrom
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeBoundaryTo{{T}}
+  commentId: T:CodeJam.Ranges.RangeBoundaryTo{``0}
+  parent: CodeJam.Ranges
+  definition: CodeJam.Ranges.RangeBoundaryTo`1
+  name: RangeBoundaryTo<T>
+  nameWithType: RangeBoundaryTo<T>
+  fullName: CodeJam.Ranges.RangeBoundaryTo<T>
+  nameWithType.vb: RangeBoundaryTo(Of T)
+  fullName.vb: CodeJam.Ranges.RangeBoundaryTo(Of T)
+  name.vb: RangeBoundaryTo(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeBoundaryTo`1
+    name: RangeBoundaryTo
+    nameWithType: RangeBoundaryTo
+    fullName: CodeJam.Ranges.RangeBoundaryTo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeBoundaryTo`1
+    name: RangeBoundaryTo
+    nameWithType: RangeBoundaryTo
+    fullName: CodeJam.Ranges.RangeBoundaryTo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{TRange}'
+  commentId: '!:TRange'
+  definition: TRange
+  name: TRange
+  nameWithType: TRange
+  fullName: TRange
+- uid: CodeJam.Ranges.RangeBoundaryFrom`1
+  commentId: T:CodeJam.Ranges.RangeBoundaryFrom`1
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeBoundaryFrom<T>
+  nameWithType: RangeBoundaryFrom<T>
+  fullName: CodeJam.Ranges.RangeBoundaryFrom<T>
+  nameWithType.vb: RangeBoundaryFrom(Of T)
+  fullName.vb: CodeJam.Ranges.RangeBoundaryFrom(Of T)
+  name.vb: RangeBoundaryFrom(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeBoundaryFrom`1
+    name: RangeBoundaryFrom
+    nameWithType: RangeBoundaryFrom
+    fullName: CodeJam.Ranges.RangeBoundaryFrom
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeBoundaryFrom`1
+    name: RangeBoundaryFrom
+    nameWithType: RangeBoundaryFrom
+    fullName: CodeJam.Ranges.RangeBoundaryFrom
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeBoundaryTo`1
+  commentId: T:CodeJam.Ranges.RangeBoundaryTo`1
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeBoundaryTo<T>
+  nameWithType: RangeBoundaryTo<T>
+  fullName: CodeJam.Ranges.RangeBoundaryTo<T>
+  nameWithType.vb: RangeBoundaryTo(Of T)
+  fullName.vb: CodeJam.Ranges.RangeBoundaryTo(Of T)
+  name.vb: RangeBoundaryTo(Of T)
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeBoundaryTo`1
+    name: RangeBoundaryTo
+    nameWithType: RangeBoundaryTo
+    fullName: CodeJam.Ranges.RangeBoundaryTo
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeBoundaryTo`1
+    name: RangeBoundaryTo
+    nameWithType: RangeBoundaryTo
+    fullName: CodeJam.Ranges.RangeBoundaryTo
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: TRange
+  isExternal: false
+  name: TRange
+  nameWithType: TRange
+  fullName: TRange
+- uid: CodeJam.Ranges.IRangeFactory`2.TryCreateRange*
+  commentId: Overload:CodeJam.Ranges.IRangeFactory`2.TryCreateRange
+  isExternal: false
+  name: TryCreateRange
+  nameWithType: IRangeFactory<T, TRange>.TryCreateRange
+  fullName: CodeJam.Ranges.IRangeFactory<T, TRange>.TryCreateRange
+  nameWithType.vb: IRangeFactory(Of T, TRange).TryCreateRange
+  fullName.vb: CodeJam.Ranges.IRangeFactory(Of T, TRange).TryCreateRange

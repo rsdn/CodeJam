@@ -1,0 +1,596 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  id: IMetricValuesProvider
+  parent: CodeJam.PerfTests.Metrics
+  children:
+  - CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricInfo,CodeJam.PerfTests.Metrics.MetricValueColumns)
+  - CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetDiagnosers(CodeJam.PerfTests.Metrics.MetricInfo)
+  - CodeJam.PerfTests.Metrics.IMetricValuesProvider.ResultIsRelative
+  - CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  - CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetLimitValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  - CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetMeanValue(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  - CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetVariance(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  langs:
+  - csharp
+  - vb
+  name: IMetricValuesProvider
+  nameWithType: IMetricValuesProvider
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IMetricValuesProvider
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+    startLine: 12
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Interface for metric values provider
+  example: []
+  syntax:
+    content: public interface IMetricValuesProvider
+    content.vb: Public Interface IMetricValuesProvider
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.ResultIsRelative
+  commentId: P:CodeJam.PerfTests.Metrics.IMetricValuesProvider.ResultIsRelative
+  id: ResultIsRelative
+  parent: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  langs:
+  - csharp
+  - vb
+  name: ResultIsRelative
+  nameWithType: IMetricValuesProvider.ResultIsRelative
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.ResultIsRelative
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ResultIsRelative
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+    startLine: 16
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets a value indicating whether this instance is relative metric provider.
+  example: []
+  syntax:
+    content: bool ResultIsRelative { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: '<code>true</code> if this instance is relative metric provider; otherwise, <code>false</code>. '
+    content.vb: ReadOnly Property ResultIsRelative As Boolean
+  overload: CodeJam.PerfTests.Metrics.IMetricValuesProvider.ResultIsRelative*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetMeanValue(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetMeanValue(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  id: TryGetMeanValue(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  langs:
+  - csharp
+  - vb
+  name: TryGetMeanValue(Benchmark, Summary)
+  nameWithType: IMetricValuesProvider.TryGetMeanValue(Benchmark, Summary)
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetMeanValue(BenchmarkDotNet.Running.Benchmark, BenchmarkDotNet.Reports.Summary)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetMeanValue
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+    startLine: 22
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets actual value for the benchmark (averaged).
+  example: []
+  syntax:
+    content: double ? TryGetMeanValue(Benchmark benchmark, Summary summary)
+    parameters:
+    - id: benchmark
+      type: BenchmarkDotNet.Running.Benchmark
+      description: The benchmark.
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: Summary for the run.
+    return:
+      type: System.Nullable{System.Double}
+      description: Actual value for the benchmark or <code>null</code> if none.
+    content.vb: Function TryGetMeanValue(benchmark As Benchmark, summary As Summary) As Double?
+  overload: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetMeanValue*
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetVariance(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetVariance(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  id: TryGetVariance(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  langs:
+  - csharp
+  - vb
+  name: TryGetVariance(Benchmark, Summary)
+  nameWithType: IMetricValuesProvider.TryGetVariance(Benchmark, Summary)
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetVariance(BenchmarkDotNet.Running.Benchmark, BenchmarkDotNet.Reports.Summary)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetVariance
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+    startLine: 28
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets metric that describes variance of the value for the benchmark.
+  example: []
+  syntax:
+    content: double ? TryGetVariance(Benchmark benchmark, Summary summary)
+    parameters:
+    - id: benchmark
+      type: BenchmarkDotNet.Running.Benchmark
+      description: The benchmark.
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: Summary for the run.
+    return:
+      type: System.Nullable{System.Double}
+      description: Metric that describes variance for the benchmark or <code>null</code> if none.
+    content.vb: Function TryGetVariance(benchmark As Benchmark, summary As Summary) As Double?
+  overload: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetVariance*
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  id: TryGetActualValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  langs:
+  - csharp
+  - vb
+  name: TryGetActualValues(Benchmark, Summary)
+  nameWithType: IMetricValuesProvider.TryGetActualValues(Benchmark, Summary)
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark, BenchmarkDotNet.Reports.Summary)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetActualValues
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+    startLine: 34
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets range that describes actual values for the benchmark.
+  example: []
+  syntax:
+    content: MetricRange TryGetActualValues(Benchmark benchmark, Summary summary)
+    parameters:
+    - id: benchmark
+      type: BenchmarkDotNet.Running.Benchmark
+      description: The benchmark.
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: Summary for the run.
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Range that describes actual values for the benchmark (or empty range if none).
+    content.vb: Function TryGetActualValues(benchmark As Benchmark, summary As Summary) As MetricRange
+  overload: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues*
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetLimitValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetLimitValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  id: TryGetLimitValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  langs:
+  - csharp
+  - vb
+  name: TryGetLimitValues(Benchmark, Summary)
+  nameWithType: IMetricValuesProvider.TryGetLimitValues(Benchmark, Summary)
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetLimitValues(BenchmarkDotNet.Running.Benchmark, BenchmarkDotNet.Reports.Summary)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetLimitValues
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+    startLine: 42
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nGets range that describes expected limits for the benchmark. Should be wider than <xref href=\"CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark%2cBenchmarkDotNet.Reports.Summary)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: MetricRange TryGetLimitValues(Benchmark benchmark, Summary summary)
+    parameters:
+    - id: benchmark
+      type: BenchmarkDotNet.Running.Benchmark
+      description: The benchmark.
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: Summary for the run.
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Range that describes expected limits for the benchmark (or empty range if none).
+    content.vb: Function TryGetLimitValues(benchmark As Benchmark, summary As Summary) As MetricRange
+  overload: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetLimitValues*
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricInfo,CodeJam.PerfTests.Metrics.MetricValueColumns)
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricInfo,CodeJam.PerfTests.Metrics.MetricValueColumns)
+  id: GetColumnProvider(CodeJam.PerfTests.Metrics.MetricInfo,CodeJam.PerfTests.Metrics.MetricValueColumns)
+  parent: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  langs:
+  - csharp
+  - vb
+  name: GetColumnProvider(MetricInfo, MetricValueColumns)
+  nameWithType: IMetricValuesProvider.GetColumnProvider(MetricInfo, MetricValueColumns)
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetColumnProvider(CodeJam.PerfTests.Metrics.MetricInfo, CodeJam.PerfTests.Metrics.MetricValueColumns)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetColumnProvider
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+    startLine: 48
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets column provider for the metric values.
+  example: []
+  syntax:
+    content: IColumnProvider GetColumnProvider(MetricInfo metric, MetricValueColumns columns)
+    parameters:
+    - id: metric
+      type: CodeJam.PerfTests.Metrics.MetricInfo
+      description: The metric to get columns for.
+    - id: columns
+      type: CodeJam.PerfTests.Metrics.MetricValueColumns
+      description: The columns to include.
+    return:
+      type: BenchmarkDotNet.Columns.IColumnProvider
+      description: Column provider for the metric values
+    content.vb: Function GetColumnProvider(metric As MetricInfo, columns As MetricValueColumns) As IColumnProvider
+  overload: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetColumnProvider*
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetDiagnosers(CodeJam.PerfTests.Metrics.MetricInfo)
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetDiagnosers(CodeJam.PerfTests.Metrics.MetricInfo)
+  id: GetDiagnosers(CodeJam.PerfTests.Metrics.MetricInfo)
+  parent: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  langs:
+  - csharp
+  - vb
+  name: GetDiagnosers(MetricInfo)
+  nameWithType: IMetricValuesProvider.GetDiagnosers(MetricInfo)
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetDiagnosers(CodeJam.PerfTests.Metrics.MetricInfo)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetDiagnosers
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValuesProvider]/IMetricValuesProvider.cs
+    startLine: 54
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets diagnosers for the metric values.
+  example: []
+  syntax:
+    content: IDiagnoser[] GetDiagnosers(MetricInfo metric)
+    parameters:
+    - id: metric
+      type: CodeJam.PerfTests.Metrics.MetricInfo
+      description: The metric to get diagnosers for.
+    return:
+      type: BenchmarkDotNet.Diagnosers.IDiagnoser[]
+      description: Diagnosers for the metric values
+    content.vb: Function GetDiagnosers(metric As MetricInfo) As IDiagnoser()
+  overload: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetDiagnosers*
+references:
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.ResultIsRelative*
+  commentId: Overload:CodeJam.PerfTests.Metrics.IMetricValuesProvider.ResultIsRelative
+  isExternal: false
+  name: ResultIsRelative
+  nameWithType: IMetricValuesProvider.ResultIsRelative
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.ResultIsRelative
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetMeanValue*
+  commentId: Overload:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetMeanValue
+  isExternal: false
+  name: TryGetMeanValue
+  nameWithType: IMetricValuesProvider.TryGetMeanValue
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetMeanValue
+- uid: BenchmarkDotNet.Running.Benchmark
+  commentId: T:BenchmarkDotNet.Running.Benchmark
+  parent: BenchmarkDotNet.Running
+  isExternal: true
+  name: Benchmark
+  nameWithType: Benchmark
+  fullName: BenchmarkDotNet.Running.Benchmark
+- uid: BenchmarkDotNet.Reports.Summary
+  commentId: T:BenchmarkDotNet.Reports.Summary
+  parent: BenchmarkDotNet.Reports
+  isExternal: true
+  name: Summary
+  nameWithType: Summary
+  fullName: BenchmarkDotNet.Reports.Summary
+- uid: System.Nullable{System.Double}
+  commentId: T:System.Nullable{System.Double}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Double>
+  nameWithType: Nullable<Double>
+  fullName: System.Nullable<System.Double>
+  nameWithType.vb: Nullable(Of Double)
+  fullName.vb: System.Nullable(Of System.Double)
+  name.vb: Nullable(Of Double)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Running
+  commentId: N:BenchmarkDotNet.Running
+  isExternal: false
+  name: BenchmarkDotNet.Running
+  nameWithType: BenchmarkDotNet.Running
+  fullName: BenchmarkDotNet.Running
+- uid: BenchmarkDotNet.Reports
+  commentId: N:BenchmarkDotNet.Reports
+  isExternal: false
+  name: BenchmarkDotNet.Reports
+  nameWithType: BenchmarkDotNet.Reports
+  fullName: BenchmarkDotNet.Reports
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetVariance*
+  commentId: Overload:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetVariance
+  isExternal: false
+  name: TryGetVariance
+  nameWithType: IMetricValuesProvider.TryGetVariance
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetVariance
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues*
+  commentId: Overload:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues
+  isExternal: false
+  name: TryGetActualValues
+  nameWithType: IMetricValuesProvider.TryGetActualValues
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues
+- uid: CodeJam.PerfTests.Metrics.MetricRange
+  commentId: T:CodeJam.PerfTests.Metrics.MetricRange
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricRange
+  nameWithType: MetricRange
+  fullName: CodeJam.PerfTests.Metrics.MetricRange
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  commentId: M:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  isExternal: true
+  name: TryGetActualValues(Benchmark, Summary)
+  nameWithType: IMetricValuesProvider.TryGetActualValues(Benchmark, Summary)
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark, BenchmarkDotNet.Reports.Summary)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+    name: TryGetActualValues
+    nameWithType: IMetricValuesProvider.TryGetActualValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Benchmark
+    name: Benchmark
+    nameWithType: Benchmark
+    fullName: BenchmarkDotNet.Running.Benchmark
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Reports.Summary)
+    name: TryGetActualValues
+    nameWithType: IMetricValuesProvider.TryGetActualValues
+    fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetActualValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Benchmark
+    name: Benchmark
+    nameWithType: Benchmark
+    fullName: BenchmarkDotNet.Running.Benchmark
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Reports.Summary
+    name: Summary
+    nameWithType: Summary
+    fullName: BenchmarkDotNet.Reports.Summary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetLimitValues*
+  commentId: Overload:CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetLimitValues
+  isExternal: false
+  name: TryGetLimitValues
+  nameWithType: IMetricValuesProvider.TryGetLimitValues
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.TryGetLimitValues
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricValuesProvider
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: IMetricValuesProvider
+  nameWithType: IMetricValuesProvider
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetColumnProvider*
+  commentId: Overload:CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetColumnProvider
+  isExternal: false
+  name: GetColumnProvider
+  nameWithType: IMetricValuesProvider.GetColumnProvider
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetColumnProvider
+- uid: CodeJam.PerfTests.Metrics.MetricInfo
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricInfo
+  nameWithType: MetricInfo
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo
+- uid: CodeJam.PerfTests.Metrics.MetricValueColumns
+  commentId: T:CodeJam.PerfTests.Metrics.MetricValueColumns
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricValueColumns
+  nameWithType: MetricValueColumns
+  fullName: CodeJam.PerfTests.Metrics.MetricValueColumns
+- uid: BenchmarkDotNet.Columns.IColumnProvider
+  commentId: T:BenchmarkDotNet.Columns.IColumnProvider
+  parent: BenchmarkDotNet.Columns
+  isExternal: true
+  name: IColumnProvider
+  nameWithType: IColumnProvider
+  fullName: BenchmarkDotNet.Columns.IColumnProvider
+- uid: BenchmarkDotNet.Columns
+  commentId: N:BenchmarkDotNet.Columns
+  isExternal: false
+  name: BenchmarkDotNet.Columns
+  nameWithType: BenchmarkDotNet.Columns
+  fullName: BenchmarkDotNet.Columns
+- uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetDiagnosers*
+  commentId: Overload:CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetDiagnosers
+  isExternal: false
+  name: GetDiagnosers
+  nameWithType: IMetricValuesProvider.GetDiagnosers
+  fullName: CodeJam.PerfTests.Metrics.IMetricValuesProvider.GetDiagnosers
+- uid: BenchmarkDotNet.Diagnosers.IDiagnoser[]
+  name: IDiagnoser[]
+  nameWithType: IDiagnoser[]
+  fullName: BenchmarkDotNet.Diagnosers.IDiagnoser[]
+  nameWithType.vb: IDiagnoser()
+  fullName.vb: BenchmarkDotNet.Diagnosers.IDiagnoser()
+  name.vb: IDiagnoser()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Diagnosers.IDiagnoser
+    name: IDiagnoser
+    nameWithType: IDiagnoser
+    fullName: BenchmarkDotNet.Diagnosers.IDiagnoser
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: BenchmarkDotNet.Diagnosers.IDiagnoser
+    name: IDiagnoser
+    nameWithType: IDiagnoser
+    fullName: BenchmarkDotNet.Diagnosers.IDiagnoser
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

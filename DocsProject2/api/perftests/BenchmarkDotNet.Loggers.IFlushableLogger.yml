@@ -1,0 +1,739 @@
+### YamlMime:ManagedReference
+items:
+- uid: BenchmarkDotNet.Loggers.IFlushableLogger
+  commentId: T:BenchmarkDotNet.Loggers.IFlushableLogger
+  id: IFlushableLogger
+  parent: BenchmarkDotNet.Loggers
+  children:
+  - BenchmarkDotNet.Loggers.IFlushableLogger.Flush
+  langs:
+  - csharp
+  - vb
+  name: IFlushableLogger
+  nameWithType: IFlushableLogger
+  fullName: BenchmarkDotNet.Loggers.IFlushableLogger
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L0_PortToBenchmerkDotNet]/Loggers/IFlushableLogger.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IFlushableLogger
+    path: ../PerfTests/src/[L0_PortToBenchmerkDotNet]/Loggers/IFlushableLogger.cs
+    startLine: 7
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: BenchmarkDotNet.Loggers
+  summary: Extension of <xref href="BenchmarkDotNet.Loggers.ILogger" data-throw-if-not-resolved="false"></xref> interface that adds flush method.
+  example: []
+  syntax:
+    content: 'public interface IFlushableLogger : ILogger'
+    content.vb: >-
+      Public Interface IFlushableLogger
+          Inherits ILogger
+  inheritedMembers:
+  - BenchmarkDotNet.Loggers.ILogger.Write(BenchmarkDotNet.Loggers.LogKind,System.String)
+  - BenchmarkDotNet.Loggers.ILogger.WriteLine
+  - BenchmarkDotNet.Loggers.ILogger.WriteLine(BenchmarkDotNet.Loggers.LogKind,System.String)
+  extensionMethods:
+  - BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String)
+  - BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String,System.Boolean)
+  - BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(System.String)
+  - BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(System.String)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: BenchmarkDotNet.Loggers.IFlushableLogger.Flush
+  commentId: M:BenchmarkDotNet.Loggers.IFlushableLogger.Flush
+  id: Flush
+  parent: BenchmarkDotNet.Loggers.IFlushableLogger
+  langs:
+  - csharp
+  - vb
+  name: Flush()
+  nameWithType: IFlushableLogger.Flush()
+  fullName: BenchmarkDotNet.Loggers.IFlushableLogger.Flush()
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L0_PortToBenchmerkDotNet]/Loggers/IFlushableLogger.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Flush
+    path: ../PerfTests/src/[L0_PortToBenchmerkDotNet]/Loggers/IFlushableLogger.cs
+    startLine: 10
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: BenchmarkDotNet.Loggers
+  summary: Flushes the log.
+  example: []
+  syntax:
+    content: void Flush()
+    content.vb: Sub Flush
+  overload: BenchmarkDotNet.Loggers.IFlushableLogger.Flush*
+references:
+- uid: BenchmarkDotNet.Loggers.ILogger
+  commentId: T:BenchmarkDotNet.Loggers.ILogger
+  parent: BenchmarkDotNet.Loggers
+  isExternal: true
+  name: ILogger
+  nameWithType: ILogger
+  fullName: BenchmarkDotNet.Loggers.ILogger
+- uid: BenchmarkDotNet.Loggers
+  commentId: N:BenchmarkDotNet.Loggers
+  isExternal: false
+  name: BenchmarkDotNet.Loggers
+  nameWithType: BenchmarkDotNet.Loggers
+  fullName: BenchmarkDotNet.Loggers
+- uid: BenchmarkDotNet.Loggers.ILogger.Write(BenchmarkDotNet.Loggers.LogKind,System.String)
+  commentId: M:BenchmarkDotNet.Loggers.ILogger.Write(BenchmarkDotNet.Loggers.LogKind,System.String)
+  parent: BenchmarkDotNet.Loggers.ILogger
+  isExternal: true
+  name: Write(LogKind, String)
+  nameWithType: ILogger.Write(LogKind, String)
+  fullName: BenchmarkDotNet.Loggers.ILogger.Write(BenchmarkDotNet.Loggers.LogKind, System.String)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Loggers.ILogger.Write(BenchmarkDotNet.Loggers.LogKind,System.String)
+    name: Write
+    nameWithType: ILogger.Write
+    fullName: BenchmarkDotNet.Loggers.ILogger.Write
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.LogKind
+    name: LogKind
+    nameWithType: LogKind
+    fullName: BenchmarkDotNet.Loggers.LogKind
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Loggers.ILogger.Write(BenchmarkDotNet.Loggers.LogKind,System.String)
+    name: Write
+    nameWithType: ILogger.Write
+    fullName: BenchmarkDotNet.Loggers.ILogger.Write
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.LogKind
+    name: LogKind
+    nameWithType: LogKind
+    fullName: BenchmarkDotNet.Loggers.LogKind
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Loggers.ILogger.WriteLine
+  commentId: M:BenchmarkDotNet.Loggers.ILogger.WriteLine
+  parent: BenchmarkDotNet.Loggers.ILogger
+  isExternal: true
+  name: WriteLine()
+  nameWithType: ILogger.WriteLine()
+  fullName: BenchmarkDotNet.Loggers.ILogger.WriteLine()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Loggers.ILogger.WriteLine
+    name: WriteLine
+    nameWithType: ILogger.WriteLine
+    fullName: BenchmarkDotNet.Loggers.ILogger.WriteLine
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Loggers.ILogger.WriteLine
+    name: WriteLine
+    nameWithType: ILogger.WriteLine
+    fullName: BenchmarkDotNet.Loggers.ILogger.WriteLine
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Loggers.ILogger.WriteLine(BenchmarkDotNet.Loggers.LogKind,System.String)
+  commentId: M:BenchmarkDotNet.Loggers.ILogger.WriteLine(BenchmarkDotNet.Loggers.LogKind,System.String)
+  parent: BenchmarkDotNet.Loggers.ILogger
+  isExternal: true
+  name: WriteLine(LogKind, String)
+  nameWithType: ILogger.WriteLine(LogKind, String)
+  fullName: BenchmarkDotNet.Loggers.ILogger.WriteLine(BenchmarkDotNet.Loggers.LogKind, System.String)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Loggers.ILogger.WriteLine(BenchmarkDotNet.Loggers.LogKind,System.String)
+    name: WriteLine
+    nameWithType: ILogger.WriteLine
+    fullName: BenchmarkDotNet.Loggers.ILogger.WriteLine
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.LogKind
+    name: LogKind
+    nameWithType: LogKind
+    fullName: BenchmarkDotNet.Loggers.LogKind
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Loggers.ILogger.WriteLine(BenchmarkDotNet.Loggers.LogKind,System.String)
+    name: WriteLine
+    nameWithType: ILogger.WriteLine
+    fullName: BenchmarkDotNet.Loggers.ILogger.WriteLine
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.LogKind
+    name: LogKind
+    nameWithType: LogKind
+    fullName: BenchmarkDotNet.Loggers.LogKind
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  commentId: M:CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger)
+  parent: CodeJam.PerfTests.Loggers.LoggerHelpers
+  definition: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger)
+  name: WriteSeparatorLine()
+  nameWithType: LoggerHelpers.WriteSeparatorLine()
+  fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine()
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String)
+  commentId: M:CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String)
+  parent: CodeJam.PerfTests.Loggers.LoggerHelpers
+  definition: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String)
+  name: WriteSeparatorLine(String)
+  nameWithType: LoggerHelpers.WriteSeparatorLine(String)
+  fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String,System.Boolean)
+  commentId: M:CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String,System.Boolean)
+  parent: CodeJam.PerfTests.Loggers.LoggerHelpers
+  definition: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String,System.Boolean)
+  name: WriteSeparatorLine(String, Boolean)
+  nameWithType: LoggerHelpers.WriteSeparatorLine(String, Boolean)
+  fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String, System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String,System.Boolean)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(System.String,System.Boolean)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+  name: WriteVerboseHint(String)
+  nameWithType: CompetitionCoreHelpers.WriteVerboseHint(String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(System.String)
+    name: WriteVerboseHint
+    nameWithType: CompetitionCoreHelpers.WriteVerboseHint
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(System.String)
+    name: WriteVerboseHint
+    nameWithType: CompetitionCoreHelpers.WriteVerboseHint
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Loggers.ILogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+  name: WriteVerbose(String)
+  nameWithType: CompetitionCoreHelpers.WriteVerbose(String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(System.String)
+    name: WriteVerbose
+    nameWithType: CompetitionCoreHelpers.WriteVerbose
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(System.String)
+    name: WriteVerbose
+    nameWithType: CompetitionCoreHelpers.WriteVerbose
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger)
+  commentId: M:CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger)
+  isExternal: true
+  name: WriteSeparatorLine(ILogger)
+  nameWithType: LoggerHelpers.WriteSeparatorLine(ILogger)
+  fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Loggers.LoggerHelpers
+  commentId: T:CodeJam.PerfTests.Loggers.LoggerHelpers
+  parent: CodeJam.PerfTests.Loggers
+  isExternal: false
+  name: LoggerHelpers
+  nameWithType: LoggerHelpers
+  fullName: CodeJam.PerfTests.Loggers.LoggerHelpers
+- uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String)
+  commentId: M:CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String)
+  isExternal: true
+  name: WriteSeparatorLine(ILogger, String)
+  nameWithType: LoggerHelpers.WriteSeparatorLine(ILogger, String)
+  fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String,System.Boolean)
+  commentId: M:CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String,System.Boolean)
+  isExternal: true
+  name: WriteSeparatorLine(ILogger, String, Boolean)
+  nameWithType: LoggerHelpers.WriteSeparatorLine(ILogger, String, Boolean)
+  fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger, System.String, System.Boolean)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String,System.Boolean)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine(BenchmarkDotNet.Loggers.ILogger,System.String,System.Boolean)
+    name: WriteSeparatorLine
+    nameWithType: LoggerHelpers.WriteSeparatorLine
+    fullName: CodeJam.PerfTests.Loggers.LoggerHelpers.WriteSeparatorLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+  isExternal: true
+  name: WriteVerboseHint(ILogger, String)
+  nameWithType: CompetitionCoreHelpers.WriteVerboseHint(ILogger, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+    name: WriteVerboseHint
+    nameWithType: CompetitionCoreHelpers.WriteVerboseHint
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint(BenchmarkDotNet.Loggers.ILogger,System.String)
+    name: WriteVerboseHint
+    nameWithType: CompetitionCoreHelpers.WriteVerboseHint
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerboseHint
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionCoreHelpers
+  nameWithType: CompetitionCoreHelpers
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+  isExternal: true
+  name: WriteVerbose(ILogger, String)
+  nameWithType: CompetitionCoreHelpers.WriteVerbose(ILogger, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+    name: WriteVerbose
+    nameWithType: CompetitionCoreHelpers.WriteVerbose
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose(BenchmarkDotNet.Loggers.ILogger,System.String)
+    name: WriteVerbose
+    nameWithType: CompetitionCoreHelpers.WriteVerbose
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteVerbose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Loggers.ILogger
+    name: ILogger
+    nameWithType: ILogger
+    fullName: BenchmarkDotNet.Loggers.ILogger
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Loggers
+  commentId: N:CodeJam.PerfTests.Loggers
+  isExternal: false
+  name: CodeJam.PerfTests.Loggers
+  nameWithType: CodeJam.PerfTests.Loggers
+  fullName: CodeJam.PerfTests.Loggers
+- uid: CodeJam.PerfTests.Running.Core
+  commentId: N:CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Core
+  nameWithType: CodeJam.PerfTests.Running.Core
+  fullName: CodeJam.PerfTests.Running.Core
+- uid: BenchmarkDotNet.Loggers.IFlushableLogger.Flush*
+  commentId: Overload:BenchmarkDotNet.Loggers.IFlushableLogger.Flush
+  isExternal: false
+  name: Flush
+  nameWithType: IFlushableLogger.Flush
+  fullName: BenchmarkDotNet.Loggers.IFlushableLogger.Flush

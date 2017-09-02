@@ -1,0 +1,1405 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Collections.Sequence
+  commentId: T:CodeJam.Collections.Sequence
+  id: Sequence
+  parent: CodeJam.Collections
+  children:
+  - CodeJam.Collections.Sequence.Create``1(``0,System.Func{``0,``0})
+  - CodeJam.Collections.Sequence.Create``1(``0,System.Func{``0,System.Boolean},System.Func{``0,``0})
+  - CodeJam.Collections.Sequence.Create``2(``0,System.Func{``0,``0},System.Func{``0,``1})
+  - CodeJam.Collections.Sequence.Create``2(``0,System.Func{``0,System.Boolean},System.Func{``0,``0},System.Func{``0,``1})
+  - CodeJam.Collections.Sequence.CreateSingle``1(``0)
+  - CodeJam.Collections.Sequence.CreateSingle``1(System.Func{``0})
+  - CodeJam.Collections.Sequence.CreateWhileNotNull``1(``0,System.Func{``0,``0})
+  - CodeJam.Collections.Sequence.CreateWhileNotNull``2(``0,System.Func{``0,``0},System.Func{``0,``1})
+  - CodeJam.Collections.Sequence.Random(System.Int32)
+  - CodeJam.Collections.Sequence.Random(System.Int32,System.Int32)
+  - CodeJam.Collections.Sequence.Random(System.Int32,System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: Sequence
+  nameWithType: Sequence
+  fullName: CodeJam.Collections.Sequence
+  type: Class
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Sequence
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 10
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nContains methods for sequence creation.\n"
+  example: []
+  syntax:
+    content: public static class Sequence
+    content.vb: Public Module Sequence
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Collections.Sequence.Create``1(``0,System.Func{``0,``0})
+  commentId: M:CodeJam.Collections.Sequence.Create``1(``0,System.Func{``0,``0})
+  id: Create``1(``0,System.Func{``0,``0})
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: Create<T>(T, Func<T, T>)
+  nameWithType: Sequence.Create<T>(T, Func<T, T>)
+  fullName: CodeJam.Collections.Sequence.Create<T>(T, System.Func<T, T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 20
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates a sequence from start value and next element factory.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<T> Create<T>(T start, Func<T, T> next)
+    parameters:
+    - id: start
+      type: '{T}'
+      description: Start value.
+    - id: next
+      type: System.Func{{T},{T}}
+      description: Next element factory.
+    typeParameters:
+    - id: T
+      description: The type of element.
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: Generated sequence.
+    content.vb: Public Shared Function Create(Of T)(start As T, next As Func(Of T, T)) As IEnumerable(Of T)
+  overload: CodeJam.Collections.Sequence.Create*
+  nameWithType.vb: Sequence.Create(Of T)(T, Func(Of T, T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.Sequence.Create(Of T)(T, System.Func(Of T, T))
+  name.vb: Create(Of T)(T, Func(Of T, T))
+- uid: CodeJam.Collections.Sequence.Create``2(``0,System.Func{``0,``0},System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.Sequence.Create``2(``0,System.Func{``0,``0},System.Func{``0,``1})
+  id: Create``2(``0,System.Func{``0,``0},System.Func{``0,``1})
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: Create<T, TResult>(T, Func<T, T>, Func<T, TResult>)
+  nameWithType: Sequence.Create<T, TResult>(T, Func<T, T>, Func<T, TResult>)
+  fullName: CodeJam.Collections.Sequence.Create<T, TResult>(T, System.Func<T, T>, System.Func<T, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 44
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates a sequence from start value and next element factory.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<TResult> Create<T, TResult>(T start, Func<T, T> next, Func<T, TResult> resultSelector)
+    parameters:
+    - id: start
+      type: '{T}'
+      description: Start value.
+    - id: next
+      type: System.Func{{T},{T}}
+      description: Next element factory.
+    - id: resultSelector
+      type: System.Func{{T},{TResult}}
+      description: A transform function to apply to each element.
+    typeParameters:
+    - id: T
+      description: The type of source element.
+    - id: TResult
+      description: The type of result element
+    return:
+      type: System.Collections.Generic.IEnumerable{{TResult}}
+      description: Generated sequence.
+    content.vb: Public Shared Function Create(Of T, TResult)(start As T, next As Func(Of T, T), resultSelector As Func(Of T, TResult)) As IEnumerable(Of TResult)
+  overload: CodeJam.Collections.Sequence.Create*
+  nameWithType.vb: Sequence.Create(Of T, TResult)(T, Func(Of T, T), Func(Of T, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.Sequence.Create(Of T, TResult)(T, System.Func(Of T, T), System.Func(Of T, TResult))
+  name.vb: Create(Of T, TResult)(T, Func(Of T, T), Func(Of T, TResult))
+- uid: CodeJam.Collections.Sequence.Create``1(``0,System.Func{``0,System.Boolean},System.Func{``0,``0})
+  commentId: M:CodeJam.Collections.Sequence.Create``1(``0,System.Func{``0,System.Boolean},System.Func{``0,``0})
+  id: Create``1(``0,System.Func{``0,System.Boolean},System.Func{``0,``0})
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: Create<T>(T, Func<T, Boolean>, Func<T, T>)
+  nameWithType: Sequence.Create<T>(T, Func<T, Boolean>, Func<T, T>)
+  fullName: CodeJam.Collections.Sequence.Create<T>(T, System.Func<T, System.Boolean>, System.Func<T, T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 71
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates a sequence from start value and next element factory.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<T> Create<T>(T start, Func<T, bool> predicate, Func<T, T> next)
+    parameters:
+    - id: start
+      type: '{T}'
+      description: Start value.
+    - id: predicate
+      type: System.Func{{T},System.Boolean}
+      description: A function to test each element for a condition.
+    - id: next
+      type: System.Func{{T},{T}}
+      description: Next element factory.
+    typeParameters:
+    - id: T
+      description: The type of element.
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: Generated sequence.
+    content.vb: Public Shared Function Create(Of T)(start As T, predicate As Func(Of T, Boolean), next As Func(Of T, T)) As IEnumerable(Of T)
+  overload: CodeJam.Collections.Sequence.Create*
+  nameWithType.vb: Sequence.Create(Of T)(T, Func(Of T, Boolean), Func(Of T, T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.Sequence.Create(Of T)(T, System.Func(Of T, System.Boolean), System.Func(Of T, T))
+  name.vb: Create(Of T)(T, Func(Of T, Boolean), Func(Of T, T))
+- uid: CodeJam.Collections.Sequence.Create``2(``0,System.Func{``0,System.Boolean},System.Func{``0,``0},System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.Sequence.Create``2(``0,System.Func{``0,System.Boolean},System.Func{``0,``0},System.Func{``0,``1})
+  id: Create``2(``0,System.Func{``0,System.Boolean},System.Func{``0,``0},System.Func{``0,``1})
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: Create<T, TResult>(T, Func<T, Boolean>, Func<T, T>, Func<T, TResult>)
+  nameWithType: Sequence.Create<T, TResult>(T, Func<T, Boolean>, Func<T, T>, Func<T, TResult>)
+  fullName: CodeJam.Collections.Sequence.Create<T, TResult>(T, System.Func<T, System.Boolean>, System.Func<T, T>, System.Func<T, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 96
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates a sequence from start value and next element factory.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<TResult> Create<T, TResult>(T start, Func<T, bool> predicate, Func<T, T> next, Func<T, TResult> resultSelector)
+    parameters:
+    - id: start
+      type: '{T}'
+      description: Start value.
+    - id: predicate
+      type: System.Func{{T},System.Boolean}
+      description: A function to test each element for a condition.
+    - id: next
+      type: System.Func{{T},{T}}
+      description: Next element factory.
+    - id: resultSelector
+      type: System.Func{{T},{TResult}}
+      description: A transform function to apply to each element.
+    typeParameters:
+    - id: T
+      description: The type of source element.
+    - id: TResult
+      description: The type of result element
+    return:
+      type: System.Collections.Generic.IEnumerable{{TResult}}
+      description: Generated sequence.
+    content.vb: Public Shared Function Create(Of T, TResult)(start As T, predicate As Func(Of T, Boolean), next As Func(Of T, T), resultSelector As Func(Of T, TResult)) As IEnumerable(Of TResult)
+  overload: CodeJam.Collections.Sequence.Create*
+  nameWithType.vb: Sequence.Create(Of T, TResult)(T, Func(Of T, Boolean), Func(Of T, T), Func(Of T, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.Sequence.Create(Of T, TResult)(T, System.Func(Of T, System.Boolean), System.Func(Of T, T), System.Func(Of T, TResult))
+  name.vb: Create(Of T, TResult)(T, Func(Of T, Boolean), Func(Of T, T), Func(Of T, TResult))
+- uid: CodeJam.Collections.Sequence.CreateWhileNotNull``1(``0,System.Func{``0,``0})
+  commentId: M:CodeJam.Collections.Sequence.CreateWhileNotNull``1(``0,System.Func{``0,``0})
+  id: CreateWhileNotNull``1(``0,System.Func{``0,``0})
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: CreateWhileNotNull<T>(T, Func<T, T>)
+  nameWithType: Sequence.CreateWhileNotNull<T>(T, Func<T, T>)
+  fullName: CodeJam.Collections.Sequence.CreateWhileNotNull<T>(T, System.Func<T, T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateWhileNotNull
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 123
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates a sequence from start value and next element factory till factory returns null.\n"
+  example: []
+  syntax:
+    content: 'public static IEnumerable<T> CreateWhileNotNull<T>(T start, Func<T, T> next)where T : class'
+    parameters:
+    - id: start
+      type: '{T}'
+      description: Start value.
+    - id: next
+      type: System.Func{{T},{T}}
+      description: Next element factory.
+    typeParameters:
+    - id: T
+      description: The type of element.
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: Generated sequence.
+    content.vb: Public Shared Function CreateWhileNotNull(Of T As Class)(start As T, next As Func(Of T, T)) As IEnumerable(Of T)
+  overload: CodeJam.Collections.Sequence.CreateWhileNotNull*
+  nameWithType.vb: Sequence.CreateWhileNotNull(Of T)(T, Func(Of T, T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.Sequence.CreateWhileNotNull(Of T)(T, System.Func(Of T, T))
+  name.vb: CreateWhileNotNull(Of T)(T, Func(Of T, T))
+- uid: CodeJam.Collections.Sequence.CreateWhileNotNull``2(``0,System.Func{``0,``0},System.Func{``0,``1})
+  commentId: M:CodeJam.Collections.Sequence.CreateWhileNotNull``2(``0,System.Func{``0,``0},System.Func{``0,``1})
+  id: CreateWhileNotNull``2(``0,System.Func{``0,``0},System.Func{``0,``1})
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: CreateWhileNotNull<T, TResult>(T, Func<T, T>, Func<T, TResult>)
+  nameWithType: Sequence.CreateWhileNotNull<T, TResult>(T, Func<T, T>, Func<T, TResult>)
+  fullName: CodeJam.Collections.Sequence.CreateWhileNotNull<T, TResult>(T, System.Func<T, T>, System.Func<T, TResult>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateWhileNotNull
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 147
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates a sequence from start value and next element factory till factory returns null.\n"
+  example: []
+  syntax:
+    content: 'public static IEnumerable<TResult> CreateWhileNotNull<T, TResult>(T start, Func<T, T> next, Func<T, TResult> resultSelector)where T : class'
+    parameters:
+    - id: start
+      type: '{T}'
+      description: Start value.
+    - id: next
+      type: System.Func{{T},{T}}
+      description: Next element factory.
+    - id: resultSelector
+      type: System.Func{{T},{TResult}}
+      description: A transform function to apply to each element.
+    typeParameters:
+    - id: T
+      description: The type of source element.
+    - id: TResult
+      description: The type of result element
+    return:
+      type: System.Collections.Generic.IEnumerable{{TResult}}
+      description: Generated sequence.
+    content.vb: Public Shared Function CreateWhileNotNull(Of T As Class, TResult)(start As T, next As Func(Of T, T), resultSelector As Func(Of T, TResult)) As IEnumerable(Of TResult)
+  overload: CodeJam.Collections.Sequence.CreateWhileNotNull*
+  nameWithType.vb: Sequence.CreateWhileNotNull(Of T, TResult)(T, Func(Of T, T), Func(Of T, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.Sequence.CreateWhileNotNull(Of T, TResult)(T, System.Func(Of T, T), System.Func(Of T, TResult))
+  name.vb: CreateWhileNotNull(Of T, TResult)(T, Func(Of T, T), Func(Of T, TResult))
+- uid: CodeJam.Collections.Sequence.CreateSingle``1(``0)
+  commentId: M:CodeJam.Collections.Sequence.CreateSingle``1(``0)
+  id: CreateSingle``1(``0)
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: CreateSingle<T>(T)
+  nameWithType: Sequence.CreateSingle<T>(T)
+  fullName: CodeJam.Collections.Sequence.CreateSingle<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateSingle
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 172
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates a single element sequence.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<T> CreateSingle<T>(T element)
+    parameters:
+    - id: element
+      type: '{T}'
+      description: Element instance to create sequence from.
+    typeParameters:
+    - id: T
+      description: The type of element.
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: Single element sequence
+    content.vb: Public Shared Function CreateSingle(Of T)(element As T) As IEnumerable(Of T)
+  overload: CodeJam.Collections.Sequence.CreateSingle*
+  nameWithType.vb: Sequence.CreateSingle(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.Sequence.CreateSingle(Of T)(T)
+  name.vb: CreateSingle(Of T)(T)
+- uid: CodeJam.Collections.Sequence.CreateSingle``1(System.Func{``0})
+  commentId: M:CodeJam.Collections.Sequence.CreateSingle``1(System.Func{``0})
+  id: CreateSingle``1(System.Func{``0})
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: CreateSingle<T>(Func<T>)
+  nameWithType: Sequence.CreateSingle<T>(Func<T>)
+  fullName: CodeJam.Collections.Sequence.CreateSingle<T>(System.Func<T>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateSingle
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 185
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates a single element sequence.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<T> CreateSingle<T>(Func<T> elementFactory)
+    parameters:
+    - id: elementFactory
+      type: System.Func{{T}}
+      description: Element factory.
+    typeParameters:
+    - id: T
+      description: The type of element.
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: Single element sequence
+    content.vb: Public Shared Function CreateSingle(Of T)(elementFactory As Func(Of T)) As IEnumerable(Of T)
+  overload: CodeJam.Collections.Sequence.CreateSingle*
+  nameWithType.vb: Sequence.CreateSingle(Of T)(Func(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.Sequence.CreateSingle(Of T)(System.Func(Of T))
+  name.vb: CreateSingle(Of T)(Func(Of T))
+- uid: CodeJam.Collections.Sequence.Random(System.Int32,System.Int32,System.Int32)
+  commentId: M:CodeJam.Collections.Sequence.Random(System.Int32,System.Int32,System.Int32)
+  id: Random(System.Int32,System.Int32,System.Int32)
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: Random(Int32, Int32, Int32)
+  nameWithType: Sequence.Random(Int32, Int32, Int32)
+  fullName: CodeJam.Collections.Sequence.Random(System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Random
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 204
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates infinite sequence of random int numbers;\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<int> Random(int minValue, int maxValue, int seed)
+    parameters:
+    - id: minValue
+      type: System.Int32
+      description: The inclusive lower bound of the random number returned.
+    - id: maxValue
+      type: System.Int32
+      description: "\nThe exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.\n"
+    - id: seed
+      type: System.Int32
+      description: "\nA number used to calculate a starting value for the pseudo-random number sequence. If a negative number is\nspecified, the absolute value of the number is used.\n"
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Int32}
+      description: Infinite random sequence.
+    content.vb: Public Shared Function Random(minValue As Integer, maxValue As Integer, seed As Integer) As IEnumerable(Of Integer)
+  overload: CodeJam.Collections.Sequence.Random*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Collections.Sequence.Random(System.Int32,System.Int32)
+  commentId: M:CodeJam.Collections.Sequence.Random(System.Int32,System.Int32)
+  id: Random(System.Int32,System.Int32)
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: Random(Int32, Int32)
+  nameWithType: Sequence.Random(Int32, Int32)
+  fullName: CodeJam.Collections.Sequence.Random(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Random
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 222
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates infinite sequence of random int numbers;\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<int> Random(int minValue, int maxValue)
+    parameters:
+    - id: minValue
+      type: System.Int32
+      description: The inclusive lower bound of the random number returned.
+    - id: maxValue
+      type: System.Int32
+      description: "\nThe exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.\n"
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Int32}
+      description: Infinite random sequence.
+    content.vb: Public Shared Function Random(minValue As Integer, maxValue As Integer) As IEnumerable(Of Integer)
+  overload: CodeJam.Collections.Sequence.Random*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Collections.Sequence.Random(System.Int32)
+  commentId: M:CodeJam.Collections.Sequence.Random(System.Int32)
+  id: Random(System.Int32)
+  parent: CodeJam.Collections.Sequence
+  langs:
+  - csharp
+  - vb
+  name: Random(Int32)
+  nameWithType: Sequence.Random(Int32)
+  fullName: CodeJam.Collections.Sequence.Random(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/Sequence.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Random
+    path: ../Main/src/Collections/Sequence.cs
+    startLine: 239
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nCreates infinite sequence of random int numbers;\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<int> Random(int maxValue = 2147483647)
+    parameters:
+    - id: maxValue
+      type: System.Int32
+      description: "\nThe exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.\n"
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Int32}
+      description: Infinite random sequence.
+    content.vb: Public Shared Function Random(maxValue As Integer = 2147483647) As IEnumerable(Of Integer)
+  overload: CodeJam.Collections.Sequence.Random*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: CodeJam.Collections
+  commentId: N:CodeJam.Collections
+  isExternal: false
+  name: CodeJam.Collections
+  nameWithType: CodeJam.Collections
+  fullName: CodeJam.Collections
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Collections.Sequence.Create*
+  commentId: Overload:CodeJam.Collections.Sequence.Create
+  isExternal: false
+  name: Create
+  nameWithType: Sequence.Create
+  fullName: CodeJam.Collections.Sequence.Create
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Func{{T},{T}}
+  commentId: T:System.Func{`0,`0}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, T>
+  nameWithType: Func<T, T>
+  fullName: System.Func<T, T>
+  nameWithType.vb: Func(Of T, T)
+  fullName.vb: System.Func(Of T, T)
+  name.vb: Func(Of T, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{{T}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Func{{T},{TResult}}
+  commentId: T:System.Func{``0,``1}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{{TResult}}
+  commentId: T:System.Collections.Generic.IEnumerable{``1}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<TResult>
+  nameWithType: IEnumerable<TResult>
+  fullName: System.Collections.Generic.IEnumerable<TResult>
+  nameWithType.vb: IEnumerable(Of TResult)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of TResult)
+  name.vb: IEnumerable(Of TResult)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{T},System.Boolean}
+  commentId: T:System.Func{`0,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, Boolean>
+  nameWithType: Func<T, Boolean>
+  fullName: System.Func<T, System.Boolean>
+  nameWithType.vb: Func(Of T, Boolean)
+  fullName.vb: System.Func(Of T, System.Boolean)
+  name.vb: Func(Of T, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.Sequence.CreateWhileNotNull*
+  commentId: Overload:CodeJam.Collections.Sequence.CreateWhileNotNull
+  isExternal: false
+  name: CreateWhileNotNull
+  nameWithType: Sequence.CreateWhileNotNull
+  fullName: CodeJam.Collections.Sequence.CreateWhileNotNull
+- uid: CodeJam.Collections.Sequence.CreateSingle*
+  commentId: Overload:CodeJam.Collections.Sequence.CreateSingle
+  isExternal: false
+  name: CreateSingle
+  nameWithType: Sequence.CreateSingle
+  fullName: CodeJam.Collections.Sequence.CreateSingle
+- uid: System.Func{{T}}
+  commentId: T:System.Func{``0}
+  parent: System
+  definition: System.Func`1
+  name: Func<T>
+  nameWithType: Func<T>
+  fullName: System.Func<T>
+  nameWithType.vb: Func(Of T)
+  fullName.vb: System.Func(Of T)
+  name.vb: Func(Of T)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.Sequence.Random*
+  commentId: Overload:CodeJam.Collections.Sequence.Random
+  isExternal: false
+  name: Random
+  nameWithType: Sequence.Random
+  fullName: CodeJam.Collections.Sequence.Random
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Collections.Generic.IEnumerable{System.Int32}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Int32>
+  nameWithType: IEnumerable<Int32>
+  fullName: System.Collections.Generic.IEnumerable<System.Int32>
+  nameWithType.vb: IEnumerable(Of Int32)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Int32)
+  name.vb: IEnumerable(Of Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

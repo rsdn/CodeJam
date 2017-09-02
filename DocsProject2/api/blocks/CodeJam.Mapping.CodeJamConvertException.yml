@@ -1,0 +1,886 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping.CodeJamConvertException
+  commentId: T:CodeJam.Mapping.CodeJamConvertException
+  id: CodeJamConvertException
+  parent: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.CodeJamConvertException.#ctor
+  - CodeJam.Mapping.CodeJamConvertException.#ctor(System.Exception)
+  - CodeJam.Mapping.CodeJamConvertException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - CodeJam.Mapping.CodeJamConvertException.#ctor(System.String)
+  - CodeJam.Mapping.CodeJamConvertException.#ctor(System.String,System.Exception)
+  langs:
+  - csharp
+  - vb
+  name: CodeJamConvertException
+  nameWithType: CodeJamConvertException
+  fullName: CodeJam.Mapping.CodeJamConvertException
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Mapping/CodeJamConvertException.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CodeJamConvertException
+    path: ../Blocks/src/Mapping/CodeJamConvertException.cs
+    startLine: 15
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefines the base class for the namespace exceptions.\n"
+  remarks: "\nThis class is the base class for exceptions that may occur during\nexecution of the namespace members.\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public class CodeJamConvertException : Exception, ISerializable, _Exception
+    content.vb: >-
+      <Serializable>
+
+      Public Class CodeJamConvertException
+          Inherits Exception
+          Implements ISerializable, _Exception
+  inheritance:
+  - System.Object
+  - System.Exception
+  implements:
+  - System.Runtime.Serialization.ISerializable
+  - System.Runtime.InteropServices._Exception
+  inheritedMembers:
+  - System.Exception.GetBaseException
+  - System.Exception.ToString
+  - System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - System.Exception.GetType
+  - System.Exception.Message
+  - System.Exception.Data
+  - System.Exception.InnerException
+  - System.Exception.TargetSite
+  - System.Exception.StackTrace
+  - System.Exception.HelpLink
+  - System.Exception.Source
+  - System.Exception.HResult
+  - System.Exception.SerializeObjectState
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Mapping.CodeJamConvertException.CodeJam.Mapping.Map.DeepCopy``1
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.Mapping.CodeJamConvertException.#ctor
+  commentId: M:CodeJam.Mapping.CodeJamConvertException.#ctor
+  id: '#ctor'
+  parent: CodeJam.Mapping.CodeJamConvertException
+  langs:
+  - csharp
+  - vb
+  name: CodeJamConvertException()
+  nameWithType: CodeJamConvertException.CodeJamConvertException()
+  fullName: CodeJam.Mapping.CodeJamConvertException.CodeJamConvertException()
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/CodeJamConvertException.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/CodeJamConvertException.cs
+    startLine: 26
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nInitializes a new instance of the <xref href=\"CodeJam.Mapping.CodeJamConvertException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  remarks: "\nThis constructor initializes the <xref href=\"System.Exception.Message\" data-throw-if-not-resolved=\"false\"></xref>\nproperty of the new instance such as &quot;A Build Type exception has occurred.&quot;\n"
+  example: []
+  syntax:
+    content: public CodeJamConvertException()
+    content.vb: Public Sub New
+  overload: CodeJam.Mapping.CodeJamConvertException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.CodeJamConvertException.#ctor(System.String)
+  commentId: M:CodeJam.Mapping.CodeJamConvertException.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: CodeJam.Mapping.CodeJamConvertException
+  langs:
+  - csharp
+  - vb
+  name: CodeJamConvertException(String)
+  nameWithType: CodeJamConvertException.CodeJamConvertException(String)
+  fullName: CodeJam.Mapping.CodeJamConvertException.CodeJamConvertException(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/CodeJamConvertException.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/CodeJamConvertException.cs
+    startLine: 37
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nInitializes a new instance of the <xref href=\"CodeJam.Mapping.CodeJamConvertException\" data-throw-if-not-resolved=\"false\"></xref> class\nwith the specified error message.\n"
+  example: []
+  syntax:
+    content: public CodeJamConvertException(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: >-
+        The message to display to the client when the
+
+        exception is thrown.
+    content.vb: Public Sub New(message As String)
+  overload: CodeJam.Mapping.CodeJamConvertException.#ctor*
+  seealso:
+  - linkId: System.Exception.Message
+    commentId: P:System.Exception.Message
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.CodeJamConvertException.#ctor(System.String,System.Exception)
+  commentId: M:CodeJam.Mapping.CodeJamConvertException.#ctor(System.String,System.Exception)
+  id: '#ctor(System.String,System.Exception)'
+  parent: CodeJam.Mapping.CodeJamConvertException
+  langs:
+  - csharp
+  - vb
+  name: CodeJamConvertException(String, Exception)
+  nameWithType: CodeJamConvertException.CodeJamConvertException(String, Exception)
+  fullName: CodeJam.Mapping.CodeJamConvertException.CodeJamConvertException(System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/CodeJamConvertException.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/CodeJamConvertException.cs
+    startLine: 52
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nInitializes a new instance of the <xref href=\"CodeJam.Mapping.CodeJamConvertException\" data-throw-if-not-resolved=\"false\"></xref> class\nwith the specified error message and InnerException property.\n"
+  example: []
+  syntax:
+    content: public CodeJamConvertException(string message, Exception innerException)
+    parameters:
+    - id: message
+      type: System.String
+      description: >-
+        The message to display to the client when the
+
+        exception is thrown.
+    - id: innerException
+      type: System.Exception
+      description: >-
+        The InnerException, if any, that threw
+
+        the current exception.
+    content.vb: Public Sub New(message As String, innerException As Exception)
+  overload: CodeJam.Mapping.CodeJamConvertException.#ctor*
+  seealso:
+  - linkId: System.Exception.Message
+    commentId: P:System.Exception.Message
+  - linkId: System.Exception.InnerException
+    commentId: P:System.Exception.InnerException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.CodeJamConvertException.#ctor(System.Exception)
+  commentId: M:CodeJam.Mapping.CodeJamConvertException.#ctor(System.Exception)
+  id: '#ctor(System.Exception)'
+  parent: CodeJam.Mapping.CodeJamConvertException
+  langs:
+  - csharp
+  - vb
+  name: CodeJamConvertException(Exception)
+  nameWithType: CodeJamConvertException.CodeJamConvertException(Exception)
+  fullName: CodeJam.Mapping.CodeJamConvertException.CodeJamConvertException(System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/CodeJamConvertException.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/CodeJamConvertException.cs
+    startLine: 64
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nInitializes a new instance of the <xref href=\"CodeJam.Mapping.CodeJamConvertException\" data-throw-if-not-resolved=\"false\"></xref> class\nwith the specified InnerException property.\n"
+  example: []
+  syntax:
+    content: public CodeJamConvertException(Exception innerException)
+    parameters:
+    - id: innerException
+      type: System.Exception
+      description: >-
+        The InnerException, if any, that threw
+
+        the current exception.
+    content.vb: Public Sub New(innerException As Exception)
+  overload: CodeJam.Mapping.CodeJamConvertException.#ctor*
+  seealso:
+  - linkId: System.Exception.InnerException
+    commentId: P:System.Exception.InnerException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.CodeJamConvertException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:CodeJam.Mapping.CodeJamConvertException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  id: '#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)'
+  parent: CodeJam.Mapping.CodeJamConvertException
+  langs:
+  - csharp
+  - vb
+  name: CodeJamConvertException(SerializationInfo, StreamingContext)
+  nameWithType: CodeJamConvertException.CodeJamConvertException(SerializationInfo, StreamingContext)
+  fullName: CodeJam.Mapping.CodeJamConvertException.CodeJamConvertException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/CodeJamConvertException.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/CodeJamConvertException.cs
+    startLine: 78
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nInitializes a new instance of the <xref href=\"CodeJam.Mapping.CodeJamConvertException\" data-throw-if-not-resolved=\"false\"></xref> class\nwith serialized data.\n"
+  remarks: >-
+    This constructor is called during deserialization to
+
+    reconstitute the exception object transmitted over a stream.
+  example: []
+  syntax:
+    content: protected CodeJamConvertException(SerializationInfo info, StreamingContext context)
+    parameters:
+    - id: info
+      type: System.Runtime.Serialization.SerializationInfo
+      description: The object that holds the serialized object data.
+    - id: context
+      type: System.Runtime.Serialization.StreamingContext
+      description: >-
+        The contextual information about the source or
+
+        destination.
+    content.vb: Protected Sub New(info As SerializationInfo, context As StreamingContext)
+  overload: CodeJam.Mapping.CodeJamConvertException.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+references:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System.Runtime.InteropServices._Exception
+  commentId: T:System.Runtime.InteropServices._Exception
+  parent: System.Runtime.InteropServices
+  isExternal: true
+  name: _Exception
+  nameWithType: _Exception
+  fullName: System.Runtime.InteropServices._Exception
+- uid: System.Exception.GetBaseException
+  commentId: M:System.Exception.GetBaseException
+  parent: System.Exception
+  isExternal: true
+  name: GetBaseException()
+  nameWithType: Exception.GetBaseException()
+  fullName: System.Exception.GetBaseException()
+  spec.csharp:
+  - uid: System.Exception.GetBaseException
+    name: GetBaseException
+    nameWithType: Exception.GetBaseException
+    fullName: System.Exception.GetBaseException
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Exception.GetBaseException
+    name: GetBaseException
+    nameWithType: Exception.GetBaseException
+    fullName: System.Exception.GetBaseException
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Exception.ToString
+  commentId: M:System.Exception.ToString
+  parent: System.Exception
+  isExternal: true
+  name: ToString()
+  nameWithType: Exception.ToString()
+  fullName: System.Exception.ToString()
+  spec.csharp:
+  - uid: System.Exception.ToString
+    name: ToString
+    nameWithType: Exception.ToString
+    fullName: System.Exception.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Exception.ToString
+    name: ToString
+    nameWithType: Exception.ToString
+    fullName: System.Exception.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  parent: System.Exception
+  isExternal: true
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: Exception.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  spec.csharp:
+  - uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: Exception.GetObjectData
+    fullName: System.Exception.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: Exception.GetObjectData
+    fullName: System.Exception.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Exception.GetType
+  commentId: M:System.Exception.GetType
+  parent: System.Exception
+  isExternal: true
+  name: GetType()
+  nameWithType: Exception.GetType()
+  fullName: System.Exception.GetType()
+  spec.csharp:
+  - uid: System.Exception.GetType
+    name: GetType
+    nameWithType: Exception.GetType
+    fullName: System.Exception.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Exception.GetType
+    name: GetType
+    nameWithType: Exception.GetType
+    fullName: System.Exception.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Exception.Message
+  commentId: P:System.Exception.Message
+  parent: System.Exception
+  isExternal: true
+  name: Message
+  nameWithType: Exception.Message
+  fullName: System.Exception.Message
+- uid: System.Exception.Data
+  commentId: P:System.Exception.Data
+  parent: System.Exception
+  isExternal: true
+  name: Data
+  nameWithType: Exception.Data
+  fullName: System.Exception.Data
+- uid: System.Exception.InnerException
+  commentId: P:System.Exception.InnerException
+  parent: System.Exception
+  isExternal: true
+  name: InnerException
+  nameWithType: Exception.InnerException
+  fullName: System.Exception.InnerException
+- uid: System.Exception.TargetSite
+  commentId: P:System.Exception.TargetSite
+  parent: System.Exception
+  isExternal: true
+  name: TargetSite
+  nameWithType: Exception.TargetSite
+  fullName: System.Exception.TargetSite
+- uid: System.Exception.StackTrace
+  commentId: P:System.Exception.StackTrace
+  parent: System.Exception
+  isExternal: true
+  name: StackTrace
+  nameWithType: Exception.StackTrace
+  fullName: System.Exception.StackTrace
+- uid: System.Exception.HelpLink
+  commentId: P:System.Exception.HelpLink
+  parent: System.Exception
+  isExternal: true
+  name: HelpLink
+  nameWithType: Exception.HelpLink
+  fullName: System.Exception.HelpLink
+- uid: System.Exception.Source
+  commentId: P:System.Exception.Source
+  parent: System.Exception
+  isExternal: true
+  name: Source
+  nameWithType: Exception.Source
+  fullName: System.Exception.Source
+- uid: System.Exception.HResult
+  commentId: P:System.Exception.HResult
+  parent: System.Exception
+  isExternal: true
+  name: HResult
+  nameWithType: Exception.HResult
+  fullName: System.Exception.HResult
+- uid: System.Exception.SerializeObjectState
+  commentId: E:System.Exception.SerializeObjectState
+  parent: System.Exception
+  isExternal: true
+  name: SerializeObjectState
+  nameWithType: Exception.SerializeObjectState
+  fullName: System.Exception.SerializeObjectState
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.CodeJamConvertException.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<CodeJamConvertException>()
+  nameWithType: Map.DeepCopy<CodeJamConvertException>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.CodeJamConvertException>()
+  nameWithType.vb: Map.DeepCopy(Of CodeJamConvertException)()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.CodeJamConvertException)()
+  name.vb: DeepCopy(Of CodeJamConvertException)()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<CodeJamConvertException>
+    nameWithType: Map.DeepCopy<CodeJamConvertException>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.CodeJamConvertException>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of CodeJamConvertException)
+    nameWithType: Map.DeepCopy(Of CodeJamConvertException)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.CodeJamConvertException)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: false
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+- uid: System.Runtime.InteropServices
+  commentId: N:System.Runtime.InteropServices
+  isExternal: false
+  name: System.Runtime.InteropServices
+  nameWithType: System.Runtime.InteropServices
+  fullName: System.Runtime.InteropServices
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Mapping.CodeJamConvertException
+  commentId: T:CodeJam.Mapping.CodeJamConvertException
+  isExternal: false
+  name: CodeJamConvertException
+  nameWithType: CodeJamConvertException
+  fullName: CodeJam.Mapping.CodeJamConvertException
+- uid: CodeJam.Mapping.CodeJamConvertException.#ctor*
+  commentId: Overload:CodeJam.Mapping.CodeJamConvertException.#ctor
+  isExternal: false
+  name: CodeJamConvertException
+  nameWithType: CodeJamConvertException.CodeJamConvertException
+  fullName: CodeJam.Mapping.CodeJamConvertException.CodeJamConvertException
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Runtime.Serialization.SerializationInfo
+  commentId: T:System.Runtime.Serialization.SerializationInfo
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: SerializationInfo
+  nameWithType: SerializationInfo
+  fullName: System.Runtime.Serialization.SerializationInfo
+- uid: System.Runtime.Serialization.StreamingContext
+  commentId: T:System.Runtime.Serialization.StreamingContext
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: StreamingContext
+  nameWithType: StreamingContext
+  fullName: System.Runtime.Serialization.StreamingContext

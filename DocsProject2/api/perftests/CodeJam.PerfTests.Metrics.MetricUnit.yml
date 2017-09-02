@@ -1,0 +1,858 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics.MetricUnit
+  commentId: T:CodeJam.PerfTests.Metrics.MetricUnit
+  id: MetricUnit
+  parent: CodeJam.PerfTests.Metrics
+  children:
+  - CodeJam.PerfTests.Metrics.MetricUnit.AppliesFrom
+  - CodeJam.PerfTests.Metrics.MetricUnit.DisplayName
+  - CodeJam.PerfTests.Metrics.MetricUnit.Empty
+  - CodeJam.PerfTests.Metrics.MetricUnit.EnumValue
+  - CodeJam.PerfTests.Metrics.MetricUnit.IsEmpty
+  - CodeJam.PerfTests.Metrics.MetricUnit.MaxRoundingDigits
+  - CodeJam.PerfTests.Metrics.MetricUnit.RoundingDigits
+  - CodeJam.PerfTests.Metrics.MetricUnit.ScaleCoefficient
+  - CodeJam.PerfTests.Metrics.MetricUnit.ToString
+  langs:
+  - csharp
+  - vb
+  name: MetricUnit
+  nameWithType: MetricUnit
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MetricUnit
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 7
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Metric measurement unit.
+  example: []
+  syntax:
+    content: public class MetricUnit
+    content.vb: Public Class MetricUnit
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.MaxRoundingDigits
+  commentId: F:CodeJam.PerfTests.Metrics.MetricUnit.MaxRoundingDigits
+  id: MaxRoundingDigits
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: MaxRoundingDigits
+  nameWithType: MetricUnit.MaxRoundingDigits
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.MaxRoundingDigits
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MaxRoundingDigits
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 10
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: The maximum supported number of fractional digits for storing and comparing metric values.
+  example: []
+  syntax:
+    content: public const int MaxRoundingDigits = 15
+    return:
+      type: System.Int32
+    content.vb: Public Const MaxRoundingDigits As Integer = 15
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.Empty
+  commentId: F:CodeJam.PerfTests.Metrics.MetricUnit.Empty
+  id: Empty
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: Empty
+  nameWithType: MetricUnit.Empty
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.Empty
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Empty
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 13
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Empty measurement unit.
+  example: []
+  syntax:
+    content: public static readonly MetricUnit Empty
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+    content.vb: Public Shared ReadOnly Empty As MetricUnit
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.IsEmpty
+  commentId: P:CodeJam.PerfTests.Metrics.MetricUnit.IsEmpty
+  id: IsEmpty
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: IsEmpty
+  nameWithType: MetricUnit.IsEmpty
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.IsEmpty
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsEmpty
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 67
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets a value indicating whether this instance is empty measurement unit.
+  example: []
+  syntax:
+    content: public bool IsEmpty { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if this instance is empty; otherwise, <code>false</code>.\n"
+    content.vb: Public ReadOnly Property IsEmpty As Boolean
+  overload: CodeJam.PerfTests.Metrics.MetricUnit.IsEmpty*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.DisplayName
+  commentId: P:CodeJam.PerfTests.Metrics.MetricUnit.DisplayName
+  id: DisplayName
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: DisplayName
+  nameWithType: MetricUnit.DisplayName
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.DisplayName
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DisplayName
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 71
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets display name of the measurement unit.
+  example: []
+  syntax:
+    content: public string DisplayName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The display name of the measurement unit.
+    content.vb: Public ReadOnly Property DisplayName As String
+  overload: CodeJam.PerfTests.Metrics.MetricUnit.DisplayName*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.EnumValue
+  commentId: P:CodeJam.PerfTests.Metrics.MetricUnit.EnumValue
+  id: EnumValue
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: EnumValue
+  nameWithType: MetricUnit.EnumValue
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.EnumValue
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: EnumValue
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 76
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets enum value for the measurement unit.
+  example: []
+  syntax:
+    content: public Enum EnumValue { get; }
+    parameters: []
+    return:
+      type: System.Enum
+      description: The enum value for the measurement unit.
+    content.vb: 'Public ReadOnly Property EnumValue As '
+  overload: CodeJam.PerfTests.Metrics.MetricUnit.EnumValue*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.ScaleCoefficient
+  commentId: P:CodeJam.PerfTests.Metrics.MetricUnit.ScaleCoefficient
+  id: ScaleCoefficient
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: ScaleCoefficient
+  nameWithType: MetricUnit.ScaleCoefficient
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.ScaleCoefficient
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ScaleCoefficient
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 81
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets scale coefficient for the measurement unit.
+  example: []
+  syntax:
+    content: public double ScaleCoefficient { get; }
+    parameters: []
+    return:
+      type: System.Double
+      description: The scale coefficient for the measurement unit.
+    content.vb: Public ReadOnly Property ScaleCoefficient As Double
+  overload: CodeJam.PerfTests.Metrics.MetricUnit.ScaleCoefficient*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.AppliesFrom
+  commentId: P:CodeJam.PerfTests.Metrics.MetricUnit.AppliesFrom
+  id: AppliesFrom
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: AppliesFrom
+  nameWithType: MetricUnit.AppliesFrom
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.AppliesFrom
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AppliesFrom
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 85
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets apply threshold for the measurement unit.
+  example: []
+  syntax:
+    content: public double AppliesFrom { get; }
+    parameters: []
+    return:
+      type: System.Double
+      description: The apply threshold for the measurement unit.
+    content.vb: Public ReadOnly Property AppliesFrom As Double
+  overload: CodeJam.PerfTests.Metrics.MetricUnit.AppliesFrom*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.RoundingDigits
+  commentId: P:CodeJam.PerfTests.Metrics.MetricUnit.RoundingDigits
+  id: RoundingDigits
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: RoundingDigits
+  nameWithType: MetricUnit.RoundingDigits
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.RoundingDigits
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RoundingDigits
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 92
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nGets number of fractional digits for storing and comparing metric values.\nIf value is <code>null</code> number of fractional digits detected automatically.\n"
+  example: []
+  syntax:
+    content: public int ? RoundingDigits { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+      description: Number of fractional digits for storing and comparing metric values.
+    content.vb: Public ReadOnly Property RoundingDigits As Integer?
+  overload: CodeJam.PerfTests.Metrics.MetricUnit.RoundingDigits*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.ToString
+  commentId: M:CodeJam.PerfTests.Metrics.MetricUnit.ToString
+  id: ToString
+  parent: CodeJam.PerfTests.Metrics.MetricUnit
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: MetricUnit.ToString()
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.ToString()
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToString
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricUnit.cs
+    startLine: 97
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.Object.ToString
+  overload: CodeJam.PerfTests.Metrics.MetricUnit.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: CodeJam.PerfTests.Metrics.MetricUnit
+  commentId: T:CodeJam.PerfTests.Metrics.MetricUnit
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricUnit
+  nameWithType: MetricUnit
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.IsEmpty*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricUnit.IsEmpty
+  isExternal: false
+  name: IsEmpty
+  nameWithType: MetricUnit.IsEmpty
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.IsEmpty
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.DisplayName*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricUnit.DisplayName
+  isExternal: false
+  name: DisplayName
+  nameWithType: MetricUnit.DisplayName
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.DisplayName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.EnumValue*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricUnit.EnumValue
+  isExternal: false
+  name: EnumValue
+  nameWithType: MetricUnit.EnumValue
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.EnumValue
+- uid: System.Enum
+  commentId: T:System.Enum
+  parent: System
+  isExternal: true
+  name: Enum
+  nameWithType: Enum
+  fullName: System.Enum
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.ScaleCoefficient*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricUnit.ScaleCoefficient
+  isExternal: false
+  name: ScaleCoefficient
+  nameWithType: MetricUnit.ScaleCoefficient
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.ScaleCoefficient
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.AppliesFrom*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricUnit.AppliesFrom
+  isExternal: false
+  name: AppliesFrom
+  nameWithType: MetricUnit.AppliesFrom
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.AppliesFrom
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.RoundingDigits*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricUnit.RoundingDigits
+  isExternal: false
+  name: RoundingDigits
+  nameWithType: MetricUnit.RoundingDigits
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.RoundingDigits
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Int32>
+  nameWithType: Nullable<Int32>
+  fullName: System.Nullable<System.Int32>
+  nameWithType.vb: Nullable(Of Int32)
+  fullName.vb: System.Nullable(Of System.Int32)
+  name.vb: Nullable(Of Int32)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricUnit.ToString*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricUnit.ToString
+  isExternal: false
+  name: ToString
+  nameWithType: MetricUnit.ToString
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit.ToString

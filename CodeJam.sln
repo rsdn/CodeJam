@@ -110,6 +110,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests.Etw", "Pe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsProject", "DocsProject\DocsProject.csproj", "{9161AF76-33DB-4A43-9AA1-3C35058DE33F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsProject2", "DocsProject2\DocsProject2.csproj", "{91473E21-E996-4E19-AB44-10B60D2E4873}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -188,6 +190,10 @@ Global
 		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91473E21-E996-4E19-AB44-10B60D2E4873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91473E21-E996-4E19-AB44-10B60D2E4873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91473E21-E996-4E19-AB44-10B60D2E4873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91473E21-E996-4E19-AB44-10B60D2E4873}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,95 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  id: ICompetitionModifier
+  parent: CodeJam.PerfTests.Configs.Factories
+  children:
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.Modify(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  langs:
+  - csharp
+  - vb
+  name: ICompetitionModifier
+  nameWithType: ICompetitionModifier
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionModifier.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ICompetitionModifier
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionModifier.cs
+    startLine: 5
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: Competition config modifier.
+  example: []
+  syntax:
+    content: public interface ICompetitionModifier
+    content.vb: Public Interface ICompetitionModifier
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.Modify(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  commentId: M:CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.Modify(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  id: Modify(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  parent: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  langs:
+  - csharp
+  - vb
+  name: Modify(ManualCompetitionConfig)
+  nameWithType: ICompetitionModifier.Modify(ManualCompetitionConfig)
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.Modify(CodeJam.PerfTests.Configs.ManualCompetitionConfig)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionModifier.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Modify
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionModifier.cs
+    startLine: 9
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: Updates competition config.
+  example: []
+  syntax:
+    content: void Modify(ManualCompetitionConfig competitionConfig)
+    parameters:
+    - id: competitionConfig
+      type: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+      description: The competition config.
+    content.vb: Sub Modify(competitionConfig As ManualCompetitionConfig)
+  overload: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.Modify*
+references:
+- uid: CodeJam.PerfTests.Configs.Factories
+  commentId: N:CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: CodeJam.PerfTests.Configs.Factories
+  nameWithType: CodeJam.PerfTests.Configs.Factories
+  fullName: CodeJam.PerfTests.Configs.Factories
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.Modify*
+  commentId: Overload:CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.Modify
+  isExternal: false
+  name: Modify
+  nameWithType: ICompetitionModifier.Modify
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.Modify
+- uid: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+  commentId: T:CodeJam.PerfTests.Configs.ManualCompetitionConfig
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: ManualCompetitionConfig
+  nameWithType: ManualCompetitionConfig
+  fullName: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+- uid: CodeJam.PerfTests.Configs
+  commentId: N:CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CodeJam.PerfTests.Configs
+  nameWithType: CodeJam.PerfTests.Configs
+  fullName: CodeJam.PerfTests.Configs

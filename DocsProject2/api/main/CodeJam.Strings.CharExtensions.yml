@@ -1,0 +1,1407 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Strings.CharExtensions
+  commentId: T:CodeJam.Strings.CharExtensions
+  id: CharExtensions
+  parent: CodeJam.Strings
+  children:
+  - CodeJam.Strings.CharExtensions.IsControl(System.Char)
+  - CodeJam.Strings.CharExtensions.IsDigit(System.Char)
+  - CodeJam.Strings.CharExtensions.IsHighSurrogate(System.Char)
+  - CodeJam.Strings.CharExtensions.IsLetter(System.Char)
+  - CodeJam.Strings.CharExtensions.IsLetterOrDigit(System.Char)
+  - CodeJam.Strings.CharExtensions.IsLower(System.Char)
+  - CodeJam.Strings.CharExtensions.IsLowSurrogate(System.Char)
+  - CodeJam.Strings.CharExtensions.IsNumber(System.Char)
+  - CodeJam.Strings.CharExtensions.IsPunctuation(System.Char)
+  - CodeJam.Strings.CharExtensions.IsSeparator(System.Char)
+  - CodeJam.Strings.CharExtensions.IsSurrogate(System.Char)
+  - CodeJam.Strings.CharExtensions.IsSymbol(System.Char)
+  - CodeJam.Strings.CharExtensions.IsUpper(System.Char)
+  - CodeJam.Strings.CharExtensions.IsWhiteSpace(System.Char)
+  - CodeJam.Strings.CharExtensions.ToLower(System.Char)
+  - CodeJam.Strings.CharExtensions.ToLower(System.Char,System.Globalization.CultureInfo)
+  - CodeJam.Strings.CharExtensions.ToLowerInvariant(System.Char)
+  - CodeJam.Strings.CharExtensions.ToUpper(System.Char)
+  - CodeJam.Strings.CharExtensions.ToUpper(System.Char,System.Globalization.CultureInfo)
+  - CodeJam.Strings.CharExtensions.ToUpperInvariant(System.Char)
+  langs:
+  - csharp
+  - vb
+  name: CharExtensions
+  nameWithType: CharExtensions
+  fullName: CodeJam.Strings.CharExtensions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CharExtensions
+    path: ../Main/src/Strings/CharExtensions.cs
+    startLine: 10
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\n<xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> structure extensions.\n"
+  example: []
+  syntax:
+    content: public static class CharExtensions
+    content.vb: Public Module CharExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Strings.CharExtensions.IsControl(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsControl(System.Char)
+  id: IsControl(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsControl(Char)
+  nameWithType: CharExtensions.IsControl(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsControl(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsControl
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 20
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a control.\n"
+  example: []
+  syntax:
+    content: public static bool IsControl(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a control; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsControl(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsControl*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsHighSurrogate(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsHighSurrogate(System.Char)
+  id: IsHighSurrogate(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsHighSurrogate(Char)
+  nameWithType: CharExtensions.IsHighSurrogate(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsHighSurrogate(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsHighSurrogate
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 28
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a highsurrogate.\n"
+  example: []
+  syntax:
+    content: public static bool IsHighSurrogate(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a highsurrogate; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsHighSurrogate(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsHighSurrogate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsLowSurrogate(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsLowSurrogate(System.Char)
+  id: IsLowSurrogate(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsLowSurrogate(Char)
+  nameWithType: CharExtensions.IsLowSurrogate(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsLowSurrogate(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsLowSurrogate
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 36
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a lowsurrogate.\n"
+  example: []
+  syntax:
+    content: public static bool IsLowSurrogate(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a lowsurrogate; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsLowSurrogate(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsLowSurrogate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsDigit(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsDigit(System.Char)
+  id: IsDigit(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsDigit(Char)
+  nameWithType: CharExtensions.IsDigit(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsDigit(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsDigit
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 44
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a digit.\n"
+  example: []
+  syntax:
+    content: public static bool IsDigit(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a digit; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsDigit(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsDigit*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsLetter(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsLetter(System.Char)
+  id: IsLetter(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsLetter(Char)
+  nameWithType: CharExtensions.IsLetter(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsLetter(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsLetter
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 52
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a letter.\n"
+  example: []
+  syntax:
+    content: public static bool IsLetter(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a letter; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsLetter(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsLetter*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsLetterOrDigit(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsLetterOrDigit(System.Char)
+  id: IsLetterOrDigit(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsLetterOrDigit(Char)
+  nameWithType: CharExtensions.IsLetterOrDigit(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsLetterOrDigit(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsLetterOrDigit
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 60
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a letterordigit.\n"
+  example: []
+  syntax:
+    content: public static bool IsLetterOrDigit(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a letterordigit; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsLetterOrDigit(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsLetterOrDigit*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsLower(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsLower(System.Char)
+  id: IsLower(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsLower(Char)
+  nameWithType: CharExtensions.IsLower(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsLower(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsLower
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 68
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a lower.\n"
+  example: []
+  syntax:
+    content: public static bool IsLower(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a lower; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsLower(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsLower*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsUpper(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsUpper(System.Char)
+  id: IsUpper(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsUpper(Char)
+  nameWithType: CharExtensions.IsUpper(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsUpper(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsUpper
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 76
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a upper.\n"
+  example: []
+  syntax:
+    content: public static bool IsUpper(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a upper; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsUpper(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsUpper*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsNumber(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsNumber(System.Char)
+  id: IsNumber(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsNumber(Char)
+  nameWithType: CharExtensions.IsNumber(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsNumber(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsNumber
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 84
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a number.\n"
+  example: []
+  syntax:
+    content: public static bool IsNumber(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a number; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsNumber(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsNumber*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsPunctuation(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsPunctuation(System.Char)
+  id: IsPunctuation(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsPunctuation(Char)
+  nameWithType: CharExtensions.IsPunctuation(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsPunctuation(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsPunctuation
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 92
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a punctuation.\n"
+  example: []
+  syntax:
+    content: public static bool IsPunctuation(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a punctuation; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsPunctuation(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsPunctuation*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsSeparator(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsSeparator(System.Char)
+  id: IsSeparator(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsSeparator(Char)
+  nameWithType: CharExtensions.IsSeparator(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsSeparator(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsSeparator
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 100
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a separator.\n"
+  example: []
+  syntax:
+    content: public static bool IsSeparator(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a separator; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsSeparator(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsSeparator*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsSurrogate(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsSurrogate(System.Char)
+  id: IsSurrogate(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsSurrogate(Char)
+  nameWithType: CharExtensions.IsSurrogate(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsSurrogate(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsSurrogate
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 108
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a surrogate.\n"
+  example: []
+  syntax:
+    content: public static bool IsSurrogate(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a surrogate; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsSurrogate(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsSurrogate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsSymbol(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsSymbol(System.Char)
+  id: IsSymbol(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsSymbol(Char)
+  nameWithType: CharExtensions.IsSymbol(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsSymbol(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsSymbol
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 116
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a symbol.\n"
+  example: []
+  syntax:
+    content: public static bool IsSymbol(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a symbol; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsSymbol(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsSymbol*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.IsWhiteSpace(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.IsWhiteSpace(System.Char)
+  id: IsWhiteSpace(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsWhiteSpace(Char)
+  nameWithType: CharExtensions.IsWhiteSpace(Char)
+  fullName: CodeJam.Strings.CharExtensions.IsWhiteSpace(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.Infix.generated.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWhiteSpace
+    path: ../Main/src/Strings/CharExtensions.Infix.generated.cs
+    startLine: 124
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nIndicates whether a Unicode character is categorized as a whitespace.\n"
+  example: []
+  syntax:
+    content: public static bool IsWhiteSpace(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to evaluate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if <code data-dev-comment-type="paramref" class="paramref">chr</code> is a whitespace; otherwise, <code>false</code>.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsWhiteSpace(chr As Char) As Boolean
+  overload: CodeJam.Strings.CharExtensions.IsWhiteSpace*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.ToLower(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.ToLower(System.Char)
+  id: ToLower(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToLower(Char)
+  nameWithType: CharExtensions.ToLower(Char)
+  fullName: CodeJam.Strings.CharExtensions.ToLower(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToLower
+    path: ../Main/src/Strings/CharExtensions.cs
+    startLine: 21
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nConverts the value of a Unicode character to its lowercase equivalent.\n"
+  example: []
+  syntax:
+    content: public static char ToLower(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to convert.
+    return:
+      type: System.Char
+      description: "\nThe lowercase equivalent of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>, or the unchanged value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>,\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code> is already lowercase or not alphabetic.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToLower(chr As Char) As Char
+  overload: CodeJam.Strings.CharExtensions.ToLower*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.ToLower(System.Char,System.Globalization.CultureInfo)
+  commentId: M:CodeJam.Strings.CharExtensions.ToLower(System.Char,System.Globalization.CultureInfo)
+  id: ToLower(System.Char,System.Globalization.CultureInfo)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToLower(Char, CultureInfo)
+  nameWithType: CharExtensions.ToLower(Char, CultureInfo)
+  fullName: CodeJam.Strings.CharExtensions.ToLower(System.Char, System.Globalization.CultureInfo)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToLower
+    path: ../Main/src/Strings/CharExtensions.cs
+    startLine: 34
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nConverts the value of a Unicode character to its lowercase equivalent.\n"
+  example: []
+  syntax:
+    content: public static char ToLower(this char chr, CultureInfo culture)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to convert.
+    - id: culture
+      type: System.Globalization.CultureInfo
+      description: An object that supplies culture-specific casing rules.
+    return:
+      type: System.Char
+      description: "\nThe lowercase equivalent of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>, modified according to <code data-dev-comment-type=\"paramref\" class=\"paramref\">culture</code>,\nor the unchanged value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>, if <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code> is already lowercase or not\nalphabetic.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToLower(chr As Char, culture As CultureInfo) As Char
+  overload: CodeJam.Strings.CharExtensions.ToLower*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.ToLowerInvariant(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.ToLowerInvariant(System.Char)
+  id: ToLowerInvariant(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToLowerInvariant(Char)
+  nameWithType: CharExtensions.ToLowerInvariant(Char)
+  fullName: CodeJam.Strings.CharExtensions.ToLowerInvariant(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToLowerInvariant
+    path: ../Main/src/Strings/CharExtensions.cs
+    startLine: 46
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nConverts the value of a Unicode character to its lowercase equivalent using the casing rules of the invariant\nculture.\n"
+  example: []
+  syntax:
+    content: public static char ToLowerInvariant(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to convert.
+    return:
+      type: System.Char
+      description: "\nThe lowercase equivalent of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>, or the unchanged value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>,\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code> is already lowercase or not alphabetic.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToLowerInvariant(chr As Char) As Char
+  overload: CodeJam.Strings.CharExtensions.ToLowerInvariant*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.ToUpper(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.ToUpper(System.Char)
+  id: ToUpper(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToUpper(Char)
+  nameWithType: CharExtensions.ToUpper(Char)
+  fullName: CodeJam.Strings.CharExtensions.ToUpper(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToUpper
+    path: ../Main/src/Strings/CharExtensions.cs
+    startLine: 57
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nConverts the value of a Unicode character to its uppercase equivalent.\n"
+  example: []
+  syntax:
+    content: public static char ToUpper(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to convert.
+    return:
+      type: System.Char
+      description: "\nThe uppercase equivalent of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>, or the unchanged value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>,\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code> is already uppercase or not alphabetic.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToUpper(chr As Char) As Char
+  overload: CodeJam.Strings.CharExtensions.ToUpper*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.ToUpper(System.Char,System.Globalization.CultureInfo)
+  commentId: M:CodeJam.Strings.CharExtensions.ToUpper(System.Char,System.Globalization.CultureInfo)
+  id: ToUpper(System.Char,System.Globalization.CultureInfo)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToUpper(Char, CultureInfo)
+  nameWithType: CharExtensions.ToUpper(Char, CultureInfo)
+  fullName: CodeJam.Strings.CharExtensions.ToUpper(System.Char, System.Globalization.CultureInfo)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToUpper
+    path: ../Main/src/Strings/CharExtensions.cs
+    startLine: 70
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nConverts the value of a Unicode character to its uppercase equivalent.\n"
+  example: []
+  syntax:
+    content: public static char ToUpper(this char chr, CultureInfo culture)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to convert.
+    - id: culture
+      type: System.Globalization.CultureInfo
+      description: An object that supplies culture-specific casing rules.
+    return:
+      type: System.Char
+      description: "\nThe uppercase equivalent of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>, modified according to <code data-dev-comment-type=\"paramref\" class=\"paramref\">culture</code>,\nor the unchanged value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>,  if <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code> is already uppercase or not\nalphabetic.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToUpper(chr As Char, culture As CultureInfo) As Char
+  overload: CodeJam.Strings.CharExtensions.ToUpper*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Strings.CharExtensions.ToUpperInvariant(System.Char)
+  commentId: M:CodeJam.Strings.CharExtensions.ToUpperInvariant(System.Char)
+  id: ToUpperInvariant(System.Char)
+  isExtensionMethod: true
+  parent: CodeJam.Strings.CharExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToUpperInvariant(Char)
+  nameWithType: CharExtensions.ToUpperInvariant(Char)
+  fullName: CodeJam.Strings.CharExtensions.ToUpperInvariant(System.Char)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Strings/CharExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToUpperInvariant
+    path: ../Main/src/Strings/CharExtensions.cs
+    startLine: 82
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Strings
+  summary: "\nConverts the value of a Unicode character to its uppercase equivalent using the casing rules of the invariant\nculture.\n"
+  example: []
+  syntax:
+    content: public static char ToUpperInvariant(this char chr)
+    parameters:
+    - id: chr
+      type: System.Char
+      description: The Unicode character to convert.
+    return:
+      type: System.Char
+      description: "\nThe uppercase equivalent of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>, or the unchanged value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code>,\nif <code data-dev-comment-type=\"paramref\" class=\"paramref\">chr</code> is already uppercase or not alphabetic.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToUpperInvariant(chr As Char) As Char
+  overload: CodeJam.Strings.CharExtensions.ToUpperInvariant*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
+- uid: CodeJam.Strings
+  commentId: N:CodeJam.Strings
+  isExternal: false
+  name: CodeJam.Strings
+  nameWithType: CodeJam.Strings
+  fullName: CodeJam.Strings
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Strings.CharExtensions.IsControl*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsControl
+  isExternal: false
+  name: IsControl
+  nameWithType: CharExtensions.IsControl
+  fullName: CodeJam.Strings.CharExtensions.IsControl
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.Strings.CharExtensions.IsHighSurrogate*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsHighSurrogate
+  isExternal: false
+  name: IsHighSurrogate
+  nameWithType: CharExtensions.IsHighSurrogate
+  fullName: CodeJam.Strings.CharExtensions.IsHighSurrogate
+- uid: CodeJam.Strings.CharExtensions.IsLowSurrogate*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsLowSurrogate
+  isExternal: false
+  name: IsLowSurrogate
+  nameWithType: CharExtensions.IsLowSurrogate
+  fullName: CodeJam.Strings.CharExtensions.IsLowSurrogate
+- uid: CodeJam.Strings.CharExtensions.IsDigit*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsDigit
+  isExternal: false
+  name: IsDigit
+  nameWithType: CharExtensions.IsDigit
+  fullName: CodeJam.Strings.CharExtensions.IsDigit
+- uid: CodeJam.Strings.CharExtensions.IsLetter*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsLetter
+  isExternal: false
+  name: IsLetter
+  nameWithType: CharExtensions.IsLetter
+  fullName: CodeJam.Strings.CharExtensions.IsLetter
+- uid: CodeJam.Strings.CharExtensions.IsLetterOrDigit*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsLetterOrDigit
+  isExternal: false
+  name: IsLetterOrDigit
+  nameWithType: CharExtensions.IsLetterOrDigit
+  fullName: CodeJam.Strings.CharExtensions.IsLetterOrDigit
+- uid: CodeJam.Strings.CharExtensions.IsLower*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsLower
+  isExternal: false
+  name: IsLower
+  nameWithType: CharExtensions.IsLower
+  fullName: CodeJam.Strings.CharExtensions.IsLower
+- uid: CodeJam.Strings.CharExtensions.IsUpper*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsUpper
+  isExternal: false
+  name: IsUpper
+  nameWithType: CharExtensions.IsUpper
+  fullName: CodeJam.Strings.CharExtensions.IsUpper
+- uid: CodeJam.Strings.CharExtensions.IsNumber*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsNumber
+  isExternal: false
+  name: IsNumber
+  nameWithType: CharExtensions.IsNumber
+  fullName: CodeJam.Strings.CharExtensions.IsNumber
+- uid: CodeJam.Strings.CharExtensions.IsPunctuation*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsPunctuation
+  isExternal: false
+  name: IsPunctuation
+  nameWithType: CharExtensions.IsPunctuation
+  fullName: CodeJam.Strings.CharExtensions.IsPunctuation
+- uid: CodeJam.Strings.CharExtensions.IsSeparator*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsSeparator
+  isExternal: false
+  name: IsSeparator
+  nameWithType: CharExtensions.IsSeparator
+  fullName: CodeJam.Strings.CharExtensions.IsSeparator
+- uid: CodeJam.Strings.CharExtensions.IsSurrogate*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsSurrogate
+  isExternal: false
+  name: IsSurrogate
+  nameWithType: CharExtensions.IsSurrogate
+  fullName: CodeJam.Strings.CharExtensions.IsSurrogate
+- uid: CodeJam.Strings.CharExtensions.IsSymbol*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsSymbol
+  isExternal: false
+  name: IsSymbol
+  nameWithType: CharExtensions.IsSymbol
+  fullName: CodeJam.Strings.CharExtensions.IsSymbol
+- uid: CodeJam.Strings.CharExtensions.IsWhiteSpace*
+  commentId: Overload:CodeJam.Strings.CharExtensions.IsWhiteSpace
+  isExternal: false
+  name: IsWhiteSpace
+  nameWithType: CharExtensions.IsWhiteSpace
+  fullName: CodeJam.Strings.CharExtensions.IsWhiteSpace
+- uid: CodeJam.Strings.CharExtensions.ToLower*
+  commentId: Overload:CodeJam.Strings.CharExtensions.ToLower
+  isExternal: false
+  name: ToLower
+  nameWithType: CharExtensions.ToLower
+  fullName: CodeJam.Strings.CharExtensions.ToLower
+- uid: System.Globalization.CultureInfo
+  commentId: T:System.Globalization.CultureInfo
+  parent: System.Globalization
+  isExternal: true
+  name: CultureInfo
+  nameWithType: CultureInfo
+  fullName: System.Globalization.CultureInfo
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: false
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+- uid: CodeJam.Strings.CharExtensions.ToLowerInvariant*
+  commentId: Overload:CodeJam.Strings.CharExtensions.ToLowerInvariant
+  isExternal: false
+  name: ToLowerInvariant
+  nameWithType: CharExtensions.ToLowerInvariant
+  fullName: CodeJam.Strings.CharExtensions.ToLowerInvariant
+- uid: CodeJam.Strings.CharExtensions.ToUpper*
+  commentId: Overload:CodeJam.Strings.CharExtensions.ToUpper
+  isExternal: false
+  name: ToUpper
+  nameWithType: CharExtensions.ToUpper
+  fullName: CodeJam.Strings.CharExtensions.ToUpper
+- uid: CodeJam.Strings.CharExtensions.ToUpperInvariant*
+  commentId: Overload:CodeJam.Strings.CharExtensions.ToUpperInvariant
+  isExternal: false
+  name: ToUpperInvariant
+  nameWithType: CharExtensions.ToUpperInvariant
+  fullName: CodeJam.Strings.CharExtensions.ToUpperInvariant

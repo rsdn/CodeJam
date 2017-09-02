@@ -1,0 +1,1940 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Collections.DictionaryDuplicate
+  commentId: T:CodeJam.Collections.DictionaryDuplicate
+  id: DictionaryDuplicate
+  parent: CodeJam.Collections
+  children:
+  - CodeJam.Collections.DictionaryDuplicate.FirstWins
+  - CodeJam.Collections.DictionaryDuplicate.LastWins
+  - CodeJam.Collections.DictionaryDuplicate.Throw
+  langs:
+  - csharp
+  - vb
+  name: DictionaryDuplicate
+  nameWithType: DictionaryDuplicate
+  fullName: CodeJam.Collections.DictionaryDuplicate
+  type: Enum
+  source:
+    remote:
+      path: Main/src/Collections/Enumerable/EnumerableExtensions.ToDictionary.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DictionaryDuplicate
+    path: ../Main/src/Collections/Enumerable/EnumerableExtensions.ToDictionary.cs
+    startLine: 11
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nDefines behavior for duplicates in lookup source\n"
+  example: []
+  syntax:
+    content: public enum DictionaryDuplicate
+    content.vb: Public Enum DictionaryDuplicate
+  extensionMethods:
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.IsFlagSet``1(CodeJam.Collections.DictionaryDuplicate)
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.IsAnyFlagUnset``1(CodeJam.Collections.DictionaryDuplicate)
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.IsAnyFlagSet``1(CodeJam.Collections.DictionaryDuplicate)
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.IsFlagUnset``1(CodeJam.Collections.DictionaryDuplicate)
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.SetFlag``1(CodeJam.Collections.DictionaryDuplicate)
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.ClearFlag``1(CodeJam.Collections.DictionaryDuplicate)
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.SetFlag``1(CodeJam.Collections.DictionaryDuplicate,System.Boolean)
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.NullableHelper.AsNullable``1
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.Strings.StringExtensions.ToInvariantString``1
+  - CodeJam.Collections.DictionaryDuplicate.CodeJam.Strings.StringExtensions.ToInvariantString``1(System.String)
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: CodeJam.Collections.DictionaryDuplicate.Throw
+  commentId: F:CodeJam.Collections.DictionaryDuplicate.Throw
+  id: Throw
+  parent: CodeJam.Collections.DictionaryDuplicate
+  langs:
+  - csharp
+  - vb
+  name: Throw
+  nameWithType: DictionaryDuplicate.Throw
+  fullName: CodeJam.Collections.DictionaryDuplicate.Throw
+  type: Field
+  source:
+    remote:
+      path: Main/src/Collections/Enumerable/EnumerableExtensions.ToDictionary.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Throw
+    path: ../Main/src/Collections/Enumerable/EnumerableExtensions.ToDictionary.cs
+    startLine: 14
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: An exception will be thrown.
+  example: []
+  syntax:
+    content: Throw = 0
+    return:
+      type: CodeJam.Collections.DictionaryDuplicate
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.Collections.DictionaryDuplicate.FirstWins
+  commentId: F:CodeJam.Collections.DictionaryDuplicate.FirstWins
+  id: FirstWins
+  parent: CodeJam.Collections.DictionaryDuplicate
+  langs:
+  - csharp
+  - vb
+  name: FirstWins
+  nameWithType: DictionaryDuplicate.FirstWins
+  fullName: CodeJam.Collections.DictionaryDuplicate.FirstWins
+  type: Field
+  source:
+    remote:
+      path: Main/src/Collections/Enumerable/EnumerableExtensions.ToDictionary.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FirstWins
+    path: ../Main/src/Collections/Enumerable/EnumerableExtensions.ToDictionary.cs
+    startLine: 16
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: The first item in lookup wins.
+  example: []
+  syntax:
+    content: FirstWins = 1
+    return:
+      type: CodeJam.Collections.DictionaryDuplicate
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.Collections.DictionaryDuplicate.LastWins
+  commentId: F:CodeJam.Collections.DictionaryDuplicate.LastWins
+  id: LastWins
+  parent: CodeJam.Collections.DictionaryDuplicate
+  langs:
+  - csharp
+  - vb
+  name: LastWins
+  nameWithType: DictionaryDuplicate.LastWins
+  fullName: CodeJam.Collections.DictionaryDuplicate.LastWins
+  type: Field
+  source:
+    remote:
+      path: Main/src/Collections/Enumerable/EnumerableExtensions.ToDictionary.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: LastWins
+    path: ../Main/src/Collections/Enumerable/EnumerableExtensions.ToDictionary.cs
+    startLine: 18
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: The last item in lookup wins.
+  example: []
+  syntax:
+    content: LastWins = 2
+    return:
+      type: CodeJam.Collections.DictionaryDuplicate
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: CodeJam.Collections
+  commentId: N:CodeJam.Collections
+  isExternal: false
+  name: CodeJam.Collections
+  nameWithType: CodeJam.Collections
+  fullName: CodeJam.Collections
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.IsFlagSet``1(CodeJam.Collections.DictionaryDuplicate)
+  commentId: M:CodeJam.EnumHelper.IsFlagSet``1(``0,``0)
+  parent: CodeJam.EnumHelper
+  definition: CodeJam.EnumHelper.IsFlagSet``1(``0,``0)
+  name: IsFlagSet<DictionaryDuplicate>(DictionaryDuplicate)
+  nameWithType: EnumHelper.IsFlagSet<DictionaryDuplicate>(DictionaryDuplicate)
+  fullName: CodeJam.EnumHelper.IsFlagSet<CodeJam.Collections.DictionaryDuplicate>(CodeJam.Collections.DictionaryDuplicate)
+  nameWithType.vb: EnumHelper.IsFlagSet(Of DictionaryDuplicate)(DictionaryDuplicate)
+  fullName.vb: CodeJam.EnumHelper.IsFlagSet(Of CodeJam.Collections.DictionaryDuplicate)(CodeJam.Collections.DictionaryDuplicate)
+  name.vb: IsFlagSet(Of DictionaryDuplicate)(DictionaryDuplicate)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.IsFlagSet``1(``0)
+    name: IsFlagSet<DictionaryDuplicate>
+    nameWithType: EnumHelper.IsFlagSet<DictionaryDuplicate>
+    fullName: CodeJam.EnumHelper.IsFlagSet<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.IsFlagSet``1(``0)
+    name: IsFlagSet(Of DictionaryDuplicate)
+    nameWithType: EnumHelper.IsFlagSet(Of DictionaryDuplicate)
+    fullName: CodeJam.EnumHelper.IsFlagSet(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.IsAnyFlagUnset``1(CodeJam.Collections.DictionaryDuplicate)
+  commentId: M:CodeJam.EnumHelper.IsAnyFlagUnset``1(``0,``0)
+  parent: CodeJam.EnumHelper
+  definition: CodeJam.EnumHelper.IsAnyFlagUnset``1(``0,``0)
+  name: IsAnyFlagUnset<DictionaryDuplicate>(DictionaryDuplicate)
+  nameWithType: EnumHelper.IsAnyFlagUnset<DictionaryDuplicate>(DictionaryDuplicate)
+  fullName: CodeJam.EnumHelper.IsAnyFlagUnset<CodeJam.Collections.DictionaryDuplicate>(CodeJam.Collections.DictionaryDuplicate)
+  nameWithType.vb: EnumHelper.IsAnyFlagUnset(Of DictionaryDuplicate)(DictionaryDuplicate)
+  fullName.vb: CodeJam.EnumHelper.IsAnyFlagUnset(Of CodeJam.Collections.DictionaryDuplicate)(CodeJam.Collections.DictionaryDuplicate)
+  name.vb: IsAnyFlagUnset(Of DictionaryDuplicate)(DictionaryDuplicate)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.IsAnyFlagUnset``1(``0)
+    name: IsAnyFlagUnset<DictionaryDuplicate>
+    nameWithType: EnumHelper.IsAnyFlagUnset<DictionaryDuplicate>
+    fullName: CodeJam.EnumHelper.IsAnyFlagUnset<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.IsAnyFlagUnset``1(``0)
+    name: IsAnyFlagUnset(Of DictionaryDuplicate)
+    nameWithType: EnumHelper.IsAnyFlagUnset(Of DictionaryDuplicate)
+    fullName: CodeJam.EnumHelper.IsAnyFlagUnset(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.IsAnyFlagSet``1(CodeJam.Collections.DictionaryDuplicate)
+  commentId: M:CodeJam.EnumHelper.IsAnyFlagSet``1(``0,``0)
+  parent: CodeJam.EnumHelper
+  definition: CodeJam.EnumHelper.IsAnyFlagSet``1(``0,``0)
+  name: IsAnyFlagSet<DictionaryDuplicate>(DictionaryDuplicate)
+  nameWithType: EnumHelper.IsAnyFlagSet<DictionaryDuplicate>(DictionaryDuplicate)
+  fullName: CodeJam.EnumHelper.IsAnyFlagSet<CodeJam.Collections.DictionaryDuplicate>(CodeJam.Collections.DictionaryDuplicate)
+  nameWithType.vb: EnumHelper.IsAnyFlagSet(Of DictionaryDuplicate)(DictionaryDuplicate)
+  fullName.vb: CodeJam.EnumHelper.IsAnyFlagSet(Of CodeJam.Collections.DictionaryDuplicate)(CodeJam.Collections.DictionaryDuplicate)
+  name.vb: IsAnyFlagSet(Of DictionaryDuplicate)(DictionaryDuplicate)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.IsAnyFlagSet``1(``0)
+    name: IsAnyFlagSet<DictionaryDuplicate>
+    nameWithType: EnumHelper.IsAnyFlagSet<DictionaryDuplicate>
+    fullName: CodeJam.EnumHelper.IsAnyFlagSet<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.IsAnyFlagSet``1(``0)
+    name: IsAnyFlagSet(Of DictionaryDuplicate)
+    nameWithType: EnumHelper.IsAnyFlagSet(Of DictionaryDuplicate)
+    fullName: CodeJam.EnumHelper.IsAnyFlagSet(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.IsFlagUnset``1(CodeJam.Collections.DictionaryDuplicate)
+  commentId: M:CodeJam.EnumHelper.IsFlagUnset``1(``0,``0)
+  parent: CodeJam.EnumHelper
+  definition: CodeJam.EnumHelper.IsFlagUnset``1(``0,``0)
+  name: IsFlagUnset<DictionaryDuplicate>(DictionaryDuplicate)
+  nameWithType: EnumHelper.IsFlagUnset<DictionaryDuplicate>(DictionaryDuplicate)
+  fullName: CodeJam.EnumHelper.IsFlagUnset<CodeJam.Collections.DictionaryDuplicate>(CodeJam.Collections.DictionaryDuplicate)
+  nameWithType.vb: EnumHelper.IsFlagUnset(Of DictionaryDuplicate)(DictionaryDuplicate)
+  fullName.vb: CodeJam.EnumHelper.IsFlagUnset(Of CodeJam.Collections.DictionaryDuplicate)(CodeJam.Collections.DictionaryDuplicate)
+  name.vb: IsFlagUnset(Of DictionaryDuplicate)(DictionaryDuplicate)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.IsFlagUnset``1(``0)
+    name: IsFlagUnset<DictionaryDuplicate>
+    nameWithType: EnumHelper.IsFlagUnset<DictionaryDuplicate>
+    fullName: CodeJam.EnumHelper.IsFlagUnset<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.IsFlagUnset``1(``0)
+    name: IsFlagUnset(Of DictionaryDuplicate)
+    nameWithType: EnumHelper.IsFlagUnset(Of DictionaryDuplicate)
+    fullName: CodeJam.EnumHelper.IsFlagUnset(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.SetFlag``1(CodeJam.Collections.DictionaryDuplicate)
+  commentId: M:CodeJam.EnumHelper.SetFlag``1(``0,``0)
+  parent: CodeJam.EnumHelper
+  definition: CodeJam.EnumHelper.SetFlag``1(``0,``0)
+  name: SetFlag<DictionaryDuplicate>(DictionaryDuplicate)
+  nameWithType: EnumHelper.SetFlag<DictionaryDuplicate>(DictionaryDuplicate)
+  fullName: CodeJam.EnumHelper.SetFlag<CodeJam.Collections.DictionaryDuplicate>(CodeJam.Collections.DictionaryDuplicate)
+  nameWithType.vb: EnumHelper.SetFlag(Of DictionaryDuplicate)(DictionaryDuplicate)
+  fullName.vb: CodeJam.EnumHelper.SetFlag(Of CodeJam.Collections.DictionaryDuplicate)(CodeJam.Collections.DictionaryDuplicate)
+  name.vb: SetFlag(Of DictionaryDuplicate)(DictionaryDuplicate)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.SetFlag``1(``0)
+    name: SetFlag<DictionaryDuplicate>
+    nameWithType: EnumHelper.SetFlag<DictionaryDuplicate>
+    fullName: CodeJam.EnumHelper.SetFlag<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.SetFlag``1(``0)
+    name: SetFlag(Of DictionaryDuplicate)
+    nameWithType: EnumHelper.SetFlag(Of DictionaryDuplicate)
+    fullName: CodeJam.EnumHelper.SetFlag(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.ClearFlag``1(CodeJam.Collections.DictionaryDuplicate)
+  commentId: M:CodeJam.EnumHelper.ClearFlag``1(``0,``0)
+  parent: CodeJam.EnumHelper
+  definition: CodeJam.EnumHelper.ClearFlag``1(``0,``0)
+  name: ClearFlag<DictionaryDuplicate>(DictionaryDuplicate)
+  nameWithType: EnumHelper.ClearFlag<DictionaryDuplicate>(DictionaryDuplicate)
+  fullName: CodeJam.EnumHelper.ClearFlag<CodeJam.Collections.DictionaryDuplicate>(CodeJam.Collections.DictionaryDuplicate)
+  nameWithType.vb: EnumHelper.ClearFlag(Of DictionaryDuplicate)(DictionaryDuplicate)
+  fullName.vb: CodeJam.EnumHelper.ClearFlag(Of CodeJam.Collections.DictionaryDuplicate)(CodeJam.Collections.DictionaryDuplicate)
+  name.vb: ClearFlag(Of DictionaryDuplicate)(DictionaryDuplicate)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.ClearFlag``1(``0)
+    name: ClearFlag<DictionaryDuplicate>
+    nameWithType: EnumHelper.ClearFlag<DictionaryDuplicate>
+    fullName: CodeJam.EnumHelper.ClearFlag<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.ClearFlag``1(``0)
+    name: ClearFlag(Of DictionaryDuplicate)
+    nameWithType: EnumHelper.ClearFlag(Of DictionaryDuplicate)
+    fullName: CodeJam.EnumHelper.ClearFlag(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.EnumHelper.SetFlag``1(CodeJam.Collections.DictionaryDuplicate,System.Boolean)
+  commentId: M:CodeJam.EnumHelper.SetFlag``1(``0,``0,System.Boolean)
+  parent: CodeJam.EnumHelper
+  definition: CodeJam.EnumHelper.SetFlag``1(``0,``0,System.Boolean)
+  name: SetFlag<DictionaryDuplicate>(DictionaryDuplicate, Boolean)
+  nameWithType: EnumHelper.SetFlag<DictionaryDuplicate>(DictionaryDuplicate, Boolean)
+  fullName: CodeJam.EnumHelper.SetFlag<CodeJam.Collections.DictionaryDuplicate>(CodeJam.Collections.DictionaryDuplicate, System.Boolean)
+  nameWithType.vb: EnumHelper.SetFlag(Of DictionaryDuplicate)(DictionaryDuplicate, Boolean)
+  fullName.vb: CodeJam.EnumHelper.SetFlag(Of CodeJam.Collections.DictionaryDuplicate)(CodeJam.Collections.DictionaryDuplicate, System.Boolean)
+  name.vb: SetFlag(Of DictionaryDuplicate)(DictionaryDuplicate, Boolean)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.SetFlag``1(``0,System.Boolean)
+    name: SetFlag<DictionaryDuplicate>
+    nameWithType: EnumHelper.SetFlag<DictionaryDuplicate>
+    fullName: CodeJam.EnumHelper.SetFlag<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.SetFlag``1(``0,System.Boolean)
+    name: SetFlag(Of DictionaryDuplicate)
+    nameWithType: EnumHelper.SetFlag(Of DictionaryDuplicate)
+    fullName: CodeJam.EnumHelper.SetFlag(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Collections.DictionaryDuplicate
+    name: DictionaryDuplicate
+    nameWithType: DictionaryDuplicate
+    fullName: CodeJam.Collections.DictionaryDuplicate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.NullableHelper.AsNullable``1
+  commentId: M:CodeJam.NullableHelper.AsNullable``1(``0)
+  parent: CodeJam.NullableHelper
+  definition: CodeJam.NullableHelper.AsNullable``1(``0)
+  name: AsNullable<DictionaryDuplicate>()
+  nameWithType: NullableHelper.AsNullable<DictionaryDuplicate>()
+  fullName: CodeJam.NullableHelper.AsNullable<CodeJam.Collections.DictionaryDuplicate>()
+  nameWithType.vb: NullableHelper.AsNullable(Of DictionaryDuplicate)()
+  fullName.vb: CodeJam.NullableHelper.AsNullable(Of CodeJam.Collections.DictionaryDuplicate)()
+  name.vb: AsNullable(Of DictionaryDuplicate)()
+  spec.csharp:
+  - uid: CodeJam.NullableHelper.AsNullable``1
+    name: AsNullable<DictionaryDuplicate>
+    nameWithType: NullableHelper.AsNullable<DictionaryDuplicate>
+    fullName: CodeJam.NullableHelper.AsNullable<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.NullableHelper.AsNullable``1
+    name: AsNullable(Of DictionaryDuplicate)
+    nameWithType: NullableHelper.AsNullable(Of DictionaryDuplicate)
+    fullName: CodeJam.NullableHelper.AsNullable(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  name: Contains<T, DictionaryDuplicate>(Range<T>)
+  nameWithType: RangeExtensions.Contains<T, DictionaryDuplicate>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Collections.DictionaryDuplicate>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, DictionaryDuplicate)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Collections.DictionaryDuplicate)(CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, DictionaryDuplicate)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains<T, DictionaryDuplicate>
+    nameWithType: RangeExtensions.Contains<T, DictionaryDuplicate>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, DictionaryDuplicate)
+    nameWithType: RangeExtensions.Contains(Of T, DictionaryDuplicate)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  name: StartsAfter<T, DictionaryDuplicate>(Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, DictionaryDuplicate>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Collections.DictionaryDuplicate>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, DictionaryDuplicate)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Collections.DictionaryDuplicate)(CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, DictionaryDuplicate)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, DictionaryDuplicate>
+    nameWithType: RangeExtensions.StartsAfter<T, DictionaryDuplicate>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, DictionaryDuplicate)
+    nameWithType: RangeExtensions.StartsAfter(Of T, DictionaryDuplicate)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{{T}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  name: EndsBefore<T, DictionaryDuplicate>(Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, DictionaryDuplicate>(Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Collections.DictionaryDuplicate>(CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, DictionaryDuplicate)(Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Collections.DictionaryDuplicate)(CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, DictionaryDuplicate)(Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, DictionaryDuplicate>
+    nameWithType: RangeExtensions.EndsBefore<T, DictionaryDuplicate>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, DictionaryDuplicate)
+    nameWithType: RangeExtensions.EndsBefore(Of T, DictionaryDuplicate)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: Contains<T, TKey, DictionaryDuplicate>(Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, DictionaryDuplicate>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Collections.DictionaryDuplicate>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, DictionaryDuplicate)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Collections.DictionaryDuplicate)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, DictionaryDuplicate)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, DictionaryDuplicate>
+    nameWithType: RangeExtensions.Contains<T, TKey, DictionaryDuplicate>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, DictionaryDuplicate)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, DictionaryDuplicate)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: StartsAfter<T, TKey, DictionaryDuplicate>(Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, DictionaryDuplicate>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Collections.DictionaryDuplicate>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, DictionaryDuplicate)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Collections.DictionaryDuplicate)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, DictionaryDuplicate)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, DictionaryDuplicate>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, DictionaryDuplicate>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, DictionaryDuplicate)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, DictionaryDuplicate)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{{T},{TKey}})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  parent: CodeJam.Ranges.RangeExtensions
+  definition: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  name: EndsBefore<T, TKey, DictionaryDuplicate>(Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, DictionaryDuplicate>(Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Collections.DictionaryDuplicate>(CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, DictionaryDuplicate)(Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Collections.DictionaryDuplicate)(CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, DictionaryDuplicate)(Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, DictionaryDuplicate>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, DictionaryDuplicate>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, DictionaryDuplicate)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, DictionaryDuplicate)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.Strings.StringExtensions.ToInvariantString``1
+  commentId: M:CodeJam.Strings.StringExtensions.ToInvariantString``1(``0)
+  parent: CodeJam.Strings.StringExtensions
+  definition: CodeJam.Strings.StringExtensions.ToInvariantString``1(``0)
+  name: ToInvariantString<DictionaryDuplicate>()
+  nameWithType: StringExtensions.ToInvariantString<DictionaryDuplicate>()
+  fullName: CodeJam.Strings.StringExtensions.ToInvariantString<CodeJam.Collections.DictionaryDuplicate>()
+  nameWithType.vb: StringExtensions.ToInvariantString(Of DictionaryDuplicate)()
+  fullName.vb: CodeJam.Strings.StringExtensions.ToInvariantString(Of CodeJam.Collections.DictionaryDuplicate)()
+  name.vb: ToInvariantString(Of DictionaryDuplicate)()
+  spec.csharp:
+  - uid: CodeJam.Strings.StringExtensions.ToInvariantString``1
+    name: ToInvariantString<DictionaryDuplicate>
+    nameWithType: StringExtensions.ToInvariantString<DictionaryDuplicate>
+    fullName: CodeJam.Strings.StringExtensions.ToInvariantString<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Strings.StringExtensions.ToInvariantString``1
+    name: ToInvariantString(Of DictionaryDuplicate)
+    nameWithType: StringExtensions.ToInvariantString(Of DictionaryDuplicate)
+    fullName: CodeJam.Strings.StringExtensions.ToInvariantString(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.DictionaryDuplicate.CodeJam.Strings.StringExtensions.ToInvariantString``1(System.String)
+  commentId: M:CodeJam.Strings.StringExtensions.ToInvariantString``1(``0,System.String)
+  parent: CodeJam.Strings.StringExtensions
+  definition: CodeJam.Strings.StringExtensions.ToInvariantString``1(``0,System.String)
+  name: ToInvariantString<DictionaryDuplicate>(String)
+  nameWithType: StringExtensions.ToInvariantString<DictionaryDuplicate>(String)
+  fullName: CodeJam.Strings.StringExtensions.ToInvariantString<CodeJam.Collections.DictionaryDuplicate>(System.String)
+  nameWithType.vb: StringExtensions.ToInvariantString(Of DictionaryDuplicate)(String)
+  fullName.vb: CodeJam.Strings.StringExtensions.ToInvariantString(Of CodeJam.Collections.DictionaryDuplicate)(System.String)
+  name.vb: ToInvariantString(Of DictionaryDuplicate)(String)
+  spec.csharp:
+  - uid: CodeJam.Strings.StringExtensions.ToInvariantString``1(System.String)
+    name: ToInvariantString<DictionaryDuplicate>
+    nameWithType: StringExtensions.ToInvariantString<DictionaryDuplicate>
+    fullName: CodeJam.Strings.StringExtensions.ToInvariantString<CodeJam.Collections.DictionaryDuplicate>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Strings.StringExtensions.ToInvariantString``1(System.String)
+    name: ToInvariantString(Of DictionaryDuplicate)
+    nameWithType: StringExtensions.ToInvariantString(Of DictionaryDuplicate)
+    fullName: CodeJam.Strings.StringExtensions.ToInvariantString(Of CodeJam.Collections.DictionaryDuplicate)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.EnumHelper.IsFlagSet``1(``0,``0)
+  commentId: M:CodeJam.EnumHelper.IsFlagSet``1(``0,``0)
+  isExternal: false
+  name: IsFlagSet<TEnum>(TEnum, TEnum)
+  nameWithType: EnumHelper.IsFlagSet<TEnum>(TEnum, TEnum)
+  fullName: CodeJam.EnumHelper.IsFlagSet<TEnum>(TEnum, TEnum)
+  nameWithType.vb: EnumHelper.IsFlagSet(Of TEnum)(TEnum, TEnum)
+  fullName.vb: CodeJam.EnumHelper.IsFlagSet(Of TEnum)(TEnum, TEnum)
+  name.vb: IsFlagSet(Of TEnum)(TEnum, TEnum)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.IsFlagSet``1(``0,``0)
+    name: IsFlagSet<TEnum>
+    nameWithType: EnumHelper.IsFlagSet<TEnum>
+    fullName: CodeJam.EnumHelper.IsFlagSet<TEnum>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.IsFlagSet``1(``0,``0)
+    name: IsFlagSet(Of TEnum)
+    nameWithType: EnumHelper.IsFlagSet(Of TEnum)
+    fullName: CodeJam.EnumHelper.IsFlagSet(Of TEnum)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.EnumHelper
+  commentId: T:CodeJam.EnumHelper
+  parent: CodeJam
+  isExternal: false
+  name: EnumHelper
+  nameWithType: EnumHelper
+  fullName: CodeJam.EnumHelper
+- uid: CodeJam.EnumHelper.IsAnyFlagUnset``1(``0,``0)
+  commentId: M:CodeJam.EnumHelper.IsAnyFlagUnset``1(``0,``0)
+  isExternal: false
+  name: IsAnyFlagUnset<TEnum>(TEnum, TEnum)
+  nameWithType: EnumHelper.IsAnyFlagUnset<TEnum>(TEnum, TEnum)
+  fullName: CodeJam.EnumHelper.IsAnyFlagUnset<TEnum>(TEnum, TEnum)
+  nameWithType.vb: EnumHelper.IsAnyFlagUnset(Of TEnum)(TEnum, TEnum)
+  fullName.vb: CodeJam.EnumHelper.IsAnyFlagUnset(Of TEnum)(TEnum, TEnum)
+  name.vb: IsAnyFlagUnset(Of TEnum)(TEnum, TEnum)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.IsAnyFlagUnset``1(``0,``0)
+    name: IsAnyFlagUnset<TEnum>
+    nameWithType: EnumHelper.IsAnyFlagUnset<TEnum>
+    fullName: CodeJam.EnumHelper.IsAnyFlagUnset<TEnum>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.IsAnyFlagUnset``1(``0,``0)
+    name: IsAnyFlagUnset(Of TEnum)
+    nameWithType: EnumHelper.IsAnyFlagUnset(Of TEnum)
+    fullName: CodeJam.EnumHelper.IsAnyFlagUnset(Of TEnum)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.EnumHelper.IsAnyFlagSet``1(``0,``0)
+  commentId: M:CodeJam.EnumHelper.IsAnyFlagSet``1(``0,``0)
+  isExternal: false
+  name: IsAnyFlagSet<TEnum>(TEnum, TEnum)
+  nameWithType: EnumHelper.IsAnyFlagSet<TEnum>(TEnum, TEnum)
+  fullName: CodeJam.EnumHelper.IsAnyFlagSet<TEnum>(TEnum, TEnum)
+  nameWithType.vb: EnumHelper.IsAnyFlagSet(Of TEnum)(TEnum, TEnum)
+  fullName.vb: CodeJam.EnumHelper.IsAnyFlagSet(Of TEnum)(TEnum, TEnum)
+  name.vb: IsAnyFlagSet(Of TEnum)(TEnum, TEnum)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.IsAnyFlagSet``1(``0,``0)
+    name: IsAnyFlagSet<TEnum>
+    nameWithType: EnumHelper.IsAnyFlagSet<TEnum>
+    fullName: CodeJam.EnumHelper.IsAnyFlagSet<TEnum>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.IsAnyFlagSet``1(``0,``0)
+    name: IsAnyFlagSet(Of TEnum)
+    nameWithType: EnumHelper.IsAnyFlagSet(Of TEnum)
+    fullName: CodeJam.EnumHelper.IsAnyFlagSet(Of TEnum)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.EnumHelper.IsFlagUnset``1(``0,``0)
+  commentId: M:CodeJam.EnumHelper.IsFlagUnset``1(``0,``0)
+  isExternal: false
+  name: IsFlagUnset<TEnum>(TEnum, TEnum)
+  nameWithType: EnumHelper.IsFlagUnset<TEnum>(TEnum, TEnum)
+  fullName: CodeJam.EnumHelper.IsFlagUnset<TEnum>(TEnum, TEnum)
+  nameWithType.vb: EnumHelper.IsFlagUnset(Of TEnum)(TEnum, TEnum)
+  fullName.vb: CodeJam.EnumHelper.IsFlagUnset(Of TEnum)(TEnum, TEnum)
+  name.vb: IsFlagUnset(Of TEnum)(TEnum, TEnum)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.IsFlagUnset``1(``0,``0)
+    name: IsFlagUnset<TEnum>
+    nameWithType: EnumHelper.IsFlagUnset<TEnum>
+    fullName: CodeJam.EnumHelper.IsFlagUnset<TEnum>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.IsFlagUnset``1(``0,``0)
+    name: IsFlagUnset(Of TEnum)
+    nameWithType: EnumHelper.IsFlagUnset(Of TEnum)
+    fullName: CodeJam.EnumHelper.IsFlagUnset(Of TEnum)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.EnumHelper.SetFlag``1(``0,``0)
+  commentId: M:CodeJam.EnumHelper.SetFlag``1(``0,``0)
+  isExternal: false
+  name: SetFlag<TEnum>(TEnum, TEnum)
+  nameWithType: EnumHelper.SetFlag<TEnum>(TEnum, TEnum)
+  fullName: CodeJam.EnumHelper.SetFlag<TEnum>(TEnum, TEnum)
+  nameWithType.vb: EnumHelper.SetFlag(Of TEnum)(TEnum, TEnum)
+  fullName.vb: CodeJam.EnumHelper.SetFlag(Of TEnum)(TEnum, TEnum)
+  name.vb: SetFlag(Of TEnum)(TEnum, TEnum)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.SetFlag``1(``0,``0)
+    name: SetFlag<TEnum>
+    nameWithType: EnumHelper.SetFlag<TEnum>
+    fullName: CodeJam.EnumHelper.SetFlag<TEnum>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.SetFlag``1(``0,``0)
+    name: SetFlag(Of TEnum)
+    nameWithType: EnumHelper.SetFlag(Of TEnum)
+    fullName: CodeJam.EnumHelper.SetFlag(Of TEnum)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.EnumHelper.ClearFlag``1(``0,``0)
+  commentId: M:CodeJam.EnumHelper.ClearFlag``1(``0,``0)
+  isExternal: false
+  name: ClearFlag<TEnum>(TEnum, TEnum)
+  nameWithType: EnumHelper.ClearFlag<TEnum>(TEnum, TEnum)
+  fullName: CodeJam.EnumHelper.ClearFlag<TEnum>(TEnum, TEnum)
+  nameWithType.vb: EnumHelper.ClearFlag(Of TEnum)(TEnum, TEnum)
+  fullName.vb: CodeJam.EnumHelper.ClearFlag(Of TEnum)(TEnum, TEnum)
+  name.vb: ClearFlag(Of TEnum)(TEnum, TEnum)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.ClearFlag``1(``0,``0)
+    name: ClearFlag<TEnum>
+    nameWithType: EnumHelper.ClearFlag<TEnum>
+    fullName: CodeJam.EnumHelper.ClearFlag<TEnum>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.ClearFlag``1(``0,``0)
+    name: ClearFlag(Of TEnum)
+    nameWithType: EnumHelper.ClearFlag(Of TEnum)
+    fullName: CodeJam.EnumHelper.ClearFlag(Of TEnum)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.EnumHelper.SetFlag``1(``0,``0,System.Boolean)
+  commentId: M:CodeJam.EnumHelper.SetFlag``1(``0,``0,System.Boolean)
+  isExternal: true
+  name: SetFlag<TEnum>(TEnum, TEnum, Boolean)
+  nameWithType: EnumHelper.SetFlag<TEnum>(TEnum, TEnum, Boolean)
+  fullName: CodeJam.EnumHelper.SetFlag<TEnum>(TEnum, TEnum, System.Boolean)
+  nameWithType.vb: EnumHelper.SetFlag(Of TEnum)(TEnum, TEnum, Boolean)
+  fullName.vb: CodeJam.EnumHelper.SetFlag(Of TEnum)(TEnum, TEnum, System.Boolean)
+  name.vb: SetFlag(Of TEnum)(TEnum, TEnum, Boolean)
+  spec.csharp:
+  - uid: CodeJam.EnumHelper.SetFlag``1(``0,``0,System.Boolean)
+    name: SetFlag<TEnum>
+    nameWithType: EnumHelper.SetFlag<TEnum>
+    fullName: CodeJam.EnumHelper.SetFlag<TEnum>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.EnumHelper.SetFlag``1(``0,``0,System.Boolean)
+    name: SetFlag(Of TEnum)
+    nameWithType: EnumHelper.SetFlag(Of TEnum)
+    fullName: CodeJam.EnumHelper.SetFlag(Of TEnum)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TEnum
+    nameWithType: TEnum
+    fullName: TEnum
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.NullableHelper.AsNullable``1(``0)
+  commentId: M:CodeJam.NullableHelper.AsNullable``1(``0)
+  isExternal: false
+  name: AsNullable<T>(T)
+  nameWithType: NullableHelper.AsNullable<T>(T)
+  fullName: CodeJam.NullableHelper.AsNullable<T>(T)
+  nameWithType.vb: NullableHelper.AsNullable(Of T)(T)
+  fullName.vb: CodeJam.NullableHelper.AsNullable(Of T)(T)
+  name.vb: AsNullable(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.NullableHelper.AsNullable``1(``0)
+    name: AsNullable<T>
+    nameWithType: NullableHelper.AsNullable<T>
+    fullName: CodeJam.NullableHelper.AsNullable<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.NullableHelper.AsNullable``1(``0)
+    name: AsNullable(Of T)
+    nameWithType: NullableHelper.AsNullable(Of T)
+    fullName: CodeJam.NullableHelper.AsNullable(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.NullableHelper
+  commentId: T:CodeJam.NullableHelper
+  parent: CodeJam
+  isExternal: false
+  name: NullableHelper
+  nameWithType: NullableHelper
+  fullName: CodeJam.NullableHelper
+- uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: Contains<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.Contains<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: Contains(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains<T, TRange>
+    nameWithType: RangeExtensions.Contains<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``2(``1,CodeJam.Ranges.Range{``0})
+    name: Contains(Of T, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions
+  commentId: T:CodeJam.Ranges.RangeExtensions
+  parent: CodeJam.Ranges
+  isExternal: false
+  name: RangeExtensions
+  nameWithType: RangeExtensions
+  fullName: CodeJam.Ranges.RangeExtensions
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: StartsAfter<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.StartsAfter<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: StartsAfter(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter<T, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``2(``1,CodeJam.Ranges.Range{``0})
+    name: StartsAfter(Of T, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+  isExternal: false
+  name: EndsBefore<T, TRange>(TRange, Range<T>)
+  nameWithType: RangeExtensions.EndsBefore<T, TRange>(TRange, Range<T>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>(TRange, CodeJam.Ranges.Range<T>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)(TRange, CodeJam.Ranges.Range(Of T))
+  name.vb: EndsBefore(Of T, TRange)(TRange, Range(Of T))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore<T, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``2(``1,CodeJam.Ranges.Range{``0})
+    name: EndsBefore(Of T, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`1
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.Contains<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: Contains(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains<T, TKey, TRange>
+    nameWithType: RangeExtensions.Contains<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.Contains<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.Contains``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: Contains(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.Contains(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.Contains(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: StartsAfter(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter<T, TKey, TRange>
+    nameWithType: RangeExtensions.StartsAfter<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.StartsAfter``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: StartsAfter(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.StartsAfter(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.StartsAfter(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  commentId: M:CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+  isExternal: false
+  name: EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, Range<T, TKey>)
+  fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>(TRange, CodeJam.Ranges.Range<T, TKey>)
+  nameWithType.vb: RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  fullName.vb: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)(TRange, CodeJam.Ranges.Range(Of T, TKey))
+  name.vb: EndsBefore(Of T, TKey, TRange)(TRange, Range(Of T, TKey))
+  spec.csharp:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore<T, TKey, TRange>
+    nameWithType: RangeExtensions.EndsBefore<T, TKey, TRange>
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore<T, TKey, TRange>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Ranges.RangeExtensions.EndsBefore``3(``2,CodeJam.Ranges.Range{``0,``1})
+    name: EndsBefore(Of T, TKey, TRange)
+    nameWithType: RangeExtensions.EndsBefore(Of T, TKey, TRange)
+    fullName: CodeJam.Ranges.RangeExtensions.EndsBefore(Of T, TKey, TRange)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TRange
+    nameWithType: TRange
+    fullName: TRange
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Ranges.Range`2
+    name: Range
+    nameWithType: Range
+    fullName: CodeJam.Ranges.Range
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Strings.StringExtensions.ToInvariantString``1(``0)
+  commentId: M:CodeJam.Strings.StringExtensions.ToInvariantString``1(``0)
+  isExternal: false
+  name: ToInvariantString<T>(T)
+  nameWithType: StringExtensions.ToInvariantString<T>(T)
+  fullName: CodeJam.Strings.StringExtensions.ToInvariantString<T>(T)
+  nameWithType.vb: StringExtensions.ToInvariantString(Of T)(T)
+  fullName.vb: CodeJam.Strings.StringExtensions.ToInvariantString(Of T)(T)
+  name.vb: ToInvariantString(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Strings.StringExtensions.ToInvariantString``1(``0)
+    name: ToInvariantString<T>
+    nameWithType: StringExtensions.ToInvariantString<T>
+    fullName: CodeJam.Strings.StringExtensions.ToInvariantString<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Strings.StringExtensions.ToInvariantString``1(``0)
+    name: ToInvariantString(Of T)
+    nameWithType: StringExtensions.ToInvariantString(Of T)
+    fullName: CodeJam.Strings.StringExtensions.ToInvariantString(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Strings.StringExtensions
+  commentId: T:CodeJam.Strings.StringExtensions
+  parent: CodeJam.Strings
+  isExternal: false
+  name: StringExtensions
+  nameWithType: StringExtensions
+  fullName: CodeJam.Strings.StringExtensions
+- uid: CodeJam.Strings.StringExtensions.ToInvariantString``1(``0,System.String)
+  commentId: M:CodeJam.Strings.StringExtensions.ToInvariantString``1(``0,System.String)
+  isExternal: true
+  name: ToInvariantString<T>(T, String)
+  nameWithType: StringExtensions.ToInvariantString<T>(T, String)
+  fullName: CodeJam.Strings.StringExtensions.ToInvariantString<T>(T, System.String)
+  nameWithType.vb: StringExtensions.ToInvariantString(Of T)(T, String)
+  fullName.vb: CodeJam.Strings.StringExtensions.ToInvariantString(Of T)(T, System.String)
+  name.vb: ToInvariantString(Of T)(T, String)
+  spec.csharp:
+  - uid: CodeJam.Strings.StringExtensions.ToInvariantString``1(``0,System.String)
+    name: ToInvariantString<T>
+    nameWithType: StringExtensions.ToInvariantString<T>
+    fullName: CodeJam.Strings.StringExtensions.ToInvariantString<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Strings.StringExtensions.ToInvariantString``1(``0,System.String)
+    name: ToInvariantString(Of T)
+    nameWithType: StringExtensions.ToInvariantString(Of T)
+    fullName: CodeJam.Strings.StringExtensions.ToInvariantString(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: CodeJam.Ranges
+  commentId: N:CodeJam.Ranges
+  isExternal: false
+  name: CodeJam.Ranges
+  nameWithType: CodeJam.Ranges
+  fullName: CodeJam.Ranges
+- uid: CodeJam.Strings
+  commentId: N:CodeJam.Strings
+  isExternal: false
+  name: CodeJam.Strings
+  nameWithType: CodeJam.Strings
+  fullName: CodeJam.Strings
+- uid: CodeJam.Collections.DictionaryDuplicate
+  commentId: T:CodeJam.Collections.DictionaryDuplicate
+  parent: CodeJam.Collections
+  isExternal: false
+  name: DictionaryDuplicate
+  nameWithType: DictionaryDuplicate
+  fullName: CodeJam.Collections.DictionaryDuplicate

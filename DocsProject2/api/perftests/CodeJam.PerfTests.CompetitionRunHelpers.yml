@@ -1,0 +1,670 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.CompetitionRunHelpers
+  commentId: T:CodeJam.PerfTests.CompetitionRunHelpers
+  id: CompetitionRunHelpers
+  parent: CodeJam.PerfTests
+  children:
+  - CodeJam.PerfTests.CompetitionRunHelpers.BurstModeLoopCount
+  - CodeJam.PerfTests.CompetitionRunHelpers.Delay(System.Int32)
+  - CodeJam.PerfTests.CompetitionRunHelpers.SizeOfEmptyObject
+  - CodeJam.PerfTests.CompetitionRunHelpers.SizeOfObjectHeader
+  - CodeJam.PerfTests.CompetitionRunHelpers.SizeOfReferenceTypeSzArrayHeader
+  - CodeJam.PerfTests.CompetitionRunHelpers.SizeOfStringHeader
+  - CodeJam.PerfTests.CompetitionRunHelpers.SizeOfSzArrayHeader
+  - CodeJam.PerfTests.CompetitionRunHelpers.SmallLoopCount
+  langs:
+  - csharp
+  - vb
+  name: CompetitionRunHelpers
+  nameWithType: CompetitionRunHelpers
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CompetitionRunHelpers
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 10
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: "\nReusable API for code  that used during perftest run.\n"
+  example: []
+  syntax:
+    content: public static class CompetitionRunHelpers
+    content.vb: Public Module CompetitionRunHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.BurstModeLoopCount
+  commentId: F:CodeJam.PerfTests.CompetitionRunHelpers.BurstModeLoopCount
+  id: BurstModeLoopCount
+  parent: CodeJam.PerfTests.CompetitionRunHelpers
+  langs:
+  - csharp
+  - vb
+  name: BurstModeLoopCount
+  nameWithType: CompetitionRunHelpers.BurstModeLoopCount
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.BurstModeLoopCount
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BurstModeLoopCount
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 19
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: "\nEmpirically found constant loop count that provides accurate results\nfor <xref href=\"CodeJam.PerfTests.WellKnownMetrics.RelativeTime\" data-throw-if-not-resolved=\"false\"></xref> metric on different hardware.\nEquals to 16384;\nBest if used together with <xref href=\"CodeJam.PerfTests.Configs.ICompetitionFeatures.BurstMode\" data-throw-if-not-resolved=\"false\"></xref>=<code>true</code> (<xref href=\"CodeJam.PerfTests.CompetitionBurstModeAttribute\" data-throw-if-not-resolved=\"false\"></xref>).\n"
+  example: []
+  syntax:
+    content: public const int BurstModeLoopCount = 16384
+    return:
+      type: System.Int32
+    content.vb: Public Const BurstModeLoopCount As Integer = 16384
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.SmallLoopCount
+  commentId: F:CodeJam.PerfTests.CompetitionRunHelpers.SmallLoopCount
+  id: SmallLoopCount
+  parent: CodeJam.PerfTests.CompetitionRunHelpers
+  langs:
+  - csharp
+  - vb
+  name: SmallLoopCount
+  nameWithType: CompetitionRunHelpers.SmallLoopCount
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.SmallLoopCount
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SmallLoopCount
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 27
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: "\nEmpirically found short loop count that provides accurate results\nfor <xref href=\"CodeJam.PerfTests.WellKnownMetrics.RelativeTime\" data-throw-if-not-resolved=\"false\"></xref> metric on different hardware.\nEquals to 128;\nMay provide inaccurate results if used together with <xref href=\"CodeJam.PerfTests.Configs.ICompetitionFeatures.BurstMode\" data-throw-if-not-resolved=\"false\"></xref>=<code>true</code>.\n"
+  example: []
+  syntax:
+    content: public const int SmallLoopCount = 128
+    return:
+      type: System.Int32
+    content.vb: Public Const SmallLoopCount As Integer = 128
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.Delay(System.Int32)
+  commentId: M:CodeJam.PerfTests.CompetitionRunHelpers.Delay(System.Int32)
+  id: Delay(System.Int32)
+  parent: CodeJam.PerfTests.CompetitionRunHelpers
+  langs:
+  - csharp
+  - vb
+  name: Delay(Int32)
+  nameWithType: CompetitionRunHelpers.Delay(Int32)
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.Delay(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Delay
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 31
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Default delay implementation. Performs delay for specified number of cycles.
+  example: []
+  syntax:
+    content: public static void Delay(int cycles)
+    parameters:
+    - id: cycles
+      type: System.Int32
+      description: The number of cycles to delay.
+    content.vb: Public Shared Sub Delay(cycles As Integer)
+  overload: CodeJam.PerfTests.CompetitionRunHelpers.Delay*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfObjectHeader
+  commentId: F:CodeJam.PerfTests.CompetitionRunHelpers.SizeOfObjectHeader
+  id: SizeOfObjectHeader
+  parent: CodeJam.PerfTests.CompetitionRunHelpers
+  langs:
+  - csharp
+  - vb
+  name: SizeOfObjectHeader
+  nameWithType: CompetitionRunHelpers.SizeOfObjectHeader
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfObjectHeader
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SizeOfObjectHeader
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 37
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Overhead for allocation for objects.
+  example: []
+  syntax:
+    content: public static readonly int SizeOfObjectHeader
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly SizeOfObjectHeader As Integer
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfEmptyObject
+  commentId: F:CodeJam.PerfTests.CompetitionRunHelpers.SizeOfEmptyObject
+  id: SizeOfEmptyObject
+  parent: CodeJam.PerfTests.CompetitionRunHelpers
+  langs:
+  - csharp
+  - vb
+  name: SizeOfEmptyObject
+  nameWithType: CompetitionRunHelpers.SizeOfEmptyObject
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfEmptyObject
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SizeOfEmptyObject
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 40
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Size of allocated empty object.
+  example: []
+  syntax:
+    content: public static readonly int SizeOfEmptyObject
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly SizeOfEmptyObject As Integer
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfStringHeader
+  commentId: F:CodeJam.PerfTests.CompetitionRunHelpers.SizeOfStringHeader
+  id: SizeOfStringHeader
+  parent: CodeJam.PerfTests.CompetitionRunHelpers
+  langs:
+  - csharp
+  - vb
+  name: SizeOfStringHeader
+  nameWithType: CompetitionRunHelpers.SizeOfStringHeader
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfStringHeader
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SizeOfStringHeader
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 43
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Overhead for allocation of string.
+  example: []
+  syntax:
+    content: public static readonly int SizeOfStringHeader
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly SizeOfStringHeader As Integer
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfSzArrayHeader
+  commentId: F:CodeJam.PerfTests.CompetitionRunHelpers.SizeOfSzArrayHeader
+  id: SizeOfSzArrayHeader
+  parent: CodeJam.PerfTests.CompetitionRunHelpers
+  langs:
+  - csharp
+  - vb
+  name: SizeOfSzArrayHeader
+  nameWithType: CompetitionRunHelpers.SizeOfSzArrayHeader
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfSzArrayHeader
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SizeOfSzArrayHeader
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 46
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Overhead for allocation of single dimension reference type array.
+  example: []
+  syntax:
+    content: public static readonly int SizeOfSzArrayHeader
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly SizeOfSzArrayHeader As Integer
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfReferenceTypeSzArrayHeader
+  commentId: F:CodeJam.PerfTests.CompetitionRunHelpers.SizeOfReferenceTypeSzArrayHeader
+  id: SizeOfReferenceTypeSzArrayHeader
+  parent: CodeJam.PerfTests.CompetitionRunHelpers
+  langs:
+  - csharp
+  - vb
+  name: SizeOfReferenceTypeSzArrayHeader
+  nameWithType: CompetitionRunHelpers.SizeOfReferenceTypeSzArrayHeader
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.SizeOfReferenceTypeSzArrayHeader
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SizeOfReferenceTypeSzArrayHeader
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionRunHelpers.cs
+    startLine: 49
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Overhead for allocation of single dimension reference type array.
+  example: []
+  syntax:
+    content: public static readonly int SizeOfReferenceTypeSzArrayHeader
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly SizeOfReferenceTypeSzArrayHeader As Integer
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+references:
+- uid: CodeJam.PerfTests
+  commentId: N:CodeJam.PerfTests
+  isExternal: false
+  name: CodeJam.PerfTests
+  nameWithType: CodeJam.PerfTests
+  fullName: CodeJam.PerfTests
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.WellKnownMetrics.RelativeTime
+  commentId: F:CodeJam.PerfTests.WellKnownMetrics.RelativeTime
+- uid: CodeJam.PerfTests.Configs.ICompetitionFeatures.BurstMode
+  commentId: P:CodeJam.PerfTests.Configs.ICompetitionFeatures.BurstMode
+- uid: CodeJam.PerfTests.CompetitionBurstModeAttribute
+  commentId: T:CodeJam.PerfTests.CompetitionBurstModeAttribute
+  isExternal: false
+  name: CompetitionBurstModeAttribute
+  nameWithType: CompetitionBurstModeAttribute
+  fullName: CodeJam.PerfTests.CompetitionBurstModeAttribute
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: CodeJam.PerfTests.CompetitionRunHelpers.Delay*
+  commentId: Overload:CodeJam.PerfTests.CompetitionRunHelpers.Delay
+  isExternal: false
+  name: Delay
+  nameWithType: CompetitionRunHelpers.Delay
+  fullName: CodeJam.PerfTests.CompetitionRunHelpers.Delay

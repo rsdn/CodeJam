@@ -1,0 +1,960 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Collections.OwnedCollection
+  commentId: T:CodeJam.Collections.OwnedCollection
+  id: OwnedCollection
+  parent: CodeJam.Collections
+  children:
+  - CodeJam.Collections.OwnedCollection.Create``2(``0,System.Func{``1,``0},System.Action{``1,``0})
+  - CodeJam.Collections.OwnedCollection.Create``3(``0,System.Func{``2,``0},System.Action{``2,``0},System.Func{``2,``1})
+  langs:
+  - csharp
+  - vb
+  name: OwnedCollection
+  nameWithType: OwnedCollection
+  fullName: CodeJam.Collections.OwnedCollection
+  type: Class
+  source:
+    remote:
+      path: Main/src/Collections/OwnedCollections/OwnedCollection.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: OwnedCollection
+    path: ../Main/src/Collections/OwnedCollections/OwnedCollection.cs
+    startLine: 7
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Factory methods for the owned collections.
+  example: []
+  syntax:
+    content: public static class OwnedCollection
+    content.vb: Public Module OwnedCollection
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Collections.OwnedCollection.Create``2(``0,System.Func{``1,``0},System.Action{``1,``0})
+  commentId: M:CodeJam.Collections.OwnedCollection.Create``2(``0,System.Func{``1,``0},System.Action{``1,``0})
+  id: Create``2(``0,System.Func{``1,``0},System.Action{``1,``0})
+  parent: CodeJam.Collections.OwnedCollection
+  langs:
+  - csharp
+  - vb
+  name: Create<TOwner, TItem>(TOwner, Func<TItem, TOwner>, Action<TItem, TOwner>)
+  nameWithType: OwnedCollection.Create<TOwner, TItem>(TOwner, Func<TItem, TOwner>, Action<TItem, TOwner>)
+  fullName: CodeJam.Collections.OwnedCollection.Create<TOwner, TItem>(TOwner, System.Func<TItem, TOwner>, System.Action<TItem, TOwner>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/OwnedCollections/OwnedCollection.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Collections/OwnedCollections/OwnedCollection.cs
+    startLine: 17
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Creates a new instance of the <xref href="CodeJam.Collections.OwnedCollection%602" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: 'public static OwnedCollection<TOwner, TItem> Create<TOwner, TItem>(TOwner owner, Func<TItem, TOwner> ownerGetter, Action<TItem, TOwner> ownerSetter)where TOwner : class where TItem : class'
+    parameters:
+    - id: owner
+      type: '{TOwner}'
+      description: The owner for the collection.
+    - id: ownerGetter
+      type: System.Func{{TItem},{TOwner}}
+      description: Owner getter for the item.
+    - id: ownerSetter
+      type: System.Action{{TItem},{TOwner}}
+      description: Owner setter for the item.
+    typeParameters:
+    - id: TOwner
+      description: The type of the owner.
+    - id: TItem
+      description: The type of the item.
+    return:
+      type: CodeJam.Collections.OwnedCollection{{TOwner},{TItem}}
+      description: A new instance of the <xref href="CodeJam.Collections.OwnedCollection%602" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Shared Function Create(Of TOwner As Class, TItem As Class)(owner As TOwner, ownerGetter As Func(Of TItem, TOwner), ownerSetter As Action(Of TItem, TOwner)) As OwnedCollection(Of TOwner, TItem)
+  overload: CodeJam.Collections.OwnedCollection.Create*
+  nameWithType.vb: OwnedCollection.Create(Of TOwner, TItem)(TOwner, Func(Of TItem, TOwner), Action(Of TItem, TOwner))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.OwnedCollection.Create(Of TOwner, TItem)(TOwner, System.Func(Of TItem, TOwner), System.Action(Of TItem, TOwner))
+  name.vb: Create(Of TOwner, TItem)(TOwner, Func(Of TItem, TOwner), Action(Of TItem, TOwner))
+- uid: CodeJam.Collections.OwnedCollection.Create``3(``0,System.Func{``2,``0},System.Action{``2,``0},System.Func{``2,``1})
+  commentId: M:CodeJam.Collections.OwnedCollection.Create``3(``0,System.Func{``2,``0},System.Action{``2,``0},System.Func{``2,``1})
+  id: Create``3(``0,System.Func{``2,``0},System.Action{``2,``0},System.Func{``2,``1})
+  parent: CodeJam.Collections.OwnedCollection
+  langs:
+  - csharp
+  - vb
+  name: Create<TOwner, TKey, TItem>(TOwner, Func<TItem, TOwner>, Action<TItem, TOwner>, Func<TItem, TKey>)
+  nameWithType: OwnedCollection.Create<TOwner, TKey, TItem>(TOwner, Func<TItem, TOwner>, Action<TItem, TOwner>, Func<TItem, TKey>)
+  fullName: CodeJam.Collections.OwnedCollection.Create<TOwner, TKey, TItem>(TOwner, System.Func<TItem, TOwner>, System.Action<TItem, TOwner>, System.Func<TItem, TKey>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/OwnedCollections/OwnedCollection.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Create
+    path: ../Main/src/Collections/OwnedCollections/OwnedCollection.cs
+    startLine: 35
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: Creates a new instance of the <xref href="CodeJam.Collections.OwnedCollection%603" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: 'public static OwnedCollection<TOwner, TKey, TItem> Create<TOwner, TKey, TItem>(TOwner owner, Func<TItem, TOwner> ownerGetter, Action<TItem, TOwner> ownerSetter, Func<TItem, TKey> keyGetter)where TOwner : class where TItem : class'
+    parameters:
+    - id: owner
+      type: '{TOwner}'
+      description: The owner for the collection.
+    - id: ownerGetter
+      type: System.Func{{TItem},{TOwner}}
+      description: Owner getter for the item.
+    - id: ownerSetter
+      type: System.Action{{TItem},{TOwner}}
+      description: Owner setter for the item.
+    - id: keyGetter
+      type: System.Func{{TItem},{TKey}}
+      description: Key getter for the item.
+    typeParameters:
+    - id: TOwner
+      description: The type of the owner.
+    - id: TKey
+      description: The type of the key.
+    - id: TItem
+      description: The type of the item.
+    return:
+      type: CodeJam.Collections.OwnedCollection{{TOwner},{TKey},{TItem}}
+      description: A new instance of the <xref href="CodeJam.Collections.OwnedCollection%603" data-throw-if-not-resolved="false"></xref> class.
+    content.vb: Public Shared Function Create(Of TOwner As Class, TKey, TItem As Class)(owner As TOwner, ownerGetter As Func(Of TItem, TOwner), ownerSetter As Action(Of TItem, TOwner), keyGetter As Func(Of TItem, TKey)) As OwnedCollection(Of TOwner, TKey, TItem)
+  overload: CodeJam.Collections.OwnedCollection.Create*
+  nameWithType.vb: OwnedCollection.Create(Of TOwner, TKey, TItem)(TOwner, Func(Of TItem, TOwner), Action(Of TItem, TOwner), Func(Of TItem, TKey))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.OwnedCollection.Create(Of TOwner, TKey, TItem)(TOwner, System.Func(Of TItem, TOwner), System.Action(Of TItem, TOwner), System.Func(Of TItem, TKey))
+  name.vb: Create(Of TOwner, TKey, TItem)(TOwner, Func(Of TItem, TOwner), Action(Of TItem, TOwner), Func(Of TItem, TKey))
+references:
+- uid: CodeJam.Collections
+  commentId: N:CodeJam.Collections
+  isExternal: false
+  name: CodeJam.Collections
+  nameWithType: CodeJam.Collections
+  fullName: CodeJam.Collections
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Collections.OwnedCollection`2
+  commentId: T:CodeJam.Collections.OwnedCollection`2
+  isExternal: false
+  name: OwnedCollection<TOwner, TItem>
+  nameWithType: OwnedCollection<TOwner, TItem>
+  fullName: CodeJam.Collections.OwnedCollection<TOwner, TItem>
+  nameWithType.vb: OwnedCollection(Of TOwner, TItem)
+  fullName.vb: CodeJam.Collections.OwnedCollection(Of TOwner, TItem)
+  name.vb: OwnedCollection(Of TOwner, TItem)
+  spec.csharp:
+  - uid: CodeJam.Collections.OwnedCollection`2
+    name: OwnedCollection
+    nameWithType: OwnedCollection
+    fullName: CodeJam.Collections.OwnedCollection
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Collections.OwnedCollection`2
+    name: OwnedCollection
+    nameWithType: OwnedCollection
+    fullName: CodeJam.Collections.OwnedCollection
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.OwnedCollection.Create*
+  commentId: Overload:CodeJam.Collections.OwnedCollection.Create
+  isExternal: false
+  name: Create
+  nameWithType: OwnedCollection.Create
+  fullName: CodeJam.Collections.OwnedCollection.Create
+- uid: '{TOwner}'
+  commentId: '!:TOwner'
+  definition: TOwner
+  name: TOwner
+  nameWithType: TOwner
+  fullName: TOwner
+- uid: System.Func{{TItem},{TOwner}}
+  commentId: T:System.Func{``1,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<TItem, TOwner>
+  nameWithType: Func<TItem, TOwner>
+  fullName: System.Func<TItem, TOwner>
+  nameWithType.vb: Func(Of TItem, TOwner)
+  fullName.vb: System.Func(Of TItem, TOwner)
+  name.vb: Func(Of TItem, TOwner)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{{TItem},{TOwner}}
+  commentId: T:System.Action{``1,``0}
+  parent: System
+  definition: System.Action`2
+  name: Action<TItem, TOwner>
+  nameWithType: Action<TItem, TOwner>
+  fullName: System.Action<TItem, TOwner>
+  nameWithType.vb: Action(Of TItem, TOwner)
+  fullName.vb: System.Action(Of TItem, TOwner)
+  name.vb: Action(Of TItem, TOwner)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.OwnedCollection{{TOwner},{TItem}}
+  commentId: T:CodeJam.Collections.OwnedCollection{``0,``1}
+  parent: CodeJam.Collections
+  definition: CodeJam.Collections.OwnedCollection`2
+  name: OwnedCollection<TOwner, TItem>
+  nameWithType: OwnedCollection<TOwner, TItem>
+  fullName: CodeJam.Collections.OwnedCollection<TOwner, TItem>
+  nameWithType.vb: OwnedCollection(Of TOwner, TItem)
+  fullName.vb: CodeJam.Collections.OwnedCollection(Of TOwner, TItem)
+  name.vb: OwnedCollection(Of TOwner, TItem)
+  spec.csharp:
+  - uid: CodeJam.Collections.OwnedCollection`2
+    name: OwnedCollection
+    nameWithType: OwnedCollection
+    fullName: CodeJam.Collections.OwnedCollection
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Collections.OwnedCollection`2
+    name: OwnedCollection
+    nameWithType: OwnedCollection
+    fullName: CodeJam.Collections.OwnedCollection
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: TOwner
+  isExternal: false
+  name: TOwner
+  nameWithType: TOwner
+  fullName: TOwner
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.OwnedCollection`3
+  commentId: T:CodeJam.Collections.OwnedCollection`3
+  isExternal: false
+  name: OwnedCollection<TOwner, TKey, TItem>
+  nameWithType: OwnedCollection<TOwner, TKey, TItem>
+  fullName: CodeJam.Collections.OwnedCollection<TOwner, TKey, TItem>
+  nameWithType.vb: OwnedCollection(Of TOwner, TKey, TItem)
+  fullName.vb: CodeJam.Collections.OwnedCollection(Of TOwner, TKey, TItem)
+  name.vb: OwnedCollection(Of TOwner, TKey, TItem)
+  spec.csharp:
+  - uid: CodeJam.Collections.OwnedCollection`3
+    name: OwnedCollection
+    nameWithType: OwnedCollection
+    fullName: CodeJam.Collections.OwnedCollection
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Collections.OwnedCollection`3
+    name: OwnedCollection
+    nameWithType: OwnedCollection
+    fullName: CodeJam.Collections.OwnedCollection
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{TItem},{TKey}}
+  commentId: T:System.Func{``2,``1}
+  parent: System
+  definition: System.Func`2
+  name: Func<TItem, TKey>
+  nameWithType: Func<TItem, TKey>
+  fullName: System.Func<TItem, TKey>
+  nameWithType.vb: Func(Of TItem, TKey)
+  fullName.vb: System.Func(Of TItem, TKey)
+  name.vb: Func(Of TItem, TKey)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.OwnedCollection{{TOwner},{TKey},{TItem}}
+  commentId: T:CodeJam.Collections.OwnedCollection{``0,``1,``2}
+  parent: CodeJam.Collections
+  definition: CodeJam.Collections.OwnedCollection`3
+  name: OwnedCollection<TOwner, TKey, TItem>
+  nameWithType: OwnedCollection<TOwner, TKey, TItem>
+  fullName: CodeJam.Collections.OwnedCollection<TOwner, TKey, TItem>
+  nameWithType.vb: OwnedCollection(Of TOwner, TKey, TItem)
+  fullName.vb: CodeJam.Collections.OwnedCollection(Of TOwner, TKey, TItem)
+  name.vb: OwnedCollection(Of TOwner, TKey, TItem)
+  spec.csharp:
+  - uid: CodeJam.Collections.OwnedCollection`3
+    name: OwnedCollection
+    nameWithType: OwnedCollection
+    fullName: CodeJam.Collections.OwnedCollection
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Collections.OwnedCollection`3
+    name: OwnedCollection
+    nameWithType: OwnedCollection
+    fullName: CodeJam.Collections.OwnedCollection
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TOwner
+    nameWithType: TOwner
+    fullName: TOwner
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TItem
+    nameWithType: TItem
+    fullName: TItem
+  - name: )
+    nameWithType: )
+    fullName: )

@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "S:/Work/CodeJam/DocsProject",
+  "source_base_path": "S:/Work/CodeJam/DocsProject2",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.CodeJamConvertException.html",
-          "hash": "w/vA9/PCzzXJFt8p9L3Ymw=="
+          "hash": "3GcSSTeTD+vvcILDIeY9HQ=="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.CodeJamMappingException.html",
-          "hash": "9di5SIdQNwCahm0vp2o6hg=="
+          "hash": "6mqkqghbsIioZAtB5OZYvg=="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.Convert-2.html",
-          "hash": "asGaJk6AXVba9JooLFvbog=="
+          "hash": "6a8eYFgdeYNgZ69Mw5Z6Vw=="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.ConvertTo-1.html",
-          "hash": "NhnW6gdP8ZLEcjjeqKWmyw=="
+          "hash": "L1y0YNqgq0YuFb8swbBjXg=="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.Converter.html",
-          "hash": "3w5naENOcsFezGdgbQDVtA=="
+          "hash": "1VJ758cMBZzordO3c1teeg=="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.DefaultValue-1.html",
-          "hash": "iL0lcWXnsQN9UKrj3tOG4Q=="
+          "hash": "Dv6VYZWjv6DFelioSvrAvw=="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.DefaultValue.html",
-          "hash": "pioMSGUOSNno8gPWsIGvOw=="
+          "hash": "z9ey/Qyqf57dqe2GdXW3Wg=="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.IMapperBuilder.html",
-          "hash": "oIi+HuyNiB1TK1mOwy5ekQ=="
+          "hash": "4vvfExEqCsRGGNu0wyRaVA=="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.Map.html",
-          "hash": "upi7s2NWqIKkTqbCTDLALQ=="
+          "hash": "avULqtSS4KDg/fR4c7OWjQ=="
         }
       },
       "is_incremental": false,
@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.MapValue.html",
-          "hash": "IL5xuY+0MpPkEZr0R0ga5w=="
+          "hash": "UVOoWUTscwSd9N6XPURbmQ=="
         }
       },
       "is_incremental": false,
@@ -138,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.MapValueAttribute.html",
-          "hash": "7LX88BG85XBfCYuik/XqZA=="
+          "hash": "SFin2wr5WIcBUZV5r1kU/g=="
         }
       },
       "is_incremental": false,
@@ -150,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.Mapper-2.html",
-          "hash": "gqq84IiWml/Ldzj45dL7VQ=="
+          "hash": "h2WPl55GOuJtfFmz3gz6LA=="
         }
       },
       "is_incremental": false,
@@ -162,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.MapperBuilder-2.html",
-          "hash": "90PZJHi6O5Q5eFfuDFmfog=="
+          "hash": "X6ZV0d8dNpPyI3ITesdWqQ=="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.MappingSchema.html",
-          "hash": "0P4wJpPpcKIoKwFDZX4wjw=="
+          "hash": "3o+1UWklBIhHaPruB9uRig=="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Mapping.ScalarTypeAttribute.html",
-          "hash": "kC/0PsodrwDRXXjl49Ak7Q=="
+          "hash": "wGycVFzT/Kydwju+IJ4lLw=="
         }
       },
       "is_incremental": false,
@@ -210,7 +210,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Metadata.IMetadataReader.html",
-          "hash": "dJ5jBjFVuaLQN2JiIH/IZA=="
+          "hash": "myMR6wWJh1Tpb4+Ue+VT2g=="
         }
       },
       "is_incremental": false,
@@ -222,7 +222,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Metadata.MetadataException.html",
-          "hash": "sQluwZI2BS6ZNDtekRWbdw=="
+          "hash": "sXlXkzexlzBykvoslucWqA=="
         }
       },
       "is_incremental": false,
@@ -234,7 +234,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Metadata.XmlAttributeReader.html",
-          "hash": "t52VJUxRVwYDbHalSv2tIg=="
+          "hash": "xWx2KDBlxlUbfsefpS2AaA=="
         }
       },
       "is_incremental": false,
@@ -258,7 +258,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Services.IServicePublisher.html",
-          "hash": "8JWDsgACJVO2FJiJ/4yIvw=="
+          "hash": "eBjVO581vGFR1eMFZ+rlFQ=="
         }
       },
       "is_incremental": false,
@@ -270,7 +270,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Services.ServiceContainer.html",
-          "hash": "PnBhd7/SGviqLDpgOVIJLw=="
+          "hash": "yJZC2P8TswiZhfgJisbc+Q=="
         }
       },
       "is_incremental": false,
@@ -282,7 +282,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.Services.ServiceProviderHelper.html",
-          "hash": "/WOwsgbLRW+9Pn+4P7l5vQ=="
+          "hash": "nqWGwXarNbhyhouyArmuIQ=="
         }
       },
       "is_incremental": false,
@@ -306,7 +306,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.TableData.CsvFormat.html",
-          "hash": "8oIHQ4tj+/LgcsiJEP/OGw=="
+          "hash": "bGdg5n2BuztPtvjnuNZ5oA=="
         }
       },
       "is_incremental": false,
@@ -318,7 +318,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.TableData.DataLine.html",
-          "hash": "WCjX3XxGu7m1/sJ9wBwmJA=="
+          "hash": "g5rvRyXygL0HTwRG6iGKjg=="
         }
       },
       "is_incremental": false,
@@ -330,7 +330,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.TableData.FixedWidthFormat.html",
-          "hash": "wbiqeoWWWGj47pI069qp5A=="
+          "hash": "40/YXYa+UEox4/mjL79c3g=="
         }
       },
       "is_incremental": false,
@@ -342,7 +342,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.TableData.Parser.html",
-          "hash": "LxUYRlduqAcC1hZgIYni8Q=="
+          "hash": "N5ghBaeNcn52bmf5I0RI0A=="
         }
       },
       "is_incremental": false,
@@ -354,7 +354,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/CodeJam.TableData.TableDataParser.html",
-          "hash": "iWsCGou8LxFM63lzfleinA=="
+          "hash": "JtdI3JJwoP32HRXIrY+yVA=="
         }
       },
       "is_incremental": false,
@@ -378,7 +378,7 @@
       "output": {
         ".html": {
           "relative_path": "api/blocks/index.html",
-          "hash": "uVfS6XXQacXmRzqlgcf8BQ=="
+          "hash": "lxaoJmy/LQR6wn3xapJ7Jg=="
         }
       },
       "is_incremental": false,
@@ -402,7 +402,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Algorithms.html",
-          "hash": "1aIpLhwtdu42AlJ4ygpU1A=="
+          "hash": "42jHsVzONJiereHx6Pc3NQ=="
         }
       },
       "is_incremental": false,
@@ -414,7 +414,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Arithmetic.Operators-1.html",
-          "hash": "Kzjc5I9rQzQvQZISA2YJHQ=="
+          "hash": "ugOU1zOg8PxNCHUv2g5gdg=="
         }
       },
       "is_incremental": false,
@@ -426,7 +426,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Arithmetic.OperatorsFactory.html",
-          "hash": "1UkRJ+F1sJ9oCrf0TIRu3Q=="
+          "hash": "iQAgV+zKva67d6Ygq1DezQ=="
         }
       },
       "is_incremental": false,
@@ -450,7 +450,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Code.html",
-          "hash": "j9aPzGY6H2Zk7dDjau3Tlg=="
+          "hash": "cP7WqQVKZYmygpPHNfHeVw=="
         }
       },
       "is_incremental": false,
@@ -462,7 +462,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.CodeExceptions.html",
-          "hash": "0g7pb3eFypihXAmMrCcPew=="
+          "hash": "6s7Z+i1TbT/1aOd3za8H1Q=="
         }
       },
       "is_incremental": false,
@@ -474,7 +474,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.Array-1.html",
-          "hash": "2HguUV1823tLCEbzxrpsDg=="
+          "hash": "n0op0ffheGrH+WtJaLRkyw=="
         }
       },
       "is_incremental": false,
@@ -486,7 +486,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.ArrayExtensions.html",
-          "hash": "ducxnhQuEjA/GVhNpIc6Xg=="
+          "hash": "y3w8WHWANox+cxlnujpwgQ=="
         }
       },
       "is_incremental": false,
@@ -498,7 +498,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.CollectionExtensions.html",
-          "hash": "AqDodk2YvcRkgCJtHlTlow=="
+          "hash": "zLxGw5Wfbw14pZaUHthdYQ=="
         }
       },
       "is_incremental": false,
@@ -510,7 +510,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.ComparerBuilder-1.html",
-          "hash": "QNETEERLXtvcnD+/Hei9jg=="
+          "hash": "PNBOcaZx/Wi7Ko5FRevbcA=="
         }
       },
       "is_incremental": false,
@@ -522,7 +522,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.DictionaryDuplicate.html",
-          "hash": "Ml8qcAiApv0TleFq3SSTgA=="
+          "hash": "/wefSOMeuhVvvCUe0pM6pw=="
         }
       },
       "is_incremental": false,
@@ -534,7 +534,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.DictionaryExtensions.html",
-          "hash": "K6xfCE0hmwK8BTmZt9WPog=="
+          "hash": "v21gMOZfdQankmkugFmYGw=="
         }
       },
       "is_incremental": false,
@@ -546,7 +546,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.EnumerableExtensions.html",
-          "hash": "PA72HuNv5MD0WbZ8mr1YHQ=="
+          "hash": "7HTWSTCgicXh7JVOXAn8bw=="
         }
       },
       "is_incremental": false,
@@ -558,7 +558,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.ILazyDictionary-2.html",
-          "hash": "dyNMuoxXG5v7BXgaZQkAUA=="
+          "hash": "D0gwxFna88AVw0UMfMimdw=="
         }
       },
       "is_incremental": false,
@@ -570,7 +570,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.IndexedItem-1.html",
-          "hash": "UO9Mm8cXsTd9fFKker1mQQ=="
+          "hash": "aNVNSZiaylUa1Q8DW5yhYg=="
         }
       },
       "is_incremental": false,
@@ -582,7 +582,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.KeyEqualityComparer-2.html",
-          "hash": "rz4ZmqPct5IEs8FlsAo+eQ=="
+          "hash": "D5wvs7XaV6zYnUSXPCgBMA=="
         }
       },
       "is_incremental": false,
@@ -594,7 +594,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.KeyEqualityComparer.html",
-          "hash": "K5MXgHph60eNpe0Gde12dA=="
+          "hash": "wuY4AJuRw19lEppgcQBmWA=="
         }
       },
       "is_incremental": false,
@@ -606,7 +606,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.LazyDictionary-2.html",
-          "hash": "i2hVoG1qssdi0N1wEebreA=="
+          "hash": "+fL2UxAGtRlLrcqb04KCZg=="
         }
       },
       "is_incremental": false,
@@ -618,7 +618,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.LazyDictionary.html",
-          "hash": "Z1snxbYUpcLyIyC0o+yfdg=="
+          "hash": "lH/tZt472aQf8DmgSTrllA=="
         }
       },
       "is_incremental": false,
@@ -630,7 +630,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.OwnedCollection-2.html",
-          "hash": "RFghNzEZNxnn6oPuffoPkg=="
+          "hash": "1QCKpIN4h4qtpDHMnfnrVg=="
         }
       },
       "is_incremental": false,
@@ -642,7 +642,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.OwnedCollection-3.html",
-          "hash": "c0t04HIqSTVTWU7huK1o3A=="
+          "hash": "XgdlbSPxTWTSiVGEKPSOGQ=="
         }
       },
       "is_incremental": false,
@@ -654,7 +654,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.OwnedCollection.html",
-          "hash": "pX6lFyYTiWQOKmYWHH8lxw=="
+          "hash": "h2KDiX9PQgqser7J52iL+g=="
         }
       },
       "is_incremental": false,
@@ -666,7 +666,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.OwnedCollectionBase-2.html",
-          "hash": "fjw3pyrlTnIpV6U884INsg=="
+          "hash": "oeoH3D0Yi+Ik4/RcDrETwQ=="
         }
       },
       "is_incremental": false,
@@ -678,7 +678,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.OwnedCollectionBase-3.html",
-          "hash": "JZ0OUw2QWL/T/1qSs9STUg=="
+          "hash": "B9nju5Eywd/BQeQNf8EhVA=="
         }
       },
       "is_incremental": false,
@@ -690,7 +690,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.QueryableExtensions.html",
-          "hash": "szdosmGLR4zTqOggfzX+AA=="
+          "hash": "ulmVa0UJVMFTAsItkZfQYw=="
         }
       },
       "is_incremental": false,
@@ -702,7 +702,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.Sequence.html",
-          "hash": "yqK2xiK5buzk6VSzSRDPqg=="
+          "hash": "bJVuArKdZV/4c114L3AL+g=="
         }
       },
       "is_incremental": false,
@@ -714,7 +714,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.Suffix.html",
-          "hash": "Rdly7TfzQeErWswmND/bgQ=="
+          "hash": "OIary1MeSWAXwMOmvPdxlg=="
         }
       },
       "is_incremental": false,
@@ -726,7 +726,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.SuffixTree.html",
-          "hash": "iDEAlzNUdfZ/y3pcZzbV8w=="
+          "hash": "de+pqIe2l1RuqnT9528YIw=="
         }
       },
       "is_incremental": false,
@@ -738,7 +738,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.SuffixTreeBase.Node.html",
-          "hash": "Yj5gHCGTEpcOi0m6JeNByQ=="
+          "hash": "9TWpHePDR9mZptY7PyMkGQ=="
         }
       },
       "is_incremental": false,
@@ -750,7 +750,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Collections.SuffixTreeBase.html",
-          "hash": "38Lb3wqYA4/auHmHhydCHw=="
+          "hash": "32WkC42qMsvrrsVRMFY2eA=="
         }
       },
       "is_incremental": false,
@@ -774,7 +774,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Dates.DateTimeExtensions.html",
-          "hash": "ChhvS1ohuVIMtWerqmZb6A=="
+          "hash": "uNLlBMRaMW7eMZIj2TIkIg=="
         }
       },
       "is_incremental": false,
@@ -786,7 +786,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Dates.DateTimeRangeExtensions.html",
-          "hash": "93l8a2TpnuoMbluqTZq9zQ=="
+          "hash": "TRk2P3M2vSyfWA8fic/4WA=="
         }
       },
       "is_incremental": false,
@@ -810,7 +810,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.DebugCode.html",
-          "hash": "F3MC292xN/TyDfYgZMtDrA=="
+          "hash": "y8uP0MUpb3BOlJ+qMhJfmA=="
         }
       },
       "is_incremental": false,
@@ -822,7 +822,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.DebugEnumCode.html",
-          "hash": "swPkbUWWnEeoKT9UtOAyGw=="
+          "hash": "n+RerAXXgtWHBn8G4tmJWw=="
         }
       },
       "is_incremental": false,
@@ -834,7 +834,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.DebugUriCode.html",
-          "hash": "2kHDAEP8G5qe0EcHTjrMWQ=="
+          "hash": "maxw5dOjEpwRF3tq3JULDw=="
         }
       },
       "is_incremental": false,
@@ -846,7 +846,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Disposable.EmptyDisposable.html",
-          "hash": "JYpR81bURLDCpFhoelmHbg=="
+          "hash": "wwEZ2Vc1ces2/gwEQlUgrw=="
         }
       },
       "is_incremental": false,
@@ -858,7 +858,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Disposable.html",
-          "hash": "Bw/gwIZN98NYxgaOW7LtRA=="
+          "hash": "JA6ikvxWB/x90n9plfrgoQ=="
         }
       },
       "is_incremental": false,
@@ -870,7 +870,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.DisposableExtensions.html",
-          "hash": "CyylMHRgu0Tvf3cK5mszxQ=="
+          "hash": "WgMibKKlvzYWFWFaA+3Ztg=="
         }
       },
       "is_incremental": false,
@@ -882,7 +882,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.EnumCode.html",
-          "hash": "i9xM8G+5VlyV7MDwaOnK0g=="
+          "hash": "rDVtUvn8bVup4AeJ/P4DsA=="
         }
       },
       "is_incremental": false,
@@ -894,7 +894,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.EnumCodeExceptions.html",
-          "hash": "3KNXl+OWQ3jJDTtP81ET0w=="
+          "hash": "YMXWGTg18lWqg3W9YHINsg=="
         }
       },
       "is_incremental": false,
@@ -906,7 +906,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.EnumHelper.html",
-          "hash": "d3jIECpNnFNhu6iwgfPz2w=="
+          "hash": "gX+YpvasJNaA/Oq2/FjtDg=="
         }
       },
       "is_incremental": false,
@@ -918,7 +918,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.EnumValue.html",
-          "hash": "7c3662bJbjS9eEI8/2bvww=="
+          "hash": "47qDRuILXJquJoD5q5OezA=="
         }
       },
       "is_incremental": false,
@@ -930,7 +930,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.EnumValues.html",
-          "hash": "zC3GMpZm+4KkwA5N6CjcJA=="
+          "hash": "BmCCS3DNfSoUoV9XCEOIGw=="
         }
       },
       "is_incremental": false,
@@ -942,7 +942,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ExceptionExtensions.html",
-          "hash": "A8Au6Zd7JzpIGwZ3wrMauw=="
+          "hash": "76t4B6/KIeyS3RTI0V2xdg=="
         }
       },
       "is_incremental": false,
@@ -954,7 +954,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Expressions.Expr.html",
-          "hash": "62ZUYYUs8TY/GoAWuew5PA=="
+          "hash": "jragI3eNugLo/dJTomKTQA=="
         }
       },
       "is_incremental": false,
@@ -966,7 +966,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Expressions.ExpressionExtensions.html",
-          "hash": "dbFi3KKZPrHOrLSbhApKgA=="
+          "hash": "HPvBHh8dMHpXVpczEwverg=="
         }
       },
       "is_incremental": false,
@@ -990,7 +990,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Fn-1.html",
-          "hash": "SUiQEDweDe4fqKAlolboaQ=="
+          "hash": "fTugxoDGUXyhSLmpP106dw=="
         }
       },
       "is_incremental": false,
@@ -1002,7 +1002,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Fn.html",
-          "hash": "eww/K3Iaffl3PrwYAq/D/g=="
+          "hash": "aKk39hdQBXZAKj8ucB5RBQ=="
         }
       },
       "is_incremental": false,
@@ -1014,7 +1014,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.HGlobal.html",
-          "hash": "i+zXHph0ujfvu/TVh7Zkcw=="
+          "hash": "fQM5/UlJE/tyzmp8txnUHA=="
         }
       },
       "is_incremental": false,
@@ -1026,7 +1026,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.HGlobalScope-1.html",
-          "hash": "mkCwIaygST0AHI2NULRW4w=="
+          "hash": "aR/AHQWk3wtffLy0qBrGvw=="
         }
       },
       "is_incremental": false,
@@ -1038,7 +1038,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.HGlobalScope.html",
-          "hash": "bWLkfPpF6KA8irdthL57cg=="
+          "hash": "5dEovWdBI/o5Ql9ifQJlMg=="
         }
       },
       "is_incremental": false,
@@ -1050,7 +1050,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.HashCode.html",
-          "hash": "sa8Y2s9lMDdcaB4xFLYMaw=="
+          "hash": "4y8cM5iQurdX7oCwuJeT5g=="
         }
       },
       "is_incremental": false,
@@ -1062,7 +1062,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IO.DebugIoCode.html",
-          "hash": "Xw4d2cJpFLvPABAlmETjsQ=="
+          "hash": "rWrhEvoOWEHrvIK9c8oefA=="
         }
       },
       "is_incremental": false,
@@ -1074,7 +1074,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IO.IoCode.html",
-          "hash": "kQH8KLa372ARons6vRO4jg=="
+          "hash": "go+cTIowxONCu1BJgd9X7w=="
         }
       },
       "is_incremental": false,
@@ -1086,7 +1086,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IO.IoCodeExceptions.html",
-          "hash": "esuEJw/pbB8/srbmMC8Ifw=="
+          "hash": "PtcyjXfWpzzSuV7r02sChQ=="
         }
       },
       "is_incremental": false,
@@ -1098,7 +1098,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IO.PathHelpers.html",
-          "hash": "xGsdi2qFf9tNqM+flF4+Qg=="
+          "hash": "Wag0cm+9UCJuL6kXegqVXQ=="
         }
       },
       "is_incremental": false,
@@ -1110,7 +1110,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IO.TempData.TempBase.html",
-          "hash": "0U6I98jmPw9jnLX3GtjVHw=="
+          "hash": "NRTXCmP8i/RLEnTiNlKiwQ=="
         }
       },
       "is_incremental": false,
@@ -1122,7 +1122,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IO.TempData.TempDirectory.html",
-          "hash": "rZ30w8hbD9/k74dsy8OxpQ=="
+          "hash": "9RqaJHz8o8k+/q4NNLgbzw=="
         }
       },
       "is_incremental": false,
@@ -1134,7 +1134,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IO.TempData.TempFile.html",
-          "hash": "jIbda2G2fqYagB7pjzl7Ag=="
+          "hash": "kAa+ewX80ygQtGIEl6uPvQ=="
         }
       },
       "is_incremental": false,
@@ -1146,7 +1146,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IO.TempData.html",
-          "hash": "E+oN4RTOnqEBeqDDYoKmsw=="
+          "hash": "yx3rkZhikVN2ieyaZAV5IA=="
         }
       },
       "is_incremental": false,
@@ -1170,7 +1170,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IOneOf-2.html",
-          "hash": "QU1QAUVXVjb6RFOQkKCK2Q=="
+          "hash": "RYH0m+gT1HQiUNdvRavMWg=="
         }
       },
       "is_incremental": false,
@@ -1182,7 +1182,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IOneOf-3.html",
-          "hash": "GmW0J6vm3A1oYKzisgSyBQ=="
+          "hash": "jZcYxWKTJhSbd1KbgThlUQ=="
         }
       },
       "is_incremental": false,
@@ -1194,7 +1194,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IOneOf-4.html",
-          "hash": "tyAKJGdvRNZ2b3NAHTBvlA=="
+          "hash": "1wlhxT5pq73A5RM5EK/QfQ=="
         }
       },
       "is_incremental": false,
@@ -1206,7 +1206,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IOneOf-5.html",
-          "hash": "jOoCMP5US+2SIked1C8Nqg=="
+          "hash": "QfUsTCBFvSqz9dhQThH0wQ=="
         }
       },
       "is_incremental": false,
@@ -1218,7 +1218,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IOneOf-6.html",
-          "hash": "9oi6gOuriF4DrnZflhBdaQ=="
+          "hash": "UFVIEYjkvNyWpWySF1c19Q=="
         }
       },
       "is_incremental": false,
@@ -1230,7 +1230,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IOneOf-7.html",
-          "hash": "LjY97v9EAbGd7sbH9PLESw=="
+          "hash": "pDXoJwyGcVITcB6wVsy0ew=="
         }
       },
       "is_incremental": false,
@@ -1242,7 +1242,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IOneOf-8.html",
-          "hash": "FxwLtkfkclaLS4lrh2/ivQ=="
+          "hash": "IGcsTFUsTeKuXW+g4KtgkA=="
         }
       },
       "is_incremental": false,
@@ -1254,7 +1254,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.IOption-1.html",
-          "hash": "fKlFp7jo6l02I8GvFsjjEw=="
+          "hash": "sVuhqTqwjk70TBll4nQ9zA=="
         }
       },
       "is_incremental": false,
@@ -1266,7 +1266,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Lazy.html",
-          "hash": "KSwKo6hCpGzzq5KFjc0ziQ=="
+          "hash": "Vgpgq4Zg+IdBfW7g2sk+YQ=="
         }
       },
       "is_incremental": false,
@@ -1278,7 +1278,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Memory.html",
-          "hash": "QgTAqLdZvNrC7FjrA+tfjg=="
+          "hash": "MeqvJRQ+KOX2FPOe2JDX2Q=="
         }
       },
       "is_incremental": false,
@@ -1290,7 +1290,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.NullableHelper.html",
-          "hash": "St2xltV+hINA3sgZsvVLlA=="
+          "hash": "HqPdSo4BSl2J30zUXEWeng=="
         }
       },
       "is_incremental": false,
@@ -1302,7 +1302,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.OneOf-2.html",
-          "hash": "6d8VA04xynST6THhaKj6vQ=="
+          "hash": "uEF2va6tgKqPRUdXXsMvIw=="
         }
       },
       "is_incremental": false,
@@ -1314,7 +1314,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.OneOf-3.html",
-          "hash": "CUBuvol7zYDVvVEmiELKEA=="
+          "hash": "9edM0pOViqzGH0Pw9wMbMw=="
         }
       },
       "is_incremental": false,
@@ -1326,7 +1326,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.OneOf-4.html",
-          "hash": "e0CjOBX67dBHZyuRA2bfBQ=="
+          "hash": "g2CQoHhkZ/1O1/FDQLPSrg=="
         }
       },
       "is_incremental": false,
@@ -1338,7 +1338,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.OneOf-5.html",
-          "hash": "rjPdBzMCYRcv7to4/5KBNA=="
+          "hash": "NhKeVTbZXUwPLQUhONmIXw=="
         }
       },
       "is_incremental": false,
@@ -1350,7 +1350,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.OneOf-6.html",
-          "hash": "O3qDRCfWq+ggIfNNxhTxPQ=="
+          "hash": "FTfFqaH8brUwGIW3Nk/RJw=="
         }
       },
       "is_incremental": false,
@@ -1362,7 +1362,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.OneOf-7.html",
-          "hash": "g6gWsvIrSAdx6nKdsCFEgQ=="
+          "hash": "JtzVJT5m2nXgq8e/fulEmg=="
         }
       },
       "is_incremental": false,
@@ -1374,7 +1374,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.OneOf-8.html",
-          "hash": "tCu+1FdwXai6KgYhDc6mVA=="
+          "hash": "PDPwtZQaxe2bBPfbwWhjxw=="
         }
       },
       "is_incremental": false,
@@ -1386,7 +1386,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Option-1.None.html",
-          "hash": "OhMyZOo1BgWe+V4AsN5Tuw=="
+          "hash": "E9hkfPNr9yBFW2JZIiHp5A=="
         }
       },
       "is_incremental": false,
@@ -1398,7 +1398,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Option-1.Some.html",
-          "hash": "PQ26e3r6rTS7tJSgwVs0aA=="
+          "hash": "JAcMYbYby/C560CxlfJs4Q=="
         }
       },
       "is_incremental": false,
@@ -1410,7 +1410,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Option-1.html",
-          "hash": "Da/Fxa9F1waxW9bu6JqqrQ=="
+          "hash": "576D2P04BEyLBD4DdryK6A=="
         }
       },
       "is_incremental": false,
@@ -1422,7 +1422,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Option.html",
-          "hash": "rxJVZS+qSL1ZuB1MoIjYFA=="
+          "hash": "oVNjmtT3WAmmD/WC7olaCg=="
         }
       },
       "is_incremental": false,
@@ -1434,7 +1434,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.CompositeRange-1.html",
-          "hash": "JHJ7xzlduXu01sJbP99nBA=="
+          "hash": "C74z/uAggT6PaMRLjz1oiw=="
         }
       },
       "is_incremental": false,
@@ -1446,7 +1446,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.CompositeRange-2.html",
-          "hash": "WjiM/NB0fBQSxjUZYdgdNw=="
+          "hash": "SVTNcC7vGLzOW6+WjdRkaQ=="
         }
       },
       "is_incremental": false,
@@ -1458,7 +1458,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.CompositeRange.html",
-          "hash": "7kjOi5J32yvY4RAs71v6eQ=="
+          "hash": "63PQM4DZhvRe5YaT6d6oOg=="
         }
       },
       "is_incremental": false,
@@ -1470,7 +1470,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.CompositeRangeExtensions.html",
-          "hash": "RTf/Nk8+sZFfFsP8TxTYwQ=="
+          "hash": "0jfGQOKLgZF9m6C0HvUsYg=="
         }
       },
       "is_incremental": false,
@@ -1482,7 +1482,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.ICompositeRange-1.html",
-          "hash": "UmMf8VVrN/HeUHTGbZfAkg=="
+          "hash": "4L8c0iyIt88AACtXPEOTUQ=="
         }
       },
       "is_incremental": false,
@@ -1494,7 +1494,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.IRange-1.html",
-          "hash": "9+3KktGGD9s/wsovI2bJ0g=="
+          "hash": "Qy3f9mDcYoYl/6lsWI9k8Q=="
         }
       },
       "is_incremental": false,
@@ -1506,7 +1506,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.IRangeFactory-2.html",
-          "hash": "S6e+uhms+F42IsFN4GLPBQ=="
+          "hash": "gd+OxqTRd+9ed2wnYSWxhA=="
         }
       },
       "is_incremental": false,
@@ -1518,7 +1518,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.Range-1.html",
-          "hash": "YnXPuEWMATMqKsb+/2QSXQ=="
+          "hash": "lr3PplpqCu/gdubIS7c9QQ=="
         }
       },
       "is_incremental": false,
@@ -1530,7 +1530,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.Range-2.html",
-          "hash": "A7WaAtwjg9DGosMxSyjafw=="
+          "hash": "kgGAKMeJ07QLZY0nHz+FZA=="
         }
       },
       "is_incremental": false,
@@ -1542,7 +1542,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.Range.html",
-          "hash": "ADUOYxZw3dUS6QwbpzgyKw=="
+          "hash": "h8qmfGQNtAeKGttE8KX4+w=="
         }
       },
       "is_incremental": false,
@@ -1554,7 +1554,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.RangeBoundaryFrom-1.html",
-          "hash": "1loIlj32jebmJOKOfBgN3w=="
+          "hash": "KXiZiYuKKxgYG+rXw0+FqA=="
         }
       },
       "is_incremental": false,
@@ -1566,7 +1566,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.RangeBoundaryFromKind.html",
-          "hash": "/EqT34qvU5Bws7w8j5k3ag=="
+          "hash": "iyhO+ri13ikNtLzOzBbX+A=="
         }
       },
       "is_incremental": false,
@@ -1578,7 +1578,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.RangeBoundaryTo-1.html",
-          "hash": "ncKfPCoAUDPyTMAaEeB88A=="
+          "hash": "8VxCkSQ6TOuFaPH7YfEAVA=="
         }
       },
       "is_incremental": false,
@@ -1590,7 +1590,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.RangeBoundaryToKind.html",
-          "hash": "Cb8D/k3iFVVNhlYoV6VTlw=="
+          "hash": "TVmk1tIAPHWkwLD1NvewBw=="
         }
       },
       "is_incremental": false,
@@ -1602,7 +1602,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.RangeExtensions.html",
-          "hash": "RuSA0IdakZfsNcBCW+9Z+Q=="
+          "hash": "Ye2n4uWc3vwEuFf97mK0Fw=="
         }
       },
       "is_incremental": false,
@@ -1614,7 +1614,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.RangeIntersection-1.html",
-          "hash": "XwLe+eWe83TD2Y+abmbZ5Q=="
+          "hash": "4wMb4xnX+FQ8P2cysE5YuA=="
         }
       },
       "is_incremental": false,
@@ -1626,7 +1626,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Ranges.RangeIntersection-2.html",
-          "hash": "YTWkLYN7hcmYjI8dhsVrNA=="
+          "hash": "N7LpSeiGTK77J9mYyfWfrw=="
         }
       },
       "is_incremental": false,
@@ -1650,7 +1650,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.AssemblyExtensions.html",
-          "hash": "DtMIr7YEj4cUpV1g6UdMSQ=="
+          "hash": "V8LjMuSmGWEOKO4SJex8Hw=="
         }
       },
       "is_incremental": false,
@@ -1662,7 +1662,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.InfoOf-1.html",
-          "hash": "zCdEOlN1A9Rfyu4JlYDsWA=="
+          "hash": "ABxEgrdsT4Lse8c8fLtP8Q=="
         }
       },
       "is_incremental": false,
@@ -1674,7 +1674,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.InfoOf.html",
-          "hash": "9DI+BZvvficKl6PaKBl9ug=="
+          "hash": "3+4hAKq0NQV2eXavI/5ZsA=="
         }
       },
       "is_incremental": false,
@@ -1686,7 +1686,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.MemberAccessor.html",
-          "hash": "YRjEq4b9ASqIFxv5er7TJw=="
+          "hash": "o2FhiMzzpgVacsFVesxeEw=="
         }
       },
       "is_incremental": false,
@@ -1698,7 +1698,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.ParamInfo.html",
-          "hash": "YJamjFOs4Zsnqb5vS3leog=="
+          "hash": "yUdvBR2tZKYx18jTkKTyUw=="
         }
       },
       "is_incremental": false,
@@ -1710,7 +1710,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.ReflectionEnumHelper.html",
-          "hash": "0WgrsPRI98abkZhCHFw/vQ=="
+          "hash": "0lRLE4HxgS1lptlT6plaeQ=="
         }
       },
       "is_incremental": false,
@@ -1722,7 +1722,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.ReflectionExtensions.html",
-          "hash": "mRed8/P9DHta9lH56OCKuw=="
+          "hash": "TpL3SpdfqVGY4VMapjpYYg=="
         }
       },
       "is_incremental": false,
@@ -1734,7 +1734,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.TypeAccessor-1.html",
-          "hash": "qsSJ0XcmK8ETRUyVHm6BiQ=="
+          "hash": "AzEr7fcOhytrlo+KbRcrbQ=="
         }
       },
       "is_incremental": false,
@@ -1746,7 +1746,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Reflection.TypeAccessor.html",
-          "hash": "vvohBx27J/a83YlHI4XOHA=="
+          "hash": "vobXsR0MUl+nnGjSMokNPg=="
         }
       },
       "is_incremental": false,
@@ -1770,7 +1770,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Strings.CharExtensions.html",
-          "hash": "J5sENq0r7m2M/c0jgWndIA=="
+          "hash": "UKY97SRb7vKLaZJYe2q4cw=="
         }
       },
       "is_incremental": false,
@@ -1782,7 +1782,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Strings.NaturalOrderStringComparer.html",
-          "hash": "SUxL7Kv3ECuUAUnASpzdNw=="
+          "hash": "CgRwroZ7+6z4v3OfqPqfhw=="
         }
       },
       "is_incremental": false,
@@ -1794,7 +1794,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Strings.StringExtensions.html",
-          "hash": "ZM5agmwZi1lRNCwnKsYNSA=="
+          "hash": "HqMQUwFBAMzf5wFB7Inlag=="
         }
       },
       "is_incremental": false,
@@ -1806,7 +1806,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Strings.StringOrigin.html",
-          "hash": "XCyhe+gJdXEqYZw30WgFTA=="
+          "hash": "/bBIiKTV89l/0wZJkDlaDw=="
         }
       },
       "is_incremental": false,
@@ -1830,7 +1830,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Threading.AsyncLock.html",
-          "hash": "FhOkpZe9mUiv1l8BxGvKhw=="
+          "hash": "NnlbfIaTG17HfcuiFKv+dQ=="
         }
       },
       "is_incremental": false,
@@ -1842,7 +1842,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Threading.AsyncOperationHelper.html",
-          "hash": "W76uFiqxGRmQGV4Wvg0kmg=="
+          "hash": "jn8m5Nw8Y3fE+p6G3M1hrw=="
         }
       },
       "is_incremental": false,
@@ -1854,7 +1854,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Threading.ConcurrentLazyDictionary-2.html",
-          "hash": "9YoXRVF5fuIrqd/8hdukag=="
+          "hash": "3GBLJs4p4bujcJ7wc5i1Dw=="
         }
       },
       "is_incremental": false,
@@ -1866,7 +1866,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Threading.ExecSyncConcurrentLazyDictionary-2.html",
-          "hash": "l9ckYzRToGPWxxjbQWK5Jw=="
+          "hash": "UrK4lRs1uAcsUhQ5KL69jw=="
         }
       },
       "is_incremental": false,
@@ -1878,7 +1878,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Threading.InterlockedOperations.html",
-          "hash": "UkA3OERkl/tjo8Lb83bfTg=="
+          "hash": "53s6RyXgPIartl9cIVuVqA=="
         }
       },
       "is_incremental": false,
@@ -1890,7 +1890,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Threading.ParallelExtensions.html",
-          "hash": "+DHYpYPmNRCe934gfNQ6BA=="
+          "hash": "cJMaNDM2DAR5H/mBr0s6+A=="
         }
       },
       "is_incremental": false,
@@ -1902,7 +1902,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Threading.ReaderWriterLockSlimExtensions.html",
-          "hash": "FPhK448iEn6iObK/IwczKw=="
+          "hash": "FQNSsqrvjrEPXnvs6U7ItQ=="
         }
       },
       "is_incremental": false,
@@ -1914,7 +1914,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Threading.TaskHelper.html",
-          "hash": "7lbfPkz1bcg0ysO+cd32uw=="
+          "hash": "BCWvFptJlV9KTDg/bXB5Pw=="
         }
       },
       "is_incremental": false,
@@ -1938,7 +1938,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.UriCode.html",
-          "hash": "39IYlz4qZFDZYZAcjSJqPA=="
+          "hash": "1KTXuyRYq+H7eqc7asN1+A=="
         }
       },
       "is_incremental": false,
@@ -1950,7 +1950,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.UriCodeExceptions.html",
-          "hash": "23spVO/qEf7F39jrwp5RMQ=="
+          "hash": "wuy/OnjybF15No9V1ucOfA=="
         }
       },
       "is_incremental": false,
@@ -1962,7 +1962,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.UriHelper.html",
-          "hash": "ndzhEct62JV5m8oJ4ykdJw=="
+          "hash": "iHbqlh/7b1BwZek/dod4Tw=="
         }
       },
       "is_incremental": false,
@@ -1974,7 +1974,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOneOf-2.html",
-          "hash": "skOqLJcxbMtcasN4SM3RiA=="
+          "hash": "Nk3no6bX2E/x12TfXrjigg=="
         }
       },
       "is_incremental": false,
@@ -1986,7 +1986,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOneOf-3.html",
-          "hash": "j7M8vSnja6kV1U4LK5O6gw=="
+          "hash": "rfvH8SyFdY/zDAo9TuCZXA=="
         }
       },
       "is_incremental": false,
@@ -1998,7 +1998,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOneOf-4.html",
-          "hash": "flf54pLWU6zLYBV0wbw8hQ=="
+          "hash": "hdQKpbJD9PeSEJDn2aJluQ=="
         }
       },
       "is_incremental": false,
@@ -2010,7 +2010,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOneOf-5.html",
-          "hash": "x/41rjzgSeYaoHqayrZApQ=="
+          "hash": "4ZcCN19Obyi2bLfzij8FCw=="
         }
       },
       "is_incremental": false,
@@ -2022,7 +2022,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOneOf-6.html",
-          "hash": "SoEqOJIDxWfO8L5eU6TdaA=="
+          "hash": "GmJjeaqflrxrpCps8x+/5Q=="
         }
       },
       "is_incremental": false,
@@ -2034,7 +2034,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOneOf-7.html",
-          "hash": "7XiQnhvJnvljWwJi6WU68A=="
+          "hash": "yTYxLZmnykrPWUQwom6Ydw=="
         }
       },
       "is_incremental": false,
@@ -2046,7 +2046,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOneOf-8.html",
-          "hash": "wpITDKJfPy+fgmYh3heX2A=="
+          "hash": "yBOnR977isI39+upvvaNSw=="
         }
       },
       "is_incremental": false,
@@ -2058,7 +2058,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOption-1.html",
-          "hash": "jhlVW6qICnaBTb2PXG6i3Q=="
+          "hash": "73o7tjJnxxgMviVEgpBoNA=="
         }
       },
       "is_incremental": false,
@@ -2070,7 +2070,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.ValueOption.html",
-          "hash": "vmDG7FAnEOVuSGHwBfsuZg=="
+          "hash": "/t/5kD3ftlno0VbqKuD5EQ=="
         }
       },
       "is_incremental": false,
@@ -2082,7 +2082,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/CodeJam.Xml.XNodeExtensions.html",
-          "hash": "ROZYy8HtzWKAADhLRS8skQ=="
+          "hash": "bOPdQLL6aKRUfOlH4mfN9Q=="
         }
       },
       "is_incremental": false,
@@ -2118,7 +2118,7 @@
       "output": {
         ".html": {
           "relative_path": "api/main/index.html",
-          "hash": "vVEdQcFeMylDmgkxpq9MGQ=="
+          "hash": "NQDlOeL0KmndI3XlCWdrKA=="
         }
       },
       "is_incremental": false,
@@ -2142,7 +2142,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/BenchmarkDotNet.Configs.ReadOnlyConfig.html",
-          "hash": "cltGHYhTz9rWvmKE1VrT6g=="
+          "hash": "oei5qVD1Dsrfelkm7yAOUg=="
         }
       },
       "is_incremental": false,
@@ -2166,7 +2166,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/BenchmarkDotNet.Helpers.AttributeValue-1.html",
-          "hash": "e7+VPHwbLCMziBh0NLxr8Q=="
+          "hash": "rYHuBUXB8bnbBkSag02pEw=="
         }
       },
       "is_incremental": false,
@@ -2178,7 +2178,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/BenchmarkDotNet.Helpers.BenchmarkHelpers.html",
-          "hash": "Q4QwHy48EcWte60TeLJegw=="
+          "hash": "pTGrf3XbWc3HThWDOqz1Yg=="
         }
       },
       "is_incremental": false,
@@ -2202,7 +2202,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/BenchmarkDotNet.Horology.ProcessCycleTimeClock.html",
-          "hash": "TT/S6EX0d1C/0m3SrgtUOA=="
+          "hash": "Wemr7LIRPB1499DWFljxDA=="
         }
       },
       "is_incremental": false,
@@ -2214,7 +2214,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/BenchmarkDotNet.Horology.ThreadCycleTimeClock.html",
-          "hash": "SogYjd6c+8GSHi02s8z+MQ=="
+          "hash": "oUxEgldBRTuV3fKUz8DPGg=="
         }
       },
       "is_incremental": false,
@@ -2238,7 +2238,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/BenchmarkDotNet.Loggers.IFlushableLogger.html",
-          "hash": "ddJU4WM/tnkB3No71i5Cmw=="
+          "hash": "PivfqDSjUBD043t1tU6gBQ=="
         }
       },
       "is_incremental": false,
@@ -2250,7 +2250,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/BenchmarkDotNet.Loggers.LazySynchronizedStreamLogger.html",
-          "hash": "9dL8IFxasknAlkQbKuO7mQ=="
+          "hash": "5fcGC1AG5ixMuu/+RF7yeA=="
         }
       },
       "is_incremental": false,
@@ -2274,7 +2274,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Analysers.Analysis.html",
-          "hash": "8N1RzhnhdkvD1KtUSeyWdw=="
+          "hash": "wZOiik4M/WyRCT+F6hPFyQ=="
         }
       },
       "is_incremental": false,
@@ -2286,7 +2286,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Analysers.CompetitionMetricValue.html",
-          "hash": "XoSNS7c6K1XbZOi/U07cyg=="
+          "hash": "hYTcwjQ1o4wxtX60At4wQQ=="
         }
       },
       "is_incremental": false,
@@ -2298,7 +2298,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Analysers.ResultAnalysis.html",
-          "hash": "EQSPhMMFojxwiTqxjktlOA=="
+          "hash": "4S7hCei4kusrs0r5X90kVw=="
         }
       },
       "is_incremental": false,
@@ -2322,7 +2322,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn.html",
-          "hash": "f0PhgIQ6HDL+5NT/EN5w2g=="
+          "hash": "Rz9pQgWN5YFqjdUJFhpB9Q=="
         }
       },
       "is_incremental": false,
@@ -2334,7 +2334,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider.html",
-          "hash": "K895u8N4+foJ7dLgvMRM2g=="
+          "hash": "ZRnCBZNbMc94JjU3I+5chQ=="
         }
       },
       "is_incremental": false,
@@ -2346,7 +2346,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Columns.MetricValueColumn.Kind.html",
-          "hash": "s+mpB9IMAg3BL68DauUotQ=="
+          "hash": "h1LYI+Y9F4uHN0S9Xd909w=="
         }
       },
       "is_incremental": false,
@@ -2358,7 +2358,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Columns.MetricValueColumn.html",
-          "hash": "3cnVDeLPMNdSks9Lsjob9w=="
+          "hash": "Pmv+A4q6cIoHXwE6XDW5dA=="
         }
       },
       "is_incremental": false,
@@ -2382,7 +2382,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionAnnotateSourcesAttribute.html",
-          "hash": "KquLRUiZKiKkgDLGvpenSA=="
+          "hash": "IM2jg+8hdyQYRRFxYGYFaw=="
         }
       },
       "is_incremental": false,
@@ -2394,7 +2394,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionBaselineAttribute.html",
-          "hash": "4dcfi7Cgh/o9QQqTPGyGBA=="
+          "hash": "cm7TLvTSdWXQqSliqsle6A=="
         }
       },
       "is_incremental": false,
@@ -2406,7 +2406,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionBenchmarkAttribute.html",
-          "hash": "xP5sBA1Ot4fhM48jjI2tMg=="
+          "hash": "IYn28c1aIC0lf/EmDwrwsg=="
         }
       },
       "is_incremental": false,
@@ -2418,7 +2418,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionBurstModeAttribute.html",
-          "hash": "D+BzvmyzOb0OAS+qki8zOw=="
+          "hash": "gIVhtEMFuKHVcsFJLo0UOw=="
         }
       },
       "is_incremental": false,
@@ -2430,7 +2430,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionConfigAttribute.html",
-          "hash": "2DkhCsoaiUuAiAlkZIt+7A=="
+          "hash": "N4qhTh2quPjkAcEaIc8Q3w=="
         }
       },
       "is_incremental": false,
@@ -2442,7 +2442,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionConfigFactoryAttribute.html",
-          "hash": "OvQjB5GPOhk3OaYjCH1xAg=="
+          "hash": "FHEUiQ2wb2zVYyUKW1rJng=="
         }
       },
       "is_incremental": false,
@@ -2454,7 +2454,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionFeaturesAttribute.html",
-          "hash": "b1peyTHn9mdRL4aGxvUB3g=="
+          "hash": "FPRoou8B6RCnIhchyznBmA=="
         }
       },
       "is_incremental": false,
@@ -2466,7 +2466,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionHelpers.html",
-          "hash": "X6EqdlimwT2Rd0+dxlp1yQ=="
+          "hash": "5yOoY/WwkAjV+ztIUFQ+Kg=="
         }
       },
       "is_incremental": false,
@@ -2478,7 +2478,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionModifierAttribute.html",
-          "hash": "Qi32VXsPk65shMcUYAPlUg=="
+          "hash": "DHyDOt7gEZXCpWOJKMQIfw=="
         }
       },
       "is_incremental": false,
@@ -2490,7 +2490,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionPlatformAttribute.html",
-          "hash": "/Fuu0w55dJCE8KcN2KQRLw=="
+          "hash": "uConmBvy4mzPMz54ufZ9bQ=="
         }
       },
       "is_incremental": false,
@@ -2502,7 +2502,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionPreviewMetricsAttribute.html",
-          "hash": "boohYXDnPNBubM8NJX0i+A=="
+          "hash": "XSW2071tzXU0o5ymdHrx5Q=="
         }
       },
       "is_incremental": false,
@@ -2514,7 +2514,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionReannotateSourcesAttribute.html",
-          "hash": "wlql20l4tGP+bXdVFSm1tg=="
+          "hash": "SaXq9pFEICjaz/mjRt+/5A=="
         }
       },
       "is_incremental": false,
@@ -2526,7 +2526,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionRunHelpers.html",
-          "hash": "RKsTkYotlKiP5Ukp7q4QHQ=="
+          "hash": "SOHaBIDaW9HGQ0DSZ9TQrg=="
         }
       },
       "is_incremental": false,
@@ -2538,7 +2538,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionTroubleshootingModeAttribute.html",
-          "hash": "K1GX9qANBim6y31AsgIXYg=="
+          "hash": "lbAuWauFEaAimzbPBW/Stw=="
         }
       },
       "is_incremental": false,
@@ -2550,7 +2550,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.CompetitionXmlAnnotationAttribute.html",
-          "hash": "rUsr0LquueL4vV6rG90gOA=="
+          "hash": "AxSRaU5FbBLafNcTzDIerA=="
         }
       },
       "is_incremental": false,
@@ -2562,7 +2562,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionAdjustmentMode.html",
-          "hash": "Zj+F3prR6mdPbFRlUnuJ+Q=="
+          "hash": "hPECv+9Q0W+rZC70eTiTQA=="
         }
       },
       "is_incremental": false,
@@ -2574,7 +2574,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionAnnotationMode.html",
-          "hash": "cgRSNMawttc8mS2ajEnzIw=="
+          "hash": "viHcKrzrmH76xmR7zaCEtQ=="
         }
       },
       "is_incremental": false,
@@ -2586,7 +2586,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionCheckMode.html",
-          "hash": "UrpbEu3UmpXwOueVKUcZ2g=="
+          "hash": "l2ysEyWX/46SjAs9Ul973Q=="
         }
       },
       "is_incremental": false,
@@ -2598,7 +2598,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionConfigExtensions.html",
-          "hash": "mFT4Z8yBjxd9t2iTXOxVFw=="
+          "hash": "ZsL01S2G+t263jX/PVR6RA=="
         }
       },
       "is_incremental": false,
@@ -2610,7 +2610,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionFeatures.html",
-          "hash": "PIs1oO9tHDp6pR7Tni1+lg=="
+          "hash": "0Uwty3HV0QWF6QaDZXDJQg=="
         }
       },
       "is_incremental": false,
@@ -2622,7 +2622,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionIgnoreAllocationsAttribute.html",
-          "hash": "SsStTRmYrx663Z8GuWRDSw=="
+          "hash": "tUCPpktkYYnOqkdXkxJAHA=="
         }
       },
       "is_incremental": false,
@@ -2634,7 +2634,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionMaximumRerunsAttribute.html",
-          "hash": "BiB3cTqG+oJhrCQV847tgw=="
+          "hash": "+1VrMOFrjCnmeFkgd+Mc0A=="
         }
       },
       "is_incremental": false,
@@ -2646,7 +2646,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionMeasureAllAttribute.html",
-          "hash": "hNDt/ItBveJ0jfTmEVbM+g=="
+          "hash": "sJzbUFA2dy2ADZa68uSf6w=="
         }
       },
       "is_incremental": false,
@@ -2658,7 +2658,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionMeasureAllocationsAttribute.html",
-          "hash": "kp66BW96R6v6KjsaGi/90g=="
+          "hash": "yculcNX1cNQh2Zhl+mgUYg=="
         }
       },
       "is_incremental": false,
@@ -2670,7 +2670,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionNoRelativeTimeAttribute.html",
-          "hash": "y1CFRgR847lqogvu+nxZbQ=="
+          "hash": "Zll+vfoPJONqJlBc+oh/TQ=="
         }
       },
       "is_incremental": false,
@@ -2682,7 +2682,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionOptions.html",
-          "hash": "Kelq+/aAwvAQ2xWlFpXFQA=="
+          "hash": "C4FCOXkatHh6Bh26157KTA=="
         }
       },
       "is_incremental": false,
@@ -2694,7 +2694,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.CompetitionRunMode.html",
-          "hash": "DCPdOLdXFFT5RId+7dllUw=="
+          "hash": "uG8vhQDucy8+GRzXOSTwdQ=="
         }
       },
       "is_incremental": false,
@@ -2706,7 +2706,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.ConcurrentRunBehavior.html",
-          "hash": "heuM01BQMVK8AbCcaXAvZQ=="
+          "hash": "UoUfk5Op9aVveDrpn5zKIQ=="
         }
       },
       "is_incremental": false,
@@ -2718,7 +2718,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.Factories.CompetitionConfigFactory.html",
-          "hash": "AfFLp/7tNM3w1ZRSCFyvww=="
+          "hash": "MzOPMUOWQh32SfFo2/rJCg=="
         }
       },
       "is_incremental": false,
@@ -2730,7 +2730,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.Factories.CompetitionFactoryHelpers.html",
-          "hash": "sm0Bor+kG6RRjsusXBAG9Q=="
+          "hash": "XoXrTSnL6BZfVzsFVw4AOQ=="
         }
       },
       "is_incremental": false,
@@ -2742,7 +2742,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory.html",
-          "hash": "zmZW6r4ueQZdFMyo1ZhqHA=="
+          "hash": "nnhCVr91hygRzj6grOGF3Q=="
         }
       },
       "is_incremental": false,
@@ -2754,7 +2754,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.html",
-          "hash": "/lm6hULPK33omxNZo6kZiw=="
+          "hash": "k++6HvawzxA35UM1fc0WXA=="
         }
       },
       "is_incremental": false,
@@ -2766,7 +2766,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.Factories.ICompetitionModifier.html",
-          "hash": "n9kwy98v5K0SjbEYBRX9MQ=="
+          "hash": "dbYVfdSdGhxOFZ2NKvvDYA=="
         }
       },
       "is_incremental": false,
@@ -2778,7 +2778,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.html",
-          "hash": "jCjH+b+HypOkapT8ZvA17w=="
+          "hash": "bmlUKaz2iok4XUZZB7ky/g=="
         }
       },
       "is_incremental": false,
@@ -2802,7 +2802,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.ICompetitionConfig.html",
-          "hash": "Moz1y3svbPBoOeKRj53++g=="
+          "hash": "/itZ5Fr2nyKA3DTjVk6OMw=="
         }
       },
       "is_incremental": false,
@@ -2814,7 +2814,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.ICompetitionConfigSource.html",
-          "hash": "6NZye1YfAf7uVsElLIZJ0g=="
+          "hash": "cxfmNtyA85KaG2uUszXrYQ=="
         }
       },
       "is_incremental": false,
@@ -2826,7 +2826,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.ManualCompetitionConfig.html",
-          "hash": "TIceFucusZG9HI+k6CNz6A=="
+          "hash": "uFgeoGYauBeTO8tt4z4OuQ=="
         }
       },
       "is_incremental": false,
@@ -2838,7 +2838,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig.html",
-          "hash": "DRTgWwlwjYXTLfAtxjD4cg=="
+          "hash": "WEolFU/bT1VAA1N0o3dIjA=="
         }
       },
       "is_incremental": false,
@@ -2862,7 +2862,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.ExpectedTimeAttribute.html",
-          "hash": "hkDmaT04Q+SS2ffiTR/cAQ=="
+          "hash": "sJJHOLot33Rd70BTbTg00g=="
         }
       },
       "is_incremental": false,
@@ -2874,7 +2874,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Exporters.CsvTimingsExporter.html",
-          "hash": "029iqx1DIYldKrloPOh4hQ=="
+          "hash": "FIvay78aX1JU58EK667+Nw=="
         }
       },
       "is_incremental": false,
@@ -2886,7 +2886,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Exporters.StubExporter.html",
-          "hash": "qhQ38Km8FtVrakPbbpEvnQ=="
+          "hash": "QxM1qkfMq5ZhVvbC1oW8kA=="
         }
       },
       "is_incremental": false,
@@ -2910,7 +2910,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Gc0Attribute.html",
-          "hash": "tbKYHqBCJUeL/NINjpZJlw=="
+          "hash": "uRYq+8rdvvoAb7NM0vsJ1g=="
         }
       },
       "is_incremental": false,
@@ -2922,7 +2922,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Gc1Attribute.html",
-          "hash": "SMXmnqxaC4zNRZBMTnk90Q=="
+          "hash": "XF3hCpHP+DZwWpBNZ/1Rcg=="
         }
       },
       "is_incremental": false,
@@ -2934,7 +2934,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Gc2Attribute.html",
-          "hash": "Zp+WOWLxV1VLp9YElaI0ew=="
+          "hash": "lNqEHqP3DfNM2x0Jq/OZeA=="
         }
       },
       "is_incremental": false,
@@ -2946,7 +2946,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.GcAllocationsAttribute.html",
-          "hash": "o/wr/OiN954B3AY3FxSqJg=="
+          "hash": "HWjleHXBGsgMv359VNCO4g=="
         }
       },
       "is_incremental": false,
@@ -2958,7 +2958,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Loggers.FilteringLogger.html",
-          "hash": "u80V45WeimvuvQnpYIoyLw=="
+          "hash": "kubyHUKEZqHymvvOA01Cvg=="
         }
       },
       "is_incremental": false,
@@ -2970,7 +2970,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Loggers.LogFilter.html",
-          "hash": "b3srH01+nXIE569YOlsG8w=="
+          "hash": "/SlwZFmGpUBtYPKjiEZYOg=="
         }
       },
       "is_incremental": false,
@@ -2982,7 +2982,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Loggers.LoggerHelpers.html",
-          "hash": "QmmGli4/1pZxldOyYpiI+g=="
+          "hash": "iLCX5k0YKQLWOcugTbQ/sQ=="
         }
       },
       "is_incremental": false,
@@ -2994,7 +2994,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Loggers.RedirectLogger.html",
-          "hash": "w/LgrKgM7/KfUdU9s8LzFQ=="
+          "hash": "akircKlzM18VIN4dW9sCIg=="
         }
       },
       "is_incremental": false,
@@ -3018,7 +3018,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.MeanTimeAttribute.html",
-          "hash": "WKZFOEK1l3JkjULxgb2biw=="
+          "hash": "jYn39ixYu50iZPBXvZEqXA=="
         }
       },
       "is_incremental": false,
@@ -3030,7 +3030,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.GcMetricSource.html",
-          "hash": "+UY/+8p46ubv5eoSJ1b0/w=="
+          "hash": "ZpQCs0gB6RAYQEVhphLxSQ=="
         }
       },
       "is_incremental": false,
@@ -3042,7 +3042,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.GcMetricValuesProvider.html",
-          "hash": "I/5J2yRgiQHLs+dzTqFPng=="
+          "hash": "aTSON3dhls68GMjnPdzR6w=="
         }
       },
       "is_incremental": false,
@@ -3054,7 +3054,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.IMetricAttribute-1.html",
-          "hash": "amVKHCRKyq0qI1HgQZMdUg=="
+          "hash": "Z5N7ijGcPmTNkfLiovGMBA=="
         }
       },
       "is_incremental": false,
@@ -3066,7 +3066,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.IMetricAttribute-2.html",
-          "hash": "gffd87B5IbEnmXBnSkpzyg=="
+          "hash": "Qjy9dVqO+Xr4OyfxJovd7Q=="
         }
       },
       "is_incremental": false,
@@ -3078,7 +3078,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.IMetricCalculator.html",
-          "hash": "qJsCmeWQRq+AJFPcaQZXJQ=="
+          "hash": "Xr9LrezDPJJeUPaWfkiT8Q=="
         }
       },
       "is_incremental": false,
@@ -3090,7 +3090,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.IMetricValuesProvider.html",
-          "hash": "WuDmooONDhGY2Knvhsq0vQ=="
+          "hash": "dStRPjwYrGEtOQqonZy7qg=="
         }
       },
       "is_incremental": false,
@@ -3102,7 +3102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.IStoredMetricValue.html",
-          "hash": "hrUc8Wd4/45+wPKhI0kirA=="
+          "hash": "mFiwk7IqfDfMlcCVgtHGtw=="
         }
       },
       "is_incremental": false,
@@ -3114,7 +3114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.LogNormalMetricCalculator.html",
-          "hash": "VZvYW8Qjv3uCPB8QPqcg+g=="
+          "hash": "3UqyHNSK5ETK5K9swE2cYw=="
         }
       },
       "is_incremental": false,
@@ -3126,7 +3126,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricAttributeBase.html",
-          "hash": "NRX/TESWnBq2+oTDOku2KA=="
+          "hash": "7dk1bPP5AkSDugfIKc2v8g=="
         }
       },
       "is_incremental": false,
@@ -3138,7 +3138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricInfo-1.html",
-          "hash": "Uos7xwxKoyxm9yv8VK6j4Q=="
+          "hash": "0lwFfKYuz8m7G8MGsdwxfQ=="
         }
       },
       "is_incremental": false,
@@ -3150,7 +3150,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricInfo.html",
-          "hash": "5f5jt/iMAPlvNXd/yLar0A=="
+          "hash": "jZW73c4zS+lR/P/riUv6AQ=="
         }
       },
       "is_incremental": false,
@@ -3162,7 +3162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricInfoAttribute.html",
-          "hash": "PJ8VpCgvRePZvLtlhi0THw=="
+          "hash": "XnXMtcRKchpl9tj79EIXcQ=="
         }
       },
       "is_incremental": false,
@@ -3174,7 +3174,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricInfoHelpers.html",
-          "hash": "QoXLIJRto2mcZHPOpN/Raw=="
+          "hash": "LlJZjNZ9ZdBcA5Fi9mCxIg=="
         }
       },
       "is_incremental": false,
@@ -3186,7 +3186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricRange.html",
-          "hash": "b8o8x08Vch/HxFvfylHL1Q=="
+          "hash": "Z6hfxGYPOUNvZmXNWJvHwQ=="
         }
       },
       "is_incremental": false,
@@ -3198,7 +3198,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricSingleValueMode.html",
-          "hash": "2vh2cFRuksxlrNXnVCKU0g=="
+          "hash": "L0xv8LhVLiHh2Keg2CJgww=="
         }
       },
       "is_incremental": false,
@@ -3210,7 +3210,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricUnit.html",
-          "hash": "Pc40F+HDtD7R2oW/wGD22A=="
+          "hash": "R45ldOJCTlcTsSbHaWH79g=="
         }
       },
       "is_incremental": false,
@@ -3222,7 +3222,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricUnitAttribute.html",
-          "hash": "mm50hL9whDyWIwK5s0J5dA=="
+          "hash": "2gfxAM49OXBKa12+4v7BYg=="
         }
       },
       "is_incremental": false,
@@ -3234,7 +3234,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricUnitScale.html",
-          "hash": "LUkAaWu4TBjohMMH1BEjAw=="
+          "hash": "T1p1gN51sCl8y8yzTu5g1A=="
         }
       },
       "is_incremental": false,
@@ -3246,7 +3246,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricValueColumns.html",
-          "hash": "bBt8pYjexblo9MsqRAKMAQ=="
+          "hash": "VJmXuWv1ED13qKdAdZJkuQ=="
         }
       },
       "is_incremental": false,
@@ -3258,7 +3258,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricValueHelpers.html",
-          "hash": "i9qb/ik1t5YI25t8e2sPQg=="
+          "hash": "sUE0f5yBRs1n4nzWr/VsHg=="
         }
       },
       "is_incremental": false,
@@ -3270,7 +3270,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.MetricValuesProviderBase.html",
-          "hash": "tV2DO9mq7TgDhiQrAhoZ0w=="
+          "hash": "LhgPwfE4Pj00vWf/IlvMqw=="
         }
       },
       "is_incremental": false,
@@ -3282,7 +3282,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.PercentileMetricCalculator.html",
-          "hash": "4EIln7wCJinyjKk5dBp8oQ=="
+          "hash": "yKCic6NsKSAvsj+XJ3mBZg=="
         }
       },
       "is_incremental": false,
@@ -3294,7 +3294,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.SingleValueMetricCalculator.html",
-          "hash": "s2mRrimDDSkjH71czib2pA=="
+          "hash": "gGvfXTnAngw32a5zsNU8XA=="
         }
       },
       "is_incremental": false,
@@ -3306,7 +3306,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Metrics.TimeMetricValuesProvider.html",
-          "hash": "/bvmjSLPBWHCyrbfK7LdHg=="
+          "hash": "2NN3uPi8RfwVcG+rKGc3SQ=="
         }
       },
       "is_incremental": false,
@@ -3330,7 +3330,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Console.ConsoleCompetition.html",
-          "hash": "ta3/7yBqqKZpny+/TmECmg=="
+          "hash": "2qPngEKIydyYsKOtIZFTkw=="
         }
       },
       "is_incremental": false,
@@ -3354,7 +3354,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.CompetitionCore.html",
-          "hash": "nT2uaTXjXvM4PVemaU8vVw=="
+          "hash": "fRsZ2WwrdNiQ3Yj63LcTLg=="
         }
       },
       "is_incremental": false,
@@ -3366,7 +3366,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.html",
-          "hash": "6v3DnL+Jn67P2KJaHiqPWg=="
+          "hash": "E4fUmWFbgie9xGnPBomc0w=="
         }
       },
       "is_incremental": false,
@@ -3378,7 +3378,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger.html",
-          "hash": "kKnfmRk1oEdCWb9xsEPGbQ=="
+          "hash": "IX9OWgKsM6P+EEr5N9idxQ=="
         }
       },
       "is_incremental": false,
@@ -3390,7 +3390,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.html",
-          "hash": "jB7EvCi6e29kKFfW5K5A4g=="
+          "hash": "FjzXNnMSCWpz9eX9N0ZzEw=="
         }
       },
       "is_incremental": false,
@@ -3402,7 +3402,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.CompetitionState.html",
-          "hash": "qwU2kGJKG9oY92Mu1wS2JQ=="
+          "hash": "tiKOj4L8AvAyjZojZDqUMQ=="
         }
       },
       "is_incremental": false,
@@ -3414,7 +3414,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ConsoleHostLogger.html",
-          "hash": "3P/6OxMDG5LOb0BNjH565w=="
+          "hash": "uPduvyWz3a+VeHneRD/bZw=="
         }
       },
       "is_incremental": false,
@@ -3426,7 +3426,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.html",
-          "hash": "z5V6IU0XvPydENpKgpIWmA=="
+          "hash": "lKi0wPZX73Egu1mYDNPBDg=="
         }
       },
       "is_incremental": false,
@@ -3438,7 +3438,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.ConsoleHelpers.html",
-          "hash": "csiYbyrsWx1QVjuh7xSYjw=="
+          "hash": "Mxt7pTZKtqEpbMiPuCi0ug=="
         }
       },
       "is_incremental": false,
@@ -3450,7 +3450,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.EnvironmentHelpers.html",
-          "hash": "9sFJMjY4ZTvlDFHBmV6b8Q=="
+          "hash": "hUQL1bU94//z2/Rq1iSpnw=="
         }
       },
       "is_incremental": false,
@@ -3462,7 +3462,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.IoHelpers.html",
-          "hash": "9qn/weRTOe4BycjoAgno/A=="
+          "hash": "uO3UQi/i30bDC4KtPNN1cQ=="
         }
       },
       "is_incremental": false,
@@ -3474,7 +3474,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.RunState-1.html",
-          "hash": "FrvgyDOInfuywX1ZXgTjaw=="
+          "hash": "tmSHzdwevU/yG9y/PNCdwA=="
         }
       },
       "is_incremental": false,
@@ -3486,7 +3486,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Core.RunStateKey.html",
-          "hash": "uY2x023+kMrBExUqBmuoMQ=="
+          "hash": "Lv9454POf81NJrGtjgcSVA=="
         }
       },
       "is_incremental": false,
@@ -3510,7 +3510,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Messages.IMessage.html",
-          "hash": "atRAF9l5tuWNzdSEIZnNKg=="
+          "hash": "/iz1ZrnsxtDbxwuXap1Paw=="
         }
       },
       "is_incremental": false,
@@ -3522,7 +3522,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Messages.IMessageLogger.html",
-          "hash": "p7iNUmKtPOmFhhQSzPriqw=="
+          "hash": "AIIupnlQyc4MWQxdy3PInQ=="
         }
       },
       "is_incremental": false,
@@ -3534,7 +3534,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Messages.Message.html",
-          "hash": "kAzl6CEZHi+Q8kh6+i9dqQ=="
+          "hash": "FLFL4Cn4yvXj1j8tfozi8g=="
         }
       },
       "is_incremental": false,
@@ -3546,7 +3546,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Messages.MessageSeverity.html",
-          "hash": "0lEJMu6kTx/RzGRX2SbB0Q=="
+          "hash": "1z9QgEIqdCS89mCXZ4pIpw=="
         }
       },
       "is_incremental": false,
@@ -3558,7 +3558,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.Messages.MessageSource.html",
-          "hash": "fdNhABrFwx5T5FaCMqYV6g=="
+          "hash": "WHan67fWRTRy5wGr3iMiHw=="
         }
       },
       "is_incremental": false,
@@ -3582,7 +3582,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey.html",
-          "hash": "gz+FxabUo+vd+Jigd/v0mg=="
+          "hash": "dWcl538mGyNMDJF/hEisQQ=="
         }
       },
       "is_incremental": false,
@@ -3606,7 +3606,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.TimeUnit.html",
-          "hash": "S7Kq1BE5lfJuq8u5wZ3dQg=="
+          "hash": "Gmss/wOz5rt2Vztsn6MZEA=="
         }
       },
       "is_incremental": false,
@@ -3618,7 +3618,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/CodeJam.PerfTests.WellKnownMetrics.html",
-          "hash": "zJUQ+QgJKutXaTYhfYRd/w=="
+          "hash": "RWgyxWRoOMa7NjyPVfaUzA=="
         }
       },
       "is_incremental": false,
@@ -3642,7 +3642,7 @@
       "output": {
         ".html": {
           "relative_path": "api/perftests/index.html",
-          "hash": "VWLsWOM9JFwtmgFKkvz+tA=="
+          "hash": "gRS/o2kZfxSlt64qC9uMcQ=="
         }
       },
       "is_incremental": false,
@@ -3666,7 +3666,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "rqF+rQrIw30aY9GkQXgXBw=="
+          "hash": "gOQT6RYFdYBR/xiWUOtuvQ=="
         }
       },
       "is_incremental": false,
@@ -3701,7 +3701,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "Cpd0PxUJk/ZmLp56DkjHYw=="
+          "hash": "ImtVQZCZxrWsLhs28Cermg=="
         }
       },
       "is_incremental": false,
@@ -3732,22 +3732,22 @@
           "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }

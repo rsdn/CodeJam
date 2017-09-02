@@ -1,0 +1,655 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.CompetitionHelpers
+  commentId: T:CodeJam.PerfTests.CompetitionHelpers
+  id: CompetitionHelpers
+  parent: CodeJam.PerfTests
+  children:
+  - CodeJam.PerfTests.CompetitionHelpers.ConfigForAssembly
+  - CodeJam.PerfTests.CompetitionHelpers.CreateConfig(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  - CodeJam.PerfTests.CompetitionHelpers.CreateConfig(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  - CodeJam.PerfTests.CompetitionHelpers.DefaultConfig
+  - CodeJam.PerfTests.CompetitionHelpers.PerfTestCategory
+  - CodeJam.PerfTests.CompetitionHelpers.TemporarilyExcludedReason
+  langs:
+  - csharp
+  - vb
+  name: CompetitionHelpers
+  nameWithType: CompetitionHelpers
+  fullName: CodeJam.PerfTests.CompetitionHelpers
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CompetitionHelpers
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: "\nReusable API for performance tests.\n"
+  example: []
+  syntax:
+    content: public static class CompetitionHelpers
+    content.vb: Public Module CompetitionHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.PerfTests.CompetitionHelpers.PerfTestCategory
+  commentId: F:CodeJam.PerfTests.CompetitionHelpers.PerfTestCategory
+  id: PerfTestCategory
+  parent: CodeJam.PerfTests.CompetitionHelpers
+  langs:
+  - csharp
+  - vb
+  name: PerfTestCategory
+  nameWithType: CompetitionHelpers.PerfTestCategory
+  fullName: CodeJam.PerfTests.CompetitionHelpers.PerfTestCategory
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: PerfTestCategory
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+    startLine: 19
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Default category prefix for performance tests.
+  example: []
+  syntax:
+    content: public const string PerfTestCategory = "Performance"
+    return:
+      type: System.String
+    content.vb: Public Const PerfTestCategory As String = "Performance"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.CompetitionHelpers.TemporarilyExcludedReason
+  commentId: F:CodeJam.PerfTests.CompetitionHelpers.TemporarilyExcludedReason
+  id: TemporarilyExcludedReason
+  parent: CodeJam.PerfTests.CompetitionHelpers
+  langs:
+  - csharp
+  - vb
+  name: TemporarilyExcludedReason
+  nameWithType: CompetitionHelpers.TemporarilyExcludedReason
+  fullName: CodeJam.PerfTests.CompetitionHelpers.TemporarilyExcludedReason
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TemporarilyExcludedReason
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+    startLine: 22
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Default explanation for bad performance tests.
+  example: []
+  syntax:
+    content: public const string TemporarilyExcludedReason = "Temporary disabled as the results are unstable. Please, run the test manually from the Test Explorer window."
+    return:
+      type: System.String
+    content.vb: Public Const TemporarilyExcludedReason As String = "Temporary disabled as the results are unstable. Please, run the test manually from the Test Explorer window."
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.CompetitionHelpers.DefaultConfig
+  commentId: P:CodeJam.PerfTests.CompetitionHelpers.DefaultConfig
+  id: DefaultConfig
+  parent: CodeJam.PerfTests.CompetitionHelpers
+  langs:
+  - csharp
+  - vb
+  name: DefaultConfig
+  nameWithType: CompetitionHelpers.DefaultConfig
+  fullName: CodeJam.PerfTests.CompetitionHelpers.DefaultConfig
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DefaultConfig
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+    startLine: 37
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Default configuration that ignores calling assembly configuration attributes.
+  example: []
+  syntax:
+    content: public static ICompetitionConfig DefaultConfig { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Configs.ICompetitionConfig
+      description: Default competition configuration.
+    content.vb: Public Shared ReadOnly Property DefaultConfig As ICompetitionConfig
+  overload: CodeJam.PerfTests.CompetitionHelpers.DefaultConfig*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.CompetitionHelpers.ConfigForAssembly
+  commentId: P:CodeJam.PerfTests.CompetitionHelpers.ConfigForAssembly
+  id: ConfigForAssembly
+  parent: CodeJam.PerfTests.CompetitionHelpers
+  langs:
+  - csharp
+  - vb
+  name: ConfigForAssembly
+  nameWithType: CompetitionHelpers.ConfigForAssembly
+  fullName: CodeJam.PerfTests.CompetitionHelpers.ConfigForAssembly
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ConfigForAssembly
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+    startLine: 41
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Default configuration for calling assembly that should be used for most performance tests.
+  example: []
+  syntax:
+    content: public static ICompetitionConfig ConfigForAssembly { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Configs.ICompetitionConfig
+      description: Default competition configuration.
+    content.vb: Public Shared ReadOnly Property ConfigForAssembly As ICompetitionConfig
+  overload: CodeJam.PerfTests.CompetitionHelpers.ConfigForAssembly*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.CompetitionHelpers.CreateConfig(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.CompetitionHelpers.CreateConfig(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  id: CreateConfig(System.Type,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.CompetitionHelpers
+  langs:
+  - csharp
+  - vb
+  name: CreateConfig(Type, CompetitionFeatures)
+  nameWithType: CompetitionHelpers.CreateConfig(Type, CompetitionFeatures)
+  fullName: CodeJam.PerfTests.CompetitionHelpers.CreateConfig(System.Type, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateConfig
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+    startLine: 54
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Creates competition config for type.
+  example: []
+  syntax:
+    content: public static ICompetitionConfig CreateConfig(Type benchmarkType, CompetitionFeatures competitionFeatures = null)
+    parameters:
+    - id: benchmarkType
+      type: System.Type
+      description: Benchmark class to run.
+    - id: competitionFeatures
+      type: CodeJam.PerfTests.Configs.CompetitionFeatures
+      description: The competition features.
+    return:
+      type: CodeJam.PerfTests.Configs.ICompetitionConfig
+      description: Competition config for type.
+    content.vb: Public Shared Function CreateConfig(benchmarkType As Type, competitionFeatures As CompetitionFeatures = Nothing) As ICompetitionConfig
+  overload: CodeJam.PerfTests.CompetitionHelpers.CreateConfig*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.CompetitionHelpers.CreateConfig(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  commentId: M:CodeJam.PerfTests.CompetitionHelpers.CreateConfig(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  id: CreateConfig(System.Reflection.Assembly,CodeJam.PerfTests.Configs.CompetitionFeatures)
+  parent: CodeJam.PerfTests.CompetitionHelpers
+  langs:
+  - csharp
+  - vb
+  name: CreateConfig(Assembly, CompetitionFeatures)
+  nameWithType: CompetitionHelpers.CreateConfig(Assembly, CompetitionFeatures)
+  fullName: CodeJam.PerfTests.CompetitionHelpers.CreateConfig(System.Reflection.Assembly, CodeJam.PerfTests.Configs.CompetitionFeatures)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateConfig
+    path: ../PerfTests/src/[L5_AllTogether]/CompetitionHelpers.cs
+    startLine: 64
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests
+  summary: Creates competition config for type.
+  example: []
+  syntax:
+    content: public static ICompetitionConfig CreateConfig(Assembly targetAssembly = null, CompetitionFeatures competitionFeatures = null)
+    parameters:
+    - id: targetAssembly
+      type: System.Reflection.Assembly
+      description: Assembly to create config for.
+    - id: competitionFeatures
+      type: CodeJam.PerfTests.Configs.CompetitionFeatures
+      description: The competition features.
+    return:
+      type: CodeJam.PerfTests.Configs.ICompetitionConfig
+      description: Competition config for type.
+    content.vb: Public Shared Function CreateConfig(targetAssembly As Assembly = Nothing, competitionFeatures As CompetitionFeatures = Nothing) As ICompetitionConfig
+  overload: CodeJam.PerfTests.CompetitionHelpers.CreateConfig*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: CodeJam.PerfTests
+  commentId: N:CodeJam.PerfTests
+  isExternal: false
+  name: CodeJam.PerfTests
+  nameWithType: CodeJam.PerfTests
+  fullName: CodeJam.PerfTests
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.PerfTests.CompetitionHelpers.DefaultConfig*
+  commentId: Overload:CodeJam.PerfTests.CompetitionHelpers.DefaultConfig
+  isExternal: false
+  name: DefaultConfig
+  nameWithType: CompetitionHelpers.DefaultConfig
+  fullName: CodeJam.PerfTests.CompetitionHelpers.DefaultConfig
+- uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+  commentId: T:CodeJam.PerfTests.Configs.ICompetitionConfig
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: ICompetitionConfig
+  nameWithType: ICompetitionConfig
+  fullName: CodeJam.PerfTests.Configs.ICompetitionConfig
+- uid: CodeJam.PerfTests.Configs
+  commentId: N:CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CodeJam.PerfTests.Configs
+  nameWithType: CodeJam.PerfTests.Configs
+  fullName: CodeJam.PerfTests.Configs
+- uid: CodeJam.PerfTests.CompetitionHelpers.ConfigForAssembly*
+  commentId: Overload:CodeJam.PerfTests.CompetitionHelpers.ConfigForAssembly
+  isExternal: false
+  name: ConfigForAssembly
+  nameWithType: CompetitionHelpers.ConfigForAssembly
+  fullName: CodeJam.PerfTests.CompetitionHelpers.ConfigForAssembly
+- uid: CodeJam.PerfTests.CompetitionHelpers.CreateConfig*
+  commentId: Overload:CodeJam.PerfTests.CompetitionHelpers.CreateConfig
+  isExternal: false
+  name: CreateConfig
+  nameWithType: CompetitionHelpers.CreateConfig
+  fullName: CodeJam.PerfTests.CompetitionHelpers.CreateConfig
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+  commentId: T:CodeJam.PerfTests.Configs.CompetitionFeatures
+  parent: CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CompetitionFeatures
+  nameWithType: CompetitionFeatures
+  fullName: CodeJam.PerfTests.Configs.CompetitionFeatures
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection

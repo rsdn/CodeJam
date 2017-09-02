@@ -1,0 +1,630 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Core.RunState`1
+  commentId: T:CodeJam.PerfTests.Running.Core.RunState`1
+  id: RunState`1
+  parent: CodeJam.PerfTests.Running.Core
+  children:
+  - CodeJam.PerfTests.Running.Core.RunState`1.#ctor
+  - CodeJam.PerfTests.Running.Core.RunState`1.#ctor(System.Boolean)
+  - CodeJam.PerfTests.Running.Core.RunState`1.Item(BenchmarkDotNet.Configs.IConfig)
+  - CodeJam.PerfTests.Running.Core.RunState`1.Item(BenchmarkDotNet.Reports.Summary)
+  langs:
+  - csharp
+  - vb
+  name: RunState<T>
+  nameWithType: RunState<T>
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: RunState
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+    startLine: 12
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Typed slot for run state object.
+  example: []
+  syntax:
+    content: 'public class RunState<T> : RunStateKey where T : class, new ()'
+    typeParameters:
+    - id: T
+      description: The type of run state object.
+    content.vb: >-
+      Public Class RunState(Of T As {Class, New})
+          Inherits RunStateKey
+  inheritance:
+  - System.Object
+  - CodeJam.PerfTests.Running.Core.RunStateKey
+  inheritedMembers:
+  - CodeJam.PerfTests.Running.Core.RunStateKey.ClearBeforeEachRun
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  nameWithType.vb: RunState(Of T)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T)
+  name.vb: RunState(Of T)
+- uid: CodeJam.PerfTests.Running.Core.RunState`1.#ctor
+  commentId: M:CodeJam.PerfTests.Running.Core.RunState`1.#ctor
+  id: '#ctor'
+  parent: CodeJam.PerfTests.Running.Core.RunState`1
+  langs:
+  - csharp
+  - vb
+  name: RunState()
+  nameWithType: RunState<T>.RunState()
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>.RunState()
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+    startLine: 15
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Running.Core.RunState%601" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public RunState()
+    content.vb: Public Sub New
+  overload: CodeJam.PerfTests.Running.Core.RunState`1.#ctor*
+  nameWithType.vb: RunState(Of T).RunState()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T).RunState()
+- uid: CodeJam.PerfTests.Running.Core.RunState`1.#ctor(System.Boolean)
+  commentId: M:CodeJam.PerfTests.Running.Core.RunState`1.#ctor(System.Boolean)
+  id: '#ctor(System.Boolean)'
+  parent: CodeJam.PerfTests.Running.Core.RunState`1
+  langs:
+  - csharp
+  - vb
+  name: RunState(Boolean)
+  nameWithType: RunState<T>.RunState(Boolean)
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>.RunState(System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+    startLine: 19
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Running.Core.RunState%601" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public RunState(bool clearBeforeEachRun)
+    parameters:
+    - id: clearBeforeEachRun
+      type: System.Boolean
+      description: if set to <code>true</code> the value of the slot is cleaned on each run.
+    content.vb: Public Sub New(clearBeforeEachRun As Boolean)
+  overload: CodeJam.PerfTests.Running.Core.RunState`1.#ctor*
+  nameWithType.vb: RunState(Of T).RunState(Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T).RunState(System.Boolean)
+- uid: CodeJam.PerfTests.Running.Core.RunState`1.Item(BenchmarkDotNet.Reports.Summary)
+  commentId: P:CodeJam.PerfTests.Running.Core.RunState`1.Item(BenchmarkDotNet.Reports.Summary)
+  id: Item(BenchmarkDotNet.Reports.Summary)
+  parent: CodeJam.PerfTests.Running.Core.RunState`1
+  langs:
+  - csharp
+  - vb
+  name: Item[Summary]
+  nameWithType: RunState<T>.Item[Summary]
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>.Item[BenchmarkDotNet.Reports.Summary]
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: this[]
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+    startLine: 25
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Returns run state object for the current run.
+  example: []
+  syntax:
+    content: public T this[Summary summary] { get; }
+    parameters:
+    - id: summary
+      type: BenchmarkDotNet.Reports.Summary
+      description: The summary for the current run.
+    return:
+      type: '{T}'
+      description: Run state object for the current run.
+    content.vb: Public ReadOnly Property Item(summary As Summary) As T
+  overload: CodeJam.PerfTests.Running.Core.RunState`1.Item*
+  nameWithType.vb: RunState(Of T).Item(Summary)
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T).Item(BenchmarkDotNet.Reports.Summary)
+  name.vb: Item(Summary)
+- uid: CodeJam.PerfTests.Running.Core.RunState`1.Item(BenchmarkDotNet.Configs.IConfig)
+  commentId: P:CodeJam.PerfTests.Running.Core.RunState`1.Item(BenchmarkDotNet.Configs.IConfig)
+  id: Item(BenchmarkDotNet.Configs.IConfig)
+  parent: CodeJam.PerfTests.Running.Core.RunState`1
+  langs:
+  - csharp
+  - vb
+  name: Item[IConfig]
+  nameWithType: RunState<T>.Item[IConfig]
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>.Item[BenchmarkDotNet.Configs.IConfig]
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: this[]
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Core/[RunState]/RunState`1.cs
+    startLine: 40
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Core
+  summary: Returns the running state for the current run.
+  example: []
+  syntax:
+    content: public T this[IConfig config] { get; }
+    parameters:
+    - id: config
+      type: BenchmarkDotNet.Configs.IConfig
+      description: The config for the current run.
+    return:
+      type: '{T}'
+      description: Run state object for the current run.
+    content.vb: Public ReadOnly Property Item(config As IConfig) As T
+  overload: CodeJam.PerfTests.Running.Core.RunState`1.Item*
+  nameWithType.vb: RunState(Of T).Item(IConfig)
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T).Item(BenchmarkDotNet.Configs.IConfig)
+  name.vb: Item(IConfig)
+references:
+- uid: CodeJam.PerfTests.Running.Core
+  commentId: N:CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Core
+  nameWithType: CodeJam.PerfTests.Running.Core
+  fullName: CodeJam.PerfTests.Running.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CodeJam.PerfTests.Running.Core.RunStateKey
+  commentId: T:CodeJam.PerfTests.Running.Core.RunStateKey
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: RunStateKey
+  nameWithType: RunStateKey
+  fullName: CodeJam.PerfTests.Running.Core.RunStateKey
+- uid: CodeJam.PerfTests.Running.Core.RunStateKey.ClearBeforeEachRun
+  commentId: P:CodeJam.PerfTests.Running.Core.RunStateKey.ClearBeforeEachRun
+  parent: CodeJam.PerfTests.Running.Core.RunStateKey
+  isExternal: false
+  name: ClearBeforeEachRun
+  nameWithType: RunStateKey.ClearBeforeEachRun
+  fullName: CodeJam.PerfTests.Running.Core.RunStateKey.ClearBeforeEachRun
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Running.Core.RunState`1
+  commentId: T:CodeJam.PerfTests.Running.Core.RunState`1
+  isExternal: false
+  name: RunState<T>
+  nameWithType: RunState<T>
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>
+  nameWithType.vb: RunState(Of T)
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T)
+  name.vb: RunState(Of T)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.RunState`1
+    name: RunState
+    nameWithType: RunState
+    fullName: CodeJam.PerfTests.Running.Core.RunState
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.RunState`1
+    name: RunState
+    nameWithType: RunState
+    fullName: CodeJam.PerfTests.Running.Core.RunState
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.RunState`1.#ctor*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.RunState`1.#ctor
+  isExternal: false
+  name: RunState
+  nameWithType: RunState<T>.RunState
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>.RunState
+  nameWithType.vb: RunState(Of T).RunState
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T).RunState
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.PerfTests.Running.Core.RunState`1.Item*
+  commentId: Overload:CodeJam.PerfTests.Running.Core.RunState`1.Item
+  isExternal: false
+  name: Item
+  nameWithType: RunState<T>.Item
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>.Item
+  nameWithType.vb: RunState(Of T).Item
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T).Item
+- uid: BenchmarkDotNet.Reports.Summary
+  commentId: T:BenchmarkDotNet.Reports.Summary
+  parent: BenchmarkDotNet.Reports
+  isExternal: true
+  name: Summary
+  nameWithType: Summary
+  fullName: BenchmarkDotNet.Reports.Summary
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: BenchmarkDotNet.Reports
+  commentId: N:BenchmarkDotNet.Reports
+  isExternal: false
+  name: BenchmarkDotNet.Reports
+  nameWithType: BenchmarkDotNet.Reports
+  fullName: BenchmarkDotNet.Reports
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: BenchmarkDotNet.Configs.IConfig
+  commentId: T:BenchmarkDotNet.Configs.IConfig
+  parent: BenchmarkDotNet.Configs
+  isExternal: true
+  name: IConfig
+  nameWithType: IConfig
+  fullName: BenchmarkDotNet.Configs.IConfig
+- uid: BenchmarkDotNet.Configs
+  commentId: N:BenchmarkDotNet.Configs
+  isExternal: false
+  name: BenchmarkDotNet.Configs
+  nameWithType: BenchmarkDotNet.Configs
+  fullName: BenchmarkDotNet.Configs

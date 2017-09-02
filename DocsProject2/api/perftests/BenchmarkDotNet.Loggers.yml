@@ -1,0 +1,37 @@
+### YamlMime:ManagedReference
+items:
+- uid: BenchmarkDotNet.Loggers
+  commentId: N:BenchmarkDotNet.Loggers
+  id: BenchmarkDotNet.Loggers
+  children:
+  - BenchmarkDotNet.Loggers.IFlushableLogger
+  - BenchmarkDotNet.Loggers.LazySynchronizedStreamLogger
+  langs:
+  - csharp
+  - vb
+  name: BenchmarkDotNet.Loggers
+  nameWithType: BenchmarkDotNet.Loggers
+  fullName: BenchmarkDotNet.Loggers
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: BenchmarkDotNet.Loggers.IFlushableLogger
+  commentId: T:BenchmarkDotNet.Loggers.IFlushableLogger
+  parent: BenchmarkDotNet.Loggers
+  isExternal: false
+  name: IFlushableLogger
+  nameWithType: IFlushableLogger
+  fullName: BenchmarkDotNet.Loggers.IFlushableLogger
+- uid: BenchmarkDotNet.Loggers.LazySynchronizedStreamLogger
+  commentId: T:BenchmarkDotNet.Loggers.LazySynchronizedStreamLogger
+  isExternal: false
+  name: LazySynchronizedStreamLogger
+  nameWithType: LazySynchronizedStreamLogger
+  fullName: BenchmarkDotNet.Loggers.LazySynchronizedStreamLogger
+- uid: BenchmarkDotNet.Loggers
+  commentId: N:BenchmarkDotNet.Loggers
+  isExternal: false
+  name: BenchmarkDotNet.Loggers
+  nameWithType: BenchmarkDotNet.Loggers
+  fullName: BenchmarkDotNet.Loggers

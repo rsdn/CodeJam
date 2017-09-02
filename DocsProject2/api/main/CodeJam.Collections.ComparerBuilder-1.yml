@@ -1,0 +1,1347 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Collections.ComparerBuilder`1
+  commentId: T:CodeJam.Collections.ComparerBuilder`1
+  id: ComparerBuilder`1
+  parent: CodeJam.Collections
+  children:
+  - CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer
+  - CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer(System.Func{CodeJam.Reflection.TypeAccessor{`0},System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}})
+  - CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  - CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc
+  - CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc(System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor})
+  - CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  - CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc
+  - CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc(System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor})
+  - CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  langs:
+  - csharp
+  - vb
+  name: ComparerBuilder<T>
+  nameWithType: ComparerBuilder<T>
+  fullName: CodeJam.Collections.ComparerBuilder<T>
+  type: Class
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ComparerBuilder
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 18
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nBuilds comparer functions and comparers.\n"
+  example: []
+  syntax:
+    content: public static class ComparerBuilder<T>
+    typeParameters:
+    - id: T
+      description: The type of objects to compare.
+    content.vb: Public Module ComparerBuilder(Of T)
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  nameWithType.vb: ComparerBuilder(Of T)
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T)
+  name.vb: ComparerBuilder(Of T)
+- uid: CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc
+  id: GetEqualsFunc
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetEqualsFunc()
+  nameWithType: ComparerBuilder<T>.GetEqualsFunc()
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetEqualsFunc()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetEqualsFunc
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 25
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns GetEqualsFunc function for type T to compare.\n"
+  example: []
+  syntax:
+    content: public static Func<T, T, bool> GetEqualsFunc()
+    return:
+      type: System.Func{{T},{T},System.Boolean}
+      description: GetEqualsFunc function.
+    content.vb: Public Shared Function GetEqualsFunc As Func(Of T, T, Boolean)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc*
+  nameWithType.vb: ComparerBuilder(Of T).GetEqualsFunc()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetEqualsFunc()
+- uid: CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc(System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor})
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc(System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor})
+  id: GetEqualsFunc(System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor})
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetEqualsFunc(IEnumerable<MemberAccessor>)
+  nameWithType: ComparerBuilder<T>.GetEqualsFunc(IEnumerable<MemberAccessor>)
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetEqualsFunc(System.Collections.Generic.IEnumerable<CodeJam.Reflection.MemberAccessor>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetEqualsFunc
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 34
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns GetEqualsFunc function for provided members for type T to compare.\n"
+  example: []
+  syntax:
+    content: public static Func<T, T, bool> GetEqualsFunc(IEnumerable<MemberAccessor> members)
+    parameters:
+    - id: members
+      type: System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}
+      description: Members to compare.
+    return:
+      type: System.Func{{T},{T},System.Boolean}
+      description: GetEqualsFunc function.
+    content.vb: Public Shared Function GetEqualsFunc(members As IEnumerable(Of MemberAccessor)) As Func(Of T, T, Boolean)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc*
+  nameWithType.vb: ComparerBuilder(Of T).GetEqualsFunc(IEnumerable(Of MemberAccessor))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetEqualsFunc(System.Collections.Generic.IEnumerable(Of CodeJam.Reflection.MemberAccessor))
+  name.vb: GetEqualsFunc(IEnumerable(Of MemberAccessor))
+- uid: CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  id: GetEqualsFunc(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetEqualsFunc(Expression<Func<T, Object>>[])
+  nameWithType: ComparerBuilder<T>.GetEqualsFunc(Expression<Func<T, Object>>[])
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetEqualsFunc(System.Linq.Expressions.Expression<System.Func<T, System.Object>>[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetEqualsFunc
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 43
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns GetEqualsFunc function for provided members for type T to compare.\n"
+  example: []
+  syntax:
+    content: public static Func<T, T, bool> GetEqualsFunc(params Expression<Func<T, object>>[] members)
+    parameters:
+    - id: members
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}[]
+      description: Members to compare.
+    return:
+      type: System.Func{{T},{T},System.Boolean}
+      description: GetEqualsFunc function.
+    content.vb: Public Shared Function GetEqualsFunc(ParamArray members As Expression(Of Func(Of T, Object))()) As Func(Of T, T, Boolean)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc*
+  nameWithType.vb: ComparerBuilder(Of T).GetEqualsFunc(Expression(Of Func(Of T, Object))())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetEqualsFunc(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object))())
+  name.vb: GetEqualsFunc(Expression(Of Func(Of T, Object))())
+- uid: CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc
+  id: GetGetHashCodeFunc
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetGetHashCodeFunc()
+  nameWithType: ComparerBuilder<T>.GetGetHashCodeFunc()
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetGetHashCodeFunc()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetGetHashCodeFunc
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 51
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns GetHashCode function for type T to compare.\n"
+  example: []
+  syntax:
+    content: public static Func<T, int> GetGetHashCodeFunc()
+    return:
+      type: System.Func{{T},System.Int32}
+      description: GetHashCode function.
+    content.vb: Public Shared Function GetGetHashCodeFunc As Func(Of T, Integer)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc*
+  nameWithType.vb: ComparerBuilder(Of T).GetGetHashCodeFunc()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetGetHashCodeFunc()
+- uid: CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc(System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor})
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc(System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor})
+  id: GetGetHashCodeFunc(System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor})
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetGetHashCodeFunc(IEnumerable<MemberAccessor>)
+  nameWithType: ComparerBuilder<T>.GetGetHashCodeFunc(IEnumerable<MemberAccessor>)
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetGetHashCodeFunc(System.Collections.Generic.IEnumerable<CodeJam.Reflection.MemberAccessor>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetGetHashCodeFunc
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 63
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns GetHashCode function for provided members for type T to compare.\n"
+  example: []
+  syntax:
+    content: public static Func<T, int> GetGetHashCodeFunc(IEnumerable<MemberAccessor> members)
+    parameters:
+    - id: members
+      type: System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}
+      description: Members to compare.
+    return:
+      type: System.Func{{T},System.Int32}
+      description: GetHashCode function.
+    content.vb: Public Shared Function GetGetHashCodeFunc(members As IEnumerable(Of MemberAccessor)) As Func(Of T, Integer)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc*
+  nameWithType.vb: ComparerBuilder(Of T).GetGetHashCodeFunc(IEnumerable(Of MemberAccessor))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetGetHashCodeFunc(System.Collections.Generic.IEnumerable(Of CodeJam.Reflection.MemberAccessor))
+  name.vb: GetGetHashCodeFunc(IEnumerable(Of MemberAccessor))
+- uid: CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  id: GetGetHashCodeFunc(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetGetHashCodeFunc(Expression<Func<T, Object>>[])
+  nameWithType: ComparerBuilder<T>.GetGetHashCodeFunc(Expression<Func<T, Object>>[])
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetGetHashCodeFunc(System.Linq.Expressions.Expression<System.Func<T, System.Object>>[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetGetHashCodeFunc
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 72
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns GetHashCode function for provided members for type T to compare.\n"
+  example: []
+  syntax:
+    content: public static Func<T, int> GetGetHashCodeFunc(params Expression<Func<T, object>>[] members)
+    parameters:
+    - id: members
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}[]
+      description: Members to compare.
+    return:
+      type: System.Func{{T},System.Int32}
+      description: GetHashCode function.
+    content.vb: Public Shared Function GetGetHashCodeFunc(ParamArray members As Expression(Of Func(Of T, Object))()) As Func(Of T, Integer)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc*
+  nameWithType.vb: ComparerBuilder(Of T).GetGetHashCodeFunc(Expression(Of Func(Of T, Object))())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetGetHashCodeFunc(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object))())
+  name.vb: GetGetHashCodeFunc(Expression(Of Func(Of T, Object))())
+- uid: CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer
+  id: GetEqualityComparer
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetEqualityComparer()
+  nameWithType: ComparerBuilder<T>.GetEqualityComparer()
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetEqualityComparer()
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetEqualityComparer
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 101
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns implementations of the <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> generic interface\nbased on object public members equality.\n"
+  example: []
+  syntax:
+    content: public static IEqualityComparer<T> GetEqualityComparer()
+    return:
+      type: System.Collections.Generic.IEqualityComparer{{T}}
+      description: Instance of <xref href="System.Collections.Generic.IEqualityComparer%601" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function GetEqualityComparer As IEqualityComparer(Of T)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer*
+  nameWithType.vb: ComparerBuilder(Of T).GetEqualityComparer()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetEqualityComparer()
+- uid: CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  id: GetEqualityComparer(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetEqualityComparer(Expression<Func<T, Object>>[])
+  nameWithType: ComparerBuilder<T>.GetEqualityComparer(Expression<Func<T, Object>>[])
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetEqualityComparer(System.Linq.Expressions.Expression<System.Func<T, System.Object>>[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetEqualityComparer
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 111
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns implementations of the <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> generic interface\nbased on provided object public members equality.\n"
+  example: []
+  syntax:
+    content: public static IEqualityComparer<T> GetEqualityComparer(params Expression<Func<T, object>>[] membersToCompare)
+    parameters:
+    - id: membersToCompare
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}[]
+      description: Members to compare.
+    return:
+      type: System.Collections.Generic.IEqualityComparer{{T}}
+      description: Instance of <xref href="System.Collections.Generic.IEqualityComparer%601" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function GetEqualityComparer(ParamArray membersToCompare As Expression(Of Func(Of T, Object))()) As IEqualityComparer(Of T)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer*
+  nameWithType.vb: ComparerBuilder(Of T).GetEqualityComparer(Expression(Of Func(Of T, Object))())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetEqualityComparer(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object))())
+  name.vb: GetEqualityComparer(Expression(Of Func(Of T, Object))())
+- uid: CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer(System.Func{CodeJam.Reflection.TypeAccessor{`0},System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}})
+  commentId: M:CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer(System.Func{CodeJam.Reflection.TypeAccessor{`0},System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}})
+  id: GetEqualityComparer(System.Func{CodeJam.Reflection.TypeAccessor{`0},System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}})
+  parent: CodeJam.Collections.ComparerBuilder`1
+  langs:
+  - csharp
+  - vb
+  name: GetEqualityComparer(Func<TypeAccessor<T>, IEnumerable<MemberAccessor>>)
+  nameWithType: ComparerBuilder<T>.GetEqualityComparer(Func<TypeAccessor<T>, IEnumerable<MemberAccessor>>)
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetEqualityComparer(System.Func<CodeJam.Reflection.TypeAccessor<T>, System.Collections.Generic.IEnumerable<CodeJam.Reflection.MemberAccessor>>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/ComparerBuilder.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetEqualityComparer
+    path: ../Main/src/Collections/ComparerBuilder.cs
+    startLine: 124
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nReturns implementations of the <xref href=\"System.Collections.Generic.IEqualityComparer%601\" data-throw-if-not-resolved=\"false\"></xref> generic interface\nbased on provided object public members equality.\n"
+  example: []
+  syntax:
+    content: public static IEqualityComparer<T> GetEqualityComparer(Func<TypeAccessor<T>, IEnumerable<MemberAccessor>> membersToCompare)
+    parameters:
+    - id: membersToCompare
+      type: System.Func{CodeJam.Reflection.TypeAccessor{{T}},System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}}
+      description: A function that returns members to compare.
+    return:
+      type: System.Collections.Generic.IEqualityComparer{{T}}
+      description: Instance of <xref href="System.Collections.Generic.IEqualityComparer%601" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Shared Function GetEqualityComparer(membersToCompare As Func(Of TypeAccessor(Of T), IEnumerable(Of MemberAccessor))) As IEqualityComparer(Of T)
+  overload: CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer*
+  nameWithType.vb: ComparerBuilder(Of T).GetEqualityComparer(Func(Of TypeAccessor(Of T), IEnumerable(Of MemberAccessor)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetEqualityComparer(System.Func(Of CodeJam.Reflection.TypeAccessor(Of T), System.Collections.Generic.IEnumerable(Of CodeJam.Reflection.MemberAccessor)))
+  name.vb: GetEqualityComparer(Func(Of TypeAccessor(Of T), IEnumerable(Of MemberAccessor)))
+references:
+- uid: CodeJam.Collections
+  commentId: N:CodeJam.Collections
+  isExternal: false
+  name: CodeJam.Collections
+  nameWithType: CodeJam.Collections
+  fullName: CodeJam.Collections
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc*
+  commentId: Overload:CodeJam.Collections.ComparerBuilder`1.GetEqualsFunc
+  isExternal: false
+  name: GetEqualsFunc
+  nameWithType: ComparerBuilder<T>.GetEqualsFunc
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetEqualsFunc
+  nameWithType.vb: ComparerBuilder(Of T).GetEqualsFunc
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetEqualsFunc
+- uid: System.Func{{T},{T},System.Boolean}
+  commentId: T:System.Func{`0,`0,System.Boolean}
+  parent: System
+  definition: System.Func`3
+  name: Func<T, T, Boolean>
+  nameWithType: Func<T, T, Boolean>
+  fullName: System.Func<T, T, System.Boolean>
+  nameWithType.vb: Func(Of T, T, Boolean)
+  fullName.vb: System.Func(Of T, T, System.Boolean)
+  name.vb: Func(Of T, T, Boolean)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}
+  commentId: T:System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<MemberAccessor>
+  nameWithType: IEnumerable<MemberAccessor>
+  fullName: System.Collections.Generic.IEnumerable<CodeJam.Reflection.MemberAccessor>
+  nameWithType.vb: IEnumerable(Of MemberAccessor)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of CodeJam.Reflection.MemberAccessor)
+  name.vb: IEnumerable(Of MemberAccessor)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}[]
+  name: Expression<Func<T, Object>>[]
+  nameWithType: Expression<Func<T, Object>>[]
+  fullName: System.Linq.Expressions.Expression<System.Func<T, System.Object>>[]
+  nameWithType.vb: Expression(Of Func(Of T, Object))()
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object))()
+  name.vb: Expression(Of Func(Of T, Object))()
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc*
+  commentId: Overload:CodeJam.Collections.ComparerBuilder`1.GetGetHashCodeFunc
+  isExternal: false
+  name: GetGetHashCodeFunc
+  nameWithType: ComparerBuilder<T>.GetGetHashCodeFunc
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetGetHashCodeFunc
+  nameWithType.vb: ComparerBuilder(Of T).GetGetHashCodeFunc
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetGetHashCodeFunc
+- uid: System.Func{{T},System.Int32}
+  commentId: T:System.Func{`0,System.Int32}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, Int32>
+  nameWithType: Func<T, Int32>
+  fullName: System.Func<T, System.Int32>
+  nameWithType.vb: Func(Of T, Int32)
+  fullName.vb: System.Func(Of T, System.Int32)
+  name.vb: Func(Of T, Int32)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEqualityComparer`1
+  commentId: T:System.Collections.Generic.IEqualityComparer`1
+  isExternal: true
+  name: IEqualityComparer<T>
+  nameWithType: IEqualityComparer<T>
+  fullName: System.Collections.Generic.IEqualityComparer<T>
+  nameWithType.vb: IEqualityComparer(Of T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T)
+  name.vb: IEqualityComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer*
+  commentId: Overload:CodeJam.Collections.ComparerBuilder`1.GetEqualityComparer
+  isExternal: false
+  name: GetEqualityComparer
+  nameWithType: ComparerBuilder<T>.GetEqualityComparer
+  fullName: CodeJam.Collections.ComparerBuilder<T>.GetEqualityComparer
+  nameWithType.vb: ComparerBuilder(Of T).GetEqualityComparer
+  fullName.vb: CodeJam.Collections.ComparerBuilder(Of T).GetEqualityComparer
+- uid: System.Collections.Generic.IEqualityComparer{{T}}
+  commentId: T:System.Collections.Generic.IEqualityComparer{`0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEqualityComparer`1
+  name: IEqualityComparer<T>
+  nameWithType: IEqualityComparer<T>
+  fullName: System.Collections.Generic.IEqualityComparer<T>
+  nameWithType.vb: IEqualityComparer(Of T)
+  fullName.vb: System.Collections.Generic.IEqualityComparer(Of T)
+  name.vb: IEqualityComparer(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEqualityComparer`1
+    name: IEqualityComparer
+    nameWithType: IEqualityComparer
+    fullName: System.Collections.Generic.IEqualityComparer
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{CodeJam.Reflection.TypeAccessor{{T}},System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}}
+  commentId: T:System.Func{CodeJam.Reflection.TypeAccessor{`0},System.Collections.Generic.IEnumerable{CodeJam.Reflection.MemberAccessor}}
+  parent: System
+  definition: System.Func`2
+  name: Func<TypeAccessor<T>, IEnumerable<MemberAccessor>>
+  nameWithType: Func<TypeAccessor<T>, IEnumerable<MemberAccessor>>
+  fullName: System.Func<CodeJam.Reflection.TypeAccessor<T>, System.Collections.Generic.IEnumerable<CodeJam.Reflection.MemberAccessor>>
+  nameWithType.vb: Func(Of TypeAccessor(Of T), IEnumerable(Of MemberAccessor))
+  fullName.vb: System.Func(Of CodeJam.Reflection.TypeAccessor(Of T), System.Collections.Generic.IEnumerable(Of CodeJam.Reflection.MemberAccessor))
+  name.vb: Func(Of TypeAccessor(Of T), IEnumerable(Of MemberAccessor))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Reflection.TypeAccessor`1
+    name: TypeAccessor
+    nameWithType: TypeAccessor
+    fullName: CodeJam.Reflection.TypeAccessor
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Reflection.TypeAccessor`1
+    name: TypeAccessor
+    nameWithType: TypeAccessor
+    fullName: CodeJam.Reflection.TypeAccessor
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Reflection.MemberAccessor
+    name: MemberAccessor
+    nameWithType: MemberAccessor
+    fullName: CodeJam.Reflection.MemberAccessor
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )

@@ -1,0 +1,517 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping.DefaultValue
+  commentId: T:CodeJam.Mapping.DefaultValue
+  id: DefaultValue
+  parent: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.DefaultValue.GetValue(System.Type,CodeJam.Mapping.MappingSchema)
+  - CodeJam.Mapping.DefaultValue.GetValue``1
+  - CodeJam.Mapping.DefaultValue.SetValue``1(``0)
+  langs:
+  - csharp
+  - vb
+  name: DefaultValue
+  nameWithType: DefaultValue
+  fullName: CodeJam.Mapping.DefaultValue
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Mapping/DefaultValue.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DefaultValue
+    path: ../Blocks/src/Mapping/DefaultValue.cs
+    startLine: 15
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nProvides default value service.\n"
+  example: []
+  syntax:
+    content: public static class DefaultValue
+    content.vb: Public Module DefaultValue
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Mapping.DefaultValue.GetValue(System.Type,CodeJam.Mapping.MappingSchema)
+  commentId: M:CodeJam.Mapping.DefaultValue.GetValue(System.Type,CodeJam.Mapping.MappingSchema)
+  id: GetValue(System.Type,CodeJam.Mapping.MappingSchema)
+  parent: CodeJam.Mapping.DefaultValue
+  langs:
+  - csharp
+  - vb
+  name: GetValue(Type, MappingSchema)
+  nameWithType: DefaultValue.GetValue(Type, MappingSchema)
+  fullName: CodeJam.Mapping.DefaultValue.GetValue(System.Type, CodeJam.Mapping.MappingSchema)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/DefaultValue.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValue
+    path: ../Blocks/src/Mapping/DefaultValue.cs
+    startLine: 46
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nGets default value for provided <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public static object GetValue(Type type, MappingSchema mappingSchema = null)
+    parameters:
+    - id: type
+      type: System.Type
+      description: <xref href="System.Type" data-throw-if-not-resolved="false"></xref> to get default value.
+    - id: mappingSchema
+      type: CodeJam.Mapping.MappingSchema
+      description: An instance of <xref href="CodeJam.Mapping.MappingSchema" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Object
+      description: Default value of the provided <xref href="System.Type" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Shared Function GetValue(type As Type, mappingSchema As MappingSchema = Nothing) As Object
+  overload: CodeJam.Mapping.DefaultValue.GetValue*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Mapping.DefaultValue.GetValue``1
+  commentId: M:CodeJam.Mapping.DefaultValue.GetValue``1
+  id: GetValue``1
+  parent: CodeJam.Mapping.DefaultValue
+  langs:
+  - csharp
+  - vb
+  name: GetValue<T>()
+  nameWithType: DefaultValue.GetValue<T>()
+  fullName: CodeJam.Mapping.DefaultValue.GetValue<T>()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/DefaultValue.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetValue
+    path: ../Blocks/src/Mapping/DefaultValue.cs
+    startLine: 93
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nGets default value for provided <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public static T GetValue<T>()
+    typeParameters:
+    - id: T
+      description: Type to get default value.
+    return:
+      type: '{T}'
+      description: Default value of the provided <xref href="System.Type" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Shared Function GetValue(Of T) As T
+  overload: CodeJam.Mapping.DefaultValue.GetValue*
+  nameWithType.vb: DefaultValue.GetValue(Of T)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Mapping.DefaultValue.GetValue(Of T)()
+  name.vb: GetValue(Of T)()
+- uid: CodeJam.Mapping.DefaultValue.SetValue``1(``0)
+  commentId: M:CodeJam.Mapping.DefaultValue.SetValue``1(``0)
+  id: SetValue``1(``0)
+  parent: CodeJam.Mapping.DefaultValue
+  langs:
+  - csharp
+  - vb
+  name: SetValue<T>(T)
+  nameWithType: DefaultValue.SetValue<T>(T)
+  fullName: CodeJam.Mapping.DefaultValue.SetValue<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/DefaultValue.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetValue
+    path: ../Blocks/src/Mapping/DefaultValue.cs
+    startLine: 109
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nSets default value for provided <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public static void SetValue<T>(T value)
+    parameters:
+    - id: value
+      type: '{T}'
+      description: Value to set.
+    typeParameters:
+    - id: T
+      description: Type to set default value for.
+    content.vb: Public Shared Sub SetValue(Of T)(value As T)
+  overload: CodeJam.Mapping.DefaultValue.SetValue*
+  nameWithType.vb: DefaultValue.SetValue(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Mapping.DefaultValue.SetValue(Of T)(T)
+  name.vb: SetValue(Of T)(T)
+references:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.Mapping.MappingSchema
+  commentId: T:CodeJam.Mapping.MappingSchema
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: MappingSchema
+  nameWithType: MappingSchema
+  fullName: CodeJam.Mapping.MappingSchema
+- uid: CodeJam.Mapping.DefaultValue.GetValue*
+  commentId: Overload:CodeJam.Mapping.DefaultValue.GetValue
+  isExternal: false
+  name: GetValue
+  nameWithType: DefaultValue.GetValue
+  fullName: CodeJam.Mapping.DefaultValue.GetValue
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.Mapping.DefaultValue.SetValue*
+  commentId: Overload:CodeJam.Mapping.DefaultValue.SetValue
+  isExternal: false
+  name: SetValue
+  nameWithType: DefaultValue.SetValue
+  fullName: CodeJam.Mapping.DefaultValue.SetValue

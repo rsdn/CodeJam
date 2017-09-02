@@ -1,0 +1,277 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Metadata.IMetadataReader
+  commentId: T:CodeJam.Metadata.IMetadataReader
+  id: IMetadataReader
+  parent: CodeJam.Metadata
+  children:
+  - CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  - CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Type,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: IMetadataReader
+  nameWithType: IMetadataReader
+  fullName: CodeJam.Metadata.IMetadataReader
+  type: Interface
+  source:
+    remote:
+      path: Blocks/src/Metadata/IMetadataReader.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IMetadataReader
+    path: ../Blocks/src/Metadata/IMetadataReader.cs
+    startLine: 9
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nMetadata reader interface.\n"
+  example: []
+  syntax:
+    content: public interface IMetadataReader
+    content.vb: Public Interface IMetadataReader
+  extensionMethods:
+  - CodeJam.Metadata.IMetadataReader.CodeJam.Mapping.Map.DeepCopy``1
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Type,System.Boolean)
+  commentId: M:CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Type,System.Boolean)
+  id: GetAttributes``1(System.Type,System.Boolean)
+  parent: CodeJam.Metadata.IMetadataReader
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(Type, Boolean)
+  nameWithType: IMetadataReader.GetAttributes<T>(Type, Boolean)
+  fullName: CodeJam.Metadata.IMetadataReader.GetAttributes<T>(System.Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Metadata/IMetadataReader.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttributes
+    path: ../Blocks/src/Metadata/IMetadataReader.cs
+    startLine: 18
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nReturns custom attributes applied to provided type.\n"
+  example: []
+  syntax:
+    content: 'T[] GetAttributes<T>(Type type, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: type
+      type: System.Type
+      description: Object type
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this type are returned.
+    return:
+      type: '{T}[]'
+      description: Array of custom attributes.
+    content.vb: Function GetAttributes(Of T As Attribute)(type As Type, inherit As Boolean = True) As T()
+  overload: CodeJam.Metadata.IMetadataReader.GetAttributes*
+  nameWithType.vb: IMetadataReader.GetAttributes(Of T)(Type, Boolean)
+  fullName.vb: CodeJam.Metadata.IMetadataReader.GetAttributes(Of T)(System.Type, System.Boolean)
+  name.vb: GetAttributes(Of T)(Type, Boolean)
+- uid: CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  commentId: M:CodeJam.Metadata.IMetadataReader.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  id: GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  parent: CodeJam.Metadata.IMetadataReader
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(MemberInfo, Boolean)
+  nameWithType: IMetadataReader.GetAttributes<T>(MemberInfo, Boolean)
+  fullName: CodeJam.Metadata.IMetadataReader.GetAttributes<T>(System.Reflection.MemberInfo, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Metadata/IMetadataReader.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttributes
+    path: ../Blocks/src/Metadata/IMetadataReader.cs
+    startLine: 27
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Metadata
+  summary: "\nReturns custom attributes applied to provided type member.\n"
+  example: []
+  syntax:
+    content: 'T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: memberInfo
+      type: System.Reflection.MemberInfo
+      description: Type member.
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this member are returned.
+    return:
+      type: '{T}[]'
+      description: Array of custom attributes.
+    content.vb: Function GetAttributes(Of T As Attribute)(memberInfo As MemberInfo, inherit As Boolean = True) As T()
+  overload: CodeJam.Metadata.IMetadataReader.GetAttributes*
+  nameWithType.vb: IMetadataReader.GetAttributes(Of T)(MemberInfo, Boolean)
+  fullName.vb: CodeJam.Metadata.IMetadataReader.GetAttributes(Of T)(System.Reflection.MemberInfo, System.Boolean)
+  name.vb: GetAttributes(Of T)(MemberInfo, Boolean)
+references:
+- uid: CodeJam.Metadata
+  commentId: N:CodeJam.Metadata
+  isExternal: false
+  name: CodeJam.Metadata
+  nameWithType: CodeJam.Metadata
+  fullName: CodeJam.Metadata
+- uid: CodeJam.Metadata.IMetadataReader.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<IMetadataReader>()
+  nameWithType: Map.DeepCopy<IMetadataReader>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Metadata.IMetadataReader>()
+  nameWithType.vb: Map.DeepCopy(Of IMetadataReader)()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Metadata.IMetadataReader)()
+  name.vb: DeepCopy(Of IMetadataReader)()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<IMetadataReader>
+    nameWithType: Map.DeepCopy<IMetadataReader>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Metadata.IMetadataReader>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of IMetadataReader)
+    nameWithType: Map.DeepCopy(Of IMetadataReader)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Metadata.IMetadataReader)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: CodeJam.Metadata.IMetadataReader.GetAttributes*
+  commentId: Overload:CodeJam.Metadata.IMetadataReader.GetAttributes
+  isExternal: false
+  name: GetAttributes
+  nameWithType: IMetadataReader.GetAttributes
+  fullName: CodeJam.Metadata.IMetadataReader.GetAttributes
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: '{T}[]'
+  name: T[]
+  nameWithType: T[]
+  fullName: T[]
+  nameWithType.vb: T()
+  fullName.vb: T()
+  name.vb: T()
+  spec.csharp:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Reflection.MemberInfo
+  commentId: T:System.Reflection.MemberInfo
+  parent: System.Reflection
+  isExternal: true
+  name: MemberInfo
+  nameWithType: MemberInfo
+  fullName: System.Reflection.MemberInfo
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection

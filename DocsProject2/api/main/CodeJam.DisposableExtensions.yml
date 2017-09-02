@@ -1,0 +1,659 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.DisposableExtensions
+  commentId: T:CodeJam.DisposableExtensions
+  id: DisposableExtensions
+  parent: CodeJam
+  children:
+  - CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable{System.IDisposable})
+  - CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable{System.IDisposable},System.Func{System.Exception,System.Boolean})
+  langs:
+  - csharp
+  - vb
+  name: DisposableExtensions
+  nameWithType: DisposableExtensions
+  fullName: CodeJam.DisposableExtensions
+  type: Class
+  source:
+    remote:
+      path: Main/src/DisposableExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DisposableExtensions
+    path: ../Main/src/DisposableExtensions.cs
+    startLine: 8
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: The <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> extensions.
+  example: []
+  syntax:
+    content: public static class DisposableExtensions
+    content.vb: Public Module DisposableExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable{System.IDisposable})
+  commentId: M:CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable{System.IDisposable})
+  id: DisposeAll(System.Collections.Generic.IEnumerable{System.IDisposable})
+  isExtensionMethod: true
+  parent: CodeJam.DisposableExtensions
+  langs:
+  - csharp
+  - vb
+  name: DisposeAll(IEnumerable<IDisposable>)
+  nameWithType: DisposableExtensions.DisposeAll(IEnumerable<IDisposable>)
+  fullName: CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable<System.IDisposable>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/DisposableExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DisposeAll
+    path: ../Main/src/DisposableExtensions.cs
+    startLine: 14
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Invokes the dispose for each item in the <code data-dev-comment-type="paramref" class="paramref">disposables</code>.
+  example: []
+  syntax:
+    content: public static void DisposeAll(this IEnumerable<IDisposable> disposables)
+    parameters:
+    - id: disposables
+      type: System.Collections.Generic.IEnumerable{System.IDisposable}
+      description: The multiple <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> instances.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub DisposeAll(disposables As IEnumerable(Of IDisposable))
+  overload: CodeJam.DisposableExtensions.DisposeAll*
+  exceptions:
+  - type: System.AggregateException
+    commentId: T:System.AggregateException
+  nameWithType.vb: DisposableExtensions.DisposeAll(IEnumerable(Of IDisposable))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable(Of System.IDisposable))
+  name.vb: DisposeAll(IEnumerable(Of IDisposable))
+- uid: CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable{System.IDisposable},System.Func{System.Exception,System.Boolean})
+  commentId: M:CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable{System.IDisposable},System.Func{System.Exception,System.Boolean})
+  id: DisposeAll(System.Collections.Generic.IEnumerable{System.IDisposable},System.Func{System.Exception,System.Boolean})
+  isExtensionMethod: true
+  parent: CodeJam.DisposableExtensions
+  langs:
+  - csharp
+  - vb
+  name: DisposeAll(IEnumerable<IDisposable>, Func<Exception, Boolean>)
+  nameWithType: DisposableExtensions.DisposeAll(IEnumerable<IDisposable>, Func<Exception, Boolean>)
+  fullName: CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable<System.IDisposable>, System.Func<System.Exception, System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: Main/src/DisposableExtensions.cs
+      branch: feature/docfx
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DisposeAll
+    path: ../Main/src/DisposableExtensions.cs
+    startLine: 40
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Invokes the dispose for each item in the <code data-dev-comment-type="paramref" class="paramref">disposables</code>.
+  example: []
+  syntax:
+    content: public static void DisposeAll(this IEnumerable<IDisposable> disposables, Func<Exception, bool> exceptionHandler)
+    parameters:
+    - id: disposables
+      type: System.Collections.Generic.IEnumerable{System.IDisposable}
+      description: The multiple <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> instances.
+    - id: exceptionHandler
+      type: System.Func{System.Exception,System.Boolean}
+      description: The exception handler.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub DisposeAll(disposables As IEnumerable(Of IDisposable), exceptionHandler As Func(Of Exception, Boolean))
+  overload: CodeJam.DisposableExtensions.DisposeAll*
+  nameWithType.vb: DisposableExtensions.DisposeAll(IEnumerable(Of IDisposable), Func(Of Exception, Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.DisposableExtensions.DisposeAll(System.Collections.Generic.IEnumerable(Of System.IDisposable), System.Func(Of System.Exception, System.Boolean))
+  name.vb: DisposeAll(IEnumerable(Of IDisposable), Func(Of Exception, Boolean))
+references:
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.DisposableExtensions.DisposeAll*
+  commentId: Overload:CodeJam.DisposableExtensions.DisposeAll
+  isExternal: false
+  name: DisposeAll
+  nameWithType: DisposableExtensions.DisposeAll
+  fullName: CodeJam.DisposableExtensions.DisposeAll
+- uid: System.AggregateException
+  commentId: T:System.AggregateException
+- uid: System.Collections.Generic.IEnumerable{System.IDisposable}
+  commentId: T:System.Collections.Generic.IEnumerable{System.IDisposable}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IDisposable>
+  nameWithType: IEnumerable<IDisposable>
+  fullName: System.Collections.Generic.IEnumerable<System.IDisposable>
+  nameWithType.vb: IEnumerable(Of IDisposable)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.IDisposable)
+  name.vb: IEnumerable(Of IDisposable)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: System.IDisposable
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: System.IDisposable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Func{System.Exception,System.Boolean}
+  commentId: T:System.Func{System.Exception,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  name: Func<Exception, Boolean>
+  nameWithType: Func<Exception, Boolean>
+  fullName: System.Func<System.Exception, System.Boolean>
+  nameWithType.vb: Func(Of Exception, Boolean)
+  fullName.vb: System.Func(Of System.Exception, System.Boolean)
+  name.vb: Func(Of Exception, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
