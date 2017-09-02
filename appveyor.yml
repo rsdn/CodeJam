@@ -3,6 +3,7 @@ image: Visual Studio 2017
 
 environment:
   packageVersion: 1.4.1
+  perfTestsPackageVersion: 0.1.4
 
 cache:
 # todo: reset packages on csproj change
@@ -12,6 +13,8 @@ init:
 - cmd: git config --global core.autocrlf true
 - ps: $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
 - ps: $env:nugetVersion = "$env:packageVersion-alpha$env:appveyor_build_number"
+- ps: $env:perfTestsBuildVersion = "$env:perfTestsPackageVersion.$env:appveyor_build_number"
+- ps: $env:perfTestsNugetVersion = "$env:perfTestsPackageVersion-alpha$env:appveyor_build_number"
 - ps: Update-AppveyorBuild -Version $env:buildVersion
 
 assembly_info:
@@ -35,7 +38,8 @@ before_build:
 # Force install System.ValueTuple 4.3.1 for FWs 4.0-4.6 build, because 4.4.0 is incompatible with older BCLs
 - cmd: nuget install System.ValueTuple -Version 4.3.1 -OutputDirectory packages
 - cmd: nuget restore CodeJam.sln
-- ps: .\Build\Appveyor.BeforeBuild.ps1 -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
+- ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
+- ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
 
 build:
   project: CodeJam.sln
@@ -51,25 +55,20 @@ after_build:
 #- cmd: Compile.cmd
 #- cmd: cd ..\..
 
-- ps: $mainVer = (Get-Content Main\nuget\CodeJam.Main.nuspec).package.metadata.version
-- ps: "$mainVer"
+#- ps: $mainVer = (Get-Content Main\nuget\CodeJam.Main.nuspec).package.metadata.version
+#- ps: "$mainVer"
 #- ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
 #- ps: nuget pack Blocks\nuget\CodeJam.Blocks.nuspec -version "$env:nugetVersion"
-- ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
-- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.Core.nuspec -version "$env:nugetVersion"
-- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec -version "$env:nugetVersion"
-- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec -version "$env:nugetVersion"
-- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec -version "$env:nugetVersion"
-- ps: Push-AppveyorArtifact CodeJam.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.Blocks.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.Experimental.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.Core.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.NUnit.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.xUnit.$env:nugetVersion.nupkg
-- ps: Push-AppveyorArtifact CodeJam.PerfTests.MSTest.$env:nugetVersion.nupkg
-
+#- ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
+#- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.Core.nuspec -version "$env:nugetVersion"
+#- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec -version "$env:nugetVersion"
+#- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec -version "$env:nugetVersion"
+#- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec -version "$env:nugetVersion"
+  - ps: Get-ChildItem *.nupkg -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 # artifacts for perftests
 on_finish:
 #  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+# artifacts to check version patching
+  - ps: Get-ChildItem *.Default.props -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }

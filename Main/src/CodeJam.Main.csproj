@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\Build\CodeJam.Default.props" />
+	<Import Project="..\..\Build\CodeJam.PerfTests.Default.props" />
 	<Import Project="..\..\Build\CodeJam.Targeting.props" />
 
 	<PropertyGroup>
@@ -20,8 +21,6 @@
 		<PackageLicenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Icon.png</PackageIconUrl>
-		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
 		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
 
 		<Company>RSDN.ru</Company>
@@ -91,7 +90,7 @@
 
 	<ItemGroup>
 		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
-			<Link>Jetbrains.Annotations.cs</Link>
+			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
 		<Compile Include="Algorithms\Algorithms.EqualRange.Comparer.cs" />
 		<Compile Include="Algorithms\Algorithms.EqualRange.generated.cs">
@@ -535,7 +534,7 @@
 		<Compile Include="Xml\XNodeExtensions.cs" />
 		<Content Include="Readme.txt">
 			<Pack>true</Pack>
-			<PackagePath>README.txt</PackagePath>
+			<PackagePath>Readme.txt</PackagePath>
 		</Content>
 	</ItemGroup>
 	<ItemGroup>

@@ -91,7 +91,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests.Etw", "Pe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{52A32895-CD49-4F28-A507-5F7B2FD50CD7}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
 		Build\CodeJam.Default.props = Build\CodeJam.Default.props
+		Build\CodeJam.PerfTests.Default.props = Build\CodeJam.PerfTests.Default.props
 		Build\CodeJam.snk = Build\CodeJam.snk
 		Build\CodeJam.Targeting.props = Build\CodeJam.Targeting.props
 		Build\Jetbrains.Annotations.cs = Build\Jetbrains.Annotations.cs

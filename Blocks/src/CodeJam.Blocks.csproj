@@ -20,8 +20,6 @@
 		<PackageLicenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Blocks.Icon.png</PackageIconUrl>
-		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
 		<PackageTags>mapper services csv</PackageTags>
 
 		<Company>RSDN.ru</Company>
@@ -73,7 +71,7 @@
 	
 	<ItemGroup>
 		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
-			<Link>Jetbrains.Annotations.cs</Link>
+			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
 		<Compile Include="Mapping\CodeJamConvertException.cs" />
 		<Compile Include="Mapping\CodeJamMappingException.cs" />
@@ -120,10 +118,6 @@
 		<Compile Include="TableData\FixedWidthFormat.cs" />
 		<Compile Include="TableData\NamespaceDoc.cs" />
 		<Compile Include="TableData\TableDataParser.cs" />
-		<Content Include="Readme.txt">
-			<Pack>true</Pack>
-			<PackagePath>README.txt</PackagePath>
-		</Content>
 	</ItemGroup>
 	<ItemGroup>
 		<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

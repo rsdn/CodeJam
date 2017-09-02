@@ -1,4 +1,5 @@
 Param(
+	[Parameter(Mandatory=$true)][string]$path,
 	[Parameter(Mandatory=$true)][string]$buildVersion,
 	[Parameter(Mandatory=$true)][string]$nugetVersion
 )
@@ -8,7 +9,7 @@ Set-StrictMode -Version Latest
 
 if ($buildVersion -or $nugetVersion) {
 
-	$xmlPath = Resolve-Path "Build\CodeJam.Default.props"
+	$xmlPath = Resolve-Path "$path"
 
 	$xml = [XML](Get-Content "$xmlPath")
     $xml.PreserveWhitespace = $true

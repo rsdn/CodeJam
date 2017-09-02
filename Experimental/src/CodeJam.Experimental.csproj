@@ -20,8 +20,6 @@
 		<PackageLicenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Experimental.Icon.png</PackageIconUrl>
-		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
 		<PackageTags>extension experimental</PackageTags>
 
 		<Company>RSDN.ru</Company>
