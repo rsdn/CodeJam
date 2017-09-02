@@ -161,22 +161,22 @@
       <DependentUpon>OperatorsNumPerfTests.tt</DependentUpon>
     </EmbeddedResource>
     <None Include="Arithmetic\OperatorsPerfTests.ttinclude" />
-    <Content Include="Arithmetic\OperatorsLessOrGreaterPerfTests.tt">
+    <None Include="Arithmetic\OperatorsLessOrGreaterPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OperatorsLessOrGreaterPerfTests.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Arithmetic\OperatorsEqualityPerfTests.tt">
+    </None>
+    <None Include="Arithmetic\OperatorsEqualityPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OperatorsEqualityPerfTests.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Arithmetic\OperatorsComparePerfTests.tt">
+    </None>
+    <None Include="Arithmetic\OperatorsComparePerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OperatorsComparePerfTests.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Arithmetic\OperatorsNumPerfTests.tt">
+    </None>
+    <None Include="Arithmetic\OperatorsNumPerfTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OperatorsNumPerfTests.generated.cs</LastGenOutput>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

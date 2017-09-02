@@ -1,111 +1,117 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BD77DA2-A731-400C-A88E-215FC592E6E3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeJam</RootNamespace>
-    <AssemblyName>CodeJam.Experimental</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;JETBRAINS_ANNOTATIONS</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;JETBRAINS_ANNOTATIONS</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|AnyCPU'">
-    <OutputPath>bin\Publish\</OutputPath>
-    <DefineConstants>TRACE;JETBRAINS_ANNOTATIONS</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CmdLine\CommandLineChecker.cs" />
-    <Compile Include="CmdLine\CommandLineHelper.cs" />
-    <Compile Include="CmdLine\Model\Checking\CmdLineRules.cs" />
-    <Compile Include="CmdLine\Model\Checking\CommandLineCheckException.cs" />
-    <Compile Include="CmdLine\Model\Checking\CommandQuantifier.cs" />
-    <Compile Include="CmdLine\Model\Checking\CommandRule.cs" />
-    <Compile Include="CmdLine\Model\Checking\OptionRule.cs" />
-    <Compile Include="CmdLine\Model\OptionType.cs" />
-    <Compile Include="CmdLine\OptionPrefix.cs" />
-    <Compile Include="CmdLine\Parser\CharInput.cs" />
-    <Compile Include="CmdLine\Parser\CmdLineNode.cs" />
-    <Compile Include="CmdLine\Parser\CmdLineNodeBase.cs" />
-    <Compile Include="CmdLine\Parser\CommandLineParser.cs" />
-    <Compile Include="CmdLine\Parser\CommandLineParser.Helpers.cs" />
-    <Compile Include="CmdLine\Parser\CommandNode.cs" />
-    <Compile Include="CmdLine\Parser\ICharInput.cs" />
-    <Compile Include="CmdLine\Parser\OptionNode.cs" />
-    <Compile Include="CmdLine\Parser\ParseResult.cs" />
-    <Compile Include="CmdLine\Parser\ParsingException.cs" />
-    <Compile Include="CmdLine\Parser\QuotedOrNonquotedValueNode.cs" />
-    <Compile Include="CmdLine\PrintUsageSettings.cs" />
-    <Compile Include="CmdLine\UsagePrinter.cs" />
-    <Compile Include="Collections\DisjointSets.cs" />
-    <Compile Include="Collections\DisjointSetsBase.cs" />
-    <Compile Include="Collections\DisjointSetsT.cs" />
-    <Compile Include="Parsing\BinaryOperator.cs" />
-    <Compile Include="Parsing\CharReader.cs" />
-    <Compile Include="Parsing\ExpressionDefinition.cs" />
-    <Compile Include="Parsing\Operator.cs" />
-    <Compile Include="Parsing\ParseHelper.cs" />
-    <Compile Include="Parsing\Parser.cs" />
-    <Compile Include="Parsing\PostfixUnaryOperator.cs" />
-    <Compile Include="Parsing\PrefixUnaryOperator.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj">
-      <Project>{2f2046cc-fb47-4318-b335-5a82b04b6c40}</Project>
-      <Name>CodeJam.Main</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\Build\CodeJam.Default.props" />
+	<Import Project="..\..\Build\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.Experimental</AssemblyName>
+		<RootNamespace>CodeJam</RootNamespace>
+		<ProjectGuid>{7BD77DA2-A731-400C-A88E-215FC592E6E3}</ProjectGuid>
+		<EnableDefaultItems>false</EnableDefaultItems>
+		<OutputType>Library</OutputType>
+		<FileAlignment>512</FileAlignment>
+		<TargetFrameworks>net461</TargetFrameworks>
+
+		<PackageId>CodeJam.Experimental</PackageId>
+		<Title>CodeJam.Experimental library</Title>
+		<Authors>Andrew Koryavchenko, Igor Sinicyn, Igor Tkachev, rameel</Authors>
+		<Product>CodeJam.Experimental</Product>
+		<Description>CodeJam.Experimental contains preview version of features to be included in future releases of CodeJam.</Description>
+		<PackageLicenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Experimental.Icon.png</PackageIconUrl>
+		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>extension experimental</PackageTags>
+
+		<Company>RSDN.ru</Company>
+		<Copyright>RSDN.ru, 2017</Copyright>
+		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<TargetFrameworks>net461</TargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<LangVersion>latest</LangVersion>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<LangVersion>latest</LangVersion>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
+		<LangVersion>latest</LangVersion>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Publish\</OutputPath>
+		<DefineConstants>$(DefineConstants);TRACE1</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="CmdLine\CommandLineChecker.cs" />
+		<Compile Include="CmdLine\CommandLineHelper.cs" />
+		<Compile Include="CmdLine\Model\Checking\CmdLineRules.cs" />
+		<Compile Include="CmdLine\Model\Checking\CommandLineCheckException.cs" />
+		<Compile Include="CmdLine\Model\Checking\CommandQuantifier.cs" />
+		<Compile Include="CmdLine\Model\Checking\CommandRule.cs" />
+		<Compile Include="CmdLine\Model\Checking\OptionRule.cs" />
+		<Compile Include="CmdLine\Model\OptionType.cs" />
+		<Compile Include="CmdLine\OptionPrefix.cs" />
+		<Compile Include="CmdLine\Parser\CharInput.cs" />
+		<Compile Include="CmdLine\Parser\CmdLineNode.cs" />
+		<Compile Include="CmdLine\Parser\CmdLineNodeBase.cs" />
+		<Compile Include="CmdLine\Parser\CommandLineParser.cs" />
+		<Compile Include="CmdLine\Parser\CommandLineParser.Helpers.cs" />
+		<Compile Include="CmdLine\Parser\CommandNode.cs" />
+		<Compile Include="CmdLine\Parser\ICharInput.cs" />
+		<Compile Include="CmdLine\Parser\OptionNode.cs" />
+		<Compile Include="CmdLine\Parser\ParseResult.cs" />
+		<Compile Include="CmdLine\Parser\ParsingException.cs" />
+		<Compile Include="CmdLine\Parser\QuotedOrNonquotedValueNode.cs" />
+		<Compile Include="CmdLine\PrintUsageSettings.cs" />
+		<Compile Include="CmdLine\UsagePrinter.cs" />
+		<Compile Include="Collections\DisjointSets.cs" />
+		<Compile Include="Collections\DisjointSetsBase.cs" />
+		<Compile Include="Collections\DisjointSetsT.cs" />
+		<Compile Include="Parsing\BinaryOperator.cs" />
+		<Compile Include="Parsing\CharReader.cs" />
+		<Compile Include="Parsing\ExpressionDefinition.cs" />
+		<Compile Include="Parsing\Operator.cs" />
+		<Compile Include="Parsing\ParseHelper.cs" />
+		<Compile Include="Parsing\Parser.cs" />
+		<Compile Include="Parsing\PostfixUnaryOperator.cs" />
+		<Compile Include="Parsing\PrefixUnaryOperator.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Content Include="Readme.txt">
+			<Pack>true</Pack>
+			<PackagePath>README.txt</PackagePath>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+	</ItemGroup>
 </Project>

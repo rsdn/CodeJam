@@ -14,7 +14,6 @@ using JetBrains.Annotations;
 namespace CodeJam.Ranges
 {
 	/// <summary>Helper methods for the <seealso cref="CompositeRange{T}"/>.</summary>
-	[PublicAPI]
 	public static partial class CompositeRange
 	{
 		/// <summary>Creates the composite range.</summary>

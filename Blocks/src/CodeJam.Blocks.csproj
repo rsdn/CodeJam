@@ -13,10 +13,10 @@
 		<TargetFrameworks>net461</TargetFrameworks>
 
 		<PackageId>CodeJam.Blocks</PackageId>
-		<Title>CodeJam.Blocks Library</Title>
+		<Title>CodeJam.Blocks library</Title>
 		<Authors>Andrew Koryavchenko, Igor Sinicyn, Igor Tkachev, rameel</Authors>
 		<Product>CodeJam</Product>
-		<Description>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</Description>
+		<Description>CodeJam.Blocks is a set of basic blocks aimed to easy creation of infrastructure serviceas such as mappers, DI service providers et cetera.</Description>
 		<PackageLicenseUrl>https://github.com/rsdn/CodeJam/blob/master/LICENSE</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Blocks.Icon.png</PackageIconUrl>
@@ -120,6 +120,10 @@
 		<Compile Include="TableData\FixedWidthFormat.cs" />
 		<Compile Include="TableData\NamespaceDoc.cs" />
 		<Compile Include="TableData\TableDataParser.cs" />
+		<Content Include="Readme.txt">
+			<Pack>true</Pack>
+			<PackagePath>README.txt</PackagePath>
+		</Content>
 	</ItemGroup>
 	<ItemGroup>
 		<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
