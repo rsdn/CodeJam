@@ -29,8 +29,7 @@ namespace CodeJam.Expressions
 			Code.NotNull(expression, nameof(expression));
 
 			var body = expression.Body;
-			var unary = body as UnaryExpression;
-			if (unary != null)
+			if (body is UnaryExpression unary)
 				body = unary.Operand;
 
 			switch (body.NodeType)
@@ -140,8 +139,7 @@ namespace CodeJam.Expressions
 		private static MemberExpression GetMemberExpression(LambdaExpression expression)
 		{
 			var body = expression.Body;
-			var unary = body as UnaryExpression;
-			return unary != null
+			return body is UnaryExpression unary
 				? (MemberExpression)unary.Operand
 				: (MemberExpression)body;
 		}
@@ -159,8 +157,7 @@ namespace CodeJam.Expressions
 			Code.NotNull(expression, nameof(expression));
 
 			var body = expression.Body;
-			var unary = body as UnaryExpression;
-			if (unary != null)
+			if (body is UnaryExpression unary)
 				body = unary.Operand;
 
 			return GetMembers(body).Reverse().ToArray();
