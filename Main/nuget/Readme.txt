@@ -1,8 +1,14 @@
-CodeJam 1.4.0-rc1 Release Notes
+CodeJam 1.4.0-rc2 Release Notes
 ---------------------------------
 
+What's new in 1.4.0-rc2
+-----------------------
+* ToLookupDictionary renamed to ToDictionary
+* TaskHelper additional overloads
+* Refactoring, fixes and code cleanup
+
 What's new in 1.4.0-rc1
--------------------------
+-----------------------
 * PathHelpers + IoCode assertions
 * EnumHelper.GetDisplayName/Description/both
 * EnumHelper.IsDefined(string)

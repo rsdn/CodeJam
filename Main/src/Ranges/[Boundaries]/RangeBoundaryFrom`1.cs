@@ -517,19 +517,15 @@ namespace CodeJam.Ranges
 		[Pure]
 		int IComparable.CompareTo(object obj)
 		{
-			// ReSharper disable once MergeCastWithTypeCheck
-			if (obj is RangeBoundaryFrom<T>)
+			switch (obj)
 			{
-				return CompareTo((RangeBoundaryFrom<T>)obj);
+				case RangeBoundaryFrom<T> rbf:
+					return CompareTo(rbf);
+				case RangeBoundaryTo<T> rbt:
+					return CompareTo(rbt);
+				default:
+					return CompareTo((T)obj);
 			}
-
-			// ReSharper disable once MergeCastWithTypeCheck
-			if (obj is RangeBoundaryTo<T>)
-			{
-				return CompareTo((RangeBoundaryTo<T>)obj);
-			}
-
-			return CompareTo((T)obj);
 		}
 		#endregion
 

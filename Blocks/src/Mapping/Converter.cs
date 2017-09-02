@@ -187,18 +187,12 @@ namespace CodeJam.Mapping
 			return l(value);
 		}
 
-		internal static bool IsDefaultValuePlaceHolder(Expression expr)
-		{
-			var me = expr as MemberExpression;
-
-			if (me != null)
-			{
-				if (me.Member.Name == "Value" && me.Member.DeclaringType?.IsGenericType == true)
-					return me.Member.DeclaringType.GetGenericTypeDefinition() == typeof(DefaultValue<>);
-			}
-
-			return expr is DefaultValueExpression;
-		}
+		internal static bool IsDefaultValuePlaceHolder(Expression expr) =>
+			expr is MemberExpression me
+					&& me.Member.Name == "Value"
+					&& me.Member.DeclaringType?.IsGenericType == true
+				? me.Member.DeclaringType.GetGenericTypeDefinition() == typeof(DefaultValue<>)
+				: expr is DefaultValueExpression;
 
 //		public static Type GetDefaultMappingFromEnumType(MappingSchema mappingSchema, Type enumType)
 //			=> ConvertBuilder.GetDefaultMappingFromEnumType(mappingSchema, enumType);
