@@ -74,6 +74,7 @@ namespace CodeJam.Collections
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
+			// ReSharper disable once MergeCastWithTypeCheck
 			return obj is IndexedItem<T> && Equals((IndexedItem<T>)obj);
 		}
 

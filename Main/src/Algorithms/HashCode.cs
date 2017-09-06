@@ -144,8 +144,7 @@ namespace CodeJam
 
 			var hashCode = 0;
 
-			var list = values as IList<T>;
-			if (list != null)
+			if (values is IList<T> list)
 			{
 				for (int i = 0, count = list.Count; i < count; i++)
 				{

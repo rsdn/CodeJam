@@ -34,13 +34,12 @@ namespace CodeJam.Collections
 			if (count <= 0)
 				return Enumerable.Empty<T>();
 
-			var list = source as IList<T>;
-			if (list == null)
-				return SliceImpl(source, startIndex, count);
-
+		if (source is IList<T> list)
 			return startIndex != 0 || list.Count > count
 				? SliceImpl(list, startIndex, count)
 				: list;
+
+			return SliceImpl(source, startIndex, count);
 		}
 
 		private static IEnumerable<T> SliceImpl<T>(IList<T> list, int index, int count)

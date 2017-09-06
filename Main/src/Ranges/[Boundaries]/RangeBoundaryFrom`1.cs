@@ -517,18 +517,15 @@ namespace CodeJam.Ranges
 		[Pure]
 		int IComparable.CompareTo(object obj)
 		{
-			var otherA = obj as RangeBoundaryFrom<T>?;
-			if (otherA != null)
+			switch (obj)
 			{
-				return CompareTo(otherA.GetValueOrDefault());
+				case RangeBoundaryFrom<T> rbf:
+					return CompareTo(rbf);
+				case RangeBoundaryTo<T> rbt:
+					return CompareTo(rbt);
+				default:
+					return CompareTo((T)obj);
 			}
-			var otherB = obj as RangeBoundaryTo<T>?;
-			if (otherB != null)
-			{
-				return CompareTo(otherB.GetValueOrDefault());
-			}
-
-			return CompareTo((T)obj);
 		}
 		#endregion
 
