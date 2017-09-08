@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Main", "Main\src\CodeJam.Main.csproj", "{2F2046CC-FB47-4318-B335-5A82B04B6C40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Main-Tests", "Main\tests\CodeJam.Main-Tests.csproj", "{DD65E3F2-9658-4242-A8AA-056028473CB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Experimental", "Experimental\src\CodeJam.Experimental.csproj", "{7BD77DA2-A731-400C-A88E-215FC592E6E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Experimental", "Experimental\src\CodeJam.Experimental.csproj", "{7BD77DA2-A731-400C-A88E-215FC592E6E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Experimental-Tests", "Experimental\tests\CodeJam.Experimental-Tests.csproj", "{F6F97573-4D26-4217-89F6-819DF96FCB4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Experimental-Tests", "Experimental\tests\CodeJam.Experimental-Tests.csproj", "{F6F97573-4D26-4217-89F6-819DF96FCB4A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{C99F66F0-32AA-45EB-B112-D18498754A6B}"
 EndProject
@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TestsGuidelines.md = TestsGuidelines.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Main-Tests.Performance", "Main\tests-performance\CodeJam.Main-Tests.Performance.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Main-Tests.Performance", "Main\tests-performance\CodeJam.Main-Tests.Performance.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "T4.Reusable", "T4.Reusable", "{A0978533-5077-4843-8315-B856003453AF}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,30 +36,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "T4.Reusable", "T4.Reusable"
 		T4.Reusable\Transform.ttinclude = T4.Reusable\Transform.ttinclude
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.Experimental-Tests.Performance", "Experimental\tests-performance\CodeJam.Experimental-Tests.Performance.csproj", "{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Experimental-Tests.Performance", "Experimental\tests-performance\CodeJam.Experimental-Tests.Performance.csproj", "{00E3881C-3D4D-4AE3-B1B4-CDCDC99F7E51}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerfTests", "PerfTests", "{F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}"
 	ProjectSection(SolutionItems) = preProject
-		PerfTests\app.config = PerfTests\app.config
 		PerfTests\PerfTests.ToDo.md = PerfTests\PerfTests.ToDo.md
 		PerfTests\README.md = PerfTests\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests", "PerfTests\src\CodeJam.PerfTests.csproj", "{1D650545-A151-4211-8C29-C38A939403A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests", "PerfTests\src\CodeJam.PerfTests.csproj", "{1D650545-A151-4211-8C29-C38A939403A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests.NUnit", "PerfTests\tests-nUnit\CodeJam.PerfTests-Tests.NUnit.csproj", "{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests-Tests.NUnit", "PerfTests\tests-nUnit\CodeJam.PerfTests-Tests.NUnit.csproj", "{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests.NUnit", "PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj", "{8ABF1A06-4643-49D6-A546-B7473DB10102}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests.NUnit", "PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj", "{8ABF1A06-4643-49D6-A546-B7473DB10102}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests.xUnit", "PerfTests\src-xUnit\CodeJam.PerfTests.xUnit.csproj", "{92C6E5F8-FFEE-4269-92D7-BB9CFEB63D4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests.xUnit", "PerfTests\src-xUnit\CodeJam.PerfTests.xUnit.csproj", "{92C6E5F8-FFEE-4269-92D7-BB9CFEB63D4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests.xUnit", "PerfTests\tests-xUnit\CodeJam.PerfTests-Tests.xUnit.csproj", "{F70A32D4-EE5D-477F-965C-428119D4CD39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests-Tests.xUnit", "PerfTests\tests-xUnit\CodeJam.PerfTests-Tests.xUnit.csproj", "{F70A32D4-EE5D-477F-965C-428119D4CD39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests.MSTest", "PerfTests\src-MSTest\CodeJam.PerfTests.MSTest.csproj", "{84C380D0-0EA7-4262-BB9E-44C7156EC091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests.MSTest", "PerfTests\src-MSTest\CodeJam.PerfTests.MSTest.csproj", "{84C380D0-0EA7-4262-BB9E-44C7156EC091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests.MSTest", "PerfTests\tests-MSTest\CodeJam.PerfTests-Tests.MSTest.csproj", "{B535D8EF-66CC-4701-845D-F4C44C49922E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests-Tests.MSTest", "PerfTests\tests-MSTest\CodeJam.PerfTests-Tests.MSTest.csproj", "{B535D8EF-66CC-4701-845D-F4C44C49922E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests-Tests", "PerfTests\tests\CodeJam.PerfTests-Tests.csproj", "{08E84F45-2782-4D2E-85C0-FE86AF491C94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests-Tests", "PerfTests\tests\CodeJam.PerfTests-Tests.csproj", "{08E84F45-2782-4D2E-85C0-FE86AF491C94}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{0B1D53B2-EC60-4D2B-8EC4-1135E521A831}"
 	ProjectSection(SolutionItems) = preProject
@@ -87,7 +86,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Blocks", "Blocks\sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Blocks-Tests", "Blocks\tests\CodeJam.Blocks-Tests.csproj", "{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeJam.PerfTests.Etw", "PerfTests\src-Etw\CodeJam.PerfTests.Etw.csproj", "{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests.Etw", "PerfTests\src-Etw\CodeJam.PerfTests.Etw.csproj", "{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{52A32895-CD49-4F28-A507-5F7B2FD50CD7}"
 	ProjectSection(SolutionItems) = preProject
@@ -98,8 +97,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{52A32895
 		Build\CodeJam.Targeting.props = Build\CodeJam.Targeting.props
 		Build\Jetbrains.Annotations.cs = Build\Jetbrains.Annotations.cs
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsProject", "DocsProject\DocsProject.csproj", "{9161AF76-33DB-4A43-9AA1-3C35058DE33F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -210,12 +207,6 @@ Global
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Publish|Any CPU.Build.0 = Publish|Any CPU
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
-		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Publish|Any CPU.Build.0 = Publish|Any CPU
-		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9161AF76-33DB-4A43-9AA1-3C35058DE33F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

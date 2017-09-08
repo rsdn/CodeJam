@@ -4,6 +4,7 @@
 		<Configurations>Debug;Release;Publish</Configurations>
 		<TargetFrameworks>net461</TargetFrameworks>
 
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>

@@ -35,11 +35,9 @@ nuget:
   project_feed: false
 
 before_build:
-# Force install System.ValueTuple 4.3.1 for FWs 4.0-4.6 build, because 4.4.0 is incompatible with older BCLs
-- cmd: nuget install System.ValueTuple -Version 4.3.1 -OutputDirectory packages
-- cmd: nuget restore CodeJam.sln
 - ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
 - ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
+- cmd: nuget restore CodeJam.sln
 
 build:
   project: CodeJam.sln
