@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !SUPPORTS_NET40
+// NET 4.0 uses binary array sorting instead of introspection sort, most of tests belongs on order of elements to be preserved
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -267,9 +269,41 @@ namespace CodeJam.Ranges
 			IsTrue(a.IsMerged);
 		}
 
+		public static void PrintQuircks()
+		{
+			var assembly = typeof(int).Assembly;
+
+			Console.WriteLine($"Running on {assembly}");
+			Console.WriteLine();
+			PrintProps("System.Runtime.Versioning.BinaryCompatibility");
+			Console.WriteLine();
+			PrintProps("System.Runtime.CompilerServices.CompatibilitySwitches");
+			Console.WriteLine();
+			PrintProps("System.Runtime.CompilerServices.AppContextSwitches");
+		}
+
+		private static void PrintProps(string typeName)
+		{
+			var type = typeof(int).Assembly.GetType(typeName);
+			if (type == null)
+			{
+				Console.WriteLine($"No type {typeName} found.");
+				return;
+			}
+
+			Console.WriteLine(type.Name);
+			var bf = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+			foreach (var prop in type.GetProperties(bf))
+			{
+				Console.WriteLine($"\t * {prop.Name}: {prop.GetValue(null, null)}");
+			}
+		}
+
 		[Test]
 		public static void TestCompositeRangeWithKeyProperties()
 		{
+			PrintQuircks();
+
 			var range1A = Range.Create(1, 2, "A");
 			var range1B = Range.Create(1, 2, "B");
 			var range2C = Range.CreateExclusiveFrom(2, 3, "C");
@@ -1140,3 +1174,4 @@ namespace CodeJam.Ranges
 
 	}
 }
+#endif
