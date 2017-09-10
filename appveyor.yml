@@ -6,7 +6,7 @@ environment:
   perfTestsPackageVersion: 0.1.4
 
 cache:
-# todo: reset packages on csproj change
+# todo: remove after all csproj moved to the new tooling
 - packages -> **\packages.config
 
 init:
@@ -37,36 +37,32 @@ nuget:
 before_build:
 - ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
 - ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
-- cmd: nuget restore CodeJam.sln
+#- cmd: nuget restore CodeJam.sln
 
-build:
-  project: CodeJam.sln
-  publish_nuget: false
-  verbosity: minimal
+#build:
+#  project: CodeJam.sln
+#  publish_nuget: false
+#  verbosity: minimal
+
+# to run your custom scripts instead of automatic MSBuild
+build_script:
+  msbuild CodeJam.sln /p:Configuration=Publish /t:Restore;Build /v:m
+
+test_script:
+  - ps: .\Build\RunNUnitTests.ps1
+  - ps: .\Build\RunxUnitTests.ps1
+  - ps: .\Build\RunMsTestTests.ps1
+#test:
+#  # only assemblies to test
+#  assemblies:
+#    only:
+#      - '**\*-Tests.dll'
+#      - '**\*-Tests.*.dll'
 
 after_build:
-#- cmd: cd Main\src
-#- cmd: Compile.cmd
-#- cmd: cd ..\..
-#
-#- cmd: cd Blocks\src
-#- cmd: Compile.cmd
-#- cmd: cd ..\..
+ - ps: Get-ChildItem _Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
-#- ps: $mainVer = (Get-Content Main\nuget\CodeJam.Main.nuspec).package.metadata.version
-#- ps: "$mainVer"
-#- ps: nuget pack Main\nuget\CodeJam.Main.nuspec -version "$env:nugetVersion"
-#- ps: nuget pack Blocks\nuget\CodeJam.Blocks.nuspec -version "$env:nugetVersion"
-#- ps: nuget pack Experimental\nuget\CodeJam.Experimental.nuspec -version "$env:nugetVersion"
-#- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.Core.nuspec -version "$env:nugetVersion"
-#- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec -version "$env:nugetVersion"
-#- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec -version "$env:nugetVersion"
-#- ps: nuget pack PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec -version "$env:nugetVersion"
-  - ps: Get-ChildItem _Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-
-# artifacts for perftests
 on_finish:
+# artifacts for perftests
 #  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-# artifacts to check version patching
-  - ps: Get-ChildItem *.Default.props -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
