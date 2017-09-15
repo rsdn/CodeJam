@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !FW35
+using System;
 using System.Linq;
 
 using CodeJam.Ranges;
@@ -51,3 +52,4 @@ namespace CodeJam.Collections
 		}
 	}
 }
+#endif
