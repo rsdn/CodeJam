@@ -300,6 +300,7 @@
 		<Compile Include="IO\PathHelpers.cs" />
 		<Compile Include="IO\TempData.cs" />
 		<Compile Include="Lazy.cs" />
+    <Compile Include="Collections\QueryableExtensions.Ranges.cs" />
 		<Compile Include="NamespaceDoc.cs" />
 		<Compile Include="NullableHelper.cs" />
 		<Compile Include="Objects.cs" />

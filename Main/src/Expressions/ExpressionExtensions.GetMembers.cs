@@ -24,6 +24,41 @@ namespace CodeJam.Expressions
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
 		[NotNull, Pure]
+		public static MemberExpression GetMemberExpression(this LambdaExpression expression)
+		{
+			var body = expression.Body;
+			return body is UnaryExpression unary
+				? (MemberExpression)unary.Operand
+				: (MemberExpression)body;
+		}
+
+		/// <summary>
+		/// Gets the <see cref="MemberInfo"/>.
+		/// </summary>
+		/// <param name="expression">The expression to analyze.</param>
+		/// <returns>
+		/// The <see cref="MemberInfo"/> instance.
+		/// </returns>
+		[NotNull, Pure]
+		public static MemberExpression GetMemberExpression(this Expression expression)
+		{
+			var body = expression is LambdaExpression lambda
+				? lambda.Body
+				: expression;
+
+			return body is UnaryExpression unary
+				? (MemberExpression)unary.Operand
+				: (MemberExpression)body;
+		}
+
+		/// <summary>
+		/// Gets the <see cref="MemberInfo"/>.
+		/// </summary>
+		/// <param name="expression">The expression to analyze.</param>
+		/// <returns>
+		/// The <see cref="MemberInfo"/> instance.
+		/// </returns>
+		[NotNull, Pure]
 		public static MemberInfo GetMemberInfo([NotNull] this LambdaExpression expression)
 		{
 			Code.NotNull(expression, nameof(expression));
@@ -136,14 +171,6 @@ namespace CodeJam.Expressions
 			return name;
 		}
 
-		private static MemberExpression GetMemberExpression(LambdaExpression expression)
-		{
-			var body = expression.Body;
-			return body is UnaryExpression unary
-				? (MemberExpression)unary.Operand
-				: (MemberExpression)body;
-		}
-
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/>.
 		/// </summary>
@@ -167,7 +194,7 @@ namespace CodeJam.Expressions
 		{
 			MemberInfo lastMember = null;
 
-			for (;;)
+			for (; ; )
 			{
 				switch (expression.NodeType)
 				{
@@ -177,57 +204,57 @@ namespace CodeJam.Expressions
 						yield break;
 
 					case ExpressionType.Call:
-					{
-						if (lastMember == null)
-							goto default;
-
-						var cexpr = (MethodCallExpression)expression;
-						var expr  = cexpr.Object;
-
-						if (expr == null)
 						{
-							if (cexpr.Arguments.Count == 0)
+							if (lastMember == null)
 								goto default;
 
-							expr = cexpr.Arguments[0];
-						}
+							var cexpr = (MethodCallExpression)expression;
+							var expr = cexpr.Object;
 
-						if (expr.NodeType != ExpressionType.MemberAccess)
-							goto default;
+							if (expr == null)
+							{
+								if (cexpr.Arguments.Count == 0)
+									goto default;
 
-						var member = ((MemberExpression)expr).Member;
-						var mtype  = member.GetMemberType();
+								expr = cexpr.Arguments[0];
+							}
 
-						if (lastMember.ReflectedType != mtype.GetItemType())
-							goto default;
+							if (expr.NodeType != ExpressionType.MemberAccess)
+								goto default;
 
-						expression = expr;
+							var member = ((MemberExpression)expr).Member;
+							var mtype = member.GetMemberType();
 
-						break;
-					}
+							if (lastMember.ReflectedType != mtype.GetItemType())
+								goto default;
 
-					case ExpressionType.MemberAccess:
-					{
-						var mexpr = (MemberExpression)expression;
-						var member = lastMember = mexpr.Member;
+							expression = expr;
 
-						yield return member;
-
-						expression = mexpr.Expression;
-
-						break;
-					}
-
-					case ExpressionType.ArrayIndex:
-					{
-						if (passIndexer)
-						{
-							expression = ((BinaryExpression)expression).Left;
 							break;
 						}
 
-						goto default;
-					}
+					case ExpressionType.MemberAccess:
+						{
+							var mexpr = (MemberExpression)expression;
+							var member = lastMember = mexpr.Member;
+
+							yield return member;
+
+							expression = mexpr.Expression;
+
+							break;
+						}
+
+					case ExpressionType.ArrayIndex:
+						{
+							if (passIndexer)
+							{
+								expression = ((BinaryExpression)expression).Left;
+								break;
+							}
+
+							goto default;
+						}
 
 					default:
 						throw new InvalidOperationException($"Expression '{expression}' is not an association.");

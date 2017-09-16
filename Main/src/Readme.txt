@@ -1,4 +1,4 @@
-CodeJam 1.4.0-rc1 Release Notes
+CodeJam 1.4.0 Release Notes
 ---------------------------------
 
 What's new in 1.4.0-rc1
