@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-using CodeJam.Strings;
-
 using NUnit.Framework;
 
-#if SUPPORTS_NET35
+#if LESSTHAN_NET40
 using CodeJam.Targeting;
 #endif
 

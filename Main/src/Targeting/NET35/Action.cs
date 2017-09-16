@@ -1,4 +1,4 @@
-﻿#if SUPPORTS_NET35
+﻿#if LESSTHAN_NET40
 // BASEDON: https://github.com/dotnet/coreclr/blob/76c62b72ef2642c3ad91209acf02db6c8b42aff7/src/mscorlib/src/System/Action.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

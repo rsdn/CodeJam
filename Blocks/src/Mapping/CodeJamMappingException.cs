@@ -1,4 +1,4 @@
-#if !SUPPORTS_NET35
+#if !LESSTHAN_NET40
 using System;
 using System.Runtime.Serialization;
 
@@ -65,7 +65,7 @@ namespace CodeJam.Mapping
 		{
 		}
 
-#if !SUPPORTS_NETSTANDARD
+#if TARGETS_NET
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamMappingException"/> class
 		/// with serialized data.

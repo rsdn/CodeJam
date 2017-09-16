@@ -114,6 +114,7 @@ namespace CodeJam.Collections
 				yield return item;
 		}
 
+#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
 		/// </summary>
@@ -140,6 +141,7 @@ namespace CodeJam.Collections
 				[NotNull] this IEnumerable<T> source,
 				[NotNull] IEqualityComparer<T> comparer) =>
 			new HashSet<T>(source, comparer);
+#endif
 
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.

@@ -8,41 +8,31 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<FileAlignment>512</FileAlignment>
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
-		<TargetFrameworks>net461;netstandard2.0;net45;net40;net35</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;net45;net40;net35</TargetFrameworks>
 	</PropertyGroup>
-	
+
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>
 		<OutputPath>bin\Debug\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Release\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Publish\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -52,7 +42,9 @@
 		<PackageReference Include="NUnit" Version="3.8.1" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.8.0" />
 	</ItemGroup>
+
 	<ItemGroup>
-	  <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
 	</ItemGroup>
+
 </Project>

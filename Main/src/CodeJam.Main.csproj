@@ -9,7 +9,6 @@
 		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<FileAlignment>512</FileAlignment>
 		<TargetFrameworks>net461</TargetFrameworks>
 
 		<PackageId>CodeJam</PackageId>
@@ -21,54 +20,43 @@
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Icon.png</PackageIconUrl>
 		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
-
-		<Company>RSDN.ru</Company>
-		<Copyright>RSDN.ru, 2017</Copyright>
-		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<TargetFrameworks>net461;netstandard2.0;net45;net40;net35</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net45;net40;net35</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>
 		<OutputPath>bin\Debug\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Release\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Publish\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE1</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
@@ -300,7 +288,7 @@
 		<Compile Include="IO\PathHelpers.cs" />
 		<Compile Include="IO\TempData.cs" />
 		<Compile Include="Lazy.cs" />
-    <Compile Include="Collections\QueryableExtensions.Ranges.cs" />
+		<Compile Include="Collections\QueryableExtensions.Ranges.cs" />
 		<Compile Include="NamespaceDoc.cs" />
 		<Compile Include="NullableHelper.cs" />
 		<Compile Include="Objects.cs" />
@@ -382,6 +370,7 @@
 		<Compile Include="Ranges\[Ranges]\CompositeRange`2.generated.cs">
 			<DependentUpon>CompositeRange`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Include="Ranges\[Ranges]\CompositeRange`2.NonGenerated.cs" />
 		<None Include="Ranges\[Ranges]\CompositeRange`2.tt">
@@ -536,6 +525,11 @@
 			<PackagePath>Readme.txt</PackagePath>
 		</Content>
 	</ItemGroup>
+
+	<ItemGroup>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+	
 	<!--<Target Name="TestMessage" BeforeTargets="Build">
 		<Message Text="Hi!" Importance="high" />
 		<Message Text="Building $(ProjectName) for $(TargetFramework). References:" Importance="high" />

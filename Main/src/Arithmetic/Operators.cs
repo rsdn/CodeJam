@@ -81,7 +81,7 @@ namespace CodeJam.Arithmetic
 		#region Custom impl for _onesComplement (FW 3.5 targeting)
 		/// <summary>OnesComplement operator factory.</summary>
 		private static readonly Lazy<Func<T, T>> _onesComplement =
-#if SUPPORTS_NET35
+#if LESSTHAN_NET40
 			new Lazy<Func<T, T>>(() => OperatorsFactory.UnaryOperator<T>(ExpressionType.Not), _lazyMode);
 #else
 			new Lazy<Func<T, T>>(() => OperatorsFactory.UnaryOperator<T>(ExpressionType.OnesComplement), _lazyMode);

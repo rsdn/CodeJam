@@ -1,4 +1,4 @@
-﻿#if !FW35
+﻿#if !LESSTHAN_NET40
 using System;
 using System.Linq;
 using System.Linq.Expressions;

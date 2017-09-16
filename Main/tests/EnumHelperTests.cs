@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
-#if SUPPORTS_NET35
+#if LESSTHAN_NET40
 using EnumTargetingHelpers = CodeJam.Targeting.EnumTargeting;
 #else
 using EnumTargetingHelpers = System.Enum;
@@ -215,7 +215,7 @@ namespace CodeJam
 		[Test]
 		public static void Test0601IsFlagSet()
 		{
-#if DEFAULT_PLATFORM
+#if !LESSTHAN_NET45
 			IsTrue(Abc.HasFlag(Zero));
 			IsTrue(Abc.HasFlag(Bc));
 			IsTrue(Abc.HasFlag(Abc));

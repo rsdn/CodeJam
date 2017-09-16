@@ -9,7 +9,6 @@
 		<ProjectGuid>{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<FileAlignment>512</FileAlignment>
 		<TargetFrameworks>net461</TargetFrameworks>
 
 		<PackageId>CodeJam.PerfTests.Etw</PackageId>
@@ -21,11 +20,6 @@
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.PerfTests.Icon.png</PackageIconUrl>
 		<PackageTags>benchmark benchmarking performance perftests etw</PackageTags>
-
-		<Company>RSDN.ru</Company>
-		<Copyright>RSDN.ru, 2017</Copyright>
-		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
@@ -34,34 +28,25 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>
 		<OutputPath>bin\Debug\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Release\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Publish\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE1</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
 
@@ -69,7 +54,7 @@
 		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="1.0.41" />
+		<PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="1.0.41" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -91,4 +76,5 @@
 		<Compile Include="Properties\AssemblyInfo.cs" />
 		<Compile Include="ModifierAttributes.cs" />
 	</ItemGroup>
+
 </Project>

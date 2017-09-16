@@ -102,7 +102,7 @@ namespace CodeJam.Threading
 		public static void WaitAll([NotNull] this IEnumerable<Task> tasks) => Task.WaitAll(tasks.ToArray());
 		#endregion
 
-#if !SUPPORTS_NET40
+#if !LESSTHAN_NET45
 		#region WhenAll
 		/// <summary>
 		/// Creates a task that will complete when all of the <see cref="Task"/> objects in an enumerable collection

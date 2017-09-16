@@ -1,4 +1,4 @@
-﻿#if !SUPPORTS_NET35
+﻿#if !LESSTHAN_NET40
 using System;
 using System.Collections.Generic;
 using System.IO;

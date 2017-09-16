@@ -1,23 +1,87 @@
 ﻿<Project>
-	<PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
-		<DefineConstants>$(DefineConstants);SUPPORTS_NET35;SUPPORTS_NET40;SUPPORTS_NET45;SUPPORTS_NET46;SUPPORTS_NET461;SUPPORTS_NET47;SUPPORTS_NET471;LESSTHAN_NET40;LESSTHAN_NET45;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFramework)' == 'net40' ">
-		<DefineConstants>$(DefineConstants);SUPPORTS_NET40;SUPPORTS_NET45;SUPPORTS_NET46;SUPPORTS_NET461;SUPPORTS_NET47;SUPPORTS_NET471;LESSTHAN_NET45;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-		<DefineConstants>$(DefineConstants);SUPPORTS_NET45;SUPPORTS_NET46;SUPPORTS_NET461;SUPPORTS_NET47;SUPPORTS_NET471;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
-		<DefineConstants>$(DefineConstants);SUPPORTS_NET46;SUPPORTS_NET461;SUPPORTS_NET47;SUPPORTS_NET471;LESSTHAN_NET461;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
-	</PropertyGroup>
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'net461' ">
-		<DefineConstants>$(DefineConstants);DEFAULT_PLATFORM;SUPPORTS_NET461;SUPPORTS_NET47;SUPPORTS_NET471;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+		<DefineConstants>$(DefineConstants);DEFAULT_PLATFORM</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<DefineConstants>$(DefineConstants);SUPPORTS_NET461;SUPPORTS_NET47;SUPPORTS_NET471;SUPPORTS_NETSTANDARD2_0;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	
+	<!-- Generated from https://docs.microsoft.com/en-us/dotnet/standard/frameworks -->
+	
+	<!-- Monikers for full .net framework -->
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net11' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET20;LESSTHAN_NET35;LESSTHAN_NET40;LESSTHAN_NET403;LESSTHAN_NET45;LESSTHAN_NET451;LESSTHAN_NET452;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFramework)' == 'net471' ">
-		<DefineConstants>$(DefineConstants);SUPPORTS_NET471;</DefineConstants>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net20' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET35;LESSTHAN_NET40;LESSTHAN_NET403;LESSTHAN_NET45;LESSTHAN_NET451;LESSTHAN_NET452;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net35' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET40;LESSTHAN_NET403;LESSTHAN_NET45;LESSTHAN_NET451;LESSTHAN_NET452;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net40' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET403;LESSTHAN_NET45;LESSTHAN_NET451;LESSTHAN_NET452;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net403' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET45;LESSTHAN_NET451;LESSTHAN_NET452;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net45' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET451;LESSTHAN_NET452;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net451' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET452;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net452' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET46;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net46' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET461;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net461' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET462;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net462' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET47;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net47' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET;LESSTHAN_NET471</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net471' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NET</DefineConstants>
+	</PropertyGroup>
+	
+	<!-- Monikers for .Net standard -->
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.0' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETSTANDARD;LESSTHAN_NETSTANDARD1.1;LESSTHAN_NETSTANDARD1.2;LESSTHAN_NETSTANDARD1.3;LESSTHAN_NETSTANDARD1.4;LESSTHAN_NETSTANDARD1.5;LESSTHAN_NETSTANDARD1.6;LESSTHAN_NETSTANDARD2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.1' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETSTANDARD;LESSTHAN_NETSTANDARD1.2;LESSTHAN_NETSTANDARD1.3;LESSTHAN_NETSTANDARD1.4;LESSTHAN_NETSTANDARD1.5;LESSTHAN_NETSTANDARD1.6;LESSTHAN_NETSTANDARD2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.2' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETSTANDARD;LESSTHAN_NETSTANDARD1.3;LESSTHAN_NETSTANDARD1.4;LESSTHAN_NETSTANDARD1.5;LESSTHAN_NETSTANDARD1.6;LESSTHAN_NETSTANDARD2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETSTANDARD;LESSTHAN_NETSTANDARD1.4;LESSTHAN_NETSTANDARD1.5;LESSTHAN_NETSTANDARD1.6;LESSTHAN_NETSTANDARD2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.4' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETSTANDARD;LESSTHAN_NETSTANDARD1.5;LESSTHAN_NETSTANDARD1.6;LESSTHAN_NETSTANDARD2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.5' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETSTANDARD;LESSTHAN_NETSTANDARD1.6;LESSTHAN_NETSTANDARD2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.6' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETSTANDARD;LESSTHAN_NETSTANDARD2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETSTANDARD</DefineConstants>
+	</PropertyGroup>
+	
+	<!-- Monikers for .Net Core -->
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETCORE;LESSTHAN_NETCOREAPP1.1;LESSTHAN_NETCOREAPP2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp1.1' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETCORE;LESSTHAN_NETCOREAPP2.0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' ">
+		<DefineConstants>$(DefineConstants);TARGETS_NETCORE</DefineConstants>
 	</PropertyGroup>
 </Project>
+
+

@@ -9,7 +9,6 @@
 		<ProjectGuid>{7BD77DA2-A731-400C-A88E-215FC592E6E3}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<FileAlignment>512</FileAlignment>
 		<TargetFrameworks>net461</TargetFrameworks>
 
 		<PackageId>CodeJam.Experimental</PackageId>
@@ -21,11 +20,6 @@
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Experimental.Icon.png</PackageIconUrl>
 		<PackageTags>extension experimental</PackageTags>
-
-		<Company>RSDN.ru</Company>
-		<Copyright>RSDN.ru, 2017</Copyright>
-		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
@@ -34,34 +28,25 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>
 		<OutputPath>bin\Debug\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Release\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Publish\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE1</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
@@ -109,4 +94,5 @@
 			<PackagePath>README.txt</PackagePath>
 		</Content>
 	</ItemGroup>
+
 </Project>

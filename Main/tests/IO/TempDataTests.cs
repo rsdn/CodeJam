@@ -254,7 +254,7 @@ namespace CodeJam.IO
 			}
 		}
 
-#if DEFAULT_PLATFORM
+#if !LESSTHAN_NET45
 		[Test]
 		public void Test08FileStreamContent()
 		{

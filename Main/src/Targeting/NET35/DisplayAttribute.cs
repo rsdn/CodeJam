@@ -1,4 +1,4 @@
-﻿#if SUPPORTS_NET35
+﻿#if LESSTHAN_NET40
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations/DisplayAttribute.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

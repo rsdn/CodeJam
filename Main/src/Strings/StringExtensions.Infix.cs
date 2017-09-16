@@ -5,7 +5,7 @@ using System.Text;
 using JetBrains.Annotations;
 
 using StringClass =
-#if SUPPORTS_NET35
+#if LESSTHAN_NET40
 	CodeJam.Targeting.StringTargeting
 #else
 	System.String

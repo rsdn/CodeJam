@@ -1,4 +1,4 @@
-﻿#if SUPPORTS_NET35
+﻿#if LESSTHAN_NET40
 // BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Tuple.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

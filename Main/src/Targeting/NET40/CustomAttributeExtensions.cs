@@ -1,4 +1,4 @@
-﻿#if SUPPORTS_NET40
+﻿#if LESSTHAN_NET45
 // BASEDON: https://github.com/dotnet/coreclr/blob/775003a4c72f0acc37eab84628fcef541533ba4e/src/mscorlib/src/System/Reflection/CustomAttributeExtensions.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

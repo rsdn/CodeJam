@@ -8,7 +8,7 @@ namespace CodeJam
 	{
 		/// <summary>MethodImplOptions.AggressiveInlining or 0, if not supported by target platform</summary>
 		public const MethodImplOptions AggressiveInlining =
-#if SUPPORTS_NET40
+#if LESSTHAN_NET45
 			0;
 #else
 			MethodImplOptions.AggressiveInlining;

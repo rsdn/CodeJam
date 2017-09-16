@@ -1,4 +1,4 @@
-﻿#if !SUPPORTS_NET35
+﻿#if !LESSTHAN_NET40
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -274,7 +274,7 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.ToMapping      ("Field3", "Field2")
 				.ToMapping<Dest>("Field6", "Field7")
-#if SUPPORTS_NET40
+#if LESSTHAN_NET45
 				.FromMapping(new DictionaryWithReadOnly<string,string> { ["Field5"] = "Field4" }));
 #else
 				.FromMapping(new Dictionary<string,string> { ["Field5"] = "Field4" }));

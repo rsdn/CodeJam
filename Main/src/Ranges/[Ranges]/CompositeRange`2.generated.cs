@@ -19,7 +19,7 @@ using CodeJam.Strings;
 using JetBrains.Annotations;
 
 using StringClass =
-#if SUPPORTS_NET35
+#if LESSTHAN_NET40
 	CodeJam.Targeting.StringTargeting
 #else
 	System.String
@@ -134,13 +134,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Predefined values
-		private static readonly ReadOnlyCollection<Range<T, TKey>> _emptyRanges =
-#if (!LESSTHAN_NET46)
-			Array.Empty<Range<T, TKey>>()
-#else
-			Array<Range<T, TKey>>.Empty
-#endif
-			.AsReadOnly();
+		private static readonly ReadOnlyCollection<Range<T, TKey>> _emptyRanges = Array<Range<T, TKey>>.Empty.AsReadOnly();
 
 		#region T4-dont-replace
 		private static readonly Range<T> _emptyRangeNoKey = Range<T>.Empty;

@@ -9,7 +9,6 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{8EDF4429-251A-416D-BB68-93F227191BCF}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<FileAlignment>512</FileAlignment>
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
@@ -18,34 +17,25 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>
 		<OutputPath>bin\Debug\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Release\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
-		<LangVersion>latest</LangVersion>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Publish\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
@@ -97,9 +87,10 @@
 			<LastGenOutput>OperatorsNumPerfTests.generated.cs</LastGenOutput>
 		</None>
 	</ItemGroup>
+
 	<ItemGroup>
 		<EmbeddedResource Include="Arithmetic\OperatorsComparePerfTests.generated.xml">
-		  <DependentUpon>OperatorsComparePerfTests.tt</DependentUpon>
+			<DependentUpon>OperatorsComparePerfTests.tt</DependentUpon>
 		</EmbeddedResource>
 		<EmbeddedResource Include="Arithmetic\OperatorsEqualityPerfTests.generated.xml">
 			<DependentUpon>OperatorsEqualityPerfTests.tt</DependentUpon>
@@ -111,7 +102,9 @@
 			<DependentUpon>OperatorsNumPerfTests.tt</DependentUpon>
 		</EmbeddedResource>
 	</ItemGroup>
+
 	<ItemGroup>
-	  <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
 	</ItemGroup>
+
 </Project>

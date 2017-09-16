@@ -1,4 +1,4 @@
-﻿#if !SUPPORTS_NET40
+﻿#if !LESSTHAN_NET45
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;

@@ -10,7 +10,7 @@ using CodeJam.Strings;
 using JetBrains.Annotations;
 
 using EnumerableClass =
-#if SUPPORTS_NET35
+#if LESSTHAN_NET40
 	CodeJam.Targeting.EnumerableTargeting
 #else
 	System.Linq.Enumerable

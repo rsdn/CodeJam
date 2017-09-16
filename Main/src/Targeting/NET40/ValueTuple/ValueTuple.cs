@@ -1,4 +1,4 @@
-﻿#if SUPPORTS_NET40
+﻿#if LESSTHAN_NET45
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/ValueTuple/ValueTuple.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

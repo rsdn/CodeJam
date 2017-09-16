@@ -124,7 +124,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(IList<>), typeof(IEnumerable<>), ExpectedResult = true)]
 		[TestCase(typeof(IEnumerable<>), typeof(IEnumerable), ExpectedResult = true)]
 		[TestCase(typeof(List<int>), typeof(List<int>), ExpectedResult = false)]
-#if !SUPPORTS_NET35
+#if !LESSTHAN_NET40
 		[TestCase(typeof(IList<>), typeof(ISet<>), ExpectedResult = false)]
 #endif
 		public bool IsSubClassTest(Type type, Type check) => type.IsSubClass(check);

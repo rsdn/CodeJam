@@ -1,4 +1,4 @@
-﻿#if !SUPPORTS_NET40
+﻿#if !LESSTHAN_NET45
 // NET 4.0 uses binary array sorting instead of introspection sort, most of tests belongs on order of elements to be preserved
 using System;
 using System.Diagnostics.CodeAnalysis;
