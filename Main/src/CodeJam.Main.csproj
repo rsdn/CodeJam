@@ -9,7 +9,7 @@
 		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net45;net40;net35</TargetFrameworks>
 
 		<PackageId>CodeJam</PackageId>
 		<Title>CodeJam library</Title>
@@ -24,7 +24,9 @@
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net45;net40;net35</TargetFrameworks>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
+		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,6 +54,12 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
+		<AssemblyAttribute Include="System.Runtime.Versioning.TargetFrameworkAttribute">
+			<_Parameter1>.NETFramework,Version=v3.5</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
@@ -85,6 +93,7 @@
 			<AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Include="Algorithms\Algorithms.EqualRange.IComparable.cs" />
+		<Compile Include="Targeting\NET35\TargetFrameworkAttribute.cs" />
 		<None Include="Algorithms\Algorithms.EqualRange.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>Algorithms.EqualRange.generated.cs</LastGenOutput>
@@ -529,7 +538,7 @@
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
-	
+
 	<!--<Target Name="TestMessage" BeforeTargets="Build">
 		<Message Text="Hi!" Importance="high" />
 		<Message Text="Building $(ProjectName) for $(TargetFramework). References:" Importance="high" />

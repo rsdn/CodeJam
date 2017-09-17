@@ -13,7 +13,11 @@ namespace CodeJam.Reflection
 	{
 		[Test]
 		public void TestGetAssemblyPath() =>
-			Assert.AreEqual("CodeJam-Tests.DLL", Path.GetFileName(GetType().Assembly.GetAssemblyPath()));
+			Assert.True(
+				string.Equals(
+					"CodeJam-Tests.dll",
+					Path.GetFileName(GetType().Assembly.GetAssemblyPath()),
+					StringComparison.InvariantCultureIgnoreCase));
 
 		[Test]
 		public void TestGetAssemblyPathLoadedFromByteArray()

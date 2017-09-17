@@ -17,11 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Experimental", "Experimenta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C7E7F10-7332-42A4-A73D-1F05E656B0EC}"
 	ProjectSection(SolutionItems) = preProject
-		appveyor.doc.yml = appveyor.doc.yml
-		appveyor.yml = appveyor.yml
 		CodeJamDoc.shfbproj = CodeJamDoc.shfbproj
 		CONTRIBUTING.md = CONTRIBUTING.md
-		Jetbrains.Annotations.cs = Jetbrains.Annotations.cs
 		LICENSE = LICENSE
 		README.md = README.md
 		TestsGuidelines.md = TestsGuidelines.md
@@ -90,6 +87,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests.Etw", "Pe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{52A32895-CD49-4F28-A507-5F7B2FD50CD7}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.doc.yml = appveyor.doc.yml
 		appveyor.yml = appveyor.yml
 		Build\CodeJam.Default.props = Build\CodeJam.Default.props
 		Build\CodeJam.PerfTests.Default.props = Build\CodeJam.PerfTests.Default.props

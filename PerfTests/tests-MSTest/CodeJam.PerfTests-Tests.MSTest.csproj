@@ -40,9 +40,11 @@
 		<ProjectReference Include="..\src-MSTest\CodeJam.PerfTests.MSTest.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
 		<PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
 		<PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
 	</ItemGroup>
 
 </Project>

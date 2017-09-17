@@ -56,7 +56,11 @@ namespace CodeJam.IO
 		[TestCase(@"a:\.a.b\", PathKind.ValidAbsoluteContainerPath)]
 		[TestCase(@"a:\a\..a\", PathKind.ValidAbsoluteContainerPath)]
 		[TestCase(@"a:\a\..a.b\", PathKind.ValidAbsoluteContainerPath)]
+#if TARGETS_NETCORE
+		[TestCase(@"a:\a\..a..\", PathKind.ValidAbsoluteContainerPath)]
+#else
 		[TestCase(@"a:\a\..a..\", PathKind.Invalid)]
+#endif
 		[TestCase(@"a:\a\..a..b\", PathKind.ValidAbsoluteContainerPath)]
 		[TestCase(@"a:\a\..\a\", PathKind.Invalid)]
 		[TestCase(@"a:\a\..\a.b\", PathKind.Invalid)]

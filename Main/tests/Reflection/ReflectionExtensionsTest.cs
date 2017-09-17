@@ -104,6 +104,9 @@ namespace CodeJam.Reflection
 		[TestCaseSource(nameof(_source))]
 		public void GetShortAssemblyQualifiedNameTest(Type type, string expected)
 		{
+#if TARGETS_NETCORE
+			expected = expected.Replace("mscorlib", "System.Private.CoreLib");
+#endif
 			var qualifiedName = type.GetShortAssemblyQualifiedName();
 
 			var regex = new Regex(@"(?:, (?:\w+=[\w\d-\.]+))*");

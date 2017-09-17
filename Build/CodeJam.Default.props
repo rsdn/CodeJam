@@ -2,7 +2,6 @@
 	<PropertyGroup>
 		<AppDesignerFolder>Properties</AppDesignerFolder>
 		<Configurations>Debug;Release;Publish</Configurations>
-		<TargetFrameworks>net461</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<WarningLevel>4</WarningLevel>
 		<ErrorReport>prompt</ErrorReport>

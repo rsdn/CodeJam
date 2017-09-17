@@ -9,7 +9,7 @@
 		<ProjectGuid>{0DFF0859-2400-4487-83AD-0ED10203D6D9}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFrameworks>net461;netstandard2.0;net45;net40;net35</TargetFrameworks>
 
 		<PackageId>CodeJam.Blocks</PackageId>
 		<Title>CodeJam.Blocks library</Title>
@@ -24,7 +24,9 @@
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<TargetFrameworks>net461;netstandard2.0;net45;net40;net35</TargetFrameworks>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
+		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,6 +51,12 @@
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
+	
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
+		<AssemblyAttribute Include="System.Runtime.Versioning.TargetFrameworkAttribute">
+			<_Parameter1>.NETFramework,Version=v3.5</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj" />
