@@ -29,6 +29,7 @@ namespace CodeJam
 		[Test]
 		public void TestTargeting()
 		{
+			TestTools.PrintQuircks();
 			Assert.AreEqual(PlatformDependent.TargetPlatform, ExpectedTarget);
 		}
 

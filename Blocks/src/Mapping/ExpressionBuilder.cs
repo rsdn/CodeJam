@@ -673,7 +673,7 @@ namespace CodeJam.Mapping
 			Type fromItemType,
 			Type toItemType)
 		{
-			var toListInfo = InfoOf.Method(() => EnumerableExtensions.ToHashSet<int>(null)).GetGenericMethodDefinition();
+			var toListInfo = InfoOf.Method(() => Array<int>.Empty.ToHashSet()).GetGenericMethodDefinition();
 			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
 
 			if (builder._data.IsRestart)

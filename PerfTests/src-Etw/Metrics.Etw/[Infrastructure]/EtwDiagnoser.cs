@@ -157,7 +157,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 				}
 				catch (UnauthorizedAccessException)
 				{
-					var kernelMetrics =analysis.Config
+					var kernelMetrics = analysis.Config
 						.GetMetrics()
 						.Where(m => m.ValuesProvider is IEtwMetricValueProvider p && p.IsKernelMetric);
 

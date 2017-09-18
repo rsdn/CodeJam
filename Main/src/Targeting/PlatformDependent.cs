@@ -6,8 +6,9 @@ using System.Runtime.Versioning;
 namespace CodeJam
 {
 	/// <summary>Switches for features depending on platform targeting</summary>
-	internal static class PlatformDependent
+	public static class PlatformDependent
 	{
+		/// <summary>Target platform the assembly was built for.</summary>
 		public static readonly string TargetPlatform =
 			typeof(PlatformDependent).Assembly.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName;
 

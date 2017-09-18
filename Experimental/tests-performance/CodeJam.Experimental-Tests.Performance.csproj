@@ -47,7 +47,7 @@
 		<PackageReference Include="NUnit" Version="3.8.1" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.8.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
 		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
 		<PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
