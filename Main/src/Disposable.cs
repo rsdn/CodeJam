@@ -55,6 +55,50 @@ namespace CodeJam
 				}
 			}
 		}
+
+		/// <summary>
+		/// The <see cref="IDisposable"/> implementation that calls supplied action on <see cref="Dispose"/>.
+		/// </summary>
+		/// DONTTOUCH: DO NOT make it a struct, passing the structure by value will result in multiple Dispose() calls.
+		/// SEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
+		private sealed class AnonymousDisposable<T> : IDisposable
+		{
+			private readonly T _state;
+			private Action<T> _disposeAction;
+
+			/// <summary>Initialize instance.</summary>
+			/// <param name="state">A value that contains data for the disposal action.</param>
+			/// <param name="disposeAction">The dispose action.</param>
+			public AnonymousDisposable(T state, Action<T> disposeAction)
+			{
+				_state = state;
+				_disposeAction = disposeAction;
+			}
+
+			/// <summary>
+			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+			/// </summary>
+			public void Dispose()
+			{
+				var disposeAction = Interlocked.Exchange(ref _disposeAction, null);
+				if (disposeAction != null)
+				{
+					try
+					{
+						disposeAction.Invoke(_state);
+					}
+					catch when (OnException(disposeAction))
+					{
+					}
+				}
+			}
+
+			private bool OnException(Action<T> disposeAction)
+			{
+				Interlocked.Exchange(ref _disposeAction, disposeAction);
+				return false;
+			}
+		}
 		#endregion
 
 		/// <summary><see cref="IDisposable"/> instance without any code in <see cref="IDisposable.Dispose"/>.</summary>
@@ -69,6 +113,17 @@ namespace CodeJam
 		/// </returns>
 		[NotNull, Pure]
 		public static IDisposable Create([NotNull] Action disposeAction) => new AnonymousDisposable(disposeAction);
+
+		/// <summary>
+		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
+		/// </summary>
+		/// <param name="state">A value that contains data for the disposal action.</param>
+		/// <param name="disposeAction">The dispose action.</param>
+		/// <returns>
+		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
+		/// </returns>
+		[NotNull, Pure]
+		public static IDisposable Create<T>(T state, [NotNull] Action<T> disposeAction) => new AnonymousDisposable<T>(state, disposeAction);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
