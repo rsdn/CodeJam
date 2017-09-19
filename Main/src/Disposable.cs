@@ -27,13 +27,13 @@ namespace CodeJam
 		/// </summary>
 		/// DONTTOUCH: DO NOT make it a struct, passing the structure by value will result in multiple Dispose() calls.
 		/// SEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
-		private class AnonymousDisposable : IDisposable
+		private sealed class AnonymousDisposable : IDisposable
 		{
 			private Action _disposeAction;
 
 			/// <summary>Initialize instance.</summary>
 			/// <param name="disposeAction">The dispose action.</param>
-			internal AnonymousDisposable(Action disposeAction) => _disposeAction = disposeAction;
+			public AnonymousDisposable(Action disposeAction) => _disposeAction = disposeAction;
 
 			/// <summary>
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -47,12 +47,16 @@ namespace CodeJam
 					{
 						disposeAction.Invoke();
 					}
-					catch (Exception)
+					catch when (OnException(disposeAction))
 					{
-						Interlocked.Exchange(ref _disposeAction, disposeAction);
-						throw;
 					}
 				}
+			}
+
+			private bool OnException(Action disposeAction)
+			{
+				Interlocked.Exchange(ref _disposeAction, disposeAction);
+				return false;
 			}
 		}
 
