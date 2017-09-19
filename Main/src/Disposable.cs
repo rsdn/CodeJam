@@ -71,9 +71,9 @@ namespace CodeJam
 			private Action<T> _disposeAction;
 
 			/// <summary>Initialize instance.</summary>
-			/// <param name="state">A value that contains data for the disposal action.</param>
 			/// <param name="disposeAction">The dispose action.</param>
-			public AnonymousDisposable(T state, Action<T> disposeAction)
+			/// <param name="state">A value that contains data for the disposal action.</param>
+			public AnonymousDisposable(Action<T> disposeAction, T state)
 			{
 				_state = state;
 				_disposeAction = disposeAction;
@@ -121,13 +121,13 @@ namespace CodeJam
 		/// <summary>
 		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
 		/// </summary>
-		/// <param name="state">A value that contains data for the disposal action.</param>
 		/// <param name="disposeAction">The dispose action.</param>
+		/// <param name="state">A value that contains data for the disposal action.</param>
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
 		[NotNull, Pure]
-		public static IDisposable Create<T>(T state, [NotNull] Action<T> disposeAction) => new AnonymousDisposable<T>(state, disposeAction);
+		public static IDisposable Create<T>([NotNull] Action<T> disposeAction, T state) => new AnonymousDisposable<T>(disposeAction, state);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>

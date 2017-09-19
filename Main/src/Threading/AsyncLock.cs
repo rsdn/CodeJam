@@ -36,7 +36,7 @@ namespace CodeJam.Threading
 				cancellation.ThrowIfCancellationRequested();
 				throw new TimeoutException($"Attempt to take lock timed out in {timeout}.");
 			}
-			return Disposable.Create(_semaphore, s => s.Release());
+			return Disposable.Create(s => s.Release(), _semaphore);
 		}
 
 		/// <summary>
