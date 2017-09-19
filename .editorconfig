@@ -1,0 +1,10 @@
+﻿root = true
+
+[*]
+charset = utf-8-bom
+end_of_line = crlf
+indent_style = tab
+trim_trailing_whitespace = true
+
+[*.ttinclude]
+insert_final_newline = false

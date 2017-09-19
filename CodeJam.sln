@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Experimental", "Experimenta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C7E7F10-7332-42A4-A73D-1F05E656B0EC}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		appveyor.doc.yml = appveyor.doc.yml
 		appveyor.yml = appveyor.yml
 		CodeJamDoc.shfbproj = CodeJamDoc.shfbproj
