@@ -9,7 +9,7 @@
 		<ProjectGuid>{7BD77DA2-A731-400C-A88E-215FC592E6E3}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
 
 		<PackageId>CodeJam.Experimental</PackageId>
 		<Title>CodeJam.Experimental library</Title>
@@ -24,6 +24,8 @@
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 

@@ -69,6 +69,7 @@ namespace CodeJam.Collections
 				yield return element;
 		}
 
+#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
 		/// <summary>
 		/// Prepends specified <paramref name="element"/> to the collection start.
 		/// </summary>
@@ -90,6 +91,7 @@ namespace CodeJam.Collections
 			foreach (var item in source)
 				yield return item;
 		}
+#endif
 
 		/// <summary>
 		/// Prepends specified <paramref name="elements"/> to the collection start.

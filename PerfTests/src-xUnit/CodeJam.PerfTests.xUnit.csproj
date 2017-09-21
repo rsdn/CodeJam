@@ -10,8 +10,8 @@
 		<ProjectGuid>{92C6E5F8-FFEE-4269-92D7-BB9CFEB63D4B}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461</TargetFrameworks>
-
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		
 		<PackageId>CodeJam.PerfTests.xUnit</PackageId>
 		<Title>CodeJam.PerfTests xUnit integration library</Title>
 		<Authors>Igor Sinicyn</Authors>
@@ -25,6 +25,8 @@
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 

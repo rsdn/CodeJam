@@ -40,6 +40,7 @@ foreach (var type in types) {#>
 }
 <#+
 private void Header1(string type) {#>
+#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -58,16 +59,19 @@ private void Header1(string type) {#>
 
 private void Body1() {#>
 			=> GetValueOrDefault(dictionary, key, default(TValue));
+#endif
 
 <#+}
 
 private void ConflictBody1() {#>
 			=> GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key);
+#endif
 
 <#+}#>
 
 <#+
 private void Header2(string type) {#>
+#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -98,11 +102,13 @@ private void Body2() {#>
 					? result
 					: defaultValue;
 		}
+#endif
 
 <#+}
 
 private void ConflictBody2() {#>
 			=> GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
+#endif
 
 <#+}#>
 

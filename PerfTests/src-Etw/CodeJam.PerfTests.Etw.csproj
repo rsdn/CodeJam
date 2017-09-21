@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\Build\CodeJam.Default.props" />
+	<Import Project="..\..\Build\CodeJam.PerfTests.Default.props" />
 	<Import Project="..\..\Build\CodeJam.Targeting.props" />
 
 	<PropertyGroup>
@@ -24,6 +25,8 @@
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 

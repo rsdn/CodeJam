@@ -14,8 +14,6 @@ namespace CodeJam
 			var ex = new Exception("123", new ApplicationException());
 			var text = ex.ToDiagnosticString();
 
-			Console.WriteLine(text);
-
 			Assert.That(text,
 				Contains
 					.Substring("--------------------------------------")
@@ -33,8 +31,9 @@ namespace CodeJam
 			catch (Exception ex)
 			{
 				var text = ex.ToDiagnosticString();
-
-				Console.WriteLine(text);
+				Assert.That(
+					text,
+					Contains.Substring("CodeJamJamJam"));
 			}
 		}
 
@@ -44,9 +43,7 @@ namespace CodeJam
 			var ex = new AggregateException("000", new Exception("123"), new Exception("456"));
 			var text = ex.ToDiagnosticString();
 
-			Console.WriteLine(text);
-
-			Assert.That(text,Contains.Substring("000").And.Contains("123").And.Contains("456"));
+			Assert.That(text, Contains.Substring("000").And.Contains("123").And.Contains("456"));
 		}
 	}
 }

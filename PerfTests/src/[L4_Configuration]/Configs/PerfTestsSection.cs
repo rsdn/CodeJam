@@ -16,7 +16,11 @@ namespace CodeJam.PerfTests.Configs
 	/// </summary>
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
 	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-	internal sealed class PerfTestsSection : ConfigurationSection, ICompetitionFeatures
+	internal sealed class PerfTestsSection :
+#if TARGETS_NET
+		ConfigurationSection,
+#endif
+		ICompetitionFeatures
 	{
 		#region Measurements
 		/// <summary>
@@ -24,6 +28,7 @@ namespace CodeJam.PerfTests.Configs
 		/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1000 ns).
 		/// </summary>
 		/// <value>Target platform for the competition.</value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(BurstMode), IsRequired = false)]
 		public bool BurstMode
 		{
@@ -36,6 +41,9 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(BurstMode)] = value;
 			}
 		}
+#else
+		public bool BurstMode { get; set; }
+#endif
 		#endregion
 
 		#region Environment
@@ -49,6 +57,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <value>
 		/// <c>true</c> if the code is being run on a CI server.
 		/// </value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(ContinuousIntegrationMode), IsRequired = false)]
 		public bool ContinuousIntegrationMode
 		{
@@ -61,9 +70,13 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(ContinuousIntegrationMode)] = value;
 			}
 		}
+#else
+		public bool ContinuousIntegrationMode { get; set; }
+#endif
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(Platform), IsRequired = false)]
 		public Platform? Platform
 		{
@@ -76,6 +89,9 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(Platform)] = value;
 			}
 		}
+#else
+		public Platform? Platform { get; set; }
+#endif
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
@@ -85,6 +101,7 @@ namespace CodeJam.PerfTests.Configs
 		#region Annotations
 		/// <summary>Enables source annotations feature.</summary>
 		/// <value><c>true</c> if source annotations feature should be enabled.</value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(AnnotateSources), IsRequired = false)]
 		public bool AnnotateSources
 		{
@@ -97,12 +114,17 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(AnnotateSources)] = value;
 			}
 		}
+#else
+		public bool AnnotateSources { get; set; }
+#endif
+
 
 		/// <summary>
 		/// Ignores existing annotations if <see cref="AnnotateSources"/> is enabled.
 		/// Value of <see cref="PreviousRunLogUri"/> is ignored.
 		/// </summary>
 		/// <value><c>true</c> if reannotation feature should be enabled.</value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(IgnoreExistingAnnotations), IsRequired = false)]
 		public bool IgnoreExistingAnnotations
 		{
@@ -115,9 +137,13 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(IgnoreExistingAnnotations)] = value;
 			}
 		}
+#else
+		public bool IgnoreExistingAnnotations { get; set; }
+#endif
 
 		/// <summary>Sets the <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/> to the specified value.</summary>
 		/// <value>The value for <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/>.</value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(PreviousRunLogUri), IsRequired = false)]
 		public string PreviousRunLogUri
 		{
@@ -130,6 +156,9 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(PreviousRunLogUri)] = value;
 			}
 		}
+#else
+		public string PreviousRunLogUri { get; set; }
+#endif
 		#endregion
 
 		#region Troubleshooting
@@ -137,6 +166,7 @@ namespace CodeJam.PerfTests.Configs
 		/// <value>
 		/// <c>true</c> if <see cref="CompetitionRunMode.ReportWarningsAsErrors"/> should be set to true.
 		/// </value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(ReportWarningsAsErrors), IsRequired = false)]
 		public bool ReportWarningsAsErrors
 		{
@@ -149,6 +179,9 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(ReportWarningsAsErrors)] = value;
 			}
 		}
+#else
+		public bool ReportWarningsAsErrors { get; set; }
+#endif
 
 		/// <summary>
 		/// Enables <see cref="CompetitionRunMode.DetailedLogging"/> and <see cref="CompetitionRunMode.AllowDebugBuilds"/> options.
@@ -156,6 +189,7 @@ namespace CodeJam.PerfTests.Configs
 		/// Adds important info and detailed info loggers.
 		/// </summary>
 		/// <value><c>true</c> to enable troubleshooting mode.</value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(TroubleshootingMode), IsRequired = false)]
 		public bool TroubleshootingMode
 		{
@@ -168,9 +202,13 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(TroubleshootingMode)] = value;
 			}
 		}
+#else
+		public bool TroubleshootingMode { get; set; }
+#endif
 
 		/// <summary>Enables important info logger.</summary>
 		/// <value><c>true</c> if important info logger should be used.</value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(ImportantInfoLogger), IsRequired = false)]
 		public bool ImportantInfoLogger
 		{
@@ -183,9 +221,13 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(ImportantInfoLogger)] = value;
 			}
 		}
+#else
+		public bool ImportantInfoLogger { get; set; }
+#endif
 
 		/// <summary>Enables detailed logger.</summary>
 		/// <value><c>true</c> if detailed logger should be used.</value>
+#if TARGETS_NET
 		[ConfigurationProperty(nameof(DetailedLogger), IsRequired = false)]
 		public bool DetailedLogger
 		{
@@ -198,6 +240,9 @@ namespace CodeJam.PerfTests.Configs
 				this[nameof(DetailedLogger)] = value;
 			}
 		}
+#else
+		public bool DetailedLogger { get; set; }
+#endif
 		#endregion
 
 		/// <summary>Gets the features from the attribute.</summary>

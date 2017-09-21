@@ -9,11 +9,11 @@
 		<RootNamespace>CodeJam.PerfTests</RootNamespace>
 		<ProjectGuid>{B535D8EF-66CC-4701-845D-F4C44C49922E}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461</TargetFrameworks>
 		<PlatformTarget>x86</PlatformTarget>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 

@@ -12,7 +12,7 @@
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
@@ -70,7 +70,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="[L3_CompetitionAnalysers]\" />
+		<Folder Include="[L3_CompetitionAnalysers]\" />
 	</ItemGroup>
 
 </Project>

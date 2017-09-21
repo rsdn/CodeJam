@@ -8,10 +8,10 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{F6F97573-4D26-4217-89F6-819DF96FCB4A}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 

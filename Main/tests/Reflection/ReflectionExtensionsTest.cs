@@ -109,10 +109,6 @@ namespace CodeJam.Reflection
 #endif
 			var qualifiedName = type.GetShortAssemblyQualifiedName();
 
-			var regex = new Regex(@"(?:, (?:\w+=[\w\d-\.]+))*");
-			Console.WriteLine("Result:   {0}", qualifiedName);
-			Console.WriteLine("Expected: {0}", regex.Replace(type.AssemblyQualifiedName ?? "", ""));
-
 			Assert.AreEqual(expected, qualifiedName);
 			Assert.AreEqual(type, Type.GetType(qualifiedName));
 		}

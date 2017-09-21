@@ -8,12 +8,18 @@
 		<AssemblyName>CodeJam.PerfTests-Tests.NUnit</AssemblyName>
 		<RootNamespace>CodeJam.PerfTests</RootNamespace>
 		<ProjectGuid>{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}</ProjectGuid>
-		<OutputType>Library</OutputType>
+		<OutputType>Exe</OutputType>
+		<PlatformTarget>x64</PlatformTarget>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<StartupObject>CodeJam.Examples.PerfTests.ExamplesProgram</StartupObject>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
-		<TargetFrameworks>net461</TargetFrameworks>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+		<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

@@ -54,7 +54,7 @@ namespace CodeJam.Collections
 		public void Test12ThreeStrings() => Check("[{A}[{LL},{TS}],{FOLKS},{HATS},{KS},{L}[{},{KS},{L}],{OLKS},{S}[{},{}],{T}[{HATS},{S}]]"
 			, "THATS", "ALL", "FOLKS");
 
-		[Test]		
+		[Test]
 		public void Test13FourStrings() => Check("[{A}[{},{},{},{},{BRA}],{BRA}[{},{},{},{}],{RA}[{},{},{},{}]]"
 			, "ABRA", "BRA", "BRA", "BRA");
 
@@ -65,7 +65,6 @@ namespace CodeJam.Collections
 			{
 				st.Add(s);
 			}
-			Console.Write(st.Print());
 			Assert.That(SuffixTreeEncoder.Encode(st), Is.EqualTo(expected));
 		}
 

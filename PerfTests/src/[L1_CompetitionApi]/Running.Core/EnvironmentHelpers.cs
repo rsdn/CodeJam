@@ -1,14 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
 using CodeJam.Reflection;
 
 using JetBrains.Annotations;
+
+#if TARGETS_NET
+using System.Configuration;
+#else
+using Microsoft.Extensions.Configuration;
+using System.Xml;
+#endif
 
 namespace CodeJam.PerfTests.Running.Core
 {
@@ -18,15 +23,39 @@ namespace CodeJam.PerfTests.Running.Core
 	[PublicAPI]
 	public static class EnvironmentHelpers
 	{
-		private static readonly Func<string, object> _configSectionsCache = Algorithms.Memoize(
-			(string sectionName) => ConfigurationManager.GetSection(sectionName),
+		private static readonly Func<Assembly, string, Type, object> _configSectionsCache = Algorithms.Memoize(
+			(Assembly a, string sectionName, Type sectionType) => GetConfigSectionToCache(a, sectionName, sectionType),
 			true);
 
-		private static readonly Func<Assembly, string, object> _sectionsCache = Algorithms.Memoize(
-			(Assembly a, string sectionName) => ConfigurationManager
+		private static object GetConfigSectionToCache(Assembly a, string sectionName, Type sectionType)
+		{
+#if TARGETS_NET
+			if (a == null)
+				return ConfigurationManager.GetSection(sectionName);
+
+			return ConfigurationManager
 				.OpenExeConfiguration(a.GetAssemblyPath())
-				.GetSection(sectionName),
-			true);
+				.GetSection(sectionName);
+#else
+			var configPath = a == null
+				? GetDefaultConfigPath()
+				: a.GetAssemblyPath() + ".config";
+			System.Console.WriteLine(configPath);
+			var configurationRoot = new ConfigurationBuilder().AddXmlFile(configPath).Build();
+			return configurationRoot.GetSection(sectionName).Get(sectionType);
+#endif
+		}
+
+		private static string GetDefaultConfigPath()
+		{
+#if TARGETS_NET
+			return AppDomain.CurrentDomain.SetupInformation.ConfigurationFile ??
+				((Assembly.GetEntryAssembly()?.GetAssemblyPath()??
+					Process.GetCurrentProcess().MainModule.FileName) + ".config");
+#else
+			return (Assembly.GetEntryAssembly()?.GetAssemblyPath() ?? Process.GetCurrentProcess().MainModule.FileName) + ".config";
+#endif
+		}
 
 		/// <summary>Determines whether any environment variable is set.</summary>
 		/// <param name="variables">The variables to check. Case is ignored.</param>
@@ -65,8 +94,10 @@ namespace CodeJam.PerfTests.Running.Core
 		public static TSection ParseConfigurationSection<TSection>(
 			[NotNull] string sectionName,
 			params Assembly[] fallbackAssemblies)
-			where TSection : ConfigurationSection =>
-				ParseConfigurationSection<TSection>(sectionName, fallbackAssemblies.AsEnumerable());
+#if TARGETS_NET
+			where TSection : ConfigurationSection
+#endif
+				=> ParseConfigurationSection<TSection>(sectionName, fallbackAssemblies.AsEnumerable());
 
 		/// <summary>
 		/// Retuns configuration section from app.config or (if none)
@@ -81,18 +112,18 @@ namespace CodeJam.PerfTests.Running.Core
 		public static TSection ParseConfigurationSection<TSection>(
 			[NotNull] string sectionName,
 			IEnumerable<Assembly> fallbackAssemblies)
+#if TARGETS_NET
 			where TSection : ConfigurationSection
+#endif
 		{
 			if (string.IsNullOrEmpty(sectionName))
 				throw new ArgumentNullException(nameof(sectionName));
 
-			var targetFile =
-				AppDomain.CurrentDomain.SetupInformation.ConfigurationFile ??
-					(Process.GetCurrentProcess().MainModule.FileName + ".config");
+			var targetFile = GetDefaultConfigPath();
 			targetFile = Path.GetFileName(targetFile);
 			try
 			{
-				var result = (TSection)_configSectionsCache(sectionName);
+				var result = (TSection)_configSectionsCache(null, sectionName, typeof(TSection));
 				if (result == null)
 				{
 					// DONTTOUCH: .Distinct preserves order of fallbackAssemblies.
@@ -100,7 +131,7 @@ namespace CodeJam.PerfTests.Running.Core
 					{
 						targetFile = Path.GetFileName(assembly.GetAssemblyPath() + ".config");
 
-						result = (TSection)_sectionsCache(assembly, sectionName);
+						result = (TSection)_configSectionsCache(assembly, sectionName, typeof(TSection));
 
 						if (result != null)
 							break;
@@ -108,7 +139,11 @@ namespace CodeJam.PerfTests.Running.Core
 				}
 				return result;
 			}
+#if TARGETS_NET
 			catch (ConfigurationErrorsException ex)
+#else
+			catch (XmlException ex)
+#endif
 			{
 				throw new InvalidOperationException(
 					$"Could not read config section {sectionName}, file '{targetFile}'.", ex);

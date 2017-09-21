@@ -9,7 +9,9 @@ using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.InProcess;
+using BenchmarkDotNet.Validators;
 
+using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 
 using NUnit.Framework;
@@ -85,12 +87,12 @@ namespace CodeJam.PerfTests
 			//Assert.AreEqual(_iterationCleanupCounter, (MethodsCount - 1) * iterationsNoUnroll);
 			//Assert.AreEqual(_iterationCleanupTargetCounter, 1 * iterationsNoUnroll);
 
-			var a = summary?.ValidationErrors.ToArray();
+			var a = summary?.ValidationErrors.ToArray() ?? Array<ValidationError>.Empty;
 			foreach (var validationError in a)
 			{
 				Console.WriteLine(validationError.Message);
 			}
-			Assert.IsFalse(a.Any());
+			Assert.AreEqual(a.Length, 0);
 		}
 
 		[Test]
@@ -136,7 +138,7 @@ namespace CodeJam.PerfTests
 			//Assert.AreEqual(_iterationCleanupCounter, (MethodsCount - 1) * iterationsNoUnroll);
 			//Assert.AreEqual(_iterationCleanupTargetCounter, 1 * iterationsNoUnroll);
 
-			Assert.IsFalse(summary?.ValidationErrors.Any());
+			Assert.IsFalse(Enumerable.Any(summary?.ValidationErrors));
 		}
 
 		[Test]

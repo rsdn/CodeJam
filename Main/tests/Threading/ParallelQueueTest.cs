@@ -44,8 +44,6 @@ namespace CodeJam.Threading
 						Interlocked.Increment(ref _consumerCount);
 						Thread.Sleep(100);
 					}
-
-					Console.WriteLine(s);
 				});
 
 			Assert.That(_providerCount, Is.EqualTo(5));
@@ -71,8 +69,6 @@ namespace CodeJam.Threading
 						Interlocked.Increment(ref _actionCount);
 						Thread.Sleep(100);
 					}
-
-					Console.WriteLine(n);
 				}))
 				.RunInParallel(5);
 
@@ -126,8 +122,6 @@ namespace CodeJam.Threading
 						Interlocked.Increment(ref _actionCount);
 						Thread.Sleep(100);
 					}
-
-					Console.WriteLine(n);
 				});
 
 			Assert.That(_actionCount, Is.EqualTo(5));

@@ -25,7 +25,7 @@
 	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
+	<PropertyGroup Condition=" '$(Configuration)' != 'Publish'">
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
@@ -61,24 +61,24 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 		<PackageReference Include="System.ValueTuple" Version="4.4.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 		<PackageReference Include="System.ValueTuple" Version="4.4.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40'">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 		<PackageReference Include="TaskParallelLibrary" Version="1.0.2856.0" />
 	</ItemGroup>
@@ -379,7 +379,6 @@
 		<Compile Include="Ranges\[Ranges]\CompositeRange`2.generated.cs">
 			<DependentUpon>CompositeRange`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Include="Ranges\[Ranges]\CompositeRange`2.NonGenerated.cs" />
 		<None Include="Ranges\[Ranges]\CompositeRange`2.tt">
