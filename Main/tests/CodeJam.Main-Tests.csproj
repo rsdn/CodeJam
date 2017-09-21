@@ -53,8 +53,8 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
 		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
-		<PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+		<PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,46 +62,46 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>OperatorsTests.tt</DependentUpon>
 		</Compile>
-		<Compile Update="Collections\Enumerable\MinMaxByTests.generated.cs">
-			<AutoGen>True</AutoGen>
-			<DependentUpon>MinMaxByTests.tt</DependentUpon>
-		</Compile>
-		<Compile Update="Ranges\RangeBoundaryToTests.generated.cs">
-			<AutoGen>True</AutoGen>
-			<DependentUpon>RangeBoundaryToTests.tt</DependentUpon>
-		</Compile>
-		<Compile Update="Ranges\RangeTests.WithKey.generated.cs">
-			<AutoGen>True</AutoGen>
-			<DependentUpon>RangeTests.WithKey.tt</DependentUpon>
-		</Compile>
-		<Compile Update="Structures\OneOfTests.generated.cs">
-			<AutoGen>True</AutoGen>
-			<DependentUpon>OneOfTests.tt</DependentUpon>
-		</Compile>
-		<Compile Update="Threading\InterlockedOperationsTests.generated.cs">
-			<AutoGen>True</AutoGen>
-			<DependentUpon>InterlockedOperationsTests.tt</DependentUpon>
-		</Compile>
 		<None Update="Arithmetic\OperatorsTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>OperatorsTests.generated.cs</LastGenOutput>
 		</None>
+		<Compile Update="Collections\Enumerable\MinMaxByTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>MinMaxByTests.tt</DependentUpon>
+		</Compile>
 		<None Update="Collections\Enumerable\MinMaxByTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>MinMaxByTests.generated.cs</LastGenOutput>
 		</None>
+		<Compile Update="Ranges\RangeBoundaryToTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>RangeBoundaryToTests.tt</DependentUpon>
+		</Compile>
 		<None Update="Ranges\RangeBoundaryToTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>RangeBoundaryToTests.generated.cs</LastGenOutput>
 		</None>
+		<Compile Update="Ranges\RangeTests.WithKey.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>RangeTests.WithKey.tt</DependentUpon>
+		</Compile>
 		<None Update="Ranges\RangeTests.WithKey.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>RangeTests.WithKey.generated.cs</LastGenOutput>
 		</None>
+		<Compile Update="Structures\OneOfTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>OneOfTests.tt</DependentUpon>
+		</Compile>
 		<None Update="Structures\OneOfTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>OneOfTests.generated.cs</LastGenOutput>
 		</None>
+		<Compile Update="Threading\InterlockedOperationsTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>InterlockedOperationsTests.tt</DependentUpon>
+		</Compile>
 		<None Update="Threading\InterlockedOperationsTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>InterlockedOperationsTests.generated.cs</LastGenOutput>

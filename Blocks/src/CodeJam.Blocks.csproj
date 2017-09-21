@@ -98,10 +98,6 @@
 		<Compile Include="Metadata\NamespaceDoc.cs" />
 		<Compile Include="Metadata\XmlAttributeReader.cs" />
 		<Compile Include="Properties\AssemblyInfo.cs" />
-		<Content Include="Readme.txt">
-			<Pack>true</Pack>
-			<PackagePath>Readme.txt</PackagePath>
-		</Content>
 		<Compile Include="Services\IServicePublisher.cs" />
 		<Compile Include="Services\NamespaceDoc.cs" />
 		<Compile Include="Services\ServiceContainer.cs" />
@@ -111,6 +107,10 @@
 		<Compile Include="TableData\FixedWidthFormat.cs" />
 		<Compile Include="TableData\NamespaceDoc.cs" />
 		<Compile Include="TableData\TableDataParser.cs" />
+		<Content Include="Readme.txt">
+			<Pack>true</Pack>
+			<PackagePath>Readme.txt</PackagePath>
+		</Content>
 	</ItemGroup>
 
 </Project>

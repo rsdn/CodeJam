@@ -93,7 +93,6 @@
 			<AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Include="Algorithms\Algorithms.EqualRange.IComparable.cs" />
-		<Compile Include="Targeting\NET35\TargetFrameworkAttribute.cs" />
 		<None Include="Algorithms\Algorithms.EqualRange.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>Algorithms.EqualRange.generated.cs</LastGenOutput>
@@ -185,8 +184,6 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>ArrayExtensions.generated.cs</LastGenOutput>
 		</None>
-		<Compile Include="Collections\CollectionExtensions.cs" />
-		<Compile Include="Collections\ComparerBuilder.cs" />
 		<Compile Include="Collections\Dictionary\DictionaryExtensions.cs" />
 		<Compile Include="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.generated.cs">
 			<AutoGen>True</AutoGen>
@@ -224,16 +221,19 @@
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.TopoSort.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.With.cs" />
 		<Compile Include="Collections\Enumerable\IndexedItem.cs" />
-		<Compile Include="Collections\NamespaceDoc.cs" />
 		<Compile Include="Collections\OwnedCollections\OwnedCollection.cs" />
 		<Compile Include="Collections\OwnedCollections\OwnedCollectionBase`2.cs" />
 		<Compile Include="Collections\OwnedCollections\OwnedCollection`2.cs" />
-		<Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
-		<Compile Include="Collections\QueryableExtensions.cs" />
-		<Compile Include="Collections\Sequence.cs" />
 		<Compile Include="Collections\SuffixTree\Suffix.cs" />
 		<Compile Include="Collections\SuffixTree\SuffixTree.cs" />
 		<Compile Include="Collections\SuffixTree\SuffixTreeBase.cs" />
+		<Compile Include="Collections\CollectionExtensions.cs" />
+		<Compile Include="Collections\ComparerBuilder.cs" />
+		<Compile Include="Collections\NamespaceDoc.cs" />
+		<Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
+		<Compile Include="Collections\QueryableExtensions.cs" />
+		<Compile Include="Collections\QueryableExtensions.Ranges.cs" />
+		<Compile Include="Collections\Sequence.cs" />
 		<Compile Include="Dates\DateTimeExtensions.cs" />
 		<Compile Include="Dates\DateTimeExtensions.generated.cs">
 			<AutoGen>True</AutoGen>
@@ -255,12 +255,6 @@
 			<LastGenOutput>DateTimeRangeExtensions.generated.cs</LastGenOutput>
 		</None>
 		<Compile Include="Dates\NamespaceDoc.cs" />
-		<Compile Include="Disposable.cs" />
-		<Compile Include="DisposableExtensions.cs" />
-		<Compile Include="EnumHelper.cs" />
-		<Compile Include="EnumValue.cs" />
-		<Compile Include="EnumValues.cs" />
-		<Compile Include="ExceptionExtensions.cs" />
 		<Compile Include="Expressions\Expr.generated.cs">
 			<DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
@@ -273,16 +267,6 @@
 		<Compile Include="Expressions\ExpressionExtensions.cs" />
 		<Compile Include="Expressions\ExpressionExtensions.GetMembers.cs" />
 		<Compile Include="Expressions\NamespaceDoc.cs" />
-		<Compile Include="Fn.cs" />
-		<Compile Include="Fn.generated.cs">
-			<DependentUpon>Fn.tt</DependentUpon>
-			<AutoGen>True</AutoGen>
-		</Compile>
-		<None Include="Fn.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>Fn.generated.cs</LastGenOutput>
-		</None>
-		<Compile Include="Fn`1.cs" />
 		<Compile Include="IO\DebugIoCode.generated.cs">
 			<DependentUpon>DebugIoCode.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
@@ -296,35 +280,7 @@
 		<Compile Include="IO\NamespaceDoc.cs" />
 		<Compile Include="IO\PathHelpers.cs" />
 		<Compile Include="IO\TempData.cs" />
-		<Compile Include="Lazy.cs" />
-		<Compile Include="Collections\QueryableExtensions.Ranges.cs" />
-		<Compile Include="NamespaceDoc.cs" />
-		<Compile Include="NullableHelper.cs" />
-		<Compile Include="Objects.cs" />
 		<Compile Include="Properties\AssemblyInfo.cs" />
-		<Compile Include="Ranges\CompositeRange.cs" />
-		<Compile Include="Ranges\CompositeRange.generated.cs">
-			<DependentUpon>CompositeRange.tt</DependentUpon>
-			<AutoGen>True</AutoGen>
-		</Compile>
-		<None Include="Ranges\CompositeRange.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>CompositeRange.generated.cs</LastGenOutput>
-		</None>
-		<Compile Include="Ranges\CompositeRangeInternal.cs" />
-		<Compile Include="Ranges\NamespaceDoc.cs" />
-		<Compile Include="Ranges\Range.cs" />
-		<Compile Include="Ranges\Range.FactoryMethods.cs" />
-		<Compile Include="Ranges\Range.FactoryMethods.generated.cs">
-			<DependentUpon>Range.FactoryMethods.tt</DependentUpon>
-			<AutoGen>True</AutoGen>
-		</Compile>
-		<None Include="Ranges\Range.FactoryMethods.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>Range.FactoryMethods.generated.cs</LastGenOutput>
-		</None>
-		<Compile Include="Ranges\RangeInternal.cs" />
-		<None Include="Ranges\RangesPlannedChanges.md" />
 		<Compile Include="Ranges\[Boundaries]\RangeBoundary.Operators.generated.cs">
 			<DependentUpon>RangeBoundary.Operators.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
@@ -400,6 +356,29 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>Range`2.generated.cs</LastGenOutput>
 		</None>
+		<Compile Include="Ranges\CompositeRange.cs" />
+		<Compile Include="Ranges\CompositeRange.generated.cs">
+			<DependentUpon>CompositeRange.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Include="Ranges\CompositeRange.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>CompositeRange.generated.cs</LastGenOutput>
+		</None>
+		<Compile Include="Ranges\CompositeRangeInternal.cs" />
+		<Compile Include="Ranges\NamespaceDoc.cs" />
+		<Compile Include="Ranges\Range.cs" />
+		<Compile Include="Ranges\Range.FactoryMethods.cs" />
+		<Compile Include="Ranges\Range.FactoryMethods.generated.cs">
+			<DependentUpon>Range.FactoryMethods.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Include="Ranges\Range.FactoryMethods.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Range.FactoryMethods.generated.cs</LastGenOutput>
+		</None>
+		<Compile Include="Ranges\RangeInternal.cs" />
+		<None Include="Ranges\RangesPlannedChanges.md" />
 		<Compile Include="Reflection\AssemblyExtensions.cs" />
 		<Compile Include="Reflection\InfoOf.cs" />
 		<Compile Include="Reflection\InfoOf`1.cs" />
@@ -482,8 +461,12 @@
 		<Compile Include="Targeting\NET35\IStructuralEquatable.cs" />
 		<Compile Include="Targeting\NET35\LocalizableString.cs" />
 		<Compile Include="Targeting\NET35\StringTargeting.cs" />
+		<Compile Include="Targeting\NET35\TargetFrameworkAttribute.cs" />
 		<Compile Include="Targeting\NET35\Tuple.cs" />
 		<Compile Include="Targeting\NET35\Volatile.cs" />
+		<Compile Include="Targeting\NET40\ValueTuple\TupleElementNamesAttribute.cs" />
+		<Compile Include="Targeting\NET40\ValueTuple\TupleExtensions.cs" />
+		<Compile Include="Targeting\NET40\ValueTuple\ValueTuple.cs" />
 		<Compile Include="Targeting\NET40\CustomAttributeExtensions.cs" />
 		<Compile Include="Targeting\NET40\DictionaryWithReadOnly.cs" />
 		<Compile Include="Targeting\NET40\IReadOnlyCollection.cs" />
@@ -491,9 +474,6 @@
 		<Compile Include="Targeting\NET40\IReadOnlyList.cs" />
 		<Compile Include="Targeting\NET40\ListWithReadOnly.cs" />
 		<Compile Include="Targeting\NET40\ReadOnlyCollectionWithReadOnly.cs" />
-		<Compile Include="Targeting\NET40\ValueTuple\TupleElementNamesAttribute.cs" />
-		<Compile Include="Targeting\NET40\ValueTuple\TupleExtensions.cs" />
-		<Compile Include="Targeting\NET40\ValueTuple\ValueTuple.cs" />
 		<Compile Include="Targeting\PlatformDependent.cs" />
 		<Compile Include="Threading\AsyncLock.cs" />
 		<Compile Include="Threading\AsyncOperationHelper.cs" />
@@ -521,17 +501,37 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>TaskHelper.generated.cs</LastGenOutput>
 		</None>
-		<Compile Include="UriHelper.cs" />
 		<Compile Include="Utilities\HGlobal.cs" />
 		<Compile Include="Utilities\HGlobalScope.cs" />
 		<Compile Include="Utilities\HGlobalScope`1.cs" />
 		<Compile Include="Utilities\Memory.cs" />
 		<Compile Include="Xml\NamespaceDoc.cs" />
 		<Compile Include="Xml\XNodeExtensions.cs" />
+		<Compile Include="Disposable.cs" />
+		<Compile Include="DisposableExtensions.cs" />
+		<Compile Include="EnumHelper.cs" />
+		<Compile Include="EnumValue.cs" />
+		<Compile Include="EnumValues.cs" />
+		<Compile Include="ExceptionExtensions.cs" />
+		<Compile Include="Fn.cs" />
+		<Compile Include="Fn.generated.cs">
+			<DependentUpon>Fn.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Include="Fn.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Fn.generated.cs</LastGenOutput>
+		</None>
+		<Compile Include="Fn`1.cs" />
+		<Compile Include="Lazy.cs" />
+		<Compile Include="NamespaceDoc.cs" />
+		<Compile Include="NullableHelper.cs" />
+		<Compile Include="Objects.cs" />
 		<Content Include="Readme.txt">
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>
 		</Content>
+		<Compile Include="UriHelper.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

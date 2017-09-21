@@ -64,20 +64,20 @@
 		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
-		<Compile Include="ClrExceptionsAttribute.cs" />
-		<Compile Include="IoAttributes.cs" />
-		<Compile Include="Metrics.Etw\ClrExceptionsProvider.cs" />
-		<Compile Include="WellKnownEtwMetrics.cs" />
-		<Compile Include="Metrics.Etw\[Infrastructure]\DiagnoserTraceScopeEvent.cs" />
 		<Compile Include="Metrics.Etw\[Infrastructure]\DiagnoserEventSource.cs" />
 		<Compile Include="Metrics.Etw\[Infrastructure]\DiagnoserTimesProvider.cs" />
+		<Compile Include="Metrics.Etw\[Infrastructure]\DiagnoserTraceScopeEvent.cs" />
 		<Compile Include="Metrics.Etw\[Infrastructure]\EtwDiagnoser.cs" />
-		<Compile Include="Metrics.Etw\[Infrastructure]\EtwHelpers.cs" />
 		<Compile Include="Metrics.Etw\[Infrastructure]\EtwDiagnoserAnalysis.cs" />
-		<Compile Include="Metrics.Etw\FileIoMetricProvider.cs" />
+		<Compile Include="Metrics.Etw\[Infrastructure]\EtwHelpers.cs" />
 		<Compile Include="Metrics.Etw\[Infrastructure]\IEtwMetricValueProvider.cs" />
+		<Compile Include="Metrics.Etw\ClrExceptionsProvider.cs" />
+		<Compile Include="Metrics.Etw\FileIoMetricProvider.cs" />
 		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="ClrExceptionsAttribute.cs" />
+		<Compile Include="IoAttributes.cs" />
 		<Compile Include="ModifierAttributes.cs" />
+		<Compile Include="WellKnownEtwMetrics.cs" />
 	</ItemGroup>
 
 </Project>

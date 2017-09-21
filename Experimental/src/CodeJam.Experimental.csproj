@@ -57,15 +57,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="CmdLine\CommandLineChecker.cs" />
-		<Compile Include="CmdLine\CommandLineHelper.cs" />
 		<Compile Include="CmdLine\Model\Checking\CmdLineRules.cs" />
 		<Compile Include="CmdLine\Model\Checking\CommandLineCheckException.cs" />
 		<Compile Include="CmdLine\Model\Checking\CommandQuantifier.cs" />
 		<Compile Include="CmdLine\Model\Checking\CommandRule.cs" />
 		<Compile Include="CmdLine\Model\Checking\OptionRule.cs" />
 		<Compile Include="CmdLine\Model\OptionType.cs" />
-		<Compile Include="CmdLine\OptionPrefix.cs" />
 		<Compile Include="CmdLine\Parser\CharInput.cs" />
 		<Compile Include="CmdLine\Parser\CmdLineNode.cs" />
 		<Compile Include="CmdLine\Parser\CmdLineNodeBase.cs" />
@@ -77,6 +74,9 @@
 		<Compile Include="CmdLine\Parser\ParseResult.cs" />
 		<Compile Include="CmdLine\Parser\ParsingException.cs" />
 		<Compile Include="CmdLine\Parser\QuotedOrNonquotedValueNode.cs" />
+		<Compile Include="CmdLine\CommandLineChecker.cs" />
+		<Compile Include="CmdLine\CommandLineHelper.cs" />
+		<Compile Include="CmdLine\OptionPrefix.cs" />
 		<Compile Include="CmdLine\PrintUsageSettings.cs" />
 		<Compile Include="CmdLine\UsagePrinter.cs" />
 		<Compile Include="Collections\DisjointSets.cs" />

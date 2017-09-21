@@ -39,8 +39,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\CodeJam.Main.csproj" />
 		<ProjectReference Include="..\..\PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj" />
+		<ProjectReference Include="..\src\CodeJam.Main.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.8.1" />
@@ -48,28 +48,31 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
 		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
-		<PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+		<PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Arithmetic\OperatorsLessOrGreaterPerfTests.generated.cs">
-			<DependentUpon>OperatorsLessOrGreaterPerfTests.tt</DependentUpon>
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-		</Compile>
-		<Compile Update="Arithmetic\OperatorsEqualityPerfTests.generated.cs">
-			<DependentUpon>OperatorsEqualityPerfTests.tt</DependentUpon>
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-		</Compile>
 		<Compile Update="Arithmetic\OperatorsComparePerfTests.generated.cs">
 			<DependentUpon>OperatorsComparePerfTests.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
 			<DesignTime>True</DesignTime>
 		</Compile>
-		<Compile Update="Arithmetic\OperatorsNumPerfTests.generated.cs">
-			<DependentUpon>OperatorsNumPerfTests.tt</DependentUpon>
+		<None Update="Arithmetic\OperatorsComparePerfTests.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>OperatorsComparePerfTests.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Arithmetic\OperatorsEqualityPerfTests.generated.cs">
+			<DependentUpon>OperatorsEqualityPerfTests.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+		</Compile>
+		<None Update="Arithmetic\OperatorsEqualityPerfTests.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>OperatorsEqualityPerfTests.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Arithmetic\OperatorsLessOrGreaterPerfTests.generated.cs">
+			<DependentUpon>OperatorsLessOrGreaterPerfTests.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
 			<DesignTime>True</DesignTime>
 		</Compile>
@@ -77,14 +80,11 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>OperatorsLessOrGreaterPerfTests.generated.cs</LastGenOutput>
 		</None>
-		<None Update="Arithmetic\OperatorsEqualityPerfTests.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>OperatorsEqualityPerfTests.generated.cs</LastGenOutput>
-		</None>
-		<None Update="Arithmetic\OperatorsComparePerfTests.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>OperatorsComparePerfTests.generated.cs</LastGenOutput>
-		</None>
+		<Compile Update="Arithmetic\OperatorsNumPerfTests.generated.cs">
+			<DependentUpon>OperatorsNumPerfTests.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+		</Compile>
 		<None Update="Arithmetic\OperatorsNumPerfTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>OperatorsNumPerfTests.generated.cs</LastGenOutput>
