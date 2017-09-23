@@ -41,7 +41,7 @@ namespace CodeJam.PerfTests.Running.Core
 				? GetDefaultConfigPath()
 				: a.GetAssemblyPath() + ".config";
 			System.Console.WriteLine(configPath);
-			var configurationRoot = new ConfigurationBuilder().AddXmlFile(configPath).Build();
+			var configurationRoot = new ConfigurationBuilder().AddXmlFile(configPath, true).Build();
 			return configurationRoot.GetSection(sectionName).Get(sectionType);
 #endif
 		}

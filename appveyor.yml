@@ -9,6 +9,7 @@ cache:
 # todo: remove after all csproj moved to the new tooling
 - packages -> **\packages.config
 
+
 init:
 - cmd: git config --global core.autocrlf true
 - ps: $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
@@ -16,6 +17,8 @@ init:
 - ps: $env:perfTestsBuildVersion = "$env:perfTestsPackageVersion.$env:appveyor_build_number"
 - ps: $env:perfTestsNugetVersion = "$env:perfTestsPackageVersion-alpha$env:appveyor_build_number"
 - ps: Update-AppveyorBuild -Version $env:buildVersion
+#- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 
 assembly_info:
   patch: true
@@ -37,14 +40,12 @@ nuget:
 before_build:
 - ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
 - ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
-#- cmd: nuget restore CodeJam.sln
 
 #build:
 #  project: CodeJam.sln
 #  publish_nuget: false
 #  verbosity: minimal
 
-# to run your custom scripts instead of automatic MSBuild
 build_script:
   msbuild CodeJam.sln /p:Configuration=Publish /t:Restore;Build /v:m
 
@@ -52,17 +53,13 @@ test_script:
   - ps: .\Build\RunNUnitTests.ps1
   - ps: .\Build\RunxUnitTests.ps1
   - ps: .\Build\RunMsTestTests.ps1
-#test:
-#  # only assemblies to test
-#  assemblies:
-#    only:
-#      - '**\*-Tests.dll'
-#      - '**\*-Tests.*.dll'
 
 after_build:
- - ps: Get-ChildItem _Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+ - ps: Get-ChildItem .\_Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 on_finish:
 # artifacts for perftests
 #  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
