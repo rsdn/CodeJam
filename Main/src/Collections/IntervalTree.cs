@@ -6,11 +6,17 @@ using CodeJam.Ranges;
 
 namespace CodeJam.Collections
 {
+	/// <summary>
+	/// Interval tree implementation.
+	/// </summary>
 	public class IntervalTree<T, TKey>
 	{
 		private readonly Range<T, TKey>[] _sortedRanges;
 		private readonly int[] _treeIndexes;
 
+		/// <summary>
+		/// Initialize instance.
+		/// </summary>
 		public IntervalTree(CompositeRange<T, TKey> source)
 		{
 			_sortedRanges = source.SubRanges.ToArray();
@@ -70,6 +76,9 @@ namespace CodeJam.Collections
 			? indexA
 			: indexB;
 
+		/// <summary>
+		/// Find intersection between specified range and source.
+		/// </summary>
 		public List<Range<T, TKey>> Intersect(Range<T> intersection)
 		{
 			var result = new List<Range<T, TKey>>();

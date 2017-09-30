@@ -1,8 +1,20 @@
-CodeJam 1.4.0 Release Notes
+﻿CodeJam 2.0.0-beta1 Release Notes
 ---------------------------------
 
-What's new in 1.4.0-rc1
+What's new in 2.0.0-beta1
 -------------------------
+* NetStandard 2.0 & .NET Core 2.0 support
+* Add IntervalTree collection
+* Refactoring and code cleanup
+
+What's new in 1.4.0-rc2
+-----------------------
+* ToLookupDictionary renamed to ToDictionary
+* TaskHelper additional overloads
+* Refactoring, fixes and code cleanup
+
+What's new in 1.4.0-rc1
+-----------------------
 * PathHelpers + IoCode assertions
 * EnumHelper.GetDisplayName/Description/both
 * EnumHelper.IsDefined(string)

@@ -37,6 +37,11 @@
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="IntervalTree\**" />
+	  <EmbeddedResource Remove="IntervalTree\**" />
+	  <None Remove="IntervalTree\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Main\tests-performance\CodeJam.Main-Tests.Performance.csproj" />
@@ -54,10 +59,6 @@
 
 	<ItemGroup>
 		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="IntervalTree\" />
 	</ItemGroup>
 
 </Project>

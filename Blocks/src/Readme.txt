@@ -1,5 +1,10 @@
-CodeJam.Blocks 1.4.0 Release Notes
+﻿CodeJam.Blocks 2.0.0-beta1 Release Notes
 ----------------------------------------
+
+What's new in 2.0.0-beta1
+-------------------------
+* NetStandard 2.0 & .NET Core 2.0 support
+* Code cleanup
 
 What's new in 1.4.0-rc2
 -------------------------
