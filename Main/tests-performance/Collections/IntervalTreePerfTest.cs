@@ -1,6 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
+using CodeJam.Collections;
 using CodeJam.PerfTests;
 using CodeJam.Strings;
 
@@ -26,7 +27,6 @@ namespace CodeJam.Ranges
 		{
 			_ranges = Enumerable.Range(0, _count)
 				.ToCompositeRange(i => 4 * i - 2 * (i % 4), i => 1 + 4 * i + 2 * (i % 4), i => i.ToString());
-			;
 
 			_intersection = _ranges.SubRanges[1000].WithoutKey();
 			_intersectionCostin = new Interval<int>(_intersection.FromValue, _intersection.ToValue);
