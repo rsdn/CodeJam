@@ -4,6 +4,7 @@ $include = "*-tests.MSTest.dll"
 $a = (gci -include $include -r | `
 	where { $_.fullname -match "\\bin\\Publish\\net\d" } | `
 	select -ExpandProperty FullName)
+echo "vstest.console /logger:Appveyor $a /Platform:x86"
 &"vstest.console" /logger:Appveyor $a /Platform:x86
 if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 
@@ -14,6 +15,7 @@ if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 #	select -ExpandProperty FullName)
 #
 #$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\netcore_mstest_results.xml"
+#echo "dotnet vstest $a --logger:'trx;LogFileName=$logFileName' --platform:x86"
 #dotnet vstest $a --logger:"trx;LogFileName=$logFileName" --platform:x86
 #if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 #$wc = New-Object System.Net.WebClient

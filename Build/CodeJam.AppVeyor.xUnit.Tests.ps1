@@ -4,6 +4,7 @@ $include = "*-tests.xUnit.dll"
 $a = (gci -include $include -r | `
 	where { $_.fullname -match "\\bin\\Publish\\net\d" } | `
 	select -ExpandProperty FullName)
+echo "xunit.console.clr4 $a /appveyor"
 &"xunit.console.clr4" $a /appveyor
 if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 
@@ -13,6 +14,7 @@ $a = (gci -include $include -r | `
 	select -ExpandProperty FullName)
 
 $logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\netcore_xunit_results.xml"
+echo "dotnet vstest $a --logger:`'trx;LogFileName=$logFileName'"
 dotnet vstest $a --logger:"trx;LogFileName=$logFileName"
 if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 $wc = New-Object System.Net.WebClient

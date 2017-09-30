@@ -5,6 +5,7 @@ $exclude = "Experimental\\.*?\\CodeJam-Tests.Performance.dll"
 $a = (gci -include $include -r | `
 	where { $_.fullname -match "\\bin\\Publish\\net\d" -and $_.fullname -notmatch $exclude } | `
 	select -ExpandProperty FullName)
+echo "nunit3-console $a --result=myresults.xml;format=AppVeyor"
 &"nunit3-console" $a "--result=myresults.xml;format=AppVeyor"
 if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 
@@ -14,6 +15,7 @@ $a = (gci -include $include -r | `
 	select -ExpandProperty FullName)
 
 $logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\netcore_nunit_results.xml"
+echo "dotnet vstest $a --logger:'trx;LogFileName=$logFileName'"
 dotnet vstest $a --logger:"trx;LogFileName=$logFileName"
 if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 $wc = New-Object System.Net.WebClient
