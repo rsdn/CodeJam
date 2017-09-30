@@ -2,13 +2,12 @@ configuration: Publish
 image: Visual Studio 2017
 
 environment:
-  packageVersion: 1.4.1
-  perfTestsPackageVersion: 0.1.4
+  packageVersion: 1.5.0
+  perfTestsPackageVersion: 0.1.5
 
 cache:
 # todo: remove after all csproj moved to the new tooling
 - packages -> **\packages.config
-
 
 init:
 - cmd: git config --global core.autocrlf true
@@ -17,6 +16,7 @@ init:
 - ps: $env:perfTestsBuildVersion = "$env:perfTestsPackageVersion.$env:appveyor_build_number"
 - ps: $env:perfTestsNugetVersion = "$env:perfTestsPackageVersion-alpha$env:appveyor_build_number"
 - ps: Update-AppveyorBuild -Version $env:buildVersion
+# to troubleshoot via RDP:
 #- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 
@@ -38,8 +38,8 @@ nuget:
   project_feed: false
 
 before_build:
-- ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
-- ps: .\Build\UpdateVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
+- ps: .\Build\CodeJam.AppVeyor.FixVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
+- ps: .\Build\CodeJam.AppVeyor.FixVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
 
 #build:
 #  project: CodeJam.sln
@@ -50,16 +50,17 @@ build_script:
   msbuild CodeJam.sln /p:Configuration=Publish /t:Restore;Build /v:m
 
 test_script:
-  - ps: .\Build\RunNUnitTests.ps1
-  - ps: .\Build\RunxUnitTests.ps1
-  - ps: .\Build\RunMsTestTests.ps1
+  - ps: .\Build\CodeJam.AppVeyor.NUnit.Tests.ps1
+  - ps: .\Build\CodeJam.AppVeyor.xUnit.Tests.ps1
+  - ps: .\Build\CodeJam.AppVeyor.MsTest.Tests.ps1
 
 after_build:
  - ps: Get-ChildItem .\_Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 on_finish:
 # artifacts for perftests
-#  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+# - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+# to troubleshoot via RDP:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
