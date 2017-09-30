@@ -4,8 +4,8 @@ $include = "*-tests.xUnit.dll"
 $a = (gci -include $include -r | `
 	where { $_.fullname -match "\\bin\\Publish\\net\d" } | `
 	select -ExpandProperty FullName)
-echo "xunit.console.clr4 $a /appveyor"
-&"xunit.console.clr4" $a /appveyor
+echo "$env:xunit20\xunit.console $a -appveyor"
+&"$env:xunit20\xunit.console" $a -appveyor
 if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 
 #run .net core tests
