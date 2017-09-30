@@ -67,16 +67,16 @@ namespace CodeJam
 		/// SEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private sealed class AnonymousDisposable<T> : IDisposable
 		{
-			private readonly T _state;
 			private Action<T> _disposeAction;
+			private T _state;
 
 			/// <summary>Initialize instance.</summary>
 			/// <param name="disposeAction">The dispose action.</param>
 			/// <param name="state">A value that contains data for the disposal action.</param>
 			public AnonymousDisposable(Action<T> disposeAction, T state)
 			{
-				_state = state;
 				_disposeAction = disposeAction;
+				_state = state;
 			}
 
 			/// <summary>
@@ -90,6 +90,7 @@ namespace CodeJam
 					try
 					{
 						disposeAction.Invoke(_state);
+						_state = default;
 					}
 					catch when (OnException(disposeAction))
 					{
@@ -127,7 +128,7 @@ namespace CodeJam
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
 		[NotNull, Pure]
-		public static IDisposable Create<T>([NotNull] Action<T> disposeAction, T state) => new AnonymousDisposable<T>(disposeAction, state);
+		public static IDisposable Create<T>([NotNull] Action<T> disposeAction, [CanBeNull] T state) => new AnonymousDisposable<T>(disposeAction, state);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
