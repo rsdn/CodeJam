@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using NUnit.Framework;
@@ -6,6 +7,7 @@ using NUnit.Framework;
 namespace CodeJam
 {
 	[TestFixture(Category = "Disposable")]
+	[SuppressMessage("ReSharper", "HeapView.CanAvoidClosure")]
 	public static class DisposableTests
 	{
 		[Test]
@@ -104,6 +106,20 @@ namespace CodeJam
 			Assert.That(value1, Is.EqualTo(2));
 			Assert.That(value2, Is.EqualTo(1));
 			Assert.That(value3, Is.EqualTo(3));
+		}
+
+		[Test]
+		public static void TestParameterizedAnonymousDisposable()
+		{
+			var state = "";
+			var disposed = false;
+
+			using (Disposable.Create(s => {disposed = true; state = s;}, "state"))
+			{
+			}
+
+			Assert.IsTrue(disposed);
+			Assert.AreEqual("state", state);
 		}
 	}
 }
