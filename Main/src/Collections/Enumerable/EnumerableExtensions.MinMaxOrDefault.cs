@@ -268,7 +268,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static TSource MinOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source, [CanBeNull] IComparer<TSource> comparer) =>
-				MinOrDefault(source, comparer, default(TSource));
+				MinOrDefault(source, comparer, default);
 
 		/// <summary>Returns minimum item from the sequence or default value.</summary>
 		/// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
@@ -322,7 +322,7 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> selector,
 			[CanBeNull] IComparer<T> comparer) =>
-				MinOrDefault(source, selector, comparer, default(T));
+				MinOrDefault(source, selector, comparer, default);
 
 		/// <summary>Returns minimum item from the sequence or default value.</summary>
 		/// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
@@ -368,7 +368,7 @@ namespace CodeJam.Collections
 		[Pure, CanBeNull]
 		public static TSource MaxOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source, [CanBeNull] IComparer<TSource> comparer) =>
-				MaxOrDefault(source, comparer, default(TSource));
+				MaxOrDefault(source, comparer, default);
 
 		/// <summary>Returns maximum item from the sequence or default value.</summary>
 		/// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
@@ -422,7 +422,7 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> selector,
 			[CanBeNull] IComparer<T> comparer) =>
-				MaxOrDefault(source, selector, comparer, default(T));
+				MaxOrDefault(source, selector, comparer, default);
 
 		/// <summary>Returns maximum item from the sequence or default value.</summary>
 		/// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>

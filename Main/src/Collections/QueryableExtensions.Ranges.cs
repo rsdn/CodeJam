@@ -28,7 +28,7 @@ namespace CodeJam.Collections
 		InfinityTo = 0x1,
 
 		/// <summary>Both boundaries are infinite</summary>
-		InfiniteBoth = InfinityFrom | InfinityTo,
+		InfiniteBoth = InfinityFrom | InfinityTo
 	}
 
 	/// <summary>

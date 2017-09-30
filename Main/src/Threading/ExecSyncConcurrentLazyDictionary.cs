@@ -83,7 +83,7 @@ namespace CodeJam.Threading
 		public bool TryGetValue(TKey key, out TValue value)
 		{
 			var res = _map.TryGetValue(key, out var lv);
-			value = res ? lv.Value : default(TValue);
+			value = res ? lv.Value : default;
 			return res;
 		}
 

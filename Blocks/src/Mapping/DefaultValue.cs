@@ -99,7 +99,7 @@ namespace CodeJam.Mapping
 
 			_defaultValues[typeof(T)] = default(T);
 
-			return default(T);
+			return default;
 		}
 
 		/// <summary>

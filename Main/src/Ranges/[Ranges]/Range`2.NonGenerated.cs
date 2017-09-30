@@ -27,8 +27,8 @@ namespace CodeJam.Ranges
 		/// <summary>Infinite range, (-∞..+∞)</summary>
 		public static readonly Range<T, TKey> Infinite = new Range<T, TKey>(
 			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity,
-			default(TKey));
-		#endregion 
+			default);
+		#endregion
 		#endregion
 
 		/// <summary>The value associated with the range.</summary>
@@ -115,7 +115,7 @@ namespace CodeJam.Ranges
 		/// <returns>The string representation of the range.</returns>
 		[Pure]
 		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
-		
+
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.
 		/// If <typeparamref name="T"/> does not implement <seealso cref="IFormattable"/> the format string is ignored.

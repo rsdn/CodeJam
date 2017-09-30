@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using JetBrains.Annotations;
 
@@ -111,7 +111,7 @@ namespace CodeJam
 		/// <param name="defaultValue">Default value.</param>
 		/// <returns>Value, or <paramref name="defaultValue"/> if <paramref name="option"/> has no value.</returns>
 		[Pure, CanBeNull]
-		public static T GetValueOrDefault<T>([NotNull] this IOption<T> option, T defaultValue = default(T)) =>
+		public static T GetValueOrDefault<T>([NotNull] this IOption<T> option, T defaultValue = default) =>
 			option.HasValue ? option.Value : defaultValue;
 
 		/// <summary>

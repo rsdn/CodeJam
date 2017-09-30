@@ -20,8 +20,8 @@ namespace CodeJam.Reflection
 
 			if (type.IsValueType)
 			{
-				CreateInstanceExpression = () => default(T);
-				_createInstance          = () => default(T);
+				CreateInstanceExpression = () => default;
+				_createInstance          = () => default;
 			}
 			else
 			{

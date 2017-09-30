@@ -289,7 +289,7 @@ namespace CodeJam.Collections
 		[Pure]
 		private int FindEdge(Node node, char c, out Node edge)
 		{
-			edge = default(Node);
+			edge = default;
 			if (node.IsLeaf)
 			{
 				return -1;

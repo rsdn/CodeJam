@@ -44,7 +44,7 @@ namespace CodeJam.Collections
 		public static TSource MinByOrDefault<TSource, TValue>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
-			TSource defaultValue = default(TSource)) =>
+			TSource defaultValue = default) =>
 				MinByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
 		/// <summary>
@@ -101,7 +101,7 @@ namespace CodeJam.Collections
 				using (var e = source.GetEnumerator())
 				{
 					if (!e.MoveNext())
-						return default(TSource);
+						return default;
 
 					value = selector(e.Current);
 					item = e.Current;
@@ -139,7 +139,7 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
 			[CanBeNull] IComparer<TValue> comparer,
-			TSource defaultValue = default(TSource))
+			TSource defaultValue = default)
 		{
 			if (source == null) throw new ArgumentNullException(nameof(source));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
@@ -230,7 +230,7 @@ namespace CodeJam.Collections
 		public static TSource MaxByOrDefault<TSource, TValue>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
-			TSource defaultValue = default(TSource)) =>
+			TSource defaultValue = default) =>
 				MaxByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
 		/// <summary>
@@ -286,7 +286,7 @@ namespace CodeJam.Collections
 				using (var e = source.GetEnumerator())
 				{
 					if (!e.MoveNext())
-						return default(TSource);
+						return default;
 
 					value = selector(e.Current);
 					item = e.Current;
@@ -324,7 +324,7 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
 			[CanBeNull] IComparer<TValue> comparer,
-			TSource defaultValue = default(TSource))
+			TSource defaultValue = default)
 		{
 			if (source == null) throw new ArgumentNullException(nameof(source));
 			if (selector == null) throw new ArgumentNullException(nameof(selector));

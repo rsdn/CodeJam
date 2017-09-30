@@ -280,7 +280,7 @@ namespace CodeJam.Reflection
 
 			_defaultValues[typeof(T)] = default(T);
 
-			return default(T);
+			return default;
 		}
 
 		#region Public Properties

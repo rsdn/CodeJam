@@ -114,7 +114,7 @@ namespace CodeJam.Collections
 			else
 			{
 				childNodeIndex = InvalidNodeIndex;
-				activeEdge = default(Node);
+				activeEdge = default;
 			}
 			for (;;)
 			{
@@ -160,7 +160,7 @@ namespace CodeJam.Collections
 						branchNode = GetNode(_branchNodeIndex);
 						children = branchNode.Children;
 						_activeEdgeIndex = InvalidNodeIndex;
-						activeEdge = default(Node);
+						activeEdge = default;
 						_activeLength = 0;
 						break;
 					}

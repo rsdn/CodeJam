@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,7 +34,7 @@ namespace CodeJam
 			var enumNames = Enum.GetNames(enumType);
 			var enumValues = Enum.GetValues(enumType).Cast<object>();
 
-			foreach (var nameValue in enumNames.Zip(enumValues, (name, value) => (name: name, value: value)))
+			foreach (var nameValue in enumNames.Zip(enumValues, (name, value) => (name, value)))
 			{
 				var field = fields[nameValue.name];
 				var displayAttribute = field.GetCustomAttribute<DisplayAttribute>();

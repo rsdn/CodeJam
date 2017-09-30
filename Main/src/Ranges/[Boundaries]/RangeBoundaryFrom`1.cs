@@ -43,13 +43,13 @@ namespace CodeJam.Ranges
 
 		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
 			? Operators<T>.NegativeInfinity
-			: default(T);
+			: default;
 
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
 
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
-			: default(T);
+			: default;
 
 		/// <summary>
 		/// Infrastructure helper method to create a boundary that handles default and infinite values.
@@ -70,12 +70,12 @@ namespace CodeJam.Ranges
 
 			if (_hasNaN && !_equalsFunc(value, value))
 			{
-				value = default(T);
+				value = default;
 				boundaryKind = RangeBoundaryFromKind.Empty;
 			}
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
 			{
-				value = default(T);
+				value = default;
 				boundaryKind = RangeBoundaryFromKind.Infinite;
 			}
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
@@ -115,7 +115,7 @@ namespace CodeJam.Ranges
 
 		/// <summary>Negative infinity, -∞.</summary>
 		public static readonly RangeBoundaryFrom<T> NegativeInfinity = new RangeBoundaryFrom<T>(
-			default(T), RangeBoundaryFromKind.Infinite);
+			default, RangeBoundaryFromKind.Infinite);
 		#endregion
 
 		#region Formattable logic
@@ -139,7 +139,7 @@ namespace CodeJam.Ranges
 		{
 			if (_hasNaN && !_equalsFunc(value, value))
 			{
-				value = default(T);
+				value = default;
 				if (boundaryKind != RangeBoundaryFromKind.Empty)
 				{
 					throw CodeExceptions.Argument(nameof(value), "The NaN value should be used only for Empty boundaries.");
@@ -147,7 +147,7 @@ namespace CodeJam.Ranges
 			}
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
 			{
-				value = default(T);
+				value = default;
 				if (boundaryKind != RangeBoundaryFromKind.Infinite)
 				{
 					throw CodeExceptions.Argument(nameof(value), "The negative infinity value should be used only for Infinite boundaries.");
@@ -160,7 +160,7 @@ namespace CodeJam.Ranges
 
 			if (boundaryKind != RangeBoundaryFromKind.Inclusive && boundaryKind != RangeBoundaryFromKind.Exclusive)
 			{
-				if (_compareFunc(value, default(T)) != _equalResult)
+				if (_compareFunc(value, default) != _equalResult)
 				{
 					throw CodeExceptions.Argument(nameof(value), "Value of the infinite/empty boundary should be equal to default(T).");
 				}
@@ -343,7 +343,7 @@ namespace CodeJam.Ranges
 			}
 
 #pragma warning disable 618 // Validation not required: HasValue checked.
-			return new RangeBoundaryFrom<T2>(default(T2), _kind, UnsafeOverload.SkipsArgValidation);
+			return new RangeBoundaryFrom<T2>(default, _kind, UnsafeOverload.SkipsArgValidation);
 #pragma warning restore 618
 		}
 

@@ -353,7 +353,7 @@ namespace CodeJam
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(_enumType, false);
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(_enumType, true);
 
-			private static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default(TEnum);
+			private static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default;
 			#endregion
 
 			#region Flag operations emit
@@ -408,7 +408,7 @@ namespace CodeJam
 			private static TEnum GetFlagsMaskCore(TEnum[] values)
 			{
 				if (values.Length == 0)
-					return default(TEnum);
+					return default;
 
 				var result = values[0];
 				for (var i = 1; i < values.Length; i++)
