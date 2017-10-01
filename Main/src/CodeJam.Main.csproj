@@ -93,6 +93,7 @@
 			<AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Include="Algorithms\Algorithms.EqualRange.IComparable.cs" />
+		<Compile Include="Collections\Enumerable\EnumerableExtensions.SkipLast.cs" />
 		<Compile Include="Collections\IntervalTree.cs" />
 		<None Include="Algorithms\Algorithms.EqualRange.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>

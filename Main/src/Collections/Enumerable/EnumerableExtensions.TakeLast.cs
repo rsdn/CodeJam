@@ -28,10 +28,10 @@ namespace CodeJam.Collections
 			if (count <= 0)
 				return Enumerable.Empty<T>();
 
-		if (source is IList<T> list)
-			return count < list.Count
-				? TakeLastImpl(list, count)
-				: list;
+			if (source is IList<T> list)
+				return count < list.Count
+					? TakeLastImpl(list, count)
+					: list;
 
 			return TakeLastImpl(source, count);
 		}
