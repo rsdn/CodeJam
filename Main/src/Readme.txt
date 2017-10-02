@@ -5,7 +5,9 @@ What's new in 2.0.0-beta1
 -------------------------
 * NetStandard 2.0 & .NET Core 2.0 support
 * Add IntervalTree collection
-* Refactoring and code cleanup
+* Add Disposable.Create overload with state param
+* Add Enumerable.TakeLast/SkipLast methods
+* Refactoring, fixes and code cleanup
 
 What's new in 1.4.0-rc2
 -----------------------
