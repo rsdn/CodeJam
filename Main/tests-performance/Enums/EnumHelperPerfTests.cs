@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
@@ -108,7 +108,7 @@ namespace CodeJam
 			{
 				var a = F.Zero;
 				for (var i = 0; i < Count; i++)
-					EnumHelper.GetEnumValues<F>().IsDefined(Fa);
+					EnumHelper.IsDefined<F>(Fa);
 				return a;
 			}
 
