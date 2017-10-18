@@ -13,39 +13,28 @@ namespace CodeJam.RangesAlternatives
 	public static class RangeExtensions
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static TRange1 UnionCore<TRange1, TRange2, T>(this TRange1 range, TRange2 other)
-			where TRange1 : IRangeFactory<T, TRange1>
-			where TRange2 : IRange<T> =>
-				range.CreateRange(
-					range.From <= other.From ? range.From : other.From,
-					(range.To.IsEmpty || range.To >= other.To) ? range.To : other.To);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TRange UnionAlt<T, TRange>(this TRange range, RangeStub<T> other)
-			where TRange : IRangeFactory<T, TRange> =>
+		public static RangeStub<T> Union<T>(this RangeStub<T> range, RangeStub<T> other) =>
 			range.CreateRange(
 				range.From <= other.From ? range.From : other.From,
 				(range.To.IsEmpty || range.To >= other.To) ? range.To : other.To);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RangeStub<T> Union<T, TRange>(this RangeStub<T> range1, TRange range2)
-			where TRange : IRange<T> =>
-				UnionCore<RangeStub<T>, TRange, T>(range1, range2);
+		public static RangeStubCompact<T> Union<T>(this RangeStubCompact<T> range, RangeStubCompact<T> other) =>
+			range.CreateRange(
+				range.From <= other.From ? range.From : other.From,
+				(range.To.IsEmpty || range.To >= other.To) ? range.To : other.To);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RangeStubCompact<T> Union<T, TRange>(this RangeStubCompact<T> range1, TRange range2)
-			where TRange : IRange<T> =>
-				UnionCore<RangeStubCompact<T>, TRange, T>(range1, range2);
+		public static RangeStub<T, TKey> Union<T, TKey>(this RangeStub<T, TKey> range, RangeStub<T, TKey> other) =>
+			range.CreateRange(
+				range.From <= other.From ? range.From : other.From,
+				(range.To.IsEmpty || range.To >= other.To) ? range.To : other.To);
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static RangeStub<T, TKey> Union<T, TKey, TRange>(this RangeStub<T, TKey> range1, TRange range2)
-			where TRange : IRange<T> =>
-				UnionCore<RangeStub<T, TKey>, TRange, T>(range1, range2);
 	}
 
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-	public struct RangeStub<T> : IRangeFactory<T, RangeStub<T>>
+	public struct RangeStub<T>
 	{
 		private readonly RangeBoundaryFrom<T> _from;
 		private readonly RangeBoundaryTo<T> _to;
@@ -81,10 +70,48 @@ namespace CodeJam.RangesAlternatives
 		public RangeStub<T> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new RangeStub<T>(from, to);
 	}
+	[PublicAPI]
+	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
+	public struct RangeStub2<T> where T : IComparable<T>
+	{
+		private readonly RangeBoundaryFrom<T> _from;
+		private readonly RangeBoundaryTo<T> _to;
+
+		public RangeStub2(T from, T to)
+		{
+			_from = new RangeBoundaryFrom<T>(from, RangeBoundaryFromKind.Inclusive);
+			_to = new RangeBoundaryTo<T>(from, RangeBoundaryToKind.Inclusive);
+		}
+
+		public RangeStub2(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
+		{
+			_from = from;
+			_to = to;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RangeStub2<T> UnionInstance(RangeStub2<T> other) => new RangeStub2<T>(
+			_from.GetValueOrDefault().CompareTo(other._from.GetValueOrDefault()) >= 0 ? _from : other._from,
+			_to.GetValueOrDefault().CompareTo(other._to.GetValueOrDefault()) >= 0 ? _to : other._to);
+
+		// ReSharper disable once ConvertToAutoPropertyWhenPossible
+		public RangeBoundaryFrom<T> From => _from;
+		// ReSharper disable once ConvertToAutoPropertyWhenPossible
+		public RangeBoundaryTo<T> To => _to;
+
+		public bool IsEmpty => From.IsEmpty;
+		public bool IsNotEmpty => From.IsNotEmpty;
+
+		public RangeStub2<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			new RangeStub2<T>(from, to);
+
+		public RangeStub2<T> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			new RangeStub2<T>(from, to);
+	}
 
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "BitwiseOperatorOnEnumWithoutFlags")]
-	public struct RangeStubCompact<T> : IRangeFactory<T, RangeStubCompact<T>>
+	public struct RangeStubCompact<T>
 	{
 		private const RangeBoundaryFromKind FromMask = RangeBoundaryFromKind.Empty |
 			RangeBoundaryFromKind.Infinite |
@@ -128,7 +155,7 @@ namespace CodeJam.RangesAlternatives
 	}
 
 	[PublicAPI]
-	public struct RangeStub<T, TKey> : IRangeFactory<T, RangeStub<T, TKey>>
+	public struct RangeStub<T, TKey>
 	{
 		public RangeStub(T from, T to, TKey key)
 		{

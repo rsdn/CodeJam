@@ -1,5 +1,0 @@
-﻿<#@ template debug="false" hostspecific="true" language="C#" #>
-<#@ include file="..\[Ranges]\RangeWithTKeyReplacer.ttinclude" #>
-<#
-	RunRangeExtensions("RangeExtensions.NoKey.cs");
-#>

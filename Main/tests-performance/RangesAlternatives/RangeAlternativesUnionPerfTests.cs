@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -96,30 +96,6 @@ namespace CodeJam.RangesAlternatives
 				}
 				return result;
 			}
-
-			[CompetitionBenchmark(8.77, 24.48)]
-			[GcAllocations(0)]
-			public RangeStub<int> Test02RangeExtensionAlt()
-			{
-				var result = _rangeData[0];
-				for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = _rangeData[i].UnionAlt(_rangeData2[i]);
-				}
-				return result;
-			}
-
-			[CompetitionBenchmark(9.41, 20.18)]
-			[GcAllocations(0)]
-			public RangeStub<int> Test03RangeImpl()
-			{
-				var result = _rangeData[0];
-				for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = _rangeData[i].UnionAlt(_rangeData2[i]);
-				}
-				return result;
-			}
 		}
 
 		[Test]
@@ -196,30 +172,6 @@ namespace CodeJam.RangesAlternatives
 				for (var i = 1; i < _rangeData.Length; i++)
 				{
 					result = _rangeData[i].Union(_rangeData2[i]);
-				}
-				return result;
-			}
-
-			[CompetitionBenchmark(1.36, 2.55)]
-			[GcAllocations(0)]
-			public RangeStub<int?> Test02RangeExtensionAlt()
-			{
-				var result = _rangeData[0];
-				for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = _rangeData[i].UnionAlt(_rangeData2[i]);
-				}
-				return result;
-			}
-
-			[CompetitionBenchmark(1.33, 2.55)]
-			[GcAllocations(0)]
-			public RangeStub<int?> Test03RangeImpl()
-			{
-				var result = _rangeData[0];
-				for (var i = 1; i < _rangeData.Length; i++)
-				{
-					result = _rangeData[i].UnionAlt(_rangeData2[i]);
 				}
 				return result;
 			}

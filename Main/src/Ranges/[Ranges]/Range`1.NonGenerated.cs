@@ -24,23 +24,24 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region IRangeFactory members
-		/// <summary>Creates a new instance of the range.</summary>
-		/// <param name="from">Boundary From.</param>
-		/// <param name="to">Boundary To.</param>
-		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
-		[Pure]
-		Range<T> IRangeFactory<T, Range<T>>.CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+		[MethodImpl(AggressiveInlining)]
+		private Range<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T>(from, to);
 
-		/// <summary>Creates a new instance of the range, if possible.</summary>
-		/// <param name="from">Boundary From.</param>
-		/// <param name="to">Boundary To.</param>
-		/// <returns>
-		/// A new instance of the range with specified From-To boundaries,
-		/// or empty range, if from-to boundaries forms invalid range pair.
-		/// </returns>
-		[Pure]
-		Range<T> IRangeFactory<T, Range<T>>.TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+		[MethodImpl(AggressiveInlining)]
+		private Range<T> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			Range.TryCreate(from, to);
+
+		[MethodImpl(AggressiveInlining)]
+		private Range<T> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			new Range<T>(from, to, UnsafeOverload.SkipsArgValidation);
+
+		[MethodImpl(AggressiveInlining)]
+		private Range<T2> CreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
+			new Range<T2>(from, to);
+
+		[MethodImpl(AggressiveInlining)]
+		private Range<T2> TryCreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
 			Range.TryCreate(from, to);
 		#endregion
 
@@ -63,8 +64,7 @@ namespace CodeJam.Ranges
 		/// and represent the same value; otherwise, false.
 		/// </returns>
 		[Pure]
-		public override bool Equals(object obj) =>
-			obj is Range<T> && Equals((Range<T>)obj);
+		public override bool Equals(object obj) => obj is Range<T> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

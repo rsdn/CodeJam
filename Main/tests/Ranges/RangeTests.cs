@@ -207,7 +207,7 @@ namespace CodeJam.Ranges
 			AreEqual(Range.CreateExclusiveTo(1, 2).ToString(), "[1..2)");
 			AreEqual(Range.CreateExclusive(value1, empty).ToString("000"), "(001..+∞)");
 
-			AreEqual(Range.Create(RangeBoundaryFrom<int>.Empty, RangeBoundaryTo<int>.Empty, key).ToString(), "'Hello!':∅");
+			AreEqual(Range.Create(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty, key).ToString(), "'Hello!':∅");
 			AreEqual(Range.Create(empty, empty, key).ToString(), "'Hello!':(-∞..+∞)");
 			AreEqual(Range.Create(empty, empty, (string)null).ToString(), "'':(-∞..+∞)");
 			AreEqual(Range.Create(1, 1, key).ToString(), "'Hello!':[1..1]");
@@ -216,6 +216,7 @@ namespace CodeJam.Ranges
 			AreEqual(Range.CreateExclusiveFrom(1, 2, key).ToString(), "'Hello!':(1..2]");
 			AreEqual(Range.CreateExclusiveTo(1, 2, key).ToString(), "'Hello!':[1..2)");
 			AreEqual(Range.CreateExclusive(value1, empty, 3).ToString("000"), "'3':(001..+∞)");
+			AreEqual(Range.Create((int?)1, null, key).ToString(), "'Hello!':[1..+∞)");
 
 			var cultureRu = CultureInfo.GetCultureInfo("ru-RU");
 			var cultureEn = CultureInfo.GetCultureInfo("en-US");

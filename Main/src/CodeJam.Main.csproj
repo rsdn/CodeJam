@@ -93,8 +93,6 @@
 			<AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Include="Algorithms\Algorithms.EqualRange.IComparable.cs" />
-		<Compile Include="Collections\Enumerable\EnumerableExtensions.SkipLast.cs" />
-		<Compile Include="Collections\IntervalTree.cs" />
 		<None Include="Algorithms\Algorithms.EqualRange.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>Algorithms.EqualRange.generated.cs</LastGenOutput>
@@ -216,6 +214,7 @@
 		</None>
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.MinMaxOrDefault.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.Page.cs" />
+		<Compile Include="Collections\Enumerable\EnumerableExtensions.SkipLast.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.Slice.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.Split.cs" />
 		<Compile Include="Collections\Enumerable\EnumerableExtensions.TakeLast.cs" />
@@ -231,6 +230,7 @@
 		<Compile Include="Collections\SuffixTree\SuffixTreeBase.cs" />
 		<Compile Include="Collections\CollectionExtensions.cs" />
 		<Compile Include="Collections\ComparerBuilder.cs" />
+		<Compile Include="Collections\IntervalTree.cs" />
 		<Compile Include="Collections\NamespaceDoc.cs" />
 		<Compile Include="Collections\QueryableExtensions.ApplyOrder.cs" />
 		<Compile Include="Collections\QueryableExtensions.cs" />
@@ -302,6 +302,26 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>RangeBoundaryTo`1.generated.cs</LastGenOutput>
 		</None>
+		<Compile Include="Ranges\[CompositeRanges]\CompositeRange`1.cs" />
+		<Compile Include="Ranges\[CompositeRanges]\CompositeRange`1.NonGenerated.cs" />
+		<Compile Include="Ranges\[CompositeRanges]\CompositeRange`1.Operations.cs" />
+		<Compile Include="Ranges\[CompositeRanges]\CompositeRange`2.generated.cs">
+			<DependentUpon>CompositeRange`2.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<Compile Include="Ranges\[CompositeRanges]\CompositeRange`2.NonGenerated.cs" />
+		<Compile Include="Ranges\[CompositeRanges]\CompositeRange`2.Operations.generated.cs">
+		  <DependentUpon>CompositeRange`2.Operations.tt</DependentUpon>
+		  <AutoGen>True</AutoGen>
+		</Compile>
+		<None Include="Ranges\[CompositeRanges]\CompositeRange`2.Operations.tt">
+		  <LastGenOutput>CompositeRange`2.Operations.generated.cs</LastGenOutput>
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+		<None Include="Ranges\[CompositeRanges]\CompositeRange`2.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>CompositeRange`2.generated.cs</LastGenOutput>
+		</None>
 		<Compile Include="Ranges\[Helper types]\RangeBoundaryToDescendingComparer`1.cs" />
 		<Compile Include="Ranges\[Helper types]\RangeIntersection`1.cs" />
 		<Compile Include="Ranges\[Helper types]\RangeIntersection`2.generated.cs">
@@ -322,38 +342,23 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>CompositeRangeExtensions.WithKey.generated.cs</LastGenOutput>
 		</None>
-		<Compile Include="Ranges\[RangeExtensions]\RangeExtensions.cs" />
-		<Compile Include="Ranges\[RangeExtensions]\RangeExtensions.NoKey.cs" />
-		<Compile Include="Ranges\[RangeExtensions]\RangeExtensions.WithKey.generated.cs">
-			<DependentUpon>RangeExtensions.WithKey.tt</DependentUpon>
-			<AutoGen>True</AutoGen>
-		</Compile>
-		<None Include="Ranges\[RangeExtensions]\RangeExtensions.WithKey.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>RangeExtensions.WithKey.generated.cs</LastGenOutput>
-		</None>
-		<Compile Include="Ranges\[Ranges]\CompositeRange`1.cs" />
-		<Compile Include="Ranges\[Ranges]\CompositeRange`1.NonGenerated.cs" />
-		<Compile Include="Ranges\[Ranges]\CompositeRange`2.generated.cs">
-			<DependentUpon>CompositeRange`2.tt</DependentUpon>
-			<AutoGen>True</AutoGen>
-		</Compile>
-		<Compile Include="Ranges\[Ranges]\CompositeRange`2.NonGenerated.cs" />
-		<None Include="Ranges\[Ranges]\CompositeRange`2.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>CompositeRange`2.generated.cs</LastGenOutput>
-		</None>
-		<Compile Include="Ranges\[Ranges]\ICompositeRange`1.cs" />
-		<Compile Include="Ranges\[Ranges]\IRangeFactory.cs" />
-		<Compile Include="Ranges\[Ranges]\IRange`1.cs" />
 		<None Include="Ranges\[Ranges]\RangeWithTKeyReplacer.ttinclude" />
 		<Compile Include="Ranges\[Ranges]\Range`1.cs" />
 		<Compile Include="Ranges\[Ranges]\Range`1.NonGenerated.cs" />
+		<Compile Include="Ranges\[Ranges]\Range`1.Operations.cs" />
 		<Compile Include="Ranges\[Ranges]\Range`2.generated.cs">
 			<DependentUpon>Range`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Include="Ranges\[Ranges]\Range`2.NonGenerated.cs" />
+		<Compile Include="Ranges\[Ranges]\Range`2.Operations.generated.cs">
+		  <DependentUpon>Range`2.Operations.tt</DependentUpon>
+		  <AutoGen>True</AutoGen>
+		</Compile>
+		<None Include="Ranges\[Ranges]\Range`2.Operations.tt">
+		  <LastGenOutput>Range`2.Operations.generated.cs</LastGenOutput>
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		</None>
 		<None Include="Ranges\[Ranges]\Range`2.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>Range`2.generated.cs</LastGenOutput>

@@ -15,7 +15,7 @@ namespace CodeJam.Ranges
 {
 	/// <summary>Describes a range of the values.</summary>
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	public partial struct CompositeRange<T, TKey> : ICompositeRange<T>
+	public partial struct CompositeRange<T, TKey>
 	{
 		#region Helpers
 		private static IEnumerable<Range<T>> MergeRangesNoKeyCore(
@@ -50,10 +50,6 @@ namespace CodeJam.Ranges
 		#region ICompositeRange<T>
 		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
 		/// <returns>A sequence of merged subranges</returns>
-		IEnumerable<Range<T>> ICompositeRange<T>.GetMergedRanges() => GetMergedRanges();
-
-		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
-		/// <returns>A sequence of merged subranges</returns>
 		[NotNull]
 		internal IEnumerable<Range<T>> GetMergedRanges() => _hasRangesToMerge
 			? MergeRangesNoKeyCore(SubRanges)
@@ -82,6 +78,37 @@ namespace CodeJam.Ranges
 				groups.SelectMany(group => MergeRangesCore(group)),
 				UnsafeOverload.NoEmptyRanges);
 		}
+
+		#region Updating a range
+		/// <summary>Creates a new composite range with the key specified.</summary>
+		/// <typeparam name="TKey2">The type of the new key.</typeparam>
+		/// <param name="key">The value of the new key.</param>
+		/// <returns>A new composite range with the key specified.</returns>
+		[Pure]
+		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key) =>
+			IsEmpty
+				? CompositeRange<T, TKey2>.Empty
+				: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
+
+		/// <summary>Creates a new composite range with the key specified.</summary>
+		/// <typeparam name="TKey2">The type of the new key.</typeparam>
+		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
+		/// <returns>A new composite range with the key specified.</returns>
+		[Pure]
+		public CompositeRange<T, TKey2> WithKeys<TKey2>(
+			[NotNull, InstantHandle] Func<TKey, TKey2> keySelector) =>
+				IsEmpty
+					? CompositeRange<T, TKey2>.Empty
+					: SubRanges.Select(s => s.WithKey(keySelector(s.Key))).ToCompositeRange();
+
+		/// <summary>Removes keys from the composite range.</summary>
+		/// <returns>A new composite range without associated keys.</returns>
+		[Pure]
+		public CompositeRange<T> WithoutKeys() =>
+			IsEmpty
+				? CompositeRange<T>.Empty
+				: SubRanges.Select(s => s.WithoutKey()).ToCompositeRange();
+		#endregion
 		#endregion
 
 		#region IEquatable<CompositeRange<T, TKey>>
@@ -153,8 +180,7 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		public override bool Equals(object obj) =>
-			obj is CompositeRange<T, TKey> && Equals((CompositeRange<T, TKey>)obj);
+		public override bool Equals(object obj) => obj is CompositeRange<T, TKey> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

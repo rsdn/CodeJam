@@ -18,7 +18,7 @@ namespace CodeJam.Ranges
 	{
 		#region Static members
 		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
-		private static readonly Func<TKey, string, IFormatProvider, string> _formattableCallback = GetFormattableCallback<TKey>();
+		private static readonly Func<TKey, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<TKey>();
 
 		#region Predefined values
 		/// <summary>Empty range, ∅</summary>
@@ -37,24 +37,29 @@ namespace CodeJam.Ranges
 		public TKey Key => _key;
 
 		#region IRangeFactory members
-		/// <summary>Creates a new instance of the range.</summary>
-		/// <param name="from">Boundary From.</param>
-		/// <param name="to">Boundary To.</param>
-		/// <returns>A new instance of the range with specified From-To boundaries.</returns>
-		[Pure]
-		Range<T, TKey> IRangeFactory<T, Range<T, TKey>>.CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+		private Range<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T, TKey>(from, to, _key);
 
-		/// <summary>Creates a new instance of the range, if possible.</summary>
-		/// <param name="from">Boundary From.</param>
-		/// <param name="to">Boundary To.</param>
-		/// <returns>
-		/// A new instance of the range with specified From-To boundaries,
-		/// or empty range, if from-to boundaries forms invalid range pair.
-		/// </returns>
-		[Pure]
-		Range<T, TKey> IRangeFactory<T, Range<T, TKey>>.TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+		private Range<T, TKey> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			Range.TryCreate(from, to, _key);
+
+		[MethodImpl(AggressiveInlining)]
+		private Range<T, TKey> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+			new Range<T, TKey>(from, to, _key, UnsafeOverload.SkipsArgValidation);
+
+		private Range<T2, TKey> CreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
+			new Range<T2, TKey>(from, to, _key);
+
+		private Range<T2, TKey> TryCreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
+			Range.TryCreate(from, to, _key);
+		#endregion
+
+		#region Operations
+		/// <summary>Creates a range without a range key.</summary>
+		/// <returns>A new range without a key.</returns>
+		[Pure, MethodImpl(AggressiveInlining)]
+		public Range<T> WithoutKey() =>
+			Range.Create(From, To);
 		#endregion
 
 		#region IEquatable<Range<T, TKey>>
@@ -76,8 +81,7 @@ namespace CodeJam.Ranges
 		/// and represent the same value; otherwise, false.
 		/// </returns>
 		[Pure]
-		public override bool Equals(object obj) =>
-			obj is Range<T, TKey> && Equals((Range<T, TKey>)obj);
+		public override bool Equals(object obj) => obj is Range<T, TKey> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

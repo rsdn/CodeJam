@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using JetBrains.Annotations;
 
@@ -10,13 +11,9 @@ namespace CodeJam.Ranges
 {
 	/// <summary>Describes a composite range that contains some subranges.</summary>
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	public partial struct CompositeRange<T> : ICompositeRange<T>
+	public partial struct CompositeRange<T>
 	{
 		#region ICompositeRange<T>
-		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
-		/// <returns>A sequence of merged subranges</returns>
-		IEnumerable<Range<T>> ICompositeRange<T>.GetMergedRanges() => GetMergedRanges();
-
 		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
 		/// <returns>A sequence of merged subranges</returns>
 		[NotNull]
@@ -69,7 +66,19 @@ namespace CodeJam.Ranges
 			return new CompositeRange<T>(
 				MergeRangesCore(SubRanges),
 				CompositeRangeInternal.UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged);
-		} 
+		}
+
+		#region Updating a range
+		/// <summary>Creates a new composite range with the key specified.</summary>
+		/// <typeparam name="TKey2">The type of the new key.</typeparam>
+		/// <param name="key">The value of the new key.</param>
+		/// <returns>A new composite range with the key specified.</returns>
+		[Pure]
+		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key) =>
+			IsEmpty
+				? CompositeRange<T, TKey2>.Empty
+				: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
+		#endregion
 		#endregion
 
 		#region IEquatable<CompositeRange<T>>
@@ -108,8 +117,7 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		public override bool Equals(object obj) =>
-			obj is CompositeRange<T> && Equals((CompositeRange<T>)obj);
+		public override bool Equals(object obj) => obj is CompositeRange<T> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

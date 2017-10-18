@@ -71,12 +71,7 @@ namespace CodeJam.Collections
 		/// true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current instance. </param>
-		public override bool Equals(object obj)
-		{
-			if (ReferenceEquals(null, obj)) return false;
-			// ReSharper disable once MergeCastWithTypeCheck
-			return obj is IndexedItem<T> && Equals((IndexedItem<T>)obj);
-		}
+		public override bool Equals(object obj) => obj is IndexedItem<T> other && Equals(other);
 
 		/// <summary>Returns the hash code for this instance.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

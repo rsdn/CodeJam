@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <returns>
 		/// <c>true</c> if the <paramref name="obj"/> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
-		public override bool Equals(object obj) => obj is ResourceKey && Equals((ResourceKey)obj);
+		public override bool Equals(object obj) => obj is ResourceKey other && Equals(other);
 
 		/// <summary>Returns a hash code for this instance.</summary>
 		/// <returns>

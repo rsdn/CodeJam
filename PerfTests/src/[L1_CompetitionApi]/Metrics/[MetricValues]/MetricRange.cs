@@ -125,7 +125,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <returns>
 		/// <c>true</c> if the <paramref name="obj"/> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
-		public override bool Equals(object obj) => obj is MetricRange && Equals((MetricRange)obj);
+		public override bool Equals(object obj) => obj is MetricRange other && Equals(other);
 
 		/// <summary>Returns a hash code for this instance.</summary>
 		/// <returns>

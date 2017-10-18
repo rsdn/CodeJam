@@ -30,7 +30,7 @@ namespace CodeJam.Ranges
 	[PublicAPI]
 	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	//[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public partial struct Range<T, TKey> : IRangeFactory<T, Range<T, TKey>>, IEquatable<Range<T, TKey>>, IFormattable
+	public partial struct Range<T, TKey> : IEquatable<Range<T, TKey>>, IFormattable
 	{
 		#region Static members
 
@@ -80,7 +80,7 @@ namespace CodeJam.Ranges
 				if (to < from)
 				{
 					throw CodeExceptions.Argument(
-						nameof(to), 
+						nameof(to),
 						$"Invalid range {from.ToInvariantString()}..{to.ToInvariantString()}.");
 				}
 			}

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
+using CodeJam.Arithmetic;
 using CodeJam.Reflection;
 
 namespace CodeJam.Ranges
@@ -58,17 +60,37 @@ namespace CodeJam.Ranges
 		internal const string SeparatorString = "..";
 		#endregion
 
-		/// <summary>Returns formattable callback for arbitrary type.</summary>
+		/// <summary>Creates formattable callback for arbitrary type.</summary>
 		/// <typeparam name="T">Type of the formattable object.</typeparam>
 		/// <returns>The format callback. Returns <c>null</c> if the first arg is <c>null</c>.</returns>
-		internal static Func<T, string, IFormatProvider, string> GetFormattableCallback<T>()
+		internal static Func<T, string, IFormatProvider, string> CreateFormattableCallback<T>()
 		{
-			var type = typeof(T).ToNullableUnderlying();
-			if (typeof(IFormattable).IsAssignableFrom(type))
+			if (typeof(IFormattable).IsAssignableFrom(typeof(T)))
 			{
-				return (value, format, formatProvider) => ((IFormattable)value)?.ToString(format, formatProvider);
+				var method = typeof(RangeInternal).GetMethod(nameof(Format)).MakeGenericMethod(typeof(T));
+				// no boxing for IFormatProvider
+				return (Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
+					typeof(Func<T, string, IFormatProvider, string>),
+					method,
+					true);
+			}
+			if (typeof(IFormattable).IsAssignableFrom(typeof(T).ToNullableUnderlying()))
+			{
+				var method = typeof(RangeInternal).GetMethod(nameof(FormatNullable)).MakeGenericMethod(typeof(T).ToNullableUnderlying());
+				// no boxing for IFormatProvider
+				return (Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
+					typeof(Func<T, string, IFormatProvider, string>),
+					method,
+					true);
 			}
 			return (value, format, formatProvider) => value?.ToString();
 		}
+
+		public static string Format<T>(T value, string format, IFormatProvider formatProvider) where T : IFormattable =>
+			value?.ToString(format, formatProvider);
+
+		public static string FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
+			where T : struct, IFormattable =>
+				value?.ToString(format, formatProvider);
 	}
 }

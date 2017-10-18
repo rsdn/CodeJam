@@ -84,4 +84,47 @@
 				Replacement = @"$1$2$1<typeparam name=""TKey"">The type of the range key</typeparam>",
 				ThrowOnFail = true
 			});
+
+	private void RunRangeOperations(string sourceFileName, params ReplaceInfo[] additionalReplaces) =>
+		Transform(
+			sourceFileName,
+			additionalReplaces,
+			new ReplaceInfo // region for non-updateable text
+			{
+				Pattern = @"(?s)\#region T4\-dont\-replace.*?\#endregion",
+				Mode = ReplaceMode.Ignore
+			},
+			new ReplaceInfo // Range<T, TKey>
+			{
+				Pattern = "Range<T([^>,]*?)>",
+				Replacement = "Range<T$1, TKey>",
+				ThrowOnFail = true,
+				WholeWord = true
+			},
+			new ReplaceInfo // CompositeRange<T, TKey>
+			{
+				Pattern = "CompositeRange<T([^>,]*?)>",
+				Replacement = "CompositeRange<T$1, TKey>",
+				ThrowOnFail = false,
+				WholeWord = true
+			},
+			new ReplaceInfo // RangeIntersection<T, TKey>
+			{
+				Pattern = "RangeIntersection<T([^>,]*?)>",
+				Replacement = "RangeIntersection<T$1, TKey>",
+				ThrowOnFail = false,
+				WholeWord = true
+			},
+			new ReplaceInfo // SomeMethod<T, TKey2
+			{
+				Pattern = @"(static .+?)<T([^>]*?)>\(",
+				Replacement = "$1<T, TKey$2>(",
+				ThrowOnFail = false
+			},
+			new ReplaceInfo // Fix generic params XML docs
+			{
+				Pattern = @"(\r\n.+?)(<typeparam name=""T"">(?:.|\r|\n)*?</typeparam>)",
+				Replacement = @"$1$2$1<typeparam name=""TKey"">The type of the range key</typeparam>",
+				ThrowOnFail = false
+			});
 #>

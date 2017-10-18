@@ -52,13 +52,13 @@ namespace CodeJam.Ranges
 
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
-			: default(T);
+			: default;
 
 		private static readonly bool _hasNegativeInfinity = Operators<T>.HasNegativeInfinity;
 
 		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
 			? Operators<T>.NegativeInfinity
-			: default(T);
+			: default;
 
 		/// <summary>
 		/// Infrastructure helper method to create a boundary that handles default and infinite values.
@@ -79,12 +79,12 @@ namespace CodeJam.Ranges
 
 			if (_hasNaN && !_equalsFunc(value, value))
 			{
-				value = default(T);
+				value = default;
 				boundaryKind = RangeBoundaryToKind.Empty;
 			}
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
 			{
-				value = default(T);
+				value = default;
 				boundaryKind = RangeBoundaryToKind.Infinite;
 			}
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
@@ -124,11 +124,11 @@ namespace CodeJam.Ranges
 
 		/// <summary>Positive infinity, +∞.</summary>
 		public static readonly RangeBoundaryTo<T> PositiveInfinity = new RangeBoundaryTo<T>(
-			default(T), RangeBoundaryToKind.Infinite);
+			default, RangeBoundaryToKind.Infinite);
 		#endregion
 
 		#region Formattable logic
-		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = GetFormattableCallback<T>();
+		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
 		#endregion
 
 		#endregion
@@ -148,7 +148,7 @@ namespace CodeJam.Ranges
 		{
 			if (_hasNaN && !_equalsFunc(value, value))
 			{
-				value = default(T);
+				value = default;
 				if (boundaryKind != RangeBoundaryToKind.Empty)
 				{
 					throw CodeExceptions.Argument(nameof(value), "The NaN value should be used only for Empty boundaries.");
@@ -156,7 +156,7 @@ namespace CodeJam.Ranges
 			}
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
 			{
-				value = default(T);
+				value = default;
 				if (boundaryKind != RangeBoundaryToKind.Infinite)
 				{
 					throw CodeExceptions.Argument(nameof(value), "The positive infinity value should be used only for Infinite boundaries.");
@@ -169,7 +169,7 @@ namespace CodeJam.Ranges
 
 			if (boundaryKind != RangeBoundaryToKind.Inclusive && boundaryKind != RangeBoundaryToKind.Exclusive)
 			{
-				if (_compareFunc(value, default(T)) != _equalResult)
+				if (_compareFunc(value, default) != _equalResult)
 				{
 					throw CodeExceptions.Argument(nameof(value), "Value of the infinite/empty boundary should be equal to default(T).");
 				}
@@ -227,19 +227,19 @@ namespace CodeJam.Ranges
 		/// </value>
 		public bool IsPositiveInfinity => _kind == RangeBoundaryToKind.Infinite;
 
-		/// <summary>The boundary includes the value.</summary>
+		/// <summary>The boundary has value (is not an infinite boundary) and does include the value.</summary>
 		/// <value>
 		/// <c>true</c> if the boundary is inclusive boundary; otherwise, <c>false</c>.
 		/// </value>
 		public bool IsInclusiveBoundary => _kind == RangeBoundaryToKind.Inclusive;
 
-		/// <summary>The boundary does not include the value.</summary>
+		/// <summary>The boundary has value (is not an infinite boundary) but does not include the value.</summary>
 		/// <value>
 		/// <c>true</c> if the boundary is exclusive boundary; otherwise, <c>false</c>.
 		/// </value>
 		public bool IsExclusiveBoundary => _kind == RangeBoundaryToKind.Exclusive;
 
-		/// <summary>The boundary has a value.</summary>
+		/// <summary>The boundary has a value (is not an infinite boundary).</summary>
 		/// <value><c>true</c> if the boundary has a value; otherwise, <c>false</c>.</value>
 		public bool HasValue => _kind == RangeBoundaryToKind.Inclusive || _kind == RangeBoundaryToKind.Exclusive;
 
@@ -268,6 +268,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <returns>he value of the boundary or default(T).</returns>
 		[Pure, CanBeNull]
+		[MethodImpl(AggressiveInlining)]
 		public T GetValueOrDefault() => _value;
 
 		/// <summary>
@@ -276,6 +277,7 @@ namespace CodeJam.Ranges
 		/// <param name="defaultValue">The default value.</param>
 		/// <returns>Value of the boundary or <paramref name="defaultValue"/>.</returns>
 		[Pure]
+		[MethodImpl(AggressiveInlining)]
 		public T GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
 		#endregion
 
@@ -352,7 +354,7 @@ namespace CodeJam.Ranges
 			}
 
 #pragma warning disable 618 // Validation not required: HasValue checked.
-			return new RangeBoundaryTo<T2>(default(T2), _kind, UnsafeOverload.SkipsArgValidation);
+			return new RangeBoundaryTo<T2>(default, _kind, UnsafeOverload.SkipsArgValidation);
 #pragma warning restore 618
 		}
 
@@ -395,7 +397,7 @@ namespace CodeJam.Ranges
 		/// and represent the same value; otherwise, false.
 		/// </returns>
 		[Pure]
-		public override bool Equals(object obj) => obj is RangeBoundaryTo<T> && Equals((RangeBoundaryTo<T>)obj);
+		public override bool Equals(object obj) => obj is RangeBoundaryTo<T> other && Equals(other);
 
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
@@ -526,18 +528,15 @@ namespace CodeJam.Ranges
 		[Pure]
 		int IComparable.CompareTo(object obj)
 		{
-			var otherA = obj as RangeBoundaryTo<T>?;
-			if (otherA != null)
+			switch (obj)
 			{
-				return CompareTo(otherA.GetValueOrDefault());
+				case RangeBoundaryTo<T> rbf:
+					return CompareTo(rbf);
+				case RangeBoundaryFrom<T> rbt:
+					return CompareTo(rbt);
+				default:
+					return CompareTo((T)obj);
 			}
-			var otherB = obj as RangeBoundaryFrom<T>?;
-			if (otherB != null)
-			{
-				return CompareTo(otherB.GetValueOrDefault());
-			}
-
-			return CompareTo((T)obj);
 		}
 		#endregion
 

@@ -119,7 +119,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Formattable logic
-		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = GetFormattableCallback<T>();
+		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
 		#endregion
 
 		#endregion
@@ -218,19 +218,19 @@ namespace CodeJam.Ranges
 		/// </value>
 		public bool IsNegativeInfinity => _kind == RangeBoundaryFromKind.Infinite;
 
-		/// <summary>The boundary includes the value.</summary>
+		/// <summary>The boundary has value (is not an infinite boundary) and does include the value.</summary>
 		/// <value>
 		/// <c>true</c> if the boundary is inclusive boundary; otherwise, <c>false</c>.
 		/// </value>
 		public bool IsInclusiveBoundary => _kind == RangeBoundaryFromKind.Inclusive;
 
-		/// <summary>The boundary does not include the value.</summary>
+		/// <summary>The boundary has value (is not an infinite boundary) but does not include the value.</summary>
 		/// <value>
 		/// <c>true</c> if the boundary is exclusive boundary; otherwise, <c>false</c>.
 		/// </value>
 		public bool IsExclusiveBoundary => _kind == RangeBoundaryFromKind.Exclusive;
 
-		/// <summary>The boundary has a value.</summary>
+		/// <summary>The boundary has a value (is not an infinite boundary).</summary>
 		/// <value><c>true</c> if the boundary has a value; otherwise, <c>false</c>.</value>
 		public bool HasValue => _kind == RangeBoundaryFromKind.Inclusive || _kind == RangeBoundaryFromKind.Exclusive;
 
@@ -259,6 +259,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <returns>he value of the boundary or default(T).</returns>
 		[Pure, CanBeNull]
+		[MethodImpl(AggressiveInlining)]
 		public T GetValueOrDefault() => _value;
 
 		/// <summary>
@@ -267,6 +268,7 @@ namespace CodeJam.Ranges
 		/// <param name="defaultValue">The default value.</param>
 		/// <returns>Value of the boundary or <paramref name="defaultValue"/>.</returns>
 		[Pure]
+		[MethodImpl(AggressiveInlining)]
 		public T GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
 		#endregion
 
@@ -386,7 +388,7 @@ namespace CodeJam.Ranges
 		/// and represent the same value; otherwise, false.
 		/// </returns>
 		[Pure]
-		public override bool Equals(object obj) => obj is RangeBoundaryFrom<T> && Equals((RangeBoundaryFrom<T>)obj);
+		public override bool Equals(object obj) => obj is RangeBoundaryFrom<T> other && Equals(other);
 
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
