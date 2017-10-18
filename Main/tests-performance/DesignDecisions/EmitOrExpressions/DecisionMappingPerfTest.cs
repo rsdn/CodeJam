@@ -194,7 +194,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.91, 1.52)]
+		[CompetitionBenchmark(0.91, 1.74)]
 		[GcAllocations(0)]
 		public void MinInstanceDelegate()
 		{
@@ -205,7 +205,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.50, 0.93), GcAllocations(0)]
+		[CompetitionBenchmark(0.50, 1.39), GcAllocations(0)]
 		public void MinMethod()
 		{
 			for (int i = 0; i < Count; i++)
@@ -215,7 +215,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.42, 0.70), GcAllocations(0)]
+		[CompetitionBenchmark(0.42, 1.20), GcAllocations(0)]
 		public void MinHardcoded()
 		{
 			for (int i = 0; i < Count; i++)
@@ -225,7 +225,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(2.25, 3.91), GcAllocations(0)]
+		[CompetitionBenchmark(2.25, 4.66), GcAllocations(0)]
 		public void MinExpression()
 		{
 			for (int i = 0; i < Count; i++)
@@ -235,7 +235,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(2.32, 4.86), GcAllocations(0)]
+		[CompetitionBenchmark(2.32, 6.48), GcAllocations(0)]
 		public void MinDynamicMethod()
 		{
 			for (int i = 0; i < Count; i++)
@@ -245,7 +245,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.66, 1.22), GcAllocations(0)]
+		[CompetitionBenchmark(0.66, 1.55), GcAllocations(0)]
 		public void MinDynamicMethodAssociated()
 		{
 			for (int i = 0; i < Count; i++)
@@ -256,7 +256,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 		}
 
 
-		[CompetitionBenchmark(0.92, 1.60), GcAllocations(0)]
+		[CompetitionBenchmark(0.89, 1.94), GcAllocations(0)]
 		public void MinDynamicMethodAssociatedInstance()
 		{
 			for (int i = 0; i < Count; i++)
@@ -286,7 +286,7 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 			}
 		}
 
-		[CompetitionBenchmark(0.62, 1.42), GcAllocations(0)]
+		[CompetitionBenchmark(0.62, 1.75), GcAllocations(0)]
 		public void MinTbExpression()
 		{
 			for (int i = 0; i < Count; i++)

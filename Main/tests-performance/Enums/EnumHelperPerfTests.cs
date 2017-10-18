@@ -102,7 +102,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(3.80, 4.67)]
+			[CompetitionBenchmark(3.80, 23.03)]
 			[GcAllocations(160, BinarySizeUnit.Kilobyte)]
 			public F Test02CheckViaEnumInfo()
 			{
@@ -112,7 +112,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(5.20, 11.34)]
+			[CompetitionBenchmark(3.68, 14.64)]
 			[GcAllocations(53.73, 88.02, BinarySizeUnit.Kilobyte)]
 			public F Test01TryParseUndefined()
 			{
@@ -122,7 +122,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(6.30, 18.75)]
+			[CompetitionBenchmark(5.07, 18.75)]
 			[GcAllocations(68.37, 112.02, BinarySizeUnit.Kilobyte)]
 			public F Test02EnumTryParse()
 			{
@@ -132,7 +132,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(3.69, 8.37)]
+			[CompetitionBenchmark(3.02, 12.57)]
 			[GcAllocations(53.73, 88.03, BinarySizeUnit.Kilobyte)]
 			public F Test03EnumTryParseUndefined()
 			{
@@ -298,7 +298,7 @@ namespace CodeJam
 				return a;
 			}
 
-			[CompetitionBenchmark(0.34, 1.07)]
+			[CompetitionBenchmark(0.34, 1.12)]
 			[GcAllocations(0)]
 			public int Test03SetFlagIntOp()
 			{
