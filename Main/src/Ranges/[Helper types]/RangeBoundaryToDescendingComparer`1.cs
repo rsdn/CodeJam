@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace CodeJam.Ranges
 {
 	/// <summary>
-	/// Helper comparer for operations over <see cref="Range{T}.To"/>.
+	/// Helper comparer for operations over <see cref="IRange{T}.To"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the range values.</typeparam>
 	[Serializable]
