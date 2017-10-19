@@ -15,7 +15,7 @@ namespace CodeJam.Ranges
 	/// Describes an intersection of multiple ranges.
 	/// </summary>
 	/// <typeparam name="T">The type of the range values.</typeparam>
-	/// <seealso cref="System.IFormattable" />
+	/// <seealso cref="System.IFormattable"/>
 	[PublicAPI]
 	public struct RangeIntersection<T> : IFormattable
 	{
@@ -28,6 +28,7 @@ namespace CodeJam.Ranges
 		/// <param name="intersectionRange">The intersection range.</param>
 		/// <param name="ranges">Intersecting ranges.</param>
 		internal RangeIntersection(
+
 		#region T4-dont-replace
 			Range<T> intersectionRange,
 		#endregion

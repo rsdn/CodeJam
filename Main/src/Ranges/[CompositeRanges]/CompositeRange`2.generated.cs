@@ -43,8 +43,8 @@ namespace CodeJam.Ranges
 	{
 		#region Nested types
 		/// <summary>
-		/// Helper comparer. If <see cref="IRange{T}.From"/> are equal,
-		/// shortest range (the one with smaller <see cref="IRange{T}.To"/>) goes first.
+		/// Helper comparer. If <see cref="Range{T}.From"/> are equal,
+		/// shortest range (the one with smaller <see cref="Range{T}.To"/>) goes first.
 		/// </summary>
 		[Serializable]
 		private sealed class SubRangesComparer : IComparer<Range<T, TKey>>
@@ -90,7 +90,7 @@ namespace CodeJam.Ranges
 		#region Comparers
 		private static readonly SubRangesComparer _rangeComparer = new SubRangesComparer();
 
-		/// <summary>Helper comparer for operations over <see cref="IRange{T}.To"/>.</summary>
+		/// <summary>Helper comparer for operations over <see cref="Range{T}.To"/>.</summary>
 		internal static readonly RangeBoundaryToDescendingComparer<T> BoundaryToDescendingComparer =
 			new RangeBoundaryToDescendingComparer<T>();
 		#endregion
@@ -179,7 +179,7 @@ namespace CodeJam.Ranges
 		{
 			Code.NotNull(ranges, nameof(ranges));
 
-			bool rangesReady = skipsArgHandling == UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged;
+			var rangesReady = skipsArgHandling == UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged;
 			var tempRanges = rangesReady || skipsArgHandling == UnsafeOverload.NoEmptyRanges
 				? ranges.ToArray()
 				: ranges.Where(r => r.IsNotEmpty).ToArray();
@@ -205,9 +205,9 @@ namespace CodeJam.Ranges
 				Array.Sort(tempRanges, _rangeComparer);
 			}
 
-			bool hasRangesToMerge = false;
+			var hasRangesToMerge = false;
 			var maxToBoundary = tempRanges[0].To;
-			for (int i = 1; i < tempRanges.Length; i++)
+			for (var i = 1; i < tempRanges.Length; i++)
 			{
 				var range = tempRanges[i];
 

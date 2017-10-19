@@ -238,8 +238,10 @@ namespace CodeJam.Ranges
 		public T Clamp(T value)
 		{
 			Code.AssertArgument(IsNotEmpty, nameof(value), "Cannot fit the value into empty range.");
-			Code.AssertArgument(!From.IsExclusiveBoundary, nameof(value), "The clamp range boundary From is exclusive and has no value.");
-			Code.AssertArgument(!To.IsExclusiveBoundary, nameof(value), "The clamp range boundary To is exclusive and has no value.");
+			Code.AssertArgument(
+				!From.IsExclusiveBoundary, nameof(value), "The clamp range boundary From is exclusive and has no value.");
+			Code.AssertArgument(
+				!To.IsExclusiveBoundary, nameof(value), "The clamp range boundary To is exclusive and has no value.");
 
 			// case for the positive infinity
 			if (!RangeBoundaryFrom<T>.IsValid(value))
@@ -376,12 +378,14 @@ namespace CodeJam.Ranges
 			if (other.IsEmpty)
 				return this;
 
+#pragma warning disable 618 // Validation not required: From & To extendedd.
 			if (IsEmpty)
 				return CreateUnsafe(other.From, other.To);
 
 			return CreateUnsafe(
 				other.From >= From ? From : other.From,
 				To >= other.To ? To : other.To);
+#pragma warning restore
 		}
 
 		/// <summary>Returns a union range containing both of the ranges.</summary>
@@ -394,12 +398,14 @@ namespace CodeJam.Ranges
 			if (other.IsEmpty)
 				return this;
 
+#pragma warning disable 618 // Validation not required: From & To extendedd.
 			if (IsEmpty)
 				return CreateUnsafe(other.From, other.To);
 
 			return CreateUnsafe(
 				other.From >= From ? From : other.From,
 				To >= other.To ? To : other.To);
+#pragma warning restore
 		}
 
 		/// <summary>Extends the range from the left.</summary>

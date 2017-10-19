@@ -385,12 +385,14 @@ namespace CodeJam.Ranges
 			if (other.IsEmpty)
 				return this;
 
+#pragma warning disable 618 // Validation not required: From & To extendedd.
 			if (IsEmpty)
 				return CreateUnsafe(other.From, other.To);
 
 			return CreateUnsafe(
 				other.From >= From ? From : other.From,
 				To >= other.To ? To : other.To);
+#pragma warning restore
 		}
 
 		/// <summary>Returns a union range containing both of the ranges.</summary>
@@ -403,12 +405,14 @@ namespace CodeJam.Ranges
 			if (other.IsEmpty)
 				return this;
 
+#pragma warning disable 618 // Validation not required: From & To extendedd.
 			if (IsEmpty)
 				return CreateUnsafe(other.From, other.To);
 
 			return CreateUnsafe(
 				other.From >= From ? From : other.From,
 				To >= other.To ? To : other.To);
+#pragma warning restore
 		}
 
 		/// <summary>Extends the range from the left.</summary>

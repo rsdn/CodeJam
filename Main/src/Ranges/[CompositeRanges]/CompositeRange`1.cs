@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -28,13 +27,12 @@ namespace CodeJam.Ranges
 	/// </typeparam>
 	[Serializable]
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public partial struct CompositeRange<T> : IEquatable<CompositeRange<T>>, IFormattable
 	{
 		#region Nested types
 		/// <summary>
-		/// Helper comparer. If <see cref="IRange{T}.From"/> are equal,
-		/// shortest range (the one with smaller <see cref="IRange{T}.To"/>) goes first.
+		/// Helper comparer. If <see cref="Range{T}.From"/> are equal,
+		/// shortest range (the one with smaller <see cref="Range{T}.To"/>) goes first.
 		/// </summary>
 		[Serializable]
 		private sealed class SubRangesComparer : IComparer<Range<T>>
@@ -45,7 +43,7 @@ namespace CodeJam.Ranges
 			/// <param name="x">The first object to compare.</param>
 			/// <param name="y">The second object to compare.</param>
 			/// <returns>
-			/// A signed integer that indicates the relative values of <paramref name="x" /> and <paramref name="y" />
+			/// A signed integer that indicates the relative values of <paramref name="x"/> and <paramref name="y"/>
 			/// </returns>
 			public int Compare(Range<T> x, Range<T> y)
 			{
@@ -80,7 +78,7 @@ namespace CodeJam.Ranges
 		#region Comparers
 		private static readonly SubRangesComparer _rangeComparer = new SubRangesComparer();
 
-		/// <summary>Helper comparer for operations over <see cref="IRange{T}.To"/>.</summary>
+		/// <summary>Helper comparer for operations over <see cref="Range{T}.To"/>.</summary>
 		internal static readonly RangeBoundaryToDescendingComparer<T> BoundaryToDescendingComparer =
 			new RangeBoundaryToDescendingComparer<T>();
 		#endregion
@@ -169,7 +167,7 @@ namespace CodeJam.Ranges
 		{
 			Code.NotNull(ranges, nameof(ranges));
 
-			bool rangesReady = skipsArgHandling == UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged;
+			var rangesReady = skipsArgHandling == UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged;
 			var tempRanges = rangesReady || skipsArgHandling == UnsafeOverload.NoEmptyRanges
 				? ranges.ToArray()
 				: ranges.Where(r => r.IsNotEmpty).ToArray();
@@ -195,9 +193,9 @@ namespace CodeJam.Ranges
 				Array.Sort(tempRanges, _rangeComparer);
 			}
 
-			bool hasRangesToMerge = false;
+			var hasRangesToMerge = false;
 			var maxToBoundary = tempRanges[0].To;
-			for (int i = 1; i < tempRanges.Length; i++)
+			for (var i = 1; i < tempRanges.Length; i++)
 			{
 				var range = tempRanges[i];
 
@@ -214,7 +212,9 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Properties
-		/// <summary>The composite range cannot be simplified anymore. Subranges do not intersect and start one exactly after another.</summary>
+		/// <summary>
+		/// The composite range cannot be simplified anymore. Subranges do not intersect and start one exactly after another.
+		/// </summary>
 		/// <value><c>true</c> if all subranges are merged already; otherwise, <c>false</c>.</value>
 		public bool IsMerged => !_hasRangesToMerge;
 

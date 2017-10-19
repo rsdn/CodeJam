@@ -4,8 +4,6 @@ using System.Linq;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Ranges.CompositeRangeInternal;
-
 namespace CodeJam.Ranges
 {
 	/// <summary>Extension methods for <see cref="CompositeRange{T}"/>.</summary>

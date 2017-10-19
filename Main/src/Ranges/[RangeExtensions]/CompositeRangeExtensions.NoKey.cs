@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-
-using CodeJam.Collections;
 
 using JetBrains.Annotations;
-
-using static CodeJam.Ranges.CompositeRangeInternal;
 
 namespace CodeJam.Ranges
 {

@@ -18,7 +18,9 @@ namespace CodeJam.Ranges
 	{
 		#region Static members
 		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
-		private static readonly Func<TKey, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<TKey>();
+
+		private static readonly Func<TKey, string, IFormatProvider, string> _formattableCallback =
+			CreateFormattableCallback<TKey>();
 
 		#region Predefined values
 		/// <summary>Empty range, ∅</summary>
@@ -29,6 +31,7 @@ namespace CodeJam.Ranges
 			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity,
 			default);
 		#endregion
+
 		#endregion
 
 		/// <summary>The value associated with the range.</summary>
@@ -44,6 +47,7 @@ namespace CodeJam.Ranges
 			Range.TryCreate(from, to, _key);
 
 		[MethodImpl(AggressiveInlining)]
+		[Obsolete(SkipsArgValidationObsolete)]
 		private Range<T, TKey> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T, TKey>(from, to, _key, UnsafeOverload.SkipsArgValidation);
 

@@ -33,6 +33,7 @@ namespace CodeJam.Ranges
 			Range.TryCreate(from, to);
 
 		[MethodImpl(AggressiveInlining)]
+		[Obsolete(SkipsArgValidationObsolete)]
 		private Range<T> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new Range<T>(from, to, UnsafeOverload.SkipsArgValidation);
 

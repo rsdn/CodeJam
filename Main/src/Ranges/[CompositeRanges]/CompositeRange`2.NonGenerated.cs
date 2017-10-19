@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -14,7 +13,6 @@ using static CodeJam.Ranges.CompositeRangeInternal;
 namespace CodeJam.Ranges
 {
 	/// <summary>Describes a range of the values.</summary>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public partial struct CompositeRange<T, TKey>
 	{
 		#region Helpers
@@ -109,6 +107,7 @@ namespace CodeJam.Ranges
 				? CompositeRange<T>.Empty
 				: SubRanges.Select(s => s.WithoutKey()).ToCompositeRange();
 		#endregion
+
 		#endregion
 
 		#region IEquatable<CompositeRange<T, TKey>>
@@ -136,9 +135,9 @@ namespace CodeJam.Ranges
 
 			var previousRange = Range<T>.Empty;
 			var keys = new Dictionary<TKey, int>();
-			int nullKeysCount = 0;
+			var nullKeysCount = 0;
 
-			for (int i = 0; i < _ranges.Count; i++)
+			for (var i = 0; i < _ranges.Count; i++)
 			{
 				var currentWithoutKey = _ranges[i].WithoutKey();
 
@@ -186,7 +185,7 @@ namespace CodeJam.Ranges
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		public override int GetHashCode()
 		{
-			int result = 0;
+			var result = 0;
 			foreach (var range in SubRanges)
 			{
 				result = HashCode.Combine(result, range.GetHashCode());

@@ -1,11 +1,10 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace CodeJam.Ranges
 {
 	/// <summary>
-	/// Helper comparer for operations over <see cref="IRange{T}.To"/>.
+	/// Helper comparer for operations over <see cref="Range{T}.To"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the range values.</typeparam>
 	[Serializable]
@@ -21,7 +20,7 @@ namespace CodeJam.Ranges
 		/// <param name="x">The first object to compare.</param>
 		/// <param name="y">The second object to compare.</param>
 		/// <returns>
-		/// A signed integer that indicates the relative values of <paramref name="x" /> and <paramref name="y" />
+		/// A signed integer that indicates the relative values of <paramref name="x"/> and <paramref name="y"/>
 		/// </returns>
 		public int Compare(RangeBoundaryTo<T> x, RangeBoundaryTo<T> y) =>
 			// DONTTOUCH: order by descending, args are swapped.

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -10,7 +9,6 @@ using JetBrains.Annotations;
 namespace CodeJam.Ranges
 {
 	/// <summary>Describes a composite range that contains some subranges.</summary>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public partial struct CompositeRange<T>
 	{
 		#region ICompositeRange<T>
@@ -79,6 +77,7 @@ namespace CodeJam.Ranges
 				? CompositeRange<T, TKey2>.Empty
 				: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
 		#endregion
+
 		#endregion
 
 		#region IEquatable<CompositeRange<T>>
@@ -102,7 +101,7 @@ namespace CodeJam.Ranges
 			if (_containingRange != other._containingRange || _ranges.Count != otherRanges.Count)
 				return false;
 
-			for (int i = 0; i < _ranges.Count; i++)
+			for (var i = 0; i < _ranges.Count; i++)
 			{
 				if (!_ranges[i].Equals(otherRanges[i]))
 					return false;
@@ -123,7 +122,7 @@ namespace CodeJam.Ranges
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		public override int GetHashCode()
 		{
-			int result = 0;
+			var result = 0;
 			foreach (var range in SubRanges)
 			{
 				result = HashCode.Combine(result, range.GetHashCode());

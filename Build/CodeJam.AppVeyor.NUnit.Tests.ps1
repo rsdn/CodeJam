@@ -12,6 +12,7 @@ $a = (gci -include $include -r | `
 echo "nunit3-console $a --result=$logFileName"
 &"nunit3-console" $a "--result=$logFileName"
 if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
 $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
 if ($LastExitCode -ne 0) { 
 	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
@@ -26,6 +27,7 @@ $a = (gci -include $includePerfTests -r | `
 echo "nunit3-console $a --result=$logFileName" --agents=1
 &"nunit3-console" $a "--result=$logFileName" --agents=1
 if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
 $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
 if ($LastExitCode -ne 0) { 
 	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
@@ -44,6 +46,7 @@ if ($LastExitCode -ne 0) {
 	echo "FAIL: dotnet vstest $a --logger:'trx;LogFileName=$logFileName'"
 	$host.SetShouldExit($LastExitCode)
 }
+echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
 $wc.UploadFile("https://ci.appveyor.com/api/testresults/mstest/$env:APPVEYOR_JOB_ID", "$logFileName")
 if ($LastExitCode -ne 0) { 
 	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/mstest/$env:APPVEYOR_JOB_ID from $logFileName"

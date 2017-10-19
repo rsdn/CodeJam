@@ -318,10 +318,10 @@ namespace CodeJam.Ranges
 				return false;
 			}
 
-			bool result = true;
+			var result = true;
 			using (var containingRanges = GetMergedRanges().GetEnumerator())
 			{
-				bool hasContainingRange = containingRanges.MoveNext();
+				var hasContainingRange = containingRanges.MoveNext();
 				foreach (var otherRange in other.GetMergedRanges())
 				{
 					while (hasContainingRange && containingRanges.Current.EndsBefore(otherRange))
@@ -355,10 +355,10 @@ namespace CodeJam.Ranges
 				return false;
 			}
 
-			bool result = true;
+			var result = true;
 			using (var containingRanges = GetMergedRanges().GetEnumerator())
 			{
-				bool hasContainingRange = containingRanges.MoveNext();
+				var hasContainingRange = containingRanges.MoveNext();
 				foreach (var otherRange in other.GetMergedRanges())
 				{
 					while (hasContainingRange && containingRanges.Current.EndsBefore(otherRange))
@@ -431,10 +431,10 @@ namespace CodeJam.Ranges
 				return false;
 			}
 
-			bool result = false;
+			var result = false;
 			using (var containingRanges = GetMergedRanges().GetEnumerator())
 			{
-				bool hasContainingRange = containingRanges.MoveNext();
+				var hasContainingRange = containingRanges.MoveNext();
 				foreach (var otherRange in other.GetMergedRanges())
 				{
 					while (hasContainingRange && containingRanges.Current.EndsBefore(otherRange))
@@ -469,10 +469,10 @@ namespace CodeJam.Ranges
 				return false;
 			}
 
-			bool result = false;
+			var result = false;
 			using (var containingRanges = GetMergedRanges().GetEnumerator())
 			{
-				bool hasContainingRange = containingRanges.MoveNext();
+				var hasContainingRange = containingRanges.MoveNext();
 				foreach (var otherRange in other.GetMergedRanges())
 				{
 					while (hasContainingRange && containingRanges.Current.EndsBefore(otherRange))
@@ -566,7 +566,7 @@ namespace CodeJam.Ranges
 				return this;
 
 			var ranges = SubRanges.ToArray();
-			for (int i = 0; i < ranges.Length; i++)
+			for (var i = 0; i < ranges.Length; i++)
 			{
 				if (ranges[i].From != ContainingRange.From)
 					break;
@@ -597,7 +597,7 @@ namespace CodeJam.Ranges
 				return this;
 
 			var ranges = SubRanges.ToArray();
-			for (int i = ranges.Length - 1; i >= 0; i--)
+			for (var i = ranges.Length - 1; i >= 0; i--)
 			{
 				if (ranges[i].To != ContainingRange.To)
 					break;
@@ -664,7 +664,7 @@ namespace CodeJam.Ranges
 
 			foreach (var otherRange in other.GetMergedRanges())
 			{
-				for (int i = 0; i < rangesToIntersect.Count; i++)
+				for (var i = 0; i < rangesToIntersect.Count; i++)
 				{
 					var intersectionRange = rangesToIntersect[i];
 					if (intersectionRange.StartsAfter(otherRange))
@@ -728,7 +728,7 @@ namespace CodeJam.Ranges
 
 			foreach (var otherRange in other.GetMergedRanges())
 			{
-				for (int i = 0; i < rangesToIntersect.Count; i++)
+				for (var i = 0; i < rangesToIntersect.Count; i++)
 				{
 					var intersectionRange = rangesToIntersect[i];
 					if (intersectionRange.StartsAfter(otherRange))
@@ -866,8 +866,6 @@ namespace CodeJam.Ranges
 		/// Returns complementation composite range.
 		/// Result range contains result of (infinityRange.Exclude(this).
 		/// </summary>
-		/// <typeparam name="T">The type of the range values.</typeparam>
-		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <returns>Complementation composite range.</returns>
 		#region T4-dont-replace
 		[Pure]

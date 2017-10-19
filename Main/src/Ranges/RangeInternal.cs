@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Reflection;
 
-using CodeJam.Arithmetic;
 using CodeJam.Reflection;
 
 namespace CodeJam.Ranges
@@ -65,9 +64,13 @@ namespace CodeJam.Ranges
 		/// <returns>The format callback. Returns <c>null</c> if the first arg is <c>null</c>.</returns>
 		internal static Func<T, string, IFormatProvider, string> CreateFormattableCallback<T>()
 		{
+			const BindingFlags bf = BindingFlags.Static | BindingFlags.NonPublic;
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T)))
 			{
-				var method = typeof(RangeInternal).GetMethod(nameof(Format)).MakeGenericMethod(typeof(T));
+				// ReSharper disable once PossibleNullReferenceException
+				var method = typeof(RangeInternal)
+					.GetMethod(nameof(Format), bf)
+					.MakeGenericMethod(typeof(T));
 				// no boxing for IFormatProvider
 				return (Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
 					typeof(Func<T, string, IFormatProvider, string>),
@@ -76,7 +79,10 @@ namespace CodeJam.Ranges
 			}
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T).ToNullableUnderlying()))
 			{
-				var method = typeof(RangeInternal).GetMethod(nameof(FormatNullable)).MakeGenericMethod(typeof(T).ToNullableUnderlying());
+				// ReSharper disable once PossibleNullReferenceException
+				var method = typeof(RangeInternal)
+					.GetMethod(nameof(FormatNullable), bf)
+					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
 				// no boxing for IFormatProvider
 				return (Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
 					typeof(Func<T, string, IFormatProvider, string>),
@@ -86,10 +92,10 @@ namespace CodeJam.Ranges
 			return (value, format, formatProvider) => value?.ToString();
 		}
 
-		public static string Format<T>(T value, string format, IFormatProvider formatProvider) where T : IFormattable =>
+		private static string Format<T>(T value, string format, IFormatProvider formatProvider) where T : IFormattable =>
 			value?.ToString(format, formatProvider);
 
-		public static string FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
+		private static string FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
 			where T : struct, IFormattable =>
 				value?.ToString(format, formatProvider);
 	}
