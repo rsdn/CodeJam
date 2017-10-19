@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 
-using CodeJam.Arithmetic;
 using CodeJam.Reflection;
 
 namespace CodeJam.Ranges
@@ -86,10 +84,10 @@ namespace CodeJam.Ranges
 			return (value, format, formatProvider) => value?.ToString();
 		}
 
-		public static string Format<T>(T value, string format, IFormatProvider formatProvider) where T : IFormattable =>
+		private static string Format<T>(T value, string format, IFormatProvider formatProvider) where T : IFormattable =>
 			value?.ToString(format, formatProvider);
 
-		public static string FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
+		private static string FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
 			where T : struct, IFormattable =>
 				value?.ToString(format, formatProvider);
 	}

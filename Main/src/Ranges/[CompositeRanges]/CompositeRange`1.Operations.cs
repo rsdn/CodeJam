@@ -865,7 +865,7 @@ namespace CodeJam.Ranges
 		{
 			if (IsEmpty)
 			{
-				return CompositeRange<T>.Infinite;
+				return Infinite;
 			}
 
 			var result = new List<Range<T>>();
