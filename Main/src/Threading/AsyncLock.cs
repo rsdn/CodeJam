@@ -28,9 +28,36 @@ namespace CodeJam.Threading
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
+		[MustUseReturnValue("Lock should be disposed")]
 		public async Task<IDisposable> AcquireAsync(TimeSpan timeout, CancellationToken cancellation)
 		{
-			var succeed = await _semaphore.WaitAsync(timeout, cancellation);
+			var succeeded = await _semaphore.WaitAsync(timeout, cancellation);
+			if (!succeeded)
+			{
+				cancellation.ThrowIfCancellationRequested();
+				throw new TimeoutException($"Attempt to take lock timed out in {timeout}.");
+			}
+			return Disposable.Create(s => s.Release(), _semaphore);
+		}
+
+		/// <summary>
+		/// Synchronously acquires async lock.
+		/// </summary>
+		/// <param name="timeout">
+		/// A <see cref="TimeSpan"/> that represents the timeout to wait if lock already acquired, a <see cref="TimeSpan"/>
+		/// that represents -1 milliseconds to wait indefinitely, or a <see cref="TimeSpan"/> that represents 0 milliseconds
+		/// to return immediately.
+		/// </param>
+		/// <param name="cancellation">The CancellationToken token to observe.</param>
+		/// <returns>An <see cref="IDisposable"/> to release the lock.</returns>
+		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
+		/// <exception cref="TimeoutException">The timeout has expired.</exception>
+		/// <remarks>Should be used only in specific scenario, when sync and async code uses lock together</remarks>
+		[NotNull]
+		[MustUseReturnValue("Lock should be disposed")]
+		public IDisposable AcquireSync(TimeSpan timeout, CancellationToken cancellation)
+		{
+			var succeed = _semaphore.Wait(timeout, cancellation);
 			if (!succeed)
 			{
 				cancellation.ThrowIfCancellationRequested();
@@ -51,6 +78,7 @@ namespace CodeJam.Threading
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
+		[MustUseReturnValue("Lock should be disposed")]
 		public Task<IDisposable> AcquireAsync(int timeout, CancellationToken cancellation) =>
 			AcquireAsync(TimeSpan.FromMilliseconds(timeout), cancellation);
 
@@ -64,6 +92,7 @@ namespace CodeJam.Threading
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
+		[MustUseReturnValue("Lock should be disposed")]
 		public Task<IDisposable> AcquireAsync(int timeout) => AcquireAsync(TimeSpan.FromMilliseconds(timeout), CancellationToken.None);
 
 		/// <summary>
@@ -77,6 +106,7 @@ namespace CodeJam.Threading
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
+		[MustUseReturnValue("Lock should be disposed")]
 		public Task<IDisposable> AcquireAsync(TimeSpan timeout) => AcquireAsync(timeout, CancellationToken.None);
 
 		/// <summary>
@@ -86,6 +116,7 @@ namespace CodeJam.Threading
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		[NotNull, ItemNotNull]
+		[MustUseReturnValue("Lock should be disposed")]
 		public Task<IDisposable> AcquireAsync(CancellationToken cancellation) => AcquireAsync(-1, cancellation);
 
 		/// <summary>
@@ -93,6 +124,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
 		[NotNull, ItemNotNull]
+		[MustUseReturnValue("Lock should be disposed")]
 		public Task<IDisposable> AcquireAsync() => AcquireAsync(-1);
 	}
 }
