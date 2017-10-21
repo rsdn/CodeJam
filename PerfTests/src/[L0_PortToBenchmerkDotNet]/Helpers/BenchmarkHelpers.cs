@@ -145,6 +145,33 @@ namespace BenchmarkDotNet.Helpers
 					process.TrySetPriority(oldProcessPriority, logger);
 				});
 		}
+
+#if !TARGETS_NET // WORKAROUND for missing TrySetPriority in BDN for .Net Core
+		public static bool TrySetPriority(
+			this Thread thread,
+			ThreadPriority priority,
+			ILogger logger)
+		{
+			if (thread == null)
+				throw new ArgumentNullException(nameof(thread));
+			if (logger == null)
+				throw new ArgumentNullException(nameof(logger));
+
+			try
+			{
+				thread.Priority = priority;
+				return true;
+			}
+			catch (Exception ex)
+			{
+				logger.WriteLineError(
+					$"// ! Failed to set up priority {priority} for thread {thread}. Make sure you have the right permissions. Message: {ex.Message}");
+			}
+
+			return false;
+
+		}
+#endif
 		#endregion
 	}
 }
