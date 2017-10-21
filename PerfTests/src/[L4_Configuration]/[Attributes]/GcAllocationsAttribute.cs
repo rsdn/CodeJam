@@ -36,7 +36,7 @@ namespace CodeJam.PerfTests
 	/// Gc allocations metric attribute.
 	/// NOTE: Noise allocations (total bytes allocated less than minimum gc allocation quantum) are reported as <c>0</c>
 	/// </summary>
-	[MetricInfo(GcMetricValuesProvider.Category, MetricSingleValueMode.BothMinAndMax)]
+	[MetricInfo(GcMetricValuesProvider.Category, DefaultMinMetricValue.SameAsMax)]
 	public class GcAllocationsAttribute : MetricAttributeBase,
 		IMetricAttribute<GcAllocationsAttribute.ValuesProvider, BinarySizeUnit>
 	{

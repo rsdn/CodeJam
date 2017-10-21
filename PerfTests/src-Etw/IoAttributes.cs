@@ -8,7 +8,7 @@ namespace CodeJam.PerfTests
 	/// <summary>
 	/// IO read bytes metric attribute.
 	/// </summary>
-	[MetricInfo(FileIoMetricProvider.Category, MetricSingleValueMode.BothMinAndMax)]
+	[MetricInfo(FileIoMetricProvider.Category, DefaultMinMetricValue.SameAsMax)]
 	public class FileIoReadAttribute : MetricAttributeBase,
 		IMetricAttribute<FileIoReadAttribute.ValuesProvider, BinarySizeUnit>
 	{
@@ -57,7 +57,7 @@ namespace CodeJam.PerfTests
 	/// <summary>
 	/// IO write bytes metric attribute.
 	/// </summary>
-	[MetricInfo(FileIoMetricProvider.Category, MetricSingleValueMode.BothMinAndMax, AnnotateInPlace = true)]
+	[MetricInfo(FileIoMetricProvider.Category, DefaultMinMetricValue.SameAsMax, AnnotateInPlace = true)]
 	public class FileIoWriteAttribute : MetricAttributeBase,
 		IMetricAttribute<FileIoWriteAttribute.ValuesProvider, BinarySizeUnit>
 	{

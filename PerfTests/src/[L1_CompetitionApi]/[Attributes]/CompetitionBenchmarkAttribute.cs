@@ -18,7 +18,7 @@ namespace CodeJam.PerfTests
 	[PublicAPI, MeansImplicitUse]
 	[MetricInfo(
 		TimeMetricValuesProvider.Category,
-		MetricSingleValueMode.FromZeroToMax,
+		DefaultMinMetricValue.Zero,
 		DisplayName = "Scaled",
 		MetricColumns = MetricValueColumns.ValueAndStdDev)]
 	public class CompetitionBenchmarkAttribute : BenchmarkAttribute,
@@ -99,7 +99,7 @@ namespace CodeJam.PerfTests
 
 		/// <summary>The value that represents measurement unit for the metric value.</summary>
 		/// <value>The value that represents measurement unit for the metric value.</value>
-		public Enum UnitOfMeasurement { get; set; }
+		public Enum UnitOfMeasurement { get; protected set; }
 
 		/// <summary>Gets the type of the attribute used for metric annotation.</summary>
 		/// <value>The type of the attribute used for metric annotation.</value>

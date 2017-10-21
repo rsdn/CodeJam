@@ -8,11 +8,11 @@ using JetBrains.Annotations;
 
 namespace BenchmarkDotNet.Loggers
 {
-	// BASEDON: https://github.com/PerfDotNet/BenchmarkDotNet/blob/master/BenchmarkDotNet/Loggers/StreamLogger.cs
+	// BASEDON: https://github.com/dotnet/BenchmarkDotNet/blob/master/src/BenchmarkDotNet.Core/Loggers/StreamLogger.cs
 	/// <summary>
 	/// Implementation of <see cref="ILogger"/> that supports lazy initialization and prevents output interleaving.
 	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Loggers.ILogger"/>
+	/// <seealso cref="ILogger"/>
 	[PublicAPI]
 	public sealed class LazySynchronizedStreamLogger : IFlushableLogger
 	{

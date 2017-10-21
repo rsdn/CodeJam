@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -22,13 +22,12 @@ namespace CodeJam.PerfTests.Running.Core
 				string line;
 				while ((line = streamReader.ReadLine()) != null)
 				{
-					var fallback = streamReader.CurrentEncoding.DecoderFallback as DecoderReplacementFallback;
-					if (fallback != null)
+					if (streamReader.CurrentEncoding.DecoderFallback is DecoderReplacementFallback fallback)
 					{
 						var idx = line.IndexOf(fallback.DefaultString, StringComparison.Ordinal);
 						if (idx >= 0)
 							throw new DecoderFallbackException(
-								$"Invalid character at line {lines.Count + 1}, position {idx + 1}.");
+								$"Invalid character at line {lines.Count + 1}, column {idx + 1}.");
 					}
 					lines.Add(line);
 				}

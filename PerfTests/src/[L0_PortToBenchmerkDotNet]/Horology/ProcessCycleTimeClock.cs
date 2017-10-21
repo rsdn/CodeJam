@@ -11,7 +11,7 @@ namespace BenchmarkDotNet.Horology
 	/// WARNING: results are inaccurate (up to +/- 30% to actual time),
 	/// see https://blogs.msdn.microsoft.com/oldnewthing/20160429-00/?p=93385 for more.
 	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Horology.IClock"/>
+	/// <seealso cref="IClock"/>
 	[PublicAPI]
 	public sealed class ProcessCycleTimeClock : IClock
 	{
@@ -19,12 +19,10 @@ namespace BenchmarkDotNet.Horology
 		private static readonly bool _isAvailable;
 		private static readonly long _frequency;
 
-		static ProcessCycleTimeClock()
-		{
+		static ProcessCycleTimeClock() =>
 			_isAvailable = CycleClockHelpers.EstimateProcessCycleTimeFrequency(
 				Chronometer.BestClock,
 				1000 * 1000, out _frequency);
-		}
 
 		/// <summary>Default instance of <see cref="ProcessCycleTimeClock"/>.</summary>
 		public static readonly IClock Instance = new ProcessCycleTimeClock();

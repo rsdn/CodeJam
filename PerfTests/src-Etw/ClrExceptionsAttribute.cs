@@ -8,7 +8,7 @@ namespace CodeJam.PerfTests
 	/// <summary>
 	/// CLR exceptions thrown attribute.
 	/// </summary>
-	[MetricInfo(ClrExceptionsProvider.Category, MetricSingleValueMode.BothMinAndMax)]
+	[MetricInfo(ClrExceptionsProvider.Category, DefaultMinMetricValue.SameAsMax)]
 	public class ClrExceptionsAttribute : MetricAttributeBase,
 		IMetricAttribute<ClrExceptionsAttribute.ValuesProvider>
 	{

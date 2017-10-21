@@ -15,9 +15,6 @@ namespace CodeJam.PerfTests
 	public class CompetitionBaselineAttribute : CompetitionBenchmarkAttribute
 	{
 		/// <summary>Constructor for baseline competition benchmark attribute.</summary>
-		public CompetitionBaselineAttribute()
-		{
-			Baseline = true;
-		}
+		public CompetitionBaselineAttribute() => Baseline = true;
 	}
 }

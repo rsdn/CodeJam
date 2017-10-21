@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Reflection;
 
+using CodeJam.PerfTests.Running.Core;
 using CodeJam.Ranges;
 
 using JetBrains.Annotations;
@@ -20,7 +21,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			string path,
 			CompositeRange<int, MethodBase> methodLinesMap,
 			SourceLanguage sourceLanguage,
-			ChecksumAlgorithm checksumAlgorithm,
+			PdbChecksumAlgorithm checksumAlgorithm,
 			byte[] checksum)
 		{
 			Code.NotNullNorEmpty(path, nameof(path));
@@ -48,7 +49,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		/// <summary>Gets checksum algorithm.</summary>
 		/// <value>The checksum algorithm.</value>
-		public ChecksumAlgorithm ChecksumAlgorithm { get; }
+		public PdbChecksumAlgorithm ChecksumAlgorithm { get; }
 
 		/// <summary>Gets checksum.</summary>
 		/// <value>The checksum.</value>

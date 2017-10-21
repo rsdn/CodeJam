@@ -1,12 +1,13 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Loggers;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Loggers
+// ReSharper disable once CheckNamespace
+
+namespace BenchmarkDotNet.Loggers
 {
 	/// <summary>
 	/// Logger helpers.

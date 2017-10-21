@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,8 +11,8 @@ using JetBrains.Annotations;
 #if TARGETS_NET
 using System.Configuration;
 #else
-using Microsoft.Extensions.Configuration;
 using System.Xml;
+using Microsoft.Extensions.Configuration;
 #endif
 
 namespace CodeJam.PerfTests.Running.Core
@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 #if TARGETS_NET
 			return AppDomain.CurrentDomain.SetupInformation.ConfigurationFile ??
-				((Assembly.GetEntryAssembly()?.GetAssemblyPath()??
+				((Assembly.GetEntryAssembly()?.GetAssemblyPath() ??
 					Process.GetCurrentProcess().MainModule.FileName) + ".config");
 #else
 			return (Assembly.GetEntryAssembly()?.GetAssemblyPath() ?? Process.GetCurrentProcess().MainModule.FileName) + ".config";

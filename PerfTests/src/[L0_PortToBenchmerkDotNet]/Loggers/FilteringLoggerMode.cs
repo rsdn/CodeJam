@@ -2,11 +2,13 @@
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Loggers
+// ReSharper disable once CheckNamespace
+
+namespace BenchmarkDotNet.Loggers
 {
 	/// <summary>Log filtering mode.</summary>
 	[PublicAPI]
-	public enum LogFilter
+	public enum FilteringLoggerMode
 	{
 		/// <summary>Log all messages.</summary>
 		AllMessages,

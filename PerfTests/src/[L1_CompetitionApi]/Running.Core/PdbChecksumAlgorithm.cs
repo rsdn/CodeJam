@@ -1,12 +1,12 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.SourceAnnotations
+namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
-	/// Known hashing algorithms
+	/// Known PDB algorithms
 	/// </summary>
-	internal enum ChecksumAlgorithm
+	public enum PdbChecksumAlgorithm
 	{
 		/// <summary>Unknown</summary>
 		[UsedImplicitly]

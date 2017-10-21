@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Loggers;
-
+using CodeJam;
 using CodeJam.Threading;
-
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Loggers
+// ReSharper disable once CheckNamespace
+
+namespace BenchmarkDotNet.Loggers
 {
 	/// <summary>Basic logger implementation that supports message filtering.</summary>
 	/// <seealso cref="ILogger"/>
@@ -23,31 +23,31 @@ namespace CodeJam.PerfTests.Loggers
 		#region Log line prefixes (constants)
 		/// <summary>
 		/// The prefix for verbose log lines.
-		/// Lines with this prefix will be written only if <see cref="Loggers.LogFilter.AllMessages"/> mode set.
+		/// Lines with this prefix will be written only if <see cref="Loggers.FilteringLoggerMode.AllMessages"/> mode set.
 		/// </summary>
 		public const string LogVerbosePrefix = "//  ";
 
 		/// <summary>
 		/// The prefix for informational log lines.
-		/// Lines with this prefix will be written even if <see cref="LogFilter"/> filter applied.
+		/// Lines with this prefix will be written even if <see cref="FilteringMode"/> filter applied.
 		/// </summary>
 		public const string LogInfoPrefix = "// ?";
 
 		/// <summary>
 		/// The prefix for important log lines.
-		/// Lines with this prefix will be written even if <see cref="LogFilter"/> filter applied.
+		/// Lines with this prefix will be written even if <see cref="FilteringMode"/> filter applied.
 		/// </summary>
 		public const string LogImportantInfoPrefix = "// !";
 
 		/// <summary>
 		/// The start prefix for important log area.
-		/// Lines between start and end prefixes will be written even if <see cref="LogFilter"/> filter applied.
+		/// Lines between start and end prefixes will be written even if <see cref="FilteringMode"/> filter applied.
 		/// </summary>
 		public const string LogImportantAreaStart = "// !<--";
 
 		/// <summary>
 		/// The end prefix for important log area.
-		/// Lines between start and end prefixes will be written even if <see cref="LogFilter"/> filter applied.
+		/// Lines between start and end prefixes will be written even if <see cref="FilteringMode"/> filter applied.
 		/// </summary>
 		public const string LogImportantAreaEnd = "// !-->";
 		#endregion
@@ -83,14 +83,14 @@ namespace CodeJam.PerfTests.Loggers
 
 		/// <summary>Initializes a new instance of the <see cref="FilteringLogger"/> class.</summary>
 		/// <param name="wrappedLogger">The logger to redirect the output. Cannot be null.</param>
-		/// <param name="logFilter">The log filtering mode.</param>
-		public FilteringLogger([NotNull] ILogger wrappedLogger, LogFilter logFilter)
+		/// <param name="filteringMode">The log filtering mode.</param>
+		public FilteringLogger([NotNull] ILogger wrappedLogger, FilteringLoggerMode filteringMode)
 		{
-			Code.NotNull(wrappedLogger, nameof(wrappedLogger));
-			DebugEnumCode.Defined(logFilter, nameof(logFilter));
+			if (wrappedLogger == null)
+				throw new ArgumentNullException(nameof(wrappedLogger));
 
 			WrappedLogger = wrappedLogger;
-			LogFilter = logFilter;
+			FilteringMode = filteringMode;
 		}
 
 		/// <summary>Gets logger that consumes filtered text.</summary>
@@ -99,7 +99,7 @@ namespace CodeJam.PerfTests.Loggers
 
 		/// <summary>Gets log filtering mode.</summary>
 		/// <value>The log filtering mode.</value>
-		public LogFilter LogFilter { get; }
+		public FilteringLoggerMode FilteringMode { get; }
 		#endregion
 
 #pragma warning disable 420
@@ -115,16 +115,16 @@ namespace CodeJam.PerfTests.Loggers
 		/// <param name="logKind">The kind of log message.</param>
 		/// <returns><c>true</c> if the line should be written.</returns>
 		protected virtual bool ShouldWrite(LogKind logKind) =>
-			LogFilter == LogFilter.AllMessages ||
+			FilteringMode == FilteringLoggerMode.AllMessages ||
 				_importantAreaCount > 0 ||
-				(logKind == LogKind.Error && LogFilter == LogFilter.PrefixedOrErrors);
+				(logKind == LogKind.Error && FilteringMode == FilteringLoggerMode.PrefixedOrErrors);
 
 		/// <summary>Handles well-known prefixes for the line.</summary>
 		/// <param name="text">The text of the log line.</param>
 		/// <returns><c>true</c> if the line should be written.</returns>
 		protected virtual bool PreprocessLine(string text)
 		{
-			if (LogFilter == LogFilter.AllMessages)
+			if (FilteringMode == FilteringLoggerMode.AllMessages)
 				return true;
 
 			if (string.IsNullOrEmpty(text))

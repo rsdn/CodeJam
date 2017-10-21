@@ -3,8 +3,6 @@
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Loggers;
 
-using CodeJam.PerfTests.Loggers;
-
 using NUnit.Framework;
 
 namespace CodeJam.PerfTests
@@ -125,7 +123,7 @@ TST10");
 			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
 
 			var output = new AccumulationLogger();
-			var logger = new FilteringLogger(output, LogFilter.AllMessages);
+			var logger = new FilteringLogger(output, FilteringLoggerMode.AllMessages);
 			foreach (var line in lines)
 			{
 				logger.WriteLine(line);
@@ -133,7 +131,7 @@ TST10");
 			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
 			output = new AccumulationLogger();
-			logger = new FilteringLogger(output, LogFilter.AllMessages);
+			logger = new FilteringLogger(output, FilteringLoggerMode.AllMessages);
 			var i = 0;
 			foreach (var line in lines)
 			{
@@ -145,7 +143,7 @@ TST10");
 			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
 			output = new AccumulationLogger();
-			logger = new FilteringLogger(output, LogFilter.AllMessages);
+			logger = new FilteringLogger(output, FilteringLoggerMode.AllMessages);
 			LogMessages(logger);
 			// ReSharper disable once StringLiteralTypo
 			const string Expected = @"ABCDEFGH
@@ -174,7 +172,7 @@ TST10
 		{
 			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
 			var output = new AccumulationLogger();
-			var logger = new FilteringLogger(output, LogFilter.PrefixedOrErrors);
+			var logger = new FilteringLogger(output, FilteringLoggerMode.PrefixedOrErrors);
 			foreach (var line in lines)
 			{
 				logger.WriteLine(line);
@@ -182,7 +180,7 @@ TST10
 			Assert.AreEqual(output.GetLog(), PrefixedLogOutput);
 
 			output = new AccumulationLogger();
-			logger = new FilteringLogger(output, LogFilter.PrefixedOrErrors);
+			logger = new FilteringLogger(output, FilteringLoggerMode.PrefixedOrErrors);
 			foreach (var line in lines)
 			{
 				logger.WriteLineError(line);
@@ -190,7 +188,7 @@ TST10
 			Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
 			output = new AccumulationLogger();
-			logger = new FilteringLogger(output, LogFilter.PrefixedOrErrors);
+			logger = new FilteringLogger(output, FilteringLoggerMode.PrefixedOrErrors);
 			LogMessages(logger);
 			const string Expected = @"A
 // !TST1
@@ -212,7 +210,7 @@ TST6
 		{
 			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
 			var output = new AccumulationLogger();
-			var logger = new FilteringLogger(output, LogFilter.PrefixedOnly);
+			var logger = new FilteringLogger(output, FilteringLoggerMode.PrefixedOnly);
 			foreach (var line in lines)
 			{
 				logger.WriteLine(line);
@@ -220,7 +218,7 @@ TST6
 			Assert.AreEqual(output.GetLog(), PrefixedLogOutput);
 
 			output = new AccumulationLogger();
-			logger = new FilteringLogger(output, LogFilter.PrefixedOnly);
+			logger = new FilteringLogger(output, FilteringLoggerMode.PrefixedOnly);
 			var i = 0;
 			foreach (var line in lines)
 			{
@@ -232,7 +230,7 @@ TST6
 			Assert.AreEqual(output.GetLog(), PrefixedLogOutput);
 
 			output = new AccumulationLogger();
-			logger = new FilteringLogger(output, LogFilter.PrefixedOnly);
+			logger = new FilteringLogger(output, FilteringLoggerMode.PrefixedOnly);
 			LogMessages(logger);
 			const string Expected = @"// !TST1
 // !<--
@@ -254,7 +252,7 @@ TST6
 			var lines = LogInput.Split(new[] { "\r\n" }, StringSplitOptions.None);
 
 			var output = new AccumulationLogger();
-			var logger = new FilteringLogger(output, LogFilter.AllMessages);
+			var logger = new FilteringLogger(output, FilteringLoggerMode.AllMessages);
 
 			var config = new ManualConfig();
 			config.Add(logger);
@@ -268,7 +266,7 @@ TST6
 				Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
 				output = new AccumulationLogger();
-				logger = new FilteringLogger(output, LogFilter.AllMessages);
+				logger = new FilteringLogger(output, FilteringLoggerMode.AllMessages);
 				var i = 0;
 				foreach (var line in lines)
 				{
@@ -280,7 +278,7 @@ TST6
 				Assert.AreEqual(output.GetLog(), LogInput + "\r\n");
 
 				output = new AccumulationLogger();
-				logger = new FilteringLogger(output, LogFilter.AllMessages);
+				logger = new FilteringLogger(output, FilteringLoggerMode.AllMessages);
 				LogMessages(logger);
 				// ReSharper disable once StringLiteralTypo
 				const string Expected = @"ABCDEFGH

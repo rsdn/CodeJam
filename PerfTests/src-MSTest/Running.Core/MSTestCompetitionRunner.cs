@@ -1,13 +1,10 @@
 ﻿using System;
-using System.IO;
 
 using BenchmarkDotNet.Exporters;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Loggers;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -22,7 +19,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			/// <summary>Initializes a new instance of the <see cref="MSTestHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
-			public MSTestHostLogger(LogFilter logMode) : base(new AccumulationLogger(), logMode) { }
+			public MSTestHostLogger(FilteringLoggerMode logMode) : base(new AccumulationLogger(), logMode) { }
 
 			/// <summary>Get string with the log content.</summary>
 			/// <returns>String with the log content.</returns>
@@ -41,7 +38,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
-		protected override HostLogger CreateHostLogger(LogFilter hostLogMode) =>
+		protected override HostLogger CreateHostLogger(FilteringLoggerMode hostLogMode) =>
 			new MSTestHostLogger(hostLogMode);
 
 		/// <summary>Reports content of the host logger to user.</summary>

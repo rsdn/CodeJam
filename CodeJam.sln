@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.Main", "Main\src\CodeJam.Main.csproj", "{2F2046CC-FB47-4318-B335-5A82B04B6C40}"
 EndProject
@@ -66,15 +66,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{0B1D53B2-E
 		PerfTests\docs\Overview.md = PerfTests\docs\Overview.md
 		PerfTests\docs\SourceAnnotations.md = PerfTests\docs\SourceAnnotations.md
 		PerfTests\docs\Tutorial.md = PerfTests\docs\Tutorial.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{4DEBB88D-97A4-4A23-AE53-A118DC5A2551}"
-	ProjectSection(SolutionItems) = preProject
-		PerfTests\nuget\CodeJam.PerfTests.Core.nuspec = PerfTests\nuget\CodeJam.PerfTests.Core.nuspec
-		PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec = PerfTests\nuget\CodeJam.PerfTests.MSTest.nuspec
-		PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec = PerfTests\nuget\CodeJam.PerfTests.NUnit.nuspec
-		PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec = PerfTests\nuget\CodeJam.PerfTests.xUnit.nuspec
-		PerfTests\nuget\Readme.txt = PerfTests\nuget\Readme.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocks", "Blocks", "{3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}"
@@ -225,7 +216,6 @@ Global
 		{B535D8EF-66CC-4701-845D-F4C44C49922E} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 		{08E84F45-2782-4D2E-85C0-FE86AF491C94} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 		{0B1D53B2-EC60-4D2B-8EC4-1135E521A831} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
-		{4DEBB88D-97A4-4A23-AE53-A118DC5A2551} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}
 		{0DFF0859-2400-4487-83AD-0ED10203D6D9} = {3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}
 		{2A52D7F6-AAFC-4AC4-9901-252C13D96E53} = {3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}
 		{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D} = {F9C61696-C38B-4D6A-84C8-BED1DDC7A52E}

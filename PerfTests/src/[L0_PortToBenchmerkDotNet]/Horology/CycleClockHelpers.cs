@@ -36,16 +36,6 @@ namespace BenchmarkDotNet.Horology
 		private static extern bool QueryThreadCycleTime(IntPtr threadHandle, out ulong cycleTime);
 		#endregion
 
-		private static bool IsWindows()
-		{
-#if !CORE
-			return new[] { PlatformID.Win32NT, PlatformID.Win32S, PlatformID.Win32Windows, PlatformID.WinCE }
-				.Contains(Environment.OSVersion.Platform);
-#else
-			return System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#endif
-		}
-
 		/// <summary>Current process pseudo-handle</summary>
 		private static readonly IntPtr _currentProcessHandle = GetCurrentProcess();
 
@@ -56,8 +46,7 @@ namespace BenchmarkDotNet.Horology
 		/// <returns>Process cycle time timestamp.</returns>
 		public static long GetCurrentProcessTimestamp()
 		{
-			ulong result;
-			if (!QueryProcessCycleTime(_currentProcessHandle, out result))
+			if (!QueryProcessCycleTime(_currentProcessHandle, out var result))
 				throw new Win32Exception();
 
 			return checked((long)result);
@@ -67,32 +56,10 @@ namespace BenchmarkDotNet.Horology
 		/// <returns>Thread cycle time timestamp.</returns>
 		public static long GetCurrentThreadTimestamp()
 		{
-			ulong result;
-			if (!QueryThreadCycleTime(_currentThreadHandle, out result))
+			if (!QueryThreadCycleTime(_currentThreadHandle, out var result))
 				throw new Win32Exception();
 
 			return checked((long)result);
-		}
-
-		private static bool RunHighestPriority([InstantHandle] Action callback)
-		{
-			if (!IsWindows())
-			{
-				return false;
-			}
-
-			using (BenchmarkHelpers.SetupHighestPriorityScope(null, ConsoleLogger.Default))
-			{
-				try
-				{
-					callback();
-					return true;
-				}
-				catch (Win32Exception)
-				{
-					return false;
-				}
-			}
 		}
 
 		/// <summary>
@@ -107,7 +74,7 @@ namespace BenchmarkDotNet.Horology
 		public static bool EstimateProcessCycleTimeFrequency(IClock clock, int iterationsCount, out long frequency)
 		{
 			var freq = default(long);
-			var result = RunHighestPriority(
+			var result = RunHighestPriorityIfWindows(
 				() =>
 				{
 					var t = clock.Start();
@@ -135,7 +102,7 @@ namespace BenchmarkDotNet.Horology
 		public static bool EstimateThreadCycleTimeFrequency(IClock clock, int iterationsCount, out long frequency)
 		{
 			var freq = default(long);
-			var result = RunHighestPriority(
+			var result = RunHighestPriorityIfWindows(
 				() =>
 				{
 					var t = clock.Start();
@@ -149,6 +116,37 @@ namespace BenchmarkDotNet.Horology
 
 			frequency = freq;
 			return result;
+		}
+
+		private static bool RunHighestPriorityIfWindows([InstantHandle] Action callback)
+		{
+			if (!IsWindows())
+			{
+				return false;
+			}
+
+			using (BenchmarkHelpers.SetupHighestPriorityScope(null, ConsoleLogger.Default))
+			{
+				try
+				{
+					callback();
+					return true;
+				}
+				catch (Win32Exception)
+				{
+					return false;
+				}
+			}
+		}
+
+		private static bool IsWindows()
+		{
+#if !CORE || TARGETS_NET
+			return new[] { PlatformID.Win32NT, PlatformID.Win32S, PlatformID.Win32Windows, PlatformID.WinCE }
+				.Contains(Environment.OSVersion.Platform);
+#else
+			return System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+#endif
 		}
 	}
 }

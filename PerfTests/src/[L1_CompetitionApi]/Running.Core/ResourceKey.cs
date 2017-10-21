@@ -3,7 +3,7 @@ using System.Reflection;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.SourceAnnotations
+namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
 	/// Key for assembly resources. Can be persisted in the current appdomain only.

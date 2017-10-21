@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;

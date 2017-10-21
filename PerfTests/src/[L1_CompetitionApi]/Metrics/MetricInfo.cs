@@ -4,6 +4,7 @@ using System.Linq;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Diagnosers;
 
+using CodeJam.PerfTests.Running.Core;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -108,7 +109,7 @@ namespace CodeJam.PerfTests.Metrics
 			{
 				Category = metricMeta.Category;
 				AnnotateInPlace = metricMeta.AnnotateInPlace;
-				SingleValueMode = metricMeta.SingleValueMode;
+				DefaultMinValue = metricMeta.DefaultMinValue;
 				MetricColumns = metricMeta.MetricColumns;
 			}
 		}
@@ -163,7 +164,7 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>Gets single value treatment mode.</summary>
 		/// <value>The single value treatment mode.</value>
-		public MetricSingleValueMode SingleValueMode { get; }
+		public DefaultMinMetricValue DefaultMinValue { get; }
 
 		/// <summary>Gets columns to include into summary output.</summary>
 		/// <value>The columns to include into summary output.</value>

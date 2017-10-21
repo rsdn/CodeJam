@@ -245,14 +245,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 
 			var symbolsChecksum = documentInfo.Checksum;
-			var fileChecksum = AnnotationHelpers.TryGetChecksum(documentInfo.Path, documentInfo.ChecksumAlgorithm);
+			var fileChecksum = PdbHelpers.TryGetChecksum(documentInfo.Path, documentInfo.ChecksumAlgorithm);
 
 			if (!symbolsChecksum.EqualsTo(fileChecksum))
 			{
 				var expected = symbolsChecksum.ToHexString();
 				var actual = fileChecksum.ToHexString();
 				messageLogger.WriteSetupErrorMessage(
-					$"{ChecksumAlgorithm.Sha1} checksum validation failed. File '{documentInfo.Path}'." +
+					$"{PdbChecksumAlgorithm.Sha1} checksum validation failed. File '{documentInfo.Path}'." +
 						$"{Environment.NewLine}\tActual: 0x{actual}" +
 						$"{Environment.NewLine}\tExpected: 0x{expected}");
 

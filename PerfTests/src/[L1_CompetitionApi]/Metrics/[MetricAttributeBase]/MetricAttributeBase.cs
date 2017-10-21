@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using static CodeJam.PerfTests.Metrics.MetricRange;
 
@@ -17,7 +17,7 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>
 		/// Sets max value of the metric range.
-		/// The min value set depending on <see cref="MetricInfoAttribute.SingleValueMode"/>.
+		/// The min value set depending on <see cref="MetricInfoAttribute.DefaultMinValue"/>.
 		/// </summary>
 		/// <param name="max">
 		/// The maximum value.

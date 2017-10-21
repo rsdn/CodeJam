@@ -35,6 +35,11 @@
 		<OutputPath>bin\Publish\</OutputPath>
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="[L3_CompetitionAnalysers]\**" />
+	  <EmbeddedResource Remove="[L3_CompetitionAnalysers]\**" />
+	  <None Remove="[L3_CompetitionAnalysers]\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
@@ -67,10 +72,6 @@
 
 	<ItemGroup>
 		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="[L3_CompetitionAnalysers]\" />
 	</ItemGroup>
 
 </Project>

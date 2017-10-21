@@ -1,12 +1,10 @@
 ﻿using System;
 using System.IO;
 
-using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Loggers;
 
 namespace CodeJam.PerfTests.Running.Core
 {
@@ -19,14 +17,14 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			/// <summary>Initializes a new instance of the <see cref="ConsoleHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
-			public ConsoleHostLogger(LogFilter logMode) : base(ConsoleLogger.Default, logMode) { }
+			public ConsoleHostLogger(FilteringLoggerMode logMode) : base(ConsoleLogger.Default, logMode) { }
 		}
 
 		#region Host-related logic
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
-		protected override HostLogger CreateHostLogger(LogFilter hostLogMode) =>
+		protected override HostLogger CreateHostLogger(FilteringLoggerMode hostLogMode) =>
 			new ConsoleHostLogger(hostLogMode);
 
 		/// <summary>Reports the execution errors to user.</summary>

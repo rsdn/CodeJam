@@ -7,7 +7,6 @@ using System.Reflection;
 using BenchmarkDotNet.Loggers;
 
 using CodeJam.Collections;
-using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.Reflection;
 
@@ -76,7 +75,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			Algorithms.Memoize(
 				(Assembly a) => new FilteringLogger(
 					CreateAssemblyLevelLogger(a, ImportantOnlyLogSuffix),
-					LogFilter.PrefixedOrErrors),
+					FilteringLoggerMode.PrefixedOrErrors),
 				true);
 
 		private static LazySynchronizedStreamLogger CreateAssemblyLevelLogger(Assembly assembly, string suffix)

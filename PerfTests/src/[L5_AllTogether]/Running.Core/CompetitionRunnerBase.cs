@@ -17,7 +17,6 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
 using CodeJam.PerfTests.Exporters;
-using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 
@@ -37,7 +36,7 @@ namespace CodeJam.PerfTests.Running.Core
 			/// <summary>Initializes a new instance of the <see cref="HostLogger"/> class.</summary>
 			/// <param name="wrappedLogger">The logger to redirect the output. Cannot be null.</param>
 			/// <param name="logMode">Host logging mode.</param>
-			protected HostLogger([NotNull] ILogger wrappedLogger, LogFilter logMode)
+			protected HostLogger([NotNull] ILogger wrappedLogger, FilteringLoggerMode logMode)
 				: base(wrappedLogger, logMode) { }
 		}
 
@@ -317,7 +316,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="HostLogger"/></returns>
 		[NotNull]
-		protected abstract HostLogger CreateHostLogger(LogFilter hostLogMode);
+		protected abstract HostLogger CreateHostLogger(FilteringLoggerMode hostLogMode);
 
 		/// <summary>Reports content of the host logger to user.</summary>
 		/// <param name="logger">The host logger.</param>
@@ -394,7 +393,7 @@ namespace CodeJam.PerfTests.Running.Core
 		private void FixConfigLoggers(ManualCompetitionConfig competitionConfig)
 		{
 			var runOptions = competitionConfig.Options.RunOptions;
-			var hostLogMode = runOptions.DetailedLogging ? LogFilter.AllMessages : LogFilter.PrefixedOrErrors;
+			var hostLogMode = runOptions.DetailedLogging ? FilteringLoggerMode.AllMessages : FilteringLoggerMode.PrefixedOrErrors;
 			competitionConfig.Loggers.Insert(0, CreateHostLogger(hostLogMode));
 		}
 

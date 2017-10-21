@@ -126,17 +126,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			// ReSharper disable once PossibleNullReferenceException
 			var methodLinesMap = GetMethodLinesMap(documentInfo, reader, target.Method.DeclaringType.Assembly);
 			var sourceLanguage = SourceLanguage.Unknown;
-			var checksumAlgorithm = ChecksumAlgorithm.Unknown;
+			var checksumAlgorithm = PdbChecksumAlgorithm.Unknown;
 			var checksum = documentInfo.GetChecksum();
 
 			var checksumAlgorithmId = documentInfo.GetHashAlgorithm();
 			if (checksumAlgorithmId == _corSymSourceHashMd5)
 			{
-				checksumAlgorithm = ChecksumAlgorithm.Md5;
+				checksumAlgorithm = PdbChecksumAlgorithm.Md5;
 			}
 			else if (checksumAlgorithmId == _corSymSourceHashSha1)
 			{
-				checksumAlgorithm = ChecksumAlgorithm.Sha1;
+				checksumAlgorithm = PdbChecksumAlgorithm.Sha1;
 			}
 
 			var languageId = documentInfo.GetLanguage();
@@ -253,10 +253,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var module = assembly.ManifestModule;
 			var methods =
 				(from m in reader.GetMethodsInDocument(documentInfo)
-					select module.ResolveMethod(m.GetToken())
+				 select module.ResolveMethod(m.GetToken())
 					into method
-					orderby method.IsCompilerGenerated() ? 0 : 1 // non-generated wins
-					select method)
+				 orderby method.IsCompilerGenerated() ? 0 : 1 // non-generated wins
+				 select method)
 					.ToArray();
 
 			var methodLineMapping = new Dictionary<int, MethodBase>();

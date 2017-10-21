@@ -1,13 +1,10 @@
 ﻿using System;
-using System.IO;
 
 using BenchmarkDotNet.Exporters;
-using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Core.Xunit;
 
 using Xunit;
@@ -24,7 +21,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			/// <summary>Initializes a new instance of the <see cref="XunitHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
-			public XunitHostLogger(LogFilter logMode) : base(new AccumulationLogger(), logMode) { }
+			public XunitHostLogger(FilteringLoggerMode logMode) : base(new AccumulationLogger(), logMode) { }
 
 			/// <summary>Get string with the log content.</summary>
 			/// <returns>String with the log content.</returns>
@@ -43,7 +40,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
-		protected override HostLogger CreateHostLogger(LogFilter hostLogMode) =>
+		protected override HostLogger CreateHostLogger(FilteringLoggerMode hostLogMode) =>
 			new XunitHostLogger(hostLogMode);
 
 		/// <summary>Reports content of the host logger to user.</summary>
@@ -51,7 +48,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="summary">The summary to report.</param>
 		protected override void ReportHostLogger(HostLogger logger, Summary summary)
 		{
-			var outLogger = new RedirectLogger(CompetitionFactTestCase.Output);
+			var outLogger = new LazySynchronizedStreamLogger(() => CompetitionFactTestCase.Output);
 			if (summary != null)
 			{
 				// Dumping the benchmark results to console

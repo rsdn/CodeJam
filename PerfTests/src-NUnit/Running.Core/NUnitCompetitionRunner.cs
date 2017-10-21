@@ -6,7 +6,6 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Loggers;
 
 using NUnit.Framework;
 
@@ -21,7 +20,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			/// <summary>Initializes a new instance of the <see cref="NUnitHostLogger"/> class.</summary>
 			/// <param name="logMode">Host logging mode.</param>
-			public NUnitHostLogger(LogFilter logMode) : base(new AccumulationLogger(), logMode) { }
+			public NUnitHostLogger(FilteringLoggerMode logMode) : base(new AccumulationLogger(), logMode) { }
 
 			/// <summary>Get string with the log content.</summary>
 			/// <returns>String with the log content.</returns>
@@ -54,7 +53,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Creates a host logger.</summary>
 		/// <param name="hostLogMode">The host log mode.</param>
 		/// <returns>An instance of <see cref="CompetitionRunnerBase.HostLogger"/></returns>
-		protected override HostLogger CreateHostLogger(LogFilter hostLogMode) =>
+		protected override HostLogger CreateHostLogger(FilteringLoggerMode hostLogMode) =>
 			new NUnitHostLogger(hostLogMode);
 
 		/// <summary>Reports content of the host logger to user.</summary>

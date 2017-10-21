@@ -302,15 +302,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			[NotNull] IMessageLogger messageLogger)
 		{
 			var resourceKey = GetResourceKey(benchmarkType);
-			var resourceChecksum = AnnotationHelpers.TryGetChecksum(resourceKey, ChecksumAlgorithm.Sha1);
-			var fileChecksum = AnnotationHelpers.TryGetChecksum(resourceFileName, ChecksumAlgorithm.Sha1);
+			var resourceChecksum = PdbHelpers.TryGetChecksum(resourceKey, PdbChecksumAlgorithm.Sha1);
+			var fileChecksum = PdbHelpers.TryGetChecksum(resourceFileName, PdbChecksumAlgorithm.Sha1);
 
 			if (!resourceChecksum.EqualsTo(fileChecksum))
 			{
 				var expected = resourceChecksum.ToHexString();
 				var actual = fileChecksum.ToHexString();
 				messageLogger.WriteSetupErrorMessage(
-					$"{ChecksumAlgorithm.Sha1} checksum validation failed. File '{resourceFileName}'." +
+					$"{PdbChecksumAlgorithm.Sha1} checksum validation failed. File '{resourceFileName}'." +
 						$"{Environment.NewLine}\tActual: 0x{actual}" +
 						$"{Environment.NewLine}\tExpected: 0x{expected}");
 

@@ -18,8 +18,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="notifyMessage">The notification message.</param>
 		public static void NotifyWorkDoneAndWaitForConfirmation(string notifyMessage)
 		{
-			notifyMessage = notifyMessage
-				?? "Done. Press any key to continue...";
+			notifyMessage = notifyMessage ?? "Done. Press any key to continue...";
 
 			System.Console.WriteLine();
 			System.Console.Write(notifyMessage);

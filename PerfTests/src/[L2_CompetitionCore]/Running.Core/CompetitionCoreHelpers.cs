@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Loggers;
@@ -9,7 +9,7 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PerfTests.Loggers.FilteringLogger;
+using static BenchmarkDotNet.Loggers.FilteringLogger;
 
 namespace CodeJam.PerfTests.Running.Core
 {

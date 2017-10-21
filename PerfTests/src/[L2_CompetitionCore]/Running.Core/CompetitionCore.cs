@@ -13,13 +13,12 @@ using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Loggers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PerfTests.Loggers.FilteringLogger;
+using static BenchmarkDotNet.Loggers.FilteringLogger;
 
 namespace CodeJam.PerfTests.Running.Core
 {

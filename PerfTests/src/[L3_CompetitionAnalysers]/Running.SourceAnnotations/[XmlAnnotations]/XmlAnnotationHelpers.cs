@@ -21,7 +21,7 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PerfTests.Loggers.FilteringLogger;
+using static BenchmarkDotNet.Loggers.FilteringLogger;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
@@ -125,7 +125,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var assembly = annotationResourceKey.Assembly;
 			var resourceName = annotationResourceKey.ResourceName;
-			using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
+			using (var resourceStream = annotationResourceKey.TryGetResourceStream())
 			{
 				if (resourceStream == null)
 				{

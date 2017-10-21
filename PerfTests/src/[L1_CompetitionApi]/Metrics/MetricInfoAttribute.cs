@@ -13,17 +13,17 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Initializes a new instance of the <see cref="MetricInfoAttribute" /> class.</summary>
 		/// <param name="category">The category of the metric.</param>
 		public MetricInfoAttribute([NotNull] string category)
-			: this(category, MetricSingleValueMode.FromInfinityToMax) { }
+			: this(category, DefaultMinMetricValue.NegativeInfinity) { }
 
 		/// <summary>Initializes a new instance of the <see cref="MetricInfoAttribute"/> class.</summary>
 		/// <param name="category">The category of the metric.</param>
-		/// <param name="singleValueMode">The single value treatment mode.</param>
-		public MetricInfoAttribute([NotNull] string category, MetricSingleValueMode singleValueMode)
+		/// <param name="defaultMinValue">Min value to be used by default.</param>
+		public MetricInfoAttribute([NotNull] string category, DefaultMinMetricValue defaultMinValue)
 		{
 			Code.NotNullNorEmpty(category, nameof(category));
 
 			Category = category;
-			SingleValueMode = singleValueMode;
+			DefaultMinValue = defaultMinValue;
 			MetricColumns = MetricValueColumns.Default;
 		}
 
@@ -34,7 +34,7 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>Gets single value treatment mode.</summary>
 		/// <value>The single value treatment mode.</value>
-		public MetricSingleValueMode SingleValueMode { get; }
+		public DefaultMinMetricValue DefaultMinValue { get; }
 
 		/// <summary>Gets or sets display name of the metric.</summary>
 		/// <value>The display name of the metric.</value>
