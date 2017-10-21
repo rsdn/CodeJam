@@ -11,6 +11,7 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Helpers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Ranges;
 using CodeJam.Reflection;
@@ -338,7 +339,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						attributeTypeHandle,
 						out var attributeLineNumber))
 					{
-						bool updated = TryUpdateLineWithAttribute(sourceCodeFile, attributeLineNumber, metricValue);
+						bool updated = TryUpdateExistingAttributeAnnotation(sourceCodeFile, attributeLineNumber, metricValue);
 
 						if (updated && attributeAppendLineNumber <= 0)
 						{
@@ -349,16 +350,16 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					else
 					{
 						bool inserted = false;
-						if (metricValue.Metric.AnnotateInPlace && attributeAppendLineNumber > 0)
+						if (metricValue.Metric.CompactAttributeAnnotations && attributeAppendLineNumber > 0)
 						{
-							inserted = TryInsertAttributeInPlace(
+							inserted = TryAppendAttributeAnnotation(
 								sourceCodeFile, attributeAppendLineNumber,
 								benchmarkMethod, metricValue);
 						}
 
 						if (!inserted)
 						{
-							attributeInsertLineNumber = InsertLineWithAttribute(
+							attributeInsertLineNumber = InsertNewLineWithAttributeAnnotation(
 								sourceCodeFile, attributeInsertLineNumber,
 								benchmarkMethod, metricValue);
 							if (attributeAppendLineNumber <= 0)

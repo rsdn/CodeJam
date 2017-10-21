@@ -47,7 +47,7 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Always adjust metric limits if they are empty.</summary>
 		/// <value>
-		/// <c>true</c> to perform adjustment of empty metric limits 
+		/// <c>true</c> to perform adjustment of empty metric limits
 		/// even if <see cref="AdjustMetrics"/> is disabled; otherwise, <c>false</c>.
 		/// </value>
 		public bool ForceEmptyMetricsAdjustment

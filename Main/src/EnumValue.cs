@@ -19,7 +19,7 @@ namespace CodeJam
 		/// <param name="description">Description</param>
 		internal EnumValue(
 			[NotNull] string name,
-			[NotNull] object value,
+			[NotNull] Enum value,
 			[NotNull] FieldInfo underlyingField,
 			[CanBeNull] string displayName,
 			[CanBeNull] string description)
@@ -45,7 +45,7 @@ namespace CodeJam
 		/// Gets enum element value.
 		/// </summary>
 		[NotNull]
-		public object Value { get; }
+		public Enum Value { get; }
 
 		/// <summary>
 		/// Gets enum underlying field.

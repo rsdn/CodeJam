@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Environments;
@@ -41,7 +41,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// </param>
 		/// <param name="metricUnit">The metric unit that was used to store metric range.</param>
 		/// <returns>Metrics range.</returns>
-		public static MetricRange CreateMetricRange(double? min, double? max, MetricUnit metricUnit)
+		public static MetricRange CreateMetricRange(double? min, double? max, [NotNull] MetricUnit metricUnit)
 		{
 			var minValue = min ?? MetricRange.FromNegativeInfinity;
 			var maxValue = max ?? MetricRange.ToPositiveInfinity;
@@ -75,6 +75,9 @@ namespace CodeJam.PerfTests.Metrics
 
 			// Make value smaller to get additional fractional digits
 			// for values with normalized mantissa less than 1.9;
+			// as example,
+			//  0.2123 will be printed as 0.21
+			//  0.1812 will be printed as 0.181
 			value *= ScaleCoefficient;
 
 			// Get exponent part of the value. As the value expected to be <<1 result should be negated.
@@ -112,7 +115,7 @@ namespace CodeJam.PerfTests.Metrics
 
 		#region Scaled
 		/// <summary>
-		/// Determines whether the range contains another one. 
+		/// Determines whether the range contains another one.
 		/// The check is performed using same rounding that will be used to store the <paramref name="metricValues"/>.
 		/// </summary>
 		/// <param name="metricValues">Range of metric values.</param>
@@ -156,7 +159,7 @@ namespace CodeJam.PerfTests.Metrics
 			return scaledMetricValues.Min.Equals(scaledMetricValues.Max);
 		}
 
-		private static MetricRange ToScaledValues(this MetricRange metricValues, MetricUnit metricUnit) => 
+		private static MetricRange ToScaledValues(this MetricRange metricValues, MetricUnit metricUnit) =>
 			CreateMetricRange(
 				metricValues.Min.ToScaledValue(metricUnit),
 				metricValues.Max.ToScaledValue(metricUnit));
@@ -166,7 +169,7 @@ namespace CodeJam.PerfTests.Metrics
 				? metricValue
 				: metricValue / metricUnit.ScaleCoefficient;
 
-		private static MetricRange Round(this MetricRange metricValues, int roundingDigits) => 
+		private static MetricRange Round(this MetricRange metricValues, int roundingDigits) =>
 			CreateMetricRange(
 				metricValues.Min.Round(roundingDigits),
 				metricValues.Max.Round(roundingDigits));
@@ -184,16 +187,14 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="metricValue">The metric value.</param>
 		/// <param name="metricUnitScale">The metric measurement scale.</param>
 		/// <returns>A <see cref="string"/> that represents the metric value.</returns>
-		public static string ToString(
-			this double metricValue, [NotNull] MetricUnitScale metricUnitScale) =>
-				ToString(metricValue, metricUnitScale[metricValue]);
+		public static string ToString(this double metricValue, [NotNull] MetricUnitScale metricUnitScale) =>
+			ToString(metricValue, metricUnitScale[metricValue]);
 
 		/// <summary>Returns a <see cref="string"/> representation of a metric value.</summary>
 		/// <param name="metricValue">The metric value.</param>
 		/// <param name="metricUnit">The metric measurement unit.</param>
 		/// <returns>A <see cref="string"/> that represents the metric value.</returns>
-		public static string ToString(
-			this double metricValue, [NotNull] MetricUnit metricUnit)
+		public static string ToString(this double metricValue, [NotNull] MetricUnit metricUnit)
 		{
 			metricValue = metricValue.ToScaledValue(metricUnit);
 			var displayFormat = GetFormatForScaled(metricValue, metricUnit);
@@ -208,16 +209,14 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="metricValues">Range of metric values.</param>
 		/// <param name="metricUnitScale">The metric measurement scale.</param>
 		/// <returns>A <see cref="string"/> that represents the metric value.</returns>
-		public static string ToString(
-			this MetricRange metricValues, [NotNull] MetricUnitScale metricUnitScale) =>
-				ToString(metricValues, metricUnitScale[metricValues]);
+		public static string ToString(this MetricRange metricValues, [NotNull] MetricUnitScale metricUnitScale) =>
+			ToString(metricValues, metricUnitScale[metricValues]);
 
 		/// <summary>Returns a <see cref="string"/> representation of a metric value.</summary>
 		/// <param name="metricValues">Range of metric values.</param>
 		/// <param name="metricUnit">The metric measurement unit.</param>
 		/// <returns>A <see cref="string"/> that represents the metric value.</returns>
-		public static string ToString(
-			this MetricRange metricValues, [NotNull] MetricUnit metricUnit)
+		public static string ToString(this MetricRange metricValues, [NotNull] MetricUnit metricUnit)
 		{
 			metricValues = ToScaledValues(metricValues, metricUnit);
 			var displayFormat = GetFormatForScaled(metricValues, metricUnit);
@@ -234,7 +233,8 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="minString">String representation of min part of a metric value.</param>
 		/// <param name="maxString">String representation of max part of a metric value.</param>
 		public static void GetMinMaxString(
-			this MetricRange metricValues, [NotNull] MetricUnit metricUnit, out string minString, out string maxString)
+			this MetricRange metricValues, [NotNull] MetricUnit metricUnit,
+			out string minString, out string maxString)
 		{
 			metricValues = ToScaledValues(metricValues, metricUnit);
 			var displayFormat = GetFormatForScaled(metricValues, metricUnit);

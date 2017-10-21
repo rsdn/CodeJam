@@ -3,7 +3,7 @@ using System.IO;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Core
+namespace CodeJam.PerfTests.Running.Helpers
 {
 	/// <summary>
 	/// Reflection helpers
@@ -13,6 +13,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Gets the name of the attribute without 'Attribute' suffix.</summary>
 		/// <param name="attributeType">Type of the attribute.</param>
 		/// <returns>Name of the attribute without 'Attribute' suffix.</returns>
+		[NotNull]
 		public static string GetShortAttributeName([NotNull] this Type attributeType)
 		{
 			Code.NotNull(attributeType, nameof(attributeType));
@@ -36,6 +37,7 @@ namespace CodeJam.PerfTests.Running.Core
 		public static Stream TryGetResourceStream(this ResourceKey resourceKey)
 		{
 			Code.NotNull(resourceKey.Assembly, nameof(resourceKey.Assembly));
+
 			return resourceKey.Assembly.GetManifestResourceStream(resourceKey.ResourceName);
 		}
 	}

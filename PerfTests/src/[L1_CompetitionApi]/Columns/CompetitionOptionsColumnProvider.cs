@@ -4,15 +4,13 @@ using System.Collections.Generic;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Reports;
 
-using CodeJam.PerfTests.Configs.Factories;
-
 namespace CodeJam.PerfTests.Columns
 {
 	/// <summary>
 	/// A column provider for <see cref="CompetitionCharacteristicColumn"/>
 	/// </summary>
-	/// <seealso cref="BenchmarkDotNet.Columns.IColumnProvider" />
-	/// <seealso cref="CompetitionCharacteristicColumn" />
+	/// <seealso cref="BenchmarkDotNet.Columns.IColumnProvider"/>
+	/// <seealso cref="CompetitionCharacteristicColumn"/>
 	public sealed class CompetitionOptionsColumnProvider : IColumnProvider
 	{
 		/// <summary>The instance of column provider.</summary>

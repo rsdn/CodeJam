@@ -25,12 +25,12 @@ namespace CodeJam.PerfTests.Columns
 
 			/// <summary>Metric value standard deviation.</summary>
 			StdDev = MetricValueColumns.StdDev,
-			
+
 			/// <summary>Min metric value.</summary>
 			Min = MetricValueColumns.Min,
 
 			/// <summary>Max metric value.</summary>
-			Max =  MetricValueColumns.Max
+			Max = MetricValueColumns.Max
 		}
 
 		private const int PriorityInCategoryStartValue = 400;
@@ -39,11 +39,12 @@ namespace CodeJam.PerfTests.Columns
 		#region Fields & .ctor
 		private readonly Kind _kind;
 
-		/// <summary>Initializes a new instance of the <see cref="MetricValueColumn" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="MetricValueColumn"/> class.</summary>
 		/// <param name="metric">The metric information.</param>
 		/// <param name="kind">The kind of value to display.</param>
 		public MetricValueColumn([NotNull] MetricInfo metric, Kind kind) :
-			this(null, metric, kind) { }
+			this(null, metric, kind)
+		{ }
 
 		/// <summary>Initializes a new instance of the <see cref="MetricValueColumn"/> class.</summary>
 		/// <param name="name">The  column name.</param>
@@ -177,7 +178,7 @@ namespace CodeJam.PerfTests.Columns
 		/// <summary>Can provide values for the specified summary.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns><c>true</c> if can provide values for the specified summary.</returns>
-		public bool IsAvailable(Summary summary) => 
+		public bool IsAvailable(Summary summary) =>
 			!Metric.IsRelative || summary.Benchmarks.Any(b => b.Target.Baseline);
 
 		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>

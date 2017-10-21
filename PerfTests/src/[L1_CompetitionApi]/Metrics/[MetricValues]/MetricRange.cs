@@ -46,7 +46,6 @@ namespace CodeJam.PerfTests.Metrics
 		/// <see cref="FromNegativeInfinity"/> and <see cref="ToPositiveInfinity"/>, respectively.
 		/// </summary>
 		public static readonly MetricRange Infinite = new MetricRange(FromNegativeInfinity, ToPositiveInfinity);
-
 		#endregion
 
 		#region Fields & .ctor
@@ -64,15 +63,9 @@ namespace CodeJam.PerfTests.Metrics
 		/// to mark the range as unset but updateable during the annotation.
 		/// Use <seealso cref="ToPositiveInfinity"/> to set max value to positive infinity (ignored, essentially).
 		/// </param>
-		public MetricRange(double min, double max)
-		{
-			_range = Range.Create(min, max);
-		}
+		public MetricRange(double min, double max) => _range = Range.Create(min, max);
 
-		private MetricRange(Range<double> range)
-		{
-			_range = range;
-		}
+		private MetricRange(Range<double> range) => _range = range;
 		#endregion
 
 		#region Range members
@@ -92,10 +85,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Returns a union range containing both of metric ranges.</summary>
 		/// <param name="other">The metric range to union with.</param>
 		/// <returns>A union range containing both of the metric ranges.</returns>
-		public MetricRange Union(MetricRange other) =>
-			_range.Contains(other._range)
-				? this
-				: new MetricRange(_range.Union(other._range));
+		public MetricRange Union(MetricRange other) => new MetricRange(_range.Union(other._range));
 
 		/// <summary>Gets minimum metric value.</summary>
 		/// <value>
@@ -137,8 +127,7 @@ namespace CodeJam.PerfTests.Metrics
 		#region ToString
 		/// <summary>Returns string representation of the range.</summary>
 		/// <returns>The string representation of the range.</returns>
-		public override string ToString() =>
-			_range.ToString();
+		public override string ToString() => _range.ToString();
 
 		/// <summary>Returns string representation of the range.</summary>
 		/// <param name="format">The format string.</param>

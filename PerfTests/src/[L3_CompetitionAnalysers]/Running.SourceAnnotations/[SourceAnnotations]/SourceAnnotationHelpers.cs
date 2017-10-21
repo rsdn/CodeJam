@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Helpers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Ranges;
 using CodeJam.Reflection;
@@ -134,7 +135,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region Source lines API
-		public static bool TryUpdateLineWithAttribute(
+		public static bool TryUpdateExistingAttributeAnnotation(
 			SourceAnnotationFile sourceFile, int attributeLineNumber,
 			CompetitionMetricValue metricValue)
 		{
@@ -148,35 +149,35 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return true;
 		}
 
-		public static bool TryInsertAttributeInPlace(
-			SourceAnnotationFile sourceCodeFile, int inPlaceLineNumber,
+		public static bool TryAppendAttributeAnnotation(
+			SourceAnnotationFile sourceCodeFile, int attributeLineNumber,
 			TargetSourceLines benchmarkMethod,
 			CompetitionMetricValue metricValue)
 		{
-			var line = sourceCodeFile[inPlaceLineNumber];
+			var line = sourceCodeFile[attributeLineNumber];
 
-			var inPlacePosition = line.LastIndexOf(']');
-			if (inPlacePosition < 0)
+			var attributePosition = line.LastIndexOf(']');
+			if (attributePosition < 0)
 				return false;
 
-			var appendText = GetInPlaceAnnotationText(metricValue);
+			var appendText = GetAppendAnnotationText(metricValue);
 
-			line = line.Insert(inPlacePosition, appendText);
-			sourceCodeFile.ReplaceLine(inPlaceLineNumber, line);
+			line = line.Insert(attributePosition, appendText);
+			sourceCodeFile.ReplaceLine(attributeLineNumber, line);
 			var attributeTypeHandle = metricValue.Metric.AttributeType.TypeHandle;
-			benchmarkMethod.AddAttribute(attributeTypeHandle, inPlaceLineNumber);
+			benchmarkMethod.AddAttribute(attributeTypeHandle, attributeLineNumber);
 
 			return true;
 		}
 
-		public static int InsertLineWithAttribute(
+		public static int InsertNewLineWithAttributeAnnotation(
 			SourceAnnotationFile sourceCodeFile, int insertLineNumber,
 			TargetSourceLines benchmarkMethod,
 			CompetitionMetricValue metricValue)
 		{
 			var whitespacePrefix = GetWhitespacePrefix(sourceCodeFile[insertLineNumber]);
 
-			var newLine = GetNewAnnotationLine(whitespacePrefix, metricValue);
+			var newLine = GetNewLineAnnotationText(whitespacePrefix, metricValue);
 
 			var newLineNumber = insertLineNumber + 1;
 			sourceCodeFile.InsertLine(newLineNumber, newLine);
@@ -190,7 +191,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private static string GetWhitespacePrefix(string line) =>
 			new string(line.TakeWhile(c => c.IsWhiteSpace()).ToArray());
 
-		private static string GetNewAnnotationLine(string whitespacePrefix, CompetitionMetricValue metricValue)
+		private static string GetNewLineAnnotationText(string whitespacePrefix, CompetitionMetricValue metricValue)
 		{
 			var result = new StringBuilder();
 			result.Append(whitespacePrefix);
@@ -202,7 +203,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return result.ToString();
 		}
 
-		private static string GetInPlaceAnnotationText(CompetitionMetricValue metricValue)
+		private static string GetAppendAnnotationText(CompetitionMetricValue metricValue)
 		{
 			var result = new StringBuilder();
 			result.Append(", ");

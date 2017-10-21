@@ -10,7 +10,7 @@ namespace CodeJam.PerfTests.Metrics
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	public sealed class MetricInfoAttribute : Attribute
 	{
-		/// <summary>Initializes a new instance of the <see cref="MetricInfoAttribute" /> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="MetricInfoAttribute"/> class.</summary>
 		/// <param name="category">The category of the metric.</param>
 		public MetricInfoAttribute([NotNull] string category)
 			: this(category, DefaultMinMetricValue.NegativeInfinity) { }
@@ -29,11 +29,11 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>Gets category of the metric.</summary>
 		/// <value>The category of the metric.</value>
-		[CanBeNull]
+		[NotNull]
 		public string Category { get; }
 
-		/// <summary>Gets single value treatment mode.</summary>
-		/// <value>The single value treatment mode.</value>
+		/// <summary>Gets default min value behavior.</summary>
+		/// <value>The default min value behavior.</value>
 		public DefaultMinMetricValue DefaultMinValue { get; }
 
 		/// <summary>Gets or sets display name of the metric.</summary>
@@ -46,11 +46,11 @@ namespace CodeJam.PerfTests.Metrics
 		public MetricValueColumns MetricColumns { get; set; }
 
 		/// <summary>
-		/// Gets or sets in-place annotation mode (all in-place attributes for same category will be placed at the same line).
+		/// Place attribute annotation on a same line with same category attributes.
 		/// </summary>
 		/// <value>
-		/// <c>true</c> if the in-place annotation mode is enabled; otherwise, <c>false</c>.
+		/// <c>true</c> if the attribute should be placed on same line with other attributes that belongs to the <see cref="Category"/>; otherwise, <c>false</c>.
 		/// </value>
-		public bool AnnotateInPlace { get; set; }
+		public bool CompactAttributeAnnotations { get; set; }
 	}
 }

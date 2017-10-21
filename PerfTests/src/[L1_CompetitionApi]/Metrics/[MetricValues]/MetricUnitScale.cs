@@ -6,7 +6,6 @@ using System.Reflection;
 
 using CodeJam.Collections;
 using CodeJam.Ranges;
-using CodeJam.Reflection;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -36,16 +35,17 @@ namespace CodeJam.PerfTests.Metrics
 		public static MetricUnitScale FromEnumValues([CanBeNull] Type metricEnumType) =>
 			metricEnumType == null ? Empty : _unitScalesCache(metricEnumType.TypeHandle);
 
+		[NotNull]
 		private static MetricUnit[] GetMetricUnits(Type metricEnumType)
 		{
 			var result = new List<MetricUnit>();
-			var fields = ReflectionEnumHelper.GetFields(metricEnumType)
-				.OrderBy(f => Convert.ToDouble(f.GetValue(null), CultureInfo.InvariantCulture));
+			var fields = EnumHelper.GetEnumValues(metricEnumType)
+				.OrderBy(f => Convert.ToDouble(f.Value, CultureInfo.InvariantCulture));
 
 			MetricUnit previousUnit = null;
 			foreach (var field in fields)
 			{
-				var unit = GetMetricUnit(field);
+				var unit = GetMetricUnit(field.UnderlyingField);
 
 				if (previousUnit != null)
 				{
@@ -68,6 +68,7 @@ namespace CodeJam.PerfTests.Metrics
 			return result.ToArray();
 		}
 
+		[NotNull]
 		private static MetricUnit GetMetricUnit(FieldInfo metricUnitField)
 		{
 			var metricInfo = metricUnitField.GetCustomAttribute<MetricUnitAttribute>();
@@ -188,13 +189,13 @@ namespace CodeJam.PerfTests.Metrics
 
 		/// <summary>Gets the <see cref="MetricUnit"/> with the specified name.</summary>
 		/// <value>The <see cref="MetricUnit"/>.</value>
-		/// <param name="name">The name.</param>
+		/// <param name="displayName">The metric unit display name.</param>
 		/// <returns>The <see cref="MetricUnit"/> with the specified coefficient.</returns>
 		[NotNull]
-		public MetricUnit this[string name] =>
-			IsEmpty
+		public MetricUnit this[string displayName] =>
+			IsEmpty || displayName == null
 				? MetricUnit.Empty
-				: (_unitsByName.GetValueOrDefault(name) ?? MetricUnit.Empty);
+				: (_unitsByName.GetValueOrDefault(displayName) ?? MetricUnit.Empty);
 		#endregion
 
 		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 using JetBrains.Annotations;
 
@@ -10,43 +9,19 @@ namespace CodeJam.PerfTests.Metrics
 	/// </summary>
 	public static class MetricInfoHelpers
 	{
-		private static readonly Func<Type, MetricInfoAttribute> _metricAttributesCache = Algorithms.Memoize(
-			(Type t) => t.GetCustomAttribute<MetricInfoAttribute>(false),
-			true);
-
-		/// <summary>Gets metric attribute information.</summary>
-		/// <param name="metricAttributeType">Type of the metric attribute.</param>
-		/// <returns>Metric attribute information, if any</returns>
-		[CanBeNull]
-		public static MetricInfoAttribute GetMetricInfoAttribute(Type metricAttributeType)
-		{
-			Code.NotNull(metricAttributeType, nameof(metricAttributeType));
-
-			if (!typeof(Attribute).IsAssignableFrom(metricAttributeType))
-				throw CodeExceptions.Argument(
-					nameof(metricAttributeType),
-					$"The {metricAttributeType} is not a Attribute type.");
-
-			return _metricAttributesCache(metricAttributeType);
-		}
-
-		private static DefaultMinMetricValue GetDefaultMinValue(Type metricAttributeType) =>
-			GetMetricInfoAttribute(metricAttributeType)?.DefaultMinValue
-				?? DefaultMinMetricValue.Zero;
-
 		/// <summary>Returns minimum metric value.</summary>
 		/// <param name="metricMaxValue">The maximum metric value.</param>
 		/// <param name="metricAttributeType">Type of the metric attribute.</param>
 		/// <returns>Minimum metric value.</returns>
 		public static double GetMinMetricValue(this double metricMaxValue, [NotNull] Type metricAttributeType) =>
-				GetMinMetricValue(metricMaxValue, GetDefaultMinValue(metricAttributeType));
+			GetMinMetricValue(metricMaxValue, MetricInfo.FromAttribute(metricAttributeType));
 
 		/// <summary>Returns minimum metric value.</summary>
 		/// <param name="metricMaxValue">The maximum metric value.</param>
 		/// <param name="metric">The metric information.</param>
 		/// <returns>Minimum metric value.</returns>
 		public static double GetMinMetricValue(this double metricMaxValue, [NotNull] MetricInfo metric) =>
-				GetMinMetricValue(metricMaxValue, metric.DefaultMinValue);
+			GetMinMetricValue(metricMaxValue, metric.DefaultMinValue);
 
 		/// <summary>Returns minimum metric value.</summary>
 		/// <param name="metricMaxValue">The maximum metric value.</param>

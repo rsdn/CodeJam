@@ -20,19 +20,19 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Actual value for the benchmark or <c>null</c> if none.</returns>
-		double? TryGetMeanValue(Benchmark benchmark, Summary summary);
+		double? TryGetMeanValue([NotNull] Benchmark benchmark, [NotNull] Summary summary);
 
 		/// <summary>Gets metric that describes variance of the value for the benchmark.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Metric that describes variance for the benchmark or <c>null</c> if none.</returns>
-		double? TryGetVariance(Benchmark benchmark, Summary summary);
+		double? TryGetVariance([NotNull] Benchmark benchmark, [NotNull] Summary summary);
 
 		/// <summary>Gets range that describes actual values for the benchmark.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Range that describes actual values for the benchmark (or empty range if none).</returns>
-		MetricRange TryGetActualValues(Benchmark benchmark, Summary summary);
+		MetricRange TryGetActualValues([NotNull] Benchmark benchmark, [NotNull] Summary summary);
 
 		/// <summary>
 		/// Gets range that describes expected limits for the benchmark. Should be wider than <see cref="TryGetActualValues"/>.
@@ -40,19 +40,19 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Range that describes expected limits for the benchmark (or empty range if none).</returns>
-		MetricRange TryGetLimitValues(Benchmark benchmark, Summary summary);
+		MetricRange TryGetLimitValues([NotNull] Benchmark benchmark, [NotNull] Summary summary);
 
 		/// <summary>Gets column provider for the metric values.</summary>
 		/// <param name="metric">The metric to get columns for.</param>
 		/// <param name="columns">The columns to include.</param>
 		/// <returns>Column provider for the metric values</returns>
 		[CanBeNull]
-		IColumnProvider GetColumnProvider(MetricInfo metric, MetricValueColumns columns);
+		IColumnProvider GetColumnProvider([NotNull] MetricInfo metric, MetricValueColumns columns);
 
 		/// <summary>Gets diagnosers for the metric values.</summary>
 		/// <param name="metric">The metric to get diagnosers for.</param>
 		/// <returns>Diagnosers for the metric values</returns>
 		[NotNull]
-		IDiagnoser[] GetDiagnosers(MetricInfo metric);
+		IDiagnoser[] GetDiagnosers([NotNull] MetricInfo metric);
 	}
 }

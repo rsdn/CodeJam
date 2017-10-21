@@ -4,6 +4,7 @@ using System.Linq;
 
 using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Helpers;
 
 using JetBrains.Annotations;
 

@@ -2,7 +2,7 @@
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Core
+namespace CodeJam.PerfTests.Running.Helpers
 {
 	/// <summary>
 	/// Console helpers.
@@ -16,7 +16,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Reports that work is completed and asks user to press any key to continue.</summary>
 		/// <param name="notifyMessage">The notification message.</param>
-		public static void NotifyWorkDoneAndWaitForConfirmation(string notifyMessage)
+		public static void NotifyWorkDoneAndWaitForConfirmation([CanBeNull] string notifyMessage)
 		{
 			notifyMessage = notifyMessage ?? "Done. Press any key to continue...";
 

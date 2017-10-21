@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 
 namespace CodeJam.PerfTests.Metrics
 {
 	/// <summary>
-	/// Typed metric description. 
+	/// Typed metric description.
 	/// Use <see cref="MetricInfo.FromAttribute{TAttribute}"/> to create instance of the objec
 	/// </summary>
 	/// <typeparam name="TAttribute">

@@ -57,17 +57,14 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="values">Set of values.</param>
 		/// <returns>Variance for the set of values or <c>null</c> if none.</returns>
 		[Pure]
-		public double? TryGetVariance(double[] values) => 
-			null; // TODO: !!! variance?
+		public double? TryGetVariance(double[] values) => null;
 
 		/// <summary>Gets variance for the set of values (relative metric).</summary>
 		/// <param name="values">Set of values.</param>
 		/// <param name="baselineValues">The baseline values.</param>
 		/// <returns>Variance for the set of values or <c>null</c> if none.</returns>
 		[Pure]
-		// THANKSTO: http://stats.stackexchange.com/questions/21735/what-are-the-mean-and-variance-of-the-ratio-of-two-lognormal-variables
-		public double? TryGetRelativeVariance(double[] values, double[] baselineValues) => 
-			null; // TODO: !!! variance?
+		public double? TryGetRelativeVariance(double[] values, double[] baselineValues) => null;
 
 		/// <summary>Gets actual values range for the set of values.</summary>
 		/// <param name="values">Set of values.</param>
@@ -94,7 +91,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="values">Set of values.</param>
 		/// <returns>Limit values range for the set of values (or empty range if none).</returns>
 		[Pure]
-		public MetricRange TryGetLimitValues(double[] values) => 
+		public MetricRange TryGetLimitValues(double[] values) =>
 			TryGetActualValues(values);
 
 		/// <summary>Gets expected limits range for the set of values (relative metric).</summary>

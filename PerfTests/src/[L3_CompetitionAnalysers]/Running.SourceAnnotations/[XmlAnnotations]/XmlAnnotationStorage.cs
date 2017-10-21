@@ -11,6 +11,7 @@ using BenchmarkDotNet.Running;
 using CodeJam.Collections;
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Helpers;
 using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 

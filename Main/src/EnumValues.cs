@@ -42,7 +42,7 @@ namespace CodeJam
 				result.Add(
 					new EnumValue(
 						nameValue.name,
-						nameValue.value,
+						(Enum)nameValue.value,
 						field,
 						displayAttribute?.GetName(),
 						displayAttribute?.GetDescription()));
@@ -56,7 +56,7 @@ namespace CodeJam
 
 		private readonly IDictionary<string, EnumValue> _valuesByName;
 		private readonly IDictionary<string, EnumValue> _valuesByNameIgnoreCase;
-		private readonly IDictionary<object, EnumValue> _valuesByValue;
+		private readonly IDictionary<Enum, EnumValue> _valuesByValue;
 		private readonly IDictionary<string, EnumValue> _valuesByDisplayName;
 
 		/// <summary>Initializes a new instance of the <see cref="EnumValues" /> class.</summary>
@@ -143,7 +143,7 @@ namespace CodeJam
 		/// <param name="value">Value of the enum field.</param>
 		/// <returns>Enum field with matching value.</returns>
 		[Pure, NotNull]
-		public EnumValue GetByValue([NotNull] object value) => _valuesByValue[value];
+		public EnumValue GetByValue([NotNull] Enum value) => _valuesByValue[value];
 
 		/// <summary>Gets enum field by its display name.</summary>
 		/// <param name="displayName">Name of the enum field.</param>

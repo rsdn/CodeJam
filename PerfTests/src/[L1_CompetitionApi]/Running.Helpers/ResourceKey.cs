@@ -3,13 +3,14 @@ using System.Reflection;
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Core
+namespace CodeJam.PerfTests.Running.Helpers
 {
 	/// <summary>
 	/// Key for assembly resources. Can be persisted in the current appdomain only.
 	/// </summary>
 	/// <seealso cref="System.IEquatable{TargetKey}"/>
-	// DONTTOUCH: DO NOT mark the type as serializable & DO NOT add equality operators
+	// DONTTOUCH: DO NOT mark the type as serializable.
+	// DONTTOUCH: DO NOT add equality operators. Resource keys are not intended to be comparable.
 	public struct ResourceKey : IEquatable<ResourceKey>
 	{
 		/// <summary>Initializes a new instance of the <see cref="ResourceKey"/> struct.</summary>
@@ -61,8 +62,8 @@ namespace CodeJam.PerfTests.Running.Core
 			ResourceName?.GetHashCode() ?? 0);
 		#endregion
 
-		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
-		/// <returns>A <see cref="string" /> that represents this instance.</returns>
+		/// <summary>Returns a <see cref="string"/> that represents this instance.</summary>
+		/// <returns>A <see cref="string"/> that represents this instance.</returns>
 		public override string ToString() => IsEmpty ? "N/A" : $"{ResourceName}@{Assembly?.GetName().Name}";
 	}
 }

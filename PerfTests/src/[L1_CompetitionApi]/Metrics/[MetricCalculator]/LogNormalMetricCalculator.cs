@@ -93,11 +93,8 @@ namespace CodeJam.PerfTests.Metrics
 		// THANKSTO: http://stats.stackexchange.com/questions/21735/what-are-the-mean-and-variance-of-the-ratio-of-two-lognormal-variables
 		public double? TryGetRelativeVariance(double[] values, double[] baselineValues)
 		{
-			if (values.IsNullOrEmpty() || baselineValues.IsNullOrEmpty())
+			if (!TryPrepareLogValues(ref values, ref baselineValues))
 				return null;
-
-			values = values.ConvertAll(a => a <= 0 ? 0 : Math.Log(a));
-			baselineValues = baselineValues.ConvertAll(a => a <= 0 ? 0 : Math.Log(a));
 
 			var benchmarkStat = new Statistics(values);
 			var baselineStat = new Statistics(baselineValues);

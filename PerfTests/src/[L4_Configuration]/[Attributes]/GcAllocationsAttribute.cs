@@ -83,7 +83,7 @@ namespace CodeJam.PerfTests
 	}
 
 	/// <summary>GC 0 count per 1000 operations metric attribute.</summary>
-	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInPlace = true)]
+	[MetricInfo(GcMetricValuesProvider.Category, CompactAttributeAnnotations = true)]
 	public class Gc0Attribute : MetricAttributeBase, IMetricAttribute<Gc0Attribute.ValuesProvider>
 	{
 		/// <summary>
@@ -122,7 +122,7 @@ namespace CodeJam.PerfTests
 	}
 
 	/// <summary>GC 1 count per 1000 operations metric attribute.</summary>
-	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInPlace = true)]
+	[MetricInfo(GcMetricValuesProvider.Category, CompactAttributeAnnotations = true)]
 	public class Gc1Attribute : MetricAttributeBase, IMetricAttribute<Gc1Attribute.ValuesProvider>
 	{
 		/// <summary>
@@ -161,7 +161,7 @@ namespace CodeJam.PerfTests
 	}
 
 	/// <summary>GC 2 count per 1000 operations metric attribute.</summary>
-	[MetricInfo(GcMetricValuesProvider.Category, AnnotateInPlace = true)]
+	[MetricInfo(GcMetricValuesProvider.Category, CompactAttributeAnnotations = true)]
 	public class Gc2Attribute : MetricAttributeBase, IMetricAttribute<Gc2Attribute.ValuesProvider>
 	{
 		/// <summary>

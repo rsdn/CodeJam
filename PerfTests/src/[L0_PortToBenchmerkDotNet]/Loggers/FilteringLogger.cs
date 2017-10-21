@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading;
 
 using BenchmarkDotNet.Configs;
+
 using CodeJam;
 using CodeJam.Threading;
+
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace

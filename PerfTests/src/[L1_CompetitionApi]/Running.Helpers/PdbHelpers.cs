@@ -1,20 +1,22 @@
-﻿
+﻿using System;
 using System.IO;
 using System.Security.Cryptography;
 
 using CodeJam.Collections;
 
-namespace CodeJam.PerfTests.Running.Core
+using JetBrains.Annotations;
+
+namespace CodeJam.PerfTests.Running.Helpers
 {
 	/// <summary>
 	/// PDB helpers
 	/// </summary>
 	public static class PdbHelpers
 	{
-
 		private const string Sha1AlgName = "SHA1";
 		private const string Md5AlgName = "Md5";
 
+		[NotNull]
 		private static string GetChecksumName(PdbChecksumAlgorithm checksumAlgorithm)
 		{
 			switch (checksumAlgorithm)
@@ -32,20 +34,20 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="file">The file.</param>
 		/// <param name="checksumAlgorithm">The checksum algorithm to use.</param>
 		/// <returns>Checksum for file or empty byte array if the file does not exist.</returns>
-		public static byte[] TryGetChecksum(
-			string file,
-			PdbChecksumAlgorithm checksumAlgorithm)
+		[NotNull]
+		public static byte[] TryGetChecksum([NotNull] string file, PdbChecksumAlgorithm checksumAlgorithm)
 		{
-			var algName = GetChecksumName(checksumAlgorithm);
+			Code.NotNullNorEmpty(file, nameof(file));
 
+			var algName = GetChecksumName(checksumAlgorithm);
 			if (!File.Exists(file))
 				return Array<byte>.Empty;
 
-			using (var f = File.OpenRead(file))
-			using (var h = HashAlgorithm.Create(algName))
+			using (var stream = File.OpenRead(file))
+			using (var hashAlgorithm = HashAlgorithm.Create(algName))
 			{
 				// ReSharper disable once PossibleNullReferenceException
-				return h.ComputeHash(f);
+				return hashAlgorithm.ComputeHash(stream);
 			}
 		}
 
@@ -53,21 +55,21 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="resourceKey">The resource key.</param>
 		/// <param name="checksumAlgorithm">The checksum algorithm to use.</param>
 		/// <returns>Checksum for resource or empty byte array if the resource does not exist.</returns>
-		public static byte[] TryGetChecksum(
-			ResourceKey resourceKey,
-			PdbChecksumAlgorithm checksumAlgorithm)
+		[NotNull]
+		public static byte[] TryGetChecksum(ResourceKey resourceKey, PdbChecksumAlgorithm checksumAlgorithm)
 		{
-			var algName = GetChecksumName(checksumAlgorithm);
+			Code.AssertArgument(!resourceKey.IsEmpty, nameof(resourceKey), "The resource key should be non empty.");
 
-			using (var s = resourceKey.TryGetResourceStream())
+			var algName = GetChecksumName(checksumAlgorithm);
+			using (var stream = resourceKey.TryGetResourceStream())
 			{
-				if (s == null)
+				if (stream == null)
 					return Array<byte>.Empty;
 
-				using (var h = HashAlgorithm.Create(algName))
+				using (var hashAlgorithm = HashAlgorithm.Create(algName))
 				{
 					// ReSharper disable once PossibleNullReferenceException
-					return h.ComputeHash(s);
+					return hashAlgorithm.ComputeHash(stream);
 				}
 			}
 		}

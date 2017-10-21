@@ -1,7 +1,7 @@
 ﻿using System;
 
 using CodeJam.PerfTests.Running.Console;
-using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Helpers;
 
 // ReSharper disable once CheckNamespace
 

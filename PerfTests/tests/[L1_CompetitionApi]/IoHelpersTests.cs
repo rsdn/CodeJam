@@ -5,6 +5,7 @@ using System.Linq;
 
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
+using CodeJam.PerfTests.Running.Helpers;
 
 using NUnit.Framework;
 

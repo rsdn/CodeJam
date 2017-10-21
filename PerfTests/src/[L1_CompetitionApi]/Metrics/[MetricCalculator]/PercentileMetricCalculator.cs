@@ -14,6 +14,7 @@ namespace CodeJam.PerfTests.Metrics
 	/// Uses percentiles for results estimation.
 	/// </summary>
 	/// <seealso cref="IMetricCalculator"/>
+	// TODO: better variance.
 	[PublicAPI]
 	public sealed class PercentileMetricCalculator : IMetricCalculator
 	{
@@ -71,17 +72,19 @@ namespace CodeJam.PerfTests.Metrics
 			var minBaseline = statBaseline.Percentiles.Percentile(minPercentile);
 			var maxBaseline = statBaseline.Percentiles.Percentile(maxPercentile);
 
-			// ReSharper disable CompareOfFloatsByEqualityOperator
-			if (minBaseline == 0 || maxBaseline == 0)
-				// ReSharper restore CompareOfFloatsByEqualityOperator
+			if (minBaseline.Equals(0) || maxBaseline.Equals(0))
 				return MetricRange.Empty;
 
 			var statValues = new Statistics(values);
-			var minValues = statValues.Percentiles.Percentile(minPercentile);
-			var maxValues = statValues.Percentiles.Percentile(maxPercentile);
+			var minValue = statValues.Percentiles.Percentile(minPercentile);
+			var maxValue = statValues.Percentiles.Percentile(maxPercentile);
 
-			var minRatio = minValues / minBaseline;
-			var maxRatio = maxValues / maxBaseline;
+			// NB: min may be less then max due to rounding errors
+			if (minValue > maxValue)
+				minValue = maxValue;
+
+			var minRatio = minValue / minBaseline;
+			var maxRatio = maxValue / maxBaseline;
 
 			if (minRatio > maxRatio)
 				minRatio = maxRatio;
@@ -91,9 +94,7 @@ namespace CodeJam.PerfTests.Metrics
 		#endregion
 
 		#region .ctor & properties
-		/// <summary>
-		/// Initializes a new instance of the <see cref="PercentileMetricCalculator"/> class.
-		/// </summary>
+		/// <summary>Initializes a new instance of the <see cref="PercentileMetricCalculator"/> class.</summary>
 		/// <param name="meanPercentile">The mean percentile.</param>
 		/// <param name="actualValuesPercentileDelta">Actual values percentile delta.</param>
 		/// <param name="limitValuesPercentileDelta">Limits percentile delta.</param>
@@ -149,8 +150,7 @@ namespace CodeJam.PerfTests.Metrics
 			var meanValues = new Statistics(values).Percentiles.Percentile(MeanPercentile);
 			var meanBaseline = new Statistics(baselineValues).Percentiles.Percentile(MeanPercentile);
 
-			// ReSharper disable once CompareOfFloatsByEqualityOperator
-			if (meanBaseline == 0)
+			if (meanBaseline.Equals(0))
 				return null;
 
 			return meanValues / meanBaseline;
@@ -160,7 +160,16 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="values">Set of values.</param>
 		/// <returns>Variance for the set of values or <c>null</c> if none.</returns>
 		[Pure]
-		public double? TryGetVariance(double[] values) => null; // TODO: !!! variance?
+		public double? TryGetVariance(double[] values)
+		{
+			if (values.IsNullOrEmpty())
+				return null;
+
+			values = values.ConvertAll(a => a <= 0 ? 0 : Math.Log(a));
+
+			// σValues
+			return Math.Exp(new Statistics(values).StandardDeviation);
+		}
 
 		/// <summary>Gets variance for the set of values (relative metric).</summary>
 		/// <param name="values">Set of values.</param>

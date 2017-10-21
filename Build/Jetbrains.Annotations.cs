@@ -45,9 +45,9 @@ namespace JetBrains.Annotations
 	/// }
 	/// </code></example>
 	[AttributeUsage(
-		AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-			AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
-			AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
+	  AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+	  AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
+	  AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
 	internal sealed class CanBeNullAttribute : Attribute { }
 
 	/// <summary>
@@ -59,9 +59,9 @@ namespace JetBrains.Annotations
 	/// }
 	/// </code></example>
 	[AttributeUsage(
-		AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-			AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
-			AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
+	  AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+	  AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
+	  AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
 	internal sealed class NotNullAttribute : Attribute { }
 
 	/// <summary>
@@ -70,8 +70,8 @@ namespace JetBrains.Annotations
 	/// or of the Lazy.Value property can never be null.
 	/// </summary>
 	[AttributeUsage(
-		AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-			AttributeTargets.Delegate | AttributeTargets.Field)]
+	  AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+	  AttributeTargets.Delegate | AttributeTargets.Field)]
 	internal sealed class ItemNotNullAttribute : Attribute { }
 
 	/// <summary>
@@ -80,8 +80,8 @@ namespace JetBrains.Annotations
 	/// or of the Lazy.Value property can be null.
 	/// </summary>
 	[AttributeUsage(
-		AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-			AttributeTargets.Delegate | AttributeTargets.Field)]
+	  AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+	  AttributeTargets.Delegate | AttributeTargets.Field)]
 	internal sealed class ItemCanBeNullAttribute : Attribute { }
 
 	/// <summary>
@@ -98,8 +98,8 @@ namespace JetBrains.Annotations
 	/// }
 	/// </code></example>
 	[AttributeUsage(
-		AttributeTargets.Constructor | AttributeTargets.Method |
-			AttributeTargets.Property | AttributeTargets.Delegate)]
+	  AttributeTargets.Constructor | AttributeTargets.Method |
+	  AttributeTargets.Property | AttributeTargets.Delegate)]
 	internal sealed class StringFormatMethodAttribute : Attribute
 	{
 		/// <param name="formatParameterName">
@@ -118,8 +118,8 @@ namespace JetBrains.Annotations
 	/// Specify fields of which type should be used as values for this parameter.
 	/// </summary>
 	[AttributeUsage(
-		AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.Field,
-		AllowMultiple = true)]
+	  AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.Field,
+	  AllowMultiple = true)]
 	internal sealed class ValueProviderAttribute : Attribute
 	{
 		public ValueProviderAttribute([NotNull] string name)
@@ -242,7 +242,7 @@ namespace JetBrains.Annotations
 	internal sealed class ContractAnnotationAttribute : Attribute
 	{
 		public ContractAnnotationAttribute([NotNull] string contract)
-			: this(contract, false) { }
+		  : this(contract, false) { }
 
 		public ContractAnnotationAttribute([NotNull] string contract, bool forceFullStates)
 		{
@@ -331,13 +331,13 @@ namespace JetBrains.Annotations
 	internal sealed class UsedImplicitlyAttribute : Attribute
 	{
 		public UsedImplicitlyAttribute()
-			: this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) { }
+		  : this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) { }
 
 		public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags)
-			: this(useKindFlags, ImplicitUseTargetFlags.Default) { }
+		  : this(useKindFlags, ImplicitUseTargetFlags.Default) { }
 
 		public UsedImplicitlyAttribute(ImplicitUseTargetFlags targetFlags)
-			: this(ImplicitUseKindFlags.Default, targetFlags) { }
+		  : this(ImplicitUseKindFlags.Default, targetFlags) { }
 
 		public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
 		{
@@ -358,13 +358,13 @@ namespace JetBrains.Annotations
 	internal sealed class MeansImplicitUseAttribute : Attribute
 	{
 		public MeansImplicitUseAttribute()
-			: this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) { }
+		  : this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) { }
 
 		public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags)
-			: this(useKindFlags, ImplicitUseTargetFlags.Default) { }
+		  : this(useKindFlags, ImplicitUseTargetFlags.Default) { }
 
 		public MeansImplicitUseAttribute(ImplicitUseTargetFlags targetFlags)
-			: this(ImplicitUseKindFlags.Default, targetFlags) { }
+		  : this(ImplicitUseKindFlags.Default, targetFlags) { }
 
 		public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
 		{
@@ -480,8 +480,8 @@ namespace JetBrains.Annotations
 	/// }
 	/// </code></example>
 	[AttributeUsage(
-		AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter | AttributeTargets.Method |
-			AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.GenericParameter)]
+	  AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter | AttributeTargets.Method |
+	  AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.GenericParameter)]
 	internal sealed class ProvidesContextAttribute : Attribute { }
 
 	/// <summary>
@@ -928,7 +928,7 @@ namespace JetBrains.Annotations
 	/// The attribute must be mentioned in your member reordering patterns
 	/// </remarks>
 	[AttributeUsage(
-		AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum)]
+	  AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum)]
 	internal sealed class NoReorderAttribute : Attribute { }
 
 	/// <summary>
@@ -1029,6 +1029,23 @@ namespace JetBrains.Annotations
 		}
 
 		[NotNull] public string Directive { get; private set; }
+	}
+
+	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
+	internal sealed class RazorPageBaseTypeAttribute : Attribute
+	{
+		public RazorPageBaseTypeAttribute([NotNull] string baseType)
+		{
+			BaseType = baseType;
+		}
+		public RazorPageBaseTypeAttribute([NotNull] string baseType, string pageName)
+		{
+			BaseType = baseType;
+			PageName = pageName;
+		}
+
+		[NotNull] public string BaseType { get; private set; }
+		[CanBeNull] public string PageName { get; private set; }
 	}
 
 	[AttributeUsage(AttributeTargets.Method)]

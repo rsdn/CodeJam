@@ -8,7 +8,6 @@ using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.Collections;
 using CodeJam.PerfTests.Columns;
 
 using JetBrains.Annotations;
@@ -96,6 +95,8 @@ namespace CodeJam.PerfTests.Metrics
 			[NotNull] IMetricCalculator calculator,
 			bool resultIsRelative)
 		{
+			Code.NotNull(calculator, nameof(calculator));
+
 			MetricCalculator = calculator;
 			ResultIsRelative = resultIsRelative;
 		}
@@ -246,6 +247,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <summary>Gets diagnosers the metric values.</summary>
 		/// <param name="metric">The metric to get diagnosers for.</param>
 		/// <returns>Diagnosers for the metric values</returns>
+		[NotNull]
 		protected abstract IDiagnoser[] GetDiagnosersOverride(MetricInfo metric);
 
 		/// <summary>Tries to get values for the relative metric.</summary>
@@ -297,6 +299,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="benchmarkReport">The benchmark report.</param>
 		/// <param name="summary">The summary.</param>
 		/// <returns>Metric values from benchmark report</returns>
+		[NotNull]
 		protected abstract double[] GetValuesFromReport(BenchmarkReport benchmarkReport, Summary summary);
 	}
 }

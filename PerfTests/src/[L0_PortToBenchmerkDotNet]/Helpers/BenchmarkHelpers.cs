@@ -146,7 +146,7 @@ namespace BenchmarkDotNet.Helpers
 				});
 		}
 
-#if !TARGETS_NET // WORKAROUND for missing TrySetPriority in BDN for .Net Core
+#if CORE || !TARGETS_NET // WORKAROUND for missing TrySetPriority in BDN for .Net Core
 		public static bool TrySetPriority(
 			this Thread thread,
 			ThreadPriority priority,

@@ -57,7 +57,7 @@ namespace CodeJam.PerfTests
 	/// <summary>
 	/// IO write bytes metric attribute.
 	/// </summary>
-	[MetricInfo(FileIoMetricProvider.Category, DefaultMinMetricValue.SameAsMax, AnnotateInPlace = true)]
+	[MetricInfo(FileIoMetricProvider.Category, DefaultMinMetricValue.SameAsMax, CompactAttributeAnnotations = true)]
 	public class FileIoWriteAttribute : MetricAttributeBase,
 		IMetricAttribute<FileIoWriteAttribute.ValuesProvider, BinarySizeUnit>
 	{

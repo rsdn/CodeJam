@@ -13,52 +13,52 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="values">Set of values.</param>
 		/// <returns>Actual value for the set of values or <c>null</c> if none.</returns>
 		[Pure]
-		double? TryGetMeanValue(double[] values);
+		double? TryGetMeanValue([NotNull] double[] values);
 
 		/// <summary>Gets actual value for the set of values (relative metric).</summary>
 		/// <param name="values">Set of values.</param>
 		/// <param name="baselineValues">The baseline values.</param>
 		/// <returns>Actual value for the set of values or <c>null</c> if none.</returns>
 		[Pure]
-		double? TryGetRelativeMeanValue(double[] values, double[] baselineValues);
+		double? TryGetRelativeMeanValue([NotNull] double[] values, [NotNull] double[] baselineValues);
 
 		/// <summary>Gets variance for the set of values.</summary>
 		/// <param name="values">Set of values.</param>
 		/// <returns>Variance for the set of values or <c>null</c> if none.</returns>
 		[Pure]
-		double? TryGetVariance(double[] values);
+		double? TryGetVariance([NotNull] double[] values);
 
 		/// <summary>Gets variance for the set of values (relative metric).</summary>
 		/// <param name="values">Set of values.</param>
 		/// <param name="baselineValues">The baseline values.</param>
 		/// <returns>Variance for the set of values or <c>null</c> if none.</returns>
 		[Pure]
-		double? TryGetRelativeVariance(double[] values, double[] baselineValues);
+		double? TryGetRelativeVariance([NotNull] double[] values, [NotNull] double[] baselineValues);
 
 		/// <summary>Gets actual values range for the set of values.</summary>
 		/// <param name="values">Set of values.</param>
 		/// <returns>Actual values range for for the set of values (or empty range if none).</returns>
 		[Pure]
-		MetricRange TryGetActualValues(double[] values);
+		MetricRange TryGetActualValues([NotNull] double[] values);
 
 		/// <summary>Gets actual values range for the set of values (relative metric).</summary>
 		/// <param name="values">Set of values.</param>
 		/// <param name="baselineValues">The baseline values.</param>
 		/// <returns>Actual values range for the set of values (or empty range if none).</returns>
 		[Pure]
-		MetricRange TryGetRelativeActualValues(double[] values, double[] baselineValues);
+		MetricRange TryGetRelativeActualValues([NotNull] double[] values, [NotNull] double[] baselineValues);
 
 		/// <summary> Gets expected limits range for the set of values.</summary>
 		/// <param name="values">Set of values.</param>
 		/// <returns>Limit values range for the set of values (or empty range if none).</returns>
 		[Pure]
-		MetricRange TryGetLimitValues(double[] values);
+		MetricRange TryGetLimitValues([NotNull] double[] values);
 
 		/// <summary> Gets expected limits range for the set of values (relative metric).</summary>
 		/// <param name="values">Set of values.</param>
 		/// <param name="baselineValues">The baseline values.</param>
 		/// <returns>Limit values range for the set of values (or empty range if none).</returns>
 		[Pure]
-		MetricRange TryGetRelativeLimitValues(double[] values, double[] baselineValues);
+		MetricRange TryGetRelativeLimitValues([NotNull] double[] values, [NotNull] double[] baselineValues);
 	}
 }

@@ -1,7 +1,8 @@
 ﻿using System;
+
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Core
+namespace CodeJam.PerfTests.Running.Helpers
 {
 	/// <summary>
 	/// Known PDB algorithms

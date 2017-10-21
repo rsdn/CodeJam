@@ -101,7 +101,6 @@ namespace CodeJam.PerfTests.Columns
 		/// <returns>The value for the column</returns>
 		public string GetValue(Summary summary, Benchmark benchmark) => GetValue(summary, benchmark, null);
 
-
 		/// <summary>Returns value for the column.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
@@ -118,7 +117,7 @@ namespace CodeJam.PerfTests.Columns
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns><c>true</c> if the specified summary is default; otherwise, <c>false</c>.</returns>
 		public bool IsDefault(Summary summary, Benchmark benchmark) =>
-				!GetOptions(summary).HasValue(_characteristic);
+			!GetOptions(summary).HasValue(_characteristic);
 
 		/// <summary>Determines whether the specified summary is available.</summary>
 		/// <param name="summary">The summary.</param>

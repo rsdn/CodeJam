@@ -84,6 +84,7 @@
 * Gc metrics (byte-precise allocation monitoring, gc collection metrics)
 
 ## Long-term TODOs:
+* Attach detailed reports to tests
 
 ## Issues:
 https://github.com/dotnet/BenchmarkDotNet/issues/361

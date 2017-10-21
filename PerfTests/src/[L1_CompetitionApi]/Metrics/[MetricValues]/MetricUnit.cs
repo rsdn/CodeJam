@@ -34,8 +34,10 @@ namespace CodeJam.PerfTests.Metrics
 		/// or <c>null</c> if auto-rounding feature shold be used.
 		/// </param>
 		internal MetricUnit(
-			[NotNull] string name, [NotNull] Enum enumValue,
-			double scaleCoefficient, double appliesFrom,
+			[NotNull] string name,
+			[NotNull] Enum enumValue,
+			double scaleCoefficient,
+			double appliesFrom,
 			[CanBeNull] int? roundingDigits)
 		{
 			Code.NotNullNorEmpty(name, nameof(name));

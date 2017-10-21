@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+
 using CodeJam.Reflection;
 
 using JetBrains.Annotations;
@@ -15,7 +16,7 @@ using System.Xml;
 using Microsoft.Extensions.Configuration;
 #endif
 
-namespace CodeJam.PerfTests.Running.Core
+namespace CodeJam.PerfTests.Running.Helpers
 {
 	/// <summary>
 	/// Environment helpers.
@@ -27,6 +28,7 @@ namespace CodeJam.PerfTests.Running.Core
 			(Assembly a, string sectionName, Type sectionType) => GetConfigSectionToCache(a, sectionName, sectionType),
 			true);
 
+		[CanBeNull]
 		private static object GetConfigSectionToCache(Assembly a, string sectionName, Type sectionType)
 		{
 #if TARGETS_NET
@@ -46,6 +48,7 @@ namespace CodeJam.PerfTests.Running.Core
 #endif
 		}
 
+		[NotNull]
 		private static string GetDefaultConfigPath()
 		{
 #if TARGETS_NET
@@ -62,7 +65,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <returns>
 		/// <c>true</c> if any environment variable from <paramref name="variables"/> is set.
 		/// </returns>
-		public static bool HasAnyEnvironmentVariable(params string[] variables) =>
+		public static bool HasAnyEnvironmentVariable([NotNull] params string[] variables) =>
 			HasAnyEnvironmentVariable((IEnumerable<string>)variables);
 
 		/// <summary>Determines whether any environment variable is set.</summary>
@@ -70,10 +73,9 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <returns>
 		/// <c>true</c> if any environment variable from <paramref name="variables"/> is set.
 		/// </returns>
-		public static bool HasAnyEnvironmentVariable(IEnumerable<string> variables)
+		public static bool HasAnyEnvironmentVariable([NotNull] IEnumerable<string> variables)
 		{
-			if (variables == null)
-				return false;
+			Code.NotNull(variables, nameof(variables));
 
 			var envVariables = Environment.GetEnvironmentVariables().Keys.Cast<string>();
 			var set = new HashSet<string>(envVariables, StringComparer.OrdinalIgnoreCase);
@@ -91,13 +93,14 @@ namespace CodeJam.PerfTests.Running.Core
 		/// The assemblies to check for the config section if the app.config does not contain the section.
 		/// </param>
 		/// <returns>Configuration section with the name specified in <paramref name="sectionName"/>.</returns>
+		[CanBeNull]
 		public static TSection ParseConfigurationSection<TSection>(
 			[NotNull] string sectionName,
-			params Assembly[] fallbackAssemblies)
+			[NotNull] params Assembly[] fallbackAssemblies)
 #if TARGETS_NET
 			where TSection : ConfigurationSection
 #endif
-				=> ParseConfigurationSection<TSection>(sectionName, fallbackAssemblies.AsEnumerable());
+			=> ParseConfigurationSection<TSection>(sectionName, fallbackAssemblies.AsEnumerable());
 
 		/// <summary>
 		/// Retuns configuration section from app.config or (if none)
@@ -109,15 +112,16 @@ namespace CodeJam.PerfTests.Running.Core
 		/// The assemblies to check for the config section if the app.config does not contain the section.
 		/// </param>
 		/// <returns>Configuration section with the name specified in <paramref name="sectionName"/>.</returns>
+		[CanBeNull]
 		public static TSection ParseConfigurationSection<TSection>(
 			[NotNull] string sectionName,
-			IEnumerable<Assembly> fallbackAssemblies)
+			[NotNull] IEnumerable<Assembly> fallbackAssemblies)
 #if TARGETS_NET
 			where TSection : ConfigurationSection
 #endif
 		{
-			if (string.IsNullOrEmpty(sectionName))
-				throw new ArgumentNullException(nameof(sectionName));
+			Code.NotNullNorEmpty(sectionName, nameof(sectionName));
+			Code.NotNull(fallbackAssemblies, nameof(fallbackAssemblies));
 
 			var targetFile = GetDefaultConfigPath();
 			targetFile = Path.GetFileName(targetFile);

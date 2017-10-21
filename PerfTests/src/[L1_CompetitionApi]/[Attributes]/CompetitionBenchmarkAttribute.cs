@@ -49,7 +49,6 @@ namespace CodeJam.PerfTests
 			UnitOfMeasurement = null;
 		}
 
-
 		/// <summary>Marks the competition benchmark.</summary>
 		/// <param name="min">
 		/// The minimum value.
@@ -90,7 +89,7 @@ namespace CodeJam.PerfTests
 		/// <value>
 		/// The maximum value.
 		/// The <see cref="double.NaN"/> marks the value as unset but updateable during the annotation.
-		/// Use <seealso cref="double.PositiveInfinity"/> if value is positive infinity (ignored, essentially).
+		/// The <seealso cref="double.PositiveInfinity"/> returned if value is positive infinity (ignored, essentially).
 		/// IMPORTANT: If the <see cref="UnitOfMeasurement"/> is not <c>null</c>
 		/// both <see cref="Min"/> and <see cref="Max"/> values are scaled.
 		/// Use the <see cref="MetricValueHelpers"/> to normalize them.

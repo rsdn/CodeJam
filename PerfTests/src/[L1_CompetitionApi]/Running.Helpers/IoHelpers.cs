@@ -4,7 +4,9 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace CodeJam.PerfTests.Running.Core
+using JetBrains.Annotations;
+
+namespace CodeJam.PerfTests.Running.Helpers
 {
 	/// <summary>
 	/// IO helpers
@@ -14,8 +16,12 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Reads file content and fails if not able to detect encoding.</summary>
 		/// <param name="path">The path.</param>
 		/// <returns>File lines.</returns>
-		public static string[] ReadFileContent(string path)
+		[NotNull]
+		public static string[] ReadFileContent([NotNull] string path)
 		{
+			if (string.IsNullOrEmpty(path))
+				throw new ArgumentNullException(nameof(path));
+
 			var lines = new List<string>();
 			using (var streamReader = new StreamReader(path))
 			{
@@ -39,9 +45,9 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="path">The path.</param>
 		/// <param name="lines">The lines to write.</param>
 		// THANKSTO: http://stackoverflow.com/a/11689630
-		public static void WriteFileContent(string path, string[] lines)
+		public static void WriteFileContent([NotNull] string path, string[] lines)
 		{
-			if (path == null)
+			if (string.IsNullOrEmpty(path))
 				throw new ArgumentNullException(nameof(path));
 			if (lines == null)
 				throw new ArgumentNullException(nameof(lines));
@@ -62,16 +68,18 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Tries to obtain text from the given URI.</summary>
 		/// <param name="uri">The URI to geth the text from.</param>
 		/// <returns>The text reader or <c>null</c> if none.</returns>
-		public static TextReader TryGetTextFromUri(string uri) =>
+		[CanBeNull]
+		public static TextReader TryGetTextFromUri([NotNull] string uri) =>
 			TryGetTextFromUri(uri, null);
 
 		/// <summary>Tries to obtain text from the given URI.</summary>
 		/// <param name="uri">The URI to geth the text from.</param>
 		/// <param name="timeOut">The timeout.</param>
 		/// <returns>The text reader or <c>null</c> if none.</returns>
-		public static TextReader TryGetTextFromUri(string uri, TimeSpan? timeOut)
+		[CanBeNull]
+		public static TextReader TryGetTextFromUri([NotNull] string uri, TimeSpan? timeOut)
 		{
-			if (uri == null)
+			if (string.IsNullOrEmpty(uri))
 				throw new ArgumentNullException(nameof(uri));
 
 			var uriInst = new Uri(uri, UriKind.RelativeOrAbsolute);

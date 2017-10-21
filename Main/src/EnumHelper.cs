@@ -269,7 +269,7 @@ namespace CodeJam
 		/// <returns>The enum values collection.</returns>
 		[Pure, NotNull]
 		public static EnumValue GetEnumValue<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible => GetEnumValues<TEnum>().GetByValue(value);
+			where TEnum : struct, IComparable, IFormattable, IConvertible => GetEnumValues<TEnum>().GetByValue((Enum)(object)value);
 
 
 		/// <summary>Returns name of the enum value.</summary>
