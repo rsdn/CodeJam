@@ -96,13 +96,13 @@ namespace BenchmarkDotNet.Helpers
 		/// <param name="nanoseconds">A number of nanoseconds. </param>
 		/// <returns>An object that represents <paramref name="nanoseconds" />.</returns>
 		public static TimeSpan TimeSpanFromNanoseconds(long nanoseconds) =>
-			TimeSpanFromMicroseconds(nanoseconds * 1000.0);
+			TimeSpanFromMicroseconds(nanoseconds / 1000.0);
 
 		/// <summary>Returns a <see cref="T:System.TimeSpan" /> that represents a specified number of microseconds.</summary>
 		/// <param name="microseconds">A number of microseconds. </param>
 		/// <returns>An object that represents <paramref name="microseconds" />.</returns>
 		public static TimeSpan TimeSpanFromMicroseconds(double microseconds) =>
-			TimeSpan.FromMilliseconds(microseconds * 1000.0);
+			TimeSpan.FromMilliseconds(microseconds / 1000.0);
 
 		/// <summary>Gets the value of the current TimeSpan structure expressed in nanoseconds.</summary>
 		/// <param name="timeSpan">The timespan.</param>
