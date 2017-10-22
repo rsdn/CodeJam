@@ -31,14 +31,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c>, if existing source annotations should be igored; otherwise, <c>false</c>.</value>
 		public bool IgnoreExistingAnnotations
 		{
-			get
-			{
-				return IgnoreExistingAnnotationsCharacteristic[this];
-			}
-			set
-			{
-				IgnoreExistingAnnotationsCharacteristic[this] = value;
-			}
+			get => IgnoreExistingAnnotationsCharacteristic[this];
+			set => IgnoreExistingAnnotationsCharacteristic[this] = value;
 		}
 
 		/// <summary>
@@ -49,14 +43,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <value>The URI of the log that contains logged source annotations from previous run(s).</value>
 		public string PreviousRunLogUri
 		{
-			get
-			{
-				return PreviousRunLogUriCharacteristic[this];
-			}
-			set
-			{
-				PreviousRunLogUriCharacteristic[this] = value;
-			}
+			get => PreviousRunLogUriCharacteristic[this];
+			set => PreviousRunLogUriCharacteristic[this] = value;
 		}
 
 		/// <summary>Log source annotations.</summary>
@@ -65,14 +53,8 @@ namespace CodeJam.PerfTests.Configs
 		/// </value>
 		public bool LogAnnotations
 		{
-			get
-			{
-				return LogAnnotationsCharacteristic[this];
-			}
-			set
-			{
-				LogAnnotationsCharacteristic[this] = value;
-			}
+			get => LogAnnotationsCharacteristic[this];
+			set => LogAnnotationsCharacteristic[this] = value;
 		}
 
 		/// <summary>
@@ -85,14 +67,8 @@ namespace CodeJam.PerfTests.Configs
 		/// </value>
 		public bool DontSaveUpdatedAnnotations
 		{
-			get
-			{
-				return DontSaveUpdatedAnnotationsCharacteristic[this];
-			}
-			set
-			{
-				DontSaveUpdatedAnnotationsCharacteristic[this] = value;
-			}
+			get => DontSaveUpdatedAnnotationsCharacteristic[this];
+			set => DontSaveUpdatedAnnotationsCharacteristic[this] = value;
 		}
 	}
 }

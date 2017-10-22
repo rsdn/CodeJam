@@ -42,7 +42,6 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>
 		/// <param name="others">Modes to apply.</param>
-		// ReSharper disable once RedundantCast
 		public CompetitionOptions(params CharacteristicObject[] others) : this(null, others) { }
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionOptions"/> class.</summary>

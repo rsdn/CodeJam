@@ -32,14 +32,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(BurstMode), IsRequired = false)]
 		public bool BurstMode
 		{
-			get
-			{
-				return (bool)this[nameof(BurstMode)];
-			}
-			set
-			{
-				this[nameof(BurstMode)] = value;
-			}
+			get => (bool)this[nameof(BurstMode)];
+			set => this[nameof(BurstMode)] = value;
 		}
 #else
 		public bool BurstMode { get; set; }
@@ -61,14 +55,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(ContinuousIntegrationMode), IsRequired = false)]
 		public bool ContinuousIntegrationMode
 		{
-			get
-			{
-				return (bool)this[nameof(ContinuousIntegrationMode)];
-			}
-			set
-			{
-				this[nameof(ContinuousIntegrationMode)] = value;
-			}
+			get => (bool)this[nameof(ContinuousIntegrationMode)];
+			set => this[nameof(ContinuousIntegrationMode)] = value;
 		}
 #else
 		public bool ContinuousIntegrationMode { get; set; }
@@ -80,14 +68,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(Platform), IsRequired = false)]
 		public Platform? Platform
 		{
-			get
-			{
-				return (Platform?)this[nameof(Platform)];
-			}
-			set
-			{
-				this[nameof(Platform)] = value;
-			}
+			get => (Platform?)this[nameof(Platform)];
+			set => this[nameof(Platform)] = value;
 		}
 #else
 		public Platform? Platform { get; set; }
@@ -105,14 +87,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(AnnotateSources), IsRequired = false)]
 		public bool AnnotateSources
 		{
-			get
-			{
-				return (bool)this[nameof(AnnotateSources)];
-			}
-			set
-			{
-				this[nameof(AnnotateSources)] = value;
-			}
+			get => (bool)this[nameof(AnnotateSources)];
+			set => this[nameof(AnnotateSources)] = value;
 		}
 #else
 		public bool AnnotateSources { get; set; }
@@ -128,14 +104,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(IgnoreExistingAnnotations), IsRequired = false)]
 		public bool IgnoreExistingAnnotations
 		{
-			get
-			{
-				return (bool)this[nameof(IgnoreExistingAnnotations)];
-			}
-			set
-			{
-				this[nameof(IgnoreExistingAnnotations)] = value;
-			}
+			get => (bool)this[nameof(IgnoreExistingAnnotations)];
+			set => this[nameof(IgnoreExistingAnnotations)] = value;
 		}
 #else
 		public bool IgnoreExistingAnnotations { get; set; }
@@ -147,14 +117,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(PreviousRunLogUri), IsRequired = false)]
 		public string PreviousRunLogUri
 		{
-			get
-			{
-				return (string)this[nameof(PreviousRunLogUri)];
-			}
-			set
-			{
-				this[nameof(PreviousRunLogUri)] = value;
-			}
+			get => (string)this[nameof(PreviousRunLogUri)];
+			set => this[nameof(PreviousRunLogUri)] = value;
 		}
 #else
 		public string PreviousRunLogUri { get; set; }
@@ -170,14 +134,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(ReportWarningsAsErrors), IsRequired = false)]
 		public bool ReportWarningsAsErrors
 		{
-			get
-			{
-				return (bool)this[nameof(ReportWarningsAsErrors)];
-			}
-			set
-			{
-				this[nameof(ReportWarningsAsErrors)] = value;
-			}
+			get => (bool)this[nameof(ReportWarningsAsErrors)];
+			set => this[nameof(ReportWarningsAsErrors)] = value;
 		}
 #else
 		public bool ReportWarningsAsErrors { get; set; }
@@ -193,14 +151,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(TroubleshootingMode), IsRequired = false)]
 		public bool TroubleshootingMode
 		{
-			get
-			{
-				return (bool)this[nameof(TroubleshootingMode)];
-			}
-			set
-			{
-				this[nameof(TroubleshootingMode)] = value;
-			}
+			get => (bool)this[nameof(TroubleshootingMode)];
+			set => this[nameof(TroubleshootingMode)] = value;
 		}
 #else
 		public bool TroubleshootingMode { get; set; }
@@ -212,14 +164,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(ImportantInfoLogger), IsRequired = false)]
 		public bool ImportantInfoLogger
 		{
-			get
-			{
-				return (bool)this[nameof(ImportantInfoLogger)];
-			}
-			set
-			{
-				this[nameof(ImportantInfoLogger)] = value;
-			}
+			get => (bool)this[nameof(ImportantInfoLogger)];
+			set => this[nameof(ImportantInfoLogger)] = value;
 		}
 #else
 		public bool ImportantInfoLogger { get; set; }
@@ -231,14 +177,8 @@ namespace CodeJam.PerfTests.Configs
 		[ConfigurationProperty(nameof(DetailedLogger), IsRequired = false)]
 		public bool DetailedLogger
 		{
-			get
-			{
-				return (bool)this[nameof(DetailedLogger)];
-			}
-			set
-			{
-				this[nameof(DetailedLogger)] = value;
-			}
+			get => (bool)this[nameof(DetailedLogger)];
+			set => this[nameof(DetailedLogger)] = value;
 		}
 #else
 		public bool DetailedLogger { get; set; }

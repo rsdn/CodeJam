@@ -15,10 +15,7 @@ namespace CodeJam.PerfTests.Configs
 		{
 			private readonly int _rerunsIfValidationFailed;
 
-			public ModifierImpl(int rerunsIfValidationFailed)
-			{
-				_rerunsIfValidationFailed = rerunsIfValidationFailed;
-			}
+			public ModifierImpl(int rerunsIfValidationFailed) => _rerunsIfValidationFailed = rerunsIfValidationFailed;
 
 			public void Modify(ManualCompetitionConfig competitionConfig) =>
 				competitionConfig.ApplyModifier(

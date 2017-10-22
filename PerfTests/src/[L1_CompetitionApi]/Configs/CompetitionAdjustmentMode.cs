@@ -35,14 +35,8 @@ namespace CodeJam.PerfTests.Configs
 		/// </value>
 		public bool AdjustMetrics
 		{
-			get
-			{
-				return AdjustMetricsCharacteristic[this];
-			}
-			set
-			{
-				AdjustMetricsCharacteristic[this] = value;
-			}
+			get => AdjustMetricsCharacteristic[this];
+			set => AdjustMetricsCharacteristic[this] = value;
 		}
 
 		/// <summary>Always adjust metric limits if they are empty.</summary>
@@ -52,14 +46,8 @@ namespace CodeJam.PerfTests.Configs
 		/// </value>
 		public bool ForceEmptyMetricsAdjustment
 		{
-			get
-			{
-				return ForceEmptyMetricAdjustmentCharacteristic[this];
-			}
-			set
-			{
-				ForceEmptyMetricAdjustmentCharacteristic[this] = value;
-			}
+			get => ForceEmptyMetricAdjustmentCharacteristic[this];
+			set => ForceEmptyMetricAdjustmentCharacteristic[this] = value;
 		}
 
 		/// <summary>
@@ -76,14 +64,8 @@ namespace CodeJam.PerfTests.Configs
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public int SkipRunsBeforeAdjustment
 		{
-			get
-			{
-				return SkipRunsBeforeAdjustmentCharacteristic[this];
-			}
-			set
-			{
-				SkipRunsBeforeAdjustmentCharacteristic[this] = value;
-			}
+			get => SkipRunsBeforeAdjustmentCharacteristic[this];
+			set => SkipRunsBeforeAdjustmentCharacteristic[this] = value;
 		}
 
 		/// <summary>
@@ -94,14 +76,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <value>Count of additional runs performed after adjusting metric limits.</value>
 		public int RerunsIfAdjusted
 		{
-			get
-			{
-				return RerunsIfAdjustedCharacteristic[this];
-			}
-			set
-			{
-				RerunsIfAdjustedCharacteristic[this] = value;
-			}
+			get => RerunsIfAdjustedCharacteristic[this];
+			set => RerunsIfAdjustedCharacteristic[this] = value;
 		}
 	}
 }

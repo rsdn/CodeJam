@@ -20,17 +20,13 @@ namespace CodeJam.PerfTests
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionConfigAttribute"/> class.</summary>
 		/// <param name="valueType">Type of the competition config. Should have a public parameterless constructor.</param>
-		public CompetitionConfigAttribute([NotNull] Type valueType)
-		{
+		public CompetitionConfigAttribute([NotNull] Type valueType) =>
 			_value = new AttributeValue<ICompetitionConfig>(valueType, nameof(valueType));
-		}
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionConfigAttribute"/> class.</summary>
 		/// <param name="valueFactory">The value factory.</param>
-		protected CompetitionConfigAttribute([NotNull] Func<ICompetitionConfig> valueFactory)
-		{
+		protected CompetitionConfigAttribute([NotNull] Func<ICompetitionConfig> valueFactory) =>
 			_value = new AttributeValue<ICompetitionConfig>(valueFactory);
-		}
 
 		/// <summary>The competition config.</summary>
 		/// <value>The competition config.</value>

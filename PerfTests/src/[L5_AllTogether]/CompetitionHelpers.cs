@@ -42,10 +42,7 @@ namespace CodeJam.PerfTests
 		public static ICompetitionConfig ConfigForAssembly
 		{
 			[MethodImpl(MethodImplOptions.NoInlining)]
-			get
-			{
-				return _configForAssemblyCache(Assembly.GetCallingAssembly());
-			}
+			get => _configForAssemblyCache(Assembly.GetCallingAssembly());
 		}
 
 		/// <summary>Creates competition config for type.</summary>

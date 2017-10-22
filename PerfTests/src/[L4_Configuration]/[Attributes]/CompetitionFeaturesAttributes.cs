@@ -17,10 +17,7 @@ namespace CodeJam.PerfTests
 	public class CompetitionBurstModeAttribute : CompetitionFeaturesAttribute
 	{
 		/// <summary>Initializes a new instance of the <see cref="CompetitionBurstModeAttribute"/> class.</summary>
-		public CompetitionBurstModeAttribute()
-		{
-			BurstMode = true;
-		}
+		public CompetitionBurstModeAttribute() => BurstMode = true;
 	}
 
 	/// <summary>Enables source annotations feature.</summary>
@@ -82,10 +79,7 @@ namespace CodeJam.PerfTests
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CompetitionTroubleshootingModeAttribute"/> class.
 		/// </summary>
-		public CompetitionTroubleshootingModeAttribute()
-		{
-			TroubleshootingMode = true;
-		}
+		public CompetitionTroubleshootingModeAttribute() => TroubleshootingMode = true;
 	}
 
 	/// <summary>Specifies target platform for the competition.</summary>
@@ -94,9 +88,6 @@ namespace CodeJam.PerfTests
 	{
 		/// <summary>Initializes a new instance of the <see cref="CompetitionPlatformAttribute"/> class.</summary>
 		/// <param name="targetPlatform">The target platform.</param>
-		public CompetitionPlatformAttribute(Platform targetPlatform)
-		{
-			Platform = targetPlatform;
-		}
+		public CompetitionPlatformAttribute(Platform targetPlatform) => Platform = targetPlatform;
 	}
 }

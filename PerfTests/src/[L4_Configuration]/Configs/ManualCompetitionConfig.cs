@@ -91,15 +91,9 @@ namespace CodeJam.PerfTests.Configs
 		public CompetitionOptions Options
 		{
 			[NotNull]
-			get
-			{
-				return _options ?? CompetitionOptions.Default;
-			}
-			set
-			{
-				// DONTTOUCH: please DO NOT remove .Freeze() call.
-				_options = value?.Freeze();
-			}
+			get => _options ?? CompetitionOptions.Default;
+			// DONTTOUCH: please DO NOT remove .Freeze() call.
+			set => _options = value?.Freeze();
 		}
 
 		/// <summary>Gets the jobs.</summary>

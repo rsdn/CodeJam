@@ -20,10 +20,7 @@ namespace CodeJam.PerfTests
 		private readonly CompetitionFeatures _features;
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionFeaturesAttribute"/> class.</summary>
-		public CompetitionFeaturesAttribute()
-		{
-			_features = new CompetitionFeatures();
-		}
+		public CompetitionFeaturesAttribute() => _features = new CompetitionFeatures();
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionFeaturesAttribute"/> class.</summary>
 		/// <param name="features">The features.</param>
@@ -42,14 +39,8 @@ namespace CodeJam.PerfTests
 		/// <value>Target platform for the competition.</value>
 		public bool BurstMode
 		{
-			get
-			{
-				return _features.BurstMode;
-			}
-			set
-			{
-				_features.BurstMode = value;
-			}
+			get => _features.BurstMode;
+			set => _features.BurstMode = value;
 		}
 		#endregion
 
@@ -66,28 +57,16 @@ namespace CodeJam.PerfTests
 		/// </value>
 		public bool ContinuousIntegrationMode
 		{
-			get
-			{
-				return _features.ContinuousIntegrationMode;
-			}
-			set
-			{
-				_features.ContinuousIntegrationMode = value;
-			}
+			get => _features.ContinuousIntegrationMode;
+			set => _features.ContinuousIntegrationMode = value;
 		}
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
 		public Platform Platform
 		{
-			get
-			{
-				return _features.Platform;
-			}
-			set
-			{
-				_features.Platform = value;
-			}
+			get => _features.Platform;
+			set => _features.Platform = value;
 		}
 		#endregion
 
@@ -96,14 +75,8 @@ namespace CodeJam.PerfTests
 		/// <value><c>true</c> if source annotations feature should be enabled.</value>
 		public bool AnnotateSources
 		{
-			get
-			{
-				return _features.AnnotateSources;
-			}
-			set
-			{
-				_features.AnnotateSources = value;
-			}
+			get => _features.AnnotateSources;
+			set => _features.AnnotateSources = value;
 		}
 
 		/// <summary>
@@ -113,28 +86,16 @@ namespace CodeJam.PerfTests
 		/// <value><c>true</c> if reannotation feature should be enabled.</value>
 		public bool IgnoreExistingAnnotations
 		{
-			get
-			{
-				return _features.IgnoreExistingAnnotations;
-			}
-			set
-			{
-				_features.IgnoreExistingAnnotations = value;
-			}
+			get => _features.IgnoreExistingAnnotations;
+			set => _features.IgnoreExistingAnnotations = value;
 		}
 
 		/// <summary>Sets the <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/> to the specified value.</summary>
 		/// <value>The value for <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/>.</value>
 		public string PreviousRunLogUri
 		{
-			get
-			{
-				return _features.PreviousRunLogUri;
-			}
-			set
-			{
-				_features.PreviousRunLogUri = value;
-			}
+			get => _features.PreviousRunLogUri;
+			set => _features.PreviousRunLogUri = value;
 		}
 		#endregion
 
@@ -145,14 +106,8 @@ namespace CodeJam.PerfTests
 		/// </value>
 		public bool ReportWarningsAsErrors
 		{
-			get
-			{
-				return _features.ReportWarningsAsErrors;
-			}
-			set
-			{
-				_features.ReportWarningsAsErrors = value;
-			}
+			get => _features.ReportWarningsAsErrors;
+			set => _features.ReportWarningsAsErrors = value;
 		}
 
 		/// <summary>
@@ -163,42 +118,24 @@ namespace CodeJam.PerfTests
 		/// <value><c>true</c> to enable troubleshooting mode.</value>
 		public bool TroubleshootingMode
 		{
-			get
-			{
-				return _features.TroubleshootingMode;
-			}
-			set
-			{
-				_features.TroubleshootingMode = value;
-			}
+			get => _features.TroubleshootingMode;
+			set => _features.TroubleshootingMode = value;
 		}
 
 		/// <summary>Enables important info logger.</summary>
 		/// <value><c>true</c> if important info logger should be used.</value>
 		public bool ImportantInfoLogger
 		{
-			get
-			{
-				return _features.ImportantInfoLogger;
-			}
-			set
-			{
-				_features.ImportantInfoLogger = value;
-			}
+			get => _features.ImportantInfoLogger;
+			set => _features.ImportantInfoLogger = value;
 		}
 
 		/// <summary>Enables detailed logger.</summary>
 		/// <value><c>true</c> if detailed logger should be used.</value>
 		public bool DetailedLogger
 		{
-			get
-			{
-				return _features.DetailedLogger;
-			}
-			set
-			{
-				_features.DetailedLogger = value;
-			}
+			get => _features.DetailedLogger;
+			set => _features.DetailedLogger = value;
 		}
 		#endregion
 

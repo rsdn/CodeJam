@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Extensions;
 using BenchmarkDotNet.Loggers;
@@ -28,7 +26,6 @@ namespace BenchmarkDotNet.Helpers
 	/// Helper methods for benchmark infrastructure.
 	/// </summary>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "ArrangeBraces_using")]
 	public static class BenchmarkHelpers
 	{
 		#region Benchmark-related
@@ -95,21 +92,27 @@ namespace BenchmarkDotNet.Helpers
 				.ToArray();
 		#endregion
 
-		/// <summary>
-		/// Determines whether the characteristic has influence on job execution.
-		/// </summary>
-		/// <param name="characteristic">The characteristic.</param>
-		/// <param name="includeIgnoreOnApply">Include ignorable.</param>
-		/// <returns>
-		/// <c>true</c> if the characteristic has influence on job execution.
-		/// </returns>
-		public static bool DeterminesBehavior(this Characteristic characteristic, bool includeIgnoreOnApply = false) =>
-			!characteristic.HasChildCharacteristics && (includeIgnoreOnApply || !characteristic.IgnoreOnApply);
+		/// <summary>Returns a <see cref="T:System.TimeSpan" /> that represents a specified number of nanoseconds.</summary>
+		/// <param name="nanoseconds">A number of nanoseconds. </param>
+		/// <returns>An object that represents <paramref name="nanoseconds" />.</returns>
+		public static TimeSpan TimeSpanFromNanoseconds(long nanoseconds) =>
+			TimeSpanFromMicroseconds(nanoseconds * 1000.0);
+
+		/// <summary>Returns a <see cref="T:System.TimeSpan" /> that represents a specified number of microseconds.</summary>
+		/// <param name="microseconds">A number of microseconds. </param>
+		/// <returns>An object that represents <paramref name="microseconds" />.</returns>
+		public static TimeSpan TimeSpanFromMicroseconds(double microseconds) =>
+			TimeSpan.FromMilliseconds(microseconds * 1000.0);
 
 		/// <summary>Gets the value of the current TimeSpan structure expressed in nanoseconds.</summary>
 		/// <param name="timeSpan">The timespan.</param>
 		/// <returns>The total number of nanoseconds represented by this instance.</returns>
 		public static double TotalNanoseconds(this TimeSpan timeSpan) => timeSpan.Ticks * (1.0e9 / TimeSpan.TicksPerSecond);
+
+		/// <summary>Gets the value of the current TimeSpan structure expressed in microseconds.</summary>
+		/// <param name="timeSpan">The timespan.</param>
+		/// <returns>The total number of microseconds represented by this instance.</returns>
+		public static double TotalMicroseconds(this TimeSpan timeSpan) => timeSpan.TotalNanoseconds() * 1000;
 		#endregion
 
 		#region Priority & affinity

@@ -1,5 +1,9 @@
-CodeJam.PerfTests Release Notes
+﻿CodeJam.PerfTests Release Notes
 -------------------------------
+# 0.2.0-beta
+* Update BenchmarkDotNet dependency to 0.10.9
+* Experimental ETW metrics support. Use CodeJam.PerfTests.Etw package
+* .NET Core 2 support.
 
 # 0.1.4-beta
 * First beta release. Docs actualised, improvements for diagnostics and log output.

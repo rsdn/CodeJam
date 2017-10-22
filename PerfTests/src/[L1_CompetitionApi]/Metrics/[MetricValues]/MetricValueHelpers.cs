@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 using BenchmarkDotNet.Environments;
 
@@ -8,7 +7,6 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Metrics
 {
 	/// <summary> Extension methods for <see cref="MetricUnit"/> and <see cref="MetricUnitScale"/>. </summary>
-	[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 	public static class MetricValueHelpers
 	{
 		#region MetricRange factory methods

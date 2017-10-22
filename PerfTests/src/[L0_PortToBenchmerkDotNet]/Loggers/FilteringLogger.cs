@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 
@@ -17,7 +16,6 @@ namespace BenchmarkDotNet.Loggers
 	/// <summary>Basic logger implementation that supports message filtering.</summary>
 	/// <seealso cref="ILogger"/>
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public class FilteringLogger : IFlushableLogger
 	{
 		// DONTTOUCH: Check that all code does not hardcode content of the constants before changing

@@ -57,7 +57,7 @@
 		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="xunit" Version="2.2.0" />
+		<PackageReference Include="xunit" Version="2.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>

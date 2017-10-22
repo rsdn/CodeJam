@@ -97,14 +97,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <value>Target platform for the competition.</value>
 		public bool BurstMode
 		{
-			get
-			{
-				return BurstModeCharacteristic[this];
-			}
-			set
-			{
-				BurstModeCharacteristic[this] = value;
-			}
+			get => BurstModeCharacteristic[this];
+			set => BurstModeCharacteristic[this] = value;
 		}
 		#endregion
 
@@ -121,28 +115,16 @@ namespace CodeJam.PerfTests.Configs
 		/// </value>
 		public bool ContinuousIntegrationMode
 		{
-			get
-			{
-				return ContinuousIntegrationModeCharacteristic[this];
-			}
-			set
-			{
-				ContinuousIntegrationModeCharacteristic[this] = value;
-			}
+			get => ContinuousIntegrationModeCharacteristic[this];
+			set => ContinuousIntegrationModeCharacteristic[this] = value;
 		}
 
 		/// <summary>Specifies target platform for the competition.</summary>
 		/// <value>Target platform for the competition.</value>
 		public Platform Platform
 		{
-			get
-			{
-				return PlatformCharacteristic[this];
-			}
-			set
-			{
-				PlatformCharacteristic[this] = value;
-			}
+			get => PlatformCharacteristic[this];
+			set => PlatformCharacteristic[this] = value;
 		}
 		#endregion
 
@@ -151,14 +133,8 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c> if source annotations feature should be enabled.</value>
 		public bool AnnotateSources
 		{
-			get
-			{
-				return AnnotateSourcesCharacteristic[this];
-			}
-			set
-			{
-				AnnotateSourcesCharacteristic[this] = value;
-			}
+			get => AnnotateSourcesCharacteristic[this];
+			set => AnnotateSourcesCharacteristic[this] = value;
 		}
 
 		/// <summary>
@@ -168,28 +144,16 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c> if reannotation feature should be enabled.</value>
 		public bool IgnoreExistingAnnotations
 		{
-			get
-			{
-				return IgnoreExistingAnnotationsCharacteristic[this];
-			}
-			set
-			{
-				IgnoreExistingAnnotationsCharacteristic[this] = value;
-			}
+			get => IgnoreExistingAnnotationsCharacteristic[this];
+			set => IgnoreExistingAnnotationsCharacteristic[this] = value;
 		}
 
 		/// <summary>Sets the <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/> to the specified value.</summary>
 		/// <value>The value for <see cref="CompetitionAnnotationMode.PreviousRunLogUri"/>.</value>
 		public string PreviousRunLogUri
 		{
-			get
-			{
-				return PreviousRunLogUriCharacteristic[this];
-			}
-			set
-			{
-				PreviousRunLogUriCharacteristic[this] = value;
-			}
+			get => PreviousRunLogUriCharacteristic[this];
+			set => PreviousRunLogUriCharacteristic[this] = value;
 		}
 		#endregion
 
@@ -200,14 +164,8 @@ namespace CodeJam.PerfTests.Configs
 		/// </value>
 		public bool ReportWarningsAsErrors
 		{
-			get
-			{
-				return ReportWarningsAsErrorsCharacteristic[this];
-			}
-			set
-			{
-				ReportWarningsAsErrorsCharacteristic[this] = value;
-			}
+			get => ReportWarningsAsErrorsCharacteristic[this];
+			set => ReportWarningsAsErrorsCharacteristic[this] = value;
 		}
 
 		/// <summary>
@@ -218,42 +176,24 @@ namespace CodeJam.PerfTests.Configs
 		/// <value><c>true</c> to enable troubleshooting mode.</value>
 		public bool TroubleshootingMode
 		{
-			get
-			{
-				return TroubleshootingModeCharacteristic[this];
-			}
-			set
-			{
-				TroubleshootingModeCharacteristic[this] = value;
-			}
+			get => TroubleshootingModeCharacteristic[this];
+			set => TroubleshootingModeCharacteristic[this] = value;
 		}
 
 		/// <summary>Enables important info logger.</summary>
 		/// <value><c>true</c> if important info logger should be used.</value>
 		public bool ImportantInfoLogger
 		{
-			get
-			{
-				return ImportantInfoLoggerCharacteristic[this];
-			}
-			set
-			{
-				ImportantInfoLoggerCharacteristic[this] = value;
-			}
+			get => ImportantInfoLoggerCharacteristic[this];
+			set => ImportantInfoLoggerCharacteristic[this] = value;
 		}
 
 		/// <summary>Enables detailed logger.</summary>
 		/// <value><c>true</c> if detailed logger should be used.</value>
 		public bool DetailedLogger
 		{
-			get
-			{
-				return DetailedLoggerCharacteristic[this];
-			}
-			set
-			{
-				DetailedLoggerCharacteristic[this] = value;
-			}
+			get => DetailedLoggerCharacteristic[this];
+			set => DetailedLoggerCharacteristic[this] = value;
 		}
 		#endregion
 	}
