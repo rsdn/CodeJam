@@ -92,17 +92,17 @@ namespace BenchmarkDotNet.Helpers
 				.ToArray();
 		#endregion
 
-		/// <summary>Returns a <see cref="T:System.TimeSpan" /> that represents a specified number of nanoseconds.</summary>
+		/// <summary>Returns a <see cref="TimeSpan" /> that represents a specified number of nanoseconds.</summary>
 		/// <param name="nanoseconds">A number of nanoseconds. </param>
 		/// <returns>An object that represents <paramref name="nanoseconds" />.</returns>
 		public static TimeSpan TimeSpanFromNanoseconds(long nanoseconds) =>
-			TimeSpanFromMicroseconds(nanoseconds / 1000.0);
+			new TimeSpan((long)(nanoseconds / (1.0e9 / TimeSpan.TicksPerSecond)));
 
-		/// <summary>Returns a <see cref="T:System.TimeSpan" /> that represents a specified number of microseconds.</summary>
+		/// <summary>Returns a <see cref="TimeSpan" /> that represents a specified number of microseconds.</summary>
 		/// <param name="microseconds">A number of microseconds. </param>
 		/// <returns>An object that represents <paramref name="microseconds" />.</returns>
 		public static TimeSpan TimeSpanFromMicroseconds(double microseconds) =>
-			TimeSpan.FromMilliseconds(microseconds / 1000.0);
+			TimeSpanFromNanoseconds((long)(microseconds * 1000.0));
 
 		/// <summary>Gets the value of the current TimeSpan structure expressed in nanoseconds.</summary>
 		/// <param name="timeSpan">The timespan.</param>
@@ -112,7 +112,7 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Gets the value of the current TimeSpan structure expressed in microseconds.</summary>
 		/// <param name="timeSpan">The timespan.</param>
 		/// <returns>The total number of microseconds represented by this instance.</returns>
-		public static double TotalMicroseconds(this TimeSpan timeSpan) => timeSpan.TotalNanoseconds() * 1000;
+		public static double TotalMicroseconds(this TimeSpan timeSpan) => timeSpan.TotalNanoseconds() / 1000;
 		#endregion
 
 		#region Priority & affinity

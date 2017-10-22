@@ -123,6 +123,20 @@ namespace CodeJam.PerfTests
 
 			var twelveMsNs = (int)TimeSpan.FromMilliseconds(12).TotalNanoseconds();
 			AreEqual(twelveMsNs, 12 * 1000 * 1000);
+
+			var oneSecondUs = (int)TimeSpan.FromSeconds(1).TotalMicroseconds();
+			AreEqual(oneSecondUs, 1000 * 1000);
+
+			var twelveMsUs = (int)TimeSpan.FromMilliseconds(12).TotalMicroseconds();
+			AreEqual(twelveMsUs, 12 * 1000);
+		}
+
+		[Test]
+		public static void TestFromTotalNanoseconds()
+		{
+			var twelveMs = TimeSpan.FromMilliseconds(12);
+			AreEqual(twelveMs, BenchmarkHelpers.TimeSpanFromNanoseconds(12 * 1000 * 1000));
+			AreEqual(twelveMs, BenchmarkHelpers.TimeSpanFromMicroseconds(12 * 1000));
 		}
 	}
 }
