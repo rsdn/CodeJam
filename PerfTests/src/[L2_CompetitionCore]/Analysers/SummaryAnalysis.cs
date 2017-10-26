@@ -14,22 +14,23 @@ namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Helper class to store competition analysis results.</summary>
 	[PublicAPI]
-	public class ResultAnalysis : Analysis
+	public class SummaryAnalysis : Analysis
 	{
 		/// <summary>Initializes a new instance of the <see cref="Analysis"/> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="summary">The summary.</param>
-		public ResultAnalysis([NotNull] string id, [NotNull] Summary summary)
+		public SummaryAnalysis([NotNull] string id, [NotNull] Summary summary)
 			: this(id, summary, MessageSource.Analyser) { }
 
 		/// <summary>Initializes a new instance of the <see cref="Analysis"/> class.</summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="summary">The summary.</param>
 		/// <param name="messageSource">Source for the messages.</param>
-		public ResultAnalysis([NotNull] string id, [NotNull] Summary summary, MessageSource messageSource) :
+		public SummaryAnalysis([NotNull] string id, [NotNull] Summary summary, MessageSource messageSource) :
 			base(summary.Config, messageSource)
 		{
 			Code.NotNullNorEmpty(id, nameof(id));
+			Code.NotNull(summary, nameof(summary));
 			Id = id;
 
 			Summary = summary;

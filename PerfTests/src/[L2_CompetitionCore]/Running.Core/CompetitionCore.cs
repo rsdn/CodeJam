@@ -41,7 +41,7 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		/// <summary>Run state slot.</summary>
-		public static readonly RunState<CompetitionState> RunState = new RunState<CompetitionState>();
+		public static readonly RunStateKey<CompetitionState> RunState = new RunStateKey<CompetitionState>(_ => throw CodeExceptions.InvalidOperation("The run state should be during config creation."));
 
 		#region Run logic
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
@@ -67,7 +67,6 @@ namespace CodeJam.PerfTests.Running.Core
 
 			try
 			{
-				competitionState.FirstTimeInit(benchmarkType, competitionConfig);
 				var logger = competitionState.Logger;
 
 				using (BeginLogImportant(competitionConfig))

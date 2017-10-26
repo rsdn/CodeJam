@@ -149,7 +149,7 @@ namespace CodeJam.PerfTests.Analysers
 		private static bool OnCheckTarget(
 			[NotNull] CompetitionTarget competitionTarget,
 			[NotNull] Benchmark[] benchmarksForTarget,
-			[NotNull] ResultAnalysis analysis)
+			[NotNull] SummaryAnalysis analysis)
 		{
 			var result = true;
 			foreach (var metricValue in competitionTarget.MetricValues)
@@ -165,7 +165,7 @@ namespace CodeJam.PerfTests.Analysers
 		private static bool CheckBenchmark(
 			Benchmark benchmark,
 			CompetitionMetricValue metricValue,
-			ResultAnalysis analysis)
+			SummaryAnalysis analysis)
 		{
 			var summary = analysis.Summary;
 			var metric = metricValue.Metric;
@@ -320,11 +320,11 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (PerformAdjustment(analysis) && adjustmentMode.RerunsIfAdjusted > 0)
 			{
-				analysis.RunState.RequestReruns(adjustmentMode.RerunsIfAdjusted, "Metrics were adjusted");
+				analysis.RunState.RequestReruns(adjustmentMode.RerunsIfAdjusted, "Metrics were adjusted.");
 			}
 			else if (analysis.RunState.RunNumber < analysis.Options.Checks.RerunsIfValidationFailed)
 			{
-				analysis.RunState.RequestReruns(1, "Metrics check failed");
+				analysis.RunState.RequestReruns(1, "Metrics check failed.");
 			}
 		}
 		#endregion

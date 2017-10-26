@@ -102,7 +102,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 
 			[CompetitionBenchmark]
-			[ExpectedTime(73.30, 293.40, TimeUnit.Microsecond)]
+			[ExpectedTime(19.97, 293.40, TimeUnit.Microsecond)]
 			[GcAllocations(0, 320, BinarySizeUnit.Byte), Gc0(0), Gc1(0), Gc2(0)]
 			[ClrExceptions(1.00)]
 			public int WithNullRefException()

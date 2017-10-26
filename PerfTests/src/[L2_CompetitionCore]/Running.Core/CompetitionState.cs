@@ -29,27 +29,67 @@ namespace CodeJam.PerfTests.Running.Core
 		private readonly Stopwatch _stopwatch = new Stopwatch();
 
 		/// <summary>Initializes a new instance of the <see cref="CompetitionState"/> class.</summary>
-		public CompetitionState()
+		internal CompetitionState(
+			[NotNull] Type benchmarkType,
+			[NotNull] ICompetitionConfig competitionConfig)
 		{
+			Code.NotNull(benchmarkType, nameof(benchmarkType));
+			Code.NotNull(competitionConfig, nameof(competitionConfig));
+
 			SummaryFromAllRuns = _summaries.AsReadOnly();
+
+			BenchmarkType = benchmarkType;
+			Config = competitionConfig;
+			Logger = competitionConfig.GetCompositeLogger();
+
+			RunNumber = 0;
+			RunsLeft = 1;
+
+			HighestMessageSeverityInRun = MessageSeverity.Verbose;
+			HighestMessageSeverity = MessageSeverity.Verbose;
+			LastRunSummary = null;
+		}
+
+		/// <summary>Prepare for next run.</summary>
+		internal void PrepareForRun()
+		{
+			lock (_lockKey)
+			{
+				AssertIsInCompetition();
+				Code.AssertState(RunsLeft > 0, "No runs left.");
+
+				RunNumber++;
+				RunsLeft--;
+
+				HighestMessageSeverityInRun = MessageSeverity.Verbose;
+				MessagesInRun = 0;
+				LastRunSummary = null;
+
+				if (!_stopwatch.IsRunning)
+					_stopwatch.Start();
+			}
 		}
 
 		#region State properties
 		#region Competition info properties
 		/// <summary>The type of the benchmark.</summary>
 		/// <value>The type of the benchmark.</value>
+		[NotNull]
 		public Type BenchmarkType { get; private set; }
 
 		/// <summary>Config for the competition.</summary>
 		/// <value>The config.</value>
+		[NotNull]
 		public ICompetitionConfig Config { get; private set; }
 
 		/// <summary>Competition options.</summary>
 		/// <value>Competition options.</value>
+		[NotNull]
 		public CompetitionOptions Options => Config.Options;
 
 		/// <summary>The logger for the competition.</summary>
 		/// <value>The logger.</value>
+		[NotNull]
 		public ILogger Logger { get; private set; }
 
 		/// <summary>
@@ -63,6 +103,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>List of summaries from all runs.</summary>
 		/// <value>The list of summaries from all runs.</value>
+		[NotNull]
 		public IReadOnlyList<Summary> SummaryFromAllRuns { get; }
 
 		/// <summary>The competition was completed.</summary>
@@ -125,74 +166,22 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>The competition completed without warnings and errors.</summary>
 		/// <value><c>true</c> if the competition completed without warnings and errors.</value>
-		public bool CompletedSuccessfully => Completed && !HighestMessageSeverity.IsWarningOrHigher();
-		#endregion
-		#endregion
+		public bool CompletedWithoutWarnings => Completed && !HighestMessageSeverity.IsWarningOrHigher();
 
-		[AssertionMethod]
-		private void AsserIsInInit() =>
-			Code.AssertState(
-				BenchmarkType == null && !Completed,
-				"Could not change competition state as the competition is in run or was completed.");
+		/// <summary>The competition completed without errors.</summary>
+		/// <value><c>true</c> if the competition completed without errors.</value>
+		public bool CompletedWithoutErrors => Completed && !HighestMessageSeverity.IsTestErrorOrHigher();
+
+		#endregion
+		#endregion
 
 		[AssertionMethod]
 		private void AssertIsInCompetition() =>
 			Code.AssertState(
-				BenchmarkType != null && !Completed,
-				"Could not change competition state as the competition was not run yet or was completed.");
+				!Completed,
+				"Could not change competition state as the competition is already completed.");
 
 		#region State modification
-		/// <summary>Init the competition state.</summary>
-		/// <param name="benchmarkType">Type of the benchmark.</param>
-		/// <param name="competitionConfig">The config for the competition.</param>
-		internal void FirstTimeInit(
-			[NotNull] Type benchmarkType,
-			[NotNull] ICompetitionConfig competitionConfig)
-		{
-			Code.NotNull(benchmarkType, nameof(benchmarkType));
-			Code.NotNull(competitionConfig, nameof(competitionConfig));
-
-			lock (_lockKey)
-			{
-				AsserIsInInit();
-
-				_stopwatch.Restart();
-
-				BenchmarkType = benchmarkType;
-				Config = competitionConfig;
-				Logger = competitionConfig.GetCompositeLogger();
-
-				RunNumber = 0;
-				RunsLeft = 1;
-
-				HighestMessageSeverityInRun = MessageSeverity.Verbose;
-				HighestMessageSeverity = MessageSeverity.Verbose;
-				MessagesInRun = 0;
-				LastRunSummary = null;
-
-				Completed = false;
-				_summaries.Clear();
-				_messages.Clear();
-			}
-		}
-
-		/// <summary>Prepare for next run.</summary>
-		internal void PrepareForRun()
-		{
-			lock (_lockKey)
-			{
-				AssertIsInCompetition();
-				Code.AssertState(RunsLeft > 0, "No runs left.");
-
-				RunNumber++;
-				RunsLeft--;
-
-				HighestMessageSeverityInRun = MessageSeverity.Verbose;
-				MessagesInRun = 0;
-				LastRunSummary = null;
-			}
-		}
-
 		/// <summary>Request additional runs for the competition.</summary>
 		/// <param name="additionalRunsCount">Count of additional runs.</param>
 		/// <param name="explanationMessage">The explanation message for therequest</param>
@@ -212,7 +201,7 @@ namespace CodeJam.PerfTests.Running.Core
 					WriteMessage(
 						MessageSource.Runner,
 						MessageSeverity.Informational,
-						$"{explanationMessage} but no reruns requested as run limit ({maxRuns} run(s)) exceeded.");
+						$"{explanationMessage} No reruns requested as run limit ({maxRuns} run(s)) exceeded.");
 				}
 				else
 				{
@@ -220,14 +209,14 @@ namespace CodeJam.PerfTests.Running.Core
 					WriteMessage(
 						MessageSource.Runner,
 						MessageSeverity.Informational,
-						$"{explanationMessage}, requesting {request} run(s).");
+						$"{explanationMessage} Requesting {request} run(s).");
 
 					RunsLeft = Math.Max(request, RunsLeft);
 				}
 			}
 		}
 
-		/// <summary>Mark the run as completed.</summary>
+		/// <summary>Adds summary for the run.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		internal void RunCompleted([NotNull] Summary summary)
 		{
@@ -236,6 +225,7 @@ namespace CodeJam.PerfTests.Running.Core
 			lock (_lockKey)
 			{
 				AssertIsInCompetition();
+				Code.BugIf(LastRunSummary != null, "Attempt to add last run summary twice.");
 
 				LastRunSummary = summary;
 				_summaries.Add(summary);
@@ -301,11 +291,6 @@ namespace CodeJam.PerfTests.Running.Core
 				}
 			}
 
-			if (Logger == null)
-			{
-				throw CodeExceptions.InvalidOperation(
-					$"Please call {nameof(FirstTimeInit)}() at first.");
-			}
 			Logger.LogMessage(result);
 		}
 		#endregion

@@ -1,7 +1,6 @@
 ﻿using System;
 
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -15,7 +14,7 @@ namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Helper class to trace competition analysis.</summary>
 	[PublicAPI]
-	public class Analysis : IMessageLogger
+	public class Analysis : MessageLogger
 	{
 		/// <summary>Initializes a new instance of the <see cref="Analysis" /> class.</summary>
 		/// <param name="config">The config.</param>
@@ -25,31 +24,24 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>Initializes a new instance of the <see cref="Analysis"/> class.</summary>
 		/// <param name="config">The config.</param>
 		/// <param name="messageSource">Source for the messages.</param>
-		public Analysis([NotNull] IConfig config, MessageSource messageSource)
+		public Analysis([NotNull] IConfig config, MessageSource messageSource) : base(config, messageSource)
 		{
-			Code.NotNull(config, nameof(config));
-			DebugEnumCode.Defined(messageSource, nameof(messageSource));
-
-			RunState = CompetitionCore.RunState[config];
-			MessageSource = messageSource;
 		}
 
 		#region Properties
-		/// <summary>Source for the messages.</summary>
-		/// <value>Source for the messages.</value>
-		public MessageSource MessageSource { get; }
-
 		/// <summary>The state of the competition.</summary>
 		/// <value>The state of the competition.</value>
 		[NotNull]
-		public CompetitionState RunState { get; }
+		public new CompetitionState RunState => base.RunState;
 
 		/// <summary>Config for the competition.</summary>
 		/// <value>The config.</value>
+		[NotNull]
 		public ICompetitionConfig Config => RunState.Config;
 
 		/// <summary>Competition options.</summary>
 		/// <value>Competition options.</value>
+		[NotNull]
 		public CompetitionOptions Options => RunState.Config.Options;
 
 		/// <summary>Analysis has no execution or setup errors so far and can be safely performed.</summary>
@@ -105,18 +97,6 @@ namespace CodeJam.PerfTests.Analysers
 		{
 			this.WriteWarningMessage(target, message, hint);
 		}
-		#endregion
-
-		#region IMessageLogger implementation
-		/// <summary>Gets logger (can be used for direct log output).</summary>
-		/// <value>The logger.</value>
-		public ILogger Logger => RunState.Logger;
-
-		/// <summary>Adds a message for the competition.</summary>
-		/// <param name="messageSeverity">Severity of the message.</param>
-		/// <param name="message">Text of the message.</param>
-		/// <param name="hint">Hints for the message.</param>
-		public void WriteMessage(MessageSeverity messageSeverity, string message, string hint = null) => RunState.WriteMessage(MessageSource, messageSeverity, message, hint);
 		#endregion
 	}
 }

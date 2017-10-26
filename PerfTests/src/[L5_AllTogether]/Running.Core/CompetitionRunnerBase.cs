@@ -354,8 +354,16 @@ namespace CodeJam.PerfTests.Running.Core
 
 			FixCompetitionConfig(result);
 
-			return result.AsReadOnly();
+			var completeConfig = result.AsReadOnly();
+			InsertRunState(benchmarkType, completeConfig);
+			return completeConfig;
 		}
+
+		private void InsertRunState(Type benchmarkType, ICompetitionConfig completeConfig) =>
+			completeConfig.GetValidators()
+				.OfType<RunStateSlots>()
+				.Single()
+				.InitSlot(CompetitionCore.RunState, new CompetitionState(benchmarkType, completeConfig));
 
 		private void FixCompetitionConfig(ManualCompetitionConfig competitionConfig)
 		{

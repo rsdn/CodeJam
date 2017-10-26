@@ -24,6 +24,15 @@ namespace CodeJam.PerfTests.Running.Core
 		[NotNull]
 		public object GetSlot(RunStateKey key, Func<object> valueFactory) => _stateSlots.GetOrAdd(key, _ => valueFactory());
 
+		/// <summary>Initializes the slot.</summary>
+		/// <param name="key">The key.</param>
+		/// <param name="value">The value.</param>
+		internal void InitSlot(RunStateKey key, object value)
+		{
+			var initialized = _stateSlots.TryAdd(key, value);
+			Code.AssertState(initialized, "Attempt to overwrite filled state slot.");
+		}
+
 		#region IValidator implementation
 		/// <summary>Gets a value indicating whether warnings are treated as errors.</summary>
 		/// <value>

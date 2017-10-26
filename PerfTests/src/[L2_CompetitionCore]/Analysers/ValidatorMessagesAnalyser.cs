@@ -31,7 +31,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <returns>Enumerable with warnings for the benchmarks.</returns>
 		public IEnumerable<Conclusion> Analyse([NotNull] Summary summary)
 		{
-			var analysis = new ResultAnalysis(Id, summary, MessageSource.Validator);
+			var analysis = new SummaryAnalysis(Id, summary, MessageSource.Validator);
 
 			foreach (var validationError in summary.ValidationErrors)
 			{

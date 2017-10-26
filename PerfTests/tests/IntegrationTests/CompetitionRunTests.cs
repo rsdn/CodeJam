@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
@@ -217,7 +217,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
 			Assert.AreEqual(messages[1].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[1].MessageText, "Metrics check failed, requesting 1 run(s).");
+			Assert.AreEqual(messages[1].MessageText, "Metrics check failed. Requesting 1 run(s).");
 
 			Assert.AreEqual(messages[2].RunNumber, 2);
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
@@ -230,7 +230,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[3].RunMessageNumber, 2);
 			Assert.AreEqual(messages[3].MessageSeverity, MessageSeverity.Informational);
 			Assert.AreEqual(messages[3].MessageSource, MessageSource.Runner);
-			Assert.AreEqual(messages[3].MessageText, "Metrics check failed, requesting 1 run(s).");
+			Assert.AreEqual(messages[3].MessageText, "Metrics check failed. Requesting 1 run(s).");
 
 			Assert.AreEqual(messages[4].RunNumber, 3);
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);

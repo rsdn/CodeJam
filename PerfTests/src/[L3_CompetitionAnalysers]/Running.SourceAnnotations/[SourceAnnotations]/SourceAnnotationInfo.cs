@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 
-using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Helpers;
 using CodeJam.Ranges;
 

@@ -212,7 +212,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Fills competition targets with stored metric values.</summary>
 		/// <param name="analysis">State of the analysis.</param>
 		/// <returns>Filled targets or empty collection if not filled.</returns>
-		public CompetitionTarget[] TryGetTargets(ResultAnalysis analysis)
+		public CompetitionTarget[] TryGetTargets(SummaryAnalysis analysis)
 		{
 			Code.NotNull(analysis, nameof(analysis));
 
@@ -233,7 +233,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Fills competition targets with empty metric values.</summary>
 		/// <param name="targets">Competition targets to fill .</param>
 		/// <param name="analysis">State of the analysis.</param>
-		protected virtual void FillTargetsIgnoreAnnotations(List<CompetitionTarget> targets, ResultAnalysis analysis)
+		protected virtual void FillTargetsIgnoreAnnotations(List<CompetitionTarget> targets, SummaryAnalysis analysis)
 		{
 			var ignoreCharacteristic = CompetitionAnnotationMode.IgnoreExistingAnnotationsCharacteristic.FullId;
 			analysis.WriteInfoMessage(
@@ -254,7 +254,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Fills competition targets with stored metric values.</summary>
 		/// <param name="targets">Competition targets to fill .</param>
 		/// <param name="analysis">State of the analysis.</param>
-		protected virtual void FillTargetsFromAnnotations(List<CompetitionTarget> targets, ResultAnalysis analysis)
+		protected virtual void FillTargetsFromAnnotations(List<CompetitionTarget> targets, SummaryAnalysis analysis)
 		{
 			var targetsToFill = analysis.Summary.GetBenchmarkTargets()
 				.Where(t => CheckCompetitionAttribute(t, analysis))
@@ -312,7 +312,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="annotationContext">The annotation context.</param>
 		/// <param name="analysis">State of the analysis.</param>
 		/// <returns>Saved targets, if any.</returns>
-		public CompetitionTarget[] TrySaveTargets(IReadOnlyCollection<CompetitionTarget> targets, AnnotationContext annotationContext, ResultAnalysis analysis)
+		public CompetitionTarget[] TrySaveTargets(IReadOnlyCollection<CompetitionTarget> targets, AnnotationContext annotationContext, SummaryAnalysis analysis)
 		{
 			Code.NotNull(targets, nameof(targets));
 			Code.NotNull(analysis, nameof(analysis));
@@ -333,6 +333,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <param name="annotationContext">The annotation context.</param>
 		/// <param name="analysis">State of the analysis.</param>
 		/// <returns>Saved targets, if any.</returns>
-		protected abstract CompetitionTarget[] TrySaveAnnotationsCore([NotNull] IReadOnlyCollection<CompetitionTarget> competitionTargets, [NotNull] AnnotationContext annotationContext, [NotNull] ResultAnalysis analysis);
+		protected abstract CompetitionTarget[] TrySaveAnnotationsCore([NotNull] IReadOnlyCollection<CompetitionTarget> competitionTargets, [NotNull] AnnotationContext annotationContext, [NotNull] SummaryAnalysis analysis);
 	}
 }

@@ -7,7 +7,6 @@ using System.Reflection;
 using BenchmarkDotNet.Loggers;
 
 using CodeJam.Collections;
-using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Helpers;
 using CodeJam.Reflection;
 

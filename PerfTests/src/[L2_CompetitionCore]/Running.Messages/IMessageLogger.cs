@@ -11,6 +11,7 @@ namespace CodeJam.PerfTests.Running.Messages
 	{
 		/// <summary>Gets logger (can be used for direct log output).</summary>
 		/// <value>The logger.</value>
+		[NotNull]
 		ILogger Logger { get; }
 
 		// TODO: overload that takes exception.
