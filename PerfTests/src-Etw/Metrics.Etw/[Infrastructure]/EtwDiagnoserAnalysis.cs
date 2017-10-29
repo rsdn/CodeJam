@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 using BenchmarkDotNet.Configs;
@@ -6,7 +6,7 @@ using BenchmarkDotNet.Running;
 
 using CodeJam.IO;
 using CodeJam.PerfTests.Analysers;
-using CodeJam.PerfTests.Running.Messages;
+using CodeJam.PerfTests.Running.Core;
 
 using JetBrains.Annotations;
 
@@ -17,7 +17,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 	/// <summary>
 	/// Helper class that stores ETW tracing state for current benchmark run.
 	/// </summary>
-	internal class EtwDiagnoserAnalysis: Analysis
+	internal class EtwDiagnoserAnalysis : Analysis
 	{
 		/// <summary>Initializes a new instance of the <see cref="EtwDiagnoserAnalysis"/> class.</summary>
 		/// <param name="benchmark">The benchmark.</param>
@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		public EtwDiagnoserAnalysis(
 			[NotNull] Benchmark benchmark,
 			[NotNull] IConfig config,
-			[NotNull] IEtwMetricValueProvider[] metricProviders): base(config, MessageSource.Diagnoser)
+			[NotNull] IEtwMetricValueProvider[] metricProviders) : base(config, MessageSource.Diagnoser)
 		{
 			Code.NotNull(benchmark, nameof(benchmark));
 			Code.NotNull(config, nameof(config));

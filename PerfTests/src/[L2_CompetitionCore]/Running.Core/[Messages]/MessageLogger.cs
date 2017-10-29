@@ -3,11 +3,9 @@
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Loggers;
 
-using CodeJam.PerfTests.Running.Core;
-
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Messages
+namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Helper class to trace competition analysis.</summary>
 	[PublicAPI]
@@ -15,8 +13,7 @@ namespace CodeJam.PerfTests.Running.Messages
 	{
 		/// <summary>Initializes a new instance of the <see cref="MessageLogger" /> class.</summary>
 		/// <param name="config">The config.</param>
-		public MessageLogger([NotNull] IConfig config)
-			: this(config, MessageSource.Analyser) { }
+		public MessageLogger([NotNull] IConfig config) : this(config, MessageSource.Analyser) { }
 
 		/// <summary>Initializes a new instance of the <see cref="MessageLogger"/> class.</summary>
 		/// <param name="config">The config.</param>

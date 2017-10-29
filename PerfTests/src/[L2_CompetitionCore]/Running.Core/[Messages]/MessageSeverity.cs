@@ -2,7 +2,7 @@
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Messages
+namespace CodeJam.PerfTests.Running.Core
 {
 	// DONTTOUCH: DO NOT change the order of the enum values
 	// because is used to compare the severities.

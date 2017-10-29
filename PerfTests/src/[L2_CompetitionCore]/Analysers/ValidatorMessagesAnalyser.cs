@@ -5,7 +5,6 @@ using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Running.Core;
-using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 
@@ -24,11 +23,13 @@ namespace CodeJam.PerfTests.Analysers
 		private ValidatorMessagesAnalyser() { }
 
 		/// <value>The identifier of the analyser.</value>
+		[NotNull]
 		public string Id => GetType().Name;
 
 		/// <summary>Dumps validation messages.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Enumerable with warnings for the benchmarks.</returns>
+		[NotNull]
 		public IEnumerable<Conclusion> Analyse([NotNull] Summary summary)
 		{
 			var analysis = new SummaryAnalysis(Id, summary, MessageSource.Validator);

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 
 using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -12,7 +13,6 @@ using CodeJam.Collections;
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Helpers;
-using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -41,7 +41,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		[NotNull]
 		public static XDocument[] ReadXmlAnnotationDocsFromLog(string logUri, IMessageLogger messageLogger)
 		{
-			messageLogger.Logger.WriteVerbose($"Reading XML annotation documents from log '{logUri}'.");
+			messageLogger.Logger.LogVerbose($"Reading XML annotation documents from log '{logUri}'.");
 
 			var xmlAnnotationDocs = XmlAnnotationHelpers.TryParseXmlAnnotationDocsFromLog(logUri, messageLogger);
 
@@ -58,7 +58,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			XDocument[] xmlAnnotationDocs,
 			Analysis analysis)
 		{
-			analysis.Logger.WriteVerbose($"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
+			analysis.Logger.LogVerbose($"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
 
 			var updated = false;
 			var targetsToFill = competitionTargets.Select(t => t.Target).ToArray();
@@ -225,12 +225,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				foreach (var metricValue in metrics)
 				{
-					analysis.Logger.WriteVerbose(
+					analysis.Logger.LogVerbose(
 						$"Method {target.MethodDisplayInfo}: updating metric {metricValue.Metric} {metricValue}.");
 				}
 			}
 
-			analysis.Logger.WriteVerboseHint(
+			analysis.Logger.LogHint(
 				$"Annotating resource file '{annotationFile.Origin}'.");
 
 			XmlAnnotationHelpers.AddOrUpdateXmlAnnotation(
@@ -247,7 +247,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				foreach (var metricValue in metrics)
 				{
-					analysis.Logger.WriteVerboseHint(
+					analysis.Logger.LogHint(
 						$"Method {target.MethodDisplayInfo}: metric {metricValue.Metric} {metricValue} updated.");
 				}
 			}

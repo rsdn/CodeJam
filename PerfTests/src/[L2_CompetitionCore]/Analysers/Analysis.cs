@@ -6,7 +6,6 @@ using BenchmarkDotNet.Running;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
-using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 
@@ -55,7 +54,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="report">The report the message belongs to.</param>
 		public virtual void AddTestErrorConclusion(
 			[NotNull] string message,
-			BenchmarkReport report = null)
+			[CanBeNull] BenchmarkReport report = null)
 		{
 			this.WriteTestErrorMessage(message);
 		}
@@ -67,7 +66,7 @@ namespace CodeJam.PerfTests.Analysers
 		public virtual void AddTestErrorConclusion(
 			[NotNull] Target target,
 			[NotNull] string message,
-			BenchmarkReport report = null)
+			[CanBeNull] BenchmarkReport report = null)
 		{
 			this.WriteTestErrorMessage(target, message);
 		}
@@ -79,7 +78,7 @@ namespace CodeJam.PerfTests.Analysers
 		public virtual void AddWarningConclusion(
 			[NotNull] string message,
 			[NotNull] string hint,
-			BenchmarkReport report = null)
+			[CanBeNull] BenchmarkReport report = null)
 		{
 			this.WriteWarningMessage(message, hint);
 		}
@@ -93,7 +92,7 @@ namespace CodeJam.PerfTests.Analysers
 			[NotNull] Target target,
 			[NotNull] string message,
 			[NotNull] string hint,
-			BenchmarkReport report = null)
+			[CanBeNull] BenchmarkReport report = null)
 		{
 			this.WriteWarningMessage(target, message, hint);
 		}

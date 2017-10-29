@@ -257,7 +257,7 @@ TST6
 			var config = new ManualConfig();
 			config.Add(logger);
 
-			using (FilteringLogger.BeginLogImportant(config))
+			using (LoggerHelpers.BeginImportantLogScope(config))
 			{
 				foreach (var line in lines)
 				{

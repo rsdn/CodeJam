@@ -2,7 +2,7 @@
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Messages
+namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Competition message.</summary>
 	/// <seealso cref="IMessage"/>
@@ -22,7 +22,7 @@ namespace CodeJam.PerfTests.Running.Messages
 			TimeSpan elapsed,
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			[NotNull] string messageText,
-			string hintText)
+			[CanBeNull] string hintText)
 		{
 			DebugCode.ValidCount(runNumber, nameof(runNumber));
 			DebugCode.ValidCount(runMessageNumber, nameof(runMessageNumber));

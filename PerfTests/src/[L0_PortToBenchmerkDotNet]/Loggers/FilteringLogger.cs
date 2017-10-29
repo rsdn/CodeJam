@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
-
-using BenchmarkDotNet.Configs;
 
 using CodeJam;
 using CodeJam.Threading;
@@ -23,48 +20,46 @@ namespace BenchmarkDotNet.Loggers
 		#region Log line prefixes (constants)
 		/// <summary>
 		/// The prefix for verbose log lines.
-		/// Lines with this prefix will be written only if <see cref="Loggers.FilteringLoggerMode.AllMessages"/> mode set.
+		/// Lines with this prefix will be written only if <see cref="FilteringLoggerMode.AllMessages"/> mode set.
 		/// </summary>
-		public const string LogVerbosePrefix = "//  ";
+		public const string VerbosePrefix = "//  ";
 
 		/// <summary>
 		/// The prefix for informational log lines.
-		/// Lines with this prefix will be written even if <see cref="FilteringMode"/> filter applied.
+		/// Lines with this prefix will be written even if <see cref="FilteringLoggerMode"/> filter applied.
 		/// </summary>
-		public const string LogInfoPrefix = "// ?";
+		public const string InfoPrefix = "// ?";
 
 		/// <summary>
 		/// The prefix for important log lines.
-		/// Lines with this prefix will be written even if <see cref="FilteringMode"/> filter applied.
+		/// Lines with this prefix will be written even if <see cref="FilteringLoggerMode"/> filter applied.
 		/// </summary>
-		public const string LogImportantInfoPrefix = "// !";
+		public const string ImportantInfoPrefix = "// !";
 
 		/// <summary>
-		/// The start prefix for important log area.
-		/// Lines between start and end prefixes will be written even if <see cref="FilteringMode"/> filter applied.
+		/// The start prefix for important log scope.
+		/// Lines between start and end prefixes will be written even if <see cref="FilteringLoggerMode"/> filter applied.
 		/// </summary>
-		public const string LogImportantAreaStart = "// !<--";
+		public const string ImportantLogScopeStartPrefix = "// !<--";
 
 		/// <summary>
-		/// The end prefix for important log area.
-		/// Lines between start and end prefixes will be written even if <see cref="FilteringMode"/> filter applied.
+		/// The end prefix for important log scope.
+		/// Lines between start and end prefixes will be written even if <see cref="FilteringLoggerMode"/> filter applied.
 		/// </summary>
-		public const string LogImportantAreaEnd = "// !-->";
+		public const string ImportantLogScopeEndPrefix = "// !-->";
 		#endregion
 
-		#region Static members
-		/// <summary>All messages within the scope will be passed to the log.</summary>
-		/// <param name="config">Config with loggers.</param>
+		/// <summary>Begins 'Log all' scope for the loggers.</summary>
+		/// <param name="loggers">The loggers.</param>
 		/// <returns>Disposable to mark the scope completion.</returns>
-		public static IDisposable BeginLogImportant(IConfig config)
+		internal static IDisposable BeginImportantLogScope(FilteringLogger[] loggers)
 		{
-			var loggers = config.GetLoggers().OfType<FilteringLogger>().ToArray();
 			if (loggers.Length == 0)
 				return Disposable.Empty;
 
 			foreach (var filteringLogger in loggers)
 			{
-				filteringLogger.IncrementAreaCount();
+				filteringLogger.IncrementScopeCount();
 			}
 
 			return Disposable.Create(
@@ -72,14 +67,13 @@ namespace BenchmarkDotNet.Loggers
 				{
 					foreach (var filteringLogger in loggers)
 					{
-						filteringLogger.DecrementAreaCount();
+						filteringLogger.DecrementScopeCount();
 					}
 				});
 		}
-		#endregion
 
 		#region Fields, .ctor & properties
-		private volatile int _importantAreaCount;
+		private volatile int _importantScopeCount;
 
 		/// <summary>Initializes a new instance of the <see cref="FilteringLogger"/> class.</summary>
 		/// <param name="wrappedLogger">The logger to redirect the output. Cannot be null.</param>
@@ -103,12 +97,12 @@ namespace BenchmarkDotNet.Loggers
 		#endregion
 
 #pragma warning disable 420
-		private void IncrementAreaCount() =>
-			Interlocked.Increment(ref _importantAreaCount);
+		private void IncrementScopeCount() =>
+			Interlocked.Increment(ref _importantScopeCount);
 
 		// Decrement if value > 0
-		private void DecrementAreaCount() =>
-			InterlockedOperations.Update(ref _importantAreaCount, i => Math.Max(i - 1, 0));
+		private void DecrementScopeCount() =>
+			InterlockedOperations.Update(ref _importantScopeCount, i => Math.Max(i - 1, 0));
 #pragma warning restore 420
 
 		/// <summary>Checks if the line should be written.</summary>
@@ -116,7 +110,7 @@ namespace BenchmarkDotNet.Loggers
 		/// <returns><c>true</c> if the line should be written.</returns>
 		protected virtual bool ShouldWrite(LogKind logKind) =>
 			FilteringMode == FilteringLoggerMode.AllMessages ||
-				_importantAreaCount > 0 ||
+				_importantScopeCount > 0 ||
 				(logKind == LogKind.Error && FilteringMode == FilteringLoggerMode.PrefixedOrErrors);
 
 		/// <summary>Handles well-known prefixes for the line.</summary>
@@ -131,19 +125,19 @@ namespace BenchmarkDotNet.Loggers
 				return false;
 
 			bool shouldWrite;
-			if (text.StartsWith(LogImportantAreaStart, StringComparison.Ordinal))
+			if (text.StartsWith(ImportantLogScopeStartPrefix, StringComparison.Ordinal))
 			{
-				IncrementAreaCount();
+				IncrementScopeCount();
 				shouldWrite = true;
 			}
-			else if (text.StartsWith(LogImportantAreaEnd, StringComparison.Ordinal))
+			else if (text.StartsWith(ImportantLogScopeEndPrefix, StringComparison.Ordinal))
 			{
 				// Decrement if value > 0
-				DecrementAreaCount();
+				DecrementScopeCount();
 				shouldWrite = true;
 			}
-			else if (text.StartsWith(LogImportantInfoPrefix, StringComparison.Ordinal) ||
-				text.StartsWith(LogInfoPrefix, StringComparison.Ordinal))
+			else if (text.StartsWith(ImportantInfoPrefix, StringComparison.Ordinal)
+				|| text.StartsWith(InfoPrefix, StringComparison.Ordinal))
 			{
 				shouldWrite = true;
 			}
@@ -170,7 +164,7 @@ namespace BenchmarkDotNet.Loggers
 		public virtual void WriteLine(LogKind logKind, string text)
 		{
 			// DONTTOUCH: the order of calls in condition is important.
-			// Preprocess call can change the _importantAreaCount value.
+			// Preprocess call can change the _importantScopeCount value.
 			if (PreprocessLine(text) || ShouldWrite(logKind))
 			{
 				WrappedLogger.WriteLine(logKind, text);

@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
 using CodeJam.PerfTests.Metrics;
-using CodeJam.PerfTests.Running.Messages;
+using CodeJam.PerfTests.Running.Core;
 
 using NUnit.Framework;
 

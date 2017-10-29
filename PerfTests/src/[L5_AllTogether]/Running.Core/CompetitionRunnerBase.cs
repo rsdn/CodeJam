@@ -17,7 +17,6 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
 using CodeJam.PerfTests.Exporters;
-using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -202,7 +201,6 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNull(benchmarkType, nameof(benchmarkType));
 
 			competitionConfig = CreateBenchmarkConfig(benchmarkType, competitionConfig, competitionFeatures);
-
 			var hostLogger = competitionConfig.GetLoggers().OfType<HostLogger>().Single();
 
 			var previousDirectory = Environment.CurrentDirectory;
@@ -228,7 +226,7 @@ namespace CodeJam.PerfTests.Running.Core
 					ReportHostLogger(hostLogger, competitionState?.LastRunSummary);
 				}
 
-				using (FilteringLogger.BeginLogImportant(competitionState.Config))
+				using (LoggerHelpers.BeginImportantLogScope(competitionState.Config))
 				{
 					ReportMessagesToUser(competitionState);
 				}
@@ -243,16 +241,15 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		#region Prepare & run completed logic
-		private void ProcessRunComplete(
-			[NotNull] CompetitionState competitionState)
+		private void ProcessRunComplete([NotNull] CompetitionState competitionState)
 		{
 			var logger = competitionState.Logger;
 			var summary = competitionState.LastRunSummary;
 
-			if (logger == null || summary == null)
+			if (summary == null)
 				return;
 
-			logger.WriteVerbose($"{competitionState.BenchmarkType.Name} completed.");
+			logger.LogVerbose($"{competitionState.BenchmarkType.Name} completed.");
 
 			if (competitionState.Options.RunOptions.DetailedLogging)
 			{
@@ -269,14 +266,14 @@ namespace CodeJam.PerfTests.Running.Core
 				else
 				{
 					logger.WriteSeparatorLine();
-					logger.WriteVerbose("No messages in run.");
+					logger.LogVerbose("No messages in run.");
 				}
 
 				logger.WriteLine();
 			}
 			else
 			{
-				using (FilteringLogger.BeginLogImportant(summary.Config))
+				using (LoggerHelpers.BeginImportantLogScope(summary.Config))
 				{
 					var summaryLogger = DumpSummaryToHostLogger
 						? logger
@@ -354,16 +351,8 @@ namespace CodeJam.PerfTests.Running.Core
 
 			FixCompetitionConfig(result);
 
-			var completeConfig = result.AsReadOnly();
-			InsertRunState(benchmarkType, completeConfig);
-			return completeConfig;
+			return result.AsReadOnly();
 		}
-
-		private void InsertRunState(Type benchmarkType, ICompetitionConfig completeConfig) =>
-			completeConfig.GetValidators()
-				.OfType<RunStateSlots>()
-				.Single()
-				.InitSlot(CompetitionCore.RunState, new CompetitionState(benchmarkType, completeConfig));
 
 		private void FixCompetitionConfig(ManualCompetitionConfig competitionConfig)
 		{
@@ -500,8 +489,7 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		#region Messages
-		private void ReportMessagesToUser(
-			[NotNull] CompetitionState competitionState)
+		private void ReportMessagesToUser([NotNull] CompetitionState competitionState)
 		{
 			var criticalErrorMessages = GetMessageLines(
 				competitionState, m => m.MessageSeverity > MessageSeverity.TestError, true);

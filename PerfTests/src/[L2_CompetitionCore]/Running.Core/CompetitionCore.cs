@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 
-using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
-using BenchmarkDotNet.Toolchains;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Reflection;
 
 using JetBrains.Annotations;
-
-using static BenchmarkDotNet.Loggers.FilteringLogger;
 
 namespace CodeJam.PerfTests.Running.Core
 {
@@ -41,39 +35,25 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		/// <summary>Run state slot.</summary>
+		[NotNull]
 		public static readonly RunStateKey<CompetitionState> RunState = new RunStateKey<CompetitionState>(_ => throw CodeExceptions.InvalidOperation("The run state should be during config creation."));
 
 		#region Run logic
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
 		/// <param name="benchmarkType">Type of the benchmark.</param>
-		/// <param name="competitionConfig">The competition config.</param>
+		/// <param name="competitionConfig">The competition configuration.</param>
 		/// <returns>Competition state for the run.</returns>
 		[NotNull]
 		internal static CompetitionState Run(
 			[NotNull] Type benchmarkType,
 			[NotNull] ICompetitionConfig competitionConfig)
 		{
-			Code.NotNull(benchmarkType, nameof(benchmarkType));
-			Code.NotNull(competitionConfig, nameof(competitionConfig));
-			var runStateSlots = competitionConfig.GetValidators().OfType<RunStateSlots>();
-			if (runStateSlots.Count() != 1)
-			{
-				throw CodeExceptions.Argument(
-					nameof(competitionConfig),
-					$"The competition config should include single instance of {nameof(RunStateSlots)} validator.");
-			}
+			var competitionState = RegisterCompetitionState(benchmarkType, competitionConfig);
 
-			var competitionState = RunState[competitionConfig];
-
+			var runLogger = new MessageLogger(competitionState.Config, MessageSource.Runner);
 			try
 			{
-				var logger = competitionState.Logger;
-
-				using (BeginLogImportant(competitionConfig))
-				{
-					logger.WriteSeparatorLine(benchmarkType.Name, true);
-					logger.WriteLineHelp($"{LogInfoPrefix} {benchmarkType.GetShortAssemblyQualifiedName()}");
-				}
+				LogCompetitionRunHeader(competitionState);
 
 				using (var mutex = new Mutex(false, $"Global\\{typeof(CompetitionCore).FullName}"))
 				{
@@ -84,10 +64,10 @@ namespace CodeJam.PerfTests.Running.Core
 							? TotalWaitTimeout
 							: TimeSpan.Zero;
 
-						lockTaken = SpinWait(mutex, timeout, SpinWaitRunTimeout, competitionState);
-						if (CheckPreconditions(benchmarkType, lockTaken, competitionState))
+						lockTaken = SpinWait(mutex, timeout, SpinWaitRunTimeout, runLogger);
+						if (CheckPreconditions(competitionState, lockTaken, runLogger))
 						{
-							RunCore(benchmarkType, competitionState);
+							RunCore(competitionState, runLogger);
 						}
 					}
 					finally
@@ -99,55 +79,81 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 			catch (TargetInvocationException ex)
 			{
-				competitionState.WriteExceptionMessage(
-					MessageSource.Runner, MessageSeverity.ExecutionError,
-					$"Benchmark {benchmarkType.Name} failed.", ex.InnerException ?? ex);
+				runLogger.WriteExceptionMessage(
+					MessageSeverity.ExecutionError,
+					$"Benchmark {competitionState.BenchmarkType.Name} failed.", ex.InnerException ?? ex);
 			}
 			catch (Exception ex)
 			{
-				competitionState.WriteExceptionMessage(
-					MessageSource.Runner, MessageSeverity.ExecutionError,
-					$"Benchmark {benchmarkType.Name} failed.", ex);
+				runLogger.WriteExceptionMessage(
+					MessageSeverity.ExecutionError,
+					$"Benchmark {competitionState.BenchmarkType.Name} failed.", ex);
 			}
 			finally
 			{
-				LoggerHelpers.FlushLoggers(competitionConfig);
+				LoggerHelpers.FlushLoggers(competitionState.Config);
+				competitionState.CompetitionCompleted();
 			}
 
-			competitionState.CompetitionCompleted();
+			return competitionState;
+		}
+
+		private static CompetitionState RegisterCompetitionState(
+			Type benchmarkType,
+			ICompetitionConfig competitionConfig)
+		{
+			var competitionState = new CompetitionState(benchmarkType, competitionConfig);
+
+			var runStateSlots = competitionState.Config.GetValidators().OfType<RunStateSlots>().ToArray();
+			if (runStateSlots.Length != 1)
+			{
+				throw CodeExceptions.Argument(
+					nameof(competitionState),
+					$"The competition state config should include single instance of {nameof(RunStateSlots)} validator.");
+			}
+			runStateSlots[0].InitSlot(RunState, competitionState);
 
 			return competitionState;
+		}
+
+		private static void LogCompetitionRunHeader(CompetitionState competitionState)
+		{
+			var logger = competitionState.Logger;
+			var benchmarkType = competitionState.BenchmarkType;
+
+			using (LoggerHelpers.BeginImportantLogScope(competitionState.Config))
+			{
+				logger.WriteSeparatorLine(benchmarkType.Name, true);
+				logger.LogHelpHint(benchmarkType.GetShortAssemblyQualifiedName());
+			}
 		}
 
 		private static bool SpinWait(
 			Mutex mutex,
 			TimeSpan waitTimeout, TimeSpan spinWaitTimeout,
-			CompetitionState competitionState)
+			IMessageLogger messageLogger)
 		{
+			Code.InRange(waitTimeout, nameof(spinWaitTimeout), TimeSpan.Zero, TotalWaitTimeout);
+			Code.InRange(spinWaitTimeout, nameof(spinWaitTimeout), TimeSpan.Zero, TotalWaitTimeout);
+
 			if (spinWaitTimeout > waitTimeout)
 				spinWaitTimeout = waitTimeout;
 
-			bool result;
-
+			bool lockTaken = false;
 			var totalSpinTime = TimeSpan.Zero;
-			var waitStopwatch = Stopwatch.StartNew();
-			do
+			while (!lockTaken && totalSpinTime < waitTimeout)
 			{
 				try
 				{
-					result = mutex.WaitOne(spinWaitTimeout);
+					lockTaken = mutex.WaitOne(spinWaitTimeout);
 
-					if (!result)
+					if (!lockTaken)
 					{
-						competitionState.WriteMessage(
-							MessageSource.Runner, MessageSeverity.Informational,
-							$"Another perftest is running, wait timeout {totalSpinTime} of {waitTimeout}.");
+						messageLogger.WriteInfoMessage($"Another perftest is running, wait timeout {totalSpinTime} of {waitTimeout}.");
 					}
 					else if (totalSpinTime > TimeSpan.Zero)
 					{
-						competitionState.WriteMessage(
-							MessageSource.Runner, MessageSeverity.Informational,
-							$"Another perftest completed, starting. Wait timeout {totalSpinTime} of {waitTimeout}.");
+						messageLogger.WriteInfoMessage($"Another perftest completed, starting. Wait timeout {totalSpinTime} of {waitTimeout}.");
 					}
 				}
 				catch (AbandonedMutexException ex)
@@ -156,29 +162,22 @@ namespace CodeJam.PerfTests.Running.Core
 					// and the log is protected by FileShare.Read lock
 					// see https://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
 					// for more detail.
-					competitionState.WriteExceptionMessage(
-						MessageSource.Runner, MessageSeverity.Informational,
+					messageLogger.WriteExceptionMessage(
+						MessageSeverity.Informational,
 						$"Another perftest aborted, starting. Wait timeout {totalSpinTime} of {waitTimeout}.", ex);
 
-					result = true;
-					break;
+					lockTaken = true;
 				}
-
-				if (result)
-					break;
 
 				totalSpinTime += spinWaitTimeout;
 			}
-			// double check, exit by first condition
-			while (totalSpinTime < waitTimeout && waitStopwatch.Elapsed < waitTimeout);
 
-			return result;
+			return lockTaken;
 		}
 
 		private static bool CheckPreconditions(
-			[NotNull] Type benchmarkType,
-			bool lockTaken,
-			CompetitionState competitionState)
+			CompetitionState competitionState, bool lockTaken,
+			IMessageLogger messageLogger)
 		{
 			var runOptions = competitionState.Options.RunOptions;
 
@@ -188,13 +187,11 @@ namespace CodeJam.PerfTests.Running.Core
 				{
 					case ConcurrentRunBehavior.Lock:
 					case ConcurrentRunBehavior.Skip:
-						competitionState.WriteMessage(
-							MessageSource.Runner, MessageSeverity.Warning,
+						messageLogger.WriteWarningMessage(
 							"Competition run skipped. Competitions cannot be run in parallel, be sure to disable parallel test execution.");
 						return false;
 					case ConcurrentRunBehavior.Fail:
-						competitionState.WriteMessage(
-							MessageSource.Runner, MessageSeverity.SetupError,
+						messageLogger.WriteSetupErrorMessage(
 							"Competition run failed. Competitions cannot be run in parallel, be sure to disable parallel test execution.");
 						return false;
 					default:
@@ -202,27 +199,25 @@ namespace CodeJam.PerfTests.Running.Core
 				}
 			}
 
-			if (!runOptions.AllowDebugBuilds && benchmarkType.Assembly.IsDebugAssembly())
+			var benchmarkAssembly = competitionState.BenchmarkType.Assembly;
+			if (!runOptions.AllowDebugBuilds && benchmarkAssembly.IsDebugAssembly())
 			{
-				var assembly = benchmarkType.Assembly;
-				competitionState.WriteMessage(
-					MessageSource.Runner, MessageSeverity.Warning,
-					$"Competition run skipped. Assembly {assembly.GetName().Name} was build as debug.");
+				messageLogger.WriteWarningMessage(
+					$"Competition run skipped. Assembly {benchmarkAssembly.GetName().Name} was build as debug.");
 
 				return false;
 			}
 
 			if (runOptions.ContinuousIntegrationMode)
 			{
-				competitionState.WriteMessage(
-					MessageSource.Runner, MessageSeverity.Informational,
+				messageLogger.WriteInfoMessage(
 					"Competition is run under continuous integration service.");
 			}
 
 			return true;
 		}
 
-		private static void RunCore(Type benchmarkType, CompetitionState competitionState)
+		private static void RunCore(CompetitionState competitionState, IMessageLogger messageLogger)
 		{
 			var logger = competitionState.Logger;
 			var runOptions = competitionState.Options.RunOptions;
@@ -242,19 +237,16 @@ namespace CodeJam.PerfTests.Running.Core
 					? $"Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)"
 					: $"Run {run}, total runs (expected): {runsExpected}";
 
-				using (BeginLogImportant(competitionState.Config))
+				using (LoggerHelpers.BeginImportantLogScope(competitionState.Config))
 				{
 					logger.WriteSeparatorLine(runMessage);
 				}
 
-				// TODO: toolchainProvider to base (???).
-				Func<Job, IToolchain> toolchainProvider = j => j.Infrastructure?.Toolchain ?? InProcessToolchain.Instance;
-
 				// Running the benchmark
 				var summary = BenchmarkRunnerCore.Run(
-					BenchmarkConverter.TypeToBenchmarks(benchmarkType, competitionState.Config),
+					BenchmarkConverter.TypeToBenchmarks(competitionState.BenchmarkType, competitionState.Config),
 					competitionState.Config,
-					toolchainProvider);
+					j => j.Infrastructure?.Toolchain ?? InProcessToolchain.Instance);
 				competitionState.RunCompleted(summary);
 
 				// Dump messages if analysis was not run and there is a validation analyser.
@@ -269,7 +261,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				if (competitionState.HasCriticalErrorsInRun)
 				{
-					competitionState.Logger.WriteVerboseHint("Breaking competition execution. High severity error occured.");
+					logger.LogHint("Breaking competition execution. High severity error occured.");
 					break;
 				}
 
@@ -278,20 +270,18 @@ namespace CodeJam.PerfTests.Running.Core
 
 				if (competitionState.RunsLeft > 0)
 				{
-					competitionState.Logger.WriteVerboseHint($"Rerun requested. Runs left: {competitionState.RunsLeft}.");
+					logger.LogHint($"Rerun requested. Runs left: {competitionState.RunsLeft}.");
 				}
 			}
 
 			if (competitionState.RunLimitExceeded && competitionState.RunsLeft > 0)
 			{
-				competitionState.WriteMessage(
-					MessageSource.Runner, MessageSeverity.TestError,
+				messageLogger.WriteTestErrorMessage(
 					$"The benchmark run limit ({runOptions.MaxRunsAllowed} runs(s)) exceeded, check log for details.");
 			}
 			else if (competitionState.RunNumber > 1)
 			{
-				competitionState.WriteMessage(
-					MessageSource.Runner, MessageSeverity.Warning,
+				messageLogger.WriteWarningMessage(
 					$"The benchmark was run {competitionState.RunNumber} time(s), check log for details.");
 			}
 		}

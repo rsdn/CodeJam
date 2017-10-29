@@ -16,7 +16,6 @@ using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Helpers;
-using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Reflection;
 using CodeJam.Strings;
 
@@ -33,10 +32,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	internal static class XmlAnnotationHelpers
 	{
 		#region XML doc constants
-		private const string LogAnnotationStart = LogImportantAreaStart +
+		private const string LogAnnotationStart = ImportantLogScopeStartPrefix +
 			" ------ xml_annotation_begin ------";
 
-		private const string LogAnnotationEnd = LogImportantAreaEnd +
+		private const string LogAnnotationEnd = ImportantLogScopeEndPrefix +
 			" ------- xml_annotation_end -------";
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
@@ -217,7 +216,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return null;
 			}
 
-			messageLogger.Logger.WriteVerbose($"{sourceDescription}: XML annotation parsed.");
+			messageLogger.Logger.LogVerbose($"{sourceDescription}: XML annotation parsed.");
 			return xmlAnnotationDoc;
 		}
 
@@ -233,7 +232,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNullNorEmpty(logUri, nameof(logUri));
 			Code.NotNull(messageLogger, nameof(messageLogger));
 
-			messageLogger.Logger.WriteVerbose($"Downloading '{logUri}'.");
+			messageLogger.Logger.LogVerbose($"Downloading '{logUri}'.");
 
 			using (var reader = IoHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
 			{
@@ -243,7 +242,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return null;
 				}
 
-				messageLogger.Logger.WriteVerbose($"Parsing '{logUri}' content.");
+				messageLogger.Logger.LogVerbose($"Parsing '{logUri}' content.");
 
 				return ParseLogContent(logUri, reader, messageLogger);
 			}

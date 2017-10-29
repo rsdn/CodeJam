@@ -8,7 +8,6 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 
@@ -71,6 +70,7 @@ namespace CodeJam.PerfTests.Running.Core
 		}
 
 		#region State properties
+
 		#region Competition info properties
 		/// <summary>The type of the benchmark.</summary>
 		/// <value>The type of the benchmark.</value>
@@ -90,7 +90,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>The logger for the competition.</summary>
 		/// <value>The logger.</value>
 		[NotNull]
-		public ILogger Logger { get; private set; }
+		internal ILogger Logger { get; private set; }
 
 		/// <summary>
 		/// The summary for the last completed run.
@@ -171,8 +171,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>The competition completed without errors.</summary>
 		/// <value><c>true</c> if the competition completed without errors.</value>
 		public bool CompletedWithoutErrors => Completed && !HighestMessageSeverity.IsTestErrorOrHigher();
-
 		#endregion
+
 		#endregion
 
 		[AssertionMethod]
@@ -261,7 +261,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="messageSeverity">Severity of the message.</param>
 		/// <param name="message">Text of the message.</param>
 		/// <param name="hint">Hints for the message.</param>
-		public void WriteMessage(
+		internal void WriteMessage(
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			[NotNull] string message,
 			[CanBeNull] string hint = null)

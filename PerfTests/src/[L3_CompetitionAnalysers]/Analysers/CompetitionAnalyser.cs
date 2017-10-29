@@ -4,6 +4,7 @@ using System.Linq;
 
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Helpers;
+using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
@@ -274,15 +275,15 @@ namespace CodeJam.PerfTests.Analysers
 
 			if (analysis.Options.Annotations.DontSaveUpdatedAnnotations)
 			{
-				var message =
-					$"Source annotation skipped due to {CompetitionAnnotationMode.DontSaveUpdatedAnnotationsCharacteristic.FullId} setting.";
+				var dontSaveCharacteristic = CompetitionAnnotationMode.DontSaveUpdatedAnnotationsCharacteristic.FullId;
+				var message = $"Source annotation skipped due to {dontSaveCharacteristic} setting.";
 				if (analysis.RunState.IsFirstRun)
 				{
 					analysis.WriteInfoMessage(message);
 				}
 				else
 				{
-					analysis.Logger.WriteVerbose(message);
+					analysis.Logger.LogVerbose(message);
 				}
 				foreach (var metric in analysis.Targets.SelectMany(t => t.MetricValues))
 				{

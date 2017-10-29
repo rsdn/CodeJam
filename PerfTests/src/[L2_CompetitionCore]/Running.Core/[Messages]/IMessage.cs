@@ -2,7 +2,7 @@
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Messages
+namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Common interface for competition messages.</summary>
 	public interface IMessage

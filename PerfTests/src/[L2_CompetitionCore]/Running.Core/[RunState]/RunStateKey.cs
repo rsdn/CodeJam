@@ -53,13 +53,21 @@ namespace CodeJam.PerfTests.Running.Core
 
 				Code.AssertState(slots != null, "The config is broken. Please do not clean default config validators.");
 
-				return slots.GetSlot(this, () => CreateState(config));
+				return slots.GetSlot(
+					this,
+					() =>
+					{
+						var state = CreateState(config);
+						Code.BugIf(state == null, "The value factory should not return null values.");
+						return state;
+					});
 			}
 		}
 
 		/// <summary>Creates state value for the config.</summary>
 		/// <param name="config">The config.</param>
 		/// <returns>A new state value for the config.</returns>
+		[NotNull]
 		protected abstract object CreateState(IConfig config);
 	}
 }

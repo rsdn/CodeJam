@@ -2,8 +2,8 @@
 
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -13,9 +13,9 @@ using static BenchmarkDotNet.Loggers.FilteringLogger;
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
-	/// Helpers to use during competition run
+	/// Message-related extensions
 	/// </summary>
-	public static class CompetitionCoreHelpers
+	public static class MessageExtensions
 	{
 		#region Message severity
 		/// <summary>The message severity is setup error or higher.</summary>
@@ -34,45 +34,44 @@ namespace CodeJam.PerfTests.Running.Core
 		public static bool IsWarningOrHigher(this MessageSeverity severity) => severity >= MessageSeverity.Warning;
 		#endregion
 
-		#region Messages
-		/// <summary>Writes exception message.</summary>
-		/// <param name="competitionState">State of the run.</param>
-		/// <param name="messageSource">Source of the message.</param>
-		/// <param name="messageSeverity">Severity of the message.</param>
-		/// <param name="message">The explanation for the exception.</param>
-		/// <param name="ex">The exception to write.</param>
-		public static void WriteExceptionMessage(
-			[NotNull] this CompetitionState competitionState,
-			MessageSource messageSource, MessageSeverity messageSeverity,
-			[NotNull] string message,
-			[NotNull] Exception ex)
-		{
-			Code.NotNullNorEmpty(message, nameof(message));
-			Code.NotNull(ex, nameof(ex));
+		#region Format messages
+		/// <summary>Formats the message.</summary>
+		/// <param name="message">The message.</param>
+		/// <param name="ex">The ex.</param>
+		/// <returns>Formatted message.</returns>
+		[NotNull]
+		internal static string FormatMessage([NotNull] string message, [NotNull] Exception ex) =>
+			$"{message} Exception: {ex.Message}";
 
-			competitionState.WriteMessage(
-				messageSource, messageSeverity,
-				$"{message} Exception: {ex.Message}",
-				ex.ToDiagnosticString());
-		}
+		/// <summary>Formats the message.</summary>
+		/// <param name="target">The target.</param>
+		/// <param name="message">The message.</param>
+		/// <returns>Formatted message.</returns>
+		[NotNull]
+		internal static string FormatMessage([NotNull] Target target, [NotNull] string message) =>
+			$"Target {target.MethodDisplayInfo}. {message}";
 
+		/// <summary>Formats the message.</summary>
+		/// <param name="target">The target.</param>
+		/// <param name="message">The message.</param>
+		/// <param name="ex">The ex.</param>
+		/// <returns>Formatted message.</returns>
+		[NotNull]
+		internal static string FormatMessage([NotNull] Target target, [NotNull] string message, [NotNull] Exception ex) =>
+			$"Target {target.MethodDisplayInfo}. {message} Exception: {ex.Message}";
 
-		/// <summary>Writes the verbose hint message. Logged, but not reported to user.</summary>
-		/// <param name="logger">The logger.</param>
-		/// <param name="message">Text of the message.</param>
-		public static void WriteVerboseHint(
-			[NotNull] this ILogger logger,
-			[NotNull] string message) =>
-				logger.WriteLineInfo($"{LogImportantInfoPrefix} {message}");
+		/// <summary>Formats the hint text.</summary>
+		/// <param name="ex">The ex.</param>
+		/// <param name="hint">The hint.</param>
+		/// <returns>Formatted hint text.</returns>
+		[NotNull]
+		internal static string FormatHintText([NotNull] Exception ex, [CanBeNull] string hint = null) =>
+			hint == null
+				? ex.ToDiagnosticString()
+				: $"{hint}: {ex.ToDiagnosticString()}";
+		#endregion
 
-		/// <summary>Writes the verbose message.</summary>
-		/// <param name="logger">The logger.</param>
-		/// <param name="message">Text of the message.</param>
-		public static void WriteVerbose(
-			[NotNull] this ILogger logger,
-			[NotNull] string message) =>
-				logger.WriteLineInfo($"{LogVerbosePrefix} {message}");
-
+		#region Logger extensions
 		/// <summary>Helper method to dump the content of the message into logger.</summary>
 		/// <param name="logger">The logger the message will be dumped to.</param>
 		/// <param name="message">The message to log.</param>
@@ -83,19 +82,19 @@ namespace CodeJam.PerfTests.Running.Core
 
 			if (message.MessageSeverity.IsCriticalError())
 			{
-				logger.WriteLineError($"{LogImportantInfoPrefix} {message.ToLogString()}");
+				logger.WriteLineError($"{ImportantInfoPrefix} {message.ToLogString()}");
 			}
 			else if (message.MessageSeverity.IsWarningOrHigher())
 			{
-				logger.WriteLineInfo($"{LogImportantInfoPrefix} {message.ToLogString()}");
+				logger.WriteLineInfo($"{ImportantInfoPrefix} {message.ToLogString()}");
 			}
 			else
 			{
-				logger.WriteLineInfo($"{LogInfoPrefix} {message.ToLogString()}");
+				logger.WriteLineInfo($"{InfoPrefix} {message.ToLogString()}");
 			}
 			if (message.HintText.NotNullNorEmpty())
 			{
-				logger.WriteLineInfo($"{LogImportantInfoPrefix} Hint: {message.HintText}");
+				logger.WriteLineInfo($"{ImportantInfoPrefix} Hint: {message.HintText}");
 			}
 		}
 
@@ -108,6 +107,5 @@ namespace CodeJam.PerfTests.Running.Core
 			message.MessageSeverity + "@" + message.MessageSource + ":",
 			message.MessageText);
 		#endregion
-
 	}
 }

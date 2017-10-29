@@ -2,18 +2,17 @@
 
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Running.Messages;
-
 using JetBrains.Annotations;
+
+using static CodeJam.PerfTests.Running.Core.MessageExtensions;
 
 namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>
-	/// Message-related extensions
+	/// Extension methods for <see cref="IMessageLogger"/>
 	/// </summary>
-	public static class MessageExtensions
+	public static class MessageLoggerExtensions
 	{
-		#region Message logger messages
 		/// <summary>Writes message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
@@ -31,8 +30,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			messageLogger.WriteMessage(
 				messageSeverity,
-				$"Target {target.MethodDisplayInfo}. {message}",
-				hint);
+				FormatMessage(target, message), hint);
 		}
 
 		/// <summary>Writes exception message.</summary>
@@ -51,14 +49,10 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNullNorEmpty(message, nameof(message));
 			Code.NotNull(ex, nameof(ex));
 
-			var hintText = hint == null
-				? ex.ToDiagnosticString()
-				: $"{hint}: {ex.ToDiagnosticString()}";
-
 			messageLogger.WriteMessage(
 				messageSeverity,
-				$"{message} Exception: {ex.Message}",
-				hintText);
+				FormatMessage(message, ex),
+				FormatHintText(ex, hint));
 		}
 
 		/// <summary>Writes exception message.</summary>
@@ -79,14 +73,10 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNullNorEmpty(message, nameof(message));
 			Code.NotNull(ex, nameof(ex));
 
-			var hintText = hint == null
-				? ex.ToDiagnosticString()
-				: $"{hint}: {ex.ToDiagnosticString()}";
-
 			messageLogger.WriteMessage(
 				messageSeverity,
-				$"Target {target.MethodDisplayInfo}. {message} Exception: {ex.Message}",
-				hintText);
+				FormatMessage(target, message, ex),
+				FormatHintText(ex, hint));
 		}
 
 		/// <summary>Adds test execution failure message.</summary>
@@ -198,6 +188,5 @@ namespace CodeJam.PerfTests.Running.Core
 			[NotNull] string message,
 			[CanBeNull] string hint = null) =>
 				messageLogger.WriteMessage(MessageSeverity.Informational, target, message, hint);
-		#endregion
 	}
 }

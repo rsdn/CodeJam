@@ -6,6 +6,8 @@ using BenchmarkDotNet.Configs;
 
 using JetBrains.Annotations;
 
+using static BenchmarkDotNet.Loggers.FilteringLogger;
+
 // ReSharper disable once CheckNamespace
 
 namespace BenchmarkDotNet.Loggers
@@ -60,6 +62,30 @@ namespace BenchmarkDotNet.Loggers
 			logger.WriteLine(logKind, result.ToString());
 		}
 
+		/// <summary>Writes additional info to the log. Will be written even if <see cref="FilteringLoggerMode"/> filter applied.</summary>
+		/// <param name="logger">The logger.</param>
+		/// <param name="message">Text of the message.</param>
+		public static void LogHint(
+			[NotNull] this ILogger logger,
+			[NotNull] string message) =>
+				logger.WriteLineInfo($"{ImportantInfoPrefix} {message}");
+
+		/// <summary>Writes help hint to the log. Will be written even if <see cref="FilteringLoggerMode"/> filter applied.</summary>
+		/// <param name="logger">The logger.</param>
+		/// <param name="message">Text of the message.</param>
+		public static void LogHelpHint(
+			[NotNull] this ILogger logger,
+			[NotNull] string message) =>
+				logger.WriteLineHelp($"{InfoPrefix} {message}");
+
+		/// <summary>Writes verbose information to the log.</summary>
+		/// <param name="logger">The logger.</param>
+		/// <param name="message">Text of the message.</param>
+		public static void LogVerbose(
+			[NotNull] this ILogger logger,
+			[NotNull] string message) =>
+				logger.WriteLineInfo($"{VerbosePrefix} {message}");
+
 		/// <summary>Flushes the loggers.</summary>
 		/// <param name="config">Config with loggers.</param>
 		public static void FlushLoggers(IConfig config)
@@ -69,6 +95,15 @@ namespace BenchmarkDotNet.Loggers
 			{
 				flushable.Flush();
 			}
+		}
+
+		/// <summary>All messages within the scope will be passed to the log.</summary>
+		/// <param name="config">Config with loggers.</param>
+		/// <returns>Disposable to mark the scope completion.</returns>
+		public static IDisposable BeginImportantLogScope(IConfig config)
+		{
+			var loggers = config.GetLoggers().OfType<FilteringLogger>().ToArray();
+			return FilteringLogger.BeginImportantLogScope(loggers);
 		}
 	}
 }

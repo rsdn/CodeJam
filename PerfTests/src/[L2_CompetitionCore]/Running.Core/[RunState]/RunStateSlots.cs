@@ -14,7 +14,8 @@ namespace CodeJam.PerfTests.Running.Core
 	/// </summary>
 	internal class RunStateSlots : IValidator
 	{
-		private readonly ConcurrentDictionary<RunStateKey, object> _stateSlots = new ConcurrentDictionary<RunStateKey, object>();
+		private readonly ConcurrentDictionary<RunStateKey, object> _stateSlots =
+			new ConcurrentDictionary<RunStateKey, object>();
 
 		/// <summary>
 		/// Value for the <see cref="RunState{T}"/>.
@@ -22,7 +23,8 @@ namespace CodeJam.PerfTests.Running.Core
 		/// </summary>
 		/// <returns>The value for the <see cref="RunState{T}"/>.</returns>
 		[NotNull]
-		public object GetSlot(RunStateKey key, Func<object> valueFactory) => _stateSlots.GetOrAdd(key, _ => valueFactory());
+		public object GetSlot(RunStateKey key, Func<object> valueFactory) =>
+			_stateSlots.GetOrAdd(key, _ => valueFactory());
 
 		/// <summary>Initializes the slot.</summary>
 		/// <param name="key">The key.</param>

@@ -6,9 +6,11 @@ using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
-using CodeJam.PerfTests.Running.Messages;
+using CodeJam.PerfTests.Running.Core;
 
 using JetBrains.Annotations;
+
+using static CodeJam.PerfTests.Running.Core.MessageExtensions;
 
 namespace CodeJam.PerfTests.Analysers
 {
@@ -80,10 +82,7 @@ namespace CodeJam.PerfTests.Analysers
 			BenchmarkReport report = null)
 		{
 			base.AddTestErrorConclusion(target, message, report);
-			ConclusionsList.Add(
-				Conclusion.CreateWarning(
-					Id, $"Target {target.MethodDisplayInfo}. {message}",
-					report));
+			ConclusionsList.Add(Conclusion.CreateWarning(Id, FormatMessage(target, message), report));
 		}
 
 		/// <summary>Reports analyser warning conclusion.</summary>
@@ -111,10 +110,7 @@ namespace CodeJam.PerfTests.Analysers
 			BenchmarkReport report = null)
 		{
 			base.AddWarningConclusion(target, message, hint, report);
-			ConclusionsList.Add(
-				Conclusion.CreateWarning(
-					Id, $"Target {target.MethodDisplayInfo}. {message}",
-					report));
+			ConclusionsList.Add(Conclusion.CreateWarning(Id, FormatMessage(target, message), report));
 		}
 		#endregion
 	}

@@ -2,7 +2,7 @@
 
 using JetBrains.Annotations;
 
-namespace CodeJam.PerfTests.Running.Messages
+namespace CodeJam.PerfTests.Running.Core
 {
 	/// <summary>Source of the message.</summary>
 	[PublicAPI]

@@ -11,7 +11,6 @@ using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
-using CodeJam.PerfTests.Running.Messages;
 
 using JetBrains.Annotations;
 using CodeJam.Strings;

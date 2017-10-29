@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
 using CodeJam.Collections;
@@ -12,7 +13,6 @@ using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Helpers;
-using CodeJam.PerfTests.Running.Messages;
 using CodeJam.Ranges;
 using CodeJam.Reflection;
 using CodeJam.Strings;
@@ -157,7 +157,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 
 			var sourceAnnotationFile = (SourceAnnotationFile)annotationFile;
-			messageLogger.Logger.WriteVerboseHint(
+			messageLogger.Logger.LogHint(
 				$"Method {target.MethodDisplayInfo}: annotating file '{annotationFile.Origin}'");
 			// TODO: log line???
 			var annotated = TryUpdate(sourceAnnotationFile, targetToAnnotate);
@@ -172,7 +172,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				result.Add(targetToAnnotate);
 				foreach (var metricValue in metrics)
 				{
-					messageLogger.Logger.WriteVerboseHint(
+					messageLogger.Logger.LogHint(
 						$"Method {target.MethodDisplayInfo}: metric {metricValue.Metric} {metricValue} updated.");
 				}
 			}

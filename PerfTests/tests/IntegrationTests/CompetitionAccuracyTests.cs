@@ -6,7 +6,7 @@ using System.Threading;
 using BenchmarkDotNet.Attributes;
 
 using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Messages;
+using CodeJam.PerfTests.Running.Core;
 
 using JetBrains.Annotations;
 
