@@ -80,21 +80,17 @@ namespace CodeJam.PerfTests.Running.Core
 			Code.NotNull(logger, nameof(logger));
 			Code.NotNull(message, nameof(message));
 
-			if (message.MessageSeverity.IsCriticalError())
-			{
-				logger.WriteLineError($"{ImportantInfoPrefix} {message.ToLogString()}");
-			}
-			else if (message.MessageSeverity.IsWarningOrHigher())
-			{
-				logger.WriteLineInfo($"{ImportantInfoPrefix} {message.ToLogString()}");
-			}
-			else
-			{
-				logger.WriteLineInfo($"{InfoPrefix} {message.ToLogString()}");
-			}
+			var messageLogKind = message.MessageSeverity.IsCriticalError()
+				? LogKind.Error
+				: LogKind.Info;
+			var prefix = message.MessageSeverity.IsWarningOrHigher()
+				? ImportantInfoPrefix
+				: InfoPrefix;
+
+			logger.WriteLine(messageLogKind, $"{prefix} {message.ToLogString()}");
 			if (message.HintText.NotNullNorEmpty())
 			{
-				logger.WriteLineInfo($"{ImportantInfoPrefix} Hint: {message.HintText}");
+				logger.WriteLineInfo($"{prefix} Hint: {message.HintText}");
 			}
 		}
 

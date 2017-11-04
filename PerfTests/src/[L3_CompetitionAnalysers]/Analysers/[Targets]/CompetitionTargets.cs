@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +12,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
+	// TODO: check if it is safe to init from RunStateKey<T> .ctor.
 	/// <summary>Storage class for competition targets.</summary>
 	internal sealed class CompetitionTargets : IReadOnlyCollection<CompetitionTarget>
 	{
@@ -23,8 +24,8 @@ namespace CodeJam.PerfTests.Analysers
 			protected override RuntimeMethodHandle GetKeyForItem(CompetitionTarget item) =>
 				item.Target.Method.MethodHandle;
 		}
-		private readonly TargetsCollection _targets =
-			new TargetsCollection();
+
+		private readonly TargetsCollection _targets = new TargetsCollection();
 
 		/// <summary>Gets a value indicating whether the collection was filled with targets.</summary>
 		/// <value><c>true</c> if initialized; otherwise, <c>false</c>.</value>
@@ -35,7 +36,6 @@ namespace CodeJam.PerfTests.Analysers
 		[CanBeNull]
 		public IAnnotationStorage AnnotationStorage { get; private set; }
 
-		
 		/// <summary>Gets number of targets in the competition.</summary>
 		public int Count => _targets.Count;
 

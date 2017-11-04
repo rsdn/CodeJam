@@ -25,7 +25,7 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="valuesRange">The metric values range.</param>
 		/// <param name="displayMetricUnit">The preferred metric unit for the values range.</param>
 		public CompetitionMetricValue(
-			[NotNull] MetricInfo metric, 
+			[NotNull] MetricInfo metric,
 			MetricRange valuesRange,
 			[NotNull] MetricUnit displayMetricUnit)
 		{
@@ -66,7 +66,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (other.Metric != Metric)
 				throw CodeExceptions.Argument(
 					nameof(other),
-					$"Passed value metric {other.Metric} does not match to this one {Metric}.");
+					$"Passed metric {other.Metric} does not match to this one {Metric}.");
 
 			if (other.ValuesRange.IsEmpty)
 				return false;
@@ -77,7 +77,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (newValues != ValuesRange)
 			{
 				ValuesRange = newValues;
-				HasUnsavedChanges  = true;
+				HasUnsavedChanges = true;
 
 				result = true;
 			}
@@ -93,7 +93,7 @@ namespace CodeJam.PerfTests.Analysers
 				if (DisplayMetricUnit != metricUnit)
 				{
 					DisplayMetricUnit = metricUnit;
-					HasUnsavedChanges  = true;
+					HasUnsavedChanges = true;
 
 					result = true;
 				}

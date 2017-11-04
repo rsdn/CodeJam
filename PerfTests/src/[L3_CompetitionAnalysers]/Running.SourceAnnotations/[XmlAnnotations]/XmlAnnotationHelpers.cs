@@ -216,7 +216,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				return null;
 			}
 
-			messageLogger.Logger.LogVerbose($"{sourceDescription}: XML annotation parsed.");
+			messageLogger.Logger.WriteVerboseLine($"{sourceDescription}: XML annotation parsed.");
 			return xmlAnnotationDoc;
 		}
 
@@ -232,7 +232,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			Code.NotNullNorEmpty(logUri, nameof(logUri));
 			Code.NotNull(messageLogger, nameof(messageLogger));
 
-			messageLogger.Logger.LogVerbose($"Downloading '{logUri}'.");
+			messageLogger.Logger.WriteVerboseLine($"Downloading '{logUri}'.");
 
 			using (var reader = IoHelpers.TryGetTextFromUri(logUri, TimeSpan.FromSeconds(15)))
 			{
@@ -242,7 +242,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					return null;
 				}
 
-				messageLogger.Logger.LogVerbose($"Parsing '{logUri}' content.");
+				messageLogger.Logger.WriteVerboseLine($"Parsing '{logUri}' content.");
 
 				return ParseLogContent(logUri, reader, messageLogger);
 			}

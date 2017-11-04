@@ -41,7 +41,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		[NotNull]
 		public static XDocument[] ReadXmlAnnotationDocsFromLog(string logUri, IMessageLogger messageLogger)
 		{
-			messageLogger.Logger.LogVerbose($"Reading XML annotation documents from log '{logUri}'.");
+			messageLogger.Logger.WriteVerboseLine($"Reading XML annotation documents from log '{logUri}'.");
 
 			var xmlAnnotationDocs = XmlAnnotationHelpers.TryParseXmlAnnotationDocsFromLog(logUri, messageLogger);
 
@@ -58,7 +58,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			XDocument[] xmlAnnotationDocs,
 			Analysis analysis)
 		{
-			analysis.Logger.LogVerbose($"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
+			analysis.Logger.WriteVerboseLine($"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
 
 			var updated = false;
 			var targetsToFill = competitionTargets.Select(t => t.Target).ToArray();
@@ -225,12 +225,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				foreach (var metricValue in metrics)
 				{
-					analysis.Logger.LogVerbose(
+					analysis.Logger.WriteVerboseLine(
 						$"Method {target.MethodDisplayInfo}: updating metric {metricValue.Metric} {metricValue}.");
 				}
 			}
 
-			analysis.Logger.LogHint(
+			analysis.Logger.WriteHintLine(
 				$"Annotating resource file '{annotationFile.Origin}'.");
 
 			XmlAnnotationHelpers.AddOrUpdateXmlAnnotation(
@@ -247,7 +247,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				foreach (var metricValue in metrics)
 				{
-					analysis.Logger.LogHint(
+					analysis.Logger.WriteHintLine(
 						$"Method {target.MethodDisplayInfo}: metric {metricValue.Metric} {metricValue} updated.");
 				}
 			}

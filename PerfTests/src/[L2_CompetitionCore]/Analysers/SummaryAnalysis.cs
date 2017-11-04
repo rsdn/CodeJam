@@ -64,11 +64,11 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>Reports test error conclusion.</summary>
 		/// <param name="message">Message text.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public override void AddTestErrorConclusion(
+		public void AddTestErrorConclusion(
 			string message,
 			BenchmarkReport report = null)
 		{
-			base.AddTestErrorConclusion(message, report);
+			this.WriteTestErrorMessage(message);
 			ConclusionsList.Add(Conclusion.CreateWarning(Id, message, report));
 		}
 
@@ -76,12 +76,12 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="target">Target the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public override void AddTestErrorConclusion(
+		public void AddTestErrorConclusion(
 			Target target,
 			string message,
 			BenchmarkReport report = null)
 		{
-			base.AddTestErrorConclusion(target, message, report);
+			this.WriteTestErrorMessage(target, message);
 			ConclusionsList.Add(Conclusion.CreateWarning(Id, FormatMessage(target, message), report));
 		}
 
@@ -89,12 +89,12 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hint how to fix the warning.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public override void AddWarningConclusion(
+		public void AddWarningConclusion(
 			string message,
 			string hint,
 			BenchmarkReport report = null)
 		{
-			base.AddWarningConclusion(message, hint, report);
+			this.WriteWarningMessage(message, hint);
 			ConclusionsList.Add(Conclusion.CreateWarning(Id, message, report));
 		}
 
@@ -103,13 +103,13 @@ namespace CodeJam.PerfTests.Analysers
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hint how to fix the warning.</param>
 		/// <param name="report">The report the message belongs to.</param>
-		public override void AddWarningConclusion(
+		public void AddWarningConclusion(
 			Target target,
 			string message,
 			string hint,
 			BenchmarkReport report = null)
 		{
-			base.AddWarningConclusion(target, message, hint, report);
+			this.WriteWarningMessage(target, message, hint);
 			ConclusionsList.Add(Conclusion.CreateWarning(Id, FormatMessage(target, message), report));
 		}
 		#endregion

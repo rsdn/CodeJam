@@ -9,7 +9,7 @@ namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Competition target.</summary>
 	/// <seealso cref="Target"/>
-	internal class CompetitionTarget
+	public class CompetitionTarget
 	{
 		#region Fields & .ctor
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget" /> class.</summary>

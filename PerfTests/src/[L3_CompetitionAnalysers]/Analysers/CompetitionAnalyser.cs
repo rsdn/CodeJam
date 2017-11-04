@@ -283,7 +283,7 @@ namespace CodeJam.PerfTests.Analysers
 				}
 				else
 				{
-					analysis.Logger.LogVerbose(message);
+					analysis.Logger.WriteVerboseLine(message);
 				}
 				foreach (var metric in analysis.Targets.SelectMany(t => t.MetricValues))
 				{

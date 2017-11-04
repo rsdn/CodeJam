@@ -48,7 +48,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="message">Text of the message.</param>
 		/// <param name="hint">Hints for the message.</param>
 		public void WriteMessage(MessageSeverity messageSeverity, string message, string hint = null) =>
-			RunState.WriteMessage(MessageSource, messageSeverity, message, hint);
+			RunState.WriteMessageCore(MessageSource, messageSeverity, message, hint);
 		#endregion
 	}
 }

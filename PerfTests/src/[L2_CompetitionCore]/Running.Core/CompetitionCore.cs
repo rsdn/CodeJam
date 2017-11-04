@@ -28,15 +28,19 @@ namespace CodeJam.PerfTests.Running.Core
 		internal const int MaxRunLimit = 100;
 
 		/// <summary>Total time limit for competition run. Set to two hours for now, may change in future.</summary>
-		internal static readonly TimeSpan TotalWaitTimeout = TimeSpan.FromHours(2);
+		private static readonly TimeSpan _totalWaitTimeout = TimeSpan.FromHours(2);
 
 		/// <summary>Total time limit for spin wait time. Set to one minute for now, may change in future.</summary>
-		internal static readonly TimeSpan SpinWaitRunTimeout = TimeSpan.FromMinutes(1);
+		private static readonly TimeSpan _spinWaitRunTimeout = TimeSpan.FromMinutes(1);
 		#endregion
 
 		/// <summary>Run state slot.</summary>
 		[NotNull]
-		public static readonly RunStateKey<CompetitionState> RunState = new RunStateKey<CompetitionState>(_ => throw CodeExceptions.InvalidOperation("The run state should be during config creation."));
+		public static readonly RunStateKey<CompetitionState> RunState = new RunStateKey<CompetitionState>(
+			_ =>
+				throw
+					CodeExceptions.InvalidOperation(
+						$"The run state should be set by {nameof(CompetitionCore)}.{nameof(InitCompetitionState)}()."));
 
 		#region Run logic
 		/// <summary>Runs the benchmark for specified benchmark type.</summary>
@@ -48,12 +52,12 @@ namespace CodeJam.PerfTests.Running.Core
 			[NotNull] Type benchmarkType,
 			[NotNull] ICompetitionConfig competitionConfig)
 		{
-			var competitionState = RegisterCompetitionState(benchmarkType, competitionConfig);
-
+			var competitionState = InitCompetitionState(benchmarkType, competitionConfig);
 			var runLogger = new MessageLogger(competitionState.Config, MessageSource.Runner);
+
 			try
 			{
-				LogCompetitionRunHeader(competitionState);
+				LogCompetitionHeader(competitionState);
 
 				using (var mutex = new Mutex(false, $"Global\\{typeof(CompetitionCore).FullName}"))
 				{
@@ -61,10 +65,10 @@ namespace CodeJam.PerfTests.Running.Core
 					try
 					{
 						var timeout = competitionState.Options.RunOptions.Concurrent == ConcurrentRunBehavior.Lock
-							? TotalWaitTimeout
+							? _totalWaitTimeout
 							: TimeSpan.Zero;
 
-						lockTaken = SpinWait(mutex, timeout, SpinWaitRunTimeout, runLogger);
+						lockTaken = SpinWait(mutex, timeout, _spinWaitRunTimeout, runLogger);
 						if (CheckPreconditions(competitionState, lockTaken, runLogger))
 						{
 							RunCore(competitionState, runLogger);
@@ -98,7 +102,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
-		private static CompetitionState RegisterCompetitionState(
+		private static CompetitionState InitCompetitionState(
 			Type benchmarkType,
 			ICompetitionConfig competitionConfig)
 		{
@@ -116,7 +120,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return competitionState;
 		}
 
-		private static void LogCompetitionRunHeader(CompetitionState competitionState)
+		private static void LogCompetitionHeader(CompetitionState competitionState)
 		{
 			var logger = competitionState.Logger;
 			var benchmarkType = competitionState.BenchmarkType;
@@ -124,7 +128,22 @@ namespace CodeJam.PerfTests.Running.Core
 			using (LoggerHelpers.BeginImportantLogScope(competitionState.Config))
 			{
 				logger.WriteSeparatorLine(benchmarkType.Name, true);
-				logger.LogHelpHint(benchmarkType.GetShortAssemblyQualifiedName());
+				logger.WriteHelpHintLine(benchmarkType.GetShortAssemblyQualifiedName());
+			}
+		}
+
+		private static void LogCompetitionRunHeader(CompetitionState competitionState)
+		{
+			var logger = competitionState.Logger;
+
+			using (LoggerHelpers.BeginImportantLogScope(competitionState.Config))
+			{
+				var run = competitionState.RunNumber;
+				var runsExpected = competitionState.RunNumber + competitionState.RunsLeft;
+				var runMessage = competitionState.RunLimitExceeded
+					? $"Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)"
+					: $"Run {run}, total runs (expected): {runsExpected}";
+				logger.WriteSeparatorLine(runMessage);
 			}
 		}
 
@@ -133,8 +152,8 @@ namespace CodeJam.PerfTests.Running.Core
 			TimeSpan waitTimeout, TimeSpan spinWaitTimeout,
 			IMessageLogger messageLogger)
 		{
-			Code.InRange(waitTimeout, nameof(spinWaitTimeout), TimeSpan.Zero, TotalWaitTimeout);
-			Code.InRange(spinWaitTimeout, nameof(spinWaitTimeout), TimeSpan.Zero, TotalWaitTimeout);
+			Code.InRange(waitTimeout, nameof(spinWaitTimeout), TimeSpan.Zero, _totalWaitTimeout);
+			Code.InRange(spinWaitTimeout, nameof(spinWaitTimeout), TimeSpan.Zero, _totalWaitTimeout);
 
 			if (spinWaitTimeout > waitTimeout)
 				spinWaitTimeout = waitTimeout;
@@ -153,7 +172,8 @@ namespace CodeJam.PerfTests.Running.Core
 					}
 					else if (totalSpinTime > TimeSpan.Zero)
 					{
-						messageLogger.WriteInfoMessage($"Another perftest completed, starting. Wait timeout {totalSpinTime} of {waitTimeout}.");
+						messageLogger.WriteInfoMessage(
+							$"Another perftest completed, starting. Wait timeout {totalSpinTime} of {waitTimeout}.");
 					}
 				}
 				catch (AbandonedMutexException ex)
@@ -231,16 +251,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				competitionState.PrepareForRun();
 
-				var run = competitionState.RunNumber;
-				var runsExpected = competitionState.RunNumber + competitionState.RunsLeft;
-				var runMessage = competitionState.RunLimitExceeded
-					? $"Run {run}, total runs (expected): {runsExpected} (rerun limit exceeded, last run)"
-					: $"Run {run}, total runs (expected): {runsExpected}";
-
-				using (LoggerHelpers.BeginImportantLogScope(competitionState.Config))
-				{
-					logger.WriteSeparatorLine(runMessage);
-				}
+				LogCompetitionRunHeader(competitionState);
 
 				// Running the benchmark
 				var summary = BenchmarkRunnerCore.Run(
@@ -261,7 +272,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				if (competitionState.HasCriticalErrorsInRun)
 				{
-					logger.LogHint("Breaking competition execution. High severity error occured.");
+					logger.WriteHintLine("Breaking competition execution. High severity error occured.");
 					break;
 				}
 
@@ -270,7 +281,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 				if (competitionState.RunsLeft > 0)
 				{
-					logger.LogHint($"Rerun requested. Runs left: {competitionState.RunsLeft}.");
+					logger.WriteHintLine($"Rerun requested. Runs left: {competitionState.RunsLeft}.");
 				}
 			}
 

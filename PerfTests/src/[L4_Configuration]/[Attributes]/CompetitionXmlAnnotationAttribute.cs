@@ -25,8 +25,8 @@ namespace CodeJam.PerfTests
 	/// </remarks>
 	// DONTTOUCH: DO NOT change Inherited = false as it will break annotation system
 	// ReSharper disable once RedundantAttributeUsageProperty
-	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
 	[PublicAPI, MeansImplicitUse]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
 	public class CompetitionXmlAnnotationAttribute : Attribute, IAnnotationStorageSource
 	{
 		private readonly AttributeValue<IAnnotationStorage> _attributeValue;
@@ -36,7 +36,7 @@ namespace CodeJam.PerfTests
 		/// The name of the resource containing xml document with source annotations.
 		/// If the <see cref="ResourcePath"/> is not set
 		/// the resource file should be placed in the direcory with the source file for the benchmark.
-		/// See remarks section at attribute documentation for detailed example.
+		/// See remarks section for class-level documentation for detailed example.
 		/// </param>
 		public CompetitionXmlAnnotationAttribute([NotNull] string resourceName)
 		{

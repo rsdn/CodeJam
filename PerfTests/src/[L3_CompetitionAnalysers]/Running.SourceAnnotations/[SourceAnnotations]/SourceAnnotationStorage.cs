@@ -157,7 +157,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			}
 
 			var sourceAnnotationFile = (SourceAnnotationFile)annotationFile;
-			messageLogger.Logger.LogHint(
+			messageLogger.Logger.WriteHintLine(
 				$"Method {target.MethodDisplayInfo}: annotating file '{annotationFile.Origin}'");
 			// TODO: log line???
 			var annotated = TryUpdate(sourceAnnotationFile, targetToAnnotate);
@@ -172,7 +172,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				result.Add(targetToAnnotate);
 				foreach (var metricValue in metrics)
 				{
-					messageLogger.Logger.LogHint(
+					messageLogger.Logger.WriteHintLine(
 						$"Method {target.MethodDisplayInfo}: metric {metricValue.Metric} {metricValue} updated.");
 				}
 			}

@@ -176,7 +176,7 @@
 		<Compile Include="[L3_CompetitionAnalysers]\Running.SourceAnnotations\AnnotationTargetKey.cs" />
 		<Compile Include="[L1_CompetitionApi]\Running.Helpers\PdbChecksumAlgorithm.cs" />
 		<Compile Include="[L1_CompetitionApi]\Running.Helpers\ResourceKey.cs" />
-		<Compile Include="[L3_CompetitionAnalysers]\[Attributes]\CompetitionXmlAnnotationAttribute.cs" />
+		<Compile Include="[L4_Configuration]\[Attributes]\CompetitionXmlAnnotationAttribute.cs" />
 		<Compile Include="[L4_Configuration]\Configs\CompetitionConfigExtensions.cs" />
 		<Compile Include="[L4_Configuration]\Configs\CompetitionFeatures.cs" />
 		<Compile Include="[L4_Configuration]\Configs\CompetitionMaximumRerunsAttribute.cs" />

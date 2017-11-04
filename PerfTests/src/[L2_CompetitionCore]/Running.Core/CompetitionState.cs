@@ -198,7 +198,7 @@ namespace CodeJam.PerfTests.Running.Core
 				var runsLeft = maxRuns - RunNumber;
 				if (runsLeft == 0)
 				{
-					WriteMessage(
+					WriteMessageCore(
 						MessageSource.Runner,
 						MessageSeverity.Informational,
 						$"{explanationMessage} No reruns requested as run limit ({maxRuns} run(s)) exceeded.");
@@ -206,7 +206,7 @@ namespace CodeJam.PerfTests.Running.Core
 				else
 				{
 					var request = Math.Min(runsLeft, additionalRunsCount);
-					WriteMessage(
+					WriteMessageCore(
 						MessageSource.Runner,
 						MessageSeverity.Informational,
 						$"{explanationMessage} Requesting {request} run(s).");
@@ -261,7 +261,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <param name="messageSeverity">Severity of the message.</param>
 		/// <param name="message">Text of the message.</param>
 		/// <param name="hint">Hints for the message.</param>
-		internal void WriteMessage(
+		internal void WriteMessageCore(
 			MessageSource messageSource, MessageSeverity messageSeverity,
 			[NotNull] string message,
 			[CanBeNull] string hint = null)

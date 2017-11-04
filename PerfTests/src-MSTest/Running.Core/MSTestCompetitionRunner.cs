@@ -49,6 +49,11 @@ namespace CodeJam.PerfTests.Running.Core
 			var outLogger = ConsoleLogger.Default;
 			if (summary != null)
 			{
+				var state = CompetitionCore.RunState[summary];
+				if (!state.CompletedWithoutWarnings)
+				{
+					outLogger.WriteLine();
+				}
 				// Dumping the benchmark results to console
 				MarkdownExporter.Console.ExportToLog(summary, outLogger);
 			}

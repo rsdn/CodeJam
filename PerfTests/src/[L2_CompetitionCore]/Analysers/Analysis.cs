@@ -1,8 +1,6 @@
 ﻿using System;
 
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Reports;
-using BenchmarkDotNet.Running;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Running.Core;
@@ -46,56 +44,6 @@ namespace CodeJam.PerfTests.Analysers
 		/// <summary>Analysis has no execution or setup errors so far and can be safely performed.</summary>
 		/// <value><c>true</c> if analysis has no errors; otherwise, <c>false</c>.</value>
 		public bool SafeToContinue => !RunState.HasCriticalErrorsInRun;
-		#endregion
-
-		#region Warnings
-		/// <summary>Reports test error conclusion.</summary>
-		/// <param name="message">Message text.</param>
-		/// <param name="report">The report the message belongs to.</param>
-		public virtual void AddTestErrorConclusion(
-			[NotNull] string message,
-			[CanBeNull] BenchmarkReport report = null)
-		{
-			this.WriteTestErrorMessage(message);
-		}
-
-		/// <summary>Reports test error conclusion.</summary>
-		/// <param name="target">Target the message applies for.</param>
-		/// <param name="message">Message text.</param>
-		/// <param name="report">The report the message belongs to.</param>
-		public virtual void AddTestErrorConclusion(
-			[NotNull] Target target,
-			[NotNull] string message,
-			[CanBeNull] BenchmarkReport report = null)
-		{
-			this.WriteTestErrorMessage(target, message);
-		}
-
-		/// <summary>Reports analyser warning conclusion.</summary>
-		/// <param name="message">Message text.</param>
-		/// <param name="hint">Hint how to fix the warning.</param>
-		/// <param name="report">The report the message belongs to.</param>
-		public virtual void AddWarningConclusion(
-			[NotNull] string message,
-			[NotNull] string hint,
-			[CanBeNull] BenchmarkReport report = null)
-		{
-			this.WriteWarningMessage(message, hint);
-		}
-
-		/// <summary>Reports analyser warning conclusion.</summary>
-		/// <param name="target">Target the message applies for.</param>
-		/// <param name="message">Message text.</param>
-		/// <param name="hint">Hint how to fix the warning.</param>
-		/// <param name="report">The report the message belongs to.</param>
-		public virtual void AddWarningConclusion(
-			[NotNull] Target target,
-			[NotNull] string message,
-			[NotNull] string hint,
-			[CanBeNull] BenchmarkReport report = null)
-		{
-			this.WriteWarningMessage(target, message, hint);
-		}
 		#endregion
 	}
 }

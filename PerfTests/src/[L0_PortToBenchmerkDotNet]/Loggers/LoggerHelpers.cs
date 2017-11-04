@@ -45,18 +45,13 @@ namespace BenchmarkDotNet.Loggers
 			if (!string.IsNullOrEmpty(header))
 			{
 				var prefixLength = (SeparatorLength - header.Length - 2) / 2;
-				if (prefixLength > 0)
-				{
-					result.Append(separatorChar, prefixLength);
-				}
-				result.Append(' ').Append(header).Append(' ');
+				if (prefixLength <= 0) prefixLength = 1;
+				result.Append(separatorChar, prefixLength).Append(' ').Append(header).Append(' ');
 			}
 
 			var suffixLength = SeparatorLength - result.Length;
-			if (suffixLength > 0)
-			{
-				result.Append(separatorChar, suffixLength);
-			}
+			if (suffixLength <= 0) suffixLength = 1;
+			result.Append(separatorChar, suffixLength);
 
 			logger.WriteLine();
 			logger.WriteLine(logKind, result.ToString());
@@ -65,7 +60,7 @@ namespace BenchmarkDotNet.Loggers
 		/// <summary>Writes additional info to the log. Will be written even if <see cref="FilteringLoggerMode"/> filter applied.</summary>
 		/// <param name="logger">The logger.</param>
 		/// <param name="message">Text of the message.</param>
-		public static void LogHint(
+		public static void WriteHintLine(
 			[NotNull] this ILogger logger,
 			[NotNull] string message) =>
 				logger.WriteLineInfo($"{ImportantInfoPrefix} {message}");
@@ -73,7 +68,7 @@ namespace BenchmarkDotNet.Loggers
 		/// <summary>Writes help hint to the log. Will be written even if <see cref="FilteringLoggerMode"/> filter applied.</summary>
 		/// <param name="logger">The logger.</param>
 		/// <param name="message">Text of the message.</param>
-		public static void LogHelpHint(
+		public static void WriteHelpHintLine(
 			[NotNull] this ILogger logger,
 			[NotNull] string message) =>
 				logger.WriteLineHelp($"{InfoPrefix} {message}");
@@ -81,7 +76,7 @@ namespace BenchmarkDotNet.Loggers
 		/// <summary>Writes verbose information to the log.</summary>
 		/// <param name="logger">The logger.</param>
 		/// <param name="message">Text of the message.</param>
-		public static void LogVerbose(
+		public static void WriteVerboseLine(
 			[NotNull] this ILogger logger,
 			[NotNull] string message) =>
 				logger.WriteLineInfo($"{VerbosePrefix} {message}");

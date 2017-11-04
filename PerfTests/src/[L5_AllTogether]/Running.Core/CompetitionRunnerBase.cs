@@ -249,7 +249,7 @@ namespace CodeJam.PerfTests.Running.Core
 			if (summary == null)
 				return;
 
-			logger.LogVerbose($"{competitionState.BenchmarkType.Name} completed.");
+			logger.WriteVerboseLine($"{competitionState.BenchmarkType.Name} completed.");
 
 			if (competitionState.Options.RunOptions.DetailedLogging)
 			{
@@ -266,7 +266,7 @@ namespace CodeJam.PerfTests.Running.Core
 				else
 				{
 					logger.WriteSeparatorLine();
-					logger.LogVerbose("No messages in run.");
+					logger.WriteVerboseLine("No messages in run.");
 				}
 
 				logger.WriteLine();
