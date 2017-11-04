@@ -1,4 +1,4 @@
-# CodeJam.PerfTests overview
+﻿# CodeJam.PerfTests overview
 
 > **META-NOTE**
 >
@@ -132,11 +132,7 @@ The annotations may be applied by developer or added (and updated) automatically
 
 ### Configuration system
 
-> **WARNING**
->
-> Please do not use the BenchmarkDotNet config attributes for competitions. As it is for now they are unsupported and result behavior is undefined.
-
-CodeJam.PerfTests uses own configuration system that allows to reuse custom configuration on solution-level or assembly-level and alter it on multiple levels down to perf test class.
+CodeJam.PerfTests configuration system is extension over BenchmarkDotNet one. It allows to reuse custom configuration on solution-level or assembly-level and alter it on multiple levels down to perf test class.
 
 Almost always there's no need to perform any setup as CodeJam.PerfTests is designed to work out-of-the-box. In case the defaults are not good for you, most frequently used features may be turned on or off via `CompetitionFeaturesAttribute` (or derived attributes) like this:
 
@@ -289,14 +285,3 @@ CodeJam.PerfTests do not support configurations that uses multiple jobs and repo
 >
 > Have a idea how to make it better? Please, [create issue for it](https://github.com/rsdn/CodeJam/issues)!
 
-
-
-### BenchmarkDotNet configuration attributes
-
-CodeJam.PerfTests uses own configuration system that is incompatible with BenchmarkDotNet configuration attributes. *--This may change in future--* but until this is fixed please do not use the BenchmarkDotNet config attributes for competitions. As it is for now they are unsupported and result behavior is undefined.
-
->  **EXPLANATION**
->
->  The competition infrastructure requires the config to be created and all config modifiers to be applied exactly one time before the competition is actually run. This is a principal design decision that cannot be changed or there will be a risk of accidentally breaking the config in a way that cannot be easily detected. We had such experience and it was very disappointing to find some of our tests were reporting false postives for a month or so.
->
->  *--This may be fixed on BenchmarkDotNet side and we're going to do a PR for it some time later--*.

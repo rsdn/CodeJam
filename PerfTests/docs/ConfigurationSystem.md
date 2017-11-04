@@ -1,4 +1,4 @@
-# CodeJam.PerfTests Configuration System
+﻿# CodeJam.PerfTests Configuration System
 
 > **META-NOTE**
 >
@@ -7,12 +7,7 @@
 
 [TOC]
 
-> **WARNING**
->
-> Please do not use the BenchmarkDotNet config attributes for competitions. *--As it is for now--* they are unsupported and result behavior is undefined.
-
-CodeJam.PerfTests configuration uses almost same approach the BenchmarkDotNet does. However, there are additions aimed to ease configuration of large projects with hundreds or thousands of perftests. Here's how it works:
-
+CodeJam.PerfTests configuration system is extension over BenchmarkDotNet one. There are additions aimed to ease configuration of large projects with hundreds or thousands of perftests. Here's how it works:
 
 
 ## Attribute annotations
@@ -343,8 +338,7 @@ Modifiers can be applied to the competition class, it's container class (if the 
 		// ...
 	}
 ```
-
-As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Check the *--Attribute annotations TODO: link--* section for explanation how modifier attributes are applied.
+CodeJam.PerfTests supports `IConfigSource` attributes from BenchmarkDotNet. Hovever, these are not recommended for use as they do provide much less control over how result comfig is created. As with `CompetitionFeaturesAttribute`, modifiers can be combined together. Check the *--Attribute annotations TODO: link--* section for explanation how modifier attributes are applied. 
 
 
 

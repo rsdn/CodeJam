@@ -1,6 +1,7 @@
 ﻿using System;
 
 using BenchmarkDotNet.Running;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -22,6 +23,8 @@ using JetBrains.Annotations;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Session;
+
+using BenchmarkDotNet.Exporters;
 
 namespace CodeJam.PerfTests.Metrics.Etw
 {
@@ -55,7 +58,8 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		#endregion
 
 		#region State manipulation
-		private EtwDiagnoserAnalysis CreateAnalysis(Benchmark benchmark, IConfig config, IEtwMetricValueProvider[] metricProviders)
+		private EtwDiagnoserAnalysis CreateAnalysis(
+			Benchmark benchmark, IConfig config, IEtwMetricValueProvider[] metricProviders)
 		{
 			var diagnoserState = _diagnoserState[config];
 			Code.BugIf(diagnoserState.Analysis != null, "runState.Analysis != null");
@@ -199,8 +203,8 @@ namespace CodeJam.PerfTests.Metrics.Etw
 			var allProcesses = events.Select(e => e.ProcessId).ToHashSet();
 
 			var timeRange = events.ToCompositeRange(
-					e => e.Started ?? TimeSpan.MinValue,
-					e => e.Stopped ?? TimeSpan.MaxValue);
+				e => e.Started ?? TimeSpan.MinValue,
+				e => e.Stopped ?? TimeSpan.MaxValue);
 
 			// ReSharper disable once ConvertToLocalFunction
 			Func<TraceEvent, bool> timeAndProcessFilter = e =>
@@ -241,7 +245,8 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		private static DiagnoserTraceScopeEvent[] CollectDiagnoserEvents(EtwDiagnoserAnalysis analysis)
 		{
 			// ReSharper disable once ConvertToLocalFunction
-			Func<TraceEvent, bool> currentRunFilter = e => (Guid)e.PayloadByName(DiagnoserEventSource.RunIdPayload) == analysis.RunGuid;
+			Func<TraceEvent, bool> currentRunFilter =
+				e => (Guid)e.PayloadByName(DiagnoserEventSource.RunIdPayload) == analysis.RunGuid;
 
 			var provider = new DiagnoserTimesProvider();
 			using (var eventSource = new ETWTraceEventSource(analysis.TraceFile.Path))
@@ -286,9 +291,9 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		}
 
 		/// <summary>Called after run, before global cleanup</summary>
-		public void BeforeGlobalCleanup()
+		public void BeforeGlobalCleanup(DiagnoserActionParameters parameters)
 		{
-			var analysis = _analysis;
+			var analysis = _diagnoserState[parameters.Config].Analysis;
 			if (analysis == null) return;
 
 			DiagnoserEventSource.Instance.TraceStopped(analysis.RunGuid, analysis.IterationGuid);
@@ -325,11 +330,21 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <summary>Validates the specified validation parameters.</summary>
 		/// <param name="validationParameters">The validation parameters.</param>
 		/// <returns></returns>
-		public IEnumerable<ValidationError> Validate(ValidationParameters validationParameters) => Array.Empty<ValidationError>();
+		public IEnumerable<ValidationError> Validate(ValidationParameters validationParameters)
+			=> Array.Empty<ValidationError>();
+
+		/// <summary>Gets diagnoser run mode.</summary>
+		/// <param name="benchmark">The benchmark.</param>
+		/// <returns>The diagnoser run mode.</returns>
+		public RunMode GetRunMode(Benchmark benchmark) => RunMode.ExtraRun;
 
 		/// <summary>Gets the diagnoser ids.</summary>
 		/// <value>The diagnoser ids.</value>
 		public IEnumerable<string> Ids => new[] { nameof(EtwDiagnoser) };
+
+		/// <summary>Gets the exporters.</summary>
+		/// <value>The exporters.</value>
+		public IEnumerable<IExporter> Exporters => Array<IExporter>.Empty;
 		#endregion
 	}
 }

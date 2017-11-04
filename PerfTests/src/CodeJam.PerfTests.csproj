@@ -57,7 +57,7 @@
 		<ProjectReference Include="..\..\Main\src\CodeJam.Main.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="BenchmarkDotNet.Core" Version="0.10.9" />
+		<PackageReference Include="BenchmarkDotNet.Core" Version="0.10.10" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0'">
 		<Reference Include="System.Configuration" />
@@ -73,8 +73,6 @@
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
 		<Compile Include="Properties\AssemblyInfo.cs" />
-		<Compile Include="[L0_PortToBenchmerkDotNet]\Configs\NamespaceDoc.cs" />
-		<Compile Include="[L0_PortToBenchmerkDotNet]\Configs\ReadOnlyConfig.cs" />
 		<Compile Include="[L0_PortToBenchmerkDotNet]\Helpers\AttributeValue.cs" />
 		<Compile Include="[L0_PortToBenchmerkDotNet]\Helpers\BenchmarkHelpers.cs" />
 		<Compile Include="[L0_PortToBenchmerkDotNet]\Helpers\NamespaceDoc.cs" />

@@ -41,8 +41,8 @@
 		<ProjectReference Include="..\src-xUnit\CodeJam.PerfTests.xUnit.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="xunit" Version="2.3.0" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
+		<PackageReference Include="xunit" Version="2.3.1" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />

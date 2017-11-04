@@ -6,8 +6,10 @@ using System.Linq;
 using System.Reflection;
 
 using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.InProcess;
 
 using CodeJam.PerfTests.Columns;
@@ -195,7 +197,10 @@ namespace CodeJam.PerfTests.Configs.Factories
 			// 5. Create competition options
 			result.Set(CreateCompetitionOptionsUnfrozen(metadataSource, competitionFeatures));
 
-			// 6. Apply competition modifiers
+			// 6. Apply config sources.
+			ApplyConfigSources(result, metadataSource);
+
+			// 7. Apply competition modifiers
 			ApplyCompetitionModifiers(result, metadataSource);
 
 			return CompleteConfig(result);
@@ -369,7 +374,30 @@ namespace CodeJam.PerfTests.Configs.Factories
 			return result;
 		}
 
-		/// <summary>Applies competition modifiers.</summary>
+		/// <summary>Applies <see cref="IConfigSource"/> attribute modifiers.</summary>
+		/// <param name="competitionConfig">The competition configuration.</param>
+		/// <param name="metadataSource">The metadata source.</param>
+		protected virtual void ApplyConfigSources(ManualCompetitionConfig competitionConfig, ICustomAttributeProvider metadataSource)
+		{
+			var config = new ManualConfig();
+			var add = false;
+			if (metadataSource != null)
+			{
+				foreach (var modifierSource in metadataSource
+					.GetMetadataAttributes<IConfigSource>()
+					.Reverse())
+				{
+					config = ManualConfig.Union(config, modifierSource.Config);
+					add = true;
+				}
+			}
+			if (add)
+			{
+				competitionConfig.Add(config);
+			}
+		}
+
+		/// <summary>Applies <see cref="ICompetitionModifierSource"/> attribute modifiers.</summary>
 		/// <param name="competitionConfig">The competition configuration.</param>
 		/// <param name="metadataSource">The metadata source.</param>
 		protected virtual void ApplyCompetitionModifiers(

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.InProcess;
@@ -237,6 +239,13 @@ namespace CodeJam.PerfTests.Running.Core
 			return true;
 		}
 
+		// TODO: HACK: remove as the method will be public
+		// ReSharper disable once AssignNullToNotNullAttribute
+		private static readonly Func<Type, MethodInfo[], ReadOnlyConfig, BenchmarkRunInfo> _typeToBenchmarkHack =
+			(Func<Type, MethodInfo[], ReadOnlyConfig, BenchmarkRunInfo>)Delegate.CreateDelegate(
+				typeof(Func<Type, MethodInfo[], ReadOnlyConfig, BenchmarkRunInfo>),
+				typeof(BenchmarkConverter).GetMethod("MethodsToBenchmarksWithFullConfig", BindingFlags.Static | BindingFlags.NonPublic));
+
 		private static void RunCore(CompetitionState competitionState, IMessageLogger messageLogger)
 		{
 			var logger = competitionState.Logger;
@@ -254,9 +263,11 @@ namespace CodeJam.PerfTests.Running.Core
 				LogCompetitionRunHeader(competitionState);
 
 				// Running the benchmark
+				var benchmarkType = competitionState.BenchmarkType;
+				var runInfo = _typeToBenchmarkHack(
+					benchmarkType, benchmarkType.GetMethods(), new ReadOnlyConfig(competitionState.Config));
 				var summary = BenchmarkRunnerCore.Run(
-					BenchmarkConverter.TypeToBenchmarks(competitionState.BenchmarkType, competitionState.Config),
-					competitionState.Config,
+					runInfo,
 					j => j.Infrastructure?.Toolchain ?? InProcessToolchain.Instance);
 				competitionState.RunCompleted(summary);
 
