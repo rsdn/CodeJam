@@ -363,7 +363,10 @@ namespace CodeJam.Reflection
 		public static ParameterInfo[] GetDelegateParams([NotNull] Type delegateType)
 		{
 			Code.NotNull(delegateType, nameof(delegateType));
-			return delegateType.GetMethod("Invoke").GetParameters();
+
+			var invoke = delegateType.GetMethod("Invoke");
+			DebugCode.BugIf(invoke == null, "invoke == null");
+			return invoke.GetParameters();
 		}
 
 		/// <summary>

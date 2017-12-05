@@ -1,6 +1,12 @@
 ﻿CodeJam 2.0.0-beta1 Release Notes
 ---------------------------------
 
+What's new in 2.0.0-beta2
+-------------------------
+* Sync Acquire in AsyncLock
+* Ranges improvement
+* Refactoring and code cleanup
+
 What's new in 2.0.0-beta1
 -------------------------
 * NetStandard 2.0 & .NET Core 2.0 support
