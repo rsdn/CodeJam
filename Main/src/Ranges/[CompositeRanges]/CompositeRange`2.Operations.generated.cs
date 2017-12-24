@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -21,8 +20,6 @@ using static CodeJam.Ranges.CompositeRangeInternal;
 namespace CodeJam.Ranges
 {
 	/// <summary>Describes a composite range that contains some subranges.</summary>
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
-	[SuppressMessage("ReSharper", "ArrangeBraces_while")]
 	public partial struct CompositeRange<T, TKey>
 	{
 		#region Updating a range
@@ -647,6 +644,7 @@ namespace CodeJam.Ranges
 		#region T4-dont-replace
 			CompositeRange<T> other
 		#endregion
+
 			)
 		{
 			if (IsEmpty)
@@ -706,6 +704,7 @@ namespace CodeJam.Ranges
 
 			return result;
 		}
+
 		/// <summary>Returns an intersection of the the ranges.</summary>
 		/// <typeparam name="TKey2">The type of the key of another range.</typeparam>
 		/// <param name="other">The range to intersect with.</param>
@@ -867,12 +866,15 @@ namespace CodeJam.Ranges
 		/// Result range contains result of (infinityRange.Exclude(this).
 		/// </summary>
 		/// <returns>Complementation composite range.</returns>
+
 		#region T4-dont-replace
 		[Pure]
 		public CompositeRange<T> GetComplementation()
 		{
 			if (IsEmpty)
 			{
+				// ReSharper disable once ArrangeStaticMemberQualifier
+				// Used for codegen
 				return CompositeRange<T>.Infinite;
 			}
 
@@ -910,6 +912,7 @@ namespace CodeJam.Ranges
 			return new CompositeRange<T>(result, UnsafeOverload.NoEmptyRangesAlreadySortedAndMerged);
 		}
 		#endregion
+
 		#endregion
 	}
 }
