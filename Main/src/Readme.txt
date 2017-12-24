@@ -1,7 +1,7 @@
-﻿CodeJam 2.0.0-beta1 Release Notes
+﻿CodeJam 2.0.0-rc1 Release Notes
 ---------------------------------
 
-What's new in 2.0.0-beta2
+What's new in 2.0.0-rc1
 -------------------------
 * Sync Acquire in AsyncLock
 * Ranges improvement
