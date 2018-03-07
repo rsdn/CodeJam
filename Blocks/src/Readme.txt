@@ -1,4 +1,4 @@
-﻿CodeJam.Blocks 2.0.0-rc1 Release Notes
+﻿CodeJam.Blocks 2.0.0 Release Notes
 ----------------------------------------
 
 What's new in 2.0.0-rc1
