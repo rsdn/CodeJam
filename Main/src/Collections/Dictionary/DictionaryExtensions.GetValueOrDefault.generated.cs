@@ -18,7 +18,7 @@ namespace CodeJam.Collections
 	partial class DictionaryExtensions
 	{
 		#region IDictionary<TKey, TValue> overloads
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -36,7 +36,7 @@ namespace CodeJam.Collections
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 #endif
 
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -183,7 +183,7 @@ namespace CodeJam.Collections
 		#endregion
 
 		#region IReadOnlyDictionary<TKey, TValue> overloads
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -201,7 +201,7 @@ namespace CodeJam.Collections
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 #endif
 
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -348,7 +348,7 @@ namespace CodeJam.Collections
 		#endregion
 
 		#region Dictionary<TKey, TValue> overloads
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -366,7 +366,7 @@ namespace CodeJam.Collections
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 #endif
 
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -513,7 +513,7 @@ namespace CodeJam.Collections
 		#endregion
 
 		#region ConcurrentDictionary<TKey, TValue> overloads
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -531,7 +531,7 @@ namespace CodeJam.Collections
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 #endif
 
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
 		/// in <paramref name="dictionary"/>

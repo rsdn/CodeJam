@@ -9,7 +9,7 @@
 		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net45;net40;net35</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35</TargetFrameworks>
 
 		<PackageId>CodeJam</PackageId>
 		<Title>CodeJam library</Title>
@@ -50,7 +50,7 @@
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Publish\</OutputPath>
-		<DefineConstants>$(DefineConstants);TRACE1</DefineConstants>
+		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
@@ -66,6 +66,10 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="System.ValueTuple" Version="4.4.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />

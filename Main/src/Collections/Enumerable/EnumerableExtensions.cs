@@ -69,7 +69,7 @@ namespace CodeJam.Collections
 				yield return element;
 		}
 
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Prepends specified <paramref name="element"/> to the collection start.
 		/// </summary>
@@ -116,7 +116,7 @@ namespace CodeJam.Collections
 				yield return item;
 		}
 
-#if !TARGETS_NETCORE || LESSTHAN_NETCORE20
+#if LESSTHAN_NET472 || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
 		/// </summary>
@@ -144,7 +144,6 @@ namespace CodeJam.Collections
 				[NotNull] IEqualityComparer<T> comparer) =>
 			new HashSet<T>(source, comparer);
 #endif
-
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
 		/// </summary>
