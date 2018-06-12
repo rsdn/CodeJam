@@ -20,6 +20,8 @@ namespace CodeJam
 			".NETFramework,Version=v4.5";
 #elif NET461
 			".NETFramework,Version=v4.6.1";
+#elif NET472
+			".NETFramework,Version=v4.7.2";
 #elif NETCOREAPP2_0
 			".NETCoreApp,Version=v2.0";
 #else

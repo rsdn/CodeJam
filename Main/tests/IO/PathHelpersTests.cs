@@ -56,7 +56,8 @@ namespace CodeJam.IO
 		[TestCase(@"a:\.a.b\", PathKind.ValidAbsoluteContainerPath)]
 		[TestCase(@"a:\a\..a\", PathKind.ValidAbsoluteContainerPath)]
 		[TestCase(@"a:\a\..a.b\", PathKind.ValidAbsoluteContainerPath)]
-#if TARGETS_NETCORE
+		// SEE https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/retargeting/4.6.1-4.6.2#changes-in-path-normalization
+#if TARGETS_NETCORE || !LESSTHAN_NET462
 		[TestCase(@"a:\a\..a..\", PathKind.ValidAbsoluteContainerPath)]
 #else
 		[TestCase(@"a:\a\..a..\", PathKind.Invalid)]
