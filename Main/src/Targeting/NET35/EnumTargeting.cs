@@ -25,7 +25,7 @@ namespace CodeJam.Targeting
 		/// </param>
 		/// <returns></returns>
 		public static bool TryParse<TEnum>(string value, out TEnum result)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 			TryParse(value, false, out result);
 
 		/// <summary>
@@ -48,7 +48,7 @@ namespace CodeJam.Targeting
 			string value,
 			bool ignoreCase,
 			out TEnum result)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (Enum.IsDefined(typeof(TEnum), value))
 			{

@@ -37,7 +37,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsDefined<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.IsDefined(value);
 
 		/// <summary>Determines whether the string representation of value is defined.</summary>
@@ -47,7 +47,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsDefined<TEnum>([NotNull] string value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				TryParse<TEnum>(value, out var parsed) && Holder<TEnum>.IsDefined(parsed);
 
 		/// <summary>Determines whether all bits of the flags combination are defined.</summary>
@@ -57,7 +57,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool AreFlagsDefined<TEnum>(TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.AreFlagsDefined(flags);
 
 		/// <summary>Determines whether the enum has flags modifier.</summary>
@@ -66,7 +66,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsFlagsEnum<TEnum>()
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.IsFlagsEnum;
 
 		/// <summary>Returns a combination of all flags declared in the enum.</summary>
@@ -76,7 +76,7 @@ namespace CodeJam
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum GetFlagsMask<TEnum>()
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.FlagsMask;
 
 		/// <summary>Try to parse the enum value.</summary>
@@ -86,7 +86,7 @@ namespace CodeJam
 		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool TryParse<TEnum>(string name, out TEnum result)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				TryParse(name, false, out result);
 
 		/// <summary>Try to parse the enum value.</summary>
@@ -97,7 +97,7 @@ namespace CodeJam
 		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static bool TryParse<TEnum>([NotNull] string name, bool ignoreCase, out TEnum result)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result) ||
 					EnumTargetingHelpers.TryParse(name, ignoreCase, out result);
 
@@ -108,7 +108,7 @@ namespace CodeJam
 		/// <returns>Parsed value, if parsing was successful; <c>null</c> otherwise.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum? TryParse<TEnum>([NotNull] string name, bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
 
 		/// <summary>Parse the enum value.</summary>
@@ -119,7 +119,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum Parse<TEnum>([NotNull] string name, bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out var result))
 				return result;
@@ -136,7 +136,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsFlagSet<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.IsFlagSetCallback(value, flag);
 
 		/// <summary>Determines whether any bit from specified flag is not set.</summary>
@@ -147,7 +147,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsAnyFlagUnset<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				!Holder<TEnum>.IsFlagSetCallback(value, flag);
 
 		/// <summary>Determines whether any bit from specified flag is set.</summary>
@@ -158,7 +158,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsAnyFlagSet<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
 
 		/// <summary>Determines whether the specified flag is not set.</summary>
@@ -169,7 +169,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsFlagUnset<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				!Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
 		#endregion
 
@@ -182,7 +182,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.SetFlagCallback(value, flag);
 
 		/// <summary>Clears the flag.</summary>
@@ -193,7 +193,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum ClearFlag<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.ClearFlagCallback(value, flag);
 
 		/// <summary>Sets or clears the flag depending on <paramref name="enabled"/> value.</summary>
@@ -208,7 +208,7 @@ namespace CodeJam
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag, bool enabled)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				enabled
 					? SetFlag(value, flag)
 					: ClearFlag(value, flag);
@@ -223,7 +223,7 @@ namespace CodeJam
 		[Pure, NotNull]
 		[MethodImpl(AggressiveInlining)]
 		public static IReadOnlyDictionary<string, TEnum> GetNameValues<TEnum>(bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.GetNameValues(ignoreCase);
 
 		/// <summary>
@@ -234,7 +234,7 @@ namespace CodeJam
 		/// <returns>A string array of the names of the constants in enumType.</returns>
 		[Pure, NotNull]
 		public static string[] GetNames<TEnum>(bool ignoreCase = false)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.GetNameValues(ignoreCase).Keys.ToArray();
 
 		/// <summary>
@@ -244,7 +244,7 @@ namespace CodeJam
 		/// <returns>An array that contains the values of the constants in enumType.</returns>
 		[Pure, NotNull]
 		public static TEnum[] GetValues<TEnum>()
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				Holder<TEnum>.GetNameValues(false).Values.ToArray();
 		#endregion
 
@@ -254,7 +254,7 @@ namespace CodeJam
 		/// <returns>The enum values collection.</returns>
 		[Pure, NotNull]
 		public static EnumValues GetEnumValues<TEnum>()
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 			_enumValuesCache[typeof(TEnum)];
 
 		/// <summary>Returns enum values collection that contains information about enum type and its values.</summary>
@@ -269,7 +269,7 @@ namespace CodeJam
 		/// <returns>The enum values collection.</returns>
 		[Pure, NotNull]
 		public static EnumValue GetEnumValue<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible => GetEnumValues<TEnum>().GetByValue((Enum)(object)value);
+			where TEnum : struct, Enum => GetEnumValues<TEnum>().GetByValue((Enum)(object)value);
 
 
 		/// <summary>Returns name of the enum value.</summary>
@@ -279,7 +279,7 @@ namespace CodeJam
 		[Pure, NotNull]
 		[MethodImpl(AggressiveInlining)]
 		public static string GetName<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				GetEnumValue(value).Name;
 
 		/// <summary>
@@ -293,7 +293,7 @@ namespace CodeJam
 		/// </remarks>
 		[Pure, NotNull]
 		public static string GetDisplayName<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				GetEnumValue(value).GetDisplayName();
 
 		/// <summary>
@@ -308,7 +308,7 @@ namespace CodeJam
 		[Pure]
 		[CanBeNull]
 		public static string GetDescription<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				GetEnumValue(value).Description;
 
 
@@ -320,7 +320,7 @@ namespace CodeJam
 		/// <returns><see cref="FieldInfo"/> corresponding to <paramref name="value"/>.</returns>
 		[Pure, NotNull]
 		public static FieldInfo GetField<TEnum>(TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				GetEnumValue(value).UnderlyingField;
 		#endregion
 

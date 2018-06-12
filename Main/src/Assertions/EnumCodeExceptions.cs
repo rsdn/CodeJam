@@ -24,7 +24,7 @@ namespace CodeJam
 		public static ArgumentOutOfRangeException ArgumentNotDefinedException<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			BreakIfAttached();
 			var valueType = value.GetType();
@@ -47,7 +47,7 @@ namespace CodeJam
 		public static ArgumentException ArgumentFlagSet<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -67,7 +67,7 @@ namespace CodeJam
 		public static ArgumentException ArgumentAnyFlagUnset<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -87,7 +87,7 @@ namespace CodeJam
 		public static ArgumentException ArgumentAnyFlagSet<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -107,7 +107,7 @@ namespace CodeJam
 		public static ArgumentException ArgumentFlagUnset<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			BreakIfAttached();
 			return new ArgumentException(

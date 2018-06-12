@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using JetBrains.Annotations;
 
@@ -59,6 +60,179 @@ namespace CodeJam.Collections
 		[ContractAnnotation("array:null => false")]
 		public static bool NotNullNorEmpty<T>(this T[] array) =>
 			array != null && array.Length != 0;
+
+		/// <summary>
+		/// Returns an empty instance of the collection for null values.
+		/// </summary>
+		/// <typeparam name="T">Type of the collection values</typeparam>
+		/// <param name="source">The source.</param>
+		/// <returns>The collection or empty instance if the collection is <c>null</c>.</returns>
+		[Pure]
+		[NotNull]
+		public static IEnumerable<T> EmptyIfNull<T>([CanBeNull] this IEnumerable<T> source) => source ?? Enumerable.Empty<T>();
+
+		/// <summary>
+		/// Returns an empty instance of the array for null values.
+		/// </summary>
+		/// <typeparam name="T">Type of the array values</typeparam>
+		/// <param name="array">The array.</param>
+		/// <returns>The array or empty instance if the array is <c>null</c>.</returns>
+		[Pure]
+		[NotNull]
+		public static T[] EmptyIfNull<T>([CanBeNull] this T[] array) => array ?? Array<T>.Empty;
+
+		/// <summary>
+		/// Returns an empty instance of the collection for null values.
+		/// </summary>
+		/// <typeparam name="T">Type of the collection values</typeparam>
+		/// <param name="collection">The collection.</param>
+		/// <returns>The collection or empty instance if the collection is <c>null</c>.</returns>
+		[Pure]
+		[NotNull]
+		public static List<T> EmptyIfNull<T>([CanBeNull] this List<T> collection) => collection ?? new List<T>();
+
+		/// <summary>
+		/// Returns an empty instance of the dictionary for null values.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <returns>The dictionary or <c>null</c> if the dictionary is <c>null</c>.</returns>
+		[Pure]
+		[NotNull]
+		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>([CanBeNull] this Dictionary<TKey, TValue> dictionary)
+			=>
+				dictionary ?? new Dictionary<TKey, TValue>();
+
+		/// <summary>
+		/// Returns an empty instance of the dictionary for null values.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="comparer">The comparer.</param>
+		/// <returns>The dictionary or <c>null</c> if the dictionary is <c>null</c>.</returns>
+		[Pure]
+		[NotNull]
+		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>(
+			[CanBeNull] this Dictionary<TKey, TValue> dictionary,
+			IEqualityComparer<TKey> comparer) => dictionary ?? new Dictionary<TKey, TValue>(comparer);
+
+		/// <summary>
+		/// Returns <c>null</c> if the collection is array.
+		/// </summary>
+		/// <typeparam name="T">Type of the array values</typeparam>
+		/// <param name="array">The array.</param>
+		/// <returns><c>null</c> if the array is empty.</returns>
+		[Pure]
+		[CanBeNull]
+		public static T[] NullIfEmpty<T>([CanBeNull] this T[] array) => array.IsNullOrEmpty() ? null : array;
+
+		/// <summary>
+		/// Returns <c>null</c> if the collection is empty.
+		/// </summary>
+		/// <typeparam name="T">Type of the collection values</typeparam>
+		/// <param name="collection">The collection.</param>
+		/// <returns><c>null</c> if the collection is empty.</returns>
+		[Pure]
+		[CanBeNull]
+		public static List<T> NullIfEmpty<T>([CanBeNull] this List<T> collection) =>
+			collection.IsNullOrEmpty() ? null : collection;
+
+		/// <summary>
+		/// Returns <c>null</c> if the dictionary is empty.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <returns><c>null</c> if the dictionary is empty.</returns>
+		[Pure]
+		[CanBeNull]
+		public static Dictionary<TKey, TValue> NullIfEmpty<TKey, TValue>(
+			[CanBeNull] this Dictionary<TKey, TValue> dictionary) =>
+				dictionary.IsNullOrEmpty() ? null : dictionary;
+
+		/// <summary>
+		/// Returns a new array with default value if the array is empty.
+		/// </summary>
+		/// <typeparam name="T">Type of the array values</typeparam>
+		/// <param name="array">The array.</param>
+		/// <param name="defaultValue">The default value.</param>
+		/// <returns>A new array with default value if the array is empty.</returns>
+		[Pure]
+		[NotNull]
+		public static T[] DefaultIfEmpty<T>([NotNull] this T[] array, T defaultValue)
+		{
+			Code.NotNull(array, nameof(array));
+			return array.IsNullOrEmpty()
+				? new[] { defaultValue }
+				: array;
+		}
+
+		/// <summary>
+		/// Returns a new collection with default value if the collection is empty.
+		/// </summary>
+		/// <typeparam name="T">Type of the collection values</typeparam>
+		/// <param name="collection">The collection.</param>
+		/// <param name="defaultValue">The default value.</param>
+		/// <returns>A new collection with default value if the collection is empty.</returns>
+		[Pure]
+		[NotNull]
+		public static List<T> DefaultIfEmpty<T>([NotNull] this List<T> collection, T defaultValue)
+		{
+			Code.NotNull(collection, nameof(collection));
+			return collection.IsNullOrEmpty()
+				? new List<T> { defaultValue }
+				: collection;
+		}
+
+		/// <summary>
+		/// Returns a new dictionary with default value if the dictionary is empty.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="defaultKey">The default key.</param>
+		/// <param name="defaultValue">The default value.</param>
+		/// <returns>
+		/// A new dictionary with default key and value if the dictionary is empty.
+		/// </returns>
+		[Pure]
+		[NotNull]
+		public static Dictionary<TKey, TValue> DefaultIfEmpty<TKey, TValue>(
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			TKey defaultKey,
+			TValue defaultValue)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			return dictionary.IsNullOrEmpty()
+				? new Dictionary<TKey, TValue> { { defaultKey, defaultValue } }
+				: dictionary;
+		}
+
+		/// <summary>
+		/// Returns a new dictionary with default value if the dictionary is empty.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="defaultKey">The default key.</param>
+		/// <param name="defaultValue">The default value.</param>
+		/// <param name="comparer">The comparer.</param>
+		/// <returns>
+		/// A new dictionary with default key and value if the dictionary is empty.
+		/// </returns>
+		[Pure]
+		[NotNull]
+		public static Dictionary<TKey, TValue> DefaultIfEmpty<TKey, TValue>(
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			TKey defaultKey,
+			TValue defaultValue,
+			IEqualityComparer<TKey> comparer)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+			return dictionary.IsNullOrEmpty()
+				? new Dictionary<TKey, TValue>(comparer) { { defaultKey, defaultValue } }
+				: dictionary;
+		}
 
 		/// <summary>
 		/// Adds the elements to the end of the <see cref="ICollection{T}"/>.

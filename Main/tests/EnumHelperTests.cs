@@ -86,8 +86,6 @@ namespace CodeJam
 		public void Test0001IsDefined()
 		{
 			Throws<ArgumentException>(() => Enum.IsDefined(typeof(int), 2));
-			Throws<ArgumentException>(() => EnumHelper.IsDefined(2));
-			Throws<ArgumentException>(() => EnumHelper.IsDefined(2.0));
 
 			IsTrue(EnumHelper.IsDefined(Flags.A));
 			IsTrue(EnumHelper.IsDefined(Flags.B));
@@ -143,11 +141,6 @@ namespace CodeJam
 		[Test]
 		public void Test01Parse()
 		{
-			int wrongParse;
-			Throws<ArgumentException>(() => EnumTargetingHelpers.TryParse("2", out wrongParse));
-			Throws<ArgumentException>(() => EnumHelper.TryParse("2", out wrongParse));
-			Throws<ArgumentException>(() => EnumHelper.TryParse<int>("2"));
-
 			Flags result1;
 			Flags result2;
 			AreEqual(

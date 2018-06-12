@@ -33,7 +33,7 @@ namespace CodeJam
 		public static void Defined<TEnum>(
 			TEnum value,
 			[NotNull, InvokerParameterName] string argName)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.IsDefined(value))
 				throw EnumCodeExceptions.ArgumentNotDefinedException(argName, value);
@@ -48,7 +48,7 @@ namespace CodeJam
 		public static void FlagsDefined<TEnum>(
 			TEnum argFlags,
 			[NotNull, InvokerParameterName] string argName)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.AreFlagsDefined(argFlags))
 				throw EnumCodeExceptions.ArgumentNotDefinedException(argName, argFlags);
@@ -67,7 +67,7 @@ namespace CodeJam
 			TEnum value,
 			[NotNull, InvokerParameterName] string argName,
 			TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagSet(flag))
 				throw EnumCodeExceptions.ArgumentAnyFlagUnset(argName, value, flag);
@@ -84,7 +84,7 @@ namespace CodeJam
 			TEnum value,
 			[NotNull, InvokerParameterName] string argName,
 			TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagUnset(flags))
 				throw EnumCodeExceptions.ArgumentFlagSet(argName, value, flags);
@@ -101,7 +101,7 @@ namespace CodeJam
 			TEnum value,
 			[NotNull, InvokerParameterName] string argName,
 			TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagSet(flags))
 				throw EnumCodeExceptions.ArgumentFlagUnset(argName, value, flags);
@@ -118,7 +118,7 @@ namespace CodeJam
 			TEnum value,
 			[NotNull, InvokerParameterName] string argName,
 			TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagUnset(flag))
 				throw EnumCodeExceptions.ArgumentAnyFlagSet(argName, value, flag);
@@ -134,7 +134,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void StateFlagSet<TEnum>(TEnum value, TEnum flag, [NotNull] string message)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagSet(flag))
 				throw CodeExceptions.InvalidOperation(message);
@@ -151,7 +151,7 @@ namespace CodeJam
 			TEnum value, TEnum flag,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagSet(flag))
 				throw CodeExceptions.InvalidOperation(messageFormat, args);
@@ -165,7 +165,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void AnyStateFlagUnset<TEnum>(TEnum value, TEnum flags, [NotNull] string message)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagUnset(flags))
 				throw CodeExceptions.InvalidOperation(message);
@@ -183,7 +183,7 @@ namespace CodeJam
 			TEnum value, TEnum flags,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagUnset(flags))
 				throw CodeExceptions.InvalidOperation(messageFormat, args);
@@ -197,7 +197,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void AnyStateFlagSet<TEnum>(TEnum value, TEnum flags, [NotNull] string message)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagSet(flags))
 				throw CodeExceptions.InvalidOperation(message);
@@ -215,7 +215,7 @@ namespace CodeJam
 			TEnum value, TEnum flags,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagSet(flags))
 				throw CodeExceptions.InvalidOperation(messageFormat, args);
@@ -229,7 +229,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void StateFlagUnset<TEnum>(TEnum value, TEnum flag, [NotNull] string message)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagUnset(flag))
 				throw CodeExceptions.InvalidOperation(message);
@@ -247,7 +247,7 @@ namespace CodeJam
 			TEnum value, TEnum flag,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagUnset(flag))
 				throw CodeExceptions.InvalidOperation(messageFormat, args);

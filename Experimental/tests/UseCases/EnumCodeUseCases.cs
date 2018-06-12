@@ -226,33 +226,33 @@ namespace CodeJam.UseCases.EnumHelpersSamples
 	{
 		#region Flag checks
 		public static bool Includes<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.IsFlagSet(flag);
 
 		public static bool IncludesAny<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.IsAnyFlagSet(flags);
 
 		public static bool ExcludesAny<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.IsAnyFlagUnset(flag);
 
 		public static bool Excludes<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.IsFlagUnset(flags);
 		#endregion
 
 		#region Flag operations
 		public static TEnum With<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.SetFlag(flag);
 
 		public static TEnum Without<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.ClearFlag(flag);
 
 		public static TEnum WithOrWithout<TEnum>(this TEnum value, TEnum flag, bool include)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.SetFlag(flag, include);
 		#endregion
 	}
@@ -261,33 +261,33 @@ namespace CodeJam.UseCases.EnumHelpersSamples
 	{
 		#region Flag checks
 		public static bool Contains<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.IsFlagSet(flag);
 
 		public static bool ContainsAny<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.IsAnyFlagSet(flags);
 
 		public static bool DoesNotContainAny<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.IsAnyFlagUnset(flag);
 
 		public static bool DoesNotContain<TEnum>(this TEnum value, TEnum flags)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.IsFlagUnset(flags);
 		#endregion
 
 		#region Flag operations
 		public static TEnum Add<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.SetFlag(flag);
 
 		public static TEnum Remove<TEnum>(this TEnum value, TEnum flag)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.ClearFlag(flag);
 
 		public static TEnum AddOrRemove<TEnum>(this TEnum value, TEnum flag, bool include)
-			where TEnum : struct, IComparable, IFormattable, IConvertible =>
+			where TEnum : struct, Enum =>
 				value.SetFlag(flag, include);
 		#endregion
 	}
