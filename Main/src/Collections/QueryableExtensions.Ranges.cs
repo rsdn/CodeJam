@@ -185,7 +185,7 @@ namespace CodeJam.Collections
 
 			var predicate = left != null && right != null
 				? And(left, right)
-				: (left ?? right ?? FalseExpression());
+				: left ?? right ?? FalseExpression();
 
 			// DbEnd >= @from AND DbStart <= @to
 			return source.Where(Lambda<Func<T, bool>>(predicate, eParam));

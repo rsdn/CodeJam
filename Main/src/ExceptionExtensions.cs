@@ -43,27 +43,18 @@ namespace CodeJam
 				if (ex.StackTrace.NotNullNorEmpty())
 					stringBuilder.AppendLine(ex.StackTrace);
 
-				if (ex is FileNotFoundException notFoundException)
-				{
-					var fex = notFoundException;
+				switch (ex) {
+					case FileNotFoundException notFoundException:
+						var fex = notFoundException;
 
-					stringBuilder.AppendLine($"File Name: {fex.FileName}");
+						stringBuilder.AppendLine($"File Name: {fex.FileName}");
 
-					if (fex.FusionLog.IsNullOrEmpty())
-					{
-						stringBuilder.AppendLine("Fusion log is empty or disabled.");
-					}
-					else
-					{
-						stringBuilder.Append(fex.FusionLog);
-					}
-				}
-				else
-				{
-					var aex = ex as AggregateException;
-
-					if (aex?.InnerExceptions != null)
-					{
+						if (fex.FusionLog.IsNullOrEmpty())
+							stringBuilder.AppendLine("Fusion log is empty or disabled.");
+						else
+							stringBuilder.Append(fex.FusionLog);
+						break;
+					case AggregateException aex when aex.InnerExceptions != null:
 						var foundInnerException = false;
 
 						foreach (var e in aex.InnerExceptions)
@@ -74,7 +65,7 @@ namespace CodeJam
 
 						if (foundInnerException)
 							ex = ex.InnerException;
-					}
+						break;
 				}
 			}
 
