@@ -1,8 +1,13 @@
-﻿CodeJam 2.0.0 Release Notes
----------------------------------
+﻿CodeJam 2.1.0 Release Notes
+---------------------------
+
+What's new in 2.1.0-rc1
+-----------------------
+* FW 4.7.2 support
+* Enum constraints in EnumHelper (C# 7.3 feature)
 
 What's new in 2.0.0-rc1
--------------------------
+-----------------------
 * Sync Acquire in AsyncLock
 * Ranges improvement
 * Refactoring and code cleanup

@@ -1,8 +1,12 @@
-﻿CodeJam.Blocks 2.0.0 Release Notes
-----------------------------------------
+﻿CodeJam.Blocks 2.1.0 Release Notes
+----------------------------------
+
+What's new in 2.1.0-rc1
+-----------------------
+* FW 4.7.2 support
 
 What's new in 2.0.0-rc1
--------------------------
+-----------------------
 * Code cleanup
 
 What's new in 2.0.0-beta1
