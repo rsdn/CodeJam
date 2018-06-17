@@ -1,5 +1,10 @@
-﻿CodeJam.Blocks 2.1.0 Release Notes
+﻿CodeJam.Blocks 2.1.1 Release Notes
 ----------------------------------
+
+What's new in 2.1.1
+-----------------------
+* Fix package dependencies
+* Fix version
 
 What's new in 2.1.0-rc1
 -----------------------

@@ -247,8 +247,10 @@ namespace CodeJam.Ranges
 		public T Clamp(T value)
 		{
 			Code.AssertArgument(IsNotEmpty, nameof(value), "Cannot fit the value into empty range.");
-			Code.AssertArgument(!From.IsExclusiveBoundary, nameof(value), "The clamp range boundary From is exclusive and has no value.");
-			Code.AssertArgument(!To.IsExclusiveBoundary, nameof(value), "The clamp range boundary To is exclusive and has no value.");
+			Code.AssertArgument(
+				!From.IsExclusiveBoundary, nameof(value), "The clamp range boundary From is exclusive and has no value.");
+			Code.AssertArgument(
+				!To.IsExclusiveBoundary, nameof(value), "The clamp range boundary To is exclusive and has no value.");
 
 			// case for the positive infinity
 			if (!RangeBoundaryFrom<T>.IsValid(value))

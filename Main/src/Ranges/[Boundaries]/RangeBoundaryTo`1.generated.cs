@@ -159,7 +159,8 @@ namespace CodeJam.Ranges
 				value = default;
 				if (boundaryKind != RangeBoundaryToKind.Infinite)
 				{
-					throw CodeExceptions.Argument(nameof(value), "The positive infinity value should be used only for Infinite boundaries.");
+					throw CodeExceptions.Argument(
+						nameof(value), "The positive infinity value should be used only for Infinite boundaries.");
 				}
 			}
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))

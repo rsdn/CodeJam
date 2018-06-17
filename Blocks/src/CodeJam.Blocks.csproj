@@ -51,7 +51,7 @@
 		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<DocumentationFile>$(OutputPath)$(TargetFramework)\$(ProjectName).xml</DocumentationFile>
 	</PropertyGroup>
-	
+
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
 		<AssemblyAttribute Include="System.Runtime.Versioning.TargetFrameworkAttribute">
 			<_Parameter1>.NETFramework,Version=v3.5</_Parameter1>

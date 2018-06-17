@@ -10,7 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -38,7 +37,6 @@ namespace CodeJam.Ranges
 	/// <typeparam name="TKey">The type of the range key</typeparam>
 	[Serializable]
 	[PublicAPI]
-	[SuppressMessage("ReSharper", "SuggestVarOrType_BuiltInTypes")]
 	public partial struct CompositeRange<T, TKey> : IEquatable<CompositeRange<T, TKey>>, IFormattable
 	{
 		#region Nested types
@@ -55,7 +53,7 @@ namespace CodeJam.Ranges
 			/// <param name="x">The first object to compare.</param>
 			/// <param name="y">The second object to compare.</param>
 			/// <returns>
-			/// A signed integer that indicates the relative values of <paramref name="x" /> and <paramref name="y" />
+			/// A signed integer that indicates the relative values of <paramref name="x"/> and <paramref name="y"/>
 			/// </returns>
 			public int Compare(Range<T, TKey> x, Range<T, TKey> y)
 			{
@@ -224,7 +222,9 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Properties
-		/// <summary>The composite range cannot be simplified anymore. Subranges do not intersect and start one exactly after another.</summary>
+		/// <summary>
+		/// The composite range cannot be simplified anymore. Subranges do not intersect and start one exactly after another.
+		/// </summary>
 		/// <value><c>true</c> if all subranges are merged already; otherwise, <c>false</c>.</value>
 		public bool IsMerged => !_hasRangesToMerge;
 
