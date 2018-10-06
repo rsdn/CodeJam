@@ -100,9 +100,8 @@ namespace CodeJam.Collections
 		/// <returns>The dictionary or <c>null</c> if the dictionary is <c>null</c>.</returns>
 		[Pure]
 		[NotNull]
-		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>([CanBeNull] this Dictionary<TKey, TValue> dictionary)
-			=>
-				dictionary ?? new Dictionary<TKey, TValue>();
+		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>([CanBeNull] this Dictionary<TKey, TValue> dictionary) =>
+			dictionary ?? new Dictionary<TKey, TValue>();
 
 		/// <summary>
 		/// Returns an empty instance of the dictionary for null values.
@@ -163,7 +162,7 @@ namespace CodeJam.Collections
 		public static T[] DefaultIfEmpty<T>([NotNull] this T[] array, T defaultValue)
 		{
 			Code.NotNull(array, nameof(array));
-			return array.IsNullOrEmpty()
+			return array.Length == 0
 				? new[] { defaultValue }
 				: array;
 		}
@@ -180,7 +179,7 @@ namespace CodeJam.Collections
 		public static List<T> DefaultIfEmpty<T>([NotNull] this List<T> collection, T defaultValue)
 		{
 			Code.NotNull(collection, nameof(collection));
-			return collection.IsNullOrEmpty()
+			return collection.Count == 0
 				? new List<T> { defaultValue }
 				: collection;
 		}
@@ -204,7 +203,7 @@ namespace CodeJam.Collections
 			TValue defaultValue)
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
-			return dictionary.IsNullOrEmpty()
+			return dictionary.Count == 0
 				? new Dictionary<TKey, TValue> { { defaultKey, defaultValue } }
 				: dictionary;
 		}
@@ -230,7 +229,7 @@ namespace CodeJam.Collections
 			IEqualityComparer<TKey> comparer)
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
-			return dictionary.IsNullOrEmpty()
+			return dictionary.Count == 0
 				? new Dictionary<TKey, TValue>(comparer) { { defaultKey, defaultValue } }
 				: dictionary;
 		}
