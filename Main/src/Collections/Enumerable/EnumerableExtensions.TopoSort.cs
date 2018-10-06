@@ -31,7 +31,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T>(
-				[NotNull, InstantHandle] this ICollection<T> source,
+				[NotNull] this ICollection<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter) =>
 			TopoSort(source, dependsOnGetter, EqualityComparer<T>.Default);
 
@@ -45,7 +45,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
-				[NotNull] this IEnumerable<T> source,
+				[NotNull, InstantHandle] this IEnumerable<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 				[NotNull, InstantHandle] Func<T, TKey> keySelector) =>
 			TopoSort(source, dependsOnGetter, KeyEqualityComparer.Create(keySelector));
@@ -76,7 +76,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
-				[NotNull] this IEnumerable<T> source,
+				[NotNull, InstantHandle] this IEnumerable<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 				[NotNull, InstantHandle] Func<T, TKey> keySelector,
 				[NotNull] IEqualityComparer<TKey> keyComparer) =>
@@ -109,7 +109,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T>(
-				[NotNull] this IEnumerable<T> source,
+				[NotNull, InstantHandle] this IEnumerable<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 				[NotNull] IEqualityComparer<T> equalityComparer) =>
 			GroupTopoSort(source, dependsOnGetter, equalityComparer)
@@ -157,7 +157,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
-				[NotNull, InstantHandle] this ICollection<T> source,
+				[NotNull] this ICollection<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter) =>
 			GroupTopoSort(source, dependsOnGetter, EqualityComparer<T>.Default);
 
@@ -188,7 +188,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
-			[NotNull, InstantHandle] this ICollection<T> source,
+			[NotNull] this ICollection<T> source,
 			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 			[NotNull] IEqualityComparer<T> equalityComparer)
 		{

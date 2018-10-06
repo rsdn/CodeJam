@@ -35,7 +35,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with <#= info.Name #> value in the sequence.</returns>
 		[Pure]
 		public static TSource <#= info.Method #><TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -91,7 +91,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource <#= info.Method #>OrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -143,7 +143,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with <#= info.Name #> value in the sequence.</returns>
 		[Pure]
 		public static TSource <#= info.Method #><TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -204,7 +204,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource <#= info.Method #>OrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>?> selector,
 			TSource defaultValue = default(TSource))
 		{

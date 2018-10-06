@@ -20,11 +20,8 @@ namespace CodeJam.Collections
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, IEnumerable<T>> childrenSelector)
 		{
-			if (source == null)
-				throw new ArgumentNullException(nameof (source));
-
-			if (childrenSelector == null)
-				throw new ArgumentNullException(nameof (childrenSelector));
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(childrenSelector, nameof(childrenSelector));
 
 			return FlattenImpl(source, childrenSelector);
 		}

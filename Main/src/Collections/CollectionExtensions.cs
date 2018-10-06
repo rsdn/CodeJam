@@ -69,6 +69,7 @@ namespace CodeJam.Collections
 		/// <returns>The collection or empty instance if the collection is <c>null</c>.</returns>
 		[Pure]
 		[NotNull]
+		[LinqTunnel]
 		public static IEnumerable<T> EmptyIfNull<T>([CanBeNull] this IEnumerable<T> source) => source ?? Enumerable.Empty<T>();
 
 		/// <summary>
@@ -264,7 +265,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the items that the collection contains.</typeparam>
 		/// <param name="source">The collection to add the elements to.</param>
 		/// <param name="items">The items to add to the collection.</param>
-		public static void AddRange<T>([NotNull] this ICollection<T> source, [NotNull] IEnumerable<T> items)
+		public static void AddRange<T>([NotNull] this ICollection<T> source, [NotNull, InstantHandle] IEnumerable<T> items)
 		{
 			foreach (var item in items)
 				source.Add(item);

@@ -126,7 +126,7 @@ namespace CodeJam.Collections
 		/// A <see cref="HashSet{T}"/> that contains elements from the input sequence.
 		/// </returns>
 		[Pure, NotNull]
-		public static HashSet<T> ToHashSet<T>([NotNull] this IEnumerable<T> source) => new HashSet<T>(source);
+		public static HashSet<T> ToHashSet<T>([NotNull, InstantHandle] this IEnumerable<T> source) => new HashSet<T>(source);
 
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/> with the specified equality comparer.
@@ -140,7 +140,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, NotNull]
 		public static HashSet<T> ToHashSet<T>(
-				[NotNull] this IEnumerable<T> source,
+				[NotNull, InstantHandle] this IEnumerable<T> source,
 				[NotNull] IEqualityComparer<T> comparer) =>
 			new HashSet<T>(source, comparer);
 #endif
@@ -155,7 +155,9 @@ namespace CodeJam.Collections
 		/// A <see cref="HashSet{T}"/> that contains keys from the input sequence.
 		/// </returns>
 		[Pure, NotNull]
-		public static HashSet<TKey> ToHashSet<T, TKey>([NotNull] this IEnumerable<T> source, Func<T, TKey> keySelector) =>
+		public static HashSet<TKey> ToHashSet<T, TKey>(
+			[NotNull, InstantHandle] this IEnumerable<T> source,
+			[NotNull, InstantHandle] Func<T, TKey> keySelector) =>
 			new HashSet<TKey>(source.Select(keySelector));
 
 		/// <summary>
@@ -172,8 +174,8 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, NotNull]
 		public static HashSet<TKey> ToHashSet<T, TKey>(
-				[NotNull] this IEnumerable<T> source,
-				Func<T, TKey> keySelector,
+				[NotNull, InstantHandle] this IEnumerable<T> source,
+				[NotNull, InstantHandle] Func<T, TKey> keySelector,
 				[NotNull] IEqualityComparer<TKey> comparer) =>
 			new HashSet<TKey>(source.Select(keySelector), comparer);
 
@@ -427,7 +429,7 @@ namespace CodeJam.Collections
 		/// <param name="source">An <see cref="IEnumerable{T}"/> to create strings from.</param>
 		/// <returns>Enumeration of string representation of <paramref name="source"/> elements.</returns>
 		[NotNull, Pure]
-		public static IEnumerable<string> ToStrings<T>([NotNull] this IEnumerable<T> source)
+		public static IEnumerable<string> ToStrings<T>([NotNull, InstantHandle] this IEnumerable<T> source)
 		{
 			Code.NotNull(source, nameof(source));
 
@@ -452,7 +454,7 @@ namespace CodeJam.Collections
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsFirst<TSource>([NotNull] this IEnumerable<TSource> source, TSource item) =>
+		public static bool IsFirst<TSource>([NotNull, InstantHandle] this IEnumerable<TSource> source, TSource item) =>
 			source.IsFirst(item, EqualityComparer<TSource>.Default);
 
 		/// <summary>
@@ -468,7 +470,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static bool IsFirst<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TSource item,
 			[CanBeNull] IEqualityComparer<TSource> comparer)
 		{
@@ -497,7 +499,7 @@ namespace CodeJam.Collections
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsLast<TSource>([NotNull] this IEnumerable<TSource> source, TSource item) =>
+		public static bool IsLast<TSource>([NotNull, InstantHandle] this IEnumerable<TSource> source, TSource item) =>
 			source.IsLast(item, EqualityComparer<TSource>.Default);
 
 		/// <summary>
@@ -513,7 +515,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static bool IsLast<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TSource item,
 			[CanBeNull] IEqualityComparer<TSource> comparer)
 		{

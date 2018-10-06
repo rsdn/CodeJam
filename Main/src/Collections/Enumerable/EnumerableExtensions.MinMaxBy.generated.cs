@@ -29,7 +29,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -72,7 +72,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -111,7 +111,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -168,7 +168,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -224,7 +224,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -267,7 +267,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -306,7 +306,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -363,7 +363,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -419,7 +419,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -462,7 +462,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -501,7 +501,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -558,7 +558,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -614,7 +614,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -657,7 +657,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -696,7 +696,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -753,7 +753,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -809,7 +809,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -852,7 +852,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -891,7 +891,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -948,7 +948,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1004,7 +1004,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1047,7 +1047,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1086,7 +1086,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1143,7 +1143,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1199,7 +1199,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1242,7 +1242,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1281,7 +1281,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1338,7 +1338,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1394,7 +1394,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1437,7 +1437,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1476,7 +1476,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1533,7 +1533,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1589,7 +1589,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1637,7 +1637,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1681,7 +1681,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1738,7 +1738,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1794,7 +1794,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1842,7 +1842,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1886,7 +1886,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -1943,7 +1943,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -1999,7 +1999,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2042,7 +2042,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2081,7 +2081,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2138,7 +2138,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2198,7 +2198,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2241,7 +2241,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2280,7 +2280,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2337,7 +2337,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2393,7 +2393,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2436,7 +2436,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2475,7 +2475,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2532,7 +2532,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2588,7 +2588,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2631,7 +2631,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2670,7 +2670,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2727,7 +2727,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2783,7 +2783,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2826,7 +2826,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2865,7 +2865,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -2922,7 +2922,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -2978,7 +2978,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3021,7 +3021,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3060,7 +3060,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3117,7 +3117,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3173,7 +3173,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3216,7 +3216,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3255,7 +3255,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3312,7 +3312,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3368,7 +3368,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3411,7 +3411,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3450,7 +3450,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3507,7 +3507,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3563,7 +3563,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3606,7 +3606,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3645,7 +3645,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3702,7 +3702,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3758,7 +3758,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3806,7 +3806,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3850,7 +3850,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -3907,7 +3907,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -3963,7 +3963,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -4011,7 +4011,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -4055,7 +4055,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -4112,7 +4112,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double?> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -4168,7 +4168,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -4211,7 +4211,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal> selector,
 			TSource defaultValue = default(TSource))
 		{
@@ -4250,7 +4250,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal?> selector)
 		{
 			Code.NotNull(source, nameof(source));
@@ -4307,7 +4307,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal?> selector,
 			TSource defaultValue = default(TSource))
 		{

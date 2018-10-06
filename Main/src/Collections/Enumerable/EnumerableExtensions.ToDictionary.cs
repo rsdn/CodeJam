@@ -33,8 +33,8 @@ namespace CodeJam.Collections
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
 		[Pure, NotNull]
 		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, TKey> keySelector,
+			[NotNull, InstantHandle] this IEnumerable<T> source,
+			[NotNull, InstantHandle] Func<T, TKey> keySelector,
 			DictionaryDuplicate duplicateHandling) =>
 				ToDictionary(source, keySelector, Fn<T>.Self, null, duplicateHandling);
 
@@ -51,8 +51,8 @@ namespace CodeJam.Collections
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
 		[Pure, NotNull]
 		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, TKey> keySelector,
+			[NotNull, InstantHandle] this IEnumerable<T> source,
+			[NotNull, InstantHandle] Func<T, TKey> keySelector,
 			[CanBeNull] IEqualityComparer<TKey> comparer,
 			DictionaryDuplicate duplicateHandling) =>
 				ToDictionary(source, keySelector, Fn<T>.Self, comparer, duplicateHandling);
@@ -71,9 +71,9 @@ namespace CodeJam.Collections
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
 		[Pure, NotNull]
 		public static Dictionary<TKey, TElement> ToDictionary<T, TKey, TElement>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, TKey> keySelector,
-			[NotNull] Func<T, TElement> elementSelector,
+			[NotNull, InstantHandle] this IEnumerable<T> source,
+			[NotNull, InstantHandle] Func<T, TKey> keySelector,
+			[NotNull, InstantHandle] Func<T, TElement> elementSelector,
 			DictionaryDuplicate duplicateHandling) =>
 				ToDictionary(source, keySelector, elementSelector, null, duplicateHandling);
 
@@ -93,9 +93,9 @@ namespace CodeJam.Collections
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
 		[Pure, NotNull]
 		public static Dictionary<TKey, TElement> ToDictionary<T, TKey, TElement>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, TKey> keySelector,
-			[NotNull] Func<T, TElement> elementSelector,
+			[NotNull, InstantHandle] this IEnumerable<T> source,
+			[NotNull, InstantHandle] Func<T, TKey> keySelector,
+			[NotNull, InstantHandle] Func<T, TElement> elementSelector,
 			[CanBeNull] IEqualityComparer<TKey> comparer,
 			DictionaryDuplicate duplicateHandling)
 		{
