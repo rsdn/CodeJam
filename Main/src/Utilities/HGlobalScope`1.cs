@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 namespace CodeJam
 {
 	/// <summary>
-	/// Wraps Mashal.AllocHGlobal and Marshal.FreeHGlobal using generic.
+	/// Wraps Marshal.AllocHGlobal and Marshal.FreeHGlobal using generic.
 	/// </summary>
 	[PublicAPI]
 	[SecurityCritical]
@@ -28,11 +28,11 @@ namespace CodeJam
 		public HGlobalScope(int cb) : base(CheckSize(cb))
 		{
 		}
-		
+
 		/// <summary>
 		/// Value
 		/// </summary>
-		public T Value => (T)Marshal.PtrToStructure(Data, typeof(T));		
+		public T Value => (T)Marshal.PtrToStructure(Data, typeof(T));
 
 		/// <summary>
 		/// Size of the of the generic parameter <typeparamref name="T"/>.

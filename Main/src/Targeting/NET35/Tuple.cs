@@ -1354,7 +1354,7 @@ namespace System
 				return t.GetHashCode(comparer);
 			}
 
-			// In this case, the rest memeber has less than 8 elements so we need to combine some our elements with the elements in rest
+			// In this case, the rest member has less than 8 elements so we need to combine some our elements with the elements in rest
 			var k = 8 - t.Size;
 			switch (k)
 			{

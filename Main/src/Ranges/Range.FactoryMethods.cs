@@ -69,7 +69,7 @@ namespace CodeJam.Ranges
 				fromValue, RangeBoundaryFromKind.Inclusive,
 				toValue, RangeBoundaryToKind.Inclusive);
 
-		/// <summary>Tries to create the range. Returnss empty range if failed.</summary>
+		/// <summary>Tries to create the range. Returns an empty range if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <param name="fromValue">The value of the boundary From exclusive.</param>
 		/// <param name="toValue">The value of the boundary To exclusive.</param>

@@ -40,7 +40,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
-		/// <param name="keySelector">Function that returns an item key, wich is used to compare.</param>
+		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
 		[Pure]
@@ -55,7 +55,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
-		/// <param name="keySelector">Function that returns an item key, wich is used to compare.</param>
+		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
 		[Pure]
@@ -70,7 +70,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
-		/// <param name="keySelector">Function that returns an item key, wich is used to compare.</param>
+		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <param name="keyComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
@@ -87,7 +87,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
-		/// <param name="keySelector">Function that returns an item key, wich is used to compare.</param>
+		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <param name="keyComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]

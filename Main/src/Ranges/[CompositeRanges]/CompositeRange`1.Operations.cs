@@ -536,7 +536,7 @@ namespace CodeJam.Ranges
 		/// <summary>Extends the range from the left.</summary>
 		/// <param name="from">A new value From.</param>
 		/// <returns>
-		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
+		/// A range with a new From boundary or the source range if the new boundary is greater than original.
 		/// </returns>
 		[Pure]
 		public CompositeRange<T> ExtendFrom(T from) =>
@@ -545,7 +545,7 @@ namespace CodeJam.Ranges
 		/// <summary>Extends the range from the left.</summary>
 		/// <param name="from">A new boundary From.</param>
 		/// <returns>
-		/// A range with a new From boundary or the source fange if the new boundary is greater than original.
+		/// A range with a new From boundary or the source range if the new boundary is greater than original.
 		/// </returns>
 		[Pure]
 		public CompositeRange<T> ExtendFrom(RangeBoundaryFrom<T> from)
@@ -567,7 +567,7 @@ namespace CodeJam.Ranges
 		/// <summary>Extends the range from the right.</summary>
 		/// <param name="to">A new value To.</param>
 		/// <returns>
-		/// A range with a new To boundary or the source fange if the new boundary is less than original.
+		/// A range with a new To boundary or the source range if the new boundary is less than original.
 		/// </returns>
 		[Pure]
 		public CompositeRange<T> ExtendTo(T to) =>
@@ -576,7 +576,7 @@ namespace CodeJam.Ranges
 		/// <summary>Extends the range from the right.</summary>
 		/// <param name="to">A new boundary To.</param>
 		/// <returns>
-		/// A range with a new To boundary or the source fange if the new boundary is less than original.
+		/// A range with a new To boundary or the source range if the new boundary is less than original.
 		/// </returns>
 		[Pure]
 		public CompositeRange<T> ExtendTo(RangeBoundaryTo<T> to)

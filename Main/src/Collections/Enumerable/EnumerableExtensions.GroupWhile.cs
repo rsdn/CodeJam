@@ -142,7 +142,7 @@ namespace CodeJam.Collections
 		/// <summary>Groups items in the sequence while they have same grouping key.</summary>
 		/// <typeparam name="T">Type of items in sequence</typeparam>
 		/// <param name="source">The source.</param>
-		/// <param name="predicate">Gropung predicate.</param>
+		/// <param name="predicate">Grouping predicate.</param>
 		/// <returns>Grouped items.</returns>
 		[Pure]
 		[NotNull, ItemNotNull]

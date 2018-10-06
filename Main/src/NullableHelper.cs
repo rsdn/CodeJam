@@ -34,7 +34,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of value</typeparam>
 		/// <param name="value">THe value</param>
-		/// <returns><paramref name="value"/> wrapped in nullabe.</returns>
+		/// <returns><paramref name="value"/> wrapped in nullable.</returns>
 		[Pure]
 		public static T? AsNullable<T>(this T value) where T : struct => value;
 	}

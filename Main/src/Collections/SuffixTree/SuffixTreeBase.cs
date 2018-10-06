@@ -57,7 +57,7 @@ namespace CodeJam.Collections
 		/// <summary>Concatenated input strings</summary>
 		protected string InternalData { get; private set; }
 
-		/// <summary>List of locatons of added strings inside the InternalData</summary>
+		/// <summary>List of locations of added strings inside the InternalData</summary>
 		protected List<(int Start, int Length)> StringLocations { get; }
 
 		/// <summary>Constructs a base for a suffix tree</summary>
@@ -105,7 +105,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public IEnumerable<Suffix> All() => AllFromNode(Root, 0);
 
-		/// <summary>Checks wether the suffix tree contains the given substring or not</summary>
+		/// <summary>Checks whether the suffix tree contains the given substring or not</summary>
 		/// <param name="substring">The substring to locate</param>
 		/// <returns>true if found, false otherwise</returns>
 		[Pure]
@@ -120,7 +120,7 @@ namespace CodeJam.Collections
 			return r != null;
 		}
 
-		/// <summary>Checks wether the suffix tree contains the given suffix or not</summary>
+		/// <summary>Checks whether the suffix tree contains the given suffix or not</summary>
 		/// <param name="suffix">The suffix to locate</param>
 		/// <returns>true if found, false otherwise</returns>
 		[Pure]

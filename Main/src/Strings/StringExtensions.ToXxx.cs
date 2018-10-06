@@ -45,7 +45,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// When this method returns, contains the <see cref="Byte"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
-		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant with style, or
 		/// represents a number less than <see cref="DateTime.MinValue"/> or greater than <see cref="DateTime.MaxValue"/>.
 		/// </returns>
 		[Pure]
@@ -70,7 +70,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// When this method returns, contains the <see cref="DateTime"/> value equivalent of the number contained in
 		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
-		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant with style, or
 		/// represents a number less than <see cref="DateTime.MinValue"/> or greater than <see cref="DateTime.MaxValue"/>.
 		/// </returns>
 		[Pure]

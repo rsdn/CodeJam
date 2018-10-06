@@ -949,7 +949,7 @@ namespace CodeJam.Expressions
 		/// Replaces lambda body parameter and returns modified body.
 		/// </summary>
 		/// <param name="lambda">Original lambda.</param>
-		/// <param name="exprToReplaceParameter">An expression to replace lambda pameter.</param>
+		/// <param name="exprToReplaceParameter">An expression to replace lambda parameter.</param>
 		/// <returns>Modified body.</returns>
 		[Pure]
 		public static Expression ReplaceParameters(
@@ -968,7 +968,7 @@ namespace CodeJam.Expressions
 		/// Replaces lambda body parameters and returns modified body.
 		/// </summary>
 		/// <param name="lambda">Original lambda.</param>
-		/// <param name="exprToReplaceParameter">Expressions to replace lambda pameters.</param>
+		/// <param name="exprToReplaceParameter">Expressions to replace lambda parameters.</param>
 		/// <returns>Modified body.</returns>
 		[Pure]
 		public static Expression ReplaceParameters(
@@ -1023,7 +1023,7 @@ namespace CodeJam.Expressions
 		}
 
 		/// <summary>
-		/// Tranforms original expression.
+		/// Transforms original expression.
 		/// </summary>
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>
@@ -1038,7 +1038,7 @@ namespace CodeJam.Expressions
 		}
 
 		/// <summary>
-		/// Tranforms original expression.
+		/// Transforms original expression.
 		/// </summary>
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>

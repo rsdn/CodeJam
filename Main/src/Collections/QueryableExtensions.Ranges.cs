@@ -13,7 +13,7 @@ using static System.Linq.Expressions.Expression;
 namespace CodeJam.Collections
 {
 	/// <summary>
-	/// Marks boundaries that should be checked for inifinte (<c>null</c> values)
+	/// Marks boundaries that should be checked for infinite (<c>null</c> values)
 	/// </summary>
 	[Flags]
 	public enum QueryRangeBoundaries
