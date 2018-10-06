@@ -15,7 +15,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence of chunks of the specified size.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, LinqTunnel]
 		public static IEnumerable<T[]> Split<T>([NotNull] this IEnumerable<T> source, int size)
 		{
 			if (source == null)

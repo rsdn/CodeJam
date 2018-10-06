@@ -15,7 +15,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A flat sequence of elements produced from the elements in the source hierarchy.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, LinqTunnel]
 		public static IEnumerable<T> Flatten<T>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, IEnumerable<T>> childrenSelector)
