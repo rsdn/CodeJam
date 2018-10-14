@@ -16,6 +16,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Clears all created values
 		/// </summary>
+		[CollectionAccess(CollectionAccessType.ModifyExistingContent)]
 		void Clear();
 	}
 }

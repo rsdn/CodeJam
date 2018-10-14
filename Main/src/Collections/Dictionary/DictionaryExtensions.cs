@@ -22,6 +22,7 @@ namespace CodeJam.Collections
 		///   The value for the key. This will be either the existing value for the key if the key is already in the
 		///   dictionary, or the new value if the key was not in the dictionary.
 		/// </returns>
+		[CollectionAccess(CollectionAccessType.Read | CollectionAccessType.UpdatedContent)]
 		public static TValue GetOrAdd<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
 			where TValue : new()
 		{
@@ -45,6 +46,7 @@ namespace CodeJam.Collections
 		///   The value for the key. This will be either the existing value for the key if the key is already in the
 		///   dictionary, or the new value if the key was not in the dictionary.
 		/// </returns>
+		[CollectionAccess(CollectionAccessType.Read | CollectionAccessType.UpdatedContent)]
 		public static TValue GetOrAdd<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -70,6 +72,7 @@ namespace CodeJam.Collections
 		///   The value for the key. This will be either the existing value for the key if the key is already in the
 		///   dictionary, or the new value if the key was not in the dictionary.
 		/// </returns>
+		[CollectionAccess(CollectionAccessType.Read | CollectionAccessType.UpdatedContent)]
 		public static TValue GetOrAdd<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -101,6 +104,7 @@ namespace CodeJam.Collections
 		///   The new value for the key. This will be either be addValue (if the key was absent) or the result of
 		///   updateValueFactory (if the key was present).
 		/// </returns>
+		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -135,6 +139,7 @@ namespace CodeJam.Collections
 		///   The new value for the key. This will be either be addValue (if the key was absent) or the result of
 		///   updateValueFactory (if the key was present).
 		/// </returns>
+		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -165,6 +170,7 @@ namespace CodeJam.Collections
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="valueFactory">The function used to generate a value.</param>
 		/// <returns>The new value for the key.</returns>
+		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -193,6 +199,7 @@ namespace CodeJam.Collections
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="valueFactory">The function used to generate a value.</param>
 		/// <returns>The new value for the key.</returns>
+		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,

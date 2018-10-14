@@ -32,6 +32,7 @@ namespace CodeJam.Collections
 		/// in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 #endif
@@ -51,6 +52,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -81,6 +83,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this IDictionary<TKey, TValue> dictionary,
 				[NotNull] TKey key,
@@ -103,6 +106,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -133,6 +137,7 @@ namespace CodeJam.Collections
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -164,6 +169,7 @@ namespace CodeJam.Collections
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -197,6 +203,7 @@ namespace CodeJam.Collections
 		/// in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 #endif
@@ -216,6 +223,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -246,6 +254,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 				[NotNull] TKey key,
@@ -268,6 +277,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -298,6 +308,7 @@ namespace CodeJam.Collections
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -329,6 +340,7 @@ namespace CodeJam.Collections
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -362,6 +374,7 @@ namespace CodeJam.Collections
 		/// in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this Dictionary<TKey, TValue> dictionary, [NotNull] TKey key)
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 #endif
@@ -381,6 +394,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -411,6 +425,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this Dictionary<TKey, TValue> dictionary,
 				[NotNull] TKey key,
@@ -433,6 +448,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -463,6 +479,7 @@ namespace CodeJam.Collections
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -494,6 +511,7 @@ namespace CodeJam.Collections
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -527,6 +545,7 @@ namespace CodeJam.Collections
 		/// in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this ConcurrentDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
 			=> GetValueOrDefault(dictionary, key, default(TValue));
 #endif
@@ -546,6 +565,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -576,6 +596,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 				[NotNull] TKey key,
@@ -598,6 +619,7 @@ namespace CodeJam.Collections
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -628,6 +650,7 @@ namespace CodeJam.Collections
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -659,6 +682,7 @@ namespace CodeJam.Collections
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,

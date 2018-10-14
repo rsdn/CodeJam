@@ -54,6 +54,7 @@ private void Header1(string type) {#>
 		/// in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this <#=type#><TKey, TValue> dictionary, [NotNull] TKey key)
 <#+}
 
@@ -86,6 +87,7 @@ private void Header2(string type) {#>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -129,6 +131,7 @@ private void Header3(string type) {#>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this <#=type#><TKey, TValue> dictionary,
 				[NotNull] TKey key,
@@ -163,6 +166,7 @@ private void Header4(string type) {#>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -205,6 +209,7 @@ private void Header5(string type) {#>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
 			[NotNull] TKey key,
@@ -248,6 +253,7 @@ private void Header5(string type) {#>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
 		[Pure]
+		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
 			[NotNull] TKey key,
