@@ -51,7 +51,7 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				if (pair.Key.ClearBeforeEachRun)
 				{
-					_stateSlots.TryRemove(pair.Key, out var _);
+					_stateSlots.TryRemove(pair.Key, out _);
 				}
 			}
 
