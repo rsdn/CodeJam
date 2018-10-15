@@ -12,6 +12,65 @@ namespace CodeJam.Strings
 	public partial class StringExtensions
 	{
 		/// <summary>
+		/// Determines whether the beginning of the string instance matches the specified character.
+		/// </summary>
+		/// <param name="value">The string to test.</param>
+		/// <param name="ch">The character to compare.</param>
+		/// <returns>
+		/// <c>true</c> if <paramref name="ch"/> matches the beginning of the <paramref name="value"/>; otherwise, <c>false</c>.
+		/// </returns>
+		[Pure]
+		public static bool StartsWith([NotNull] this string value, char ch)
+		{
+			Code.NotNull(value, nameof(value));
+
+			// PERF: Range check elimination
+			// ===========================================================
+			//
+			// 1. Bounds check with Int32 constant value not eliminated
+			// return value.Length != 0
+			//     && value[0] == ch; // <== Bounds check
+			// }
+			//
+			// 2. Bounds check with the flipped condition not eliminated
+			// return (uint)value.Length > 0u
+			//     && value[0] == ch; <== Bounds check
+
+			return 0u < (uint)value.Length && value[0] == ch;
+		}
+
+		/// <summary>
+		/// Determines whether the end of the string instance matches the specified character.
+		/// </summary>
+		/// <param name="value">The string to test.</param>
+		/// <param name="ch">The character to compare.</param>
+		/// <returns>
+		/// <c>true</c> if <paramref name="ch"/> matches the end of the <paramref name="value"/>; otherwise, <c>false</c>.
+		/// </returns>
+		[Pure]
+		public static bool EndsWith([NotNull] this string value, char ch)
+		{
+			Code.NotNull(value, nameof(value));
+
+			// PERF: Range check elimination
+			// ===========================================================
+			//
+			// 1. Bounds check with Int32 constant value not eliminated
+			// return value.Length != 0
+			//     && value[value.Length - 1] == ch; // <== Bounds check
+			// }
+			//
+			// 2. Bounds check not eliminated
+			// return 0u < (uint)value.Length
+			//     && value[value.Length - 1] == ch; <== Bounds check
+			//
+
+			// In this case the `value.Length - 1u` is CSE (Common subexpression)
+			// and JIT eliminates range checking
+			return (uint)value.Length - 1u < (uint)value.Length && value[value.Length - 1] == ch;
+		}
+
+		/// <summary>
 		/// Retrieves a substring from <paramref name="str"/>.
 		/// </summary>
 		/// <param name="str">
