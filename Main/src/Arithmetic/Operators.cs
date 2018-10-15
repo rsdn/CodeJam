@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Threading;
 
@@ -17,80 +18,151 @@ namespace CodeJam.Arithmetic
 	{
 		private const LazyThreadSafetyMode _lazyMode = LazyThreadSafetyMode.PublicationOnly;
 
-		private static readonly Lazy<Func<T, T, int>> _compare = Lazy.Create(OperatorsFactory.Comparison<T>, _lazyMode);
-
+		#region Compare
 		/// <summary>
-		/// Comparison callback
+		/// Gets a comparison function.
 		/// </summary>
 		[NotNull]
-		public static Func<T, T, int> Compare => _compare.Value;
-
-		#region Special fields
-		private static readonly Lazy<bool> _hasNaN =
-			new Lazy<bool>(OperatorsFactory.HasNaN<T>, _lazyMode);
+		public static Func<T, T, int> Compare => CompareHelper.Value;
 
 		/// <summary>
-		/// Check for the NaN value.
+		/// The helper class.
 		/// </summary>
-		public static bool HasNaN => _hasNaN.Value;
+		private static class CompareHelper
+		{
+			private static readonly Lazy<Func<T, T, int>> _value = new Lazy<Func<T, T, int>>(OperatorsFactory.Comparison<T>, _lazyMode);
 
-		private static readonly Lazy<T> _naN =
-			new Lazy<T>(OperatorsFactory.GetNaN<T>, _lazyMode);
+			/// <summary>
+			/// Gets a comparison function.
+			/// </summary>
+			[NotNull]
+			public static Func<T, T, int> Value => _value.Value;
+		}
+		#endregion
+
+		#region HasNaN
+		/// <summary>
+		/// Determines whether the type has NaN value.
+		/// </summary>
+		public static bool HasNaN => NaNHelper.HasNaN;
 
 		/// <summary>
-		/// NaN value
+		/// Gets a value that is not a number (NaN).
 		/// </summary>
-		[NotNull]
-		public static T NaN => _naN.Value;
-		
-		private static readonly Lazy<bool> _hasNegativeInfinity =
-			new Lazy<bool>(OperatorsFactory.HasNegativeInfinity<T>, _lazyMode);
+		public static T NaN => NaNHelper.NaN;
 
 		/// <summary>
-		/// Check for the negative infinity value.
+		/// The helper class.
 		/// </summary>
-		public static bool HasNegativeInfinity => _hasNegativeInfinity.Value;
+		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
+		private static class NaNHelper
+		{
+			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetNaN<T>, _lazyMode);
 
-		private static readonly Lazy<T> _negativeInfinity =
-			new Lazy<T>(OperatorsFactory.GetNegativeInfinity<T>, _lazyMode);
+			/// <summary>
+			/// Determines whether the type has NaN value.
+			/// </summary>
+			public static bool HasNaN { get; } = OperatorsFactory.HasNaN<T>();
+
+			/// <summary>
+			/// Gets a value that is not a number (NaN).
+			/// </summary>
+			public static T NaN => _value.Value;
+		}
+		#endregion
+
+		#region NegativeInfinity
+		/// <summary>
+		/// Gets a value that determines whether the type has negative infinity value.
+		/// </summary>
+		public static bool HasNegativeInfinity => NegativeInfinityHelper.HasNegativeInfinity;
 
 		/// <summary>
-		/// Negative infinity value
+		/// Gets negative infinity.
 		/// </summary>
-		[NotNull]
-		public static T NegativeInfinity => _negativeInfinity.Value;
-
-		private static readonly Lazy<bool> _hasPositiveInfinity =
-			new Lazy<bool>(OperatorsFactory.HasPositiveInfinity<T>, _lazyMode);
+		public static T NegativeInfinity => NegativeInfinityHelper.NegativeInfinity;
 
 		/// <summary>
-		/// Check for the positive infinity value.
+		/// The helper class.
 		/// </summary>
-		public static bool HasPositiveInfinity => _hasPositiveInfinity.Value;
+		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
+		private static class NegativeInfinityHelper
+		{
+			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetNegativeInfinity<T>, _lazyMode);
 
-		private static readonly Lazy<T> _positiveInfinity =
-			new Lazy<T>(OperatorsFactory.GetPositiveInfinity<T>, _lazyMode);
+			/// <summary>
+			/// Gets a value that determines whether the type has negative infinity value.
+			/// </summary>
+			public static bool HasNegativeInfinity { get; } = OperatorsFactory.HasNegativeInfinity<T>();
+
+			/// <summary>
+			/// Gets negative infinity.
+			/// </summary>
+			public static T NegativeInfinity => _value.Value;
+		}
+		#endregion
+
+		#region PositiveInfinity
+		/// <summary>
+		/// Gets a value that determines whether the type has positive infinity value.
+		/// </summary>
+		public static bool HasPositiveInfinity => PositiveInfinityHelper.HasPositiveInfinity;
 
 		/// <summary>
-		/// Positive infinity value
+		/// Gets positive infinity.
 		/// </summary>
-		[NotNull]
-		public static T PositiveInfinity => _positiveInfinity.Value;
+		public static T PositiveInfinity => PositiveInfinityHelper.PositiveInfinity;
+
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
+		private static class PositiveInfinityHelper
+		{
+			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetPositiveInfinity<T>, _lazyMode);
+
+			/// <summary>
+			/// Gets a value that determines whether the type has positive infinity value.
+			/// </summary>
+			public static readonly bool HasPositiveInfinity = OperatorsFactory.HasPositiveInfinity<T>();
+
+			/// <summary>
+			/// Gets positive infinity.
+			/// </summary>
+			public static T PositiveInfinity => _value.Value;
+		}
 		#endregion
 
 		#region Custom impl for _onesComplement (FW 3.5 targeting)
-		/// <summary>OnesComplement operator factory.</summary>
-		private static readonly Lazy<Func<T, T>> _onesComplement =
-#if LESSTHAN_NET40
-			new Lazy<Func<T, T>>(() => OperatorsFactory.UnaryOperator<T>(ExpressionType.Not), _lazyMode);
-#else
-			new Lazy<Func<T, T>>(() => OperatorsFactory.UnaryOperator<T>(ExpressionType.OnesComplement), _lazyMode);
-#endif
-
-		/// <summary>OnesComplement operator.</summary>
-		/// <value>The OnesComplement operator.</value>
+		/// <summary>Gets a ones complement operation function, such as (~a) in C#.</summary>
 		[NotNull]
-		public static Func<T, T> OnesComplement => _onesComplement.Value;
+		public static Func<T, T> OnesComplement => OnesComplementHelper.LazyValue.Value;
+
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		private static class OnesComplementHelper
+		{
+			/// <summary>
+			/// The operator factory.
+			/// </summary>
+			public static readonly Lazy<Func<T, T>> LazyValue = new Lazy<Func<T, T>>(CreateValue, _lazyMode);
+
+			/// <summary>
+			/// Returns the operator function.
+			/// </summary>
+			/// <returns>
+			/// The operator function.
+			/// </returns>
+			private static Func<T, T> CreateValue()
+			{
+#if LESSTHAN_NET40
+				return OperatorsFactory.UnaryOperator<T>(ExpressionType.Not);
+#else
+				return OperatorsFactory.UnaryOperator<T>(ExpressionType.OnesComplement);
+#endif
+			}
+		}
 		#endregion
 	}
 }

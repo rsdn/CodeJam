@@ -4,26 +4,26 @@
 	var ops =
 		new []
 		{
-			new OpInfo("UnaryMinus", "-", ExpressionType.Negate),
-			new OpInfo("OnesComplement", "~", ExpressionType.OnesComplement),
+			new OpInfo("UnaryMinus",         "-",  ExpressionType.Negate,             "An arithmetic negation operation function, such as (-a)."),
+			new OpInfo("OnesComplement",     "~",  ExpressionType.OnesComplement,     "A ones complement operation function, such as (~a) in C#."),
 
-			new OpInfo("AreEqual", "==", ExpressionType.Equal),
-			new OpInfo("AreNotEqual", "!=", ExpressionType.NotEqual),
-			new OpInfo("GreaterThan", ">", ExpressionType.GreaterThan),
-			new OpInfo("GreaterThanOrEqual", ">=", ExpressionType.GreaterThanOrEqual),
-			new OpInfo("LessThan", "<", ExpressionType.LessThan),
-			new OpInfo("LessThanOrEqual", "<=", ExpressionType.LessThanOrEqual),
+			new OpInfo("AreEqual",           "==", ExpressionType.Equal,              "An equality comparison function, such as (a == b) in C#."),
+			new OpInfo("AreNotEqual",        "!=", ExpressionType.NotEqual,           "An inequality comparison function, such as (a != b) in C#."),
+			new OpInfo("GreaterThan",        ">",  ExpressionType.GreaterThan,        "A \"greater than\" comparison function, such as (a > b)."),
+			new OpInfo("GreaterThanOrEqual", ">=", ExpressionType.GreaterThanOrEqual, "A \"greater than or equal to\" comparison function, such as (a >= b)."),
+			new OpInfo("LessThan",           "<",  ExpressionType.LessThan,           "A \"less than\" comparison function, such as (a &lt; b)."),
+			new OpInfo("LessThanOrEqual",    "<=", ExpressionType.LessThanOrEqual,    "A \"less than or equal to\" comparison function, such as (a &lt;= b)."),
 
-			new OpInfo("Plus", "+", ExpressionType.Add),
-			new OpInfo("Minus", "-", ExpressionType.Subtract),
-			new OpInfo("Mul", "*", ExpressionType.Multiply),
-			new OpInfo("Div", "/", ExpressionType.Divide),
-			new OpInfo("Modulo", "%", ExpressionType.Modulo),
-			new OpInfo("Xor", "^", ExpressionType.ExclusiveOr),
-			new OpInfo("BitwiseAnd", "&", ExpressionType.And),
-			new OpInfo("BitwiseOr", "|", ExpressionType.Or),
-			new OpInfo("LeftShift", "<<", ExpressionType.LeftShift),
-			new OpInfo("RightShift", ">>", ExpressionType.RightShift)
+			new OpInfo("Plus",               "+",  ExpressionType.Add,                "An addition operation function, such as a + b, without overflow checking, for numeric operands."),
+			new OpInfo("Minus",              "-",  ExpressionType.Subtract,           "A subtraction operation function, such as (a - b), without overflow checking, for numeric operands."),
+			new OpInfo("Mul",                "*",  ExpressionType.Multiply,           "A multiplication operation function, such as (a * b), without overflow checking, for numeric operands."),
+			new OpInfo("Div",                "/",  ExpressionType.Divide,             "A division operation function, such as (a / b), for numeric operands."),
+			new OpInfo("Modulo",             "%",  ExpressionType.Modulo,             "An arithmetic remainder operation function, such as (a % b) in C#."),
+			new OpInfo("Xor",                "^",  ExpressionType.ExclusiveOr,        "A bitwise or logical XOR operation function, such as (a ^ b) in C#."),
+			new OpInfo("BitwiseAnd",         "&",  ExpressionType.And,                "A bitwise or logical AND operation function, such as (a &amp; b) in C#."),
+			new OpInfo("BitwiseOr",          "|",  ExpressionType.Or,                 "A bitwise or logical OR operation function, such as (a | b) in C#."),
+			new OpInfo("LeftShift",          "<<", ExpressionType.LeftShift,          "A bitwise left-shift operation function, such as (a &lt;&lt; b)."),
+			new OpInfo("RightShift",         ">>", ExpressionType.RightShift,         "A bitwise right-shift operation function, such as (a >> b).")
 		};
 #><#+
 	private enum OpType
@@ -35,15 +35,17 @@
 
 	private class OpInfo
 	{
-		public string Name { get; private set; }
-		public string Sign { get; private set; }
-		public ExpressionType Type { get; private set; }
+		public string Name { get; }
+		public string Sign { get; }
+		public ExpressionType Type { get; }
+		public string Comment { get; }
 
-		public OpInfo(string name, string sign, ExpressionType type)
+		public OpInfo(string name, string sign, ExpressionType type, string comment = null)
 		{
 			Name = name;
 			Type = type;
 			Sign = sign;
+			Comment = string.IsNullOrEmpty(comment) ? $"{Name} operator" : comment;
 		}
 
 		public bool IntOnly
@@ -125,6 +127,8 @@
 			}
 		}
 
-		public string LowerName => Name.Substring(0, 1).ToLower() + Name.Substring(1);
+		public string HelperClass => $"{Name}Helper";
 	}
+
+	private static string ToLower(string text) => char.ToLower(text[0]) + text.Substring(1);
 #>

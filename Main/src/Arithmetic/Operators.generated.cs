@@ -23,163 +23,299 @@ namespace CodeJam.Arithmetic
 	static partial class Operators<T>
 	{
 		#region Unary
-		/// <summary>UnaryMinus operator factory.</summary>
-		private static readonly Lazy<Func<T, T>> _unaryMinus =
-			new Lazy<Func<T, T>>(() => UnaryOperator<T>(ExpressionType.Negate), _lazyMode);
-
-		/// <summary>UnaryMinus operator.</summary>
-		/// <value>The UnaryMinus operator.</value>
+		/// <summary>Gets an arithmetic negation operation function, such as (-a).</summary>
 		[NotNull]
-		public static Func<T, T> UnaryMinus => _unaryMinus.Value;
+		public static Func<T, T> UnaryMinus => UnaryMinusHelper.LazyValue.Value;
+
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		private static class UnaryMinusHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T>> LazyValue = new Lazy<Func<T, T>>(Factory, _lazyMode);
+
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T> Factory() => UnaryOperator<T>(ExpressionType.Negate);
+		}
 
 		#endregion
 
 		#region Comparison
-		/// <summary>AreEqual operator factory.</summary>
-		private static readonly Lazy<Func<T, T, bool>> _areEqual =
-			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.Equal), _lazyMode);
-
-		/// <summary>AreEqual operator.</summary>
-		/// <value>The AreEqual operator.</value>
+		/// <summary>Gets an equality comparison function, such as (a == b) in C#.</summary>
 		[NotNull]
-		public static Func<T, T, bool> AreEqual => _areEqual.Value;
+		public static Func<T, T, bool> AreEqual => AreEqualHelper.LazyValue.Value;
 
-		/// <summary>AreNotEqual operator factory.</summary>
-		private static readonly Lazy<Func<T, T, bool>> _areNotEqual =
-			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.NotEqual), _lazyMode);
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		private static class AreEqualHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
 
-		/// <summary>AreNotEqual operator.</summary>
-		/// <value>The AreNotEqual operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.Equal);
+		}
+
+		/// <summary>Gets an inequality comparison function, such as (a != b) in C#.</summary>
 		[NotNull]
-		public static Func<T, T, bool> AreNotEqual => _areNotEqual.Value;
+		public static Func<T, T, bool> AreNotEqual => AreNotEqualHelper.LazyValue.Value;
 
-		/// <summary>GreaterThan operator factory.</summary>
-		private static readonly Lazy<Func<T, T, bool>> _greaterThan =
-			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.GreaterThan), _lazyMode);
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		private static class AreNotEqualHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
 
-		/// <summary>GreaterThan operator.</summary>
-		/// <value>The GreaterThan operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.NotEqual);
+		}
+
+		/// <summary>Gets a "greater than" comparison function, such as (a > b).</summary>
 		[NotNull]
-		public static Func<T, T, bool> GreaterThan => _greaterThan.Value;
+		public static Func<T, T, bool> GreaterThan => GreaterThanHelper.LazyValue.Value;
 
-		/// <summary>GreaterThanOrEqual operator factory.</summary>
-		private static readonly Lazy<Func<T, T, bool>> _greaterThanOrEqual =
-			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.GreaterThanOrEqual), _lazyMode);
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		private static class GreaterThanHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
 
-		/// <summary>GreaterThanOrEqual operator.</summary>
-		/// <value>The GreaterThanOrEqual operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.GreaterThan);
+		}
+
+		/// <summary>Gets a "greater than or equal to" comparison function, such as (a >= b).</summary>
 		[NotNull]
-		public static Func<T, T, bool> GreaterThanOrEqual => _greaterThanOrEqual.Value;
+		public static Func<T, T, bool> GreaterThanOrEqual => GreaterThanOrEqualHelper.LazyValue.Value;
 
-		/// <summary>LessThan operator factory.</summary>
-		private static readonly Lazy<Func<T, T, bool>> _lessThan =
-			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.LessThan), _lazyMode);
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		private static class GreaterThanOrEqualHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
 
-		/// <summary>LessThan operator.</summary>
-		/// <value>The LessThan operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.GreaterThanOrEqual);
+		}
+
+		/// <summary>Gets a "less than" comparison function, such as (a &lt; b).</summary>
 		[NotNull]
-		public static Func<T, T, bool> LessThan => _lessThan.Value;
+		public static Func<T, T, bool> LessThan => LessThanHelper.LazyValue.Value;
 
-		/// <summary>LessThanOrEqual operator factory.</summary>
-		private static readonly Lazy<Func<T, T, bool>> _lessThanOrEqual =
-			new Lazy<Func<T, T, bool>>(() => ComparisonOperator<T>(ExpressionType.LessThanOrEqual), _lazyMode);
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		private static class LessThanHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
 
-		/// <summary>LessThanOrEqual operator.</summary>
-		/// <value>The LessThanOrEqual operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.LessThan);
+		}
+
+		/// <summary>Gets a "less than or equal to" comparison function, such as (a &lt;= b).</summary>
 		[NotNull]
-		public static Func<T, T, bool> LessThanOrEqual => _lessThanOrEqual.Value;
+		public static Func<T, T, bool> LessThanOrEqual => LessThanOrEqualHelper.LazyValue.Value;
+
+		/// <summary>
+		/// The helper class.
+		/// </summary>
+		private static class LessThanOrEqualHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.LessThanOrEqual);
+		}
 		#endregion
 
 		#region Binary
-		/// <summary>Plus operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _plus =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Add), _lazyMode);
-
-		/// <summary>Plus operator.</summary>
-		/// <value>The Plus operator.</value>
+		/// <summary>Gets an addition operation function, such as a + b, without overflow checking, for numeric operands.</summary>
 		[NotNull]
-		public static Func<T, T, T> Plus => _plus.Value;
+		public static Func<T, T, T> Plus => PlusHelper.LazyValue.Value;
 
-		/// <summary>Minus operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _minus =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Subtract), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class PlusHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>Minus operator.</summary>
-		/// <value>The Minus operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.Add);
+		}
+
+		/// <summary>Gets a subtraction operation function, such as (a - b), without overflow checking, for numeric operands.</summary>
 		[NotNull]
-		public static Func<T, T, T> Minus => _minus.Value;
+		public static Func<T, T, T> Minus => MinusHelper.LazyValue.Value;
 
-		/// <summary>Mul operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _mul =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Multiply), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class MinusHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>Mul operator.</summary>
-		/// <value>The Mul operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.Subtract);
+		}
+
+		/// <summary>Gets a multiplication operation function, such as (a * b), without overflow checking, for numeric operands.</summary>
 		[NotNull]
-		public static Func<T, T, T> Mul => _mul.Value;
+		public static Func<T, T, T> Mul => MulHelper.LazyValue.Value;
 
-		/// <summary>Div operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _div =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Divide), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class MulHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>Div operator.</summary>
-		/// <value>The Div operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.Multiply);
+		}
+
+		/// <summary>Gets a division operation function, such as (a / b), for numeric operands.</summary>
 		[NotNull]
-		public static Func<T, T, T> Div => _div.Value;
+		public static Func<T, T, T> Div => DivHelper.LazyValue.Value;
 
-		/// <summary>Modulo operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _modulo =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Modulo), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class DivHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>Modulo operator.</summary>
-		/// <value>The Modulo operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.Divide);
+		}
+
+		/// <summary>Gets an arithmetic remainder operation function, such as (a % b) in C#.</summary>
 		[NotNull]
-		public static Func<T, T, T> Modulo => _modulo.Value;
+		public static Func<T, T, T> Modulo => ModuloHelper.LazyValue.Value;
 
-		/// <summary>Xor operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _xor =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.ExclusiveOr), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class ModuloHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>Xor operator.</summary>
-		/// <value>The Xor operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.Modulo);
+		}
+
+		/// <summary>Gets a bitwise or logical XOR operation function, such as (a ^ b) in C#.</summary>
 		[NotNull]
-		public static Func<T, T, T> Xor => _xor.Value;
+		public static Func<T, T, T> Xor => XorHelper.LazyValue.Value;
 
-		/// <summary>BitwiseAnd operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _bitwiseAnd =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.And), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class XorHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>BitwiseAnd operator.</summary>
-		/// <value>The BitwiseAnd operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.ExclusiveOr);
+		}
+
+		/// <summary>Gets a bitwise or logical AND operation function, such as (a &amp; b) in C#.</summary>
 		[NotNull]
-		public static Func<T, T, T> BitwiseAnd => _bitwiseAnd.Value;
+		public static Func<T, T, T> BitwiseAnd => BitwiseAndHelper.LazyValue.Value;
 
-		/// <summary>BitwiseOr operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _bitwiseOr =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.Or), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class BitwiseAndHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>BitwiseOr operator.</summary>
-		/// <value>The BitwiseOr operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.And);
+		}
+
+		/// <summary>Gets a bitwise or logical OR operation function, such as (a | b) in C#.</summary>
 		[NotNull]
-		public static Func<T, T, T> BitwiseOr => _bitwiseOr.Value;
+		public static Func<T, T, T> BitwiseOr => BitwiseOrHelper.LazyValue.Value;
 
-		/// <summary>LeftShift operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _leftShift =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.LeftShift), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class BitwiseOrHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>LeftShift operator.</summary>
-		/// <value>The LeftShift operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.Or);
+		}
+
+		/// <summary>Gets a bitwise left-shift operation function, such as (a &lt;&lt; b).</summary>
 		[NotNull]
-		public static Func<T, T, T> LeftShift => _leftShift.Value;
+		public static Func<T, T, T> LeftShift => LeftShiftHelper.LazyValue.Value;
 
-		/// <summary>RightShift operator factory.</summary>
-		private static readonly Lazy<Func<T, T, T>> _rightShift =
-			new Lazy<Func<T, T, T>>(() => BinaryOperator<T>(ExpressionType.RightShift), _lazyMode);
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class LeftShiftHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
-		/// <summary>RightShift operator.</summary>
-		/// <value>The RightShift operator.</value>
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.LeftShift);
+		}
+
+		/// <summary>Gets a bitwise right-shift operation function, such as (a >> b).</summary>
 		[NotNull]
-		public static Func<T, T, T> RightShift => _rightShift.Value;
+		public static Func<T, T, T> RightShift => RightShiftHelper.LazyValue.Value;
+
+		/// <summary>
+		/// Represents the helper class.
+		/// </summary>
+		private static class RightShiftHelper
+		{
+			/// <summary>Gets the operator factory.</summary>
+			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
+
+			/// <summary>Returns the operator function.</summary>
+			/// <returns>The operator function.</returns>
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.RightShift);
+		}
 		#endregion
 	}
 }
