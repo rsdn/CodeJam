@@ -330,7 +330,7 @@ namespace CodeJam
 			LazyThreadSafetyMode.ExecutionAndPublication);
 
 		private static class Holder<TEnum>
-			where TEnum : struct
+			where TEnum : struct, Enum
 		{
 			#region Static fields
 			// DONTTOUCH: the ordering of the fields represents the dependencies between them.
