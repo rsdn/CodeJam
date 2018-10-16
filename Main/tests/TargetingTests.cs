@@ -12,7 +12,9 @@ namespace CodeJam
 	public class TargetingTests
 	{
 		public const string ExpectedTarget =
-#if NET35
+#if NET20
+			".NETFramework,Version=v2.0";
+#elif NET35
 			".NETFramework,Version=v3.5";
 #elif NET40
 			".NETFramework,Version=v4.0";
