@@ -1,4 +1,4 @@
-﻿#if !(TARGETS_NET && LESSTHAN_NET35)
+﻿#if !LESSTHAN_NET35
 #if DEBUG
 using System;
 using System.Linq.Expressions;

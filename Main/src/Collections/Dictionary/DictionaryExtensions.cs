@@ -1,5 +1,5 @@
 ﻿using System;
-#if !(TARGETS_NET && LESSTHAN_NET35)
+#if !LESSTHAN_NET35
 using System.Collections.Concurrent;
 #endif
 using System.Collections.Generic;
@@ -192,7 +192,7 @@ namespace CodeJam.Collections
 			return newAddValue;
 		}
 
-#if !(TARGETS_NET && LESSTHAN_NET35)
+#if !LESSTHAN_NET35
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="ConcurrentDictionary{TKey,TValue}"/> if the key does not already exist,
 		///   or updates a key/value pair <see cref="ConcurrentDictionary{TKey,TValue}"/> by using the specified function

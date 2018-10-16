@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#if !(TARGETS_NET && LESSTHAN_NET35)
+#if !LESSTHAN_NET35
 using System;
 using System.Collections.Generic;
 using System.Linq;
