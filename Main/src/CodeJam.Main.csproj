@@ -483,8 +483,16 @@
 		<Compile Include="Structures\Option\ValueOption.cs" />
 		<Compile Include="Structures\Option\ValueOption`1.cs" />
 		<Compile Include="Targeting\NET20\Action.cs" />
-		<Compile Include="Targeting\NET20\ExtensionAttribute.cs" />
+		<Compile Include="Targeting\NET20\AggregateException.cs" />
+		<Compile Include="Targeting\NET20\BitHelper.cs" />
 		<Compile Include="Targeting\NET20\Func.cs" />
+		<Compile Include="Targeting\NET20\HashHelpers.cs" />
+		<Compile Include="Targeting\NET20\HashSet.cs" />
+		<Compile Include="Targeting\NET20\HashSetEqualityComparer.cs" />
+		<Compile Include="Targeting\NET20\Lazy.cs" />
+		<Compile Include="Targeting\NET20\LazyThreadSafetyMode.cs" />
+		<Compile Include="Targeting\NET20\SpinWait.cs" />
+		<Compile Include="Targeting\NET20\TimeoutHelper.cs" />
 		<Compile Include="Targeting\NET35\Action.cs" />
 		<Compile Include="Targeting\NET35\DisplayAttribute.cs" />
 		<Compile Include="Targeting\NET35\EnumerableTargeting.cs" />
