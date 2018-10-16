@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !(TARGETS_NET && LESSTHAN_NET35)
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
@@ -134,3 +135,4 @@ namespace CodeJam.Threading
 		#endregion
 	}
 }
+#endif
