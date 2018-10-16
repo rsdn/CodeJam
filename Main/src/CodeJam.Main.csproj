@@ -482,10 +482,8 @@
 		<Compile Include="Structures\Option\Option`1.cs" />
 		<Compile Include="Structures\Option\ValueOption.cs" />
 		<Compile Include="Structures\Option\ValueOption`1.cs" />
-		<Compile Include="Targeting\NET20\Action.cs" />
 		<Compile Include="Targeting\NET20\AggregateException.cs" />
 		<Compile Include="Targeting\NET20\BitHelper.cs" />
-		<Compile Include="Targeting\NET20\Func.cs" />
 		<Compile Include="Targeting\NET20\HashHelpers.cs" />
 		<Compile Include="Targeting\NET20\HashSet.cs" />
 		<Compile Include="Targeting\NET20\HashSetEqualityComparer.cs" />
