@@ -11,7 +11,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 
-namespace CodeJam.Targeting.NET20
+namespace CodeJam.NET20
 {
 	/// <summary>
 	/// A helper class to capture a start time using Environment.TickCout as a time in milliseconds, also updates a given timeout bu subtracting the current time from

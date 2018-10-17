@@ -1,5 +1,7 @@
 ﻿#if LESSTHAN_NET40
+// ReSharper disable all
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable IDE0044 // Make field readonly
 // BASEDON: https://github.com/dotnet/corefx/blob/a10890f4ffe0fadf090c922578ba0e606ebdd16c/src/Common/src/CoreLib/System/Runtime/Versioning/TargetFrameworkAttribute.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

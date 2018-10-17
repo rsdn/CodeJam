@@ -1,19 +1,22 @@
 ﻿#if LESSTHAN_NET35
+// ReSharper disable all
+#pragma warning disable CS1570 // XML comment on 'construct' has badly formed XML
+#pragma warning disable CS1572 // XML comment on 'construct' has a param tag for 'parameter', but there is no parameter by that name
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable IDE0034 // 'default' expression can be simplified
+#pragma warning disable IDE0044 // Make field readonly
 // BASEDON: https://github.com/dotnet/corefx/blob/fe5927a0f68717223528220c891a3b02d7331829/src/System.Collections/src/System/Collections/Generic/HashSet.cs
-
-#pragma warning disable 1570
-#pragma warning disable 1572
-#pragma warning disable 1591
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using CodeJam.Targeting.NET20;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+
+using CodeJam.NET20;
 
 namespace System.Collections.Generic
 {

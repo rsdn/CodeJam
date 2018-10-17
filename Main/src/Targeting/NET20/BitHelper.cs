@@ -1,15 +1,15 @@
 ﻿#if LESSTHAN_NET35
+// ReSharper disable all
+#pragma warning disable CS1570 // XML comment on 'construct' has badly formed XML
+#pragma warning disable CS1572 // XML comment on 'construct' has a param tag for 'parameter', but there is no parameter by that name 
+#pragma warning disable CS1573
 // BASEDON: https://github.com/dotnet/corefx/blob/a10890f4ffe0fadf090c922578ba0e606ebdd16c/src/System.Collections/src/System/Collections/Generic/BitHelper.cs
-
-#pragma warning disable 1570
-#pragma warning disable 1572
-#pragma warning disable 1573
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace CodeJam.Targeting.NET20
+namespace CodeJam.NET20
 {
     /// <summary>
     /// ABOUT:

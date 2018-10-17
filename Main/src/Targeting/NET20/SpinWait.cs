@@ -1,8 +1,8 @@
 ﻿#if LESSTHAN_NET35
+// ReSharper disable all
+#pragma warning disable CS0419 // Ambiguous reference in cref attribute
+#pragma warning disable CS1570 // XML comment on 'construct' has badly formed XML
 // BASEDON: https://github.com/dotnet/corefx/blob/aa73b08881ccc2a438947c19d60a6665008bcc08/src/Common/src/CoreLib/System/Threading/SpinWait.cs
-
-#pragma warning disable 0419
-#pragma warning disable 1570
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
@@ -16,7 +16,8 @@
 
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using CodeJam.Targeting.NET20;
+
+using CodeJam.NET20;
 
 // using Internal.Runtime.Augments;
 

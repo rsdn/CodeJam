@@ -1,7 +1,9 @@
 ﻿#if LESSTHAN_NET35
+// ReSharper disable all
+#pragma warning disable CS1570 // XML comment on 'construct' has badly formed XML
+#pragma warning disable IDE0034 // 'default' expression can be simplified
+#pragma warning disable IDE0044 // Make field readonly
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.Collections.Concurrent/src/System/Collections/Concurrent/ConcurrentDictionary.cs
-
-#pragma warning disable 1570
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
@@ -17,13 +19,14 @@
 **
 ===========================================================*/
 
-using CodeJam.Targeting.NET20;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
+
+using CodeJam.NET20;
 
 namespace System.Collections.Concurrent
 {
