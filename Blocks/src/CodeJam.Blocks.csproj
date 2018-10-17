@@ -9,7 +9,7 @@
 		<ProjectGuid>{0DFF0859-2400-4487-83AD-0ED10203D6D9}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35;net20</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35</TargetFrameworks>
 
 		<PackageId>CodeJam.Blocks</PackageId>
 		<Title>CodeJam.Blocks library</Title>
