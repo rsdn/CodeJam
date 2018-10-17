@@ -1,5 +1,9 @@
-﻿#if TARGETS_NET && LESSTHAN_NET35
+﻿#if LESSTHAN_NET35
 // BASEDON: https://github.com/dotnet/corefx/blob/a10890f4ffe0fadf090c922578ba0e606ebdd16c/src/System.Collections/src/System/Collections/Generic/BitHelper.cs
+
+#pragma warning disable 1570
+#pragma warning disable 1572
+#pragma warning disable 1573
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.

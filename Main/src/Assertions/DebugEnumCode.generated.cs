@@ -6,7 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+#if !LESSTHAN_NET35
 using static CodeJam.DebugCode;
 
 using System;
@@ -255,3 +255,4 @@ namespace CodeJam
 		#endregion
 	}
 }
+#endif

@@ -1,4 +1,5 @@
-﻿#if LESSTHAN_NET40
+﻿#if !LESSTHAN_NET35
+#if LESSTHAN_NET40
 using System;
 using System.Globalization;
 
@@ -74,4 +75,5 @@ namespace CodeJam.Targeting
 		}
 	}
 }
+#endif
 #endif

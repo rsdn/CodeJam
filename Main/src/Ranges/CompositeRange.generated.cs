@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#if !LESSTHAN_NET35
 using System;
 
 using JetBrains.Annotations;
@@ -35,3 +36,4 @@ namespace CodeJam.Ranges
 			new CompositeRange<T, TKey>(ranges);
 	}
 }
+#endif

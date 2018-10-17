@@ -1,5 +1,7 @@
-﻿#if TARGETS_NET && LESSTHAN_NET35
+﻿#if LESSTHAN_NET35
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.Collections.Concurrent/src/System/Collections/Concurrent/ConcurrentDictionary.cs
+
+#pragma warning disable 1570
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.

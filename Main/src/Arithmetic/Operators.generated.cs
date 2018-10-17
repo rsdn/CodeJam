@@ -6,7 +6,8 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-﻿using System;
+#if !LESSTHAN_NET35
+using System;
 using System.Linq.Expressions;
 
 using JetBrains.Annotations;
@@ -318,3 +319,4 @@ namespace CodeJam.Arithmetic
 		#endregion
 	}
 }
+#endif

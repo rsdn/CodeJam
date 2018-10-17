@@ -1,5 +1,7 @@
-﻿#if TARGETS_NET && LESSTHAN_NET35
+﻿#if LESSTHAN_NET35
 // BASEDON: https://github.com/dotnet/coreclr/blob/baa4f19a7158e31b7012ff2dafebfb5f1b1edee4/src/System.Private.CoreLib/shared/System/AggregateException.cs
+
+#pragma warning disable 1570
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
