@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#if !LESSTHAN_NET35
 using System;
 using System.Threading.Tasks;
 
@@ -306,3 +307,4 @@ namespace CodeJam.Threading
 		#endregion
 	}
 }
+#endif

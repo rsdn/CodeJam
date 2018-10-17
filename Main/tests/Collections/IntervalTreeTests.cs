@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if !LESSTHAN_NET35
+using System.Collections.Generic;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -78,3 +79,4 @@ namespace CodeJam.Ranges
 				tree.Intersect(overlapRange).Join(";"));
 	}
 }
+#endif
