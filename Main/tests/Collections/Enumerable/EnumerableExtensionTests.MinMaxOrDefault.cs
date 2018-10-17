@@ -1,4 +1,9 @@
-﻿using System;
+﻿#if LESSTHAN_NET35
+extern alias nunitlinq;
+#endif
+
+#if !LESSTHAN_NET35
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -262,3 +267,4 @@ namespace CodeJam.Collections
 		#endregion
 	}
 }
+#endif

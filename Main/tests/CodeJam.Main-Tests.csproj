@@ -128,4 +128,11 @@
 		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
 	</ItemGroup>
 
+	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20'" >
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'NUnit.System.Linq'">
+        <Aliases>nunitlinq</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 </Project>
