@@ -179,6 +179,7 @@ namespace CodeJam
 			if (!(value >= fromValue && value <= toValue))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
+
 #if !LESSTHAN_NET35
 		/// <summary>Assertion for the argument in range</summary>
 		/// <typeparam name="T">Type of the value</typeparam>
