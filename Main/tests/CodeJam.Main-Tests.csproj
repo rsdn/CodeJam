@@ -44,7 +44,6 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0'">
 	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'net20' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
