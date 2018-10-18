@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -269,7 +268,7 @@ namespace CodeJam
 		/// <returns>The enum values collection.</returns>
 		[Pure, NotNull]
 		public static EnumValue GetEnumValue<TEnum>(TEnum value)
-			where TEnum : struct, Enum => GetEnumValues<TEnum>().GetByValue((Enum)(object)value);
+			where TEnum : struct, Enum => GetEnumValues<TEnum>().GetByValue(value);
 
 
 		/// <summary>Returns name of the enum value.</summary>
@@ -333,53 +332,13 @@ namespace CodeJam
 			where TEnum : struct, Enum
 		{
 			#region Static fields
-			// DONTTOUCH: the ordering of the fields represents the dependencies between them.
-			// DO NOT change it until the initialization logic is changed.
-			private static readonly Type _enumType = typeof(TEnum).ToNullableUnderlying();
-
-			// DONTTOUCH: The static readonly field is used by jitter to simplify boolean checks expressions
-			// ReSharper disable once StaticMemberInGenericType
-			private static readonly bool _isEnum = _enumType.IsEnum;
-
-			// ReSharper disable once StaticMemberInGenericType
-			private static readonly bool _isFlagsEnum =
-				_enumType.IsEnum &&
-					_enumType.GetCustomAttribute<FlagsAttribute>() != null;
-
-			private static readonly HashSet<TEnum> _values = _enumType.IsEnum
-				? new HashSet<TEnum>((TEnum[])Enum.GetValues(_enumType))
-				: new HashSet<TEnum>();
-
-			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(_enumType, false);
-			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(_enumType, true);
-
-			private static readonly TEnum _flagsMask = _isFlagsEnum ? GetFlagsMaskCore(_values.ToArray()) : default;
-			#endregion
-
-			#region Flag operations emit
-			[CanBeNull]
-			private static readonly Func<TEnum, TEnum, bool> _isFlagSetCallback = _enumType.IsEnum
-				? OperatorsFactory.IsFlagSetOperator<TEnum>()
-				: null;
-
-			[CanBeNull]
-			private static readonly Func<TEnum, TEnum, bool> _isAnyFlagSetCallback = _enumType.IsEnum
-				? OperatorsFactory.IsAnyFlagSetOperator<TEnum>()
-				: null;
-
-			[CanBeNull]
-			private static readonly Func<TEnum, TEnum, TEnum> _setFlagCallback = _enumType.IsEnum
-				? OperatorsFactory.SetFlagOperator<TEnum>()
-				: null;
-
-			[CanBeNull]
-			private static readonly Func<TEnum, TEnum, TEnum> _clearFlagCallback = _enumType.IsEnum
-				? OperatorsFactory.ClearFlagOperator<TEnum>()
-				: null;
+			private static readonly HashSet<TEnum> _values = new HashSet<TEnum>((TEnum[])Enum.GetValues(typeof(TEnum)));
+			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(ignoreCase: false);
+			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(ignoreCase: true);
 			#endregion
 
 			#region Init helpers
-			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(Type enumType, bool ignoreCase)
+			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(bool ignoreCase)
 			{
 				var result =
 #if LESSTHAN_NET45
@@ -388,134 +347,52 @@ namespace CodeJam
 					new Dictionary<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
 #endif
 
-				if (enumType.IsEnum)
+				var names = Enum.GetNames(typeof(TEnum));
+				var values = (TEnum[])Enum.GetValues(typeof(TEnum));
+				for (var i = 0; i < names.Length; i++)
 				{
-					var names = Enum.GetNames(enumType);
-					var values = (TEnum[])Enum.GetValues(enumType);
-					for (var i = 0; i < names.Length; i++)
-					{
-						// DONTTOUCH: case may be ignored
-						if (result.ContainsKey(names[i]))
-							continue;
+					// DONTTOUCH: case may be ignored
+					if (result.ContainsKey(names[i]))
+						continue;
 
-						result.Add(names[i], values[i]);
-					}
-				}
-				return result;
-			}
-
-			// ReSharper disable once SuggestBaseTypeForParameter
-			private static TEnum GetFlagsMaskCore(TEnum[] values)
-			{
-				if (values.Length == 0)
-					return default;
-
-				var result = values[0];
-				for (var i = 1; i < values.Length; i++)
-				{
-					result = Operators<TEnum>.BitwiseOr(result, values[i]);
+					result.Add(names[i], values[i]);
 				}
 
 				return result;
 			}
 
-			[DebuggerHidden, MethodImpl(AggressiveInlining)]
-			[AssertionMethod]
-			private static void AssertUsage()
+			private static TEnum GetFlagsMaskCore()
 			{
-				if (!_isEnum)
+				var result = default(TEnum);
+
+				if (typeof(TEnum).GetCustomAttribute<FlagsAttribute>() != null)
 				{
-					throw CodeExceptions.Argument(
-						typeof(TEnum).Name,
-						$"The {typeof(TEnum).Name} type is not enum type");
+					var values = (TEnum[])Enum.GetValues(typeof(TEnum));
+					foreach (var value in values)
+						result = Operators<TEnum>.BitwiseOr(result, value);
 				}
+
+				return result;
 			}
 			#endregion
 
 			#region API
-			public static IReadOnlyDictionary<string, TEnum> GetNameValues(bool ignoreCase)
-			{
-				AssertUsage();
-				return ignoreCase ? _nameValuesIgnoreCase : _nameValues;
-			}
+			public static bool IsFlagsEnum { get; } = typeof(TEnum).GetCustomAttribute<FlagsAttribute>() != null;
+			public static TEnum FlagsMask { get; } = GetFlagsMaskCore();
+			public static Func<TEnum, TEnum, bool> IsFlagSetCallback { get; } = OperatorsFactory.IsFlagSetOperator<TEnum>();
+			public static Func<TEnum, TEnum, bool> IsAnyFlagSetCallback { get; } = OperatorsFactory.IsAnyFlagSetOperator<TEnum>();
+			public static Func<TEnum, TEnum, TEnum> SetFlagCallback { get; } = OperatorsFactory.SetFlagOperator<TEnum>();
+			public static Func<TEnum, TEnum, TEnum> ClearFlagCallback { get; } = OperatorsFactory.ClearFlagOperator<TEnum>();
 
-			public static bool IsFlagsEnum
-			{
-				get
-				{
-					AssertUsage();
-					return _isFlagsEnum;
-				}
-			}
-
-			public static TEnum FlagsMask
-			{
-				get
-				{
-					AssertUsage();
-					return _flagsMask;
-				}
-			}
+			public static IReadOnlyDictionary<string, TEnum> GetNameValues(bool ignoreCase) =>
+				ignoreCase ? _nameValuesIgnoreCase : _nameValues;
 
 			[MethodImpl(AggressiveInlining)]
-			public static bool IsDefined(TEnum value)
-			{
-				AssertUsage();
-				return _values.Contains(value);
-			}
+			public static bool IsDefined(TEnum value) => _values.Contains(value);
 
 			[MethodImpl(AggressiveInlining)]
-			public static bool AreFlagsDefined(TEnum flags)
-			{
-				AssertUsage();
-				return _values.Contains(flags) ||
-					// ReSharper disable once PossibleNullReferenceException
-					_isFlagsEnum && IsFlagSetCallback(_flagsMask, flags);
-			}
-
-			[NotNull]
-			public static Func<TEnum, TEnum, bool> IsFlagSetCallback
-			{
-				get
-				{
-					AssertUsage();
-					// ReSharper disable once AssignNullToNotNullAttribute
-					return _isFlagSetCallback;
-				}
-			}
-
-			[NotNull]
-			public static Func<TEnum, TEnum, bool> IsAnyFlagSetCallback
-			{
-				get
-				{
-					AssertUsage();
-					// ReSharper disable once AssignNullToNotNullAttribute
-					return _isAnyFlagSetCallback;
-				}
-			}
-
-			[NotNull]
-			public static Func<TEnum, TEnum, TEnum> SetFlagCallback
-			{
-				get
-				{
-					AssertUsage();
-					// ReSharper disable once AssignNullToNotNullAttribute
-					return _setFlagCallback;
-				}
-			}
-
-			[NotNull]
-			public static Func<TEnum, TEnum, TEnum> ClearFlagCallback
-			{
-				get
-				{
-					AssertUsage();
-					// ReSharper disable once AssignNullToNotNullAttribute
-					return _clearFlagCallback;
-				}
-			}
+			public static bool AreFlagsDefined(TEnum flags) =>
+				_values.Contains(flags) || IsFlagsEnum && IsFlagSetCallback(FlagsMask, flags);
 			#endregion
 		}
 		#endregion
