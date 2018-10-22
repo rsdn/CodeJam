@@ -10,8 +10,11 @@ namespace CodeJam.Threading
 	[PublicAPI]
 	internal sealed class ParallelQueue : IDisposable
 	{
+		[NotNull, ItemNotNull]
 		private readonly BlockingCollection<Action> _queue = new BlockingCollection<Action>();
+		[NotNull, ItemNotNull]
 		private readonly List<Exception> _exceptions = new List<Exception>();
+		[NotNull, ItemNotNull]
 		private readonly Thread[] _workers;
 
 		public ParallelQueue(int workerCount, string name = null)

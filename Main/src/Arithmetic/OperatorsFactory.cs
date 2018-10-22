@@ -54,16 +54,20 @@ namespace CodeJam.Arithmetic
 				: Convert(arg, operandType);
 		}
 
-		private static Expression PrepareResult(Expression body, Type argType, Type resultType) =>
+		private static Expression PrepareResult(
+			[NotNull] Expression body,
+			[NotNull] Type argType,
+			[NotNull] Type resultType) =>
 			argType == resultType && body.Type != resultType
 				? Convert(body, resultType)
 				: body;
 
 		private static TDelegate CompileOperatorCore<TDelegate>(
-			Func<Expression[], Expression> expressionFactory,
-			Func<Exception, Exception> exceptionFactory,
-			string methodName, Type resultTupe,
-			params ParameterExpression[] args)
+			[NotNull, InstantHandle] Func<Expression[], Expression> expressionFactory,
+			[NotNull, InstantHandle] Func<Exception, Exception> exceptionFactory,
+			[NotNull] string methodName,
+			[NotNull] Type resultType,
+			[NotNull, ItemNotNull] params ParameterExpression[] args)
 		{
 			var expressionArgs = args.ConvertAll(PrepareOperand);
 
@@ -77,7 +81,7 @@ namespace CodeJam.Arithmetic
 				throw exceptionFactory(ex);
 			}
 
-			body = PrepareResult(body, args[0].Type, resultTupe);
+			body = PrepareResult(body, args[0].Type, resultType);
 #if LESSTHAN_NET40
 			var result = Lambda<TDelegate>(body, args);
 #else
@@ -93,16 +97,20 @@ namespace CodeJam.Arithmetic
 			}
 		}
 
-		private static NotSupportedException FieldNotSupported(Type type, string fieldName, Exception ex) =>
+		[NotNull]
+		private static NotSupportedException FieldNotSupported([NotNull]Type type, string fieldName, Exception ex) =>
 			new NotSupportedException($"The type {type.Name} has no field {fieldName} defined.", ex);
 
-		private static NotSupportedException MethodNotSupported(Type type, string methodName, Exception ex) =>
+		[NotNull]
+		private static NotSupportedException MethodNotSupported([NotNull] Type type, string methodName, Exception ex) =>
 			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
 
+		[NotNull]
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
 			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
-		private static FieldInfo TryGetOpField<T>(string fieldName)
+		[CanBeNull]
+		private static FieldInfo TryGetOpField<T>([NotNull] string fieldName)
 		{
 			var t = typeof(T).ToNullableUnderlying();
 
@@ -159,6 +167,7 @@ namespace CodeJam.Arithmetic
 			if (field == null)
 				throw FieldNotSupported(typeof(T), nameof(double.NaN), null);
 
+			// ReSharper disable once AssignNullToNotNullAttribute
 			return (T)field.GetValue(null);
 		}
 
@@ -220,6 +229,7 @@ namespace CodeJam.Arithmetic
 		/// <typeparam name="T">The type of the operand</typeparam>
 		/// <param name="operatorType">Type of the operator.</param>
 		/// <returns>Callback for the operator</returns>
+		[NotNull]
 		public static Func<T, T> UnaryOperator<T>(ExpressionType operatorType) =>
 			GetUnaryOperatorCore<T, T>(operatorType);
 
@@ -227,6 +237,7 @@ namespace CodeJam.Arithmetic
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <param name="operatorType">Type of the operator.</param>
 		/// <returns>Callback for the operator</returns>
+		[NotNull]
 		public static Func<T, T, T> BinaryOperator<T>(ExpressionType operatorType) =>
 			GetBinaryOperatorCore<T, T>(operatorType);
 		#endregion
@@ -263,6 +274,8 @@ namespace CodeJam.Arithmetic
 		}
 
 		#region Enum comparison
+
+		[NotNull]
 		private static Func<T, T, int> EnumComparison<T>(bool nullable)
 		{
 			var underlyingType = typeof(T);

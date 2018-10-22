@@ -20,8 +20,11 @@ namespace CodeJam.Threading
 	[PublicAPI]
 	public class ExecSyncConcurrentLazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue>
 	{
+		[NotNull]
 		private readonly Func<TKey, TValue> _valueFactory;
+		[NotNull]
 		private readonly IEqualityComparer<TKey> _comparer;
+		[NotNull]
 		private readonly ConcurrentDictionary<TKey, Lazy<TValue>> _map;
 
 		/// <summary>
@@ -93,7 +96,7 @@ namespace CodeJam.Threading
 		/// <exception cref="T:System.ArgumentNullException">
 		/// <paramref name="key" /> is null.</exception>
 		/// <exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is retrieved and <paramref name="key" /> is not found. </exception>
-		public TValue this[TKey key] =>
+		public TValue this[[NotNull] TKey key] =>
 			_map
 				.GetOrAdd(
 					key,

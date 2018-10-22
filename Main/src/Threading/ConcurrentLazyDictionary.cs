@@ -18,8 +18,11 @@ namespace CodeJam.Threading
 	[PublicAPI]
 	public class ConcurrentLazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue>
 	{
+		[NotNull]
 		private readonly Func<TKey, TValue> _valueFactory;
+		[NotNull]
 		private readonly IEqualityComparer<TKey> _comparer;
+		[NotNull]
 		private readonly ConcurrentDictionary<TKey, TValue> _map;
 
 		/// <summary>
@@ -66,7 +69,7 @@ namespace CodeJam.Threading
 		/// <param name="key">The key to locate.</param>
 		/// <exception cref="T:System.ArgumentNullException">
 		/// <paramref name="key" /> is null.</exception>
-		public bool ContainsKey(TKey key) => _map.ContainsKey(key);
+		public bool ContainsKey([NotNull] TKey key) => _map.ContainsKey(key);
 
 		/// <summary>Gets the value that is associated with the specified key.</summary>
 		/// <returns>true if the object that implements the <see cref="T:System.Collections.Generic.IReadOnlyDictionary`2" /> interface contains an element that has the specified key; otherwise, false.</returns>
@@ -82,7 +85,7 @@ namespace CodeJam.Threading
 		/// <exception cref="T:System.ArgumentNullException">
 		/// <paramref name="key" /> is null.</exception>
 		/// <exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is retrieved and <paramref name="key" /> is not found. </exception>
-		public TValue this[TKey key] => _map.GetOrAdd(key, _valueFactory);
+		public TValue this[[NotNull] TKey key] => _map.GetOrAdd(key, _valueFactory);
 
 		/// <summary>Gets an enumerable collection that contains the keys in the read-only dictionary. </summary>
 		/// <returns>An enumerable collection that contains the keys in the read-only dictionary.</returns>

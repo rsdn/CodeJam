@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Collections
 {
 	/// <summary>Disjoint sets implementation base</summary>
@@ -9,6 +11,7 @@ namespace CodeJam.Collections
 	public class DisjointSetsBase<T> where T : BasicNode
 	{
 		/// <summary>All nodes</summary>
+		[NotNull, ItemNotNull]
 		protected readonly List<T> Nodes = new List<T>();
 
 		/// <summary>Creates an empty base</summary>

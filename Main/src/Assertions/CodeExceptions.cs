@@ -45,7 +45,7 @@ namespace CodeJam
 				? messageFormat
 				: string.Format(CultureInfo.InvariantCulture, messageFormat, args);
 
-		private static string ToInv<T>(this T value)
+		private static string ToInv<T>([NotNull] this T value)
 		{
 			if (value is IFormattable f)
 				return f.ToString(null, CultureInfo.InvariantCulture);
@@ -54,12 +54,14 @@ namespace CodeJam
 
 		/// <summary>Returns trace source for code exceptions.</summary>
 		/// <value>The code trace source.</value>
-		public static TraceSource CodeTraceSource => _codeTraceSource.Value;
+		[NotNull] public static TraceSource CodeTraceSource => _codeTraceSource.Value;
 
+		[NotNull][ItemNotNull]
 		private static readonly Lazy<TraceSource> _codeTraceSource = new Lazy<TraceSource>(
 			() => CreateTraceSource(typeof(Code).Namespace + "." + nameof(CodeTraceSource)));
 
-		private static TraceSource CreateTraceSource(string sourceName)
+		[NotNull]
+		private static TraceSource CreateTraceSource([NotNull] string sourceName)
 		{
 			// BASEDON: System.Diagnostics.PresentationTraceSources
 			var traceSource = new TraceSource(sourceName);
@@ -74,7 +76,8 @@ namespace CodeJam
 		/// <typeparam name="TException">The type of the exception.</typeparam>
 		/// <param name="exception">The exception.</param>
 		/// <returns>The original exception.</returns>
-		internal static TException LogToCodeTraceSourceBeforeThrow<TException>(this TException exception)
+		[NotNull]
+		internal static TException LogToCodeTraceSourceBeforeThrow<TException>([NotNull] this TException exception)
 			where TException : Exception
 		{
 			var sb = new StringBuilder();

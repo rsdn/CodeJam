@@ -1,6 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.CmdLine
 {
@@ -23,14 +25,17 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		private const char _quota = '"';
 
+		[NotNull]
 		private static ParseResult<T> CreateResult<T>(T result, ICharInput inputRest) =>
 			new ParseResult<T>(result, inputRest);
 
 		/// <summary>
 		/// Parse command line.
 		/// </summary>
-		public static CmdLineNode ParseCommandLine(string source)
+		public static CmdLineNode ParseCommandLine([NotNull] string source)
 		{
+			Code.NotNull(source, nameof(source));
+
 			var input = source.ToCharInput();
 			input = input.ConsumeSpaces();
 			var programName = ParseQuotedOrNonquotedValue(input);
@@ -61,7 +66,8 @@ namespace CodeJam.CmdLine
 					opts.ToArray());
 		}
 
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedValue(ICharInput input)
+		[NotNull]
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedValue([NotNull] ICharInput input)
 		{
 			var startPos = input.Position;
 			input = input.ConsumeChar(_quota);
@@ -82,7 +88,8 @@ namespace CodeJam.CmdLine
 					res.InputRest);
 		}
 
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedOrNonquotedValue(ICharInput input) =>
+		[NotNull]
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedOrNonquotedValue([NotNull] ICharInput input) =>
 			input.Current == _quota ? ParseQuotedValue(input) : ParseNonquotedValue(input);
 
 		#region Commands and options

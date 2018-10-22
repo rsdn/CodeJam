@@ -1,5 +1,7 @@
 ﻿using System.IO;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Parsing
@@ -16,7 +18,7 @@ namespace CodeJam.Parsing
 		[TestCase("  xy", ExpectedResult = true)]
 		[TestCase("yx", ExpectedResult = false)]
 		[TestCase("x  ", ExpectedResult = true)]
-		public bool SpecificChar(string src)
+		public bool SpecificChar([NotNull] string src)
 		{
 			var reader = CharReader.Create(new StringReader(src));
 			var res = ParseHelper.SpecificChar('x')(reader);

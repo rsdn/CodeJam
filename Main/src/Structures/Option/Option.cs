@@ -10,7 +10,8 @@ namespace CodeJam
 	[PublicAPI]
 	public static class Option
 	{
-		internal static string ToString<T>(IOption<T> option) => option.HasValue ? $"Some({option.Value})" : "None";
+		[NotNull]
+		internal static string ToString<T>([NotNull] IOption<T> option) => option.HasValue ? $"Some({option.Value})" : "None";
 
 		/// <summary>
 		/// Creates instance of <see cref="Option"/> with specified value.

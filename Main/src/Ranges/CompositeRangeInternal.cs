@@ -84,7 +84,7 @@ namespace CodeJam.Ranges
 		// ReSharper disable once UnusedMethodReturnValue.Global
 		internal static int InsertInSortedList<T>(
 			[NotNull] List<T> sortedList,
-			T value,
+			[CanBeNull] T value,
 			[CanBeNull] IComparer<T> comparer,
 			bool skipDuplicates)
 		{

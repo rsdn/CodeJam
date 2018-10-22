@@ -3,6 +3,8 @@ using System.Reflection;
 
 using CodeJam.Reflection;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Ranges
 {
 	/// <summary>Range internal helpers</summary>
@@ -62,6 +64,7 @@ namespace CodeJam.Ranges
 		/// <summary>Creates formattable callback for arbitrary type.</summary>
 		/// <typeparam name="T">Type of the formattable object.</typeparam>
 		/// <returns>The format callback. Returns <c>null</c> if the first arg is <c>null</c>.</returns>
+		[NotNull]
 		internal static Func<T, string, IFormatProvider, string> CreateFormattableCallback<T>()
 		{
 			const BindingFlags bf = BindingFlags.Static | BindingFlags.NonPublic;

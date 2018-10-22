@@ -114,7 +114,7 @@ namespace CodeJam.Threading
 		/// <param name="parallelCount">number of threads to use.</param>
 		/// <param name="processName">Process name pattern.</param>
 		public static void RunInParallel(
-			[NotNull, InstantHandle] this IEnumerable<Action> source,
+			[NotNull, ItemNotNull, InstantHandle] this IEnumerable<Action> source,
 			int parallelCount,
 			string processName = "ParallelProcess")
 		{

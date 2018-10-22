@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using JetBrains.Annotations;
+
 namespace CodeJam
 {
 	partial class Algorithms
@@ -16,7 +18,7 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="predicate">The predicate</param>
 		/// <returns>The partition point</returns>
-		public static int PartitionPoint<T>(this IList<T> list, Predicate<T> predicate)
+		public static int PartitionPoint<T>([NotNull] this IList<T> list, Predicate<T> predicate)
 			=> PartitionPoint(list, 0, list.Count, predicate);
 
 		/// <summary>
@@ -31,7 +33,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="predicate">The predicate</param>
 		/// <returns>The partition point</returns>
-		public static int PartitionPoint<T>(this IList<T> list, int startIndex, Predicate<T> predicate)
+		public static int PartitionPoint<T>([NotNull] this IList<T> list, int startIndex, Predicate<T> predicate)
 			=> PartitionPoint(list, startIndex, list.Count, predicate);
 
 		/// <summary>
@@ -47,7 +49,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <param name="predicate">The predicate</param>
 		/// <returns>The partition point</returns>
-		public static int PartitionPoint<T>(this IList<T> list, int startIndex, int endIndex, Predicate<T> predicate)
+		public static int PartitionPoint<T>([NotNull] this IList<T> list, int startIndex, int endIndex, Predicate<T> predicate)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			while (startIndex < endIndex)
