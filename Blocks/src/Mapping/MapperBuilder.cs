@@ -19,6 +19,7 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public class MapperBuilder<TFrom,TTo> : IMapperBuilder
 	{
+		[NotNull]
 		private MappingSchema _mappingSchema = MappingSchema.Default;
 
 		/// <summary>
@@ -116,6 +117,7 @@ namespace CodeJam.Mapping
 		/// <param name="memberName">Type member name.</param>
 		/// <param name="mapName">Mapping name.</param>
 		/// <returns>Returns this mapper.</returns>
+		[NotNull]
 		public MapperBuilder<TFrom,TTo> FromMapping([NotNull] Type type, [NotNull] string memberName, [NotNull] string mapName)
 		{
 			Code.NotNull(type,       nameof(type));
@@ -271,6 +273,7 @@ namespace CodeJam.Mapping
 		/// <param name="memberName">Type member name.</param>
 		/// <param name="mapName">Mapping name.</param>
 		/// <returns>Returns this mapper.</returns>
+		[NotNull]
 		public MapperBuilder<TFrom,TTo> Mapping(Type type, string memberName, string mapName)
 			=> FromMapping(type, memberName, mapName).ToMapping (type, memberName, mapName);
 
@@ -281,6 +284,7 @@ namespace CodeJam.Mapping
 		/// <param name="memberName">Type member name.</param>
 		/// <param name="mapName">Mapping name.</param>
 		/// <returns>Returns this mapper.</returns>
+		[NotNull]
 		public MapperBuilder<TFrom,TTo> Mapping<T>(string memberName, string mapName)
 			=> Mapping(typeof(T), memberName, mapName);
 
@@ -290,6 +294,7 @@ namespace CodeJam.Mapping
 		/// <param name="memberName">Type member name.</param>
 		/// <param name="mapName">Mapping name.</param>
 		/// <returns>Returns this mapper.</returns>
+		[NotNull]
 		public MapperBuilder<TFrom,TTo> Mapping(string memberName, string mapName)
 			=> Mapping(typeof(TFrom), memberName, mapName).Mapping(typeof(TTo), memberName, mapName);
 
@@ -299,6 +304,7 @@ namespace CodeJam.Mapping
 		/// <param name="type">Type to map.</param>
 		/// <param name="mapping">Mapping parameters.</param>
 		/// <returns>Returns this mapper.</returns>
+		[NotNull]
 		public MapperBuilder<TFrom,TTo> Mapping([NotNull] Type type, [NotNull] IReadOnlyDictionary<string,string> mapping)
 		{
 			Code.NotNull(type,    nameof(type));
@@ -316,7 +322,7 @@ namespace CodeJam.Mapping
 		/// <param name="mapping">Mapping parameters.</param>
 		/// <typeparam name="T">Type to map.</typeparam>
 		/// <returns>Returns this mapper.</returns>
-		public MapperBuilder<TFrom,TTo> Mapping<T>(IReadOnlyDictionary<string,string> mapping)
+		public MapperBuilder<TFrom,TTo> Mapping<T>([NotNull] IReadOnlyDictionary<string,string> mapping)
 			=> Mapping(typeof(T), mapping);
 
 		/// <summary>
@@ -324,7 +330,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="mapping">Mapping parameters.</param>
 		/// <returns>Returns this mapper.</returns>
-		public MapperBuilder<TFrom,TTo> Mapping(IReadOnlyDictionary<string,string> mapping)
+		public MapperBuilder<TFrom,TTo> Mapping([NotNull] IReadOnlyDictionary<string,string> mapping)
 			=> Mapping(typeof(TFrom), mapping).Mapping(typeof(TFrom), mapping);
 
 		/// <summary>
@@ -403,6 +409,7 @@ namespace CodeJam.Mapping
 		/// Gets an instance of <see cref="ExpressionBuilder"/> class.
 		/// </summary>
 		/// <returns><see cref="ExpressionBuilder"/>.</returns>
+		[NotNull]
 		internal ExpressionBuilder GetExpressionMapper()
 			=> new ExpressionBuilder(this, MemberMappers?.Select(mm => ValueTuple.Create(mm.Item1.GetMembersInfo(), mm.Item2)).ToArray());
 	}

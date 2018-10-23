@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Metadata
 {
 	using Mapping;
@@ -11,18 +13,19 @@ namespace CodeJam.Metadata
 
 	internal class AttributeInfo
 	{
-		public AttributeInfo(string name, Dictionary<string,object> values)
+		public AttributeInfo([NotNull] string name, [NotNull] Dictionary<string,object> values)
 		{
 			Name    = name;
 			_values = values;
 		}
 
-		public readonly string Name;
+		[NotNull] public readonly string Name;
 
-		private readonly Dictionary<string,object> _values;
+		[NotNull] private readonly Dictionary<string,object> _values;
+
 		private Func<Attribute> _func;
 
-		public Attribute MakeAttribute(Type type)
+		public Attribute MakeAttribute([NotNull] Type type)
 		{
 			if (_func == null)
 			{

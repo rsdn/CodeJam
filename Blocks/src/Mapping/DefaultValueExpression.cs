@@ -2,11 +2,13 @@
 using System;
 using System.Linq.Expressions;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Mapping
 {
 	internal class DefaultValueExpression : Expression
 	{
-		public DefaultValueExpression(MappingSchema mappingSchema, Type type)
+		public DefaultValueExpression([CanBeNull] MappingSchema mappingSchema, [NotNull] Type type)
 		{
 			_mappingSchema = mappingSchema;
 			Type          = type;

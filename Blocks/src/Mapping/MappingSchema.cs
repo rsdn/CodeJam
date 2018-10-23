@@ -87,6 +87,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
+		[NotNull, ItemNotNull]
 		internal readonly MappingSchemaInfo[] Schemas;
 
 		#endregion
@@ -707,6 +708,7 @@ namespace CodeJam.Mapping
 		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
+		[NotNull, ItemNotNull]
 		public T[] GetAttributes<T>(MemberInfo memberInfo, Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
@@ -735,7 +737,7 @@ namespace CodeJam.Mapping
 			var attrs = GetAttributes(type, configGetter, inherit);
 			return attrs.Length == 0 ? null : attrs[0];
 		}
-		
+
 		/// <summary>
 		/// Returns custom attribute applied to provided type member.
 		/// </summary>
@@ -767,7 +769,8 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Configuration list.
 		/// </summary>
-		public  string[]  ConfigurationList
+		[NotNull, ItemNotNull]
+		public string[] ConfigurationList
 		{
 			get
 			{
@@ -796,6 +799,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Default mapping schema.
 		/// </summary>
+		[NotNull]
 		public static MappingSchema Default = new DefaultMappingSchema();
 
 		private class DefaultMappingSchema : MappingSchema
@@ -881,6 +885,7 @@ namespace CodeJam.Mapping
 		/// <returns>Array of mapping values.</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="type" /> is null.</exception>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
+		[NotNull, ItemNotNull]
 		public virtual MapValue[] GetMapValues([NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));

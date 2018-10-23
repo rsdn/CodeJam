@@ -27,7 +27,7 @@ namespace CodeJam.IO
 				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 				System.IO.Path.GetFullPath(path);
 
-			[NotNull] private volatile string _path;
+			private volatile string _path;
 			private volatile bool _keepOnDispose;
 
 			/// <summary>Assertion on object dispose</summary>

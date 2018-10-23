@@ -12,14 +12,16 @@ namespace CodeJam.Metadata
 		public static readonly MetadataReader Default =
 			new MetadataReader(new AttributeReader());
 
-		public MetadataReader([NotNull] params IMetadataReader[] readers) =>
+		public MetadataReader([NotNull, ItemNotNull] params IMetadataReader[] readers) =>
 			_readers = readers ?? throw new ArgumentNullException(nameof(readers));
 
-		private readonly IMetadataReader[] _readers;
+		[NotNull][ItemNotNull] private readonly IMetadataReader[] _readers;
 
-		public T[] GetAttributes<T>(Type type, bool inherit) where T : Attribute =>
+		[NotNull, ItemNotNull]
+		public T[] GetAttributes<T>([NotNull] Type type, bool inherit) where T : Attribute =>
 			_readers.SelectMany(r => r.GetAttributes<T>(type, inherit)).ToArray();
 
+		[NotNull, ItemNotNull]
 		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit) where T : Attribute =>
 			_readers.SelectMany(r => r.GetAttributes<T>(memberInfo, inherit)).ToArray();
 	}

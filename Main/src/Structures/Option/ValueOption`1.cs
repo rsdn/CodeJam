@@ -100,6 +100,6 @@ namespace CodeJam
 
 		/// <summary>Returns the fully qualified type name of this instance.</summary>
 		/// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
-		[NotNull] public override string ToString() => Option.ToString(this);
+		public override string ToString() => Option.ToString(this);
 	}
 }

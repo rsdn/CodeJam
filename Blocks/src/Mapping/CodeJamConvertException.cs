@@ -50,7 +50,7 @@ namespace CodeJam.Mapping
 		/// the current exception.</param>
 		/// <seealso cref="Exception.Message"/>
 		/// <seealso cref="Exception.InnerException"/>
-		public CodeJamConvertException(string message, Exception innerException) 
+		public CodeJamConvertException(string message, Exception innerException)
 			: base(message, innerException)
 		{
 		}
@@ -62,7 +62,7 @@ namespace CodeJam.Mapping
 		/// <param name="innerException">The InnerException, if any, that threw
 		/// the current exception.</param>
 		/// <seealso cref="Exception.InnerException"/>
-		public CodeJamConvertException(Exception innerException) 
+		public CodeJamConvertException([NotNull] Exception innerException)
 			: base(innerException.Message, innerException)
 		{
 		}
@@ -76,7 +76,7 @@ namespace CodeJam.Mapping
 		/// destination.</param>
 		/// <remarks>This constructor is called during deserialization to
 		/// reconstitute the exception object transmitted over a stream.</remarks>
-		protected CodeJamConvertException(SerializationInfo info, StreamingContext context)
+		protected CodeJamConvertException([NotNull] SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
 		}

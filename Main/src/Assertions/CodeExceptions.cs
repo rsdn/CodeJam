@@ -95,7 +95,7 @@ namespace CodeJam
 		/// <typeparam name="TException">The type of the exception.</typeparam>
 		/// <param name="exception">The exception.</param>
 		/// <returns>The original exception.</returns>
-		internal static TException LogToCodeTraceSourceCatched<TException>(this TException exception)
+		internal static TException LogToCodeTraceSourceCatched<TException>([NotNull] this TException exception)
 			where TException : Exception
 		{
 			var sb = new StringBuilder();
@@ -215,7 +215,9 @@ namespace CodeJam
 		[MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange<T>(
 			[NotNull, InvokerParameterName] string argumentName,
-			T value, T fromValue, T toValue)
+			[NotNull] T value,
+			[NotNull] T fromValue,
+			[NotNull] T toValue)
 		{
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(

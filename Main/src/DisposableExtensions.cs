@@ -12,7 +12,7 @@ namespace CodeJam
 		/// <summary>Invokes the dispose for each item in the <paramref name="disposables"/>.</summary>
 		/// <param name="disposables">The multiple <see cref="IDisposable"/> instances.</param>
 		/// <exception cref="AggregateException"></exception>
-		public static void DisposeAll([NotNull, InstantHandle] this IEnumerable<IDisposable> disposables)
+		public static void DisposeAll([NotNull, ItemNotNull, InstantHandle] this IEnumerable<IDisposable> disposables)
 		{
 			List<Exception> exceptions = null;
 
@@ -39,7 +39,7 @@ namespace CodeJam
 		/// <param name="disposables">The multiple <see cref="IDisposable"/> instances.</param>
 		/// <param name="exceptionHandler">The exception handler.</param>
 		public static void DisposeAll(
-			[NotNull, InstantHandle] this IEnumerable<IDisposable> disposables,
+			[NotNull, ItemNotNull, InstantHandle] this IEnumerable<IDisposable> disposables,
 			[NotNull, InstantHandle] Func<Exception, bool> exceptionHandler)
 		{
 			foreach (var item in disposables)

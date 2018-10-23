@@ -442,6 +442,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>Emits code for (value &amp; flag) == flag check.</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for (value &amp; flag) == flag check</returns>
+		[NotNull]
 		public static Func<T, T, bool> IsFlagSetOperator<T>() =>
 			CompileOperatorCore<Func<T, T, bool>>(
 				args => Equal(And(args[0], args[1]), args[1]),
@@ -454,6 +455,7 @@ namespace CodeJam.Arithmetic
 		/// <summary>Emits code for (flag == 0) || ((value &amp; flag) != 0) check.</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for (flag == 0) || ((value &amp; flag) != 0) check</returns>
+		[NotNull]
 		public static Func<T, T, bool> IsAnyFlagSetOperator<T>()
 		{
 			var zero = Convert(Constant(0), GetOperandType(typeof(T)));

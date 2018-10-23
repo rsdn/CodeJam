@@ -25,6 +25,7 @@ namespace CodeJam.TableData
 	[PublicAPI]
 	public static class CsvFormat
 	{
+		[NotNull]
 		private static readonly char[] _conflictChars = { '\r', '\n', '"', ',' };
 
 		private static bool IsEscapeRequired(char value) => value.IsWhiteSpace() || _conflictChars.Contains(value);
@@ -32,7 +33,7 @@ namespace CodeJam.TableData
 		/// <summary>Escapes csv value.</summary>
 		/// <param name="value">The value.</param>
 		/// <returns>Escaped value.</returns>
-		public static string EscapeValue(string value)
+		public static string EscapeValue([NotNull] string value)
 		{
 			StringBuilder escaped = null;
 			for (var i = 0; i < value.Length; i++)
@@ -71,13 +72,13 @@ namespace CodeJam.TableData
 		[NotNull]
 		[Pure]
 		public static IEnumerable<DataLine> Parse(
-				TextReader reader,
+				[NotNull] TextReader reader,
 				bool allowEscaping = true,
 				char columnSeparator = ',') =>
 			CreateParser(allowEscaping, columnSeparator).Parse(reader);
 
 		[CanBeNull]
-		private static string[] ParseCsv(TextReader reader, ref int lineNum, char separator)
+		private static string[] ParseCsv([NotNull] TextReader reader, ref int lineNum, char separator)
 		{
 			var curChar = CharReader.Create(reader);
 			if (curChar.IsEof)
@@ -200,7 +201,7 @@ namespace CodeJam.TableData
 		}
 
 		[CanBeNull]
-		private static string[] ParseCsvNoEscape(TextReader reader, ref int lineNum, char separator)
+		private static string[] ParseCsvNoEscape([NotNull] TextReader reader, ref int lineNum, char separator)
 		{
 			var line = reader.ReadLine();
 			if (line == null)
@@ -219,10 +220,11 @@ namespace CodeJam.TableData
 			private const int _eof = -1;
 			private const int _eol = -2;
 
+			[NotNull]
 			private readonly TextReader _reader;
 			private readonly int _code;
 
-			private CharReader(TextReader reader, int code)
+			private CharReader([NotNull] TextReader reader, int code)
 			{
 				_reader = reader;
 				_code = code;
@@ -238,7 +240,7 @@ namespace CodeJam.TableData
 
 			public bool IsDoubleQuota => _code == '"';
 
-			private static int Read(TextReader reader)
+			private static int Read([NotNull] TextReader reader)
 			{
 				var code = reader.Read();
 				if (code == '\r' || code == '\n')
@@ -250,7 +252,7 @@ namespace CodeJam.TableData
 				return code;
 			}
 
-			public static CharReader Create(TextReader reader) => new CharReader(reader, Read(reader));
+			public static CharReader Create([NotNull] TextReader reader) => new CharReader(reader, Read(reader));
 
 			public CharReader Next() => Create(_reader);
 

@@ -19,6 +19,7 @@ namespace CodeJam.Mapping
 
 	internal static class ConvertBuilder
 	{
+		[NotNull]
 		private static readonly MethodInfo _defaultConverter = InfoOf.Method(() => ConvertDefault(null, typeof(int)));
 
 		private static object ConvertDefault(object value, [NotNull] Type conversionType)
@@ -79,7 +80,7 @@ namespace CodeJam.Mapping
 			return op != null ? Expression.Convert(p, to, op) : null;
 		}
 
-		private static bool IsConvertible(Type type)
+		private static bool IsConvertible([NotNull] Type type)
 		{
 			if (type.IsEnum)
 				return false;
@@ -214,7 +215,11 @@ namespace CodeJam.Mapping
 
 		private static readonly MethodInfo _throwLinqToDBConvertException = InfoOf.Method(() => ThrowLinqToDBException(null));
 
-		private static Expression GetToEnum(Type from, Type to, Expression expression, MappingSchema mappingSchema)
+		private static Expression GetToEnum(
+			[NotNull] Type from,
+			[NotNull] Type to,
+			[NotNull] Expression expression,
+			[NotNull] MappingSchema mappingSchema)
 		{
 			if (to.IsEnum)
 			{
