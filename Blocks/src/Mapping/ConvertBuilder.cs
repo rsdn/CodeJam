@@ -456,9 +456,7 @@ namespace CodeJam.Mapping
 			if (le != null)
 				return ValueTuple.Create(le.ReplaceParameters(expr), false);
 
-			var lex = mappingSchema.TryGetConvertExpression(from, to);
-
-			if (lex != null)
+			if (mappingSchema.TryGetConvertExpression(from, to, out var lex))
 				return ValueTuple.Create(lex.ReplaceParameters(expr), true);
 
 			var ex =

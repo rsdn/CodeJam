@@ -204,12 +204,20 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="from">Type to convert from.</param>
 		/// <param name="to">Type to convert to.</param>
-		/// <returns>Convert expression.</returns>
-		// ReSharper disable once VirtualMemberNeverOverridden.Global
-		protected internal virtual LambdaExpression TryGetConvertExpression(Type from, Type to)
+		/// <param name="expr">Expression that converts a value of type <i>TFrom</i> to <i>TTo</i> or null.</param>
+		/// <returns><see langword="true" /> for successful expression, <see langword="false" /> if failed..</returns>
+		protected internal bool TryGetConvertExpression(Type from, Type to, out LambdaExpression expr)
 		{
-			var li = GetConverter(from, to, false);
-			return li == null ? null : (LambdaExpression)ReduceDefaultValue(li.CheckNullLambda);
+			if (TryGetConverter(@from, to, false, out var li))
+			{
+				expr = (LambdaExpression)ReduceDefaultValue(li.CheckNullLambda);
+				return true;
+			}
+			else
+			{
+				expr = default;
+				return false;
+			}
 		}
 
 		internal ConcurrentDictionary<object,Func<object,object>> Converters
@@ -223,7 +231,7 @@ namespace CodeJam.Mapping
 		/// <returns>Convert expression.</returns>
 		public Expression<Func<TFrom,TTo>> GetConvertExpression<TFrom,TTo>()
 		{
-			var li = GetConverter(typeof(TFrom), typeof(TTo), true);
+			TryGetConverter(typeof(TFrom), typeof(TTo), true, out var li);
 			return (Expression<Func<TFrom,TTo>>)ReduceDefaultValue(li.CheckNullLambda);
 		}
 
@@ -242,10 +250,11 @@ namespace CodeJam.Mapping
 			bool createDefault = true)
 		{
 			Code.NotNull(from, nameof(from));
-			Code.NotNull(to,   nameof(to));
+			Code.NotNull(to, nameof(to));
 
-			var li = GetConverter(from, to, createDefault);
-			return li == null ? null : (LambdaExpression)ReduceDefaultValue(checkNull ? li.CheckNullLambda : li.Lambda);
+			return TryGetConverter(@from, to, createDefault, out var li)
+				? (LambdaExpression)ReduceDefaultValue(checkNull ? li.CheckNullLambda : li.Lambda)
+				: null;
 		}
 
 		/// <summary>
@@ -256,7 +265,7 @@ namespace CodeJam.Mapping
 		/// <returns>Convert function.</returns>
 		public Func<TFrom,TTo> GetConverter<TFrom,TTo>()
 		{
-			var li = GetConverter(typeof(TFrom), typeof(TTo), true);
+			TryGetConverter(typeof(TFrom), typeof(TTo), true, out var li);
 
 			if (li.Delegate == null)
 			{
@@ -370,7 +379,7 @@ namespace CodeJam.Mapping
 			return expr;
 		}
 
-		private ConvertInfo.LambdaInfo GetConverter(Type from, Type to, bool create)
+		private bool TryGetConverter(Type @from, Type to, bool create, out ConvertInfo.LambdaInfo lambdaInfo)
 		{
 			for (var i = 0; i < Schemas.Length; i++)
 			{
@@ -378,7 +387,10 @@ namespace CodeJam.Mapping
 				var li   = info.GetConvertInfo(from, to);
 
 				if (li != null && (i == 0 || !li.IsSchemaSpecific))
-					return i == 0 ? li : new ConvertInfo.LambdaInfo(li.CheckNullLambda, li.CheckNullLambda, null, false);
+				{
+					lambdaInfo = i == 0 ? li : new ConvertInfo.LambdaInfo(li.CheckNullLambda, li.CheckNullLambda, null, false);
+					return true;
+				}
 			}
 
 			var isFromGeneric = from.IsGenericType && !from.IsGenericTypeDefinition;
@@ -395,7 +407,7 @@ namespace CodeJam.Mapping
 
 				if (InitGenericConvertProvider(args))
 					// ReSharper disable once TailRecursiveCall
-					return GetConverter(from, to, create);
+					return TryGetConverter(@from, to, create, out lambdaInfo);
 			}
 
 			if (create)
@@ -408,9 +420,7 @@ namespace CodeJam.Mapping
 
 				if (from != ufrom)
 				{
-					var li = GetConverter(ufrom, to, false);
-
-					if (li != null)
+					if (TryGetConverter(ufrom, to, false, out var li))
 					{
 						var b  = li.CheckNullLambda.Body;
 						var ps = li.CheckNullLambda.Parameters;
@@ -426,9 +436,7 @@ namespace CodeJam.Mapping
 					}
 					else if (to != uto)
 					{
-						li = GetConverter(ufrom, uto, false);
-
-						if (li != null)
+						if (TryGetConverter(ufrom, uto, false, out li))
 						{
 							var b  = li.CheckNullLambda.Body;
 							var ps = li.CheckNullLambda.Parameters;
@@ -454,9 +462,7 @@ namespace CodeJam.Mapping
 				{
 					// For int? -> byte? try to find int -> byte and convert int to int? and result to byte?
 					//
-					var li = GetConverter(from, uto, false);
-
-					if (li != null)
+					if (TryGetConverter(@from, uto, false, out var li))
 					{
 						var b  = li.CheckNullLambda.Body;
 						var ps = li.CheckNullLambda.Parameters;
@@ -471,17 +477,23 @@ namespace CodeJam.Mapping
 					ex = null;
 
 				if (ex != null)
-					return new ConvertInfo.LambdaInfo(AddNullCheck(ex), ex, null, ss);
+				{
+					lambdaInfo = new ConvertInfo.LambdaInfo(AddNullCheck(ex), ex, null, ss);
+					return true;
+				}
 
 				var d = ConvertInfo.Default.Get(from, to);
 
 				if (d == null || d.IsSchemaSpecific)
 					d = ConvertInfo.Default.Create(this, from, to);
 
-				return new ConvertInfo.LambdaInfo(d.CheckNullLambda, d.Lambda, null, d.IsSchemaSpecific);
+				lambdaInfo = new ConvertInfo.LambdaInfo(d.CheckNullLambda, d.Lambda, null, d.IsSchemaSpecific);
+				;
+				return true;
 			}
 
-			return null;
+			lambdaInfo = default;
+			return false;
 		}
 
 		private Expression ReduceDefaultValue(Expression expr) =>
@@ -735,7 +747,7 @@ namespace CodeJam.Mapping
 			var attrs = GetAttributes(type, configGetter, inherit);
 			return attrs.Length == 0 ? null : attrs[0];
 		}
-		
+
 		/// <summary>
 		/// Returns custom attribute applied to provided type member.
 		/// </summary>
