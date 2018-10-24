@@ -297,7 +297,7 @@ namespace CodeJam
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
 			return new ArgumentOutOfRangeException(
-				argumentName, value, $"Unexpected value '{value.ToInv()}' of type '{valueType.FullName}'.")
+				argumentName, value, $"Unexpected value '{value?.ToInv()}' of type '{valueType.FullName}'.")
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -341,7 +341,7 @@ namespace CodeJam
 			var valueType = value?.GetType() ?? typeof(T);
 			return
 				new InvalidOperationException(
-					$"Unexpected value '{value.ToInv()}' of type '{valueType.FullName}'.")
+					$"Unexpected value '{value?.ToInv()}' of type '{valueType.FullName}'.")
 					.LogToCodeTraceSourceBeforeThrow();
 		}
 
