@@ -65,8 +65,8 @@ To get the latest "preview" drop, add the `-pre` switch to the nuget commands
 
 ### Links
 - [Class library documentation](https://github.com/rsdn/CodeJam/wiki/DocHome)
-- Continious integration build [![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam)
-- Docs continious integration build [![Docs build status](https://ci.appveyor.com/api/projects/status/bucrjn2eceptbqwl?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam-jlvna)
+- Continious integration build [![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam/branch/master)
+- Docs continious integration build [![Docs build status](https://ci.appveyor.com/api/projects/status/bucrjn2eceptbqwl?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam-jlvna/branch/master)
 - [Continiuos Integration builds Nuget feed](https://ci.appveyor.com/nuget/codejam)
 - [Forum (russian)](https://rsdn.org/forum/prj.codejam/)
 - [![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
