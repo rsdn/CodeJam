@@ -1,4 +1,4 @@
-﻿// BASEDON: the C version by Martin Pool, http://sourcefrog.net/projects/natsort/
+﻿// BASEDON: the C version by Martin Pool, https://github.com/sourcefrog/natsort
 /* Free to relicense, current implementation released under MIT. Original license:
 
 Licensing
@@ -179,28 +179,34 @@ namespace CodeJam.Strings
 		{
 			var bias = 0;
 
+			var pa = ia;
+			var pb = ib;
+
 			// The longest run of digits wins. That aside, the greatest
 			// value wins, but we can't know that it will until we've scanned
 			// both numbers to know that they have the same magnitude, so we
 			// remember it in BIAS.
-			for (; ; ia++, ib++)
+			for (; ; pa++, pb++)
 			{
-				var ca = CharAt(a, ia);
-				var cb = CharAt(b, ib);
+				var ca = CharAt(a, pa);
+				var cb = CharAt(b, pb);
 
 				if (!ca.IsDigit())
 				{
 					// number in a is shorter than number in b
 					if (cb.IsDigit())
-						return -1;
+						bias = -1;
 
 					// numbers have the same length
-					return bias;
+					break;
 				}
 
 				// number in b is shorter than number in a
 				if (!cb.IsDigit())
-					return 1;
+				{
+					bias = 1;
+					break;
+				}
 
 				if (bias != 0)
 					continue;
@@ -220,20 +226,21 @@ namespace CodeJam.Strings
 					bias = 1;
 				}
 			}
+
+			ia = pa;
+			ib = pb;
+			return bias;
 		}
 
 		private static int SkipLeadingZeroesAndWhitespaces(string text, int index)
 		{
-			for (; index < text.Length; index++)
-			{
-				var ch = text[index];
-				if (!ch.IsWhiteSpace() && ch != '0')
-					return index;
-			}
+			while ((uint)index < (uint)text.Length && (text[index] == '0' || text[index].IsWhiteSpace()))
+				index++;
+
 			return index;
 		}
 
-		private static char CharAt(string text, int index) => index < text.Length ? text[index] : char.MinValue;
+		private static char CharAt(string text, int index) => (uint)index < (uint)text.Length ? text[index] : char.MinValue;
 
 		#region Implementation of the IComparer<string>
 		/// <summary>
