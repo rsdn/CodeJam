@@ -23,7 +23,16 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is null or empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => true")]
-		public static bool IsNullOrEmpty([CanBeNull] this string str) => string.IsNullOrEmpty(str);
+		public static bool IsNullOrEmpty([CanBeNull] this string str)
+		{
+			// DONTTOUCH: Do not remove return statements
+			// https://github.com/dotnet/coreclr/issues/914
+
+			if (str == null || 0u >= (uint)str.Length)
+				return true;
+
+			return false;
+		}
 
 		/// <summary>
 		/// Returns true if argument is not null nor empty.
@@ -32,7 +41,7 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is not null nor empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
-		public static bool NotNullNorEmpty([CanBeNull] this string str) => !string.IsNullOrEmpty(str);
+		public static bool NotNullNorEmpty([CanBeNull] this string str) => !str.IsNullOrEmpty();
 
 		/// <summary>
 		/// Infix form of string.IsNullOrWhiteSpace.

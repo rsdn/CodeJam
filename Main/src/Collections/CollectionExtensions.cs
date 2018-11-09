@@ -34,8 +34,16 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("array:null => true")]
-		public static bool IsNullOrEmpty<T>(this T[] array) =>
-			array == null || array.Length == 0;
+		public static bool IsNullOrEmpty<T>(this T[] array)
+		{
+			// DONTTOUCH: Do not remove return statements
+			// https://github.com/dotnet/coreclr/issues/914
+
+			if (array == null || 0u >= (uint)array.Length)
+				return true;
+
+			return false;
+		}
 
 		/// <summary>
 		/// Indicates whether the specified collection is not null nor empty.
@@ -58,8 +66,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("array:null => false")]
-		public static bool NotNullNorEmpty<T>(this T[] array) =>
-			array != null && array.Length != 0;
+		public static bool NotNullNorEmpty<T>(this T[] array) => !array.IsNullOrEmpty();
 
 		/// <summary>
 		/// Returns an empty instance of the collection for null values.
