@@ -13,44 +13,52 @@ namespace CodeJam
 	public static class Fn<T>
 	{
 		/// <summary>
-		/// The function that always returns <c>true</c>.
+		/// Gets the function that always returns <c>true</c>.
 		/// </summary>
-		public static readonly Func<T, bool> True = TrueValue.Value;
+		[NotNull]
+		public static Func<T, bool> True => TrueValue.Value;
 
 		/// <summary>
-		/// The function that returns <c>false</c>.
+		/// Gets the function that returns <c>false</c>.
 		/// </summary>
-		public static readonly Func<T, bool> False = FalseValue.Value;
+		[NotNull]
+		public static Func<T, bool> False => FalseValue.Value;
 
 		/// <summary>
-		/// The function that returns <c>true</c>.
+		/// Gets the function that returns <c>true</c>.
 		/// </summary>
-		public static readonly Predicate<T> TruePredicate = TruePredicateValue.Value;
+		[NotNull]
+		public static Predicate<T> TruePredicate => TruePredicateValue.Value;
 
 		/// <summary>
-		/// The function that always returns <c>false</c>.
+		/// Gets the function that always returns <c>false</c>.
 		/// </summary>
-		public static readonly Predicate<T> FalsePredicate = FalsePredicateValue.Value;
+		[NotNull]
+		public static Predicate<T> FalsePredicate => FalsePredicateValue.Value;
 
 		/// <summary>
-		/// The function that returns the same object which was passed as parameter.
+		/// Gets the function that returns the same object which was passed as parameter.
 		/// </summary>
-		public static readonly Func<T, T> Self = SelfValue.Value;
+		[NotNull]
+		public static Func<T, T> Self => SelfValue.Value;
 
 		/// <summary>
-		/// The function that returns the same object which was passed as parameter.
+		/// Gets the function that returns the same object which was passed as parameter.
 		/// </summary>
-		public static readonly Converter<T, T> SelfConverter = SelfConverterValue.Value;
+		[NotNull]
+		public static Converter<T, T> SelfConverter => SelfConverterValue.Value;
 
 		/// <summary>
-		/// The function that returns <c>true</c> if an object is <c>null</c>.
+		/// Gets the function that returns <c>true</c> if an object is <c>null</c>.
 		/// </summary>
-		public static readonly Func<T, bool> IsNull = IsNullValue.Value;
+		[NotNull]
+		public static Func<T, bool> IsNull => IsNullValue.Value;
 
 		/// <summary>
-		/// The function that returns <c>true</c> if an object is not <c>null</c>.
+		/// Gets the function that returns <c>true</c> if an object is not <c>null</c>.
 		/// </summary>
-		public static readonly Func<T, bool> IsNotNull = IsNotNullValue.Value;
+		[NotNull]
+		public static Func<T, bool> IsNotNull => IsNotNullValue.Value;
 
 		#region Inner types
 
