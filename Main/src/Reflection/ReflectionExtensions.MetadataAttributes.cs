@@ -19,7 +19,7 @@ namespace CodeJam.Reflection
 		private sealed class TypeTypeHandleComparer : IEqualityComparer<Type>
 		{
 			public bool Equals(Type x, Type y) =>
-				x == null ? y == null : y != null && x.TypeHandle.Equals(y.TypeHandle);
+				x is null ? y is null : (object)y != null && x.TypeHandle.Equals(y.TypeHandle);
 
 			public int GetHashCode(Type obj) => obj.TypeHandle.GetHashCode();
 		}
@@ -27,7 +27,7 @@ namespace CodeJam.Reflection
 		private sealed class MethodMethodHandleComparer : IEqualityComparer<MethodInfo>
 		{
 			public bool Equals(MethodInfo x, MethodInfo y) =>
-				x == null ? y == null : y != null && x.MethodHandle.Equals(y.MethodHandle);
+				x is null ? y is null : (object)y != null && x.MethodHandle.Equals(y.MethodHandle);
 
 			public int GetHashCode(MethodInfo obj) => obj.MethodHandle.GetHashCode();
 		}

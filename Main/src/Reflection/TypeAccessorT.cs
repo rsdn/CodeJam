@@ -5,6 +5,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Reflection
 {
 	/// <summary>
@@ -114,6 +116,7 @@ namespace CodeJam.Reflection
 		/// Creates an instance of <see cref="TypeAccessor"/>.
 		/// </summary>
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
+		[NotNull]
 		public T Create() => _createInstance();
 
 		/// <summary>

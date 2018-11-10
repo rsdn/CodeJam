@@ -58,8 +58,8 @@ namespace CodeJam.Threading
 		/// </param>
 		public static void Send([NotNull] this AsyncOperation asyncOp, [NotNull, InstantHandle] Action runner)
 		{
-			if (asyncOp == null) throw new ArgumentNullException(nameof(asyncOp));
-			if (runner == null) throw new ArgumentNullException(nameof(runner));
+			Code.NotNull(asyncOp, nameof(asyncOp));
+			Code.NotNull(runner, nameof(runner));
 
 			asyncOp.SynchronizationContext.Send(state => runner(), null);
 		}

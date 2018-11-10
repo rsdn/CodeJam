@@ -18,7 +18,7 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Acquires async lock.
 		/// </summary>
-		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <returns>A task that returns the <see cref="IDisposable"/> to release the lock.</returns>
 		[NotNull, ItemNotNull]
 		[MustUseReturnValue("Lock should be disposed")]
 		public Task<IDisposable> AcquireAsync() => AcquireAsync(-1, CancellationToken.None);
@@ -30,7 +30,7 @@ namespace CodeJam.Threading
 		/// A number of milliseconds that represents the timeout to wait if lock already acquired, a  -1 to wait
 		/// indefinitely, or a 0 to return immediately.
 		/// </param>
-		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <returns>A task that returns the <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
 		[MustUseReturnValue("Lock should be disposed")]
@@ -45,7 +45,7 @@ namespace CodeJam.Threading
 		/// that represents -1 milliseconds to wait indefinitely, or a <see cref="TimeSpan"/> that represents 0 milliseconds
 		/// to return immediately.
 		/// </param>
-		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <returns>A task that returns the <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
 		[MustUseReturnValue("Lock should be disposed")]
@@ -54,8 +54,8 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Acquires async lock.
 		/// </summary>
-		/// <param name="cancellation">The CancellationToken token to observe.</param>
-		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <param name="cancellation">The <see cref="CancellationToken"/> to observe.</param>
+		/// <returns>A task that returns the <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		[NotNull, ItemNotNull]
 		[MustUseReturnValue("Lock should be disposed")]
@@ -68,8 +68,8 @@ namespace CodeJam.Threading
 		/// A number of milliseconds that represents the timeout to wait if lock already acquired, a  -1 to wait
 		/// indefinitely, or a 0 to return immediately.
 		/// </param>
-		/// <param name="cancellation">The CancellationToken token to observe.</param>
-		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <param name="cancellation">The <see cref="CancellationToken"/> to observe.</param>
+		/// <returns>A task that returns the <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
@@ -85,8 +85,8 @@ namespace CodeJam.Threading
 		/// that represents -1 milliseconds to wait indefinitely, or a <see cref="TimeSpan"/> that represents 0 milliseconds
 		/// to return immediately.
 		/// </param>
-		/// <param name="cancellation">The CancellationToken token to observe.</param>
-		/// <returns>A task that returns <see cref="IDisposable"/> to release the lock.</returns>
+		/// <param name="cancellation">The <see cref="CancellationToken"/> to observe.</param>
+		/// <returns>A task that returns the <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[NotNull, ItemNotNull]
@@ -141,7 +141,7 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Synchronously acquires async lock.
 		/// </summary>
-		/// <param name="cancellation">The CancellationToken token to observe.</param>
+		/// <param name="cancellation">The <see cref="CancellationToken"/> to observe.</param>
 		/// <returns>An <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		[NotNull]
@@ -155,7 +155,7 @@ namespace CodeJam.Threading
 		/// A number of milliseconds that represents the timeout to wait if lock already acquired, a  -1 to wait
 		/// indefinitely, or a 0 to return immediately.
 		/// </param>
-		/// <param name="cancellation">The CancellationToken token to observe.</param>
+		/// <param name="cancellation">The <see cref="CancellationToken"/> to observe.</param>
 		/// <returns>An <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
@@ -172,7 +172,7 @@ namespace CodeJam.Threading
 		/// that represents -1 milliseconds to wait indefinitely, or a <see cref="TimeSpan"/> that represents 0 milliseconds
 		/// to return immediately.
 		/// </param>
-		/// <param name="cancellation">The CancellationToken token to observe.</param>
+		/// <param name="cancellation">The <see cref="CancellationToken"/> to observe.</param>
 		/// <returns>An <see cref="IDisposable"/> to release the lock.</returns>
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>

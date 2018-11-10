@@ -11,8 +11,8 @@ namespace CodeJam.Threading
 	internal sealed class ParallelQueue : IDisposable
 	{
 		private readonly BlockingCollection<Action> _queue = new BlockingCollection<Action>();
-		private readonly Thread[]                   _workers;
-		private readonly List<Exception>            _exceptions = new List<Exception>();
+		private readonly List<Exception> _exceptions = new List<Exception>();
+		private readonly Thread[] _workers;
 
 		public ParallelQueue(int workerCount, string name = null)
 		{
@@ -43,7 +43,7 @@ namespace CodeJam.Threading
 
 		public void EnqueueItem([NotNull] Action item)
 		{
-			if (item == null) throw new ArgumentNullException(nameof(item));
+			Code.NotNull(item, nameof(item));
 
 			_queue.Add(item);
 		}
@@ -69,15 +69,7 @@ namespace CodeJam.Threading
 		public void Dispose()
 		{
 			WaitAll();
-			Dispose(true);
-			// Type has no Finalize
-			// GC.SuppressFinalize(this);
-		}
-
-		private void Dispose(bool disposing)
-		{
-			if (disposing)
-				_queue.Dispose();
+			_queue.Dispose();
 		}
 	}
 }
