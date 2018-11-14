@@ -433,6 +433,7 @@ namespace CodeJam.Strings
 		/// <param name="str">String to remove.</param>
 		/// <param name="toRemoveStrings">Substrings to remove.</param>
 		/// <returns>New string without provided substrings.</returns>
+		[NotNull, Pure]
 		public static string Remove([NotNull] this string str, [NotNull] params string[] toRemoveStrings)
 		{
 			Code.NotNull(str,             nameof(str));
