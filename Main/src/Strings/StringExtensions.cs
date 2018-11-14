@@ -381,7 +381,7 @@ namespace CodeJam.Strings
 		}
 
 		/// <summary>
-		/// Remove one set of leading and trailing double quote characters, if both are present.
+		/// Removes one set of leading and trailing double quote characters, if both are present.
 		/// </summary>
 		/// <param name="arg">String to unquote.</param>
 		/// <returns>
@@ -392,7 +392,7 @@ namespace CodeJam.Strings
 		public static string Unquote([NotNull] this string arg) => Unquote(arg, out _);
 
 		/// <summary>
-		/// Remove one set of leading and trailing double quote characters, if both are present.
+		/// Removes one set of leading and trailing double quote characters, if both are present.
 		/// </summary>
 		/// <param name="arg">String to unquote.</param>
 		/// <param name="quoted">Set to true, if <paramref name="arg"/> was quoted.</param>
@@ -404,7 +404,7 @@ namespace CodeJam.Strings
 		public static string Unquote([NotNull] this string arg, out bool quoted) => Unquote(arg, '"', out quoted);
 
 		/// <summary>
-		/// Remove one set of leading and trailing d<paramref name="quotationChar"/>, if both are present.
+		/// Removes one set of leading and trailing <paramref name="quotationChar"/>, if both are present.
 		/// </summary>
 		/// <param name="arg">String to unquote.</param>
 		/// <param name="quotationChar">Quotation char</param>
