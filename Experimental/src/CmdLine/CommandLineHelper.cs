@@ -36,9 +36,9 @@ namespace CodeJam.CmdLine
 			[NotNull] TextWriter writer,
 			[NotNull] PrintUsageSettings settings)
 		{
-			if (rules == null) throw new ArgumentNullException(nameof(rules));
-			if (writer == null) throw new ArgumentNullException(nameof(writer));
-			if (settings == null) throw new ArgumentNullException(nameof(settings));
+			Code.NotNull(rules, nameof(rules));
+			Code.NotNull(writer, nameof(writer));
+			Code.NotNull(settings, nameof(settings));
 
 			UsagePrinter.PrintUsage(rules, writer, settings);
 		}

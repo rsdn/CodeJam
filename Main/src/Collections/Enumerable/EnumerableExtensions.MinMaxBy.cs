@@ -141,8 +141,8 @@ namespace CodeJam.Collections
 			[CanBeNull] IComparer<TValue> comparer,
 			TSource defaultValue = default)
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
-			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(selector, nameof(selector));
 
 			if (comparer == null)
 				comparer = Comparer<TValue>.Default;
@@ -249,8 +249,8 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] Func<TSource, TValue> selector,
 			[CanBeNull] IComparer<TValue> comparer)
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
-			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(selector, nameof(selector));
 
 			if (comparer == null)
 				comparer = Comparer<TValue>.Default;
@@ -326,8 +326,8 @@ namespace CodeJam.Collections
 			[CanBeNull] IComparer<TValue> comparer,
 			TSource defaultValue = default)
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
-			if (selector == null) throw new ArgumentNullException(nameof(selector));
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(selector, nameof(selector));
 
 			if (comparer == null)
 				comparer = Comparer<TValue>.Default;

@@ -15,7 +15,7 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		public CommandRule([NotNull] string name, string description = "")
 		{
-			if (name == null) throw new ArgumentNullException(nameof(name));
+			Code.NotNull(name, nameof(name));
 			Name = name;
 			Description = description;
 		}
