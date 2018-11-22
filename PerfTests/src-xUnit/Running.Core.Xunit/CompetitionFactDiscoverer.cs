@@ -32,6 +32,7 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 			yield return new CompetitionFactTestCase(
 				_diagnosticMessageSink,
 				discoveryOptions.MethodDisplayOrDefault(),
+				TestMethodDisplayOptions.None,
 				testMethod);
 		}
 	}

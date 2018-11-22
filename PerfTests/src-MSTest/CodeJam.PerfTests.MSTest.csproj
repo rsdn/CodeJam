@@ -57,7 +57,7 @@
 		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+		<PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>

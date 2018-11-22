@@ -57,7 +57,7 @@
 		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="NUnit" Version="3.8.1" />
+		<PackageReference Include="NUnit" Version="3.11.0" />
 	</ItemGroup>
 
 	<ItemGroup>
