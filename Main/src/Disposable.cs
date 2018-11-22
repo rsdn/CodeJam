@@ -14,7 +14,7 @@ namespace CodeJam
 		/// <summary>
 		/// The <see cref="IDisposable"/> implementation with no action on <see cref="Dispose"/>
 		/// </summary>
-		public struct EmptyDisposable : IDisposable
+		public sealed class EmptyDisposable : IDisposable
 		{
 			/// <summary>
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -107,7 +107,7 @@ namespace CodeJam
 		#endregion
 
 		/// <summary><see cref="IDisposable"/> instance without any code in <see cref="IDisposable.Dispose"/>.</summary>
-		public static readonly EmptyDisposable Empty;
+		public static readonly EmptyDisposable Empty = new EmptyDisposable();
 
 		/// <summary>
 		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
