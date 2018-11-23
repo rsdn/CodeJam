@@ -36,7 +36,7 @@ namespace CodeJam.Mapping
 		public static Mapper<TFrom,TTo> GetMapper<TFrom,TTo>(
 			[NotNull] Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 		{
-			if (setter == null) throw new ArgumentNullException(nameof(setter));
+			Code.NotNull(setter, nameof(setter));
 			return new Mapper<TFrom, TTo>(setter(new MapperBuilder<TFrom, TTo>()));
 		}
 

@@ -38,8 +38,8 @@ namespace CodeJam.Metadata
 		/// <param name="assembly">Assembly to get resource stream.</param>
 		public XmlAttributeReader([NotNull] string xmlFile, [NotNull] Assembly assembly)
 		{
-			if (xmlFile == null) throw new ArgumentNullException(nameof(xmlFile));
-			if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+			Code.NotNull(xmlFile, nameof(xmlFile));
+			Code.NotNull(assembly, nameof(assembly));
 
 			StreamReader streamReader = null;
 
@@ -87,7 +87,7 @@ namespace CodeJam.Metadata
 		/// <exception cref="ArgumentNullException"></exception>
 		public XmlAttributeReader([NotNull] Stream xmlDocStream)
 		{
-			if (xmlDocStream == null) throw new ArgumentNullException(nameof(xmlDocStream));
+			Code.NotNull(xmlDocStream, nameof(xmlDocStream));
 
 			_types = LoadStream(xmlDocStream, "");
 		}

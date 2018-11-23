@@ -34,7 +34,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Visit action.</param>
 		public static void Visit([CanBeNull] this Expression expr, [NotNull] Action<Expression> func)
 		{
-			if (func == null) throw new ArgumentNullException(nameof(func));
+			Code.NotNull(func, nameof(func));
 
 			VisitInternal(expr, func);
 		}
@@ -347,7 +347,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Visit function. Return true to stop.</param>
 		public static void Visit([CanBeNull] this Expression expr, [NotNull] Func<Expression, bool> func)
 		{
-			if (func == null) throw new ArgumentNullException(nameof(func));
+			Code.NotNull(func, nameof(func));
 
 			VisitInternal(expr, func);
 		}
@@ -675,7 +675,7 @@ namespace CodeJam.Expressions
 		[Pure]
 		public static Expression Find([CanBeNull] this Expression expr, [NotNull] Expression exprToFind)
 		{
-			if (exprToFind == null) throw new ArgumentNullException(nameof(exprToFind));
+			Code.NotNull(exprToFind, nameof(exprToFind));
 
 			return expr.FindInternal(e => e == exprToFind);
 		}
@@ -689,7 +689,7 @@ namespace CodeJam.Expressions
 		[Pure]
 		public static Expression Find([CanBeNull] this Expression expr, [NotNull] Func<Expression, bool> func)
 		{
-			if (func == null) throw new ArgumentNullException(nameof(func));
+			Code.NotNull(func, nameof(func));
 
 			return FindInternal(expr, func);
 		}
@@ -955,8 +955,8 @@ namespace CodeJam.Expressions
 		public static Expression ReplaceParameters(
 			[NotNull] this LambdaExpression lambda, [NotNull] Expression exprToReplaceParameter)
 		{
-			if (lambda == null) throw new ArgumentNullException(nameof(lambda));
-			if (exprToReplaceParameter == null) throw new ArgumentNullException(nameof(exprToReplaceParameter));
+			Code.NotNull(lambda, nameof(lambda));
+			Code.NotNull(exprToReplaceParameter, nameof(exprToReplaceParameter));
 
 			if (lambda.Parameters.Count == 0)
 				throw new ArgumentException("Provided lambda has to have at least one parameter.");
@@ -974,8 +974,8 @@ namespace CodeJam.Expressions
 		public static Expression ReplaceParameters(
 			[NotNull] this LambdaExpression lambda, [NotNull] params Expression[] exprToReplaceParameter)
 		{
-			if (lambda == null) throw new ArgumentNullException(nameof(lambda));
-			if (exprToReplaceParameter == null) throw new ArgumentNullException(nameof(exprToReplaceParameter));
+			Code.NotNull(lambda, nameof(lambda));
+			Code.NotNull(exprToReplaceParameter, nameof(exprToReplaceParameter));
 
 			return TransformInternal(
 				lambda.Body, e =>
@@ -1032,7 +1032,7 @@ namespace CodeJam.Expressions
 		public static T Transform<T>([CanBeNull] this T expr, [NotNull] Func<Expression, Expression> func)
 			where T : LambdaExpression
 		{
-			if (func == null) throw new ArgumentNullException(nameof(func));
+			Code.NotNull(func, nameof(func));
 
 			return (T)TransformInternal(expr, func);
 		}
@@ -1046,7 +1046,7 @@ namespace CodeJam.Expressions
 		[Pure]
 		public static Expression Transform([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
 		{
-			if (func == null) throw new ArgumentNullException(nameof(func));
+			Code.NotNull(func, nameof(func));
 
 			return TransformInternal(expr, func);
 		}
