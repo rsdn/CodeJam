@@ -487,10 +487,10 @@ namespace CodeJam.Reflection
 		/// Otherwise returns null.</param>
 		/// <returns>Returns <see cref="ConstructorInfo"/> or null.</returns>
 		[Pure]
+		[ContractAnnotation("exceptionIfNotExists:true => notnull; exceptionIfNotExists:false => canbenull")]
 		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type, bool exceptionIfNotExists = false)
 		{
-			if (type == null)
-				throw new ArgumentNullException(nameof(type));
+			Code.NotNull(type, nameof(type));
 
 			var info = type.GetConstructor(
 				BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
@@ -512,6 +512,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to get item type.</param>
 		/// <returns>Returns item type or null.</returns>
+		[CanBeNull]
+		[Pure]
 		public static Type GetItemType([CanBeNull] this Type type)
 		{
 			while (true)
