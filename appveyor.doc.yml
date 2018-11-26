@@ -3,12 +3,14 @@ image: Visual Studio 2017
 configuration: Debug
 clone_folder: c:\projects\codejam
 environment:
-  SHFBROOT: C:\EWSoftware.SHFB.2015.10.10.0\tools\
+  SHFBROOT: C:\EWSoftware.SHFB.2018.7.8.1\tools\
 install:
 - cmd: >-
-    nuget install EWSoftware.SHFB -o c:\ -Version 2015.10.10
+    nuget install EWSoftware.SHFB -o c:\ -Version 2018.7.8.1
 
     nuget install EWSoftware.SHFB.NETFramework -o c:\projects\codejam
+
+    xcopy /E /S C:\EWSoftware.SHFB.2018.7.8.1 C:\EWSoftware.SHFB.2015.10.10.0\
 before_build:
 - cmd: nuget restore CodeJam.sln
 build:
