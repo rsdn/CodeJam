@@ -1,9 +1,8 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
-
-using NUnit.Framework;
 
 namespace CodeJam.Reflection
 {
@@ -15,7 +14,7 @@ namespace CodeJam.Reflection
 		public void TestGetAssemblyPath() =>
 			Assert.True(
 				string.Equals(
-					"CodeJam-Tests.dll",
+					"CodeJam.Tests.dll",
 					Path.GetFileName(GetType().Assembly.GetAssemblyPath()),
 					StringComparison.InvariantCultureIgnoreCase));
 
