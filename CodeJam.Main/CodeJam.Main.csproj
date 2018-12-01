@@ -336,15 +336,10 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>Fn.generated.cs</LastGenOutput>
 		</None>
-		<Content Update="Readme.txt">
+		<Content Include="Readme.txt">
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>
 		</Content>
 	</ItemGroup>
 
-	<!--<Target Name="TestMessage" BeforeTargets="Build">
-		<Message Text="Hi!" Importance="high" />
-		<Message Text="Building $(ProjectName) for $(TargetFramework). References:" Importance="high" />
-		<Message Text="* %(Reference.Identity)" Importance="high" />
-	</Target>-->
 </Project>

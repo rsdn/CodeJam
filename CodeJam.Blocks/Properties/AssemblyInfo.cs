@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("0dff0859-2400-4487-83ad-0ed10203d6d9")]
 
-[assembly: InternalsVisibleTo("CodeJam.Blocks-Tests, PublicKey=" +
+[assembly: InternalsVisibleTo("CodeJam.Blocks.Tests, PublicKey=" +
 	"00240000048000009400000006020000002400005253413100040000010001000de1c523b74719" +
 	"e2f54eed3a5512cfedfa78ccfef5c1d196e9a6b09522e7a833ab027deff5462ab26b5d5b51ed42" +
 	"10c889d2177f16f3678dfe65ba202f7b142b3d37e7500df14f86a616b111989b58029fc1ad8932" +
