@@ -1,46 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\Build\CodeJam.Default.props" />
-	<Import Project="..\..\Build\CodeJam.Targeting.props" />
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
 
 	<PropertyGroup>
-		<AssemblyName>CodeJam-Tests</AssemblyName>
+		<AssemblyName>CodeJam.Tests</AssemblyName>
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{DD65E3F2-9658-4242-A8AA-056028473CB1}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35</TargetFrameworks>
-	</PropertyGroup>
-
-	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
-		<TargetFrameworks>net461</TargetFrameworks>
-	</PropertyGroup>
-
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
-		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
-		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Publish|AnyCPU' ">
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<OutputPath>bin\Publish\</OutputPath>
-		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\CodeJam.Main.csproj" />
+		<ProjectReference Include="..\CodeJam.Main\CodeJam.Main.csproj" />
 	</ItemGroup>
+
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
 	</ItemGroup>

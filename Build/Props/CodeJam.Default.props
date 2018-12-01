@@ -1,22 +1,20 @@
 ﻿<Project>
 	<PropertyGroup>
-		<AppDesignerFolder>Properties</AppDesignerFolder>
-		<Configurations>Debug;Release;Publish</Configurations>
+		<Configurations>Debug;Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<WarningLevel>4</WarningLevel>
-		<ErrorReport>prompt</ErrorReport>
 
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<SignAssembly>True</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>False</DelaySign>
+		<AssemblyOriginatorKeyFile>..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 
-		<Version>2.1.0.0</Version>
-		<PackageVersion>2.1.1</PackageVersion>
-		<PackageOutputPath>..\..\_Results</PackageOutputPath>
+		<Version>2.2.0.0</Version>
+		<PackageVersion>2.2.0</PackageVersion>
+		<PackageOutputPath>..\_Results</PackageOutputPath>
 
 		<Company>RSDN</Company>
+
 		<Copyright>RSDN, 2018</Copyright>
 		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>

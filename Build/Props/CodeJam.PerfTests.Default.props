@@ -1,7 +1,0 @@
-﻿<Project>
-	<PropertyGroup>
-		<Version>0.1.4.1</Version>
-		<PackageVersion>0.1.4.1-alpha</PackageVersion>
-		<PackageOutputPath>..\..\_Results</PackageOutputPath>
-	</PropertyGroup>
-</Project>
