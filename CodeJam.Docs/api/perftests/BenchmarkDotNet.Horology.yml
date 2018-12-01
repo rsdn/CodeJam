@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: BenchmarkDotNet.Horology
+  commentId: N:BenchmarkDotNet.Horology
+  id: BenchmarkDotNet.Horology
+  children:
+  - BenchmarkDotNet.Horology.ProcessCycleTimeClock
+  - BenchmarkDotNet.Horology.ThreadCycleTimeClock
+  langs:
+  - csharp
+  - vb
+  name: BenchmarkDotNet.Horology
+  nameWithType: BenchmarkDotNet.Horology
+  fullName: BenchmarkDotNet.Horology
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: BenchmarkDotNet.Horology.ProcessCycleTimeClock
+  commentId: T:BenchmarkDotNet.Horology.ProcessCycleTimeClock
+  isExternal: false
+  name: ProcessCycleTimeClock
+  nameWithType: ProcessCycleTimeClock
+  fullName: BenchmarkDotNet.Horology.ProcessCycleTimeClock
+- uid: BenchmarkDotNet.Horology.ThreadCycleTimeClock
+  commentId: T:BenchmarkDotNet.Horology.ThreadCycleTimeClock
+  isExternal: false
+  name: ThreadCycleTimeClock
+  nameWithType: ThreadCycleTimeClock
+  fullName: BenchmarkDotNet.Horology.ThreadCycleTimeClock

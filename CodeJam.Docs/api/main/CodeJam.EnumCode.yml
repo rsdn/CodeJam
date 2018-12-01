@@ -1,0 +1,1169 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.EnumCode
+  commentId: T:CodeJam.EnumCode
+  id: EnumCode
+  parent: CodeJam
+  children:
+  - CodeJam.EnumCode.AnyFlagSet``1(``0,System.String,``0)
+  - CodeJam.EnumCode.AnyFlagUnset``1(``0,System.String,``0)
+  - CodeJam.EnumCode.AnyStateFlagSet``1(``0,``0,System.String)
+  - CodeJam.EnumCode.AnyStateFlagSet``1(``0,``0,System.String,System.Object[])
+  - CodeJam.EnumCode.AnyStateFlagUnset``1(``0,``0,System.String)
+  - CodeJam.EnumCode.AnyStateFlagUnset``1(``0,``0,System.String,System.Object[])
+  - CodeJam.EnumCode.Defined``1(``0,System.String)
+  - CodeJam.EnumCode.FlagsDefined``1(``0,System.String)
+  - CodeJam.EnumCode.FlagSet``1(``0,System.String,``0)
+  - CodeJam.EnumCode.FlagUnset``1(``0,System.String,``0)
+  - CodeJam.EnumCode.StateFlagSet``1(``0,``0,System.String)
+  - CodeJam.EnumCode.StateFlagSet``1(``0,``0,System.String,System.Object[])
+  - CodeJam.EnumCode.StateFlagUnset``1(``0,``0,System.String)
+  - CodeJam.EnumCode.StateFlagUnset``1(``0,``0,System.String,System.Object[])
+  langs:
+  - csharp
+  - vb
+  name: EnumCode
+  nameWithType: EnumCode
+  fullName: CodeJam.EnumCode
+  type: Class
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: EnumCode
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 11
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Enum assertions class.
+  example: []
+  syntax:
+    content: public static class EnumCode
+    content.vb: Public Module EnumCode
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.EnumCode.Defined``1(``0,System.String)
+  commentId: M:CodeJam.EnumCode.Defined``1(``0,System.String)
+  id: Defined``1(``0,System.String)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: Defined<TEnum>(TEnum, String)
+  nameWithType: EnumCode.Defined<TEnum>(TEnum, String)
+  fullName: CodeJam.EnumCode.Defined<TEnum>(TEnum, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Defined
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 19
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that specified argument enum value is defined.
+  example: []
+  syntax:
+    content: 'public static void Defined<TEnum>(TEnum value, string argName)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The argument.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub Defined(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, argName As String)
+  overload: CodeJam.EnumCode.Defined*
+  nameWithType.vb: EnumCode.Defined(Of TEnum)(TEnum, String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.Defined(Of TEnum)(TEnum, System.String)
+  name.vb: Defined(Of TEnum)(TEnum, String)
+- uid: CodeJam.EnumCode.FlagsDefined``1(``0,System.String)
+  commentId: M:CodeJam.EnumCode.FlagsDefined``1(``0,System.String)
+  id: FlagsDefined``1(``0,System.String)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: FlagsDefined<TEnum>(TEnum, String)
+  nameWithType: EnumCode.FlagsDefined<TEnum>(TEnum, String)
+  fullName: CodeJam.EnumCode.FlagsDefined<TEnum>(TEnum, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FlagsDefined
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 34
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that all bits of the flags combination are defined.
+  example: []
+  syntax:
+    content: 'public static void FlagsDefined<TEnum>(TEnum argFlags, string argName)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: argFlags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags to check.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub FlagsDefined(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(argFlags As TEnum, argName As String)
+  overload: CodeJam.EnumCode.FlagsDefined*
+  nameWithType.vb: EnumCode.FlagsDefined(Of TEnum)(TEnum, String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.FlagsDefined(Of TEnum)(TEnum, System.String)
+  name.vb: FlagsDefined(Of TEnum)(TEnum, String)
+- uid: CodeJam.EnumCode.FlagSet``1(``0,System.String,``0)
+  commentId: M:CodeJam.EnumCode.FlagSet``1(``0,System.String,``0)
+  id: FlagSet``1(``0,System.String,``0)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: FlagSet<TEnum>(TEnum, String, TEnum)
+  nameWithType: EnumCode.FlagSet<TEnum>(TEnum, String, TEnum)
+  fullName: CodeJam.EnumCode.FlagSet<TEnum>(TEnum, System.String, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FlagSet
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 52
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that the specified argument flag is set.
+  example: []
+  syntax:
+    content: 'public static void FlagSet<TEnum>(TEnum value, string argName, TEnum flag)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The argument.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    - id: flag
+      type: '{TEnum}'
+      description: The flag.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub FlagSet(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, argName As String, flag As TEnum)
+  overload: CodeJam.EnumCode.FlagSet*
+  nameWithType.vb: EnumCode.FlagSet(Of TEnum)(TEnum, String, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.FlagSet(Of TEnum)(TEnum, System.String, TEnum)
+  name.vb: FlagSet(Of TEnum)(TEnum, String, TEnum)
+- uid: CodeJam.EnumCode.AnyFlagUnset``1(``0,System.String,``0)
+  commentId: M:CodeJam.EnumCode.AnyFlagUnset``1(``0,System.String,``0)
+  id: AnyFlagUnset``1(``0,System.String,``0)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: AnyFlagUnset<TEnum>(TEnum, String, TEnum)
+  nameWithType: EnumCode.AnyFlagUnset<TEnum>(TEnum, String, TEnum)
+  fullName: CodeJam.EnumCode.AnyFlagUnset<TEnum>(TEnum, System.String, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AnyFlagUnset
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 69
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that any bit from specified argument flag is not set.
+  example: []
+  syntax:
+    content: 'public static void AnyFlagUnset<TEnum>(TEnum value, string argName, TEnum flags)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The argument.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    - id: flags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub AnyFlagUnset(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, argName As String, flags As TEnum)
+  overload: CodeJam.EnumCode.AnyFlagUnset*
+  nameWithType.vb: EnumCode.AnyFlagUnset(Of TEnum)(TEnum, String, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.AnyFlagUnset(Of TEnum)(TEnum, System.String, TEnum)
+  name.vb: AnyFlagUnset(Of TEnum)(TEnum, String, TEnum)
+- uid: CodeJam.EnumCode.AnyFlagSet``1(``0,System.String,``0)
+  commentId: M:CodeJam.EnumCode.AnyFlagSet``1(``0,System.String,``0)
+  id: AnyFlagSet``1(``0,System.String,``0)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: AnyFlagSet<TEnum>(TEnum, String, TEnum)
+  nameWithType: EnumCode.AnyFlagSet<TEnum>(TEnum, String, TEnum)
+  fullName: CodeJam.EnumCode.AnyFlagSet<TEnum>(TEnum, System.String, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AnyFlagSet
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 86
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that any bit from specified argument flag is set.
+  example: []
+  syntax:
+    content: 'public static void AnyFlagSet<TEnum>(TEnum value, string argName, TEnum flags)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The argument.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    - id: flags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub AnyFlagSet(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, argName As String, flags As TEnum)
+  overload: CodeJam.EnumCode.AnyFlagSet*
+  nameWithType.vb: EnumCode.AnyFlagSet(Of TEnum)(TEnum, String, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.AnyFlagSet(Of TEnum)(TEnum, System.String, TEnum)
+  name.vb: AnyFlagSet(Of TEnum)(TEnum, String, TEnum)
+- uid: CodeJam.EnumCode.FlagUnset``1(``0,System.String,``0)
+  commentId: M:CodeJam.EnumCode.FlagUnset``1(``0,System.String,``0)
+  id: FlagUnset``1(``0,System.String,``0)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: FlagUnset<TEnum>(TEnum, String, TEnum)
+  nameWithType: EnumCode.FlagUnset<TEnum>(TEnum, String, TEnum)
+  fullName: CodeJam.EnumCode.FlagUnset<TEnum>(TEnum, System.String, TEnum)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FlagUnset
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 103
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that the specified argument flag is not set.
+  example: []
+  syntax:
+    content: 'public static void FlagUnset<TEnum>(TEnum value, string argName, TEnum flag)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The argument.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    - id: flag
+      type: '{TEnum}'
+      description: The flag.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub FlagUnset(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, argName As String, flag As TEnum)
+  overload: CodeJam.EnumCode.FlagUnset*
+  nameWithType.vb: EnumCode.FlagUnset(Of TEnum)(TEnum, String, TEnum)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.FlagUnset(Of TEnum)(TEnum, System.String, TEnum)
+  name.vb: FlagUnset(Of TEnum)(TEnum, String, TEnum)
+- uid: CodeJam.EnumCode.StateFlagSet``1(``0,``0,System.String)
+  commentId: M:CodeJam.EnumCode.StateFlagSet``1(``0,``0,System.String)
+  id: StateFlagSet``1(``0,``0,System.String)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: StateFlagSet<TEnum>(TEnum, TEnum, String)
+  nameWithType: EnumCode.StateFlagSet<TEnum>(TEnum, TEnum, String)
+  fullName: CodeJam.EnumCode.StateFlagSet<TEnum>(TEnum, TEnum, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: StateFlagSet
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 122
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that the specified state flag is set.
+  example: []
+  syntax:
+    content: 'public static void StateFlagSet<TEnum>(TEnum value, TEnum flag, string message)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flag
+      type: '{TEnum}'
+      description: The flag.
+    - id: message
+      type: System.String
+      description: The message.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub StateFlagSet(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, flag As TEnum, message As String)
+  overload: CodeJam.EnumCode.StateFlagSet*
+  nameWithType.vb: EnumCode.StateFlagSet(Of TEnum)(TEnum, TEnum, String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.StateFlagSet(Of TEnum)(TEnum, TEnum, System.String)
+  name.vb: StateFlagSet(Of TEnum)(TEnum, TEnum, String)
+- uid: CodeJam.EnumCode.StateFlagSet``1(``0,``0,System.String,System.Object[])
+  commentId: M:CodeJam.EnumCode.StateFlagSet``1(``0,``0,System.String,System.Object[])
+  id: StateFlagSet``1(``0,``0,System.String,System.Object[])
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: StateFlagSet<TEnum>(TEnum, TEnum, String, Object[])
+  nameWithType: EnumCode.StateFlagSet<TEnum>(TEnum, TEnum, String, Object[])
+  fullName: CodeJam.EnumCode.StateFlagSet<TEnum>(TEnum, TEnum, System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: StateFlagSet
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 136
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that the specified state flag is set.
+  example: []
+  syntax:
+    content: 'public static void StateFlagSet<TEnum>(TEnum value, TEnum flag, string messageFormat, params object[] args)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flag
+      type: '{TEnum}'
+      description: The flag.
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub StateFlagSet(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, flag As TEnum, messageFormat As String, ParamArray args As Object())
+  overload: CodeJam.EnumCode.StateFlagSet*
+  nameWithType.vb: EnumCode.StateFlagSet(Of TEnum)(TEnum, TEnum, String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.StateFlagSet(Of TEnum)(TEnum, TEnum, System.String, System.Object())
+  name.vb: StateFlagSet(Of TEnum)(TEnum, TEnum, String, Object())
+- uid: CodeJam.EnumCode.AnyStateFlagUnset``1(``0,``0,System.String)
+  commentId: M:CodeJam.EnumCode.AnyStateFlagUnset``1(``0,``0,System.String)
+  id: AnyStateFlagUnset``1(``0,``0,System.String)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: AnyStateFlagUnset<TEnum>(TEnum, TEnum, String)
+  nameWithType: EnumCode.AnyStateFlagUnset<TEnum>(TEnum, TEnum, String)
+  fullName: CodeJam.EnumCode.AnyStateFlagUnset<TEnum>(TEnum, TEnum, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AnyStateFlagUnset
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 153
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that any bit from specified state flag is not set.
+  example: []
+  syntax:
+    content: 'public static void AnyStateFlagUnset<TEnum>(TEnum value, TEnum flags, string message)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags.
+    - id: message
+      type: System.String
+      description: The message.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub AnyStateFlagUnset(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, flags As TEnum, message As String)
+  overload: CodeJam.EnumCode.AnyStateFlagUnset*
+  nameWithType.vb: EnumCode.AnyStateFlagUnset(Of TEnum)(TEnum, TEnum, String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.AnyStateFlagUnset(Of TEnum)(TEnum, TEnum, System.String)
+  name.vb: AnyStateFlagUnset(Of TEnum)(TEnum, TEnum, String)
+- uid: CodeJam.EnumCode.AnyStateFlagUnset``1(``0,``0,System.String,System.Object[])
+  commentId: M:CodeJam.EnumCode.AnyStateFlagUnset``1(``0,``0,System.String,System.Object[])
+  id: AnyStateFlagUnset``1(``0,``0,System.String,System.Object[])
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: AnyStateFlagUnset<TEnum>(TEnum, TEnum, String, Object[])
+  nameWithType: EnumCode.AnyStateFlagUnset<TEnum>(TEnum, TEnum, String, Object[])
+  fullName: CodeJam.EnumCode.AnyStateFlagUnset<TEnum>(TEnum, TEnum, System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AnyStateFlagUnset
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 168
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that any bit from specified state flag is not set.
+  example: []
+  syntax:
+    content: 'public static void AnyStateFlagUnset<TEnum>(TEnum value, TEnum flags, string messageFormat, params object[] args)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags.
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub AnyStateFlagUnset(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, flags As TEnum, messageFormat As String, ParamArray args As Object())
+  overload: CodeJam.EnumCode.AnyStateFlagUnset*
+  nameWithType.vb: EnumCode.AnyStateFlagUnset(Of TEnum)(TEnum, TEnum, String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.AnyStateFlagUnset(Of TEnum)(TEnum, TEnum, System.String, System.Object())
+  name.vb: AnyStateFlagUnset(Of TEnum)(TEnum, TEnum, String, Object())
+- uid: CodeJam.EnumCode.AnyStateFlagSet``1(``0,``0,System.String)
+  commentId: M:CodeJam.EnumCode.AnyStateFlagSet``1(``0,``0,System.String)
+  id: AnyStateFlagSet``1(``0,``0,System.String)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: AnyStateFlagSet<TEnum>(TEnum, TEnum, String)
+  nameWithType: EnumCode.AnyStateFlagSet<TEnum>(TEnum, TEnum, String)
+  fullName: CodeJam.EnumCode.AnyStateFlagSet<TEnum>(TEnum, TEnum, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AnyStateFlagSet
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 185
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that any bit from specified state flag is set.
+  example: []
+  syntax:
+    content: 'public static void AnyStateFlagSet<TEnum>(TEnum value, TEnum flags, string message)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags.
+    - id: message
+      type: System.String
+      description: The message.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub AnyStateFlagSet(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, flags As TEnum, message As String)
+  overload: CodeJam.EnumCode.AnyStateFlagSet*
+  nameWithType.vb: EnumCode.AnyStateFlagSet(Of TEnum)(TEnum, TEnum, String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.AnyStateFlagSet(Of TEnum)(TEnum, TEnum, System.String)
+  name.vb: AnyStateFlagSet(Of TEnum)(TEnum, TEnum, String)
+- uid: CodeJam.EnumCode.AnyStateFlagSet``1(``0,``0,System.String,System.Object[])
+  commentId: M:CodeJam.EnumCode.AnyStateFlagSet``1(``0,``0,System.String,System.Object[])
+  id: AnyStateFlagSet``1(``0,``0,System.String,System.Object[])
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: AnyStateFlagSet<TEnum>(TEnum, TEnum, String, Object[])
+  nameWithType: EnumCode.AnyStateFlagSet<TEnum>(TEnum, TEnum, String, Object[])
+  fullName: CodeJam.EnumCode.AnyStateFlagSet<TEnum>(TEnum, TEnum, System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AnyStateFlagSet
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 200
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that any bit from specified state flag is set.
+  example: []
+  syntax:
+    content: 'public static void AnyStateFlagSet<TEnum>(TEnum value, TEnum flags, string messageFormat, params object[] args)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flags
+      type: '{TEnum}'
+      description: The bitwise combinations of the flags.
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub AnyStateFlagSet(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, flags As TEnum, messageFormat As String, ParamArray args As Object())
+  overload: CodeJam.EnumCode.AnyStateFlagSet*
+  nameWithType.vb: EnumCode.AnyStateFlagSet(Of TEnum)(TEnum, TEnum, String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.AnyStateFlagSet(Of TEnum)(TEnum, TEnum, System.String, System.Object())
+  name.vb: AnyStateFlagSet(Of TEnum)(TEnum, TEnum, String, Object())
+- uid: CodeJam.EnumCode.StateFlagUnset``1(``0,``0,System.String)
+  commentId: M:CodeJam.EnumCode.StateFlagUnset``1(``0,``0,System.String)
+  id: StateFlagUnset``1(``0,``0,System.String)
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: StateFlagUnset<TEnum>(TEnum, TEnum, String)
+  nameWithType: EnumCode.StateFlagUnset<TEnum>(TEnum, TEnum, String)
+  fullName: CodeJam.EnumCode.StateFlagUnset<TEnum>(TEnum, TEnum, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: StateFlagUnset
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 217
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that the specified state flag is not set.
+  example: []
+  syntax:
+    content: 'public static void StateFlagUnset<TEnum>(TEnum value, TEnum flag, string message)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flag
+      type: '{TEnum}'
+      description: The flag.
+    - id: message
+      type: System.String
+      description: The message.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub StateFlagUnset(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, flag As TEnum, message As String)
+  overload: CodeJam.EnumCode.StateFlagUnset*
+  nameWithType.vb: EnumCode.StateFlagUnset(Of TEnum)(TEnum, TEnum, String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.StateFlagUnset(Of TEnum)(TEnum, TEnum, System.String)
+  name.vb: StateFlagUnset(Of TEnum)(TEnum, TEnum, String)
+- uid: CodeJam.EnumCode.StateFlagUnset``1(``0,``0,System.String,System.Object[])
+  commentId: M:CodeJam.EnumCode.StateFlagUnset``1(``0,``0,System.String,System.Object[])
+  id: StateFlagUnset``1(``0,``0,System.String,System.Object[])
+  parent: CodeJam.EnumCode
+  langs:
+  - csharp
+  - vb
+  name: StateFlagUnset<TEnum>(TEnum, TEnum, String, Object[])
+  nameWithType: EnumCode.StateFlagUnset<TEnum>(TEnum, TEnum, String, Object[])
+  fullName: CodeJam.EnumCode.StateFlagUnset<TEnum>(TEnum, TEnum, System.String, System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Main/src/Assertions/EnumCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: StateFlagUnset
+    path: ../Main/src/Assertions/EnumCode.cs
+    startLine: 232
+  assemblies:
+  - CodeJam
+  namespace: CodeJam
+  summary: Asserts that the specified state flag is not set.
+  example: []
+  syntax:
+    content: 'public static void StateFlagUnset<TEnum>(TEnum value, TEnum flag, string messageFormat, params object[] args)where TEnum : struct, IComparable, IFormattable, IConvertible'
+    parameters:
+    - id: value
+      type: '{TEnum}'
+      description: The value.
+    - id: flag
+      type: '{TEnum}'
+      description: The flag.
+    - id: messageFormat
+      type: System.String
+      description: The message format.
+    - id: args
+      type: System.Object[]
+      description: The arguments.
+    typeParameters:
+    - id: TEnum
+      description: The type of the enum value.
+    content.vb: Public Shared Sub StateFlagUnset(Of TEnum As {Structure, IComparable, IFormattable, IConvertible})(value As TEnum, flag As TEnum, messageFormat As String, ParamArray args As Object())
+  overload: CodeJam.EnumCode.StateFlagUnset*
+  nameWithType.vb: EnumCode.StateFlagUnset(Of TEnum)(TEnum, TEnum, String, Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.EnumCode.StateFlagUnset(Of TEnum)(TEnum, TEnum, System.String, System.Object())
+  name.vb: StateFlagUnset(Of TEnum)(TEnum, TEnum, String, Object())
+references:
+- uid: CodeJam
+  commentId: N:CodeJam
+  isExternal: false
+  name: CodeJam
+  nameWithType: CodeJam
+  fullName: CodeJam
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.EnumCode.Defined*
+  commentId: Overload:CodeJam.EnumCode.Defined
+  isExternal: false
+  name: Defined
+  nameWithType: EnumCode.Defined
+  fullName: CodeJam.EnumCode.Defined
+- uid: '{TEnum}'
+  commentId: '!:TEnum'
+  definition: TEnum
+  name: TEnum
+  nameWithType: TEnum
+  fullName: TEnum
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: TEnum
+  isExternal: false
+  name: TEnum
+  nameWithType: TEnum
+  fullName: TEnum
+- uid: CodeJam.EnumCode.FlagsDefined*
+  commentId: Overload:CodeJam.EnumCode.FlagsDefined
+  isExternal: false
+  name: FlagsDefined
+  nameWithType: EnumCode.FlagsDefined
+  fullName: CodeJam.EnumCode.FlagsDefined
+- uid: CodeJam.EnumCode.FlagSet*
+  commentId: Overload:CodeJam.EnumCode.FlagSet
+  isExternal: false
+  name: FlagSet
+  nameWithType: EnumCode.FlagSet
+  fullName: CodeJam.EnumCode.FlagSet
+- uid: CodeJam.EnumCode.AnyFlagUnset*
+  commentId: Overload:CodeJam.EnumCode.AnyFlagUnset
+  isExternal: false
+  name: AnyFlagUnset
+  nameWithType: EnumCode.AnyFlagUnset
+  fullName: CodeJam.EnumCode.AnyFlagUnset
+- uid: CodeJam.EnumCode.AnyFlagSet*
+  commentId: Overload:CodeJam.EnumCode.AnyFlagSet
+  isExternal: false
+  name: AnyFlagSet
+  nameWithType: EnumCode.AnyFlagSet
+  fullName: CodeJam.EnumCode.AnyFlagSet
+- uid: CodeJam.EnumCode.FlagUnset*
+  commentId: Overload:CodeJam.EnumCode.FlagUnset
+  isExternal: false
+  name: FlagUnset
+  nameWithType: EnumCode.FlagUnset
+  fullName: CodeJam.EnumCode.FlagUnset
+- uid: CodeJam.EnumCode.StateFlagSet*
+  commentId: Overload:CodeJam.EnumCode.StateFlagSet
+  isExternal: false
+  name: StateFlagSet
+  nameWithType: EnumCode.StateFlagSet
+  fullName: CodeJam.EnumCode.StateFlagSet
+- uid: System.Object[]
+  name: Object[]
+  nameWithType: Object[]
+  fullName: System.Object[]
+  nameWithType.vb: Object()
+  fullName.vb: System.Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.EnumCode.AnyStateFlagUnset*
+  commentId: Overload:CodeJam.EnumCode.AnyStateFlagUnset
+  isExternal: false
+  name: AnyStateFlagUnset
+  nameWithType: EnumCode.AnyStateFlagUnset
+  fullName: CodeJam.EnumCode.AnyStateFlagUnset
+- uid: CodeJam.EnumCode.AnyStateFlagSet*
+  commentId: Overload:CodeJam.EnumCode.AnyStateFlagSet
+  isExternal: false
+  name: AnyStateFlagSet
+  nameWithType: EnumCode.AnyStateFlagSet
+  fullName: CodeJam.EnumCode.AnyStateFlagSet
+- uid: CodeJam.EnumCode.StateFlagUnset*
+  commentId: Overload:CodeJam.EnumCode.StateFlagUnset
+  isExternal: false
+  name: StateFlagUnset
+  nameWithType: EnumCode.StateFlagUnset
+  fullName: CodeJam.EnumCode.StateFlagUnset

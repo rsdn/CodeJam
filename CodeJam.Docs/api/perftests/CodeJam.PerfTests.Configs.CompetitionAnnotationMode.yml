@@ -1,0 +1,2421 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  commentId: T:CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  id: CompetitionAnnotationMode
+  parent: CodeJam.PerfTests.Configs
+  children:
+  - CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotations
+  - CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotationsCharacteristic
+  - CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotations
+  - CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotationsCharacteristic
+  - CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations
+  - CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotationsCharacteristic
+  - CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri
+  - CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUriCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: CompetitionAnnotationMode
+  nameWithType: CompetitionAnnotationMode
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CompetitionAnnotationMode
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 10
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Competition annotations parameters class.
+  example: []
+  syntax:
+    content: 'public sealed class CompetitionAnnotationMode : CharacteristicObject<CompetitionAnnotationMode>'
+    content.vb: >-
+      Public NotInheritable Class CompetitionAnnotationMode
+          Inherits CharacteristicObject(Of CompetitionAnnotationMode)
+  seealso:
+  - linkId: BenchmarkDotNet.Characteristics.CharacteristicObject`1
+    commentId: T:BenchmarkDotNet.Characteristics.CharacteristicObject`1
+  inheritance:
+  - System.Object
+  - BenchmarkDotNet.Characteristics.CharacteristicObject
+  - BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  inheritedMembers:
+  - BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  - BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  - BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Freeze
+  - BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.UnfreezeCopy
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.IdCharacteristic
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId(BenchmarkDotNet.Characteristics.CharacteristicObject,System.String)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue(BenchmarkDotNet.Characteristics.Characteristic)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{{T}},BenchmarkDotNet.Characteristics.IResolver)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,BenchmarkDotNet.Characteristics.IResolver)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{{T}},{T})
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{{T}})
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.ToString
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.Owner
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.OwnerOrSelf
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.IsPropertyBag
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.HasChanges
+  - BenchmarkDotNet.Characteristics.CharacteristicObject.Id
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotationsCharacteristic
+  commentId: F:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotationsCharacteristic
+  id: IgnoreExistingAnnotationsCharacteristic
+  parent: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  langs:
+  - csharp
+  - vb
+  name: IgnoreExistingAnnotationsCharacteristic
+  nameWithType: CompetitionAnnotationMode.IgnoreExistingAnnotationsCharacteristic
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotationsCharacteristic
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IgnoreExistingAnnotationsCharacteristic
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Ignore existing source annotations characteristic.
+  example: []
+  syntax:
+    content: public static readonly Characteristic<bool> IgnoreExistingAnnotationsCharacteristic
+    return:
+      type: BenchmarkDotNet.Characteristics.Characteristic{System.Boolean}
+    content.vb: Public Shared ReadOnly IgnoreExistingAnnotationsCharacteristic As Characteristic(Of Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUriCharacteristic
+  commentId: F:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUriCharacteristic
+  id: PreviousRunLogUriCharacteristic
+  parent: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  langs:
+  - csharp
+  - vb
+  name: PreviousRunLogUriCharacteristic
+  nameWithType: CompetitionAnnotationMode.PreviousRunLogUriCharacteristic
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUriCharacteristic
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: PreviousRunLogUriCharacteristic
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 18
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Characteristic for URI of the log that contains logged source annotations from previous run(s).
+  example: []
+  syntax:
+    content: public static readonly Characteristic<string> PreviousRunLogUriCharacteristic
+    return:
+      type: BenchmarkDotNet.Characteristics.Characteristic{System.String}
+    content.vb: Public Shared ReadOnly PreviousRunLogUriCharacteristic As Characteristic(Of String)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotationsCharacteristic
+  commentId: F:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotationsCharacteristic
+  id: LogAnnotationsCharacteristic
+  parent: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  langs:
+  - csharp
+  - vb
+  name: LogAnnotationsCharacteristic
+  nameWithType: CompetitionAnnotationMode.LogAnnotationsCharacteristic
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotationsCharacteristic
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: LogAnnotationsCharacteristic
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 22
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Log source annotations characteristic.
+  example: []
+  syntax:
+    content: public static readonly Characteristic<bool> LogAnnotationsCharacteristic
+    return:
+      type: BenchmarkDotNet.Characteristics.Characteristic{System.Boolean}
+    content.vb: Public Shared ReadOnly LogAnnotationsCharacteristic As Characteristic(Of Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotationsCharacteristic
+  commentId: F:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotationsCharacteristic
+  id: DontSaveUpdatedAnnotationsCharacteristic
+  parent: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  langs:
+  - csharp
+  - vb
+  name: DontSaveUpdatedAnnotationsCharacteristic
+  nameWithType: CompetitionAnnotationMode.DontSaveUpdatedAnnotationsCharacteristic
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotationsCharacteristic
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DontSaveUpdatedAnnotationsCharacteristic
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 26
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Dont update sources with updated annotations.
+  example: []
+  syntax:
+    content: public static readonly Characteristic<bool> DontSaveUpdatedAnnotationsCharacteristic
+    return:
+      type: BenchmarkDotNet.Characteristics.Characteristic{System.Boolean}
+    content.vb: Public Shared ReadOnly DontSaveUpdatedAnnotationsCharacteristic As Characteristic(Of Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotations
+  commentId: P:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotations
+  id: IgnoreExistingAnnotations
+  parent: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  langs:
+  - csharp
+  - vb
+  name: IgnoreExistingAnnotations
+  nameWithType: CompetitionAnnotationMode.IgnoreExistingAnnotations
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotations
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IgnoreExistingAnnotations
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 31
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Existing source annotations should be igored.
+  example: []
+  syntax:
+    content: public bool IgnoreExistingAnnotations { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <code>true</code>, if existing source annotations should be igored; otherwise, <code>false</code>.
+    content.vb: Public Property IgnoreExistingAnnotations As Boolean
+  overload: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotations*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri
+  commentId: P:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri
+  id: PreviousRunLogUri
+  parent: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  langs:
+  - csharp
+  - vb
+  name: PreviousRunLogUri
+  nameWithType: CompetitionAnnotationMode.PreviousRunLogUri
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: PreviousRunLogUri
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 49
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: "\nURI of the log that contains logged source annotations from previous run(s).\nRelative paths, file paths and web URLs are supported.\nSet the <xref href=\"CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations\" data-throw-if-not-resolved=\"false\"></xref> to <code>true</code> to log the source annotations.\n"
+  example: []
+  syntax:
+    content: public string PreviousRunLogUri { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The URI of the log that contains logged source annotations from previous run(s).
+    content.vb: Public Property PreviousRunLogUri As String
+  overload: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations
+  commentId: P:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations
+  id: LogAnnotations
+  parent: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  langs:
+  - csharp
+  - vb
+  name: LogAnnotations
+  nameWithType: CompetitionAnnotationMode.LogAnnotations
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: LogAnnotations
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 65
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: Log source annotations.
+  example: []
+  syntax:
+    content: public bool LogAnnotations { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if current source annotations should be logged; otherwise, <code>false</code>.\n"
+    content.vb: Public Property LogAnnotations As Boolean
+  overload: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotations
+  commentId: P:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotations
+  id: DontSaveUpdatedAnnotations
+  parent: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  langs:
+  - csharp
+  - vb
+  name: DontSaveUpdatedAnnotations
+  nameWithType: CompetitionAnnotationMode.DontSaveUpdatedAnnotations
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotations
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DontSaveUpdatedAnnotations
+    path: ../PerfTests/src/[L1_CompetitionApi]/Configs/CompetitionAnnotationMode.cs
+    startLine: 85
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs
+  summary: "\nDont update sources with updated annotations.\nUse this for CI runs when source files are not accessible.\nSet the <xref href=\"CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations\" data-throw-if-not-resolved=\"false\"></xref> to <code>true</code> to log source annotations and use the <xref href=\"CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri\" data-throw-if-not-resolved=\"false\"></xref> to restore them.\n"
+  example: []
+  syntax:
+    content: public bool DontSaveUpdatedAnnotations { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> sources should not be updated with updated annotations.\n"
+    content.vb: Public Property DontSaveUpdatedAnnotations As Boolean
+  overload: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotations*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1
+  commentId: T:BenchmarkDotNet.Characteristics.CharacteristicObject`1
+  isExternal: true
+  name: CharacteristicObject<T>
+  nameWithType: CharacteristicObject<T>
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>
+  nameWithType.vb: CharacteristicObject(Of T)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T)
+  name.vb: CharacteristicObject(Of T)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs
+  commentId: N:CodeJam.PerfTests.Configs
+  isExternal: false
+  name: CodeJam.PerfTests.Configs
+  nameWithType: CodeJam.PerfTests.Configs
+  fullName: CodeJam.PerfTests.Configs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+  commentId: T:BenchmarkDotNet.Characteristics.CharacteristicObject
+  parent: BenchmarkDotNet.Characteristics
+  isExternal: true
+  name: CharacteristicObject
+  nameWithType: CharacteristicObject
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  commentId: T:BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  parent: BenchmarkDotNet.Characteristics
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject`1
+  name: CharacteristicObject<CompetitionAnnotationMode>
+  nameWithType: CharacteristicObject<CompetitionAnnotationMode>
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>
+  nameWithType.vb: CharacteristicObject(Of CompetitionAnnotationMode)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode)
+  name.vb: CharacteristicObject(Of CompetitionAnnotationMode)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+    name: CompetitionAnnotationMode
+    nameWithType: CompetitionAnnotationMode
+    fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+    name: CompetitionAnnotationMode
+    nameWithType: CompetitionAnnotationMode
+    fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  name: Apply(CharacteristicObject)
+  nameWithType: CharacteristicObject<CompetitionAnnotationMode>.Apply(CharacteristicObject)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  nameWithType.vb: CharacteristicObject(Of CompetitionAnnotationMode).Apply(CharacteristicObject)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: Apply
+    nameWithType: CharacteristicObject<CompetitionAnnotationMode>.Apply
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.Apply
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: Apply
+    nameWithType: CharacteristicObject(Of CompetitionAnnotationMode).Apply
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).Apply
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  name: Apply(CharacteristicObject[])
+  nameWithType: CharacteristicObject<CompetitionAnnotationMode>.Apply(CharacteristicObject[])
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  nameWithType.vb: CharacteristicObject(Of CompetitionAnnotationMode).Apply(CharacteristicObject())
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).Apply(BenchmarkDotNet.Characteristics.CharacteristicObject())
+  name.vb: Apply(CharacteristicObject())
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+    name: Apply
+    nameWithType: CharacteristicObject<CompetitionAnnotationMode>.Apply
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.Apply
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+    name: Apply
+    nameWithType: CharacteristicObject(Of CompetitionAnnotationMode).Apply
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).Apply
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  name: ApplyAndFreeze(CharacteristicObject)
+  nameWithType: CharacteristicObject<CompetitionAnnotationMode>.ApplyAndFreeze(CharacteristicObject)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  nameWithType.vb: CharacteristicObject(Of CompetitionAnnotationMode).ApplyAndFreeze(CharacteristicObject)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: ApplyAndFreeze
+    nameWithType: CharacteristicObject<CompetitionAnnotationMode>.ApplyAndFreeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.ApplyAndFreeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: ApplyAndFreeze
+    nameWithType: CharacteristicObject(Of CompetitionAnnotationMode).ApplyAndFreeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).ApplyAndFreeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  name: ApplyAndFreeze(CharacteristicObject[])
+  nameWithType: CharacteristicObject<CompetitionAnnotationMode>.ApplyAndFreeze(CharacteristicObject[])
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  nameWithType.vb: CharacteristicObject(Of CompetitionAnnotationMode).ApplyAndFreeze(CharacteristicObject())
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject())
+  name.vb: ApplyAndFreeze(CharacteristicObject())
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+    name: ApplyAndFreeze
+    nameWithType: CharacteristicObject<CompetitionAnnotationMode>.ApplyAndFreeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.ApplyAndFreeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+    name: ApplyAndFreeze
+    nameWithType: CharacteristicObject(Of CompetitionAnnotationMode).ApplyAndFreeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).ApplyAndFreeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Freeze
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.Freeze
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Freeze
+  name: Freeze()
+  nameWithType: CharacteristicObject<CompetitionAnnotationMode>.Freeze()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.Freeze()
+  nameWithType.vb: CharacteristicObject(Of CompetitionAnnotationMode).Freeze()
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).Freeze()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Freeze
+    name: Freeze
+    nameWithType: CharacteristicObject<CompetitionAnnotationMode>.Freeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.Freeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Freeze
+    name: Freeze
+    nameWithType: CharacteristicObject(Of CompetitionAnnotationMode).Freeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).Freeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.UnfreezeCopy
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}.UnfreezeCopy
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject{CodeJam.PerfTests.Configs.CompetitionAnnotationMode}
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject`1.UnfreezeCopy
+  name: UnfreezeCopy()
+  nameWithType: CharacteristicObject<CompetitionAnnotationMode>.UnfreezeCopy()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.UnfreezeCopy()
+  nameWithType.vb: CharacteristicObject(Of CompetitionAnnotationMode).UnfreezeCopy()
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).UnfreezeCopy()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.UnfreezeCopy
+    name: UnfreezeCopy
+    nameWithType: CharacteristicObject<CompetitionAnnotationMode>.UnfreezeCopy
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<CodeJam.PerfTests.Configs.CompetitionAnnotationMode>.UnfreezeCopy
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.UnfreezeCopy
+    name: UnfreezeCopy
+    nameWithType: CharacteristicObject(Of CompetitionAnnotationMode).UnfreezeCopy
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of CodeJam.PerfTests.Configs.CompetitionAnnotationMode).UnfreezeCopy
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.IdCharacteristic
+  commentId: F:BenchmarkDotNet.Characteristics.CharacteristicObject.IdCharacteristic
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: IdCharacteristic
+  nameWithType: CharacteristicObject.IdCharacteristic
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.IdCharacteristic
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId(BenchmarkDotNet.Characteristics.CharacteristicObject,System.String)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId(BenchmarkDotNet.Characteristics.CharacteristicObject,System.String)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: ResolveId(CharacteristicObject, String)
+  nameWithType: CharacteristicObject.ResolveId(CharacteristicObject, String)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId(BenchmarkDotNet.Characteristics.CharacteristicObject, System.String)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId(BenchmarkDotNet.Characteristics.CharacteristicObject,System.String)
+    name: ResolveId
+    nameWithType: CharacteristicObject.ResolveId
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId(BenchmarkDotNet.Characteristics.CharacteristicObject,System.String)
+    name: ResolveId
+    nameWithType: CharacteristicObject.ResolveId
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveId
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: AssertNotFrozen()
+  nameWithType: CharacteristicObject.AssertNotFrozen()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen
+    name: AssertNotFrozen
+    nameWithType: CharacteristicObject.AssertNotFrozen
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen
+    name: AssertNotFrozen
+    nameWithType: CharacteristicObject.AssertNotFrozen
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertNotFrozen
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: AssertIsRoot()
+  nameWithType: CharacteristicObject.AssertIsRoot()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot
+    name: AssertIsRoot
+    nameWithType: CharacteristicObject.AssertIsRoot
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot
+    name: AssertIsRoot
+    nameWithType: CharacteristicObject.AssertIsRoot
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsRoot
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: AssertIsNonFrozenRoot()
+  nameWithType: CharacteristicObject.AssertIsNonFrozenRoot()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot
+    name: AssertIsNonFrozenRoot
+    nameWithType: CharacteristicObject.AssertIsNonFrozenRoot
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot
+    name: AssertIsNonFrozenRoot
+    nameWithType: CharacteristicObject.AssertIsNonFrozenRoot
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsNonFrozenRoot
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: AssertIsAssignable(Characteristic, Object)
+  nameWithType: CharacteristicObject.AssertIsAssignable(Characteristic, Object)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable(BenchmarkDotNet.Characteristics.Characteristic, System.Object)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+    name: AssertIsAssignable
+    nameWithType: CharacteristicObject.AssertIsAssignable
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+    name: AssertIsAssignable
+    nameWithType: CharacteristicObject.AssertIsAssignable
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.AssertIsAssignable
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: GetCharacteristicsWithValues()
+  nameWithType: CharacteristicObject.GetCharacteristicsWithValues()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues
+    name: GetCharacteristicsWithValues
+    nameWithType: CharacteristicObject.GetCharacteristicsWithValues
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues
+    name: GetCharacteristicsWithValues
+    nameWithType: CharacteristicObject.GetCharacteristicsWithValues
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.GetCharacteristicsWithValues
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue(BenchmarkDotNet.Characteristics.Characteristic)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue(BenchmarkDotNet.Characteristics.Characteristic)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: HasValue(Characteristic)
+  nameWithType: CharacteristicObject.HasValue(Characteristic)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue(BenchmarkDotNet.Characteristics.Characteristic)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue(BenchmarkDotNet.Characteristics.Characteristic)
+    name: HasValue
+    nameWithType: CharacteristicObject.HasValue
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue(BenchmarkDotNet.Characteristics.Characteristic)
+    name: HasValue
+    nameWithType: CharacteristicObject.HasValue
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.HasValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{{T}},BenchmarkDotNet.Characteristics.IResolver)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},BenchmarkDotNet.Characteristics.IResolver)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},BenchmarkDotNet.Characteristics.IResolver)
+  name: ResolveValue<T>(Characteristic<T>, IResolver)
+  nameWithType: CharacteristicObject.ResolveValue<T>(Characteristic<T>, IResolver)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue<T>(BenchmarkDotNet.Characteristics.Characteristic<T>, BenchmarkDotNet.Characteristics.IResolver)
+  nameWithType.vb: CharacteristicObject.ResolveValue(Of T)(Characteristic(Of T), IResolver)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(Of T)(BenchmarkDotNet.Characteristics.Characteristic(Of T), BenchmarkDotNet.Characteristics.IResolver)
+  name.vb: ResolveValue(Of T)(Characteristic(Of T), IResolver)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},BenchmarkDotNet.Characteristics.IResolver)
+    name: ResolveValue<T>
+    nameWithType: CharacteristicObject.ResolveValue<T>
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue<T>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Characteristics.IResolver
+    name: IResolver
+    nameWithType: IResolver
+    fullName: BenchmarkDotNet.Characteristics.IResolver
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},BenchmarkDotNet.Characteristics.IResolver)
+    name: ResolveValue(Of T)
+    nameWithType: CharacteristicObject.ResolveValue(Of T)
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(Of T)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Characteristics.IResolver
+    name: IResolver
+    nameWithType: IResolver
+    fullName: BenchmarkDotNet.Characteristics.IResolver
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,BenchmarkDotNet.Characteristics.IResolver)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,BenchmarkDotNet.Characteristics.IResolver)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: ResolveValue(Characteristic, IResolver)
+  nameWithType: CharacteristicObject.ResolveValue(Characteristic, IResolver)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic, BenchmarkDotNet.Characteristics.IResolver)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,BenchmarkDotNet.Characteristics.IResolver)
+    name: ResolveValue
+    nameWithType: CharacteristicObject.ResolveValue
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Characteristics.IResolver
+    name: IResolver
+    nameWithType: IResolver
+    fullName: BenchmarkDotNet.Characteristics.IResolver
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,BenchmarkDotNet.Characteristics.IResolver)
+    name: ResolveValue
+    nameWithType: CharacteristicObject.ResolveValue
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Characteristics.IResolver
+    name: IResolver
+    nameWithType: IResolver
+    fullName: BenchmarkDotNet.Characteristics.IResolver
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{{T}},{T})
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},``0)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},``0)
+  name: ResolveValue<T>(Characteristic<T>, T)
+  nameWithType: CharacteristicObject.ResolveValue<T>(Characteristic<T>, T)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue<T>(BenchmarkDotNet.Characteristics.Characteristic<T>, T)
+  nameWithType.vb: CharacteristicObject.ResolveValue(Of T)(Characteristic(Of T), T)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(Of T)(BenchmarkDotNet.Characteristics.Characteristic(Of T), T)
+  name.vb: ResolveValue(Of T)(Characteristic(Of T), T)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},``0)
+    name: ResolveValue<T>
+    nameWithType: CharacteristicObject.ResolveValue<T>
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue<T>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},``0)
+    name: ResolveValue(Of T)
+    nameWithType: CharacteristicObject.ResolveValue(Of T)
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(Of T)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: ResolveValue(Characteristic, Object)
+  nameWithType: CharacteristicObject.ResolveValue(Characteristic, Object)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic, System.Object)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+    name: ResolveValue
+    nameWithType: CharacteristicObject.ResolveValue
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(BenchmarkDotNet.Characteristics.Characteristic,System.Object)
+    name: ResolveValue
+    nameWithType: CharacteristicObject.ResolveValue
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{{T}})
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{``0})
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  definition: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{``0})
+  name: ResolveValueAsNullable<T>(Characteristic<T>)
+  nameWithType: CharacteristicObject.ResolveValueAsNullable<T>(Characteristic<T>)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable<T>(BenchmarkDotNet.Characteristics.Characteristic<T>)
+  nameWithType.vb: CharacteristicObject.ResolveValueAsNullable(Of T)(Characteristic(Of T))
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable(Of T)(BenchmarkDotNet.Characteristics.Characteristic(Of T))
+  name.vb: ResolveValueAsNullable(Of T)(Characteristic(Of T))
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{``0})
+    name: ResolveValueAsNullable<T>
+    nameWithType: CharacteristicObject.ResolveValueAsNullable<T>
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable<T>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{``0})
+    name: ResolveValueAsNullable(Of T)
+    nameWithType: CharacteristicObject.ResolveValueAsNullable(Of T)
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable(Of T)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: ApplyCore(CharacteristicObject)
+  nameWithType: CharacteristicObject.ApplyCore(CharacteristicObject)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: ApplyCore
+    nameWithType: CharacteristicObject.ApplyCore
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: ApplyCore
+    nameWithType: CharacteristicObject.ApplyCore
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ApplyCore
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: FreezeCore()
+  nameWithType: CharacteristicObject.FreezeCore()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore
+    name: FreezeCore
+    nameWithType: CharacteristicObject.FreezeCore
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore
+    name: FreezeCore
+    nameWithType: CharacteristicObject.FreezeCore
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.FreezeCore
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: UnfreezeCopyCore()
+  nameWithType: CharacteristicObject.UnfreezeCopyCore()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore
+    name: UnfreezeCopyCore
+    nameWithType: CharacteristicObject.UnfreezeCopyCore
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore
+    name: UnfreezeCopyCore
+    nameWithType: CharacteristicObject.UnfreezeCopyCore
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.UnfreezeCopyCore
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ToString
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ToString
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: ToString()
+  nameWithType: CharacteristicObject.ToString()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ToString()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ToString
+    name: ToString
+    nameWithType: CharacteristicObject.ToString
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ToString
+    name: ToString
+    nameWithType: CharacteristicObject.ToString
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.Owner
+  commentId: P:BenchmarkDotNet.Characteristics.CharacteristicObject.Owner
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: Owner
+  nameWithType: CharacteristicObject.Owner
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.Owner
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.OwnerOrSelf
+  commentId: P:BenchmarkDotNet.Characteristics.CharacteristicObject.OwnerOrSelf
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: OwnerOrSelf
+  nameWithType: CharacteristicObject.OwnerOrSelf
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.OwnerOrSelf
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen
+  commentId: P:BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: Frozen
+  nameWithType: CharacteristicObject.Frozen
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.Frozen
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.IsPropertyBag
+  commentId: P:BenchmarkDotNet.Characteristics.CharacteristicObject.IsPropertyBag
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: IsPropertyBag
+  nameWithType: CharacteristicObject.IsPropertyBag
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.IsPropertyBag
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.HasChanges
+  commentId: P:BenchmarkDotNet.Characteristics.CharacteristicObject.HasChanges
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: HasChanges
+  nameWithType: CharacteristicObject.HasChanges
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.HasChanges
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.Id
+  commentId: P:BenchmarkDotNet.Characteristics.CharacteristicObject.Id
+  parent: BenchmarkDotNet.Characteristics.CharacteristicObject
+  isExternal: true
+  name: Id
+  nameWithType: CharacteristicObject.Id
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.Id
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: BenchmarkDotNet.Characteristics
+  commentId: N:BenchmarkDotNet.Characteristics
+  isExternal: false
+  name: BenchmarkDotNet.Characteristics
+  nameWithType: BenchmarkDotNet.Characteristics
+  fullName: BenchmarkDotNet.Characteristics
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  isExternal: true
+  name: Apply(CharacteristicObject)
+  nameWithType: CharacteristicObject<T>.Apply(CharacteristicObject)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  nameWithType.vb: CharacteristicObject(Of T).Apply(CharacteristicObject)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: Apply
+    nameWithType: CharacteristicObject<T>.Apply
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.Apply
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: Apply
+    nameWithType: CharacteristicObject(Of T).Apply
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).Apply
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  isExternal: true
+  name: Apply(CharacteristicObject[])
+  nameWithType: CharacteristicObject<T>.Apply(CharacteristicObject[])
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  nameWithType.vb: CharacteristicObject(Of T).Apply(CharacteristicObject())
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).Apply(BenchmarkDotNet.Characteristics.CharacteristicObject())
+  name.vb: Apply(CharacteristicObject())
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+    name: Apply
+    nameWithType: CharacteristicObject<T>.Apply
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.Apply
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Apply(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+    name: Apply
+    nameWithType: CharacteristicObject(Of T).Apply
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).Apply
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  isExternal: true
+  name: ApplyAndFreeze(CharacteristicObject)
+  nameWithType: CharacteristicObject<T>.ApplyAndFreeze(CharacteristicObject)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  nameWithType.vb: CharacteristicObject(Of T).ApplyAndFreeze(CharacteristicObject)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: ApplyAndFreeze
+    nameWithType: CharacteristicObject<T>.ApplyAndFreeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.ApplyAndFreeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject)
+    name: ApplyAndFreeze
+    nameWithType: CharacteristicObject(Of T).ApplyAndFreeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).ApplyAndFreeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  isExternal: true
+  name: ApplyAndFreeze(CharacteristicObject[])
+  nameWithType: CharacteristicObject<T>.ApplyAndFreeze(CharacteristicObject[])
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+  nameWithType.vb: CharacteristicObject(Of T).ApplyAndFreeze(CharacteristicObject())
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject())
+  name.vb: ApplyAndFreeze(CharacteristicObject())
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+    name: ApplyAndFreeze
+    nameWithType: CharacteristicObject<T>.ApplyAndFreeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.ApplyAndFreeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.ApplyAndFreeze(BenchmarkDotNet.Characteristics.CharacteristicObject[])
+    name: ApplyAndFreeze
+    nameWithType: CharacteristicObject(Of T).ApplyAndFreeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).ApplyAndFreeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject
+    name: CharacteristicObject
+    nameWithType: CharacteristicObject
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Freeze
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject`1.Freeze
+  isExternal: true
+  name: Freeze()
+  nameWithType: CharacteristicObject<T>.Freeze()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.Freeze()
+  nameWithType.vb: CharacteristicObject(Of T).Freeze()
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).Freeze()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Freeze
+    name: Freeze
+    nameWithType: CharacteristicObject<T>.Freeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.Freeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.Freeze
+    name: Freeze
+    nameWithType: CharacteristicObject(Of T).Freeze
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).Freeze
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.UnfreezeCopy
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject`1.UnfreezeCopy
+  isExternal: true
+  name: UnfreezeCopy()
+  nameWithType: CharacteristicObject<T>.UnfreezeCopy()
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.UnfreezeCopy()
+  nameWithType.vb: CharacteristicObject(Of T).UnfreezeCopy()
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).UnfreezeCopy()
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.UnfreezeCopy
+    name: UnfreezeCopy
+    nameWithType: CharacteristicObject<T>.UnfreezeCopy
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject<T>.UnfreezeCopy
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject`1.UnfreezeCopy
+    name: UnfreezeCopy
+    nameWithType: CharacteristicObject(Of T).UnfreezeCopy
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject(Of T).UnfreezeCopy
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},BenchmarkDotNet.Characteristics.IResolver)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},BenchmarkDotNet.Characteristics.IResolver)
+  isExternal: true
+  name: ResolveValue<T>(Characteristic<T>, IResolver)
+  nameWithType: CharacteristicObject.ResolveValue<T>(Characteristic<T>, IResolver)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue<T>(BenchmarkDotNet.Characteristics.Characteristic<T>, BenchmarkDotNet.Characteristics.IResolver)
+  nameWithType.vb: CharacteristicObject.ResolveValue(Of T)(Characteristic(Of T), IResolver)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(Of T)(BenchmarkDotNet.Characteristics.Characteristic(Of T), BenchmarkDotNet.Characteristics.IResolver)
+  name.vb: ResolveValue(Of T)(Characteristic(Of T), IResolver)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},BenchmarkDotNet.Characteristics.IResolver)
+    name: ResolveValue<T>
+    nameWithType: CharacteristicObject.ResolveValue<T>
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue<T>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Characteristics.IResolver
+    name: IResolver
+    nameWithType: IResolver
+    fullName: BenchmarkDotNet.Characteristics.IResolver
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},BenchmarkDotNet.Characteristics.IResolver)
+    name: ResolveValue(Of T)
+    nameWithType: CharacteristicObject.ResolveValue(Of T)
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(Of T)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Characteristics.IResolver
+    name: IResolver
+    nameWithType: IResolver
+    fullName: BenchmarkDotNet.Characteristics.IResolver
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},``0)
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},``0)
+  isExternal: true
+  name: ResolveValue<T>(Characteristic<T>, T)
+  nameWithType: CharacteristicObject.ResolveValue<T>(Characteristic<T>, T)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue<T>(BenchmarkDotNet.Characteristics.Characteristic<T>, T)
+  nameWithType.vb: CharacteristicObject.ResolveValue(Of T)(Characteristic(Of T), T)
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(Of T)(BenchmarkDotNet.Characteristics.Characteristic(Of T), T)
+  name.vb: ResolveValue(Of T)(Characteristic(Of T), T)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},``0)
+    name: ResolveValue<T>
+    nameWithType: CharacteristicObject.ResolveValue<T>
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue<T>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue``1(BenchmarkDotNet.Characteristics.Characteristic{``0},``0)
+    name: ResolveValue(Of T)
+    nameWithType: CharacteristicObject.ResolveValue(Of T)
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValue(Of T)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{``0})
+  commentId: M:BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{``0})
+  isExternal: true
+  name: ResolveValueAsNullable<T>(Characteristic<T>)
+  nameWithType: CharacteristicObject.ResolveValueAsNullable<T>(Characteristic<T>)
+  fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable<T>(BenchmarkDotNet.Characteristics.Characteristic<T>)
+  nameWithType.vb: CharacteristicObject.ResolveValueAsNullable(Of T)(Characteristic(Of T))
+  fullName.vb: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable(Of T)(BenchmarkDotNet.Characteristics.Characteristic(Of T))
+  name.vb: ResolveValueAsNullable(Of T)(Characteristic(Of T))
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{``0})
+    name: ResolveValueAsNullable<T>
+    nameWithType: CharacteristicObject.ResolveValueAsNullable<T>
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable<T>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable``1(BenchmarkDotNet.Characteristics.Characteristic{``0})
+    name: ResolveValueAsNullable(Of T)
+    nameWithType: CharacteristicObject.ResolveValueAsNullable(Of T)
+    fullName: BenchmarkDotNet.Characteristics.CharacteristicObject.ResolveValueAsNullable(Of T)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.Characteristic{System.Boolean}
+  commentId: T:BenchmarkDotNet.Characteristics.Characteristic{System.Boolean}
+  parent: BenchmarkDotNet.Characteristics
+  definition: BenchmarkDotNet.Characteristics.Characteristic`1
+  name: Characteristic<Boolean>
+  nameWithType: Characteristic<Boolean>
+  fullName: BenchmarkDotNet.Characteristics.Characteristic<System.Boolean>
+  nameWithType.vb: Characteristic(Of Boolean)
+  fullName.vb: BenchmarkDotNet.Characteristics.Characteristic(Of System.Boolean)
+  name.vb: Characteristic(Of Boolean)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.Characteristic`1
+  commentId: T:BenchmarkDotNet.Characteristics.Characteristic`1
+  isExternal: true
+  name: Characteristic<T>
+  nameWithType: Characteristic<T>
+  fullName: BenchmarkDotNet.Characteristics.Characteristic<T>
+  nameWithType.vb: Characteristic(Of T)
+  fullName.vb: BenchmarkDotNet.Characteristics.Characteristic(Of T)
+  name.vb: Characteristic(Of T)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: BenchmarkDotNet.Characteristics.Characteristic{System.String}
+  commentId: T:BenchmarkDotNet.Characteristics.Characteristic{System.String}
+  parent: BenchmarkDotNet.Characteristics
+  definition: BenchmarkDotNet.Characteristics.Characteristic`1
+  name: Characteristic<String>
+  nameWithType: Characteristic<String>
+  fullName: BenchmarkDotNet.Characteristics.Characteristic<System.String>
+  nameWithType.vb: Characteristic(Of String)
+  fullName.vb: BenchmarkDotNet.Characteristics.Characteristic(Of System.String)
+  name.vb: Characteristic(Of String)
+  spec.csharp:
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: BenchmarkDotNet.Characteristics.Characteristic`1
+    name: Characteristic
+    nameWithType: Characteristic
+    fullName: BenchmarkDotNet.Characteristics.Characteristic
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotations*
+  commentId: Overload:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotations
+  isExternal: false
+  name: IgnoreExistingAnnotations
+  nameWithType: CompetitionAnnotationMode.IgnoreExistingAnnotations
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.IgnoreExistingAnnotations
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations
+  commentId: P:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri*
+  commentId: Overload:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri
+  isExternal: false
+  name: PreviousRunLogUri
+  nameWithType: CompetitionAnnotationMode.PreviousRunLogUri
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations*
+  commentId: Overload:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations
+  isExternal: false
+  name: LogAnnotations
+  nameWithType: CompetitionAnnotationMode.LogAnnotations
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.LogAnnotations
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri
+  commentId: P:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.PreviousRunLogUri
+- uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotations*
+  commentId: Overload:CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotations
+  isExternal: false
+  name: DontSaveUpdatedAnnotations
+  nameWithType: CompetitionAnnotationMode.DontSaveUpdatedAnnotations
+  fullName: CodeJam.PerfTests.Configs.CompetitionAnnotationMode.DontSaveUpdatedAnnotations

@@ -1,0 +1,771 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Services.ServiceProviderHelper
+  commentId: T:CodeJam.Services.ServiceProviderHelper
+  id: ServiceProviderHelper
+  parent: CodeJam.Services
+  children:
+  - CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+  - CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+  - CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+  - CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+  - CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+  langs:
+  - csharp
+  - vb
+  name: ServiceProviderHelper
+  nameWithType: ServiceProviderHelper
+  fullName: CodeJam.Services.ServiceProviderHelper
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceProviderHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ServiceProviderHelper
+    path: ../Blocks/src/Services/ServiceProviderHelper.cs
+    startLine: 9
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\n<xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"CodeJam.Services.IServicePublisher\" data-throw-if-not-resolved=\"false\"></xref> helper methods.\n"
+  example: []
+  syntax:
+    content: public static class ServiceProviderHelper
+    content.vb: Public Module ServiceProviderHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider,System.Type)
+  id: GetRequiredService(System.IServiceProvider,System.Type)
+  isExtensionMethod: true
+  parent: CodeJam.Services.ServiceProviderHelper
+  langs:
+  - csharp
+  - vb
+  name: GetRequiredService(IServiceProvider, Type)
+  nameWithType: ServiceProviderHelper.GetRequiredService(IServiceProvider, Type)
+  fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService(System.IServiceProvider, System.Type)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceProviderHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetRequiredService
+    path: ../Blocks/src/Services/ServiceProviderHelper.cs
+    startLine: 20
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nGets the service object of the specified type, or throws an exception if service not registered.\n"
+  example: []
+  syntax:
+    content: public static object GetRequiredService(this IServiceProvider provider, Type serviceType)
+    parameters:
+    - id: provider
+      type: System.IServiceProvider
+      description: Instance of <xref href="System.IServiceProvider" data-throw-if-not-resolved="false"></xref>.
+    - id: serviceType
+      type: System.Type
+      description: An object that specifies the type of service object to get.
+    return:
+      type: System.Object
+      description: "\nA service object of type <code data-dev-comment-type=\"paramref\" class=\"paramref\">serviceType</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetRequiredService(provider As IServiceProvider, serviceType As Type) As Object
+  overload: CodeJam.Services.ServiceProviderHelper.GetRequiredService*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetService``1(System.IServiceProvider)
+  id: GetService``1(System.IServiceProvider)
+  isExtensionMethod: true
+  parent: CodeJam.Services.ServiceProviderHelper
+  langs:
+  - csharp
+  - vb
+  name: GetService<T>(IServiceProvider)
+  nameWithType: ServiceProviderHelper.GetService<T>(IServiceProvider)
+  fullName: CodeJam.Services.ServiceProviderHelper.GetService<T>(System.IServiceProvider)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceProviderHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetService
+    path: ../Blocks/src/Services/ServiceProviderHelper.cs
+    startLine: 41
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nGets the service object of the specified type.\n"
+  example: []
+  syntax:
+    content: public static T GetService<T>(this IServiceProvider provider)
+    parameters:
+    - id: provider
+      type: System.IServiceProvider
+      description: Instance of <xref href="System.IServiceProvider" data-throw-if-not-resolved="false"></xref>.
+    typeParameters:
+    - id: T
+      description: An object that specifies the type of service object to get.
+    return:
+      type: '{T}'
+      description: A service object of type serviceType.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetService(Of T)(provider As IServiceProvider) As T
+  overload: CodeJam.Services.ServiceProviderHelper.GetService*
+  nameWithType.vb: ServiceProviderHelper.GetService(Of T)(IServiceProvider)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.GetService(Of T)(System.IServiceProvider)
+  name.vb: GetService(Of T)(IServiceProvider)
+- uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.GetRequiredService``1(System.IServiceProvider)
+  id: GetRequiredService``1(System.IServiceProvider)
+  isExtensionMethod: true
+  parent: CodeJam.Services.ServiceProviderHelper
+  langs:
+  - csharp
+  - vb
+  name: GetRequiredService<T>(IServiceProvider)
+  nameWithType: ServiceProviderHelper.GetRequiredService<T>(IServiceProvider)
+  fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService<T>(System.IServiceProvider)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceProviderHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetRequiredService
+    path: ../Blocks/src/Services/ServiceProviderHelper.cs
+    startLine: 57
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nGets the service object of the specified type, or throws an exception if service not registered.\n"
+  example: []
+  syntax:
+    content: public static T GetRequiredService<T>(this IServiceProvider provider)
+    parameters:
+    - id: provider
+      type: System.IServiceProvider
+      description: Instance of <xref href="System.IServiceProvider" data-throw-if-not-resolved="false"></xref>.
+    typeParameters:
+    - id: T
+      description: An object that specifies the type of service object to get.
+    return:
+      type: '{T}'
+      description: "\nA service object of type <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetRequiredService(Of T)(provider As IServiceProvider) As T
+  overload: CodeJam.Services.ServiceProviderHelper.GetRequiredService*
+  nameWithType.vb: ServiceProviderHelper.GetRequiredService(Of T)(IServiceProvider)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.GetRequiredService(Of T)(System.IServiceProvider)
+  name.vb: GetRequiredService(Of T)(IServiceProvider)
+- uid: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+  commentId: M:CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,``0)
+  id: Publish``1(CodeJam.Services.IServicePublisher,``0)
+  isExtensionMethod: true
+  parent: CodeJam.Services.ServiceProviderHelper
+  langs:
+  - csharp
+  - vb
+  name: Publish<T>(IServicePublisher, T)
+  nameWithType: ServiceProviderHelper.Publish<T>(IServicePublisher, T)
+  fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>(CodeJam.Services.IServicePublisher, T)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceProviderHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Publish
+    path: ../Blocks/src/Services/ServiceProviderHelper.cs
+    startLine: 69
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nPublish service.\n"
+  example: []
+  syntax:
+    content: 'public static IDisposable Publish<T>(this IServicePublisher publisher, T serviceInstance)where T : class'
+    parameters:
+    - id: publisher
+      type: CodeJam.Services.IServicePublisher
+      description: Service publisher.
+    - id: serviceInstance
+      type: '{T}'
+      description: Instance of service of type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>
+    typeParameters:
+    - id: T
+      description: Type of service object to publish.
+    return:
+      type: System.IDisposable
+      description: Disposable cookie to conceal published service
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Publish(Of T As Class)(publisher As IServicePublisher, serviceInstance As T) As IDisposable
+  overload: CodeJam.Services.ServiceProviderHelper.Publish*
+  nameWithType.vb: ServiceProviderHelper.Publish(Of T)(IServicePublisher, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.Publish(Of T)(CodeJam.Services.IServicePublisher, T)
+  name.vb: Publish(Of T)(IServicePublisher, T)
+- uid: CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+  commentId: M:CodeJam.Services.ServiceProviderHelper.Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+  id: Publish``1(CodeJam.Services.IServicePublisher,System.Func{CodeJam.Services.IServicePublisher,``0})
+  isExtensionMethod: true
+  parent: CodeJam.Services.ServiceProviderHelper
+  langs:
+  - csharp
+  - vb
+  name: Publish<T>(IServicePublisher, Func<IServicePublisher, T>)
+  nameWithType: ServiceProviderHelper.Publish<T>(IServicePublisher, Func<IServicePublisher, T>)
+  fullName: CodeJam.Services.ServiceProviderHelper.Publish<T>(CodeJam.Services.IServicePublisher, System.Func<CodeJam.Services.IServicePublisher, T>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Services/ServiceProviderHelper.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Publish
+    path: ../Blocks/src/Services/ServiceProviderHelper.cs
+    startLine: 86
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Services
+  summary: "\nPublish service.\n"
+  example: []
+  syntax:
+    content: 'public static IDisposable Publish<T>(this IServicePublisher publisher, Func<IServicePublisher, T> instanceFactory)where T : class'
+    parameters:
+    - id: publisher
+      type: CodeJam.Services.IServicePublisher
+      description: Service publisher.
+    - id: instanceFactory
+      type: System.Func{CodeJam.Services.IServicePublisher,{T}}
+      description: Factory to create service instance
+    typeParameters:
+    - id: T
+      description: Type of service object to publish.
+    return:
+      type: System.IDisposable
+      description: Disposable cookie to conceal published service
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Publish(Of T As Class)(publisher As IServicePublisher, instanceFactory As Func(Of IServicePublisher, T)) As IDisposable
+  overload: CodeJam.Services.ServiceProviderHelper.Publish*
+  nameWithType.vb: ServiceProviderHelper.Publish(Of T)(IServicePublisher, Func(Of IServicePublisher, T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Services.ServiceProviderHelper.Publish(Of T)(CodeJam.Services.IServicePublisher, System.Func(Of CodeJam.Services.IServicePublisher, T))
+  name.vb: Publish(Of T)(IServicePublisher, Func(Of IServicePublisher, T))
+references:
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
+- uid: CodeJam.Services.IServicePublisher
+  commentId: T:CodeJam.Services.IServicePublisher
+  parent: CodeJam.Services
+  isExternal: false
+  name: IServicePublisher
+  nameWithType: IServicePublisher
+  fullName: CodeJam.Services.IServicePublisher
+- uid: CodeJam.Services
+  commentId: N:CodeJam.Services
+  isExternal: false
+  name: CodeJam.Services
+  nameWithType: CodeJam.Services
+  fullName: CodeJam.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Services.ServiceProviderHelper.GetRequiredService*
+  commentId: Overload:CodeJam.Services.ServiceProviderHelper.GetRequiredService
+  isExternal: false
+  name: GetRequiredService
+  nameWithType: ServiceProviderHelper.GetRequiredService
+  fullName: CodeJam.Services.ServiceProviderHelper.GetRequiredService
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.Services.ServiceProviderHelper.GetService*
+  commentId: Overload:CodeJam.Services.ServiceProviderHelper.GetService
+  isExternal: false
+  name: GetService
+  nameWithType: ServiceProviderHelper.GetService
+  fullName: CodeJam.Services.ServiceProviderHelper.GetService
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.Services.ServiceProviderHelper.Publish*
+  commentId: Overload:CodeJam.Services.ServiceProviderHelper.Publish
+  isExternal: false
+  name: Publish
+  nameWithType: ServiceProviderHelper.Publish
+  fullName: CodeJam.Services.ServiceProviderHelper.Publish
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Func{CodeJam.Services.IServicePublisher,{T}}
+  commentId: T:System.Func{CodeJam.Services.IServicePublisher,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<IServicePublisher, T>
+  nameWithType: Func<IServicePublisher, T>
+  fullName: System.Func<CodeJam.Services.IServicePublisher, T>
+  nameWithType.vb: Func(Of IServicePublisher, T)
+  fullName.vb: System.Func(Of CodeJam.Services.IServicePublisher, T)
+  name.vb: Func(Of IServicePublisher, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Services.IServicePublisher
+    name: IServicePublisher
+    nameWithType: IServicePublisher
+    fullName: CodeJam.Services.IServicePublisher
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )

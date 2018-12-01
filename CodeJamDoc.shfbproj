@@ -35,10 +35,10 @@
     <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <DocumentationSources>
-      <DocumentationSource sourceFile="Main\src\bin\Debug\net461\.xml" />
-      <DocumentationSource sourceFile="Main\src\bin\Debug\net461\CodeJam.dll" />
-      <DocumentationSource sourceFile="Blocks\src\bin\Debug\net461\.xml" />
-      <DocumentationSource sourceFile="Blocks\src\bin\Debug\net461\CodeJam.Blocks.dll" />
+      <DocumentationSource sourceFile="CodeJam.Main\bin\$(Configuration)\net461\CodeJam.xml" />
+      <DocumentationSource sourceFile="CodeJam.Main\bin\$(Configuration)\net461\CodeJam.dll" />
+      <DocumentationSource sourceFile="CodeJam.Blocks\bin\$(Configuration)\net461\CodeJam.Blocks.xml" />
+      <DocumentationSource sourceFile="CodeJam.Blocks\bin\$(Configuration)\net461\CodeJam.Blocks.dll" />
     </DocumentationSources>
     <ProjectSummary>CodeJam library</ProjectSummary>
     <NamespaceSummaries>
@@ -47,7 +47,7 @@
     </NamespaceSummaries>
     <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
     <VisibleItems>Attributes, InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, EditorBrowsableNever, NonBrowsable</VisibleItems>
-    <CopyrightText>RSDN, 2016-2017</CopyrightText>
+    <CopyrightText>RSDN, 2016-2018</CopyrightText>
     <PlugInConfigurations />
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
@@ -92,12 +92,12 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="Blocks\src\CodeJam.Blocks.csproj">
+    <ProjectReference Include="CodeJam.Blocks\CodeJam.Blocks.csproj">
       <Name>CodeJam.Blocks</Name>
       <Project>{0dff0859-2400-4487-83ad-0ed10203d6d9}</Project>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="Main\src\CodeJam.Main.csproj">
+    <ProjectReference Include="CodeJam.Main\CodeJam.Main.csproj">
       <Name>CodeJam</Name>
       <Project>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</Project>
     </ProjectReference>

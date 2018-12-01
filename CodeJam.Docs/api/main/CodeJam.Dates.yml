@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Dates
+  commentId: N:CodeJam.Dates
+  id: CodeJam.Dates
+  children:
+  - CodeJam.Dates.DateTimeExtensions
+  - CodeJam.Dates.DateTimeRangeExtensions
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.Dates
+  nameWithType: CodeJam.Dates
+  fullName: CodeJam.Dates
+  type: Namespace
+  assemblies:
+  - CodeJam
+references:
+- uid: CodeJam.Dates.DateTimeRangeExtensions
+  commentId: T:CodeJam.Dates.DateTimeRangeExtensions
+  isExternal: false
+  name: DateTimeRangeExtensions
+  nameWithType: DateTimeRangeExtensions
+  fullName: CodeJam.Dates.DateTimeRangeExtensions
+- uid: CodeJam.Dates.DateTimeExtensions
+  commentId: T:CodeJam.Dates.DateTimeExtensions
+  isExternal: false
+  name: DateTimeExtensions
+  nameWithType: DateTimeExtensions
+  fullName: CodeJam.Dates.DateTimeExtensions
