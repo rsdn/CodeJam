@@ -39,7 +39,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\PerfTests\src-NUnit\CodeJam.PerfTests.NUnit.csproj" />
 		<ProjectReference Include="..\src\CodeJam.Main.csproj" />
 	</ItemGroup>
 	<ItemGroup>

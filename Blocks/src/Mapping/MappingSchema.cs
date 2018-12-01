@@ -235,7 +235,8 @@ namespace CodeJam.Mapping
 		/// <param name="checkNull">If <i>true</i>, created expression checks input value for <i>null</i>.</param>
 		/// <param name="createDefault">If <i>true</i>, new expression is created.</param>
 		/// <returns>Convert expression.</returns>
-		public LambdaExpression GetConvertExpression(
+		[CanBeNull]
+		public LambdaExpression TryGetConvertExpression(
 			[NotNull] Type from,
 			[NotNull] Type to,
 			bool checkNull = true,
@@ -246,6 +247,16 @@ namespace CodeJam.Mapping
 
 			var li = GetConverter(from, to, createDefault);
 			return li == null ? null : (LambdaExpression)ReduceDefaultValue(checkNull ? li.CheckNullLambda : li.Lambda);
+		}
+
+		static bool Do(
+			int x, out string y,
+			bool checkNull = true,
+			bool createDefault = true)
+		{
+			y = "";
+			return true;
+
 		}
 
 		/// <summary>
