@@ -1,0 +1,142 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Core
+  commentId: N:CodeJam.PerfTests.Running.Core
+  id: CodeJam.PerfTests.Running.Core
+  children:
+  - CodeJam.PerfTests.Running.Core.CompetitionCore
+  - CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  - CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+  - CodeJam.PerfTests.Running.Core.CompetitionState
+  - CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  - CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ConsoleHostLogger
+  - CodeJam.PerfTests.Running.Core.ConsoleHelpers
+  - CodeJam.PerfTests.Running.Core.EnvironmentHelpers
+  - CodeJam.PerfTests.Running.Core.IoHelpers
+  - CodeJam.PerfTests.Running.Core.RunState`1
+  - CodeJam.PerfTests.Running.Core.RunStateKey
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.PerfTests.Running.Core
+  nameWithType: CodeJam.PerfTests.Running.Core
+  fullName: CodeJam.PerfTests.Running.Core
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: CodeJam.PerfTests.Running.Core.ConsoleHelpers
+  commentId: T:CodeJam.PerfTests.Running.Core.ConsoleHelpers
+  isExternal: false
+  name: ConsoleHelpers
+  nameWithType: ConsoleHelpers
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleHelpers
+- uid: CodeJam.PerfTests.Running.Core.EnvironmentHelpers
+  commentId: T:CodeJam.PerfTests.Running.Core.EnvironmentHelpers
+  isExternal: false
+  name: EnvironmentHelpers
+  nameWithType: EnvironmentHelpers
+  fullName: CodeJam.PerfTests.Running.Core.EnvironmentHelpers
+- uid: CodeJam.PerfTests.Running.Core.IoHelpers
+  commentId: T:CodeJam.PerfTests.Running.Core.IoHelpers
+  isExternal: false
+  name: IoHelpers
+  nameWithType: IoHelpers
+  fullName: CodeJam.PerfTests.Running.Core.IoHelpers
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionCoreHelpers
+  nameWithType: CompetitionCoreHelpers
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+- uid: CodeJam.PerfTests.Running.Core.RunStateKey
+  commentId: T:CodeJam.PerfTests.Running.Core.RunStateKey
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: RunStateKey
+  nameWithType: RunStateKey
+  fullName: CodeJam.PerfTests.Running.Core.RunStateKey
+- uid: CodeJam.PerfTests.Running.Core.RunState`1
+  commentId: T:CodeJam.PerfTests.Running.Core.RunState`1
+  isExternal: false
+  name: RunState<T>
+  nameWithType: RunState<T>
+  fullName: CodeJam.PerfTests.Running.Core.RunState<T>
+  nameWithType.vb: RunState(Of T)
+  fullName.vb: CodeJam.PerfTests.Running.Core.RunState(Of T)
+  name.vb: RunState(Of T)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.RunState`1
+    name: RunState
+    nameWithType: RunState
+    fullName: CodeJam.PerfTests.Running.Core.RunState
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.RunState`1
+    name: RunState
+    nameWithType: RunState
+    fullName: CodeJam.PerfTests.Running.Core.RunState
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCore
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionCore
+  isExternal: false
+  name: CompetitionCore
+  nameWithType: CompetitionCore
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCore
+- uid: CodeJam.PerfTests.Running.Core.CompetitionState
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionState
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionState
+  nameWithType: CompetitionState
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionState
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  commentId: T:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+  isExternal: false
+  name: ConsoleCompetitionRunner
+  nameWithType: ConsoleCompetitionRunner
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+- uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ConsoleHostLogger
+  commentId: T:CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ConsoleHostLogger
+  isExternal: false
+  name: ConsoleCompetitionRunner.ConsoleHostLogger
+  nameWithType: ConsoleCompetitionRunner.ConsoleHostLogger
+  fullName: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ConsoleHostLogger
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionRunnerBase
+  nameWithType: CompetitionRunnerBase
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+- uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionRunnerBase.HostLogger
+  nameWithType: CompetitionRunnerBase.HostLogger
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+- uid: CodeJam.PerfTests.Running.Core
+  commentId: N:CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Core
+  nameWithType: CodeJam.PerfTests.Running.Core
+  fullName: CodeJam.PerfTests.Running.Core

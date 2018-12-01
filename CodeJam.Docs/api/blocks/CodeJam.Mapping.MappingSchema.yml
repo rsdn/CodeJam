@@ -1,0 +1,2588 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping.MappingSchema
+  commentId: T:CodeJam.Mapping.MappingSchema
+  id: MappingSchema
+  parent: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.MappingSchema.#ctor
+  - CodeJam.Mapping.MappingSchema.#ctor(CodeJam.Mapping.MappingSchema[])
+  - CodeJam.Mapping.MappingSchema.#ctor(System.String)
+  - CodeJam.Mapping.MappingSchema.#ctor(System.String,CodeJam.Mapping.MappingSchema[])
+  - CodeJam.Mapping.MappingSchema.AddMetadataReader(CodeJam.Metadata.IMetadataReader)
+  - CodeJam.Mapping.MappingSchema.AddScalarType(System.Type,System.Object)
+  - CodeJam.Mapping.MappingSchema.ChangeType(System.Object,System.Type)
+  - CodeJam.Mapping.MappingSchema.ChangeTypeTo``1(System.Object)
+  - CodeJam.Mapping.MappingSchema.ConfigurationID
+  - CodeJam.Mapping.MappingSchema.ConfigurationList
+  - CodeJam.Mapping.MappingSchema.Default
+  - CodeJam.Mapping.MappingSchema.EnumToValue(System.Enum)
+  - CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Reflection.MemberInfo,System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Reflection.MemberInfo,System.Func{``0,System.String},System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Type,System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Type,System.Func{``0,System.String},System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Reflection.MemberInfo,System.Func{``0,System.String},System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Type,System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Type,System.Func{``0,System.String},System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetConverter``2
+  - CodeJam.Mapping.MappingSchema.GetConvertExpression(System.Type,System.Type,System.Boolean,System.Boolean)
+  - CodeJam.Mapping.MappingSchema.GetConvertExpression``2
+  - CodeJam.Mapping.MappingSchema.GetDefaultValue(System.Type)
+  - CodeJam.Mapping.MappingSchema.GetMapValues(System.Type)
+  - CodeJam.Mapping.MappingSchema.IsScalarType(System.Type)
+  - CodeJam.Mapping.MappingSchema.IsStructIsScalarType
+  - CodeJam.Mapping.MappingSchema.MetadataReader
+  - CodeJam.Mapping.MappingSchema.SetConverter``2(System.Func{``0,``1})
+  - CodeJam.Mapping.MappingSchema.SetConvertExpression(System.Type,System.Type,System.Linq.Expressions.LambdaExpression,System.Boolean)
+  - CodeJam.Mapping.MappingSchema.SetConvertExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Boolean)
+  - CodeJam.Mapping.MappingSchema.SetConvertExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  - CodeJam.Mapping.MappingSchema.SetCultureInfo(System.Globalization.CultureInfo)
+  - CodeJam.Mapping.MappingSchema.SetDefaultValue(System.Type,System.Object)
+  - CodeJam.Mapping.MappingSchema.SetScalarType(System.Type,System.Boolean)
+  - CodeJam.Mapping.MappingSchema.TryGetConvertExpression(System.Type,System.Type)
+  langs:
+  - csharp
+  - vb
+  name: MappingSchema
+  nameWithType: MappingSchema
+  fullName: CodeJam.Mapping.MappingSchema
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MappingSchema
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 21
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nProviders object / value mapping support.\n"
+  example: []
+  syntax:
+    content: public class MappingSchema
+    content.vb: Public Class MappingSchema
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - CodeJam.Mapping.MappingSchema.CodeJam.Mapping.Map.DeepCopy``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.Mapping.MappingSchema.#ctor
+  commentId: M:CodeJam.Mapping.MappingSchema.#ctor
+  id: '#ctor'
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: MappingSchema()
+  nameWithType: MappingSchema.MappingSchema()
+  fullName: CodeJam.Mapping.MappingSchema.MappingSchema()
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 29
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nCreate an instance of <xref href=\"CodeJam.Mapping.MappingSchema\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public MappingSchema()
+    content.vb: Public Sub New
+  overload: CodeJam.Mapping.MappingSchema.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.#ctor(CodeJam.Mapping.MappingSchema[])
+  commentId: M:CodeJam.Mapping.MappingSchema.#ctor(CodeJam.Mapping.MappingSchema[])
+  id: '#ctor(CodeJam.Mapping.MappingSchema[])'
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: MappingSchema(MappingSchema[])
+  nameWithType: MappingSchema.MappingSchema(MappingSchema[])
+  fullName: CodeJam.Mapping.MappingSchema.MappingSchema(CodeJam.Mapping.MappingSchema[])
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 38
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nCreate an instance of <xref href=\"CodeJam.Mapping.MappingSchema\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public MappingSchema(params MappingSchema[] schemas)
+    parameters:
+    - id: schemas
+      type: CodeJam.Mapping.MappingSchema[]
+      description: Base schemas.
+    content.vb: Public Sub New(ParamArray schemas As MappingSchema())
+  overload: CodeJam.Mapping.MappingSchema.#ctor*
+  nameWithType.vb: MappingSchema.MappingSchema(MappingSchema())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.MappingSchema(CodeJam.Mapping.MappingSchema())
+  name.vb: MappingSchema(MappingSchema())
+- uid: CodeJam.Mapping.MappingSchema.#ctor(System.String)
+  commentId: M:CodeJam.Mapping.MappingSchema.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: MappingSchema(String)
+  nameWithType: MappingSchema.MappingSchema(String)
+  fullName: CodeJam.Mapping.MappingSchema.MappingSchema(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 47
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nCreate an instance of <xref href=\"CodeJam.Mapping.MappingSchema\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public MappingSchema(string configuration)
+    parameters:
+    - id: configuration
+      type: System.String
+      description: Configuration name.
+    content.vb: Public Sub New(configuration As String)
+  overload: CodeJam.Mapping.MappingSchema.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.#ctor(System.String,CodeJam.Mapping.MappingSchema[])
+  commentId: M:CodeJam.Mapping.MappingSchema.#ctor(System.String,CodeJam.Mapping.MappingSchema[])
+  id: '#ctor(System.String,CodeJam.Mapping.MappingSchema[])'
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: MappingSchema(String, MappingSchema[])
+  nameWithType: MappingSchema.MappingSchema(String, MappingSchema[])
+  fullName: CodeJam.Mapping.MappingSchema.MappingSchema(System.String, CodeJam.Mapping.MappingSchema[])
+  type: Constructor
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 57
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nCreate an instance of <xref href=\"CodeJam.Mapping.MappingSchema\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public MappingSchema(string configuration, params MappingSchema[] schemas)
+    parameters:
+    - id: configuration
+      type: System.String
+      description: Configuration name.
+    - id: schemas
+      type: CodeJam.Mapping.MappingSchema[]
+      description: Base schemas.
+    content.vb: Public Sub New(configuration As String, ParamArray schemas As MappingSchema())
+  overload: CodeJam.Mapping.MappingSchema.#ctor*
+  nameWithType.vb: MappingSchema.MappingSchema(String, MappingSchema())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.MappingSchema(System.String, CodeJam.Mapping.MappingSchema())
+  name.vb: MappingSchema(String, MappingSchema())
+- uid: CodeJam.Mapping.MappingSchema.GetDefaultValue(System.Type)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetDefaultValue(System.Type)
+  id: GetDefaultValue(System.Type)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetDefaultValue(Type)
+  nameWithType: MappingSchema.GetDefaultValue(Type)
+  fullName: CodeJam.Mapping.MappingSchema.GetDefaultValue(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetDefaultValue
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 102
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nGets default value for provided <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public object GetDefaultValue(Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: <xref href="System.Type" data-throw-if-not-resolved="false"></xref> to get default value.
+    return:
+      type: System.Object
+      description: Default value of the provided <xref href="System.Type" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Function GetDefaultValue(type As Type) As Object
+  overload: CodeJam.Mapping.MappingSchema.GetDefaultValue*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.SetDefaultValue(System.Type,System.Object)
+  commentId: M:CodeJam.Mapping.MappingSchema.SetDefaultValue(System.Type,System.Object)
+  id: SetDefaultValue(System.Type,System.Object)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: SetDefaultValue(Type, Object)
+  nameWithType: MappingSchema.SetDefaultValue(Type, Object)
+  fullName: CodeJam.Mapping.MappingSchema.SetDefaultValue(System.Type, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetDefaultValue
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 143
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nSets default value for provided <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public void SetDefaultValue(Type type, object value)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to set default value for.
+    - id: value
+      type: System.Object
+      description: Value to set.
+    content.vb: Public Sub SetDefaultValue(type As Type, value As Object)
+  overload: CodeJam.Mapping.MappingSchema.SetDefaultValue*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.ChangeTypeTo``1(System.Object)
+  commentId: M:CodeJam.Mapping.MappingSchema.ChangeTypeTo``1(System.Object)
+  id: ChangeTypeTo``1(System.Object)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: ChangeTypeTo<T>(Object)
+  nameWithType: MappingSchema.ChangeTypeTo<T>(Object)
+  fullName: CodeJam.Mapping.MappingSchema.ChangeTypeTo<T>(System.Object)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ChangeTypeTo
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 178
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns an object of a specified type whose value is equivalent to a specified object.\n"
+  example: []
+  syntax:
+    content: public T ChangeTypeTo<T>(object value)
+    parameters:
+    - id: value
+      type: System.Object
+      description: An object to convert.
+    typeParameters:
+    - id: T
+      description: The type of object to return.
+    return:
+      type: '{T}'
+      description: An object whose type is <em>conversionType</em> and whose value is equivalent to <em>value</em>.
+    content.vb: Public Function ChangeTypeTo(Of T)(value As Object) As T
+  overload: CodeJam.Mapping.MappingSchema.ChangeTypeTo*
+  nameWithType.vb: MappingSchema.ChangeTypeTo(Of T)(Object)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.ChangeTypeTo(Of T)(System.Object)
+  name.vb: ChangeTypeTo(Of T)(Object)
+- uid: CodeJam.Mapping.MappingSchema.ChangeType(System.Object,System.Type)
+  commentId: M:CodeJam.Mapping.MappingSchema.ChangeType(System.Object,System.Type)
+  id: ChangeType(System.Object,System.Type)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: ChangeType(Object, Type)
+  nameWithType: MappingSchema.ChangeType(Object, Type)
+  fullName: CodeJam.Mapping.MappingSchema.ChangeType(System.Object, System.Type)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ChangeType
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 187
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns an object of a specified type whose value is equivalent to a specified object.\n"
+  example: []
+  syntax:
+    content: public object ChangeType(object value, Type conversionType)
+    parameters:
+    - id: value
+      type: System.Object
+      description: An object to convert.
+    - id: conversionType
+      type: System.Type
+      description: The type of object to return.
+    return:
+      type: System.Object
+      description: An object whose type is <em>conversionType</em> and whose value is equivalent to <em>value</em>.
+    content.vb: Public Function ChangeType(value As Object, conversionType As Type) As Object
+  overload: CodeJam.Mapping.MappingSchema.ChangeType*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.EnumToValue(System.Enum)
+  commentId: M:CodeJam.Mapping.MappingSchema.EnumToValue(System.Enum)
+  id: EnumToValue(System.Enum)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: EnumToValue(Enum)
+  nameWithType: MappingSchema.EnumToValue(Enum)
+  fullName: CodeJam.Mapping.MappingSchema.EnumToValue(System.Enum)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: EnumToValue
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 195
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nConverts enum to its map value.\n"
+  example: []
+  syntax:
+    content: public object EnumToValue(Enum value)
+    parameters:
+    - id: value
+      type: System.Enum
+      description: Value to convert.
+    return:
+      type: System.Object
+      description: Mapped value.
+    content.vb: Public Function EnumToValue(value As  Enum) As Object
+  overload: CodeJam.Mapping.MappingSchema.EnumToValue*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.TryGetConvertExpression(System.Type,System.Type)
+  commentId: M:CodeJam.Mapping.MappingSchema.TryGetConvertExpression(System.Type,System.Type)
+  id: TryGetConvertExpression(System.Type,System.Type)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: TryGetConvertExpression(Type, Type)
+  nameWithType: MappingSchema.TryGetConvertExpression(Type, Type)
+  fullName: CodeJam.Mapping.MappingSchema.TryGetConvertExpression(System.Type, System.Type)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: TryGetConvertExpression
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 208
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns an expression that converts a value of type <em>TFrom</em> to <em>TTo</em> or null.\n"
+  example: []
+  syntax:
+    content: protected virtual LambdaExpression TryGetConvertExpression(Type from, Type to)
+    parameters:
+    - id: from
+      type: System.Type
+      description: Type to convert from.
+    - id: to
+      type: System.Type
+      description: Type to convert to.
+    return:
+      type: System.Linq.Expressions.LambdaExpression
+      description: Convert expression.
+    content.vb: Protected Overridable Function TryGetConvertExpression(from As Type, to As Type) As LambdaExpression
+  overload: CodeJam.Mapping.MappingSchema.TryGetConvertExpression*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: CodeJam.Mapping.MappingSchema.GetConvertExpression``2
+  commentId: M:CodeJam.Mapping.MappingSchema.GetConvertExpression``2
+  id: GetConvertExpression``2
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetConvertExpression<TFrom, TTo>()
+  nameWithType: MappingSchema.GetConvertExpression<TFrom, TTo>()
+  fullName: CodeJam.Mapping.MappingSchema.GetConvertExpression<TFrom, TTo>()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetConvertExpression
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 223
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns an expression that converts a value of type <em>TFrom</em> to <em>TTo</em>.\n"
+  example: []
+  syntax:
+    content: public Expression<Func<TFrom, TTo>> GetConvertExpression<TFrom, TTo>()
+    typeParameters:
+    - id: TFrom
+      description: Type to convert from.
+    - id: TTo
+      description: Type to convert to.
+    return:
+      type: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+      description: Convert expression.
+    content.vb: Public Function GetConvertExpression(Of TFrom, TTo) As Expression(Of Func(Of TFrom, TTo))
+  overload: CodeJam.Mapping.MappingSchema.GetConvertExpression*
+  nameWithType.vb: MappingSchema.GetConvertExpression(Of TFrom, TTo)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetConvertExpression(Of TFrom, TTo)()
+  name.vb: GetConvertExpression(Of TFrom, TTo)()
+- uid: CodeJam.Mapping.MappingSchema.GetConvertExpression(System.Type,System.Type,System.Boolean,System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetConvertExpression(System.Type,System.Type,System.Boolean,System.Boolean)
+  id: GetConvertExpression(System.Type,System.Type,System.Boolean,System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetConvertExpression(Type, Type, Boolean, Boolean)
+  nameWithType: MappingSchema.GetConvertExpression(Type, Type, Boolean, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetConvertExpression(System.Type, System.Type, System.Boolean, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetConvertExpression
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 237
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns an expression that converts a value of type <em>from</em> to <em>to</em>.\n"
+  example: []
+  syntax:
+    content: public LambdaExpression GetConvertExpression(Type from, Type to, bool checkNull = true, bool createDefault = true)
+    parameters:
+    - id: from
+      type: System.Type
+      description: Type to convert from.
+    - id: to
+      type: System.Type
+      description: Type to convert to.
+    - id: checkNull
+      type: System.Boolean
+      description: If <em>true</em>, created expression checks input value for <em>null</em>.
+    - id: createDefault
+      type: System.Boolean
+      description: If <em>true</em>, new expression is created.
+    return:
+      type: System.Linq.Expressions.LambdaExpression
+      description: Convert expression.
+    content.vb: Public Function GetConvertExpression(from As Type, to As Type, checkNull As Boolean = True, createDefault As Boolean = True) As LambdaExpression
+  overload: CodeJam.Mapping.MappingSchema.GetConvertExpression*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.GetConverter``2
+  commentId: M:CodeJam.Mapping.MappingSchema.GetConverter``2
+  id: GetConverter``2
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetConverter<TFrom, TTo>()
+  nameWithType: MappingSchema.GetConverter<TFrom, TTo>()
+  fullName: CodeJam.Mapping.MappingSchema.GetConverter<TFrom, TTo>()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetConverter
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 256
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns converter from a value of type <em>TFrom</em> to <em>TTo</em>.\n"
+  example: []
+  syntax:
+    content: public Func<TFrom, TTo> GetConverter<TFrom, TTo>()
+    typeParameters:
+    - id: TFrom
+      description: Type to convert from.
+    - id: TTo
+      description: Type to convert to.
+    return:
+      type: System.Func{{TFrom},{TTo}}
+      description: Convert function.
+    content.vb: Public Function GetConverter(Of TFrom, TTo) As Func(Of TFrom, TTo)
+  overload: CodeJam.Mapping.MappingSchema.GetConverter*
+  nameWithType.vb: MappingSchema.GetConverter(Of TFrom, TTo)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetConverter(Of TFrom, TTo)()
+  name.vb: GetConverter(Of TFrom, TTo)()
+- uid: CodeJam.Mapping.MappingSchema.SetConvertExpression(System.Type,System.Type,System.Linq.Expressions.LambdaExpression,System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.SetConvertExpression(System.Type,System.Type,System.Linq.Expressions.LambdaExpression,System.Boolean)
+  id: SetConvertExpression(System.Type,System.Type,System.Linq.Expressions.LambdaExpression,System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: SetConvertExpression(Type, Type, LambdaExpression, Boolean)
+  nameWithType: MappingSchema.SetConvertExpression(Type, Type, LambdaExpression, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.SetConvertExpression(System.Type, System.Type, System.Linq.Expressions.LambdaExpression, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetConvertExpression
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 280
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds an expression that converts a value of type <em>fromType</em> to <em>toType</em>.\n"
+  example: []
+  syntax:
+    content: public void SetConvertExpression(Type fromType, Type toType, LambdaExpression expr, bool addNullCheck = true)
+    parameters:
+    - id: fromType
+      type: System.Type
+      description: Type to convert from.
+    - id: toType
+      type: System.Type
+      description: Type to convert to.
+    - id: expr
+      type: System.Linq.Expressions.LambdaExpression
+      description: Expression to set.
+    - id: addNullCheck
+      type: System.Boolean
+      description: If <em>true</em>, adds an expression to check null value.
+    content.vb: Public Sub SetConvertExpression(fromType As Type, toType As Type, expr As LambdaExpression, addNullCheck As Boolean = True)
+  overload: CodeJam.Mapping.MappingSchema.SetConvertExpression*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.SetConvertExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.SetConvertExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Boolean)
+  id: SetConvertExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: SetConvertExpression<TFrom, TTo>(Expression<Func<TFrom, TTo>>, Boolean)
+  nameWithType: MappingSchema.SetConvertExpression<TFrom, TTo>(Expression<Func<TFrom, TTo>>, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.SetConvertExpression<TFrom, TTo>(System.Linq.Expressions.Expression<System.Func<TFrom, TTo>>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetConvertExpression
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 304
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds an expression that converts a value of type <em>fromType</em> to <em>toType</em>.\n"
+  example: []
+  syntax:
+    content: public void SetConvertExpression<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr, bool addNullCheck = true)
+    parameters:
+    - id: expr
+      type: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+      description: Expression to set.
+    - id: addNullCheck
+      type: System.Boolean
+      description: If <em>true</em>, adds an expression to check null value.
+    typeParameters:
+    - id: TFrom
+      description: Type to convert from.
+    - id: TTo
+      description: Type to convert to.
+    content.vb: Public Sub SetConvertExpression(Of TFrom, TTo)(expr As Expression(Of Func(Of TFrom, TTo)), addNullCheck As Boolean = True)
+  overload: CodeJam.Mapping.MappingSchema.SetConvertExpression*
+  nameWithType.vb: MappingSchema.SetConvertExpression(Of TFrom, TTo)(Expression(Of Func(Of TFrom, TTo)), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.SetConvertExpression(Of TFrom, TTo)(System.Linq.Expressions.Expression(Of System.Func(Of TFrom, TTo)), System.Boolean)
+  name.vb: SetConvertExpression(Of TFrom, TTo)(Expression(Of Func(Of TFrom, TTo)), Boolean)
+- uid: CodeJam.Mapping.MappingSchema.SetConvertExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  commentId: M:CodeJam.Mapping.MappingSchema.SetConvertExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  id: SetConvertExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: SetConvertExpression<TFrom, TTo>(Expression<Func<TFrom, TTo>>, Expression<Func<TFrom, TTo>>)
+  nameWithType: MappingSchema.SetConvertExpression<TFrom, TTo>(Expression<Func<TFrom, TTo>>, Expression<Func<TFrom, TTo>>)
+  fullName: CodeJam.Mapping.MappingSchema.SetConvertExpression<TFrom, TTo>(System.Linq.Expressions.Expression<System.Func<TFrom, TTo>>, System.Linq.Expressions.Expression<System.Func<TFrom, TTo>>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetConvertExpression
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 324
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds an expression that converts a value of type <em>fromType</em> to <em>toType</em>.\n"
+  example: []
+  syntax:
+    content: public void SetConvertExpression<TFrom, TTo>(Expression<Func<TFrom, TTo>> checkNullExpr, Expression<Func<TFrom, TTo>> expr)
+    parameters:
+    - id: checkNullExpr
+      type: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+      description: Null check expression.
+    - id: expr
+      type: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+      description: Convert expression.
+    typeParameters:
+    - id: TFrom
+      description: Type to convert from.
+    - id: TTo
+      description: Type to convert to.
+    content.vb: Public Sub SetConvertExpression(Of TFrom, TTo)(checkNullExpr As Expression(Of Func(Of TFrom, TTo)), expr As Expression(Of Func(Of TFrom, TTo)))
+  overload: CodeJam.Mapping.MappingSchema.SetConvertExpression*
+  nameWithType.vb: MappingSchema.SetConvertExpression(Of TFrom, TTo)(Expression(Of Func(Of TFrom, TTo)), Expression(Of Func(Of TFrom, TTo)))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.SetConvertExpression(Of TFrom, TTo)(System.Linq.Expressions.Expression(Of System.Func(Of TFrom, TTo)), System.Linq.Expressions.Expression(Of System.Func(Of TFrom, TTo)))
+  name.vb: SetConvertExpression(Of TFrom, TTo)(Expression(Of Func(Of TFrom, TTo)), Expression(Of Func(Of TFrom, TTo)))
+- uid: CodeJam.Mapping.MappingSchema.SetConverter``2(System.Func{``0,``1})
+  commentId: M:CodeJam.Mapping.MappingSchema.SetConverter``2(System.Func{``0,``1})
+  id: SetConverter``2(System.Func{``0,``1})
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: SetConverter<TFrom, TTo>(Func<TFrom, TTo>)
+  nameWithType: MappingSchema.SetConverter<TFrom, TTo>(Func<TFrom, TTo>)
+  fullName: CodeJam.Mapping.MappingSchema.SetConverter<TFrom, TTo>(System.Func<TFrom, TTo>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetConverter
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 339
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds a function expression that converts a value of type <em>fromType</em> to <em>toType</em>.\n"
+  example: []
+  syntax:
+    content: public void SetConverter<TFrom, TTo>(Func<TFrom, TTo> func)
+    parameters:
+    - id: func
+      type: System.Func{{TFrom},{TTo}}
+      description: Convert function.
+    typeParameters:
+    - id: TFrom
+      description: Type to convert from.
+    - id: TTo
+      description: Type to convert to.
+    content.vb: Public Sub SetConverter(Of TFrom, TTo)(func As Func(Of TFrom, TTo))
+  overload: CodeJam.Mapping.MappingSchema.SetConverter*
+  nameWithType.vb: MappingSchema.SetConverter(Of TFrom, TTo)(Func(Of TFrom, TTo))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.SetConverter(Of TFrom, TTo)(System.Func(Of TFrom, TTo))
+  name.vb: SetConverter(Of TFrom, TTo)(Func(Of TFrom, TTo))
+- uid: CodeJam.Mapping.MappingSchema.SetCultureInfo(System.Globalization.CultureInfo)
+  commentId: M:CodeJam.Mapping.MappingSchema.SetCultureInfo(System.Globalization.CultureInfo)
+  id: SetCultureInfo(System.Globalization.CultureInfo)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: SetCultureInfo(CultureInfo)
+  nameWithType: MappingSchema.SetCultureInfo(CultureInfo)
+  fullName: CodeJam.Mapping.MappingSchema.SetCultureInfo(System.Globalization.CultureInfo)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetCultureInfo
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 502
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nInitializes culture specific converters.\n"
+  example: []
+  syntax:
+    content: public void SetCultureInfo(CultureInfo info)
+    parameters:
+    - id: info
+      type: System.Globalization.CultureInfo
+      description: Instance of <xref href="System.Globalization.CultureInfo" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Sub SetCultureInfo(info As CultureInfo)
+  overload: CodeJam.Mapping.MappingSchema.SetCultureInfo*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.MetadataReader
+  commentId: P:CodeJam.Mapping.MappingSchema.MetadataReader
+  id: MetadataReader
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: MetadataReader
+  nameWithType: MappingSchema.MetadataReader
+  fullName: CodeJam.Mapping.MappingSchema.MetadataReader
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MetadataReader
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 579
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nGets or sets metadata reader.\n"
+  example: []
+  syntax:
+    content: public IMetadataReader MetadataReader { get; set; }
+    parameters: []
+    return:
+      type: CodeJam.Metadata.IMetadataReader
+    content.vb: Public Property MetadataReader As IMetadataReader
+  overload: CodeJam.Mapping.MappingSchema.MetadataReader*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.AddMetadataReader(CodeJam.Metadata.IMetadataReader)
+  commentId: M:CodeJam.Mapping.MappingSchema.AddMetadataReader(CodeJam.Metadata.IMetadataReader)
+  id: AddMetadataReader(CodeJam.Metadata.IMetadataReader)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: AddMetadataReader(IMetadataReader)
+  nameWithType: MappingSchema.AddMetadataReader(IMetadataReader)
+  fullName: CodeJam.Mapping.MappingSchema.AddMetadataReader(CodeJam.Metadata.IMetadataReader)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AddMetadataReader
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 593
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds metadata reader.\n"
+  example: []
+  syntax:
+    content: public void AddMetadataReader(IMetadataReader reader)
+    parameters:
+    - id: reader
+      type: CodeJam.Metadata.IMetadataReader
+      description: Instance of <xref href="CodeJam.Metadata.IMetadataReader" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Sub AddMetadataReader(reader As IMetadataReader)
+  overload: CodeJam.Mapping.MappingSchema.AddMetadataReader*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Type,System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Type,System.Boolean)
+  id: GetAttributes``1(System.Type,System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(Type, Boolean)
+  nameWithType: MappingSchema.GetAttributes<T>(Type, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetAttributes<T>(System.Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttributes
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 628
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns custom attributes applied to provided type.\n"
+  example: []
+  syntax:
+    content: 'public T[] GetAttributes<T>(Type type, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: type
+      type: System.Type
+      description: Object type
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this type are returned.
+    return:
+      type: '{T}[]'
+      description: Array of custom attributes.
+    content.vb: Public Function GetAttributes(Of T As Attribute)(type As Type, inherit As Boolean = True) As T()
+  overload: CodeJam.Mapping.MappingSchema.GetAttributes*
+  nameWithType.vb: MappingSchema.GetAttributes(Of T)(Type, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetAttributes(Of T)(System.Type, System.Boolean)
+  name.vb: GetAttributes(Of T)(Type, Boolean)
+- uid: CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  id: GetAttributes``1(System.Reflection.MemberInfo,System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(MemberInfo, Boolean)
+  nameWithType: MappingSchema.GetAttributes<T>(MemberInfo, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetAttributes<T>(System.Reflection.MemberInfo, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttributes
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 646
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns custom attributes applied to provided type member.\n"
+  example: []
+  syntax:
+    content: 'public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: memberInfo
+      type: System.Reflection.MemberInfo
+      description: Type member.
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this member are returned.
+    return:
+      type: '{T}[]'
+      description: Array of custom attributes.
+    content.vb: Public Function GetAttributes(Of T As Attribute)(memberInfo As MemberInfo, inherit As Boolean = True) As T()
+  overload: CodeJam.Mapping.MappingSchema.GetAttributes*
+  nameWithType.vb: MappingSchema.GetAttributes(Of T)(MemberInfo, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetAttributes(Of T)(System.Reflection.MemberInfo, System.Boolean)
+  name.vb: GetAttributes(Of T)(MemberInfo, Boolean)
+- uid: CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Type,System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Type,System.Boolean)
+  id: GetAttribute``1(System.Type,System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetAttribute<T>(Type, Boolean)
+  nameWithType: MappingSchema.GetAttribute<T>(Type, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetAttribute<T>(System.Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttribute
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 664
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns custom attribute applied to provided type.\n"
+  example: []
+  syntax:
+    content: 'public T GetAttribute<T>(Type type, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: type
+      type: System.Type
+      description: Object type
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this type are returned.
+    return:
+      type: '{T}'
+      description: A custom attribute or <em>null</em>.
+    content.vb: Public Function GetAttribute(Of T As Attribute)(type As Type, inherit As Boolean = True) As T
+  overload: CodeJam.Mapping.MappingSchema.GetAttribute*
+  nameWithType.vb: MappingSchema.GetAttribute(Of T)(Type, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetAttribute(Of T)(System.Type, System.Boolean)
+  name.vb: GetAttribute(Of T)(Type, Boolean)
+- uid: CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Reflection.MemberInfo,System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Reflection.MemberInfo,System.Boolean)
+  id: GetAttribute``1(System.Reflection.MemberInfo,System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetAttribute<T>(MemberInfo, Boolean)
+  nameWithType: MappingSchema.GetAttribute<T>(MemberInfo, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetAttribute<T>(System.Reflection.MemberInfo, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttribute
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 678
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns custom attribute applied to provided type member.\n"
+  example: []
+  syntax:
+    content: 'public T GetAttribute<T>(MemberInfo memberInfo, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: memberInfo
+      type: System.Reflection.MemberInfo
+      description: Type member.
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this member are returned.
+    return:
+      type: '{T}'
+      description: A custom attribute or <em>null</em>.
+    content.vb: Public Function GetAttribute(Of T As Attribute)(memberInfo As MemberInfo, inherit As Boolean = True) As T
+  overload: CodeJam.Mapping.MappingSchema.GetAttribute*
+  nameWithType.vb: MappingSchema.GetAttribute(Of T)(MemberInfo, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetAttribute(Of T)(System.Reflection.MemberInfo, System.Boolean)
+  name.vb: GetAttribute(Of T)(MemberInfo, Boolean)
+- uid: CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Type,System.Func{``0,System.String},System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Type,System.Func{``0,System.String},System.Boolean)
+  id: GetAttributes``1(System.Type,System.Func{``0,System.String},System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(Type, Func<T, String>, Boolean)
+  nameWithType: MappingSchema.GetAttributes<T>(Type, Func<T, String>, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetAttributes<T>(System.Type, System.Func<T, System.String>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttributes
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 693
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns custom attributes applied to provided type.\n"
+  example: []
+  syntax:
+    content: 'public T[] GetAttributes<T>(Type type, Func<T, string> configGetter, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: type
+      type: System.Type
+      description: Object type
+    - id: configGetter
+      type: System.Func{{T},System.String}
+      description: A function that returns configuration value is supported by the attribute.
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this type are returned.
+    return:
+      type: '{T}[]'
+      description: Array of custom attributes.
+    content.vb: Public Function GetAttributes(Of T As Attribute)(type As Type, configGetter As Func(Of T, String), inherit As Boolean = True) As T()
+  overload: CodeJam.Mapping.MappingSchema.GetAttributes*
+  nameWithType.vb: MappingSchema.GetAttributes(Of T)(Type, Func(Of T, String), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetAttributes(Of T)(System.Type, System.Func(Of T, System.String), System.Boolean)
+  name.vb: GetAttributes(Of T)(Type, Func(Of T, String), Boolean)
+- uid: CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Reflection.MemberInfo,System.Func{``0,System.String},System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetAttributes``1(System.Reflection.MemberInfo,System.Func{``0,System.String},System.Boolean)
+  id: GetAttributes``1(System.Reflection.MemberInfo,System.Func{``0,System.String},System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes<T>(MemberInfo, Func<T, String>, Boolean)
+  nameWithType: MappingSchema.GetAttributes<T>(MemberInfo, Func<T, String>, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetAttributes<T>(System.Reflection.MemberInfo, System.Func<T, System.String>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttributes
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 715
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns custom attributes applied to provided type member.\n"
+  example: []
+  syntax:
+    content: 'public T[] GetAttributes<T>(MemberInfo memberInfo, Func<T, string> configGetter, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: memberInfo
+      type: System.Reflection.MemberInfo
+      description: Type member.
+    - id: configGetter
+      type: System.Func{{T},System.String}
+      description: A function that returns configuration value is supported by the attribute.
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this member are returned.
+    return:
+      type: '{T}[]'
+      description: Array of custom attributes.
+    content.vb: Public Function GetAttributes(Of T As Attribute)(memberInfo As MemberInfo, configGetter As Func(Of T, String), inherit As Boolean = True) As T()
+  overload: CodeJam.Mapping.MappingSchema.GetAttributes*
+  nameWithType.vb: MappingSchema.GetAttributes(Of T)(MemberInfo, Func(Of T, String), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetAttributes(Of T)(System.Reflection.MemberInfo, System.Func(Of T, System.String), System.Boolean)
+  name.vb: GetAttributes(Of T)(MemberInfo, Func(Of T, String), Boolean)
+- uid: CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Type,System.Func{``0,System.String},System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Type,System.Func{``0,System.String},System.Boolean)
+  id: GetAttribute``1(System.Type,System.Func{``0,System.String},System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetAttribute<T>(Type, Func<T, String>, Boolean)
+  nameWithType: MappingSchema.GetAttribute<T>(Type, Func<T, String>, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetAttribute<T>(System.Type, System.Func<T, System.String>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttribute
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 737
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns custom attribute applied to provided type.\n"
+  example: []
+  syntax:
+    content: 'public T GetAttribute<T>(Type type, Func<T, string> configGetter, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: type
+      type: System.Type
+      description: Object type
+    - id: configGetter
+      type: System.Func{{T},System.String}
+      description: A function that returns configuration value is supported by the attribute.
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this type are returned.
+    return:
+      type: '{T}'
+      description: A custom attribute or <em>null</em>.
+    content.vb: Public Function GetAttribute(Of T As Attribute)(type As Type, configGetter As Func(Of T, String), inherit As Boolean = True) As T
+  overload: CodeJam.Mapping.MappingSchema.GetAttribute*
+  nameWithType.vb: MappingSchema.GetAttribute(Of T)(Type, Func(Of T, String), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetAttribute(Of T)(System.Type, System.Func(Of T, System.String), System.Boolean)
+  name.vb: GetAttribute(Of T)(Type, Func(Of T, String), Boolean)
+- uid: CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Reflection.MemberInfo,System.Func{``0,System.String},System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetAttribute``1(System.Reflection.MemberInfo,System.Func{``0,System.String},System.Boolean)
+  id: GetAttribute``1(System.Reflection.MemberInfo,System.Func{``0,System.String},System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetAttribute<T>(MemberInfo, Func<T, String>, Boolean)
+  nameWithType: MappingSchema.GetAttribute<T>(MemberInfo, Func<T, String>, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.GetAttribute<T>(System.Reflection.MemberInfo, System.Func<T, System.String>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAttribute
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 752
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns custom attribute applied to provided type member.\n"
+  example: []
+  syntax:
+    content: 'public T GetAttribute<T>(MemberInfo memberInfo, Func<T, string> configGetter, bool inherit = true)where T : Attribute'
+    parameters:
+    - id: memberInfo
+      type: System.Reflection.MemberInfo
+      description: Type member.
+    - id: configGetter
+      type: System.Func{{T},System.String}
+      description: A function that returns configuration value is supported by the attribute.
+    - id: inherit
+      type: System.Boolean
+      description: <strong>true</strong> to search this member&apos;s inheritance chain to find the attributes; otherwise, <strong>false</strong>.
+    typeParameters:
+    - id: T
+      description: The type of attribute to search for. Only attributes that are assignable to this member are returned.
+    return:
+      type: '{T}'
+      description: A custom attribute or <em>null</em>.
+    content.vb: Public Function GetAttribute(Of T As Attribute)(memberInfo As MemberInfo, configGetter As Func(Of T, String), inherit As Boolean = True) As T
+  overload: CodeJam.Mapping.MappingSchema.GetAttribute*
+  nameWithType.vb: MappingSchema.GetAttribute(Of T)(MemberInfo, Func(Of T, String), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: CodeJam.Mapping.MappingSchema.GetAttribute(Of T)(System.Reflection.MemberInfo, System.Func(Of T, System.String), System.Boolean)
+  name.vb: GetAttribute(Of T)(MemberInfo, Func(Of T, String), Boolean)
+- uid: CodeJam.Mapping.MappingSchema.ConfigurationID
+  commentId: P:CodeJam.Mapping.MappingSchema.ConfigurationID
+  id: ConfigurationID
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: ConfigurationID
+  nameWithType: MappingSchema.ConfigurationID
+  fullName: CodeJam.Mapping.MappingSchema.ConfigurationID
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ConfigurationID
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 768
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nGets configuration ID.\n"
+  example: []
+  syntax:
+    content: public string ConfigurationID { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ConfigurationID As String
+  overload: CodeJam.Mapping.MappingSchema.ConfigurationID*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.Mapping.MappingSchema.ConfigurationList
+  commentId: P:CodeJam.Mapping.MappingSchema.ConfigurationList
+  id: ConfigurationList
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: ConfigurationList
+  nameWithType: MappingSchema.ConfigurationList
+  fullName: CodeJam.Mapping.MappingSchema.ConfigurationList
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ConfigurationList
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 775
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nConfiguration list.\n"
+  example: []
+  syntax:
+    content: public string[] ConfigurationList { get; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: Public ReadOnly Property ConfigurationList As String()
+  overload: CodeJam.Mapping.MappingSchema.ConfigurationList*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.Mapping.MappingSchema.Default
+  commentId: F:CodeJam.Mapping.MappingSchema.Default
+  id: Default
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: MappingSchema.Default
+  fullName: CodeJam.Mapping.MappingSchema.Default
+  type: Field
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Default
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 804
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nDefault mapping schema.\n"
+  example: []
+  syntax:
+    content: public static MappingSchema Default
+    return:
+      type: CodeJam.Mapping.MappingSchema
+    content.vb: Public Shared Default As MappingSchema
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.Mapping.MappingSchema.IsStructIsScalarType
+  commentId: P:CodeJam.Mapping.MappingSchema.IsStructIsScalarType
+  id: IsStructIsScalarType
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: IsStructIsScalarType
+  nameWithType: MappingSchema.IsStructIsScalarType
+  fullName: CodeJam.Mapping.MappingSchema.IsStructIsScalarType
+  type: Property
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsStructIsScalarType
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 822
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\n<em>true</em> if value type is considered as scalar type.\n"
+  example: []
+  syntax:
+    content: public bool IsStructIsScalarType { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsStructIsScalarType As Boolean
+  overload: CodeJam.Mapping.MappingSchema.IsStructIsScalarType*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.IsScalarType(System.Type)
+  commentId: M:CodeJam.Mapping.MappingSchema.IsScalarType(System.Type)
+  id: IsScalarType(System.Type)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: IsScalarType(Type)
+  nameWithType: MappingSchema.IsScalarType(Type)
+  fullName: CodeJam.Mapping.MappingSchema.IsScalarType(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsScalarType
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 829
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns <em>true</em> if provided type is considered as a scalar type.\n"
+  example: []
+  syntax:
+    content: public bool IsScalarType(Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to check.
+    return:
+      type: System.Boolean
+      description: True if provided type is a scalar type.
+    content.vb: Public Function IsScalarType(type As Type) As Boolean
+  overload: CodeJam.Mapping.MappingSchema.IsScalarType*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.SetScalarType(System.Type,System.Boolean)
+  commentId: M:CodeJam.Mapping.MappingSchema.SetScalarType(System.Type,System.Boolean)
+  id: SetScalarType(System.Type,System.Boolean)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: SetScalarType(Type, Boolean)
+  nameWithType: MappingSchema.SetScalarType(Type, Boolean)
+  fullName: CodeJam.Mapping.MappingSchema.SetScalarType(System.Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: SetScalarType
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 863
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nSets an scalar type indicator scalar for provided type.\n"
+  example: []
+  syntax:
+    content: public void SetScalarType(Type type, bool isScalarType = true)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to set.
+    - id: isScalarType
+      type: System.Boolean
+      description: Acalar type indicator.
+    content.vb: Public Sub SetScalarType(type As Type, isScalarType As Boolean = True)
+  overload: CodeJam.Mapping.MappingSchema.SetScalarType*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.AddScalarType(System.Type,System.Object)
+  commentId: M:CodeJam.Mapping.MappingSchema.AddScalarType(System.Type,System.Object)
+  id: AddScalarType(System.Type,System.Object)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: AddScalarType(Type, Object)
+  nameWithType: MappingSchema.AddScalarType(Type, Object)
+  fullName: CodeJam.Mapping.MappingSchema.AddScalarType(System.Type, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: AddScalarType
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 871
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nAdds scalar type and its default value.\n"
+  example: []
+  syntax:
+    content: public void AddScalarType(Type type, object defaultValue)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to add
+    - id: defaultValue
+      type: System.Object
+      description: Default value.
+    content.vb: Public Sub AddScalarType(type As Type, defaultValue As Object)
+  overload: CodeJam.Mapping.MappingSchema.AddScalarType*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.Mapping.MappingSchema.GetMapValues(System.Type)
+  commentId: M:CodeJam.Mapping.MappingSchema.GetMapValues(System.Type)
+  id: GetMapValues(System.Type)
+  parent: CodeJam.Mapping.MappingSchema
+  langs:
+  - csharp
+  - vb
+  name: GetMapValues(Type)
+  nameWithType: MappingSchema.GetMapValues(Type)
+  fullName: CodeJam.Mapping.MappingSchema.GetMapValues(System.Type)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/MappingSchema.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMapValues
+    path: ../Blocks/src/Mapping/MappingSchema.cs
+    startLine: 889
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns mapping values for provided enum type.\n"
+  example: []
+  syntax:
+    content: public virtual MapValue[] GetMapValues(Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: Type to get mapping values.
+    return:
+      type: CodeJam.Mapping.MapValue[]
+      description: Array of mapping values.
+    content.vb: Public Overridable Function GetMapValues(type As Type) As MapValue()
+  overload: CodeJam.Mapping.MappingSchema.GetMapValues*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: <code data-dev-comment-type="paramref" class="paramref">type</code> is null.
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+references:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MappingSchema.CodeJam.Mapping.Map.DeepCopy``1
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  parent: CodeJam.Mapping.Map
+  definition: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  name: DeepCopy<MappingSchema>()
+  nameWithType: Map.DeepCopy<MappingSchema>()
+  fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.MappingSchema>()
+  nameWithType.vb: Map.DeepCopy(Of MappingSchema)()
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.MappingSchema)()
+  name.vb: DeepCopy(Of MappingSchema)()
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy<MappingSchema>
+    nameWithType: Map.DeepCopy<MappingSchema>
+    fullName: CodeJam.Mapping.Map.DeepCopy<CodeJam.Mapping.MappingSchema>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1
+    name: DeepCopy(Of MappingSchema)
+    nameWithType: Map.DeepCopy(Of MappingSchema)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of CodeJam.Mapping.MappingSchema)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  isExternal: false
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy<T>
+    nameWithType: Map.DeepCopy<T>
+    fullName: CodeJam.Mapping.Map.DeepCopy<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+    name: DeepCopy(Of T)
+    nameWithType: Map.DeepCopy(Of T)
+    fullName: CodeJam.Mapping.Map.DeepCopy(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+- uid: CodeJam.Mapping.MappingSchema
+  commentId: T:CodeJam.Mapping.MappingSchema
+  parent: CodeJam.Mapping
+  isExternal: false
+  name: MappingSchema
+  nameWithType: MappingSchema
+  fullName: CodeJam.Mapping.MappingSchema
+- uid: CodeJam.Mapping.MappingSchema.#ctor*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.#ctor
+  isExternal: false
+  name: MappingSchema
+  nameWithType: MappingSchema.MappingSchema
+  fullName: CodeJam.Mapping.MappingSchema.MappingSchema
+- uid: CodeJam.Mapping.MappingSchema[]
+  name: MappingSchema[]
+  nameWithType: MappingSchema[]
+  fullName: CodeJam.Mapping.MappingSchema[]
+  nameWithType.vb: MappingSchema()
+  fullName.vb: CodeJam.Mapping.MappingSchema()
+  name.vb: MappingSchema()
+  spec.csharp:
+  - uid: CodeJam.Mapping.MappingSchema
+    name: MappingSchema
+    nameWithType: MappingSchema
+    fullName: CodeJam.Mapping.MappingSchema
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: CodeJam.Mapping.MappingSchema
+    name: MappingSchema
+    nameWithType: MappingSchema
+    fullName: CodeJam.Mapping.MappingSchema
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: CodeJam.Mapping.MappingSchema.GetDefaultValue*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.GetDefaultValue
+  isExternal: false
+  name: GetDefaultValue
+  nameWithType: MappingSchema.GetDefaultValue
+  fullName: CodeJam.Mapping.MappingSchema.GetDefaultValue
+- uid: CodeJam.Mapping.MappingSchema.SetDefaultValue*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.SetDefaultValue
+  isExternal: false
+  name: SetDefaultValue
+  nameWithType: MappingSchema.SetDefaultValue
+  fullName: CodeJam.Mapping.MappingSchema.SetDefaultValue
+- uid: CodeJam.Mapping.MappingSchema.ChangeTypeTo*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.ChangeTypeTo
+  isExternal: false
+  name: ChangeTypeTo
+  nameWithType: MappingSchema.ChangeTypeTo
+  fullName: CodeJam.Mapping.MappingSchema.ChangeTypeTo
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: CodeJam.Mapping.MappingSchema.ChangeType*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.ChangeType
+  isExternal: false
+  name: ChangeType
+  nameWithType: MappingSchema.ChangeType
+  fullName: CodeJam.Mapping.MappingSchema.ChangeType
+- uid: CodeJam.Mapping.MappingSchema.EnumToValue*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.EnumToValue
+  isExternal: false
+  name: EnumToValue
+  nameWithType: MappingSchema.EnumToValue
+  fullName: CodeJam.Mapping.MappingSchema.EnumToValue
+- uid: System.Enum
+  commentId: T:System.Enum
+  parent: System
+  isExternal: true
+  name: Enum
+  nameWithType: Enum
+  fullName: System.Enum
+- uid: CodeJam.Mapping.MappingSchema.TryGetConvertExpression*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.TryGetConvertExpression
+  isExternal: false
+  name: TryGetConvertExpression
+  nameWithType: MappingSchema.TryGetConvertExpression
+  fullName: CodeJam.Mapping.MappingSchema.TryGetConvertExpression
+- uid: System.Linq.Expressions.LambdaExpression
+  commentId: T:System.Linq.Expressions.LambdaExpression
+  parent: System.Linq.Expressions
+  isExternal: true
+  name: LambdaExpression
+  nameWithType: LambdaExpression
+  fullName: System.Linq.Expressions.LambdaExpression
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: false
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+- uid: CodeJam.Mapping.MappingSchema.GetConvertExpression*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.GetConvertExpression
+  isExternal: false
+  name: GetConvertExpression
+  nameWithType: MappingSchema.GetConvertExpression
+  fullName: CodeJam.Mapping.MappingSchema.GetConvertExpression
+- uid: System.Linq.Expressions.Expression{System.Func{{TFrom},{TTo}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<TFrom, TTo>>
+  nameWithType: Expression<Func<TFrom, TTo>>
+  fullName: System.Linq.Expressions.Expression<System.Func<TFrom, TTo>>
+  nameWithType.vb: Expression(Of Func(Of TFrom, TTo))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TFrom, TTo))
+  name.vb: Expression(Of Func(Of TFrom, TTo))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.Mapping.MappingSchema.GetConverter*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.GetConverter
+  isExternal: false
+  name: GetConverter
+  nameWithType: MappingSchema.GetConverter
+  fullName: CodeJam.Mapping.MappingSchema.GetConverter
+- uid: System.Func{{TFrom},{TTo}}
+  commentId: T:System.Func{`0,`1}
+  parent: System
+  definition: System.Func`2
+  name: Func<TFrom, TTo>
+  nameWithType: Func<TFrom, TTo>
+  fullName: System.Func<TFrom, TTo>
+  nameWithType.vb: Func(Of TFrom, TTo)
+  fullName.vb: System.Func(Of TFrom, TTo)
+  name.vb: Func(Of TFrom, TTo)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MappingSchema.SetConvertExpression*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.SetConvertExpression
+  isExternal: false
+  name: SetConvertExpression
+  nameWithType: MappingSchema.SetConvertExpression
+  fullName: CodeJam.Mapping.MappingSchema.SetConvertExpression
+- uid: CodeJam.Mapping.MappingSchema.SetConverter*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.SetConverter
+  isExternal: false
+  name: SetConverter
+  nameWithType: MappingSchema.SetConverter
+  fullName: CodeJam.Mapping.MappingSchema.SetConverter
+- uid: System.Globalization.CultureInfo
+  commentId: T:System.Globalization.CultureInfo
+  parent: System.Globalization
+  isExternal: true
+  name: CultureInfo
+  nameWithType: CultureInfo
+  fullName: System.Globalization.CultureInfo
+- uid: CodeJam.Mapping.MappingSchema.SetCultureInfo*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.SetCultureInfo
+  isExternal: false
+  name: SetCultureInfo
+  nameWithType: MappingSchema.SetCultureInfo
+  fullName: CodeJam.Mapping.MappingSchema.SetCultureInfo
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: false
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+- uid: CodeJam.Mapping.MappingSchema.MetadataReader*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.MetadataReader
+  isExternal: false
+  name: MetadataReader
+  nameWithType: MappingSchema.MetadataReader
+  fullName: CodeJam.Mapping.MappingSchema.MetadataReader
+- uid: CodeJam.Metadata.IMetadataReader
+  commentId: T:CodeJam.Metadata.IMetadataReader
+  parent: CodeJam.Metadata
+  isExternal: false
+  name: IMetadataReader
+  nameWithType: IMetadataReader
+  fullName: CodeJam.Metadata.IMetadataReader
+- uid: CodeJam.Metadata
+  commentId: N:CodeJam.Metadata
+  isExternal: false
+  name: CodeJam.Metadata
+  nameWithType: CodeJam.Metadata
+  fullName: CodeJam.Metadata
+- uid: CodeJam.Mapping.MappingSchema.AddMetadataReader*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.AddMetadataReader
+  isExternal: false
+  name: AddMetadataReader
+  nameWithType: MappingSchema.AddMetadataReader
+  fullName: CodeJam.Mapping.MappingSchema.AddMetadataReader
+- uid: CodeJam.Mapping.MappingSchema.GetAttributes*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.GetAttributes
+  isExternal: false
+  name: GetAttributes
+  nameWithType: MappingSchema.GetAttributes
+  fullName: CodeJam.Mapping.MappingSchema.GetAttributes
+- uid: '{T}[]'
+  name: T[]
+  nameWithType: T[]
+  fullName: T[]
+  nameWithType.vb: T()
+  fullName.vb: T()
+  name.vb: T()
+  spec.csharp:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Reflection.MemberInfo
+  commentId: T:System.Reflection.MemberInfo
+  parent: System.Reflection
+  isExternal: true
+  name: MemberInfo
+  nameWithType: MemberInfo
+  fullName: System.Reflection.MemberInfo
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: false
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: CodeJam.Mapping.MappingSchema.GetAttribute*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.GetAttribute
+  isExternal: false
+  name: GetAttribute
+  nameWithType: MappingSchema.GetAttribute
+  fullName: CodeJam.Mapping.MappingSchema.GetAttribute
+- uid: System.Func{{T},System.String}
+  commentId: T:System.Func{``0,System.String}
+  parent: System
+  definition: System.Func`2
+  name: Func<T, String>
+  nameWithType: Func<T, String>
+  fullName: System.Func<T, System.String>
+  nameWithType.vb: Func(Of T, String)
+  fullName.vb: System.Func(Of T, System.String)
+  name.vb: Func(Of T, String)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.MappingSchema.ConfigurationID*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.ConfigurationID
+  isExternal: false
+  name: ConfigurationID
+  nameWithType: MappingSchema.ConfigurationID
+  fullName: CodeJam.Mapping.MappingSchema.ConfigurationID
+- uid: CodeJam.Mapping.MappingSchema.ConfigurationList*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.ConfigurationList
+  isExternal: false
+  name: ConfigurationList
+  nameWithType: MappingSchema.ConfigurationList
+  fullName: CodeJam.Mapping.MappingSchema.ConfigurationList
+- uid: System.String[]
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CodeJam.Mapping.MappingSchema.IsStructIsScalarType*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.IsStructIsScalarType
+  isExternal: false
+  name: IsStructIsScalarType
+  nameWithType: MappingSchema.IsStructIsScalarType
+  fullName: CodeJam.Mapping.MappingSchema.IsStructIsScalarType
+- uid: CodeJam.Mapping.MappingSchema.IsScalarType*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.IsScalarType
+  isExternal: false
+  name: IsScalarType
+  nameWithType: MappingSchema.IsScalarType
+  fullName: CodeJam.Mapping.MappingSchema.IsScalarType
+- uid: CodeJam.Mapping.MappingSchema.SetScalarType*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.SetScalarType
+  isExternal: false
+  name: SetScalarType
+  nameWithType: MappingSchema.SetScalarType
+  fullName: CodeJam.Mapping.MappingSchema.SetScalarType
+- uid: CodeJam.Mapping.MappingSchema.AddScalarType*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.AddScalarType
+  isExternal: false
+  name: AddScalarType
+  nameWithType: MappingSchema.AddScalarType
+  fullName: CodeJam.Mapping.MappingSchema.AddScalarType
+- uid: CodeJam.Mapping.MappingSchema.GetMapValues*
+  commentId: Overload:CodeJam.Mapping.MappingSchema.GetMapValues
+  isExternal: false
+  name: GetMapValues
+  nameWithType: MappingSchema.GetMapValues
+  fullName: CodeJam.Mapping.MappingSchema.GetMapValues
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+- uid: CodeJam.Mapping.MapValue[]
+  name: MapValue[]
+  nameWithType: MapValue[]
+  fullName: CodeJam.Mapping.MapValue[]
+  nameWithType.vb: MapValue()
+  fullName.vb: CodeJam.Mapping.MapValue()
+  name.vb: MapValue()
+  spec.csharp:
+  - uid: CodeJam.Mapping.MapValue
+    name: MapValue
+    nameWithType: MapValue
+    fullName: CodeJam.Mapping.MapValue
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: CodeJam.Mapping.MapValue
+    name: MapValue
+    nameWithType: MapValue
+    fullName: CodeJam.Mapping.MapValue
+  - name: ()
+    nameWithType: ()
+    fullName: ()

@@ -1,0 +1,53 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Strings
+  commentId: N:CodeJam.Strings
+  id: CodeJam.Strings
+  children:
+  - CodeJam.Strings.CharExtensions
+  - CodeJam.Strings.NaturalOrderStringComparer
+  - CodeJam.Strings.StringExtensions
+  - CodeJam.Strings.StringOrigin
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.Strings
+  nameWithType: CodeJam.Strings
+  fullName: CodeJam.Strings
+  type: Namespace
+  assemblies:
+  - CodeJam
+references:
+- uid: CodeJam.Strings.CharExtensions
+  commentId: T:CodeJam.Strings.CharExtensions
+  isExternal: false
+  name: CharExtensions
+  nameWithType: CharExtensions
+  fullName: CodeJam.Strings.CharExtensions
+- uid: CodeJam.Strings.StringExtensions
+  commentId: T:CodeJam.Strings.StringExtensions
+  parent: CodeJam.Strings
+  isExternal: false
+  name: StringExtensions
+  nameWithType: StringExtensions
+  fullName: CodeJam.Strings.StringExtensions
+- uid: CodeJam.Strings.NaturalOrderStringComparer
+  commentId: T:CodeJam.Strings.NaturalOrderStringComparer
+  parent: CodeJam.Strings
+  isExternal: false
+  name: NaturalOrderStringComparer
+  nameWithType: NaturalOrderStringComparer
+  fullName: CodeJam.Strings.NaturalOrderStringComparer
+- uid: CodeJam.Strings.StringOrigin
+  commentId: T:CodeJam.Strings.StringOrigin
+  parent: CodeJam.Strings
+  isExternal: false
+  name: StringOrigin
+  nameWithType: StringOrigin
+  fullName: CodeJam.Strings.StringOrigin
+- uid: CodeJam.Strings
+  commentId: N:CodeJam.Strings
+  isExternal: false
+  name: CodeJam.Strings
+  nameWithType: CodeJam.Strings
+  fullName: CodeJam.Strings

@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Console
+  commentId: N:CodeJam.PerfTests.Running.Console
+  id: CodeJam.PerfTests.Running.Console
+  children:
+  - CodeJam.PerfTests.Running.Console.ConsoleCompetition
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.PerfTests.Running.Console
+  nameWithType: CodeJam.PerfTests.Running.Console
+  fullName: CodeJam.PerfTests.Running.Console
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: CodeJam.PerfTests.Running.Console.ConsoleCompetition
+  commentId: T:CodeJam.PerfTests.Running.Console.ConsoleCompetition
+  isExternal: false
+  name: ConsoleCompetition
+  nameWithType: ConsoleCompetition
+  fullName: CodeJam.PerfTests.Running.Console.ConsoleCompetition

@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+  id: ICompetitionConfigFactorySource
+  parent: CodeJam.PerfTests.Configs.Factories
+  children:
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.ConfigFactory
+  langs:
+  - csharp
+  - vb
+  name: ICompetitionConfigFactorySource
+  nameWithType: ICompetitionConfigFactorySource
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactorySource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ICompetitionConfigFactorySource
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactorySource.cs
+    startLine: 5
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: Base interface for <xref href="CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory" data-throw-if-not-resolved="false"></xref> attributes.
+  example: []
+  syntax:
+    content: public interface ICompetitionConfigFactorySource
+    content.vb: Public Interface ICompetitionConfigFactorySource
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.ConfigFactory
+  commentId: P:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.ConfigFactory
+  id: ConfigFactory
+  parent: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+  langs:
+  - csharp
+  - vb
+  name: ConfigFactory
+  nameWithType: ICompetitionConfigFactorySource.ConfigFactory
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.ConfigFactory
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactorySource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ConfigFactory
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionConfigFactorySource.cs
+    startLine: 9
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: The competition config factory.
+  example: []
+  syntax:
+    content: ICompetitionConfigFactory ConfigFactory { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+      description: The competition config factory.
+    content.vb: ReadOnly Property ConfigFactory As ICompetitionConfigFactory
+  overload: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.ConfigFactory*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  parent: CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: ICompetitionConfigFactory
+  nameWithType: ICompetitionConfigFactory
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+- uid: CodeJam.PerfTests.Configs.Factories
+  commentId: N:CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: CodeJam.PerfTests.Configs.Factories
+  nameWithType: CodeJam.PerfTests.Configs.Factories
+  fullName: CodeJam.PerfTests.Configs.Factories
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.ConfigFactory*
+  commentId: Overload:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.ConfigFactory
+  isExternal: false
+  name: ConfigFactory
+  nameWithType: ICompetitionConfigFactorySource.ConfigFactory
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource.ConfigFactory

@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Configs.Factories
+  commentId: N:CodeJam.PerfTests.Configs.Factories
+  id: CodeJam.PerfTests.Configs.Factories
+  children:
+  - CodeJam.PerfTests.Configs.Factories.CompetitionConfigFactory
+  - CodeJam.PerfTests.Configs.Factories.CompetitionFactoryHelpers
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.PerfTests.Configs.Factories
+  nameWithType: CodeJam.PerfTests.Configs.Factories
+  fullName: CodeJam.PerfTests.Configs.Factories
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: CodeJam.PerfTests.Configs.Factories.CompetitionFactoryHelpers
+  commentId: T:CodeJam.PerfTests.Configs.Factories.CompetitionFactoryHelpers
+  isExternal: false
+  name: CompetitionFactoryHelpers
+  nameWithType: CompetitionFactoryHelpers
+  fullName: CodeJam.PerfTests.Configs.Factories.CompetitionFactoryHelpers
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+  parent: CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: ICompetitionConfigFactory
+  nameWithType: ICompetitionConfigFactory
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  parent: CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: ICompetitionModifier
+  nameWithType: ICompetitionModifier
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+  parent: CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: ICompetitionModifierSource
+  nameWithType: ICompetitionModifierSource
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+  parent: CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: ICompetitionConfigFactorySource
+  nameWithType: ICompetitionConfigFactorySource
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+- uid: CodeJam.PerfTests.Configs.Factories.CompetitionConfigFactory
+  commentId: T:CodeJam.PerfTests.Configs.Factories.CompetitionConfigFactory
+  parent: CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: CompetitionConfigFactory
+  nameWithType: CompetitionConfigFactory
+  fullName: CodeJam.PerfTests.Configs.Factories.CompetitionConfigFactory
+- uid: CodeJam.PerfTests.Configs.Factories
+  commentId: N:CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: CodeJam.PerfTests.Configs.Factories
+  nameWithType: CodeJam.PerfTests.Configs.Factories
+  fullName: CodeJam.PerfTests.Configs.Factories

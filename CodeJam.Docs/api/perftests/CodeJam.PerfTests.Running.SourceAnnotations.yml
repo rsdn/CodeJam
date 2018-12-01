@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.SourceAnnotations
+  commentId: N:CodeJam.PerfTests.Running.SourceAnnotations
+  id: CodeJam.PerfTests.Running.SourceAnnotations
+  children:
+  - CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.PerfTests.Running.SourceAnnotations
+  nameWithType: CodeJam.PerfTests.Running.SourceAnnotations
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  commentId: T:CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+  parent: CodeJam.PerfTests.Running.SourceAnnotations
+  isExternal: false
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+- uid: CodeJam.PerfTests.Running.SourceAnnotations
+  commentId: N:CodeJam.PerfTests.Running.SourceAnnotations
+  isExternal: false
+  name: CodeJam.PerfTests.Running.SourceAnnotations
+  nameWithType: CodeJam.PerfTests.Running.SourceAnnotations
+  fullName: CodeJam.PerfTests.Running.SourceAnnotations

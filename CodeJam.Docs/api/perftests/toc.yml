@@ -1,0 +1,272 @@
+### YamlMime:TableOfContent
+- uid: BenchmarkDotNet.Configs
+  name: BenchmarkDotNet.Configs
+  items:
+  - uid: BenchmarkDotNet.Configs.ReadOnlyConfig
+    name: ReadOnlyConfig
+- uid: BenchmarkDotNet.Helpers
+  name: BenchmarkDotNet.Helpers
+  items:
+  - uid: BenchmarkDotNet.Helpers.AttributeValue`1
+    name: AttributeValue<T>
+    name.vb: AttributeValue(Of T)
+  - uid: BenchmarkDotNet.Helpers.BenchmarkHelpers
+    name: BenchmarkHelpers
+- uid: BenchmarkDotNet.Horology
+  name: BenchmarkDotNet.Horology
+  items:
+  - uid: BenchmarkDotNet.Horology.ProcessCycleTimeClock
+    name: ProcessCycleTimeClock
+  - uid: BenchmarkDotNet.Horology.ThreadCycleTimeClock
+    name: ThreadCycleTimeClock
+- uid: BenchmarkDotNet.Loggers
+  name: BenchmarkDotNet.Loggers
+  items:
+  - uid: BenchmarkDotNet.Loggers.IFlushableLogger
+    name: IFlushableLogger
+  - uid: BenchmarkDotNet.Loggers.LazySynchronizedStreamLogger
+    name: LazySynchronizedStreamLogger
+- uid: CodeJam.PerfTests
+  name: CodeJam.PerfTests
+  items:
+  - uid: CodeJam.PerfTests.CompetitionAnnotateSourcesAttribute
+    name: CompetitionAnnotateSourcesAttribute
+  - uid: CodeJam.PerfTests.CompetitionBaselineAttribute
+    name: CompetitionBaselineAttribute
+  - uid: CodeJam.PerfTests.CompetitionBenchmarkAttribute
+    name: CompetitionBenchmarkAttribute
+  - uid: CodeJam.PerfTests.CompetitionBurstModeAttribute
+    name: CompetitionBurstModeAttribute
+  - uid: CodeJam.PerfTests.CompetitionConfigAttribute
+    name: CompetitionConfigAttribute
+  - uid: CodeJam.PerfTests.CompetitionConfigFactoryAttribute
+    name: CompetitionConfigFactoryAttribute
+  - uid: CodeJam.PerfTests.CompetitionFeaturesAttribute
+    name: CompetitionFeaturesAttribute
+  - uid: CodeJam.PerfTests.CompetitionHelpers
+    name: CompetitionHelpers
+  - uid: CodeJam.PerfTests.CompetitionModifierAttribute
+    name: CompetitionModifierAttribute
+  - uid: CodeJam.PerfTests.CompetitionPlatformAttribute
+    name: CompetitionPlatformAttribute
+  - uid: CodeJam.PerfTests.CompetitionPreviewMetricsAttribute
+    name: CompetitionPreviewMetricsAttribute
+  - uid: CodeJam.PerfTests.CompetitionReannotateSourcesAttribute
+    name: CompetitionReannotateSourcesAttribute
+  - uid: CodeJam.PerfTests.CompetitionRunHelpers
+    name: CompetitionRunHelpers
+  - uid: CodeJam.PerfTests.CompetitionTroubleshootingModeAttribute
+    name: CompetitionTroubleshootingModeAttribute
+  - uid: CodeJam.PerfTests.CompetitionXmlAnnotationAttribute
+    name: CompetitionXmlAnnotationAttribute
+  - uid: CodeJam.PerfTests.ExpectedTimeAttribute
+    name: ExpectedTimeAttribute
+  - uid: CodeJam.PerfTests.Gc0Attribute
+    name: Gc0Attribute
+  - uid: CodeJam.PerfTests.Gc1Attribute
+    name: Gc1Attribute
+  - uid: CodeJam.PerfTests.Gc2Attribute
+    name: Gc2Attribute
+  - uid: CodeJam.PerfTests.GcAllocationsAttribute
+    name: GcAllocationsAttribute
+  - uid: CodeJam.PerfTests.MeanTimeAttribute
+    name: MeanTimeAttribute
+  - uid: CodeJam.PerfTests.TimeUnit
+    name: TimeUnit
+  - uid: CodeJam.PerfTests.WellKnownMetrics
+    name: WellKnownMetrics
+- uid: CodeJam.PerfTests.Analysers
+  name: CodeJam.PerfTests.Analysers
+  items:
+  - uid: CodeJam.PerfTests.Analysers.Analysis
+    name: Analysis
+  - uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+    name: CompetitionMetricValue
+  - uid: CodeJam.PerfTests.Analysers.ResultAnalysis
+    name: ResultAnalysis
+- uid: CodeJam.PerfTests.Columns
+  name: CodeJam.PerfTests.Columns
+  items:
+  - uid: CodeJam.PerfTests.Columns.CompetitionCharacteristicColumn
+    name: CompetitionCharacteristicColumn
+  - uid: CodeJam.PerfTests.Columns.CompetitionOptionsColumnProvider
+    name: CompetitionOptionsColumnProvider
+  - uid: CodeJam.PerfTests.Columns.MetricValueColumn
+    name: MetricValueColumn
+  - uid: CodeJam.PerfTests.Columns.MetricValueColumn.Kind
+    name: MetricValueColumn.Kind
+- uid: CodeJam.PerfTests.Configs
+  name: CodeJam.PerfTests.Configs
+  items:
+  - uid: CodeJam.PerfTests.Configs.CompetitionAdjustmentMode
+    name: CompetitionAdjustmentMode
+  - uid: CodeJam.PerfTests.Configs.CompetitionAnnotationMode
+    name: CompetitionAnnotationMode
+  - uid: CodeJam.PerfTests.Configs.CompetitionCheckMode
+    name: CompetitionCheckMode
+  - uid: CodeJam.PerfTests.Configs.CompetitionConfigExtensions
+    name: CompetitionConfigExtensions
+  - uid: CodeJam.PerfTests.Configs.CompetitionFeatures
+    name: CompetitionFeatures
+  - uid: CodeJam.PerfTests.Configs.CompetitionIgnoreAllocationsAttribute
+    name: CompetitionIgnoreAllocationsAttribute
+  - uid: CodeJam.PerfTests.Configs.CompetitionMaximumRerunsAttribute
+    name: CompetitionMaximumRerunsAttribute
+  - uid: CodeJam.PerfTests.Configs.CompetitionMeasureAllAttribute
+    name: CompetitionMeasureAllAttribute
+  - uid: CodeJam.PerfTests.Configs.CompetitionMeasureAllocationsAttribute
+    name: CompetitionMeasureAllocationsAttribute
+  - uid: CodeJam.PerfTests.Configs.CompetitionNoRelativeTimeAttribute
+    name: CompetitionNoRelativeTimeAttribute
+  - uid: CodeJam.PerfTests.Configs.CompetitionOptions
+    name: CompetitionOptions
+  - uid: CodeJam.PerfTests.Configs.CompetitionRunMode
+    name: CompetitionRunMode
+  - uid: CodeJam.PerfTests.Configs.ConcurrentRunBehavior
+    name: ConcurrentRunBehavior
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfig
+    name: ICompetitionConfig
+  - uid: CodeJam.PerfTests.Configs.ICompetitionConfigSource
+    name: ICompetitionConfigSource
+  - uid: CodeJam.PerfTests.Configs.ManualCompetitionConfig
+    name: ManualCompetitionConfig
+  - uid: CodeJam.PerfTests.Configs.ReadOnlyCompetitionConfig
+    name: ReadOnlyCompetitionConfig
+- uid: CodeJam.PerfTests.Configs.Factories
+  name: CodeJam.PerfTests.Configs.Factories
+  items:
+  - uid: CodeJam.PerfTests.Configs.Factories.CompetitionConfigFactory
+    name: CompetitionConfigFactory
+  - uid: CodeJam.PerfTests.Configs.Factories.CompetitionFactoryHelpers
+    name: CompetitionFactoryHelpers
+  - uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactory
+    name: ICompetitionConfigFactory
+  - uid: CodeJam.PerfTests.Configs.Factories.ICompetitionConfigFactorySource
+    name: ICompetitionConfigFactorySource
+  - uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+    name: ICompetitionModifier
+  - uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+    name: ICompetitionModifierSource
+- uid: CodeJam.PerfTests.Exporters
+  name: CodeJam.PerfTests.Exporters
+  items:
+  - uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+    name: CsvTimingsExporter
+  - uid: CodeJam.PerfTests.Exporters.StubExporter
+    name: StubExporter
+- uid: CodeJam.PerfTests.Loggers
+  name: CodeJam.PerfTests.Loggers
+  items:
+  - uid: CodeJam.PerfTests.Loggers.FilteringLogger
+    name: FilteringLogger
+  - uid: CodeJam.PerfTests.Loggers.LogFilter
+    name: LogFilter
+  - uid: CodeJam.PerfTests.Loggers.LoggerHelpers
+    name: LoggerHelpers
+  - uid: CodeJam.PerfTests.Loggers.RedirectLogger
+    name: RedirectLogger
+- uid: CodeJam.PerfTests.Metrics
+  name: CodeJam.PerfTests.Metrics
+  items:
+  - uid: CodeJam.PerfTests.Metrics.GcMetricSource
+    name: GcMetricSource
+  - uid: CodeJam.PerfTests.Metrics.GcMetricValuesProvider
+    name: GcMetricValuesProvider
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+    name.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`1
+    name: IMetricAttribute<TMetricProvider>
+    name.vb: IMetricAttribute(Of TMetricProvider)
+  - uid: CodeJam.PerfTests.Metrics.IMetricCalculator
+    name: IMetricCalculator
+  - uid: CodeJam.PerfTests.Metrics.IMetricValuesProvider
+    name: IMetricValuesProvider
+  - uid: CodeJam.PerfTests.Metrics.IStoredMetricValue
+    name: IStoredMetricValue
+  - uid: CodeJam.PerfTests.Metrics.LogNormalMetricCalculator
+    name: LogNormalMetricCalculator
+  - uid: CodeJam.PerfTests.Metrics.MetricAttributeBase
+    name: MetricAttributeBase
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo
+    name: MetricInfo
+  - uid: CodeJam.PerfTests.Metrics.MetricInfo`1
+    name: MetricInfo<TAttribute>
+    name.vb: MetricInfo(Of TAttribute)
+  - uid: CodeJam.PerfTests.Metrics.MetricInfoAttribute
+    name: MetricInfoAttribute
+  - uid: CodeJam.PerfTests.Metrics.MetricInfoHelpers
+    name: MetricInfoHelpers
+  - uid: CodeJam.PerfTests.Metrics.MetricRange
+    name: MetricRange
+  - uid: CodeJam.PerfTests.Metrics.MetricSingleValueMode
+    name: MetricSingleValueMode
+  - uid: CodeJam.PerfTests.Metrics.MetricUnit
+    name: MetricUnit
+  - uid: CodeJam.PerfTests.Metrics.MetricUnitAttribute
+    name: MetricUnitAttribute
+  - uid: CodeJam.PerfTests.Metrics.MetricUnitScale
+    name: MetricUnitScale
+  - uid: CodeJam.PerfTests.Metrics.MetricValueColumns
+    name: MetricValueColumns
+  - uid: CodeJam.PerfTests.Metrics.MetricValueHelpers
+    name: MetricValueHelpers
+  - uid: CodeJam.PerfTests.Metrics.MetricValuesProviderBase
+    name: MetricValuesProviderBase
+  - uid: CodeJam.PerfTests.Metrics.PercentileMetricCalculator
+    name: PercentileMetricCalculator
+  - uid: CodeJam.PerfTests.Metrics.SingleValueMetricCalculator
+    name: SingleValueMetricCalculator
+  - uid: CodeJam.PerfTests.Metrics.TimeMetricValuesProvider
+    name: TimeMetricValuesProvider
+- uid: CodeJam.PerfTests.Running.Console
+  name: CodeJam.PerfTests.Running.Console
+  items:
+  - uid: CodeJam.PerfTests.Running.Console.ConsoleCompetition
+    name: ConsoleCompetition
+- uid: CodeJam.PerfTests.Running.Core
+  name: CodeJam.PerfTests.Running.Core
+  items:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCore
+    name: CompetitionCore
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+    name: CompetitionCoreHelpers
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase
+    name: CompetitionRunnerBase
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionRunnerBase.HostLogger
+    name: CompetitionRunnerBase.HostLogger
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionState
+    name: CompetitionState
+  - uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner
+    name: ConsoleCompetitionRunner
+  - uid: CodeJam.PerfTests.Running.Core.ConsoleCompetitionRunner.ConsoleHostLogger
+    name: ConsoleCompetitionRunner.ConsoleHostLogger
+  - uid: CodeJam.PerfTests.Running.Core.ConsoleHelpers
+    name: ConsoleHelpers
+  - uid: CodeJam.PerfTests.Running.Core.EnvironmentHelpers
+    name: EnvironmentHelpers
+  - uid: CodeJam.PerfTests.Running.Core.IoHelpers
+    name: IoHelpers
+  - uid: CodeJam.PerfTests.Running.Core.RunState`1
+    name: RunState<T>
+    name.vb: RunState(Of T)
+  - uid: CodeJam.PerfTests.Running.Core.RunStateKey
+    name: RunStateKey
+- uid: CodeJam.PerfTests.Running.Messages
+  name: CodeJam.PerfTests.Running.Messages
+  items:
+  - uid: CodeJam.PerfTests.Running.Messages.IMessage
+    name: IMessage
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+  - uid: CodeJam.PerfTests.Running.Messages.Message
+    name: Message
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSource
+    name: MessageSource
+- uid: CodeJam.PerfTests.Running.SourceAnnotations
+  name: CodeJam.PerfTests.Running.SourceAnnotations
+  items:
+  - uid: CodeJam.PerfTests.Running.SourceAnnotations.ResourceKey
+    name: ResourceKey
