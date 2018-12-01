@@ -1,5 +1,7 @@
 ﻿<Project>
 	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+
 		<!--<PackageId></PackageId>
 		<Title></Title>
 		<Authors></Authors>

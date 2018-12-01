@@ -12,23 +12,24 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\CodeJam.Main\CodeJam.Main.csproj" />
-	</ItemGroup>
-
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0'">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
+		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
-		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\CodeJam.Main\CodeJam.Main.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -96,10 +97,4 @@
 		<EmbeddedResource Include="Strings\Data\Words.Expected.txt" />
 		<EmbeddedResource Include="Strings\Data\Words.txt" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
-	</ItemGroup>
-
 </Project>
