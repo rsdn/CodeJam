@@ -66,7 +66,7 @@ namespace CodeJam
 
 		/// <summary>This test generates conditional build constants for various FW monikers.</summary>
 		[Test]
-		//[Ignore("Manual run only")]
+		[Ignore("Manual run only")]
 		public void GenerateTargetingConstants()
 		{
 			GenerateTargetingConstants(".Net Framework", "TARGETS_NET", _netFrameworkMonikers);
@@ -103,7 +103,7 @@ namespace CodeJam
 		[Test]
 		public void TestTargeting()
 		{
-			TestTools.PrintQuircks();
+			TestTools.PrintQuirks();
 			Assert.AreEqual(PlatformDependent.TargetPlatform, ExpectedTarget);
 		}
 

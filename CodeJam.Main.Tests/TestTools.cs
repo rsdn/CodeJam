@@ -23,11 +23,11 @@ namespace CodeJam
 		public static IEnumerable<Holder<T>> Wrap<T>(this IEnumerable<T> source) =>
 			source.Select(i => new Holder<T>(i));
 
-		public static void PrintQuircks()
+		public static void PrintQuirks()
 		{
 			var assembly = typeof(int).Assembly;
 
-			Console.WriteLine($"Running on {assembly}");
+			Console.WriteLine($"{PlatformDependent.TargetPlatform}. Running on {assembly}");
 			Console.WriteLine();
 			PrintProps("System.Runtime.Versioning.BinaryCompatibility");
 			Console.WriteLine();
