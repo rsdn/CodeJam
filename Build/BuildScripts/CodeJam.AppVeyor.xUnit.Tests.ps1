@@ -1,8 +1,8 @@
-$include = "*-tests.xUnit.dll"
+$include = "*.Tests.xUnit.dll"
 
 #run .net tests
 $a = (gci -include $include -r | `
-	where { $_.fullname -match "\\bin\\Publish\\net\d" } | `
+	where { $_.fullname -match "\\bin\\Release\\net\d" } | `
 	select -ExpandProperty FullName)
 echo "$env:xunit20\xunit.console $a -appveyor"
 &"$env:xunit20\xunit.console" $a -appveyor
@@ -10,7 +10,7 @@ if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 
 #run .net core tests
 $a = (gci -include $include -r | `
-	where { $_.fullname -match "\\bin\\Publish\\netcore" } | `
+	where { $_.fullname -match "\\bin\\Release\\netcore" } | `
 	select -ExpandProperty FullName)
 
 $logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\netcore_xunit_results.xml"

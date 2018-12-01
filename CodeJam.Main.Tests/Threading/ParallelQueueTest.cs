@@ -1,8 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Linq;
 using System.Threading;
-
-using NUnit.Framework;
 
 namespace CodeJam.Threading
 {
@@ -25,24 +24,26 @@ namespace CodeJam.Threading
 			_consumerCount = 0;
 
 			Enumerable.Range(1, 100).RunInParallel(
-				5, i =>
+				5,
+				i =>
 				{
 					if (!_providerInit)
 					{
 						_providerInit = true;
 						Interlocked.Increment(ref _providerCount);
-						Thread.Sleep(100);
+						Thread.Sleep(300);
 					}
 
 					return i.ToString();
 				},
-				2, s =>
+				2,
+				s =>
 				{
 					if (!_consumerInit)
 					{
 						_consumerInit = true;
 						Interlocked.Increment(ref _consumerCount);
-						Thread.Sleep(100);
+						Thread.Sleep(300);
 					}
 				});
 

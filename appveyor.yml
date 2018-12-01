@@ -49,27 +49,27 @@ nuget:
 build_script:
   msbuild CodeJam.sln /p:Configuration=Release /t:Restore;Build /v:m
 
-test:
-  assemblies:
-    only:
-      - '**\*.Tests.dll'
+#test:
+#  assemblies:
+#    only:
+#      - '**\*.Tests.dll'
+
+test_script:
+  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.NUnit.Tests.ps1
+#  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.xUnit.Tests.ps1
+#  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.MsTest.Tests.ps1
 
 artifacts:
-  - path: 'Results\*.nupkg'
-
-#test_script:
-#  - ps: .\Build\CodeJam.AppVeyor.NUnit.Tests.ps1
-#  - ps: .\Build\CodeJam.AppVeyor.xUnit.Tests.ps1
-#  - ps: .\Build\CodeJam.AppVeyor.MsTest.Tests.ps1
+  - path: '_Results\*.nupkg'
 
 #after_build:
 # - ps: Get-ChildItem .\_Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
-#on_finish:
+on_finish:
 # artifacts for perftests
-#  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-#  - ps: Get-ChildItem *results.xml -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-#  - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Get-ChildItem *results.xml -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 # to troubleshoot via RDP:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
