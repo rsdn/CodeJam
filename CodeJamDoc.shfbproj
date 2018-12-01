@@ -35,10 +35,10 @@
     <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <DocumentationSources>
-      <DocumentationSource sourceFile="CodeJam.Main\bin\Debug\net461\CodeJam.xml" />
-      <DocumentationSource sourceFile="CodeJam.Main\bin\Debug\net461\CodeJam.dll" />
-      <DocumentationSource sourceFile="CodeJam.Blocks\bin\Debug\net461\CodeJam.Blocks.xml" />
-      <DocumentationSource sourceFile="CodeJam.Blocks\bin\Debug\net461\CodeJam.Blocks.dll" />
+      <DocumentationSource sourceFile="CodeJam.Main\bin\$(Configuration)\net461\CodeJam.xml" />
+      <DocumentationSource sourceFile="CodeJam.Main\bin\$(Configuration)\net461\CodeJam.dll" />
+      <DocumentationSource sourceFile="CodeJam.Blocks\bin\$(Configuration)\net461\CodeJam.Blocks.xml" />
+      <DocumentationSource sourceFile="CodeJam.Blocks\bin\$(Configuration)\net461\CodeJam.Blocks.dll" />
     </DocumentationSources>
     <ProjectSummary>CodeJam library</ProjectSummary>
     <NamespaceSummaries>
@@ -47,7 +47,7 @@
     </NamespaceSummaries>
     <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
     <VisibleItems>Attributes, InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, EditorBrowsableNever, NonBrowsable</VisibleItems>
-    <CopyrightText>RSDN, 2016-2017</CopyrightText>
+    <CopyrightText>RSDN, 2016-2018</CopyrightText>
     <PlugInConfigurations />
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">

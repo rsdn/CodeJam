@@ -1,7 +1,6 @@
 ﻿#if !LESSTHAN_NET40
-using System;
-
 using JetBrains.Annotations;
+using System;
 
 namespace CodeJam.Mapping
 {
@@ -10,7 +9,7 @@ namespace CodeJam.Mapping
 	/// </summary>
 	/// <example>
 	/// This example shows how to map one object to another.
-	/// <code source="Blocks\tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
+	/// <code source="CodeJam.Blocks.Tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
 	/// </example>
 	[PublicAPI]
 	public static class Map
@@ -22,8 +21,8 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TTo">Type to map to.</typeparam>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public static Mapper<TFrom,TTo> GetMapper<TFrom,TTo>()
-			=> new Mapper<TFrom,TTo>(new MapperBuilder<TFrom,TTo>());
+		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>()
+			=> new Mapper<TFrom, TTo>(new MapperBuilder<TFrom, TTo>());
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
@@ -33,8 +32,8 @@ namespace CodeJam.Mapping
 		/// <param name="setter">MapperBuilder parameter setter.</param>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public static Mapper<TFrom,TTo> GetMapper<TFrom,TTo>(
-			[NotNull] Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
+		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>(
+			[NotNull] Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>> setter)
 		{
 			Code.NotNull(setter, nameof(setter));
 			return new Mapper<TFrom, TTo>(setter(new MapperBuilder<TFrom, TTo>()));
@@ -42,10 +41,10 @@ namespace CodeJam.Mapping
 
 		private static class MapHolder<T>
 		{
-			public static readonly Mapper<T,T> Mapper =
-				GetMapper<T,T>(m => m
-					.SetProcessCrossReferences(true)
-					.SetDeepCopy(true));
+			public static readonly Mapper<T, T> Mapper =
+				GetMapper<T, T>(m => m
+					 .SetProcessCrossReferences(true)
+					 .SetDeepCopy(true));
 		}
 
 		/// <summary>

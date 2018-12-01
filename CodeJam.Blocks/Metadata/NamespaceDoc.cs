@@ -1,9 +1,7 @@
 ﻿#if DEBUG
-using System;
-
-using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
 
 namespace CodeJam.Metadata
 {
@@ -12,7 +10,7 @@ namespace CodeJam.Metadata
 	/// </summary>
 	/// <example>
 	/// This example shows how to map one object to another.
-	/// <code source="Blocks\tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
+	/// <code source="CodeJam.Blocks.Tests\Mapping\Examples\MapTests.cs" region="Example" lang="C#"/>
 	/// </example>
 	[UsedImplicitly]
 	[CompilerGenerated]
