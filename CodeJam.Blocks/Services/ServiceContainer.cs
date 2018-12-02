@@ -17,6 +17,7 @@ namespace CodeJam.Services
 		[CanBeNull]
 		private readonly IServiceProvider _parentProvider;
 
+		[NotNull]
 		private readonly ConcurrentDictionary<Type, IServiceBag> _services =
 			new ConcurrentDictionary<Type, IServiceBag>();
 
@@ -40,7 +41,7 @@ namespace CodeJam.Services
 		/// </param>
 		public ServiceContainer(bool publishSelf = true) : this(null, publishSelf) { }
 
-		private void ConcealService(Type serviceType)
+		private void ConcealService([NotNull] Type serviceType)
 		{
 			if (!_services.TryRemove(serviceType, out var bag))
 				throw new ArgumentException($"Service with type '{serviceType}' not registered.");
@@ -136,11 +137,12 @@ namespace CodeJam.Services
 
 		private class FactoryBag : IServiceBag
 		{
+			[NotNull]
 			private readonly Func<IServicePublisher, object> _factory;
 			private object _instance;
 
 			/// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-			public FactoryBag(Func<IServicePublisher, object> factory) => _factory = factory;
+			public FactoryBag([NotNull] Func<IServicePublisher, object> factory) => _factory = factory;
 
 			#region Overrides of ServiceBag
 			public object GetInstance(IServicePublisher publisher, Type serviceType)

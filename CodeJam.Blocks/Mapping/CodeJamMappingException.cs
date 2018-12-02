@@ -1,4 +1,4 @@
-#if !LESSTHAN_NET40
+﻿#if !LESSTHAN_NET40
 using System;
 using System.Runtime.Serialization;
 
@@ -60,7 +60,7 @@ namespace CodeJam.Mapping
 		/// <param name="innerException">The InnerException, if any, that threw
 		/// the current exception.</param>
 		/// <seealso cref="Exception.InnerException"/>
-		public CodeJamMappingException(Exception innerException)
+		public CodeJamMappingException([NotNull] Exception innerException)
 			: base(innerException.Message, innerException)
 		{
 		}
@@ -75,7 +75,7 @@ namespace CodeJam.Mapping
 		/// destination.</param>
 		/// <remarks>This constructor is called during deserialization to
 		/// reconstitute the exception object transmitted over a stream.</remarks>
-		protected CodeJamMappingException(SerializationInfo info, StreamingContext context)
+		protected CodeJamMappingException([NotNull] SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
 		}

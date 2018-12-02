@@ -17,7 +17,7 @@ namespace CodeJam.TableData
 		/// </summary>
 		/// <param name="lineNum">The line number.</param>
 		/// <param name="values">Line values.</param>
-		public DataLine(int lineNum, string[] values)
+		public DataLine(int lineNum, [NotNull, ItemNotNull] string[] values)
 		{
 			LineNum = lineNum;
 			Values = values;

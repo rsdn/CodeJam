@@ -990,7 +990,8 @@ namespace CodeJam.Expressions
 				});
 		}
 
-		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<T, T> func)
+		[NotNull]
+		private static IEnumerable<T> TransformInternal<T>([NotNull] ICollection<T> source, [NotNull] Func<T, T> func)
 			where T : class
 		{
 			var modified = false;
@@ -1006,7 +1007,8 @@ namespace CodeJam.Expressions
 			return modified ? list : source;
 		}
 
-		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, Func<Expression, Expression> func)
+		[NotNull]
+		private static IEnumerable<T> TransformInternal<T>([NotNull] ICollection<T> source, [NotNull] Func<Expression, Expression> func)
 			where T : Expression
 		{
 			var modified = false;
@@ -1028,7 +1030,7 @@ namespace CodeJam.Expressions
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static T Transform<T>([CanBeNull] this T expr, [NotNull] Func<Expression, Expression> func)
 			where T : LambdaExpression
 		{
@@ -1043,7 +1045,7 @@ namespace CodeJam.Expressions
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static Expression Transform([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
 		{
 			Code.NotNull(func, nameof(func));
@@ -1051,7 +1053,8 @@ namespace CodeJam.Expressions
 			return TransformInternal(expr, func);
 		}
 
-		private static Expression TransformInternal(this Expression expr, Func<Expression, Expression> func)
+		[CanBeNull]
+		private static Expression TransformInternal([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
 		{
 			if (expr == null)
 				return null;

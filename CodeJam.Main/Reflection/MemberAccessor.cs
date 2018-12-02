@@ -20,7 +20,7 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public class MemberAccessor
 	{
-		internal MemberAccessor(TypeAccessor typeAccessor, string memberName)
+		internal MemberAccessor([NotNull] TypeAccessor typeAccessor, [NotNull] string memberName)
 		{
 			TypeAccessor = typeAccessor;
 

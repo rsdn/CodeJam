@@ -62,7 +62,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		private static Func<TFrom,TTo> _lambda;
+		[NotNull] private static Func<TFrom,TTo> _lambda;
 
 		/// <summary>
 		/// Represents a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
@@ -102,6 +102,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Returns a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
 		/// </summary>
+		[NotNull]
 		public static Func<TFrom,TTo> From => _lambda;
 	}
 }

@@ -10,7 +10,8 @@ namespace CodeJam
 	[PublicAPI]
 	public static class Option
 	{
-		internal static string ToString<T>(IOption<T> option) => option.HasValue ? $"Some({option.Value})" : "None";
+		[NotNull]
+		internal static string ToString<T>([NotNull] IOption<T> option) => option.HasValue ? $"Some({option.Value})" : "None";
 
 		/// <summary>
 		/// Creates instance of <see cref="Option"/> with specified value.
@@ -18,7 +19,7 @@ namespace CodeJam
 		/// <typeparam name="T">Type of value</typeparam>
 		/// <param name="value">Value</param>
 		/// <returns>Instance of <see cref="Option"/>.</returns>
-		[Pure]
+		[Pure, NotNull]
 		public static Option<T> Some<T>(T value) => new Option<T>.Some(value);
 
 		/// <summary>
@@ -30,7 +31,7 @@ namespace CodeJam
 		/// Instance of <see cref="Option"/> with <paramref name="value"/>, if <paramref name="value"/> not null,
 		/// or instance without value.
 		/// </returns>
-		[Pure]
+		[Pure, NotNull]
 		public static Option<T> SomeHasValue<T>([CanBeNull] T value) where T : class =>
 			value != null ? Some(value) : None<T>();
 
@@ -53,7 +54,7 @@ namespace CodeJam
 		/// <typeparam name="T">Type of value.</typeparam>
 		/// <returns>Instance without value.</returns>
 		/// <remarks>None value is singleton.</remarks>
-		[Pure]
+		[Pure, NotNull]
 		public static Option<T> None<T>() => Option<T>.None.Instance;
 
 		/// <summary>

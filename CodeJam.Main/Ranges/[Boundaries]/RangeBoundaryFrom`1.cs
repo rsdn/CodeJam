@@ -34,7 +34,9 @@ namespace CodeJam.Ranges
 		#region Static members
 		private const int _equalResult = 0;
 
+		[NotNull]
 		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
+		[NotNull]
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
 
 		private static readonly bool _hasNaN = Operators<T>.HasNaN;
@@ -119,6 +121,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Formattable logic
+		[NotNull]
 		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
 		#endregion
 

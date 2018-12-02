@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using JetBrains.Annotations;
 
@@ -13,21 +13,21 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		public CmdLineRules([NotNull] params CommandRule[] commands) : this(commands, new OptionRule[0])
+		public CmdLineRules([NotNull, ItemNotNull] params CommandRule[] commands) : this(commands, new OptionRule[0])
 		{}
 
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		public CmdLineRules([NotNull] params OptionRule[] options) : this(new CommandRule[0], options)
+		public CmdLineRules([NotNull, ItemNotNull] params OptionRule[] options) : this(new CommandRule[0], options)
 		{}
 
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
 		public CmdLineRules(
-			[NotNull] CommandRule[] commands,
-			[NotNull] OptionRule[] options) : this(CommandQuantifier.ZeroOrMultiple, commands, options)
+			[NotNull, ItemNotNull] CommandRule[] commands,
+			[NotNull, ItemNotNull] OptionRule[] options) : this(CommandQuantifier.ZeroOrMultiple, commands, options)
 		{}
 
 		/// <summary>
@@ -35,7 +35,7 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		public CmdLineRules(
 			CommandQuantifier commandQuantifier,
-			[NotNull] CommandRule[] commands)
+			[NotNull, ItemNotNull] CommandRule[] commands)
 			: this(commandQuantifier, commands, new OptionRule[0])
 		{}
 
@@ -44,8 +44,8 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		public CmdLineRules(
 			CommandQuantifier commandQuantifier,
-			[NotNull] CommandRule[] commands,
-			[NotNull] OptionRule[] options)
+			[NotNull, ItemNotNull] CommandRule[] commands,
+			[NotNull, ItemNotNull] OptionRule[] options)
 		{
 			if (commands == null)
 				throw new ArgumentNullException(nameof(commands));

@@ -43,7 +43,8 @@ namespace CodeJam.TableData
 			return ParseCore(parser, reader);
 		}
 
-		private static IEnumerable<DataLine> ParseCore(Parser parser, TextReader reader)
+		[NotNull]
+		private static IEnumerable<DataLine> ParseCore([NotNull] Parser parser, [NotNull] TextReader reader)
 		{
 			var lineNum = 1;
 			while (true)

@@ -61,6 +61,7 @@ namespace CodeJam.Reflection
 		#endregion
 
 		#region Items
+		[NotNull]
 		private readonly ConcurrentDictionary<string,MemberAccessor> _membersByName =
 			new ConcurrentDictionary<string,MemberAccessor>();
 
@@ -100,6 +101,7 @@ namespace CodeJam.Reflection
 		[NotNull, Pure]
 		public static TypeAccessor GetAccessor([NotNull] Type type)
 		{
+			Code.NotNull(type, nameof(type));
 			if (_accessors.TryGetValue(type, out var accessor))
 				return accessor;
 

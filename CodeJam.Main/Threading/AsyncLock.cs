@@ -13,6 +13,7 @@ namespace CodeJam.Threading
 	[PublicAPI]
 	public class AsyncLock
 	{
+		[NotNull]
 		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
 		/// <summary>

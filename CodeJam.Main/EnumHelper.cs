@@ -332,12 +332,16 @@ namespace CodeJam
 			where TEnum : struct, Enum
 		{
 			#region Static fields
+			[NotNull, ItemNotNull]
 			private static readonly HashSet<TEnum> _values = new HashSet<TEnum>((TEnum[])Enum.GetValues(typeof(TEnum)));
+			[NotNull]
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(ignoreCase: false);
+			[NotNull]
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(ignoreCase: true);
 			#endregion
 
 			#region Init helpers
+			[NotNull]
 			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(bool ignoreCase)
 			{
 				var result =
@@ -379,11 +383,16 @@ namespace CodeJam
 			#region API
 			public static bool IsFlagsEnum { get; } = typeof(TEnum).GetCustomAttribute<FlagsAttribute>() != null;
 			public static TEnum FlagsMask { get; } = GetFlagsMaskCore();
+			[NotNull]
 			public static Func<TEnum, TEnum, bool> IsFlagSetCallback { get; } = OperatorsFactory.IsFlagSetOperator<TEnum>();
+			[NotNull]
 			public static Func<TEnum, TEnum, bool> IsAnyFlagSetCallback { get; } = OperatorsFactory.IsAnyFlagSetOperator<TEnum>();
+			[NotNull]
 			public static Func<TEnum, TEnum, TEnum> SetFlagCallback { get; } = OperatorsFactory.SetFlagOperator<TEnum>();
+			[NotNull]
 			public static Func<TEnum, TEnum, TEnum> ClearFlagCallback { get; } = OperatorsFactory.ClearFlagOperator<TEnum>();
 
+			[NotNull]
 			public static IReadOnlyDictionary<string, TEnum> GetNameValues(bool ignoreCase) =>
 				ignoreCase ? _nameValuesIgnoreCase : _nameValues;
 

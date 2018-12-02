@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using JetBrains.Annotations;
@@ -20,7 +21,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound<TElement, TValue>([NotNull, InstantHandle] this IList<TElement> list, TValue value)
+		public static int UpperBound<TElement, TValue>(
+			[NotNull, ItemNotNull, InstantHandle] this IList<TElement> list, TValue value)
 			where TElement : IComparable<TValue> =>
 			list.UpperBound(value, 0);
 
@@ -39,7 +41,7 @@ namespace CodeJam
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
 		public static int UpperBound<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
+			[NotNull, ItemNotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
 				int startIndex)
 			where TElement : IComparable<TValue> =>
@@ -86,7 +88,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
 		private static int UpperBoundCore<TElement, TValue>(
-				IList<TElement> list,
+				[NotNull, ItemNotNull, InstantHandle] IList<TElement> list,
 				TValue value,
 				int startIndex,
 				int endIndex)

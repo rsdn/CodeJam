@@ -6,6 +6,8 @@ using System.Linq;
 
 using CodeJam.Collections;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Mapping
 {
 	using Metadata;
@@ -20,7 +22,7 @@ namespace CodeJam.Mapping
 		#region Default Values
 		private volatile ConcurrentDictionary<Type,object> _defaultValues;
 
-		public Option<object> GetDefaultValue(Type type)
+		public Option<object> GetDefaultValue([NotNull] Type type)
 		{
 			if (_defaultValues == null)
 				return Option.None<object>();
@@ -28,7 +30,7 @@ namespace CodeJam.Mapping
 			return _defaultValues.TryGetValue(type, out var o) ? Option.Some(o) : Option.None<object>();
 		}
 
-		public void SetDefaultValue(Type type, object value)
+		public void SetDefaultValue([NotNull] Type type, object value)
 		{
 			if (_defaultValues == null)
 				lock (this)
@@ -43,7 +45,7 @@ namespace CodeJam.Mapping
 		#region GenericConvertProvider
 		private volatile ConcurrentDictionary<Type,List<Type[]>> _genericConvertProviders;
 
-		public bool InitGenericConvertProvider(Type[] types)
+		public bool InitGenericConvertProvider([NotNull, ItemNotNull] Type[] types)
 		{
 			var changed = false;
 
@@ -74,7 +76,7 @@ namespace CodeJam.Mapping
 			return changed;
 		}
 
-		public void SetGenericConvertProvider(Type type)
+		public void SetGenericConvertProvider([NotNull] Type type)
 		{
 			if (_genericConvertProviders == null)
 				lock (this)
@@ -89,14 +91,14 @@ namespace CodeJam.Mapping
 		#region ConvertInfo
 		private ConvertInfo _convertInfo;
 
-		public void SetConvertInfo(Type from, Type to, ConvertInfo.LambdaInfo expr)
+		public void SetConvertInfo([NotNull] Type from, [NotNull] Type to, [NotNull] ConvertInfo.LambdaInfo expr)
 		{
 			if (_convertInfo == null)
 				_convertInfo = new ConvertInfo();
 			_convertInfo.Set(from, to, expr);
 		}
 
-		public ConvertInfo.LambdaInfo GetConvertInfo(Type from, Type to)
+		public ConvertInfo.LambdaInfo GetConvertInfo([NotNull] Type from, [NotNull] Type to)
 			=> _convertInfo?.Get(from, to);
 
 		private ConcurrentDictionary<object,Func<object,object>> _converters;
@@ -108,7 +110,8 @@ namespace CodeJam.Mapping
 		#region Scalar Types
 		private volatile ConcurrentDictionary<Type,bool> _scalarTypes;
 
-		public Option<bool> GetScalarType(Type type)
+		[NotNull]
+		public Option<bool> GetScalarType([NotNull] Type type)
 		{
 			if (_scalarTypes != null)
 			{
@@ -119,7 +122,7 @@ namespace CodeJam.Mapping
 			return Option.None<bool>();
 		}
 
-		public void SetScalarType(Type type, bool isScalarType = true)
+		public void SetScalarType([NotNull] Type type, bool isScalarType = true)
 		{
 			if (_scalarTypes == null)
 				lock (this)

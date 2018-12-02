@@ -73,12 +73,12 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Type to map from.
 		/// </summary>
-		Type FromType { get; }
+		[NotNull] Type FromType { get; }
 
 		/// <summary>
 		/// Type to map to.
 		/// </summary>
-		Type ToType { get; }
+		[NotNull] Type ToType { get; }
 	}
 }
 #endif

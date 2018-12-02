@@ -134,7 +134,7 @@ namespace CodeJam
 		/// <param name="disposables">The disposables.</param>
 		/// <returns>Instance of <see cref="IDisposable"/> that will dispose the specified disposables.</returns>
 		[NotNull, Pure]
-		public static IDisposable Merge(params IDisposable[] disposables) => Merge((IEnumerable<IDisposable>)disposables);
+		public static IDisposable Merge([NotNull, ItemNotNull] params IDisposable[] disposables) => Merge((IEnumerable<IDisposable>)disposables);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
