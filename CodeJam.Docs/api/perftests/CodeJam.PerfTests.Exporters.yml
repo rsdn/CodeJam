@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Exporters
+  commentId: N:CodeJam.PerfTests.Exporters
+  id: CodeJam.PerfTests.Exporters
+  children:
+  - CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  - CodeJam.PerfTests.Exporters.StubExporter
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.PerfTests.Exporters
+  nameWithType: CodeJam.PerfTests.Exporters
+  fullName: CodeJam.PerfTests.Exporters
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: CodeJam.PerfTests.Exporters.StubExporter
+  commentId: T:CodeJam.PerfTests.Exporters.StubExporter
+  isExternal: false
+  name: StubExporter
+  nameWithType: StubExporter
+  fullName: CodeJam.PerfTests.Exporters.StubExporter
+- uid: CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  commentId: T:CodeJam.PerfTests.Exporters.CsvTimingsExporter
+  isExternal: false
+  name: CsvTimingsExporter
+  nameWithType: CsvTimingsExporter
+  fullName: CodeJam.PerfTests.Exporters.CsvTimingsExporter

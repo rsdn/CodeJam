@@ -1,0 +1,784 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Mapping.Map
+  commentId: T:CodeJam.Mapping.Map
+  id: Map
+  parent: CodeJam.Mapping
+  children:
+  - CodeJam.Mapping.Map.DeepCopy``1(``0)
+  - CodeJam.Mapping.Map.GetMapper``2
+  - CodeJam.Mapping.Map.GetMapper``2(System.Func{CodeJam.Mapping.MapperBuilder{``0,``1},CodeJam.Mapping.MapperBuilder{``0,``1}})
+  langs:
+  - csharp
+  - vb
+  name: Map
+  nameWithType: Map
+  fullName: CodeJam.Mapping.Map
+  type: Class
+  source:
+    remote:
+      path: Blocks/src/Mapping/Map.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Map
+    path: ../Blocks/src/Mapping/Map.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nMapper helper class.\n"
+  example:
+  - "\nThis example shows how to map one object to another.\n<pre><code source=\"Blocks\\tests\\Mapping\\Examples\\MapTests.cs\" region=\"Example\"></code></pre>\n"
+  syntax:
+    content: public static class Map
+    content.vb: Public Module Map
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Mapping.Map.GetMapper``2
+  commentId: M:CodeJam.Mapping.Map.GetMapper``2
+  id: GetMapper``2
+  parent: CodeJam.Mapping.Map
+  langs:
+  - csharp
+  - vb
+  name: GetMapper<TFrom, TTo>()
+  nameWithType: Map.GetMapper<TFrom, TTo>()
+  fullName: CodeJam.Mapping.Map.GetMapper<TFrom, TTo>()
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/Map.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMapper
+    path: ../Blocks/src/Mapping/Map.cs
+    startLine: 23
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns a mapper to map an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\n"
+  example: []
+  syntax:
+    content: public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>()
+    typeParameters:
+    - id: TFrom
+      description: Type to map from.
+    - id: TTo
+      description: Type to map to.
+    return:
+      type: CodeJam.Mapping.Mapper{{TFrom},{TTo}}
+      description: Mapping expression.
+    content.vb: Public Shared Function GetMapper(Of TFrom, TTo) As Mapper(Of TFrom, TTo)
+  overload: CodeJam.Mapping.Map.GetMapper*
+  nameWithType.vb: Map.GetMapper(Of TFrom, TTo)()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Mapping.Map.GetMapper(Of TFrom, TTo)()
+  name.vb: GetMapper(Of TFrom, TTo)()
+- uid: CodeJam.Mapping.Map.GetMapper``2(System.Func{CodeJam.Mapping.MapperBuilder{``0,``1},CodeJam.Mapping.MapperBuilder{``0,``1}})
+  commentId: M:CodeJam.Mapping.Map.GetMapper``2(System.Func{CodeJam.Mapping.MapperBuilder{``0,``1},CodeJam.Mapping.MapperBuilder{``0,``1}})
+  id: GetMapper``2(System.Func{CodeJam.Mapping.MapperBuilder{``0,``1},CodeJam.Mapping.MapperBuilder{``0,``1}})
+  parent: CodeJam.Mapping.Map
+  langs:
+  - csharp
+  - vb
+  name: GetMapper<TFrom, TTo>(Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>>)
+  nameWithType: Map.GetMapper<TFrom, TTo>(Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>>)
+  fullName: CodeJam.Mapping.Map.GetMapper<TFrom, TTo>(System.Func<CodeJam.Mapping.MapperBuilder<TFrom, TTo>, CodeJam.Mapping.MapperBuilder<TFrom, TTo>>)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/Map.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMapper
+    path: ../Blocks/src/Mapping/Map.cs
+    startLine: 34
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nReturns a mapper to map an object of <em>TFrom</em> type to an object of <em>TTo</em> type.\n"
+  example: []
+  syntax:
+    content: public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>(Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>> setter)
+    parameters:
+    - id: setter
+      type: System.Func{CodeJam.Mapping.MapperBuilder{{TFrom},{TTo}},CodeJam.Mapping.MapperBuilder{{TFrom},{TTo}}}
+      description: MapperBuilder parameter setter.
+    typeParameters:
+    - id: TFrom
+      description: Type to map from.
+    - id: TTo
+      description: Type to map to.
+    return:
+      type: CodeJam.Mapping.Mapper{{TFrom},{TTo}}
+      description: Mapping expression.
+    content.vb: Public Shared Function GetMapper(Of TFrom, TTo)(setter As Func(Of MapperBuilder(Of TFrom, TTo), MapperBuilder(Of TFrom, TTo))) As Mapper(Of TFrom, TTo)
+  overload: CodeJam.Mapping.Map.GetMapper*
+  nameWithType.vb: Map.GetMapper(Of TFrom, TTo)(Func(Of MapperBuilder(Of TFrom, TTo), MapperBuilder(Of TFrom, TTo)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Mapping.Map.GetMapper(Of TFrom, TTo)(System.Func(Of CodeJam.Mapping.MapperBuilder(Of TFrom, TTo), CodeJam.Mapping.MapperBuilder(Of TFrom, TTo)))
+  name.vb: GetMapper(Of TFrom, TTo)(Func(Of MapperBuilder(Of TFrom, TTo), MapperBuilder(Of TFrom, TTo)))
+- uid: CodeJam.Mapping.Map.DeepCopy``1(``0)
+  commentId: M:CodeJam.Mapping.Map.DeepCopy``1(``0)
+  id: DeepCopy``1(``0)
+  isExtensionMethod: true
+  parent: CodeJam.Mapping.Map
+  langs:
+  - csharp
+  - vb
+  name: DeepCopy<T>(T)
+  nameWithType: Map.DeepCopy<T>(T)
+  fullName: CodeJam.Mapping.Map.DeepCopy<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Blocks/src/Mapping/Map.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DeepCopy
+    path: ../Blocks/src/Mapping/Map.cs
+    startLine: 56
+  assemblies:
+  - CodeJam.Blocks
+  namespace: CodeJam.Mapping
+  summary: "\nPerforms deep copy.\n"
+  example: []
+  syntax:
+    content: public static T DeepCopy<T>(this T obj)
+    parameters:
+    - id: obj
+      type: '{T}'
+      description: An object to copy.
+    typeParameters:
+    - id: T
+      description: Type of object.
+    return:
+      type: '{T}'
+      description: Created object.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DeepCopy(Of T)(obj As T) As T
+  overload: CodeJam.Mapping.Map.DeepCopy*
+  nameWithType.vb: Map.DeepCopy(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Mapping.Map.DeepCopy(Of T)(T)
+  name.vb: DeepCopy(Of T)(T)
+references:
+- uid: CodeJam.Mapping
+  commentId: N:CodeJam.Mapping
+  isExternal: false
+  name: CodeJam.Mapping
+  nameWithType: CodeJam.Mapping
+  fullName: CodeJam.Mapping
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.Mapping.Map.GetMapper*
+  commentId: Overload:CodeJam.Mapping.Map.GetMapper
+  isExternal: false
+  name: GetMapper
+  nameWithType: Map.GetMapper
+  fullName: CodeJam.Mapping.Map.GetMapper
+- uid: CodeJam.Mapping.Mapper{{TFrom},{TTo}}
+  commentId: T:CodeJam.Mapping.Mapper{``0,``1}
+  parent: CodeJam.Mapping
+  definition: CodeJam.Mapping.Mapper`2
+  name: Mapper<TFrom, TTo>
+  nameWithType: Mapper<TFrom, TTo>
+  fullName: CodeJam.Mapping.Mapper<TFrom, TTo>
+  nameWithType.vb: Mapper(Of TFrom, TTo)
+  fullName.vb: CodeJam.Mapping.Mapper(Of TFrom, TTo)
+  name.vb: Mapper(Of TFrom, TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Mapper`2
+  commentId: T:CodeJam.Mapping.Mapper`2
+  isExternal: false
+  name: Mapper<TFrom, TTo>
+  nameWithType: Mapper<TFrom, TTo>
+  fullName: CodeJam.Mapping.Mapper<TFrom, TTo>
+  nameWithType.vb: Mapper(Of TFrom, TTo)
+  fullName.vb: CodeJam.Mapping.Mapper(Of TFrom, TTo)
+  name.vb: Mapper(Of TFrom, TTo)
+  spec.csharp:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.Mapping.Mapper`2
+    name: Mapper
+    nameWithType: Mapper
+    fullName: CodeJam.Mapping.Mapper
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{CodeJam.Mapping.MapperBuilder{{TFrom},{TTo}},CodeJam.Mapping.MapperBuilder{{TFrom},{TTo}}}
+  commentId: T:System.Func{CodeJam.Mapping.MapperBuilder{``0,``1},CodeJam.Mapping.MapperBuilder{``0,``1}}
+  parent: System
+  definition: System.Func`2
+  name: Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>>
+  nameWithType: Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>>
+  fullName: System.Func<CodeJam.Mapping.MapperBuilder<TFrom, TTo>, CodeJam.Mapping.MapperBuilder<TFrom, TTo>>
+  nameWithType.vb: Func(Of MapperBuilder(Of TFrom, TTo), MapperBuilder(Of TFrom, TTo))
+  fullName.vb: System.Func(Of CodeJam.Mapping.MapperBuilder(Of TFrom, TTo), CodeJam.Mapping.MapperBuilder(Of TFrom, TTo))
+  name.vb: Func(Of MapperBuilder(Of TFrom, TTo), MapperBuilder(Of TFrom, TTo))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CodeJam.Mapping.MapperBuilder`2
+    name: MapperBuilder
+    nameWithType: MapperBuilder
+    fullName: CodeJam.Mapping.MapperBuilder
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Mapping.MapperBuilder`2
+    name: MapperBuilder
+    nameWithType: MapperBuilder
+    fullName: CodeJam.Mapping.MapperBuilder
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CodeJam.Mapping.MapperBuilder`2
+    name: MapperBuilder
+    nameWithType: MapperBuilder
+    fullName: CodeJam.Mapping.MapperBuilder
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.Mapping.MapperBuilder`2
+    name: MapperBuilder
+    nameWithType: MapperBuilder
+    fullName: CodeJam.Mapping.MapperBuilder
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TFrom
+    nameWithType: TFrom
+    fullName: TFrom
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TTo
+    nameWithType: TTo
+    fullName: TTo
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Mapping.Map.DeepCopy*
+  commentId: Overload:CodeJam.Mapping.Map.DeepCopy
+  isExternal: false
+  name: DeepCopy
+  nameWithType: Map.DeepCopy
+  fullName: CodeJam.Mapping.Map.DeepCopy
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T

@@ -1,0 +1,260 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource
+  commentId: T:CodeJam.PerfTests.Running.Messages.MessageSource
+  id: MessageSource
+  parent: CodeJam.PerfTests.Running.Messages
+  children:
+  - CodeJam.PerfTests.Running.Messages.MessageSource.Analyser
+  - CodeJam.PerfTests.Running.Messages.MessageSource.Diagnoser
+  - CodeJam.PerfTests.Running.Messages.MessageSource.Exporter
+  - CodeJam.PerfTests.Running.Messages.MessageSource.Runner
+  - CodeJam.PerfTests.Running.Messages.MessageSource.Unknown
+  - CodeJam.PerfTests.Running.Messages.MessageSource.Validator
+  langs:
+  - csharp
+  - vb
+  name: MessageSource
+  nameWithType: MessageSource
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource
+  type: Enum
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MessageSource
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+    startLine: 7
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Source of the message.
+  example: []
+  syntax:
+    content: public enum MessageSource
+    content.vb: Public Enum MessageSource
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource.Unknown
+  commentId: F:CodeJam.PerfTests.Running.Messages.MessageSource.Unknown
+  id: Unknown
+  parent: CodeJam.PerfTests.Running.Messages.MessageSource
+  langs:
+  - csharp
+  - vb
+  name: Unknown
+  nameWithType: MessageSource.Unknown
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource.Unknown
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Unknown
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+    startLine: 11
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: The origin of the message is unknown.
+  example: []
+  syntax:
+    content: Unknown = 0
+    return:
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource.Runner
+  commentId: F:CodeJam.PerfTests.Running.Messages.MessageSource.Runner
+  id: Runner
+  parent: CodeJam.PerfTests.Running.Messages.MessageSource
+  langs:
+  - csharp
+  - vb
+  name: Runner
+  nameWithType: MessageSource.Runner
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource.Runner
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Runner
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+    startLine: 14
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: The message is reported by benchmark runner.
+  example: []
+  syntax:
+    content: Runner = 1
+    return:
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource.Validator
+  commentId: F:CodeJam.PerfTests.Running.Messages.MessageSource.Validator
+  id: Validator
+  parent: CodeJam.PerfTests.Running.Messages.MessageSource
+  langs:
+  - csharp
+  - vb
+  name: Validator
+  nameWithType: MessageSource.Validator
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource.Validator
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Validator
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+    startLine: 17
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: The message is reported by validator.
+  example: []
+  syntax:
+    content: Validator = 2
+    return:
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource.Analyser
+  commentId: F:CodeJam.PerfTests.Running.Messages.MessageSource.Analyser
+  id: Analyser
+  parent: CodeJam.PerfTests.Running.Messages.MessageSource
+  langs:
+  - csharp
+  - vb
+  name: Analyser
+  nameWithType: MessageSource.Analyser
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource.Analyser
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Analyser
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+    startLine: 20
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: The message is reported by analyser.
+  example: []
+  syntax:
+    content: Analyser = 3
+    return:
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource.Diagnoser
+  commentId: F:CodeJam.PerfTests.Running.Messages.MessageSource.Diagnoser
+  id: Diagnoser
+  parent: CodeJam.PerfTests.Running.Messages.MessageSource
+  langs:
+  - csharp
+  - vb
+  name: Diagnoser
+  nameWithType: MessageSource.Diagnoser
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource.Diagnoser
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Diagnoser
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+    startLine: 23
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: The message is reported by diagnoser.
+  example: []
+  syntax:
+    content: Diagnoser = 4
+    return:
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource.Exporter
+  commentId: F:CodeJam.PerfTests.Running.Messages.MessageSource.Exporter
+  id: Exporter
+  parent: CodeJam.PerfTests.Running.Messages.MessageSource
+  langs:
+  - csharp
+  - vb
+  name: Exporter
+  nameWithType: MessageSource.Exporter
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource.Exporter
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Exporter
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/MessageSource.cs
+    startLine: 26
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: The message is reported by exporter.
+  example: []
+  syntax:
+    content: Exporter = 5
+    return:
+      type: CodeJam.PerfTests.Running.Messages.MessageSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: CodeJam.PerfTests.Running.Messages
+  commentId: N:CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Messages
+  nameWithType: CodeJam.PerfTests.Running.Messages
+  fullName: CodeJam.PerfTests.Running.Messages
+- uid: CodeJam.PerfTests.Running.Messages.MessageSource
+  commentId: T:CodeJam.PerfTests.Running.Messages.MessageSource
+  parent: CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: MessageSource
+  nameWithType: MessageSource
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSource

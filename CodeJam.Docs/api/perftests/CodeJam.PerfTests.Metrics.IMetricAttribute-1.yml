@@ -1,0 +1,145 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`1
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`1
+  id: IMetricAttribute`1
+  parent: CodeJam.PerfTests.Metrics
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: IMetricAttribute<TMetricProvider>
+  nameWithType: IMetricAttribute<TMetricProvider>
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider>
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricAttributeBase]/IMetricAttribute.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IMetricAttribute
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricAttributeBase]/IMetricAttribute.cs
+    startLine: 12
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nInterface for custom metric attributes that has no unit of measurement.\n"
+  example: []
+  syntax:
+    content: 'public interface IMetricAttribute<TMetricProvider> : IStoredMetricValue where TMetricProvider : IMetricValuesProvider, new ()'
+    typeParameters:
+    - id: TMetricProvider
+      description: The type of the metric provider.
+    content.vb: >-
+      Public Interface IMetricAttribute(Of TMetricProvider As {IMetricValuesProvider, New})
+          Inherits IStoredMetricValue
+  seealso:
+  - linkId: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  - linkId: CodeJam.PerfTests.Metrics.IStoredMetricValue
+    commentId: T:CodeJam.PerfTests.Metrics.IStoredMetricValue
+  inheritedMembers:
+  - CodeJam.PerfTests.Metrics.IStoredMetricValue.MetricAttributeType
+  - CodeJam.PerfTests.Metrics.IStoredMetricValue.Min
+  - CodeJam.PerfTests.Metrics.IStoredMetricValue.Max
+  - CodeJam.PerfTests.Metrics.IStoredMetricValue.UnitOfMeasurement
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider)
+  name.vb: IMetricAttribute(Of TMetricProvider)
+references:
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  isExternal: false
+  name: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  name.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TUnitOfMeasurement
+    nameWithType: TUnitOfMeasurement
+    fullName: TUnitOfMeasurement
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TUnitOfMeasurement
+    nameWithType: TUnitOfMeasurement
+    fullName: TUnitOfMeasurement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  commentId: T:CodeJam.PerfTests.Metrics.IStoredMetricValue
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: IStoredMetricValue
+  nameWithType: IStoredMetricValue
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue.MetricAttributeType
+  commentId: P:CodeJam.PerfTests.Metrics.IStoredMetricValue.MetricAttributeType
+  parent: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  isExternal: false
+  name: MetricAttributeType
+  nameWithType: IStoredMetricValue.MetricAttributeType
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue.MetricAttributeType
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue.Min
+  commentId: P:CodeJam.PerfTests.Metrics.IStoredMetricValue.Min
+  parent: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  isExternal: false
+  name: Min
+  nameWithType: IStoredMetricValue.Min
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue.Min
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue.Max
+  commentId: P:CodeJam.PerfTests.Metrics.IStoredMetricValue.Max
+  parent: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  isExternal: false
+  name: Max
+  nameWithType: IStoredMetricValue.Max
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue.Max
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue.UnitOfMeasurement
+  commentId: P:CodeJam.PerfTests.Metrics.IStoredMetricValue.UnitOfMeasurement
+  parent: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  isExternal: false
+  name: UnitOfMeasurement
+  nameWithType: IStoredMetricValue.UnitOfMeasurement
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue.UnitOfMeasurement

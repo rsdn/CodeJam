@@ -1,0 +1,795 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  commentId: T:CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  id: CompetitionMetricValue
+  parent: CodeJam.PerfTests.Analysers
+  children:
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor(CodeJam.PerfTests.Metrics.MetricInfo)
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor(CodeJam.PerfTests.Metrics.MetricInfo,CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.MarkAsSaved
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.Metric
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.ToString
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.UnionWith(CodeJam.PerfTests.Analysers.CompetitionMetricValue,System.Boolean)
+  - CodeJam.PerfTests.Analysers.CompetitionMetricValue.ValuesRange
+  langs:
+  - csharp
+  - vb
+  name: CompetitionMetricValue
+  nameWithType: CompetitionMetricValue
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CompetitionMetricValue
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 9
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: The competition metric value.
+  example: []
+  syntax:
+    content: public class CompetitionMetricValue
+    content.vb: Public Class CompetitionMetricValue
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor(CodeJam.PerfTests.Metrics.MetricInfo)
+  commentId: M:CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor(CodeJam.PerfTests.Metrics.MetricInfo)
+  id: '#ctor(CodeJam.PerfTests.Metrics.MetricInfo)'
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: CompetitionMetricValue(MetricInfo)
+  nameWithType: CompetitionMetricValue.CompetitionMetricValue(MetricInfo)
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.CompetitionMetricValue(CodeJam.PerfTests.Metrics.MetricInfo)
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 13
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: Initializes empty new instance of the <xref href="CodeJam.PerfTests.Analysers.CompetitionMetricValue" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public CompetitionMetricValue(MetricInfo metric)
+    parameters:
+    - id: metric
+      type: CodeJam.PerfTests.Metrics.MetricInfo
+      description: The metric information.
+    content.vb: Public Sub New(metric As MetricInfo)
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor(CodeJam.PerfTests.Metrics.MetricInfo,CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  commentId: M:CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor(CodeJam.PerfTests.Metrics.MetricInfo,CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  id: '#ctor(CodeJam.PerfTests.Metrics.MetricInfo,CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)'
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: CompetitionMetricValue(MetricInfo, MetricRange, MetricUnit)
+  nameWithType: CompetitionMetricValue.CompetitionMetricValue(MetricInfo, MetricRange, MetricUnit)
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.CompetitionMetricValue(CodeJam.PerfTests.Metrics.MetricInfo, CodeJam.PerfTests.Metrics.MetricRange, CodeJam.PerfTests.Metrics.MetricUnit)
+  type: Constructor
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: .ctor
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 26
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: Initializes a new instance of the <xref href="CodeJam.PerfTests.Analysers.CompetitionMetricValue" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public CompetitionMetricValue(MetricInfo metric, MetricRange valuesRange, MetricUnit displayMetricUnit)
+    parameters:
+    - id: metric
+      type: CodeJam.PerfTests.Metrics.MetricInfo
+      description: The metric information.
+    - id: valuesRange
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: The metric values range.
+    - id: displayMetricUnit
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+      description: The preferred metric unit for the values range.
+    content.vb: Public Sub New(metric As MetricInfo, valuesRange As MetricRange, displayMetricUnit As MetricUnit)
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.Metric
+  commentId: P:CodeJam.PerfTests.Analysers.CompetitionMetricValue.Metric
+  id: Metric
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: Metric
+  nameWithType: CompetitionMetricValue.Metric
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.Metric
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Metric
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 41
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: Gets the metric.
+  example: []
+  syntax:
+    content: public MetricInfo Metric { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricInfo
+      description: The metric.
+    content.vb: Public ReadOnly Property Metric As MetricInfo
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.Metric*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ValuesRange
+  commentId: P:CodeJam.PerfTests.Analysers.CompetitionMetricValue.ValuesRange
+  id: ValuesRange
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: ValuesRange
+  nameWithType: CompetitionMetricValue.ValuesRange
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ValuesRange
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ValuesRange
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 46
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: Gets metric values range.
+  example: []
+  syntax:
+    content: public MetricRange ValuesRange { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: The metric values range.
+    content.vb: Public ReadOnly Property ValuesRange As MetricRange
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ValuesRange*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit
+  commentId: P:CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit
+  id: DisplayMetricUnit
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: DisplayMetricUnit
+  nameWithType: CompetitionMetricValue.DisplayMetricUnit
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DisplayMetricUnit
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 50
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: Gets preferred metric unit for the values range.
+  example: []
+  syntax:
+    content: public MetricUnit DisplayMetricUnit { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+      description: The preferred metric unit for the values range.
+    content.vb: Public ReadOnly Property DisplayMetricUnit As MetricUnit
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges
+  commentId: P:CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges
+  id: HasUnsavedChanges
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: HasUnsavedChanges
+  nameWithType: CompetitionMetricValue.HasUnsavedChanges
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: HasUnsavedChanges
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 55
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: The metric value is updated but was not saved.
+  example: []
+  syntax:
+    content: public bool HasUnsavedChanges { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the metric value has unsaved changes; otherwise, <code>false</code>.
+    content.vb: Public ReadOnly Property HasUnsavedChanges As Boolean
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.UnionWith(CodeJam.PerfTests.Analysers.CompetitionMetricValue,System.Boolean)
+  commentId: M:CodeJam.PerfTests.Analysers.CompetitionMetricValue.UnionWith(CodeJam.PerfTests.Analysers.CompetitionMetricValue,System.Boolean)
+  id: UnionWith(CodeJam.PerfTests.Analysers.CompetitionMetricValue,System.Boolean)
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: UnionWith(CompetitionMetricValue, Boolean)
+  nameWithType: CompetitionMetricValue.UnionWith(CompetitionMetricValue, Boolean)
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.UnionWith(CodeJam.PerfTests.Analysers.CompetitionMetricValue, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UnionWith
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 63
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: Combines metric value with specified one.
+  example: []
+  syntax:
+    content: public bool UnionWith(CompetitionMetricValue other, bool forceMetricUnitUpdate)
+    parameters:
+    - id: other
+      type: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+      description: The metric value to merge.
+    - id: forceMetricUnitUpdate
+      type: System.Boolean
+      description: "\nIf set to <code>true</code> existing <xref href=\"CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit\" data-throw-if-not-resolved=\"false\"></xref> is updated even if it is not empty.\n"
+    return:
+      type: System.Boolean
+      description: <code>true</code> if was updated.
+    content.vb: Public Function UnionWith(other As CompetitionMetricValue, forceMetricUnitUpdate As Boolean) As Boolean
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.UnionWith*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.MarkAsSaved
+  commentId: M:CodeJam.PerfTests.Analysers.CompetitionMetricValue.MarkAsSaved
+  id: MarkAsSaved
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: MarkAsSaved()
+  nameWithType: CompetitionMetricValue.MarkAsSaved()
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.MarkAsSaved()
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MarkAsSaved
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 105
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: Marks value as saved (sets the <xref href="CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges" data-throw-if-not-resolved="false"></xref> to <code>false</code>).
+  example: []
+  syntax:
+    content: public void MarkAsSaved()
+    content.vb: Public Sub MarkAsSaved
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.MarkAsSaved*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ToString
+  commentId: M:CodeJam.PerfTests.Analysers.CompetitionMetricValue.ToString
+  id: ToString
+  parent: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: CompetitionMetricValue.ToString()
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ToString()
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToString
+    path: ../PerfTests/src/[L3_CompetitionAnalysers]/Analysers/[Targets]/CompetitionMetricValue.cs
+    startLine: 109
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Analysers
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents this instance.
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.Object.ToString
+  overload: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: CodeJam.PerfTests.Analysers
+  commentId: N:CodeJam.PerfTests.Analysers
+  isExternal: false
+  name: CodeJam.PerfTests.Analysers
+  nameWithType: CodeJam.PerfTests.Analysers
+  fullName: CodeJam.PerfTests.Analysers
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  commentId: T:CodeJam.PerfTests.Analysers.CompetitionMetricValue
+  parent: CodeJam.PerfTests.Analysers
+  isExternal: false
+  name: CompetitionMetricValue
+  nameWithType: CompetitionMetricValue
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor*
+  commentId: Overload:CodeJam.PerfTests.Analysers.CompetitionMetricValue.#ctor
+  isExternal: false
+  name: CompetitionMetricValue
+  nameWithType: CompetitionMetricValue.CompetitionMetricValue
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.CompetitionMetricValue
+- uid: CodeJam.PerfTests.Metrics.MetricInfo
+  commentId: T:CodeJam.PerfTests.Metrics.MetricInfo
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricInfo
+  nameWithType: MetricInfo
+  fullName: CodeJam.PerfTests.Metrics.MetricInfo
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: CodeJam.PerfTests.Metrics.MetricRange
+  commentId: T:CodeJam.PerfTests.Metrics.MetricRange
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricRange
+  nameWithType: MetricRange
+  fullName: CodeJam.PerfTests.Metrics.MetricRange
+- uid: CodeJam.PerfTests.Metrics.MetricUnit
+  commentId: T:CodeJam.PerfTests.Metrics.MetricUnit
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricUnit
+  nameWithType: MetricUnit
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.Metric*
+  commentId: Overload:CodeJam.PerfTests.Analysers.CompetitionMetricValue.Metric
+  isExternal: false
+  name: Metric
+  nameWithType: CompetitionMetricValue.Metric
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.Metric
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ValuesRange*
+  commentId: Overload:CodeJam.PerfTests.Analysers.CompetitionMetricValue.ValuesRange
+  isExternal: false
+  name: ValuesRange
+  nameWithType: CompetitionMetricValue.ValuesRange
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ValuesRange
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit*
+  commentId: Overload:CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit
+  isExternal: false
+  name: DisplayMetricUnit
+  nameWithType: CompetitionMetricValue.DisplayMetricUnit
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges*
+  commentId: Overload:CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges
+  isExternal: false
+  name: HasUnsavedChanges
+  nameWithType: CompetitionMetricValue.HasUnsavedChanges
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit
+  commentId: P:CodeJam.PerfTests.Analysers.CompetitionMetricValue.DisplayMetricUnit
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.UnionWith*
+  commentId: Overload:CodeJam.PerfTests.Analysers.CompetitionMetricValue.UnionWith
+  isExternal: false
+  name: UnionWith
+  nameWithType: CompetitionMetricValue.UnionWith
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.UnionWith
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges
+  commentId: P:CodeJam.PerfTests.Analysers.CompetitionMetricValue.HasUnsavedChanges
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.MarkAsSaved*
+  commentId: Overload:CodeJam.PerfTests.Analysers.CompetitionMetricValue.MarkAsSaved
+  isExternal: false
+  name: MarkAsSaved
+  nameWithType: CompetitionMetricValue.MarkAsSaved
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.MarkAsSaved
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ToString*
+  commentId: Overload:CodeJam.PerfTests.Analysers.CompetitionMetricValue.ToString
+  isExternal: false
+  name: ToString
+  nameWithType: CompetitionMetricValue.ToString
+  fullName: CodeJam.PerfTests.Analysers.CompetitionMetricValue.ToString

@@ -1,0 +1,198 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  id: IMetricAttribute`2
+  parent: CodeJam.PerfTests.Metrics
+  children:
+  - CodeJam.PerfTests.Metrics.IMetricAttribute`2.UnitOfMeasurement
+  langs:
+  - csharp
+  - vb
+  name: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricAttributeBase]/IMetricAttribute.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IMetricAttribute
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricAttributeBase]/IMetricAttribute.cs
+    startLine: 22
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Interface for custom metric attributes that has unit of measurement.
+  example: []
+  syntax:
+    content: 'public interface IMetricAttribute<TMetricProvider, TUnitOfMeasurement> : IMetricAttribute<TMetricProvider>, IStoredMetricValue where TMetricProvider : IMetricValuesProvider, new ()where TUnitOfMeasurement : struct'
+    typeParameters:
+    - id: TMetricProvider
+      description: The type of the metric provider.
+    - id: TUnitOfMeasurement
+      description: The type of the unit of measurement.
+    content.vb: >-
+      Public Interface IMetricAttribute(Of TMetricProvider As {IMetricValuesProvider, New}, TUnitOfMeasurement As Structure)
+          Inherits IMetricAttribute(Of TMetricProvider)
+  seealso:
+  - linkId: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  - linkId: CodeJam.PerfTests.Metrics.IStoredMetricValue
+    commentId: T:CodeJam.PerfTests.Metrics.IStoredMetricValue
+  inheritedMembers:
+  - CodeJam.PerfTests.Metrics.IStoredMetricValue.MetricAttributeType
+  - CodeJam.PerfTests.Metrics.IStoredMetricValue.Min
+  - CodeJam.PerfTests.Metrics.IStoredMetricValue.Max
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  name.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2.UnitOfMeasurement
+  commentId: P:CodeJam.PerfTests.Metrics.IMetricAttribute`2.UnitOfMeasurement
+  id: UnitOfMeasurement
+  parent: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  langs:
+  - csharp
+  - vb
+  name: UnitOfMeasurement
+  nameWithType: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>.UnitOfMeasurement
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider, TUnitOfMeasurement>.UnitOfMeasurement
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricAttributeBase]/IMetricAttribute.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: UnitOfMeasurement
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricAttributeBase]/IMetricAttribute.cs
+    startLine: 28
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets unit of measurement for the metric.
+  example: []
+  syntax:
+    content: TUnitOfMeasurement UnitOfMeasurement { get; }
+    parameters: []
+    return:
+      type: '{TUnitOfMeasurement}'
+      description: The unit of measurement for the metric.
+    content.vb: ReadOnly Property UnitOfMeasurement As TUnitOfMeasurement
+  overload: CodeJam.PerfTests.Metrics.IMetricAttribute`2.UnitOfMeasurement*
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement).UnitOfMeasurement
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement).UnitOfMeasurement
+references:
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  commentId: T:CodeJam.PerfTests.Metrics.IMetricAttribute`2
+  isExternal: false
+  name: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider, TUnitOfMeasurement>
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  name.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TUnitOfMeasurement
+    nameWithType: TUnitOfMeasurement
+    fullName: TUnitOfMeasurement
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2
+    name: IMetricAttribute
+    nameWithType: IMetricAttribute
+    fullName: CodeJam.PerfTests.Metrics.IMetricAttribute
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TMetricProvider
+    nameWithType: TMetricProvider
+    fullName: TMetricProvider
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TUnitOfMeasurement
+    nameWithType: TUnitOfMeasurement
+    fullName: TUnitOfMeasurement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  commentId: T:CodeJam.PerfTests.Metrics.IStoredMetricValue
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: IStoredMetricValue
+  nameWithType: IStoredMetricValue
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue.MetricAttributeType
+  commentId: P:CodeJam.PerfTests.Metrics.IStoredMetricValue.MetricAttributeType
+  parent: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  isExternal: false
+  name: MetricAttributeType
+  nameWithType: IStoredMetricValue.MetricAttributeType
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue.MetricAttributeType
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue.Min
+  commentId: P:CodeJam.PerfTests.Metrics.IStoredMetricValue.Min
+  parent: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  isExternal: false
+  name: Min
+  nameWithType: IStoredMetricValue.Min
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue.Min
+- uid: CodeJam.PerfTests.Metrics.IStoredMetricValue.Max
+  commentId: P:CodeJam.PerfTests.Metrics.IStoredMetricValue.Max
+  parent: CodeJam.PerfTests.Metrics.IStoredMetricValue
+  isExternal: false
+  name: Max
+  nameWithType: IStoredMetricValue.Max
+  fullName: CodeJam.PerfTests.Metrics.IStoredMetricValue.Max
+- uid: CodeJam.PerfTests.Metrics.IMetricAttribute`2.UnitOfMeasurement*
+  commentId: Overload:CodeJam.PerfTests.Metrics.IMetricAttribute`2.UnitOfMeasurement
+  isExternal: false
+  name: UnitOfMeasurement
+  nameWithType: IMetricAttribute<TMetricProvider, TUnitOfMeasurement>.UnitOfMeasurement
+  fullName: CodeJam.PerfTests.Metrics.IMetricAttribute<TMetricProvider, TUnitOfMeasurement>.UnitOfMeasurement
+  nameWithType.vb: IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement).UnitOfMeasurement
+  fullName.vb: CodeJam.PerfTests.Metrics.IMetricAttribute(Of TMetricProvider, TUnitOfMeasurement).UnitOfMeasurement
+- uid: '{TUnitOfMeasurement}'
+  commentId: '!:TUnitOfMeasurement'
+  definition: TUnitOfMeasurement
+  name: TUnitOfMeasurement
+  nameWithType: TUnitOfMeasurement
+  fullName: TUnitOfMeasurement
+- uid: TUnitOfMeasurement
+  commentId: '!:TUnitOfMeasurement'
+  isExternal: false
+  name: TUnitOfMeasurement
+  nameWithType: TUnitOfMeasurement
+  fullName: TUnitOfMeasurement

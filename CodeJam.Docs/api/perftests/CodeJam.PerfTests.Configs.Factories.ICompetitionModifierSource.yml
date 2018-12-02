@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+  id: ICompetitionModifierSource
+  parent: CodeJam.PerfTests.Configs.Factories
+  children:
+  - CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.Modifier
+  langs:
+  - csharp
+  - vb
+  name: ICompetitionModifierSource
+  nameWithType: ICompetitionModifierSource
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionModifierSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ICompetitionModifierSource
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionModifierSource.cs
+    startLine: 5
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: Base interface for <xref href="CodeJam.PerfTests.Configs.Factories.ICompetitionModifier" data-throw-if-not-resolved="false"></xref> attributes.
+  example: []
+  syntax:
+    content: public interface ICompetitionModifierSource
+    content.vb: Public Interface ICompetitionModifierSource
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.Modifier
+  commentId: P:CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.Modifier
+  id: Modifier
+  parent: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource
+  langs:
+  - csharp
+  - vb
+  name: Modifier
+  nameWithType: ICompetitionModifierSource.Modifier
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.Modifier
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionModifierSource.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Modifier
+    path: ../PerfTests/src/[L4_Configuration]/Configs.Factories/ICompetitionModifierSource.cs
+    startLine: 9
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Configs.Factories
+  summary: The competition config modifier.
+  example: []
+  syntax:
+    content: ICompetitionModifier Modifier { get; }
+    parameters: []
+    return:
+      type: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+      description: The competition config modifier.
+    content.vb: ReadOnly Property Modifier As ICompetitionModifier
+  overload: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.Modifier*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  commentId: T:CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+  parent: CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: ICompetitionModifier
+  nameWithType: ICompetitionModifier
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifier
+- uid: CodeJam.PerfTests.Configs.Factories
+  commentId: N:CodeJam.PerfTests.Configs.Factories
+  isExternal: false
+  name: CodeJam.PerfTests.Configs.Factories
+  nameWithType: CodeJam.PerfTests.Configs.Factories
+  fullName: CodeJam.PerfTests.Configs.Factories
+- uid: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.Modifier*
+  commentId: Overload:CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.Modifier
+  isExternal: false
+  name: Modifier
+  nameWithType: ICompetitionModifierSource.Modifier
+  fullName: CodeJam.PerfTests.Configs.Factories.ICompetitionModifierSource.Modifier

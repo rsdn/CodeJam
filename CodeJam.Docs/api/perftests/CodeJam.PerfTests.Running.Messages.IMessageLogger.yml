@@ -1,0 +1,2098 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  commentId: T:CodeJam.PerfTests.Running.Messages.IMessageLogger
+  id: IMessageLogger
+  parent: CodeJam.PerfTests.Running.Messages
+  children:
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.Logger
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: IMessageLogger
+  nameWithType: IMessageLogger
+  fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  type: Interface
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/IMessageLogger.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IMessageLogger
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/IMessageLogger.cs
+    startLine: 9
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: "\nThe message logger.\n"
+  example: []
+  syntax:
+    content: public interface IMessageLogger
+    content.vb: Public Interface IMessageLogger
+  extensionMethods:
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(System.String,System.String)
+  - CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.Logger
+  commentId: P:CodeJam.PerfTests.Running.Messages.IMessageLogger.Logger
+  id: Logger
+  parent: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  langs:
+  - csharp
+  - vb
+  name: Logger
+  nameWithType: IMessageLogger.Logger
+  fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger.Logger
+  type: Property
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/IMessageLogger.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Logger
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/IMessageLogger.cs
+    startLine: 13
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Gets logger (can be used for direct log output).
+  example: []
+  syntax:
+    content: ILogger Logger { get; }
+    parameters: []
+    return:
+      type: BenchmarkDotNet.Loggers.ILogger
+      description: The logger.
+    content.vb: ReadOnly Property Logger As ILogger
+  overload: CodeJam.PerfTests.Running.Messages.IMessageLogger.Logger*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Messages.IMessageLogger.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.String)
+  id: WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  langs:
+  - csharp
+  - vb
+  name: WriteMessage(MessageSeverity, String, String)
+  nameWithType: IMessageLogger.WriteMessage(MessageSeverity, String, String)
+  fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L2_CompetitionCore]/Running.Messages/IMessageLogger.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: WriteMessage
+    path: ../PerfTests/src/[L2_CompetitionCore]/Running.Messages/IMessageLogger.cs
+    startLine: 20
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Running.Messages
+  summary: Adds a message for the competition.
+  example: []
+  syntax:
+    content: void WriteMessage(MessageSeverity messageSeverity, string message, string hint = null)
+    parameters:
+    - id: messageSeverity
+      type: CodeJam.PerfTests.Running.Messages.MessageSeverity
+      description: Severity of the message.
+    - id: message
+      type: System.String
+      description: Text of the message.
+    - id: hint
+      type: System.String
+      description: Hints for the message.
+    content.vb: Sub WriteMessage(messageSeverity As MessageSeverity, message As String, hint As String = Nothing)
+  overload: CodeJam.PerfTests.Running.Messages.IMessageLogger.WriteMessage*
+references:
+- uid: CodeJam.PerfTests.Running.Messages
+  commentId: N:CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Messages
+  nameWithType: CodeJam.PerfTests.Running.Messages
+  fullName: CodeJam.PerfTests.Running.Messages
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  name: WriteMessage(MessageSeverity, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteMessage(MessageSeverity, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity, BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteMessage
+    nameWithType: CompetitionCoreHelpers.WriteMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteMessage
+    nameWithType: CompetitionCoreHelpers.WriteMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  name: WriteExceptionMessage(MessageSeverity, String, Exception)
+  nameWithType: CompetitionCoreHelpers.WriteExceptionMessage(MessageSeverity, String, Exception)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity, System.String, System.Exception)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+    name: WriteExceptionMessage
+    nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+    name: WriteExceptionMessage
+    nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  name: WriteExceptionMessage(MessageSeverity, Target, String, Exception)
+  nameWithType: CompetitionCoreHelpers.WriteExceptionMessage(MessageSeverity, Target, String, Exception)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity, BenchmarkDotNet.Running.Target, System.String, System.Exception)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+    name: WriteExceptionMessage
+    nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+    name: WriteExceptionMessage
+    nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  name: WriteExecutionErrorMessage(String, String)
+  nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage(String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(System.String,System.String)
+    name: WriteExecutionErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(System.String,System.String)
+    name: WriteExecutionErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  name: WriteExecutionErrorMessage(Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage(Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteExecutionErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteExecutionErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  name: WriteSetupErrorMessage(String, String)
+  nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage(String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(System.String,System.String)
+    name: WriteSetupErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(System.String,System.String)
+    name: WriteSetupErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  name: WriteSetupErrorMessage(Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage(Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteSetupErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteSetupErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  name: WriteTestErrorMessage(String, String)
+  nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage(String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(System.String,System.String)
+    name: WriteTestErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(System.String,System.String)
+    name: WriteTestErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  name: WriteTestErrorMessage(Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage(Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteTestErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteTestErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  name: WriteWarningMessage(String, String)
+  nameWithType: CompetitionCoreHelpers.WriteWarningMessage(String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(System.String,System.String)
+    name: WriteWarningMessage
+    nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(System.String,System.String)
+    name: WriteWarningMessage
+    nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  name: WriteWarningMessage(Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteWarningMessage(Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteWarningMessage
+    nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteWarningMessage
+    nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  name: WriteInfoMessage(String, String)
+  nameWithType: CompetitionCoreHelpers.WriteInfoMessage(String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(System.String,System.String)
+    name: WriteInfoMessage
+    nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(System.String,System.String)
+    name: WriteInfoMessage
+    nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  parent: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  definition: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  name: WriteInfoMessage(Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteInfoMessage(Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteInfoMessage
+    nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteInfoMessage
+    nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExternal: true
+  name: WriteMessage(IMessageLogger, MessageSeverity, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteMessage(IMessageLogger, MessageSeverity, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, CodeJam.PerfTests.Running.Messages.MessageSeverity, BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteMessage
+    nameWithType: CompetitionCoreHelpers.WriteMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteMessage
+    nameWithType: CompetitionCoreHelpers.WriteMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  commentId: T:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+  parent: CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CompetitionCoreHelpers
+  nameWithType: CompetitionCoreHelpers
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+  isExternal: true
+  name: WriteExceptionMessage(IMessageLogger, MessageSeverity, String, Exception)
+  nameWithType: CompetitionCoreHelpers.WriteExceptionMessage(IMessageLogger, MessageSeverity, String, Exception)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, CodeJam.PerfTests.Running.Messages.MessageSeverity, System.String, System.Exception)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+    name: WriteExceptionMessage
+    nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,System.String,System.Exception)
+    name: WriteExceptionMessage
+    nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+  isExternal: true
+  name: WriteExceptionMessage(IMessageLogger, MessageSeverity, Target, String, Exception)
+  nameWithType: CompetitionCoreHelpers.WriteExceptionMessage(IMessageLogger, MessageSeverity, Target, String, Exception)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, CodeJam.PerfTests.Running.Messages.MessageSeverity, BenchmarkDotNet.Running.Target, System.String, System.Exception)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+    name: WriteExceptionMessage
+    nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,CodeJam.PerfTests.Running.Messages.MessageSeverity,BenchmarkDotNet.Running.Target,System.String,System.Exception)
+    name: WriteExceptionMessage
+    nameWithType: CompetitionCoreHelpers.WriteExceptionMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExceptionMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+    name: MessageSeverity
+    nameWithType: MessageSeverity
+    fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExternal: true
+  name: WriteExecutionErrorMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteExecutionErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteExecutionErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExternal: true
+  name: WriteExecutionErrorMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteExecutionErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteExecutionErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteExecutionErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteExecutionErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExternal: true
+  name: WriteSetupErrorMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteSetupErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteSetupErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExternal: true
+  name: WriteSetupErrorMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteSetupErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteSetupErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteSetupErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteSetupErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExternal: true
+  name: WriteTestErrorMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteTestErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteTestErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExternal: true
+  name: WriteTestErrorMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteTestErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteTestErrorMessage
+    nameWithType: CompetitionCoreHelpers.WriteTestErrorMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteTestErrorMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExternal: true
+  name: WriteWarningMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteWarningMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteWarningMessage
+    nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteWarningMessage
+    nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExternal: true
+  name: WriteWarningMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteWarningMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteWarningMessage
+    nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteWarningMessage
+    nameWithType: CompetitionCoreHelpers.WriteWarningMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteWarningMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+  isExternal: true
+  name: WriteInfoMessage(IMessageLogger, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteInfoMessage(IMessageLogger, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteInfoMessage
+    nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,System.String,System.String)
+    name: WriteInfoMessage
+    nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  commentId: M:CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+  isExternal: true
+  name: WriteInfoMessage(IMessageLogger, Target, String, String)
+  nameWithType: CompetitionCoreHelpers.WriteInfoMessage(IMessageLogger, Target, String, String)
+  fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger, BenchmarkDotNet.Running.Target, System.String, System.String)
+  spec.csharp:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteInfoMessage
+    nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage(CodeJam.PerfTests.Running.Messages.IMessageLogger,BenchmarkDotNet.Running.Target,System.String,System.String)
+    name: WriteInfoMessage
+    nameWithType: CompetitionCoreHelpers.WriteInfoMessage
+    fullName: CodeJam.PerfTests.Running.Core.CompetitionCoreHelpers.WriteInfoMessage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: CodeJam.PerfTests.Running.Messages.IMessageLogger
+    name: IMessageLogger
+    nameWithType: IMessageLogger
+    fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: BenchmarkDotNet.Running.Target
+    name: Target
+    nameWithType: Target
+    fullName: BenchmarkDotNet.Running.Target
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Running.Core
+  commentId: N:CodeJam.PerfTests.Running.Core
+  isExternal: false
+  name: CodeJam.PerfTests.Running.Core
+  nameWithType: CodeJam.PerfTests.Running.Core
+  fullName: CodeJam.PerfTests.Running.Core
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.Logger*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.IMessageLogger.Logger
+  isExternal: false
+  name: Logger
+  nameWithType: IMessageLogger.Logger
+  fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger.Logger
+- uid: BenchmarkDotNet.Loggers.ILogger
+  commentId: T:BenchmarkDotNet.Loggers.ILogger
+  parent: BenchmarkDotNet.Loggers
+  isExternal: true
+  name: ILogger
+  nameWithType: ILogger
+  fullName: BenchmarkDotNet.Loggers.ILogger
+- uid: BenchmarkDotNet.Loggers
+  commentId: N:BenchmarkDotNet.Loggers
+  isExternal: false
+  name: BenchmarkDotNet.Loggers
+  nameWithType: BenchmarkDotNet.Loggers
+  fullName: BenchmarkDotNet.Loggers
+- uid: CodeJam.PerfTests.Running.Messages.IMessageLogger.WriteMessage*
+  commentId: Overload:CodeJam.PerfTests.Running.Messages.IMessageLogger.WriteMessage
+  isExternal: false
+  name: WriteMessage
+  nameWithType: IMessageLogger.WriteMessage
+  fullName: CodeJam.PerfTests.Running.Messages.IMessageLogger.WriteMessage
+- uid: CodeJam.PerfTests.Running.Messages.MessageSeverity
+  commentId: T:CodeJam.PerfTests.Running.Messages.MessageSeverity
+  parent: CodeJam.PerfTests.Running.Messages
+  isExternal: false
+  name: MessageSeverity
+  nameWithType: MessageSeverity
+  fullName: CodeJam.PerfTests.Running.Messages.MessageSeverity
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System

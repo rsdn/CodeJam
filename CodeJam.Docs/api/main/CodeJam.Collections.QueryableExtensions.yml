@@ -1,0 +1,932 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Collections.QueryableExtensions
+  commentId: T:CodeJam.Collections.QueryableExtensions
+  id: QueryableExtensions
+  parent: CodeJam.Collections
+  children:
+  - CodeJam.Collections.QueryableExtensions.OrderBy``1(System.Linq.IQueryable{``0},System.String)
+  - CodeJam.Collections.QueryableExtensions.OrderByDescending``1(System.Linq.IQueryable{``0},System.String)
+  - CodeJam.Collections.QueryableExtensions.Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)
+  - CodeJam.Collections.QueryableExtensions.Slice``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)
+  - CodeJam.Collections.QueryableExtensions.ThenBy``1(System.Linq.IOrderedQueryable{``0},System.String)
+  - CodeJam.Collections.QueryableExtensions.ThenByDescending``1(System.Linq.IOrderedQueryable{``0},System.String)
+  langs:
+  - csharp
+  - vb
+  name: QueryableExtensions
+  nameWithType: QueryableExtensions
+  fullName: CodeJam.Collections.QueryableExtensions
+  type: Class
+  source:
+    remote:
+      path: Main/src/Collections/QueryableExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: QueryableExtensions
+    path: ../Main/src/Collections/QueryableExtensions.cs
+    startLine: 10
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nExtensions for <xref href=\"System.Linq.IQueryable%601\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static class QueryableExtensions
+    content.vb: Public Module QueryableExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.Collections.QueryableExtensions.OrderBy``1(System.Linq.IQueryable{``0},System.String)
+  commentId: M:CodeJam.Collections.QueryableExtensions.OrderBy``1(System.Linq.IQueryable{``0},System.String)
+  id: OrderBy``1(System.Linq.IQueryable{``0},System.String)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.QueryableExtensions
+  langs:
+  - csharp
+  - vb
+  name: OrderBy<T>(IQueryable<T>, String)
+  nameWithType: QueryableExtensions.OrderBy<T>(IQueryable<T>, String)
+  fullName: CodeJam.Collections.QueryableExtensions.OrderBy<T>(System.Linq.IQueryable<T>, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/QueryableExtensions.ApplyOrder.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: OrderBy
+    path: ../Main/src/Collections/QueryableExtensions.ApplyOrder.cs
+    startLine: 20
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nSorts the elements of a sequence in ascending order according to a key.\n"
+  example: []
+  syntax:
+    content: public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string property)
+    parameters:
+    - id: source
+      type: System.Linq.IQueryable{{T}}
+      description: A sequence of values to order.
+    - id: property
+      type: System.String
+      description: The property name.
+    typeParameters:
+    - id: T
+    return:
+      type: System.Linq.IOrderedQueryable{{T}}
+      description: "\nAn <xref href=\"System.Linq.IOrderedQueryable%601\" data-throw-if-not-resolved=\"false\"></xref> whose elements are sorted according to a key.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function OrderBy(Of T)(source As IQueryable(Of T), property As String) As IOrderedQueryable(Of T)
+  overload: CodeJam.Collections.QueryableExtensions.OrderBy*
+  nameWithType.vb: QueryableExtensions.OrderBy(Of T)(IQueryable(Of T), String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.QueryableExtensions.OrderBy(Of T)(System.Linq.IQueryable(Of T), System.String)
+  name.vb: OrderBy(Of T)(IQueryable(Of T), String)
+- uid: CodeJam.Collections.QueryableExtensions.OrderByDescending``1(System.Linq.IQueryable{``0},System.String)
+  commentId: M:CodeJam.Collections.QueryableExtensions.OrderByDescending``1(System.Linq.IQueryable{``0},System.String)
+  id: OrderByDescending``1(System.Linq.IQueryable{``0},System.String)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.QueryableExtensions
+  langs:
+  - csharp
+  - vb
+  name: OrderByDescending<T>(IQueryable<T>, String)
+  nameWithType: QueryableExtensions.OrderByDescending<T>(IQueryable<T>, String)
+  fullName: CodeJam.Collections.QueryableExtensions.OrderByDescending<T>(System.Linq.IQueryable<T>, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/QueryableExtensions.ApplyOrder.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: OrderByDescending
+    path: ../Main/src/Collections/QueryableExtensions.ApplyOrder.cs
+    startLine: 32
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nSorts the elements of a sequence in descending order according to a key.\n"
+  example: []
+  syntax:
+    content: public static IOrderedQueryable<T> OrderByDescending<T>(this IQueryable<T> source, string property)
+    parameters:
+    - id: source
+      type: System.Linq.IQueryable{{T}}
+      description: A sequence of values to order.
+    - id: property
+      type: System.String
+      description: The property name.
+    typeParameters:
+    - id: T
+    return:
+      type: System.Linq.IOrderedQueryable{{T}}
+      description: "\nAn <xref href=\"System.Linq.IOrderedQueryable%601\" data-throw-if-not-resolved=\"false\"></xref> whose elements are sorted according to a key.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function OrderByDescending(Of T)(source As IQueryable(Of T), property As String) As IOrderedQueryable(Of T)
+  overload: CodeJam.Collections.QueryableExtensions.OrderByDescending*
+  nameWithType.vb: QueryableExtensions.OrderByDescending(Of T)(IQueryable(Of T), String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.QueryableExtensions.OrderByDescending(Of T)(System.Linq.IQueryable(Of T), System.String)
+  name.vb: OrderByDescending(Of T)(IQueryable(Of T), String)
+- uid: CodeJam.Collections.QueryableExtensions.ThenBy``1(System.Linq.IOrderedQueryable{``0},System.String)
+  commentId: M:CodeJam.Collections.QueryableExtensions.ThenBy``1(System.Linq.IOrderedQueryable{``0},System.String)
+  id: ThenBy``1(System.Linq.IOrderedQueryable{``0},System.String)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.QueryableExtensions
+  langs:
+  - csharp
+  - vb
+  name: ThenBy<T>(IOrderedQueryable<T>, String)
+  nameWithType: QueryableExtensions.ThenBy<T>(IOrderedQueryable<T>, String)
+  fullName: CodeJam.Collections.QueryableExtensions.ThenBy<T>(System.Linq.IOrderedQueryable<T>, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/QueryableExtensions.ApplyOrder.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ThenBy
+    path: ../Main/src/Collections/QueryableExtensions.ApplyOrder.cs
+    startLine: 45
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nPerforms a subsequent ordering of the elements in a sequence in ascending order according to a key.\n"
+  example: []
+  syntax:
+    content: public static IOrderedQueryable<T> ThenBy<T>(this IOrderedQueryable<T> source, string property)
+    parameters:
+    - id: source
+      type: System.Linq.IOrderedQueryable{{T}}
+      description: An <xref href="System.Linq.IOrderedEnumerable%601" data-throw-if-not-resolved="false"></xref> that contains elements to sort.
+    - id: property
+      type: System.String
+      description: The property name.
+    typeParameters:
+    - id: T
+    return:
+      type: System.Linq.IOrderedQueryable{{T}}
+      description: "\nAn <xref href=\"System.Linq.IOrderedQueryable%601\" data-throw-if-not-resolved=\"false\"></xref> whose elements are sorted according to a key.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ThenBy(Of T)(source As IOrderedQueryable(Of T), property As String) As IOrderedQueryable(Of T)
+  overload: CodeJam.Collections.QueryableExtensions.ThenBy*
+  nameWithType.vb: QueryableExtensions.ThenBy(Of T)(IOrderedQueryable(Of T), String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.QueryableExtensions.ThenBy(Of T)(System.Linq.IOrderedQueryable(Of T), System.String)
+  name.vb: ThenBy(Of T)(IOrderedQueryable(Of T), String)
+- uid: CodeJam.Collections.QueryableExtensions.ThenByDescending``1(System.Linq.IOrderedQueryable{``0},System.String)
+  commentId: M:CodeJam.Collections.QueryableExtensions.ThenByDescending``1(System.Linq.IOrderedQueryable{``0},System.String)
+  id: ThenByDescending``1(System.Linq.IOrderedQueryable{``0},System.String)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.QueryableExtensions
+  langs:
+  - csharp
+  - vb
+  name: ThenByDescending<T>(IOrderedQueryable<T>, String)
+  nameWithType: QueryableExtensions.ThenByDescending<T>(IOrderedQueryable<T>, String)
+  fullName: CodeJam.Collections.QueryableExtensions.ThenByDescending<T>(System.Linq.IOrderedQueryable<T>, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/QueryableExtensions.ApplyOrder.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ThenByDescending
+    path: ../Main/src/Collections/QueryableExtensions.ApplyOrder.cs
+    startLine: 57
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nPerforms a subsequent ordering of the elements in a sequence in descending order according to a key.\n"
+  example: []
+  syntax:
+    content: public static IOrderedQueryable<T> ThenByDescending<T>(this IOrderedQueryable<T> source, string property)
+    parameters:
+    - id: source
+      type: System.Linq.IOrderedQueryable{{T}}
+      description: An <xref href="System.Linq.IOrderedEnumerable%601" data-throw-if-not-resolved="false"></xref> that contains elements to sort.
+    - id: property
+      type: System.String
+      description: The property name.
+    typeParameters:
+    - id: T
+    return:
+      type: System.Linq.IOrderedQueryable{{T}}
+      description: "\nAn <xref href=\"System.Linq.IOrderedQueryable%601\" data-throw-if-not-resolved=\"false\"></xref> whose elements are sorted according to a key.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ThenByDescending(Of T)(source As IOrderedQueryable(Of T), property As String) As IOrderedQueryable(Of T)
+  overload: CodeJam.Collections.QueryableExtensions.ThenByDescending*
+  nameWithType.vb: QueryableExtensions.ThenByDescending(Of T)(IOrderedQueryable(Of T), String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.QueryableExtensions.ThenByDescending(Of T)(System.Linq.IOrderedQueryable(Of T), System.String)
+  name.vb: ThenByDescending(Of T)(IOrderedQueryable(Of T), String)
+- uid: CodeJam.Collections.QueryableExtensions.Slice``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)
+  commentId: M:CodeJam.Collections.QueryableExtensions.Slice``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)
+  id: Slice``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.QueryableExtensions
+  langs:
+  - csharp
+  - vb
+  name: Slice<T>(IQueryable<T>, Int32, Int32)
+  nameWithType: QueryableExtensions.Slice<T>(IQueryable<T>, Int32, Int32)
+  fullName: CodeJam.Collections.QueryableExtensions.Slice<T>(System.Linq.IQueryable<T>, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/QueryableExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Slice
+    path: ../Main/src/Collections/QueryableExtensions.cs
+    startLine: 28
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nExtracts <code data-dev-comment-type=\"paramref\" class=\"paramref\">count</code> elements from a sequence at a particular zero-based starting index.\n"
+  remarks: "\nIf the starting position or count specified result in slice extending past the end of the sequence,\nit will return all elements up to that point. There is no guarantee that the resulting sequence will\ncontain the number of elements requested - it may have anywhere from 0 to <code data-dev-comment-type=\"paramref\" class=\"paramref\">count</code>.\n"
+  example: []
+  syntax:
+    content: public static IQueryable<T> Slice<T>(this IQueryable<T> source, int startIndex, int count)
+    parameters:
+    - id: source
+      type: System.Linq.IQueryable{{T}}
+      description: The sequence from which to extract elements.
+    - id: startIndex
+      type: System.Int32
+      description: The zero-based index at which to begin slicing.
+    - id: count
+      type: System.Int32
+      description: The number of items to slice out of the index.
+    typeParameters:
+    - id: T
+      description: The type of the elements in the source sequence.
+    return:
+      type: System.Linq.IQueryable{{T}}
+      description: "\nA new sequence containing any elements sliced out from the source sequence.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Slice(Of T)(source As IQueryable(Of T), startIndex As Integer, count As Integer) As IQueryable(Of T)
+  overload: CodeJam.Collections.QueryableExtensions.Slice*
+  nameWithType.vb: QueryableExtensions.Slice(Of T)(IQueryable(Of T), Int32, Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.QueryableExtensions.Slice(Of T)(System.Linq.IQueryable(Of T), System.Int32, System.Int32)
+  name.vb: Slice(Of T)(IQueryable(Of T), Int32, Int32)
+- uid: CodeJam.Collections.QueryableExtensions.Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)
+  commentId: M:CodeJam.Collections.QueryableExtensions.Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)
+  id: Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)
+  isExtensionMethod: true
+  parent: CodeJam.Collections.QueryableExtensions
+  langs:
+  - csharp
+  - vb
+  name: Page<T>(IQueryable<T>, Int32, Int32)
+  nameWithType: QueryableExtensions.Page<T>(IQueryable<T>, Int32, Int32)
+  fullName: CodeJam.Collections.QueryableExtensions.Page<T>(System.Linq.IQueryable<T>, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Main/src/Collections/QueryableExtensions.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Page
+    path: ../Main/src/Collections/QueryableExtensions.cs
+    startLine: 50
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.Collections
+  summary: "\nExtracts <code data-dev-comment-type=\"paramref\" class=\"paramref\">pageSize</code> elements from a sequence at a particular one-based page number.\n"
+  example: []
+  syntax:
+    content: public static IQueryable<T> Page<T>(this IQueryable<T> source, int pageIndex, int pageSize)
+    parameters:
+    - id: source
+      type: System.Linq.IQueryable{{T}}
+      description: The sequence from which to page.
+    - id: pageIndex
+      type: System.Int32
+      description: The one-based page number.
+    - id: pageSize
+      type: System.Int32
+      description: The size of the page.
+    typeParameters:
+    - id: T
+      description: The type of the elements in the source sequence.
+    return:
+      type: System.Linq.IQueryable{{T}}
+      description: "\nA new sequence containing elements are at the specified <code data-dev-comment-type=\"paramref\" class=\"paramref\">pageIndex</code> from the source sequence.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Page(Of T)(source As IQueryable(Of T), pageIndex As Integer, pageSize As Integer) As IQueryable(Of T)
+  overload: CodeJam.Collections.QueryableExtensions.Page*
+  nameWithType.vb: QueryableExtensions.Page(Of T)(IQueryable(Of T), Int32, Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.Collections.QueryableExtensions.Page(Of T)(System.Linq.IQueryable(Of T), System.Int32, System.Int32)
+  name.vb: Page(Of T)(IQueryable(Of T), Int32, Int32)
+references:
+- uid: System.Linq.IQueryable`1
+  commentId: T:System.Linq.IQueryable`1
+  isExternal: true
+  name: IQueryable<T>
+  nameWithType: IQueryable<T>
+  fullName: System.Linq.IQueryable<T>
+  nameWithType.vb: IQueryable(Of T)
+  fullName.vb: System.Linq.IQueryable(Of T)
+  name.vb: IQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections
+  commentId: N:CodeJam.Collections
+  isExternal: false
+  name: CodeJam.Collections
+  nameWithType: CodeJam.Collections
+  fullName: CodeJam.Collections
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Linq.IOrderedQueryable`1
+  commentId: T:System.Linq.IOrderedQueryable`1
+  isExternal: true
+  name: IOrderedQueryable<T>
+  nameWithType: IOrderedQueryable<T>
+  fullName: System.Linq.IOrderedQueryable<T>
+  nameWithType.vb: IOrderedQueryable(Of T)
+  fullName.vb: System.Linq.IOrderedQueryable(Of T)
+  name.vb: IOrderedQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IOrderedQueryable`1
+    name: IOrderedQueryable
+    nameWithType: IOrderedQueryable
+    fullName: System.Linq.IOrderedQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IOrderedQueryable`1
+    name: IOrderedQueryable
+    nameWithType: IOrderedQueryable
+    fullName: System.Linq.IOrderedQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.QueryableExtensions.OrderBy*
+  commentId: Overload:CodeJam.Collections.QueryableExtensions.OrderBy
+  isExternal: false
+  name: OrderBy
+  nameWithType: QueryableExtensions.OrderBy
+  fullName: CodeJam.Collections.QueryableExtensions.OrderBy
+- uid: System.Linq.IQueryable{{T}}
+  commentId: T:System.Linq.IQueryable{``0}
+  parent: System.Linq
+  definition: System.Linq.IQueryable`1
+  name: IQueryable<T>
+  nameWithType: IQueryable<T>
+  fullName: System.Linq.IQueryable<T>
+  nameWithType.vb: IQueryable(Of T)
+  fullName.vb: System.Linq.IQueryable(Of T)
+  name.vb: IQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Linq.IOrderedQueryable{{T}}
+  commentId: T:System.Linq.IOrderedQueryable{``0}
+  parent: System.Linq
+  definition: System.Linq.IOrderedQueryable`1
+  name: IOrderedQueryable<T>
+  nameWithType: IOrderedQueryable<T>
+  fullName: System.Linq.IOrderedQueryable<T>
+  nameWithType.vb: IOrderedQueryable(Of T)
+  fullName.vb: System.Linq.IOrderedQueryable(Of T)
+  name.vb: IOrderedQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IOrderedQueryable`1
+    name: IOrderedQueryable
+    nameWithType: IOrderedQueryable
+    fullName: System.Linq.IOrderedQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IOrderedQueryable`1
+    name: IOrderedQueryable
+    nameWithType: IOrderedQueryable
+    fullName: System.Linq.IOrderedQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq
+  commentId: N:System.Linq
+  isExternal: false
+  name: System.Linq
+  nameWithType: System.Linq
+  fullName: System.Linq
+- uid: CodeJam.Collections.QueryableExtensions.OrderByDescending*
+  commentId: Overload:CodeJam.Collections.QueryableExtensions.OrderByDescending
+  isExternal: false
+  name: OrderByDescending
+  nameWithType: QueryableExtensions.OrderByDescending
+  fullName: CodeJam.Collections.QueryableExtensions.OrderByDescending
+- uid: System.Linq.IOrderedEnumerable`1
+  commentId: T:System.Linq.IOrderedEnumerable`1
+  isExternal: true
+  name: IOrderedEnumerable<TElement>
+  nameWithType: IOrderedEnumerable<TElement>
+  fullName: System.Linq.IOrderedEnumerable<TElement>
+  nameWithType.vb: IOrderedEnumerable(Of TElement)
+  fullName.vb: System.Linq.IOrderedEnumerable(Of TElement)
+  name.vb: IOrderedEnumerable(Of TElement)
+  spec.csharp:
+  - uid: System.Linq.IOrderedEnumerable`1
+    name: IOrderedEnumerable
+    nameWithType: IOrderedEnumerable
+    fullName: System.Linq.IOrderedEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TElement
+    nameWithType: TElement
+    fullName: TElement
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IOrderedEnumerable`1
+    name: IOrderedEnumerable
+    nameWithType: IOrderedEnumerable
+    fullName: System.Linq.IOrderedEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TElement
+    nameWithType: TElement
+    fullName: TElement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.Collections.QueryableExtensions.ThenBy*
+  commentId: Overload:CodeJam.Collections.QueryableExtensions.ThenBy
+  isExternal: false
+  name: ThenBy
+  nameWithType: QueryableExtensions.ThenBy
+  fullName: CodeJam.Collections.QueryableExtensions.ThenBy
+- uid: CodeJam.Collections.QueryableExtensions.ThenByDescending*
+  commentId: Overload:CodeJam.Collections.QueryableExtensions.ThenByDescending
+  isExternal: false
+  name: ThenByDescending
+  nameWithType: QueryableExtensions.ThenByDescending
+  fullName: CodeJam.Collections.QueryableExtensions.ThenByDescending
+- uid: CodeJam.Collections.QueryableExtensions.Slice*
+  commentId: Overload:CodeJam.Collections.QueryableExtensions.Slice
+  isExternal: false
+  name: Slice
+  nameWithType: QueryableExtensions.Slice
+  fullName: CodeJam.Collections.QueryableExtensions.Slice
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: CodeJam.Collections.QueryableExtensions.Page*
+  commentId: Overload:CodeJam.Collections.QueryableExtensions.Page
+  isExternal: false
+  name: Page
+  nameWithType: QueryableExtensions.Page
+  fullName: CodeJam.Collections.QueryableExtensions.Page

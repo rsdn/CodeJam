@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+	<Import Project="..\Build\Props\CodeJam.Nuspec.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.Blocks</AssemblyName>
+		<RootNamespace>CodeJam</RootNamespace>
+		<ProjectGuid>{0DFF0859-2400-4487-83AD-0ED10203D6D9}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35</TargetFrameworks>
+
+		<PackageId>CodeJam.Blocks</PackageId>
+		<Title>CodeJam.Blocks library</Title>
+		<Authors>Andrew Koryavchenko, Igor Tkachev, rameel</Authors>
+		<Product>CodeJam</Product>
+		<Description>CodeJam.Blocks is a set of basic blocks aimed to easy creation of infrastructure serviceas such as mappers, DI service providers et cetera.</Description>
+		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Blocks.Icon.png</PackageIconUrl>
+		<PackageTags>mapper services csv</PackageTags>
+	</PropertyGroup>
+
+	<!-- #region Targeting -->
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
+		<AssemblyAttribute Include="System.Runtime.Versioning.TargetFrameworkAttribute">
+			<_Parameter1>.NETFramework,Version=v3.5</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	<!-- #endregion -->
+
+	<ItemGroup>
+		<ProjectReference Include="..\CodeJam.Main\CodeJam.Main.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Build\Jetbrains.Annotations.cs">
+			<Link>Properties\Jetbrains.Annotations.cs</Link>
+		</Compile>
+		<Content Include="Readme.txt">
+			<Pack>true</Pack>
+			<PackagePath>Readme.txt</PackagePath>
+		</Content>
+	</ItemGroup>
+
+</Project>

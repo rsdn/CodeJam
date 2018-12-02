@@ -1,0 +1,227 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics.GcMetricSource
+  commentId: T:CodeJam.PerfTests.Metrics.GcMetricSource
+  id: GcMetricSource
+  parent: CodeJam.PerfTests.Metrics
+  children:
+  - CodeJam.PerfTests.Metrics.GcMetricSource.BytesAllocatedPerOperation
+  - CodeJam.PerfTests.Metrics.GcMetricSource.BytesAllocatedPerOperationRaw
+  - CodeJam.PerfTests.Metrics.GcMetricSource.Gen0CollectionsPer1000
+  - CodeJam.PerfTests.Metrics.GcMetricSource.Gen1CollectionsPer1000
+  - CodeJam.PerfTests.Metrics.GcMetricSource.Gen2CollectionsPer1000
+  langs:
+  - csharp
+  - vb
+  name: GcMetricSource
+  nameWithType: GcMetricSource
+  fullName: CodeJam.PerfTests.Metrics.GcMetricSource
+  type: Enum
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GcMetricSource
+    path: ../PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+    startLine: 12
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nProperty of the <xref href=\"BenchmarkDotNet.Engines.GcStats\" data-throw-if-not-resolved=\"false\"></xref> to be used as a GC metric value\n"
+  example: []
+  syntax:
+    content: public enum GcMetricSource
+    content.vb: Public Enum GcMetricSource
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: CodeJam.PerfTests.Metrics.GcMetricSource.BytesAllocatedPerOperation
+  commentId: F:CodeJam.PerfTests.Metrics.GcMetricSource.BytesAllocatedPerOperation
+  id: BytesAllocatedPerOperation
+  parent: CodeJam.PerfTests.Metrics.GcMetricSource
+  langs:
+  - csharp
+  - vb
+  name: BytesAllocatedPerOperation
+  nameWithType: GcMetricSource.BytesAllocatedPerOperation
+  fullName: CodeJam.PerfTests.Metrics.GcMetricSource.BytesAllocatedPerOperation
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BytesAllocatedPerOperation
+    path: ../PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+    startLine: 18
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nBytes allocated per operation.\nNoise allocations (total bytes allocated less than gc allocation quantum are returned as <code>0</code>.\n"
+  example: []
+  syntax:
+    content: BytesAllocatedPerOperation = 0
+    return:
+      type: CodeJam.PerfTests.Metrics.GcMetricSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Metrics.GcMetricSource.BytesAllocatedPerOperationRaw
+  commentId: F:CodeJam.PerfTests.Metrics.GcMetricSource.BytesAllocatedPerOperationRaw
+  id: BytesAllocatedPerOperationRaw
+  parent: CodeJam.PerfTests.Metrics.GcMetricSource
+  langs:
+  - csharp
+  - vb
+  name: BytesAllocatedPerOperationRaw
+  nameWithType: GcMetricSource.BytesAllocatedPerOperationRaw
+  fullName: CodeJam.PerfTests.Metrics.GcMetricSource.BytesAllocatedPerOperationRaw
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: BytesAllocatedPerOperationRaw
+    path: ../PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+    startLine: 23
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nBytes allocated per operation including noise allocations (those with total bytes allocated less than gc allocation quantum).\n"
+  example: []
+  syntax:
+    content: BytesAllocatedPerOperationRaw = 1
+    return:
+      type: CodeJam.PerfTests.Metrics.GcMetricSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Metrics.GcMetricSource.Gen0CollectionsPer1000
+  commentId: F:CodeJam.PerfTests.Metrics.GcMetricSource.Gen0CollectionsPer1000
+  id: Gen0CollectionsPer1000
+  parent: CodeJam.PerfTests.Metrics.GcMetricSource
+  langs:
+  - csharp
+  - vb
+  name: Gen0CollectionsPer1000
+  nameWithType: GcMetricSource.Gen0CollectionsPer1000
+  fullName: CodeJam.PerfTests.Metrics.GcMetricSource.Gen0CollectionsPer1000
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Gen0CollectionsPer1000
+    path: ../PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+    startLine: 26
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gen0 collections per 1000 ops.
+  example: []
+  syntax:
+    content: Gen0CollectionsPer1000 = 2
+    return:
+      type: CodeJam.PerfTests.Metrics.GcMetricSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Metrics.GcMetricSource.Gen1CollectionsPer1000
+  commentId: F:CodeJam.PerfTests.Metrics.GcMetricSource.Gen1CollectionsPer1000
+  id: Gen1CollectionsPer1000
+  parent: CodeJam.PerfTests.Metrics.GcMetricSource
+  langs:
+  - csharp
+  - vb
+  name: Gen1CollectionsPer1000
+  nameWithType: GcMetricSource.Gen1CollectionsPer1000
+  fullName: CodeJam.PerfTests.Metrics.GcMetricSource.Gen1CollectionsPer1000
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Gen1CollectionsPer1000
+    path: ../PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+    startLine: 29
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gen1 collections per 1000 ops.
+  example: []
+  syntax:
+    content: Gen1CollectionsPer1000 = 3
+    return:
+      type: CodeJam.PerfTests.Metrics.GcMetricSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: CodeJam.PerfTests.Metrics.GcMetricSource.Gen2CollectionsPer1000
+  commentId: F:CodeJam.PerfTests.Metrics.GcMetricSource.Gen2CollectionsPer1000
+  id: Gen2CollectionsPer1000
+  parent: CodeJam.PerfTests.Metrics.GcMetricSource
+  langs:
+  - csharp
+  - vb
+  name: Gen2CollectionsPer1000
+  nameWithType: GcMetricSource.Gen2CollectionsPer1000
+  fullName: CodeJam.PerfTests.Metrics.GcMetricSource.Gen2CollectionsPer1000
+  type: Field
+  source:
+    remote:
+      path: PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: Gen2CollectionsPer1000
+    path: ../PerfTests/src/[L4_Configuration]/Metrics/[MetricValuesProvider]/GcMetricValuesProvider.cs
+    startLine: 32
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gen2 collections per 1000 ops.
+  example: []
+  syntax:
+    content: Gen2CollectionsPer1000 = 4
+    return:
+      type: CodeJam.PerfTests.Metrics.GcMetricSource
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: BenchmarkDotNet.Engines.GcStats
+  commentId: T:BenchmarkDotNet.Engines.GcStats
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: CodeJam.PerfTests.Metrics.GcMetricSource
+  commentId: T:CodeJam.PerfTests.Metrics.GcMetricSource
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: GcMetricSource
+  nameWithType: GcMetricSource
+  fullName: CodeJam.PerfTests.Metrics.GcMetricSource

@@ -1,6 +1,6 @@
-version: 1.0.{build}
+version: 2.2.{build}
 image: Visual Studio 2017
-configuration: Debug
+configuration: Release
 clone_folder: c:\projects\codejam
 environment:
   SHFBROOT: C:\EWSoftware.SHFB.2018.7.8.1\tools\

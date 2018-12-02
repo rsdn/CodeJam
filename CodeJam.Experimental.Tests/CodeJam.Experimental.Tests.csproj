@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.Experimental.Tests</AssemblyName>
+		<RootNamespace>CodeJam</RootNamespace>
+		<ProjectGuid>{F6F97573-4D26-4217-89F6-819DF96FCB4A}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
+		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NUnit" Version="3.11.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CodeJam.Main\CodeJam.Main.csproj" />
+		<ProjectReference Include="..\CodeJam.Experimental\CodeJam.Experimental.csproj" />
+	</ItemGroup>
+
+</Project>

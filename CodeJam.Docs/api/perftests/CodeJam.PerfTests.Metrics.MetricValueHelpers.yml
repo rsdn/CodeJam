@@ -1,0 +1,1004 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  commentId: T:CodeJam.PerfTests.Metrics.MetricValueHelpers
+  id: MetricValueHelpers
+  parent: CodeJam.PerfTests.Metrics
+  children:
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.ContainsWithRounding(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable{System.Double},System.Nullable{System.Double})
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable{System.Double},System.Nullable{System.Double},CodeJam.PerfTests.Metrics.MetricUnit)
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.GetAutoscaledFormat(System.Double)
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit,System.String@,System.String@)
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.MinMaxAreSame(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnitScale)
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(System.Double,CodeJam.PerfTests.Metrics.MetricUnit)
+  - CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(System.Double,CodeJam.PerfTests.Metrics.MetricUnitScale)
+  langs:
+  - csharp
+  - vb
+  name: MetricValueHelpers
+  nameWithType: MetricValueHelpers
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  type: Class
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MetricValueHelpers
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 10
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: 'Extension methods for <xref href="CodeJam.PerfTests.Metrics.MetricUnit" data-throw-if-not-resolved="false"></xref> and <xref href="CodeJam.PerfTests.Metrics.MetricUnitScale" data-throw-if-not-resolved="false"></xref>. '
+  example: []
+  syntax:
+    content: public static class MetricValueHelpers
+    content.vb: Public Module MetricValueHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable{System.Double},System.Nullable{System.Double})
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable{System.Double},System.Nullable{System.Double})
+  id: CreateMetricRange(System.Nullable{System.Double},System.Nullable{System.Double})
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: CreateMetricRange(Nullable<Double>, Nullable<Double>)
+  nameWithType: MetricValueHelpers.CreateMetricRange(Nullable<Double>, Nullable<Double>)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable<System.Double>, System.Nullable<System.Double>)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateMetricRange
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 27
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Creates a new metric range.
+  example: []
+  syntax:
+    content: public static MetricRange CreateMetricRange(double ? min, double ? max)
+    parameters:
+    - id: min
+      type: System.Nullable{System.Double}
+      description: "\nThe minimum value.\nThe <xref href=\"CodeJam.PerfTests.Metrics.MetricRange.EmptyMetricValue\" data-throw-if-not-resolved=\"false\"></xref>  marks the range as unset but updateable during the annotation.\nUse <code>null</code> or <xref href=\"CodeJam.PerfTests.Metrics.MetricRange\" data-throw-if-not-resolved=\"false\"></xref> to set min value to negative infinity (ignored, essentially).\n"
+    - id: max
+      type: System.Nullable{System.Double}
+      description: "\nThe maximum value.\nUse <xref href=\"CodeJam.PerfTests.Metrics.MetricRange.EmptyMetricValue\" data-throw-if-not-resolved=\"false\"></xref>\nto mark the range as unset but updateable during the annotation.\nUse <code>null</code> or <xref href=\"CodeJam.PerfTests.Metrics.MetricRange.ToPositiveInfinity\" data-throw-if-not-resolved=\"false\"></xref> to set max value to positive infinity (ignored, essentially).\n"
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Metrics range.
+    content.vb: Public Shared Function CreateMetricRange(min As Double?, max As Double?) As MetricRange
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange*
+  nameWithType.vb: MetricValueHelpers.CreateMetricRange(Nullable(Of Double), Nullable(Of Double))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable(Of System.Double), System.Nullable(Of System.Double))
+  name.vb: CreateMetricRange(Nullable(Of Double), Nullable(Of Double))
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable{System.Double},System.Nullable{System.Double},CodeJam.PerfTests.Metrics.MetricUnit)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable{System.Double},System.Nullable{System.Double},CodeJam.PerfTests.Metrics.MetricUnit)
+  id: CreateMetricRange(System.Nullable{System.Double},System.Nullable{System.Double},CodeJam.PerfTests.Metrics.MetricUnit)
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: CreateMetricRange(Nullable<Double>, Nullable<Double>, MetricUnit)
+  nameWithType: MetricValueHelpers.CreateMetricRange(Nullable<Double>, Nullable<Double>, MetricUnit)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable<System.Double>, System.Nullable<System.Double>, CodeJam.PerfTests.Metrics.MetricUnit)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: CreateMetricRange
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 43
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Creates a new metric range.
+  example: []
+  syntax:
+    content: public static MetricRange CreateMetricRange(double ? min, double ? max, MetricUnit metricUnit)
+    parameters:
+    - id: min
+      type: System.Nullable{System.Double}
+      description: "\nThe minimum value.\nThe <xref href=\"CodeJam.PerfTests.Metrics.MetricRange.EmptyMetricValue\" data-throw-if-not-resolved=\"false\"></xref> marks the range as unset but updateable during the annotation.\nUse <code>null</code> or <xref href=\"CodeJam.PerfTests.Metrics.MetricRange.EmptyMetricValue\" data-throw-if-not-resolved=\"false\"></xref> to set min value to negative infinity (ignored, essentially).\n"
+    - id: max
+      type: System.Nullable{System.Double}
+      description: "\nThe maximum value.\nUse <xref href=\"CodeJam.PerfTests.Metrics.MetricRange\" data-throw-if-not-resolved=\"false\"></xref>\nto mark the range as unset but updateable during the annotation.\nUse <code>null</code> or <xref href=\"CodeJam.PerfTests.Metrics.MetricRange\" data-throw-if-not-resolved=\"false\"></xref> to set max value to positive infinity (ignored, essentially).\n"
+    - id: metricUnit
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+      description: The metric unit that was used to store metric range.
+    return:
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Metrics range.
+    content.vb: Public Shared Function CreateMetricRange(min As Double?, max As Double?, metricUnit As MetricUnit) As MetricRange
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange*
+  nameWithType.vb: MetricValueHelpers.CreateMetricRange(Nullable(Of Double), Nullable(Of Double), MetricUnit)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange(System.Nullable(Of System.Double), System.Nullable(Of System.Double), CodeJam.PerfTests.Metrics.MetricUnit)
+  name.vb: CreateMetricRange(Nullable(Of Double), Nullable(Of Double), MetricUnit)
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetAutoscaledFormat(System.Double)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.GetAutoscaledFormat(System.Double)
+  id: GetAutoscaledFormat(System.Double)
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: GetAutoscaledFormat(Double)
+  nameWithType: MetricValueHelpers.GetAutoscaledFormat(Double)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetAutoscaledFormat(System.Double)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetAutoscaledFormat
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 102
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Gets the autoscaled format for the value.
+  example: []
+  syntax:
+    content: public static string GetAutoscaledFormat(double value)
+    parameters:
+    - id: value
+      type: System.Double
+      description: The value.
+    return:
+      type: System.String
+      description: Autoscaled format for the value
+    content.vb: Public Shared Function GetAutoscaledFormat(value As Double) As String
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetAutoscaledFormat*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.ContainsWithRounding(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.ContainsWithRounding(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  id: ContainsWithRounding(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: ContainsWithRounding(MetricRange, MetricRange, MetricUnit)
+  nameWithType: MetricValueHelpers.ContainsWithRounding(MetricRange, MetricRange, MetricUnit)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.ContainsWithRounding(CodeJam.PerfTests.Metrics.MetricRange, CodeJam.PerfTests.Metrics.MetricRange, CodeJam.PerfTests.Metrics.MetricUnit)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ContainsWithRounding
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 123
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nDetermines whether the range contains another one. \nThe check is performed using same rounding that will be used to store the <code data-dev-comment-type=\"paramref\" class=\"paramref\">metricValues</code>.\n"
+  example: []
+  syntax:
+    content: public static bool ContainsWithRounding(this MetricRange metricValues, MetricRange other, MetricUnit metricUnit)
+    parameters:
+    - id: metricValues
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Range of metric values.
+    - id: other
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: The metric range to check.
+    - id: metricUnit
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+      description: "\nThe metric measurement unit that will be used to store the <code data-dev-comment-type=\"paramref\" class=\"paramref\">metricValues</code>.\n"
+    return:
+      type: System.Boolean
+      description: <code>true</code>, if the range contains another one.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ContainsWithRounding(metricValues As MetricRange, other As MetricRange, metricUnit As MetricUnit) As Boolean
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.ContainsWithRounding*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.MinMaxAreSame(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.MinMaxAreSame(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  id: MinMaxAreSame(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: MinMaxAreSame(MetricRange, MetricUnit)
+  nameWithType: MetricValueHelpers.MinMaxAreSame(MetricRange, MetricUnit)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.MinMaxAreSame(CodeJam.PerfTests.Metrics.MetricRange, CodeJam.PerfTests.Metrics.MetricUnit)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: MinMaxAreSame
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 146
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: "\nDetermines whether the range can be represented as a single point range\n(scaled and rounded min and max are the same).\n"
+  example: []
+  syntax:
+    content: public static bool MinMaxAreSame(this MetricRange metricValues, MetricUnit metricUnit)
+    parameters:
+    - id: metricValues
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Range of metric values.
+    - id: metricUnit
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+      description: "\nThe metric measurement unit that will be used to store the <code data-dev-comment-type=\"paramref\" class=\"paramref\">metricValues</code>.\n"
+    return:
+      type: System.Boolean
+      description: <code>true</code>, if the range can be represented as a single point range.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MinMaxAreSame(metricValues As MetricRange, metricUnit As MetricUnit) As Boolean
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.MinMaxAreSame*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(System.Double,CodeJam.PerfTests.Metrics.MetricUnitScale)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(System.Double,CodeJam.PerfTests.Metrics.MetricUnitScale)
+  id: ToString(System.Double,CodeJam.PerfTests.Metrics.MetricUnitScale)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: ToString(Double, MetricUnitScale)
+  nameWithType: MetricValueHelpers.ToString(Double, MetricUnitScale)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(System.Double, CodeJam.PerfTests.Metrics.MetricUnitScale)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToString
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 186
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> representation of a metric value.
+  example: []
+  syntax:
+    content: public static string ToString(this double metricValue, MetricUnitScale metricUnitScale)
+    parameters:
+    - id: metricValue
+      type: System.Double
+      description: The metric value.
+    - id: metricUnitScale
+      type: CodeJam.PerfTests.Metrics.MetricUnitScale
+      description: The metric measurement scale.
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents the metric value.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToString(metricValue As Double, metricUnitScale As MetricUnitScale) As String
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(System.Double,CodeJam.PerfTests.Metrics.MetricUnit)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(System.Double,CodeJam.PerfTests.Metrics.MetricUnit)
+  id: ToString(System.Double,CodeJam.PerfTests.Metrics.MetricUnit)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: ToString(Double, MetricUnit)
+  nameWithType: MetricValueHelpers.ToString(Double, MetricUnit)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(System.Double, CodeJam.PerfTests.Metrics.MetricUnit)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToString
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 194
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> representation of a metric value.
+  example: []
+  syntax:
+    content: public static string ToString(this double metricValue, MetricUnit metricUnit)
+    parameters:
+    - id: metricValue
+      type: System.Double
+      description: The metric value.
+    - id: metricUnit
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+      description: The metric measurement unit.
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents the metric value.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToString(metricValue As Double, metricUnit As MetricUnit) As String
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnitScale)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnitScale)
+  id: ToString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnitScale)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: ToString(MetricRange, MetricUnitScale)
+  nameWithType: MetricValueHelpers.ToString(MetricRange, MetricUnitScale)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(CodeJam.PerfTests.Metrics.MetricRange, CodeJam.PerfTests.Metrics.MetricUnitScale)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToString
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 210
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> representation of a metric value.
+  example: []
+  syntax:
+    content: public static string ToString(this MetricRange metricValues, MetricUnitScale metricUnitScale)
+    parameters:
+    - id: metricValues
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Range of metric values.
+    - id: metricUnitScale
+      type: CodeJam.PerfTests.Metrics.MetricUnitScale
+      description: The metric measurement scale.
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents the metric value.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToString(metricValues As MetricRange, metricUnitScale As MetricUnitScale) As String
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  id: ToString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: ToString(MetricRange, MetricUnit)
+  nameWithType: MetricValueHelpers.ToString(MetricRange, MetricUnit)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString(CodeJam.PerfTests.Metrics.MetricRange, CodeJam.PerfTests.Metrics.MetricUnit)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: ToString
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 218
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> representation of a metric value.
+  example: []
+  syntax:
+    content: public static string ToString(this MetricRange metricValues, MetricUnit metricUnit)
+    parameters:
+    - id: metricValues
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Range of metric values.
+    - id: metricUnit
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+      description: The metric measurement unit.
+    return:
+      type: System.String
+      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that represents the metric value.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToString(metricValues As MetricRange, metricUnit As MetricUnit) As String
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit,System.String@,System.String@)
+  commentId: M:CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit,System.String@,System.String@)
+  id: GetMinMaxString(CodeJam.PerfTests.Metrics.MetricRange,CodeJam.PerfTests.Metrics.MetricUnit,System.String@,System.String@)
+  isExtensionMethod: true
+  parent: CodeJam.PerfTests.Metrics.MetricValueHelpers
+  langs:
+  - csharp
+  - vb
+  name: GetMinMaxString(MetricRange, MetricUnit, out String, out String)
+  nameWithType: MetricValueHelpers.GetMinMaxString(MetricRange, MetricUnit, out String, out String)
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString(CodeJam.PerfTests.Metrics.MetricRange, CodeJam.PerfTests.Metrics.MetricUnit, out System.String, out System.String)
+  type: Method
+  source:
+    remote:
+      path: PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: GetMinMaxString
+    path: ../PerfTests/src/[L1_CompetitionApi]/Metrics/[MetricValues]/MetricValueHelpers.cs
+    startLine: 235
+  assemblies:
+  - CodeJam.PerfTests
+  namespace: CodeJam.PerfTests.Metrics
+  summary: Returns a <xref href="System.String" data-throw-if-not-resolved="false"></xref> representation of min and max parts of a metric value.
+  example: []
+  syntax:
+    content: public static void GetMinMaxString(this MetricRange metricValues, MetricUnit metricUnit, out string minString, out string maxString)
+    parameters:
+    - id: metricValues
+      type: CodeJam.PerfTests.Metrics.MetricRange
+      description: Range of metric values.
+    - id: metricUnit
+      type: CodeJam.PerfTests.Metrics.MetricUnit
+      description: The metric measurement unit.
+    - id: minString
+      type: System.String
+      description: String representation of min part of a metric value.
+    - id: maxString
+      type: System.String
+      description: String representation of max part of a metric value.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub GetMinMaxString(metricValues As MetricRange, metricUnit As MetricUnit, ByRef minString As String, ByRef maxString As String)
+  overload: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString*
+  nameWithType.vb: MetricValueHelpers.GetMinMaxString(MetricRange, MetricUnit, ByRef String, ByRef String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString(CodeJam.PerfTests.Metrics.MetricRange, CodeJam.PerfTests.Metrics.MetricUnit, ByRef System.String, ByRef System.String)
+  name.vb: GetMinMaxString(MetricRange, MetricUnit, ByRef String, ByRef String)
+references:
+- uid: CodeJam.PerfTests.Metrics.MetricUnit
+  commentId: T:CodeJam.PerfTests.Metrics.MetricUnit
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricUnit
+  nameWithType: MetricUnit
+  fullName: CodeJam.PerfTests.Metrics.MetricUnit
+- uid: CodeJam.PerfTests.Metrics.MetricUnitScale
+  commentId: T:CodeJam.PerfTests.Metrics.MetricUnitScale
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricUnitScale
+  nameWithType: MetricUnitScale
+  fullName: CodeJam.PerfTests.Metrics.MetricUnitScale
+- uid: CodeJam.PerfTests.Metrics
+  commentId: N:CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: CodeJam.PerfTests.Metrics
+  nameWithType: CodeJam.PerfTests.Metrics
+  fullName: CodeJam.PerfTests.Metrics
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.PerfTests.Metrics.MetricRange.EmptyMetricValue
+  commentId: F:CodeJam.PerfTests.Metrics.MetricRange.EmptyMetricValue
+- uid: CodeJam.PerfTests.Metrics.MetricRange
+  commentId: T:CodeJam.PerfTests.Metrics.MetricRange
+  parent: CodeJam.PerfTests.Metrics
+  isExternal: false
+  name: MetricRange
+  nameWithType: MetricRange
+  fullName: CodeJam.PerfTests.Metrics.MetricRange
+- uid: CodeJam.PerfTests.Metrics.MetricRange.ToPositiveInfinity
+  commentId: F:CodeJam.PerfTests.Metrics.MetricRange.ToPositiveInfinity
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange
+  isExternal: false
+  name: CreateMetricRange
+  nameWithType: MetricValueHelpers.CreateMetricRange
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.CreateMetricRange
+- uid: System.Nullable{System.Double}
+  commentId: T:System.Nullable{System.Double}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Double>
+  nameWithType: Nullable<Double>
+  fullName: System.Nullable<System.Double>
+  nameWithType.vb: Nullable(Of Double)
+  fullName.vb: System.Nullable(Of System.Double)
+  name.vb: Nullable(Of Double)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetAutoscaledFormat*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricValueHelpers.GetAutoscaledFormat
+  isExternal: false
+  name: GetAutoscaledFormat
+  nameWithType: MetricValueHelpers.GetAutoscaledFormat
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetAutoscaledFormat
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.ContainsWithRounding*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricValueHelpers.ContainsWithRounding
+  isExternal: false
+  name: ContainsWithRounding
+  nameWithType: MetricValueHelpers.ContainsWithRounding
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.ContainsWithRounding
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.MinMaxAreSame*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricValueHelpers.MinMaxAreSame
+  isExternal: false
+  name: MinMaxAreSame
+  nameWithType: MetricValueHelpers.MinMaxAreSame
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.MinMaxAreSame
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString
+  isExternal: false
+  name: ToString
+  nameWithType: MetricValueHelpers.ToString
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.ToString
+- uid: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString*
+  commentId: Overload:CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString
+  isExternal: false
+  name: GetMinMaxString
+  nameWithType: MetricValueHelpers.GetMinMaxString
+  fullName: CodeJam.PerfTests.Metrics.MetricValueHelpers.GetMinMaxString

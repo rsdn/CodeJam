@@ -1,45 +1,45 @@
-configuration: Publish
+configuration: Release
 image: Visual Studio 2017
+version: '2.2.{build}'
 
-environment:
-  packageVersion: 1.5.0
-  perfTestsPackageVersion: 0.1.5
+#environment:
+#  packageVersion: 2.2.0
+#  perfTestsPackageVersion: 0.2.2
 
-cache:
 # todo: remove after all csproj moved to the new tooling
+cache:
 - packages -> **\packages.config
 
 init:
 - cmd: git config --global core.autocrlf true
-- ps: $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
-- ps: $env:nugetVersion = "$env:packageVersion-alpha$env:appveyor_build_number"
-- ps: $env:perfTestsBuildVersion = "$env:perfTestsPackageVersion.$env:appveyor_build_number"
-- ps: $env:perfTestsNugetVersion = "$env:perfTestsPackageVersion-alpha$env:appveyor_build_number"
-- ps: Update-AppveyorBuild -Version $env:buildVersion
+#- ps: $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
+#- ps: $env:nugetVersion = "$env:packageVersion-alpha$env:appveyor_build_number"
+#- ps: $env:perfTestsBuildVersion = "$env:perfTestsPackageVersion.$env:appveyor_build_number"
+#- ps: $env:perfTestsNugetVersion = "$env:perfTestsPackageVersion-alpha$env:appveyor_build_number"
+#- ps: Update-AppveyorBuild -Version $env:buildVersion
 # to troubleshoot via RDP:
 #- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
-
 assembly_info:
   patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '$(buildVersion)'
-  assembly_file_version: '$(buildVersion)'
-  assembly_informational_version: '$(nugetVersion)'
+  file: '**\AssemblyInfo.cs'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
 
-#dotnet_csproj:
-#  patch: true
-#  file: 'Build\CodeJam.Default.props'
-#  version: '$(buildVersion)'
-#  package_version: '$(nugetVersion)'
+dotnet_csproj:
+  patch: true
+  file: 'Build\Props\CodeJam.Default.props'
+  version: '{version}'
+  package_version: '{version}'
 
 nuget:
   account_feed: false
   project_feed: false
 
-before_build:
-- ps: .\Build\CodeJam.AppVeyor.FixVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
-- ps: .\Build\CodeJam.AppVeyor.FixVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
+#before_build:
+#- ps: .\Build\CodeJam.AppVeyor.FixVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
+#- ps: .\Build\CodeJam.AppVeyor.FixVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
 
 #build:
 #  project: CodeJam.sln
@@ -47,19 +47,27 @@ before_build:
 #  verbosity: minimal
 
 build_script:
-  msbuild CodeJam.sln /p:Configuration=Publish /t:Restore;Build /v:m
+  msbuild CodeJam.sln /p:Configuration=Release /t:Restore;Build /v:m
+
+#test:
+#  assemblies:
+#    only:
+#      - '**\*.Tests.dll'
 
 test_script:
-  - ps: .\Build\CodeJam.AppVeyor.NUnit.Tests.ps1
-  - ps: .\Build\CodeJam.AppVeyor.xUnit.Tests.ps1
-  - ps: .\Build\CodeJam.AppVeyor.MsTest.Tests.ps1
+  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.NUnit.Tests.ps1
+#  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.xUnit.Tests.ps1
+#  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.MsTest.Tests.ps1
 
-after_build:
- - ps: Get-ChildItem .\_Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+artifacts:
+  - path: '_Results\*.nupkg'
+
+#after_build:
+# - ps: Get-ChildItem .\_Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 on_finish:
 # artifacts for perftests
-# - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   - ps: Get-ChildItem *results.xml -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 # to troubleshoot via RDP:

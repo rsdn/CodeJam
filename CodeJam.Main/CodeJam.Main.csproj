@@ -1,0 +1,345 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+	<Import Project="..\Build\Props\CodeJam.Nuspec.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam</AssemblyName>
+		<RootNamespace>CodeJam</RootNamespace>
+		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35</TargetFrameworks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<PackageId>CodeJam</PackageId>
+		<Title>CodeJam library</Title>
+		<Authors>Andrew Koryavchenko, Igor Sinicyn, Igor Tkachev, rameel</Authors>
+		<Product>CodeJam</Product>
+		<Description>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</Description>
+		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Icon.png</PackageIconUrl>
+		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
+	</PropertyGroup>
+
+	<!-- #region Targeting -->
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
+		<AssemblyAttribute Include="System.Runtime.Versioning.TargetFrameworkAttribute">
+			<_Parameter1>.NETFramework,Version=v3.5</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="TaskParallelLibrary" Version="1.0.2856.0" />
+	</ItemGroup>
+	<!-- #endregion -->
+
+	<ItemGroup>
+		<Compile Include="..\Build\Jetbrains.Annotations.cs">
+			<Link>Properties\Jetbrains.Annotations.cs</Link>
+		</Compile>
+		<Compile Update="Algorithms\Algorithms.EqualRange.generated.cs">
+			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Algorithms\Algorithms.EqualRange.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Algorithms.EqualRange.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Algorithms\Algorithms.LowerBound.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Algorithms.LowerBound.tt</DependentUpon>
+		</Compile>
+		<None Update="Algorithms\Algorithms.LowerBound.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Algorithms.LowerBound.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Algorithms\Algorithms.Memoize.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Algorithms.Memoize.tt</DependentUpon>
+		</Compile>
+		<None Update="Algorithms\Algorithms.Memoize.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Algorithms.Memoize.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Algorithms\Algorithms.UpperBound.generated.cs">
+			<DependentUpon>Algorithms.UpperBound.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Algorithms\Algorithms.UpperBound.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Algorithms.UpperBound.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Arithmetic\Operators.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Operators.tt</DependentUpon>
+		</Compile>
+		<None Update="Arithmetic\Operators.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Operators.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Assertions\DebugCode.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DebugCode.tt</DependentUpon>
+		</Compile>
+		<None Update="Assertions\DebugCode.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DebugCode.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Assertions\DebugEnumCode.generated.cs">
+			<DependentUpon>DebugEnumCode.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Assertions\DebugEnumCode.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DebugEnumCode.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Assertions\DebugUriCode.generated.cs">
+			<DependentUpon>DebugUriCode.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Assertions\DebugUriCode.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DebugUriCode.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Collections\Array\ArrayExtensions.generated.cs">
+			<DependentUpon>ArrayExtensions.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Collections\Array\ArrayExtensions.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>ArrayExtensions.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
+		</Compile>
+		<None Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DictionaryExtensions.GetValueOrDefault.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Collections\Enumerable\EnumerableExtensions.MinMaxBy.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>EnumerableExtensions.MinMaxBy.tt</DependentUpon>
+		</Compile>
+		<None Update="Collections\Enumerable\EnumerableExtensions.MinMaxBy.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>EnumerableExtensions.MinMaxBy.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Dates\DateTimeExtensions.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DateTimeExtensions.tt</DependentUpon>
+		</Compile>
+		<None Update="Dates\DateTimeExtensions.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DateTimeExtensions.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Dates\DateTimeRangeExtensions.generated.cs">
+			<DependentUpon>DateTimeRangeExtensions.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Dates\DateTimeRangeExtensions.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DateTimeRangeExtensions.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Expressions\Expr.generated.cs">
+			<DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Expr.tt</DependentUpon>
+		</Compile>
+		<None Update="Expressions\Expr.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Expr.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="IO\DebugIoCode.generated.cs">
+			<DependentUpon>DebugIoCode.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="IO\DebugIoCode.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DebugIoCode.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\[Boundaries]\RangeBoundary.Operators.generated.cs">
+			<DependentUpon>RangeBoundary.Operators.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Ranges\[Boundaries]\RangeBoundary.Operators.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>RangeBoundary.Operators.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\[Boundaries]\RangeBoundaryTo`1.generated.cs">
+			<DependentUpon>RangeBoundaryTo`1.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Ranges\[Boundaries]\RangeBoundaryTo`1.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>RangeBoundaryTo`1.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.generated.cs">
+			<DependentUpon>CompositeRange`2.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.Operations.generated.cs">
+			<DependentUpon>CompositeRange`2.Operations.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Ranges\[CompositeRanges]\CompositeRange`2.Operations.tt">
+			<LastGenOutput>CompositeRange`2.Operations.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+		<None Update="Ranges\[CompositeRanges]\CompositeRange`2.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>CompositeRange`2.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\[Helper types]\RangeIntersection`2.generated.cs">
+			<DependentUpon>RangeIntersection`2.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Ranges\[Helper types]\RangeIntersection`2.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>RangeIntersection`2.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.generated.cs">
+			<DependentUpon>CompositeRangeExtensions.WithKey.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+		</Compile>
+		<None Update="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>CompositeRangeExtensions.WithKey.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\[Ranges]\Range`2.generated.cs">
+			<DependentUpon>Range`2.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<Compile Update="Ranges\[Ranges]\Range`2.Operations.generated.cs">
+			<DependentUpon>Range`2.Operations.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+		</Compile>
+		<None Update="Ranges\[Ranges]\Range`2.Operations.tt">
+			<LastGenOutput>Range`2.Operations.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+		<None Update="Ranges\[Ranges]\Range`2.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Range`2.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\CompositeRange.generated.cs">
+			<DependentUpon>CompositeRange.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Ranges\CompositeRange.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>CompositeRange.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\Range.FactoryMethods.generated.cs">
+			<DependentUpon>Range.FactoryMethods.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Ranges\Range.FactoryMethods.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Range.FactoryMethods.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Strings\CharExtensions.Infix.generated.cs">
+			<DependentUpon>CharExtensions.Infix.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Strings\CharExtensions.Infix.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>CharExtensions.Infix.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Strings\StringExtensions.CharInfix.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
+		</Compile>
+		<None Update="Strings\StringExtensions.CharInfix.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>StringExtensions.CharInfix.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Strings\StringExtensions.ToXxx.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>StringExtensions.ToXxx.tt</DependentUpon>
+		</Compile>
+		<None Update="Strings\StringExtensions.ToXxx.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>StringExtensions.ToXxx.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Structures\OneOf\IOneOf.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>IOneOf.tt</DependentUpon>
+		</Compile>
+		<None Update="Structures\OneOf\IOneOf.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>IOneOf.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Structures\OneOf\OneOf.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>OneOf.tt</DependentUpon>
+		</Compile>
+		<None Update="Structures\OneOf\OneOf.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>OneOf.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Structures\OneOf\ValueOneOf.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ValueOneOf.tt</DependentUpon>
+		</Compile>
+		<None Update="Structures\OneOf\ValueOneOf.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>ValueOneOf.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Threading\InterlockedOperations.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>InterlockedOperations.tt</DependentUpon>
+		</Compile>
+		<None Update="Threading\InterlockedOperations.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>InterlockedOperations.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Threading\TaskHelper.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>TaskHelper.tt</DependentUpon>
+		</Compile>
+		<None Update="Threading\TaskHelper.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>TaskHelper.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Fn.generated.cs">
+			<DependentUpon>Fn.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<None Update="Fn.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>Fn.generated.cs</LastGenOutput>
+		</None>
+		<Content Include="Readme.txt">
+			<Pack>true</Pack>
+			<PackagePath>Readme.txt</PackagePath>
+		</Content>
+	</ItemGroup>
+
+</Project>
