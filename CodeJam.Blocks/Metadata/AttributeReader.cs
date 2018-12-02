@@ -9,7 +9,7 @@ namespace CodeJam.Metadata
 	internal class AttributeReader : IMetadataReader
 	{
 		[NotNull]
-		public T[] GetAttributes<T>(Type type, bool inherit = true)
+		public T[] GetAttributes<T>([NotNull] Type type, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = type.GetCustomAttributes(typeof(T), inherit);
@@ -22,7 +22,7 @@ namespace CodeJam.Metadata
 		}
 
 		[NotNull]
-		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)
+		public T[] GetAttributes<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = memberInfo.GetCustomAttributes(typeof(T), inherit);

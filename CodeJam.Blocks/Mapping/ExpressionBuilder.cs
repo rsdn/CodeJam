@@ -8,6 +8,8 @@ using System.Reflection;
 
 using CodeJam.Collections;
 
+using JetBrains.Annotations;
+
 using static System.Linq.Expressions.Expression;
 
 // ReSharper disable TailRecursiveCall
@@ -37,11 +39,11 @@ namespace CodeJam.Mapping
 			public bool IsRestart => RestartCounter > 10;
 		}
 
-		public ExpressionBuilder(IMapperBuilder mapperBuilder, ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers)
+		public ExpressionBuilder([NotNull] IMapperBuilder mapperBuilder, ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers)
 			: this(mapperBuilder, new BuilderData(memberMappers)) =>
 			_processCrossReferences = mapperBuilder.ProcessCrossReferences == true;
 
-		private ExpressionBuilder(IMapperBuilder mapperBuilder, BuilderData data)
+		private ExpressionBuilder([NotNull] IMapperBuilder mapperBuilder, BuilderData data)
 		{
 			_mapperBuilder          = mapperBuilder;
 			_data                   = data;
@@ -50,9 +52,13 @@ namespace CodeJam.Mapping
 			_processCrossReferences = true;
 		}
 
+		[NotNull]
 		private readonly IMapperBuilder   _mapperBuilder;
+		[NotNull]
 		private readonly Type             _fromType;
+		[NotNull]
 		private readonly Type             _toType;
+		[NotNull]
 		private readonly BuilderData      _data;
 		private readonly bool             _processCrossReferences;
 
@@ -296,6 +302,7 @@ namespace CodeJam.Mapping
 
 		#region GetExpression
 
+		[NotNull]
 		public LambdaExpression GetExpression()
 		{
 			var pFrom = Parameter(_fromType, "from");

@@ -5,11 +5,15 @@ using System.Linq;
 
 using CodeJam.Strings;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Metadata
 {
 	internal class MetaMemberInfo
 	{
-		public MetaMemberInfo(string name, params AttributeInfo[] attributes)
+		public MetaMemberInfo(
+			[NotNull] string name,
+			[NotNull, ItemNotNull] params AttributeInfo[] attributes)
 		{
 			Name        = name;
 			_attributes = attributes;
@@ -17,9 +21,11 @@ namespace CodeJam.Metadata
 
 		public readonly string Name;
 
+		[NotNull, ItemNotNull]
 		private readonly AttributeInfo[] _attributes;
 
-		public IEnumerable<AttributeInfo> GetAttribute(Type type)
+		[NotNull, ItemNotNull]
+		public IEnumerable<AttributeInfo> GetAttribute([NotNull] Type type)
 		{
 			var attrs = _attributes
 				.Where(a => a.Name == type.FullName)

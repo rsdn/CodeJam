@@ -21,13 +21,14 @@ namespace CodeJam.Metadata
 	[PublicAPI]
 	public class XmlAttributeReader : IMetadataReader
 	{
+		[NotNull]
 		private readonly Dictionary<string, MetaTypeInfo> _types;
 
 		/// <summary>
 		/// Reads metadata from provided XML file or from calling assembly resource.
 		/// </summary>
 		/// <param name="xmlFile">Metadata file name.</param>
-		public XmlAttributeReader(string xmlFile)
+		public XmlAttributeReader([NotNull] string xmlFile)
 			: this(xmlFile, Assembly.GetCallingAssembly())
 		{ }
 
@@ -92,10 +93,11 @@ namespace CodeJam.Metadata
 			_types = LoadStream(xmlDocStream, "");
 		}
 
+		[NotNull, ItemNotNull]
 		private static AttributeInfo[] GetAttrs(
-			string fileName,
+			[NotNull] string fileName,
 			// ReSharper disable once SuggestBaseTypeForParameter
-			XElement el,
+			[NotNull] XElement el,
 			string exclude,
 			string typeName,
 			string memberName)
@@ -129,7 +131,8 @@ namespace CodeJam.Metadata
 			return attrs.ToArray();
 		}
 
-		private static Dictionary<string, MetaTypeInfo> LoadStream(Stream xmlDocStream, string fileName)
+		[NotNull]
+		private static Dictionary<string, MetaTypeInfo> LoadStream([NotNull] Stream xmlDocStream, [NotNull] string fileName)
 		{
 			var doc = XDocument.Load(new StreamReader(xmlDocStream));
 
@@ -172,7 +175,8 @@ namespace CodeJam.Metadata
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
-		public T[] GetAttributes<T>(Type type, bool inherit = true)
+		[NotNull, ItemNotNull]
+		public T[] GetAttributes<T>([NotNull] Type type, bool inherit = true)
 			where T : Attribute
 		{
 			Code.AssertState(type.FullName != null, "type.FullName != null");
@@ -189,7 +193,8 @@ namespace CodeJam.Metadata
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
-		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)
+		[NotNull, ItemNotNull]
+		public T[] GetAttributes<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
 			var type = memberInfo.DeclaringType;

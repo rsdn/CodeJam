@@ -163,7 +163,8 @@ namespace CodeJam.Expressions
 		public static string GetMethodName([NotNull] this LambdaExpression expression) =>
 			GetMethod(expression).Name;
 
-		private static string GetFullPropertyNameImpl(MemberExpression expression)
+		[NotNull]
+		private static string GetFullPropertyNameImpl([NotNull] MemberExpression expression)
 		{
 			var name = expression.Member.Name;
 			while ((expression = expression.Expression as MemberExpression) != null)
@@ -191,7 +192,8 @@ namespace CodeJam.Expressions
 			return GetMembers(body).Reverse().ToArray();
 		}
 
-		private static IEnumerable<MemberInfo> GetMembers(Expression expression, bool passIndexer = true)
+		[NotNull, ItemNotNull]
+		private static IEnumerable<MemberInfo> GetMembers([NotNull] Expression expression, bool passIndexer = true)
 		{
 			MemberInfo lastMember = null;
 

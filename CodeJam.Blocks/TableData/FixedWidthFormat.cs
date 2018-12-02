@@ -41,10 +41,10 @@ namespace CodeJam.TableData
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
 		[NotNull]
 		[Pure]
-		public static IEnumerable<DataLine> Parse([NotNull] TextReader reader, int[] widths) =>
+		public static IEnumerable<DataLine> Parse([NotNull] TextReader reader, [NotNull] int[] widths) =>
 			CreateParser(widths).Parse(reader);
 
-		private static string[] Parse(TextReader reader, ref int lineNum, int[] widths)
+		private static string[] Parse([NotNull] TextReader reader, ref int lineNum, [NotNull] int[] widths)
 		{
 			var line = reader.ReadLine();
 			if (line == null)
@@ -78,7 +78,7 @@ namespace CodeJam.TableData
 		/// <param name="indent">The indent.</param>
 		public static void Print(
 			[NotNull] TextWriter writer,
-			[NotNull] IEnumerable<string[]> data,
+			[NotNull, ItemNotNull] IEnumerable<string[]> data,
 			[NotNull] int[] widths,
 			[CanBeNull] string indent = null)
 		{

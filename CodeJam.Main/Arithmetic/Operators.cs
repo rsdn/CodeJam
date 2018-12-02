@@ -33,6 +33,7 @@ namespace CodeJam.Arithmetic
 		/// </summary>
 		private static class CompareHelper
 		{
+			[NotNull, ItemNotNull]
 			private static readonly Lazy<Func<T, T, int>> _value = new Lazy<Func<T, T, int>>(OperatorsFactory.Comparison<T>, _lazyMode);
 
 			/// <summary>
@@ -60,6 +61,7 @@ namespace CodeJam.Arithmetic
 		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
 		private static class NaNHelper
 		{
+			[NotNull, ItemNotNull]
 			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetNaN<T>, _lazyMode);
 
 			/// <summary>
@@ -70,6 +72,7 @@ namespace CodeJam.Arithmetic
 			/// <summary>
 			/// Gets a value that is not a number (NaN).
 			/// </summary>
+			[NotNull]
 			public static T NaN => _value.Value;
 		}
 		#endregion
@@ -91,6 +94,7 @@ namespace CodeJam.Arithmetic
 		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
 		private static class NegativeInfinityHelper
 		{
+			[NotNull, ItemNotNull]
 			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetNegativeInfinity<T>, _lazyMode);
 
 			/// <summary>
@@ -101,7 +105,7 @@ namespace CodeJam.Arithmetic
 			/// <summary>
 			/// Gets negative infinity.
 			/// </summary>
-			public static T NegativeInfinity => _value.Value;
+			[NotNull] public static T NegativeInfinity => _value.Value;
 		}
 		#endregion
 
@@ -122,6 +126,7 @@ namespace CodeJam.Arithmetic
 		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
 		private static class PositiveInfinityHelper
 		{
+			[NotNull, ItemNotNull]
 			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetPositiveInfinity<T>, _lazyMode);
 
 			/// <summary>
@@ -132,7 +137,7 @@ namespace CodeJam.Arithmetic
 			/// <summary>
 			/// Gets positive infinity.
 			/// </summary>
-			public static T PositiveInfinity => _value.Value;
+			[NotNull] public static T PositiveInfinity => _value.Value;
 		}
 		#endregion
 
@@ -149,6 +154,7 @@ namespace CodeJam.Arithmetic
 			/// <summary>
 			/// The operator factory.
 			/// </summary>
+			[NotNull, ItemNotNull]
 			public static readonly Lazy<Func<T, T>> LazyValue = new Lazy<Func<T, T>>(CreateValue, _lazyMode);
 
 			/// <summary>
@@ -157,6 +163,7 @@ namespace CodeJam.Arithmetic
 			/// <returns>
 			/// The operator function.
 			/// </returns>
+			[NotNull]
 			private static Func<T, T> CreateValue()
 			{
 #if LESSTHAN_NET40

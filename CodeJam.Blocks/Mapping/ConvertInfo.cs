@@ -4,10 +4,13 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Mapping
 {
 	internal class ConvertInfo
 	{
+		[NotNull]
 		public static readonly ConvertInfo Default = new ConvertInfo();
 
 		public class LambdaInfo
@@ -30,16 +33,17 @@ namespace CodeJam.Mapping
 			public readonly bool IsSchemaSpecific;
 		}
 
+		[NotNull]
 		private readonly ConcurrentDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>> _expressions =
 			new ConcurrentDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>>();
 
-		public void Set(Type from, Type to, LambdaInfo expr) => Set(_expressions, from, to, expr);
+		public void Set([NotNull] Type from, [NotNull] Type to, [NotNull] LambdaInfo expr) => Set(_expressions, from, to, expr);
 
 		private static void Set(
-			IDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>> expressions,
-			Type from,
-			Type to,
-			LambdaInfo expr)
+			[NotNull] IDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>> expressions,
+			[NotNull] Type from,
+			[NotNull] Type to,
+			[NotNull] LambdaInfo expr)
 		{
 			if (!expressions.TryGetValue(from, out var dic))
 				expressions[from] = dic = new ConcurrentDictionary<Type, LambdaInfo>();
@@ -47,10 +51,10 @@ namespace CodeJam.Mapping
 			dic[to] = expr;
 		}
 
-		public LambdaInfo Get(Type from, Type to) =>
+		public LambdaInfo Get([NotNull] Type from, [NotNull] Type to) =>
 			_expressions.TryGetValue(from, out var dic) && dic.TryGetValue(to, out var li) ? li : null;
 
-		public LambdaInfo Create(MappingSchema mappingSchema, Type from, Type to)
+		public LambdaInfo Create([NotNull] MappingSchema mappingSchema, [NotNull] Type from, [NotNull] Type to)
 		{
 			var ex = ConvertBuilder.GetConverter(mappingSchema, from, to);
 			var lm = ex.Item1.Compile();

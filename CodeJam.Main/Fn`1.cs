@@ -65,6 +65,7 @@ namespace CodeJam
 		[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 		private sealed class Methods
 		{
+			[NotNull]
 			public static readonly Methods Instance = new Methods();
 
 			public bool GetTrue(T value) => true;

@@ -146,7 +146,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull, Pure]
 		[StringFormatMethod("format")]
-		public static string FormatWith([NotNull] this string format, params object[] args) => string.Format(format, args);
+		public static string FormatWith([NotNull] this string format, [NotNull] params object[] args) => string.Format(format, args);
 
 		/// <summary>
 		/// Concatenates all the elements of a string array, using the specified separator between each element.

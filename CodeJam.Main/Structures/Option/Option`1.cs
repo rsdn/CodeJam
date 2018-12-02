@@ -54,7 +54,7 @@ namespace CodeJam
 		/// <param name="option"></param>
 		/// <returns>Value of <paramref name="option"/></returns>
 		[Pure]
-		public static explicit operator T(Option<T> option) => option.Value;
+		public static explicit operator T([NotNull] Option<T> option) => option.Value;
 
 		/// <summary>
 		/// Equality operator.
@@ -154,6 +154,7 @@ namespace CodeJam
 		/// </summary>
 		public sealed class None : Option<T>
 		{
+			[NotNull]
 			internal static None Instance = new None();
 
 			private None() { }

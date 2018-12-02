@@ -12,8 +12,10 @@ namespace CodeJam.IO
 	[PublicAPI]
 	public static class PathHelpers
 	{
+		[NotNull]
 		private static readonly char[] _invalidFileNameChars = Path.GetInvalidFileNameChars();
 
+		[NotNull]
 		private static readonly char[] _separatorChars =
 		{
 			Path.DirectorySeparatorChar,

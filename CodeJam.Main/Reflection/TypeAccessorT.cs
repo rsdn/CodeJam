@@ -91,6 +91,7 @@ namespace CodeJam.Reflection
 			throw new InvalidOperationException($"Cant create an instance of abstract class '{typeof(T).FullName}'.");
 
 		// ReSharper disable once StaticMemberInGenericType
+		[NotNull, ItemNotNull]
 		private static readonly List<MemberInfo> _members = new List<MemberInfo>();
 
 		internal TypeAccessor()
@@ -104,6 +105,7 @@ namespace CodeJam.Reflection
 		/// </summary>
 		public static Expression<Func<T>> CreateInstanceExpression { get; }
 
+		[NotNull]
 		private static readonly Func<T> _createInstance;
 
 		/// <summary>

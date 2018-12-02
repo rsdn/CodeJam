@@ -19,8 +19,10 @@ namespace CodeJam.Collections
 
 		/// <summary>Creates a Disjoint sets with the passed values</summary>
 		/// <param name="values">The values to store</param>
-		public DisjointSets(IEnumerable<T> values)
+		public DisjointSets([NotNull, ItemNotNull] IEnumerable<T> values)
 		{
+			Code.NotNull(values, nameof(values));
+
 			Add(values);
 		}
 
@@ -30,8 +32,10 @@ namespace CodeJam.Collections
 
 		/// <summary>Appends a list of values</summary>
 		/// <param name="values">The values to append</param>
-		public void Add(IEnumerable<T> values)
+		public void Add([NotNull, ItemNotNull] IEnumerable<T> values)
 		{
+			Code.NotNull(values, nameof(values));
+
 			var initialNodesCount = Nodes.Count;
 			Nodes.AddRange(values.Select(_ => new Node { Value = _, ParentIndex = -1, Rank = 0 }));
 			SetsCount += Nodes.Count - initialNodesCount;

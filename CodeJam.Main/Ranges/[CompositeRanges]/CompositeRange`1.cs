@@ -93,8 +93,9 @@ namespace CodeJam.Ranges
 				lastBoundary.GetComplementation() >= nextRange.From;
 		}
 
+		[NotNull]
 		private static IEnumerable<Range<T>> MergeRangesCore(
-			IEnumerable<Range<T>> sortedRanges)
+			[NotNull] IEnumerable<Range<T>> sortedRanges)
 		{
 			var temp = Range<T>.Empty;
 			foreach (var range in sortedRanges)
@@ -123,6 +124,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Predefined values
+		[NotNull]
 		private static readonly ReadOnlyCollection<Range<T>> _emptyRanges = Array<Range<T>>.Empty.AsReadOnly();
 
 		#region T4-dont-replace
@@ -140,7 +142,7 @@ namespace CodeJam.Ranges
 
 		#region Fields & .ctor()
 		// TODO: REMOVE readonly modifier. Same reason as for Range<T>. Proof: NestedStructAccessPerfTests.
-		private readonly ReadOnlyCollection<Range<T>> _ranges; // TODO: own collection?
+		[NotNull] private readonly ReadOnlyCollection<Range<T>> _ranges; // TODO: own collection?
 		private readonly bool _hasRangesToMerge;
 
 		#region T4-dont-replace

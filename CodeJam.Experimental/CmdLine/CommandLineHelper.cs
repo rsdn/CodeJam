@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 
 using JetBrains.Annotations;
@@ -14,7 +14,8 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Parse command line.
 		/// </summary>
-		public static CmdLineNode ParseCommandLine(string source) => CommandLineParser.ParseCommandLine(source);
+		[NotNull]
+		public static CmdLineNode ParseCommandLine([NotNull] string source) => CommandLineParser.ParseCommandLine(source);
 
 		/// <summary>
 		/// Check command line semantics.

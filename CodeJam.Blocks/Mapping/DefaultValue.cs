@@ -16,6 +16,7 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public static class DefaultValue
 	{
+		[NotNull]
 		private static readonly ConcurrentDictionary<Type,object> _defaultValues = new ConcurrentDictionary<Type,object>
 		{
 			[typeof(int)]            = default(int),

@@ -11,15 +11,18 @@ using System.Threading;
 using CodeJam.Collections;
 using CodeJam.Expressions;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Mapping
 {
 	using Reflection;
 
 	internal static class ConvertBuilder
 	{
+		[NotNull]
 		private static readonly MethodInfo _defaultConverter = InfoOf.Method(() => ConvertDefault(null, typeof(int)));
 
-		private static object ConvertDefault(object value, Type conversionType)
+		private static object ConvertDefault(object value, [NotNull] Type conversionType)
 		{
 			try
 			{
@@ -31,7 +34,8 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		private static Expression GetCtor(Type from, Type to, Expression p)
+		[CanBeNull]
+		private static Expression GetCtor([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			var ctor = to.GetConstructor(new[] { from });
 
@@ -46,7 +50,8 @@ namespace CodeJam.Mapping
 			return Expression.New(ctor, p);
 		}
 
-		private static Expression GetValue(Type from, Type to, Expression p)
+		[CanBeNull]
+		private static Expression GetValue([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			var pi = from.GetProperty("Value");
 
@@ -66,7 +71,7 @@ namespace CodeJam.Mapping
 		private const BindingFlags _methodLookup =
 			BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
 
-		private static Expression GetOperator(Type from, Type to, Expression p)
+		private static Expression GetOperator([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			var op =
 				to.GetMethod("op_Implicit", _methodLookup, null, new[] { from }, null) ??
@@ -75,7 +80,7 @@ namespace CodeJam.Mapping
 			return op != null ? Expression.Convert(p, to, op) : null;
 		}
 
-		private static bool IsConvertible(Type type)
+		private static bool IsConvertible([NotNull] Type type)
 		{
 			if (type.IsEnum)
 				return false;
@@ -99,7 +104,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		private static Expression GetConvertion(Type from, Type to, Expression p)
+		private static Expression GetConvertion([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (IsConvertible(from) && IsConvertible(to) && to != typeof(bool) ||
 				from.IsAssignableFrom(to) && to.IsAssignableFrom(from))
@@ -108,7 +113,7 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		private static Expression GetParse(Type from, Type to, Expression p)
+		private static Expression GetParse([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (from == typeof(string))
 			{
@@ -133,7 +138,7 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		private static Expression GetToString(Type from, Type to, Expression p)
+		private static Expression GetToString([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (to == typeof(string) && !from.IsNullable())
 			{
@@ -150,7 +155,7 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		private static Expression GetParseEnum(Type from, Type to, Expression p)
+		private static Expression GetParseEnum([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (from == typeof(string) && to.IsEnum)
 			{
@@ -210,7 +215,11 @@ namespace CodeJam.Mapping
 
 		private static readonly MethodInfo _throwLinqToDBConvertException = InfoOf.Method(() => ThrowLinqToDBException(null));
 
-		private static Expression GetToEnum(Type from, Type to, Expression expression, MappingSchema mappingSchema)
+		private static Expression GetToEnum(
+			[NotNull] Type from,
+			[NotNull] Type to,
+			[NotNull] Expression expression,
+			[NotNull] MappingSchema mappingSchema)
 		{
 			if (to.IsEnum)
 			{

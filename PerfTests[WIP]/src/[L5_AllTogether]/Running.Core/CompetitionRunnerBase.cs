@@ -477,7 +477,7 @@ namespace CodeJam.PerfTests.Running.Core
 			valuesList.RemoveAll(v => !visitedValues.Add(v));
 		}
 
-		private static void RemoveDuplicates<T, TKey>(List<T> valuesList, Func<T, TKey> keySelector)
+		private static void RemoveDuplicates<T, TKey>([NotNull] List<T> valuesList, [NotNull] Func<T, TKey> keySelector)
 		{
 			var visitedValues = new HashSet<TKey>();
 			valuesList.RemoveAll(v => !visitedValues.Add(keySelector(v)));
@@ -562,9 +562,10 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 		}
 
+		[NotNull, ItemNotNull]
 		private string[] GetMessageLines(
-			CompetitionState competitionState,
-			Func<IMessage, bool> severityFilter,
+			[NotNull] CompetitionState competitionState,
+			[NotNull] Func<IMessage, bool> severityFilter,
 			bool fromAllRuns)
 		{
 			var result =
@@ -576,7 +577,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return result.ToArray();
 		}
 
-		private bool ShouldReport(IMessage message, int runNumber, bool fromAllRuns)
+		private bool ShouldReport([NotNull] IMessage message, int runNumber, bool fromAllRuns)
 		{
 			if (fromAllRuns || message.RunNumber == runNumber)
 				return true;

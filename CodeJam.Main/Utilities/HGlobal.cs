@@ -13,12 +13,14 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 		/// <returns><see cref="HGlobalScope"/> instance</returns>
+		[NotNull]
 		public static HGlobalScope Create(int cb) => new HGlobalScope(cb);
 
 		/// <summary>
 		/// Create a new HGlobal with sizeof(<typeparam name="T"/>).
 		/// </summary>
 		/// <returns><see cref="HGlobalScope{T}"/> instance</returns>
+		[NotNull]
 		public static HGlobalScope<T> Create<T>() where T : struct => new HGlobalScope<T>();
 
 		/// <summary>
@@ -26,6 +28,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 		/// <returns><see cref="HGlobalScope{T}"/> instance</returns>
+		[NotNull]
 		public static HGlobalScope<T> Create<T>(int cb) where T : struct => new HGlobalScope<T>(cb);
 	}
 }

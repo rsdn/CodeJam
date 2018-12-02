@@ -63,7 +63,7 @@ namespace CodeJam.Metadata
 		/// <param name="innerException">The InnerException, if any, that threw
 		/// the current exception.</param>
 		/// <seealso cref="Exception.InnerException"/>
-		public MetadataException(Exception innerException)
+		public MetadataException([NotNull] Exception innerException)
 			: base(innerException.Message, innerException)
 		{
 		}
@@ -77,7 +77,7 @@ namespace CodeJam.Metadata
 		/// destination.</param>
 		/// <remarks>This constructor is called during deserialization to
 		/// reconstitute the exception object transmitted over a stream.</remarks>
-		protected MetadataException(SerializationInfo info, StreamingContext context)
+		protected MetadataException([NotNull] SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
 		}

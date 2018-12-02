@@ -57,6 +57,7 @@ namespace CodeJam.Threading
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public struct ReadLockScope : IDisposable
 		{
+			[NotNull]
 			private readonly ReaderWriterLockSlim _readerWriterLock;
 
 			/// <summary>
@@ -85,6 +86,7 @@ namespace CodeJam.Threading
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public struct WriteLockScope : IDisposable
 		{
+			[NotNull]
 			private readonly ReaderWriterLockSlim _readerWriterLock;
 
 			/// <summary>
@@ -113,6 +115,7 @@ namespace CodeJam.Threading
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public struct UpgradeableReadLockScope : IDisposable
 		{
+			[NotNull]
 			private readonly ReaderWriterLockSlim _readerWriterLock;
 
 			/// <summary>

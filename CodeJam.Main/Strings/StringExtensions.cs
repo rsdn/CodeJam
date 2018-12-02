@@ -216,6 +216,7 @@ namespace CodeJam.Strings
 		public static string TrimSuffix([NotNull] this string str, [CanBeNull] string suffix) =>
 			TrimSuffix(str, suffix, StringComparer.CurrentCulture);
 
+		[NotNull, ItemNotNull]
 		private static readonly string[] _sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB" };
 
 		/// <summary>

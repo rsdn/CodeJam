@@ -3,23 +3,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Metadata
 {
 	internal class MetaTypeInfo
 	{
-		public MetaTypeInfo(string name, Dictionary<string,MetaMemberInfo> members, params AttributeInfo[] attributes)
+		public MetaTypeInfo(
+			[NotNull] string name,
+			[NotNull] Dictionary<string, MetaMemberInfo> members,
+			[NotNull] params AttributeInfo[] attributes)
 		{
-			Name        = name;
-			Members     = members;
+			Name = name;
+			Members = members;
 			_attributes = attributes;
 		}
 
-		public readonly string                            Name;
-		public readonly Dictionary<string,MetaMemberInfo> Members;
+		[NotNull] public readonly string                            Name;
+		[NotNull] public readonly Dictionary<string,MetaMemberInfo> Members;
 
+		[NotNull, ItemNotNull]
 		private readonly AttributeInfo[] _attributes;
 
-		public AttributeInfo[] GetAttribute(Type type)
+		[NotNull, ItemNotNull]
+		public AttributeInfo[] GetAttribute([NotNull] Type type)
 			=>
 				_attributes.Where(a => a.Name == type.FullName).Concat(
 				_attributes.Where(a => a.Name == type.Name).    Concat(
