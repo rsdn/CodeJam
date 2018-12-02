@@ -1,0 +1,22 @@
+﻿<Project>
+	<PropertyGroup>
+		<Configurations>Debug;Release</Configurations>
+		<LangVersion>latest</LangVersion>
+
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<SignAssembly>True</SignAssembly>
+		<DelaySign>False</DelaySign>
+		<AssemblyOriginatorKeyFile>..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
+
+		<Version>2.2.0.0</Version>
+		<PackageVersion>2.2.0</PackageVersion>
+		<PackageOutputPath>..\_Results</PackageOutputPath>
+
+		<Company>RSDN</Company>
+
+		<Copyright>RSDN, 2018</Copyright>
+		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+</Project>

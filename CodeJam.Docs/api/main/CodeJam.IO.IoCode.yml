@@ -1,0 +1,734 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.IO.IoCode
+  commentId: T:CodeJam.IO.IoCode
+  id: IoCode
+  parent: CodeJam.IO
+  children:
+  - CodeJam.IO.IoCode.DirectoryExists(System.String,System.String)
+  - CodeJam.IO.IoCode.FileExists(System.String,System.String)
+  - CodeJam.IO.IoCode.IsWellFormedAbsolutePath(System.String,System.String)
+  - CodeJam.IO.IoCode.IsWellFormedContainerPath(System.String,System.String)
+  - CodeJam.IO.IoCode.IsWellFormedPath(System.String,System.String)
+  - CodeJam.IO.IoCode.IsWellFormedRelativePath(System.String,System.String)
+  - CodeJam.IO.IoCode.IsWellFormedSimpleName(System.String,System.String)
+  - CodeJam.IO.IoCode.PathIsFree(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IoCode
+  nameWithType: IoCode
+  fullName: CodeJam.IO.IoCode
+  type: Class
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IoCode
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 12
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: IO assertions class.
+  example: []
+  syntax:
+    content: public static class IoCode
+    content.vb: Public Module IoCode
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: CodeJam.IO.IoCode.IsWellFormedPath(System.String,System.String)
+  commentId: M:CodeJam.IO.IoCode.IsWellFormedPath(System.String,System.String)
+  id: IsWellFormedPath(System.String,System.String)
+  parent: CodeJam.IO.IoCode
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedPath(String, String)
+  nameWithType: IoCode.IsWellFormedPath(String, String)
+  fullName: CodeJam.IO.IoCode.IsWellFormedPath(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedPath
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 18
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Asserts that specified path is either absolute or relative not rooted path.
+  example: []
+  syntax:
+    content: public static void IsWellFormedPath(string path, string argName)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: Public Shared Sub IsWellFormedPath(path As String, argName As String)
+  overload: CodeJam.IO.IoCode.IsWellFormedPath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.IoCode.IsWellFormedAbsolutePath(System.String,System.String)
+  commentId: M:CodeJam.IO.IoCode.IsWellFormedAbsolutePath(System.String,System.String)
+  id: IsWellFormedAbsolutePath(System.String,System.String)
+  parent: CodeJam.IO.IoCode
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedAbsolutePath(String, String)
+  nameWithType: IoCode.IsWellFormedAbsolutePath(String, String)
+  fullName: CodeJam.IO.IoCode.IsWellFormedAbsolutePath(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedAbsolutePath
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 32
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Asserts that specified path is well-formed full path.
+  example: []
+  syntax:
+    content: public static void IsWellFormedAbsolutePath(string path, string argName)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: Public Shared Sub IsWellFormedAbsolutePath(path As String, argName As String)
+  overload: CodeJam.IO.IoCode.IsWellFormedAbsolutePath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.IoCode.IsWellFormedRelativePath(System.String,System.String)
+  commentId: M:CodeJam.IO.IoCode.IsWellFormedRelativePath(System.String,System.String)
+  id: IsWellFormedRelativePath(System.String,System.String)
+  parent: CodeJam.IO.IoCode
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedRelativePath(String, String)
+  nameWithType: IoCode.IsWellFormedRelativePath(String, String)
+  fullName: CodeJam.IO.IoCode.IsWellFormedRelativePath(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedRelativePath
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 46
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Asserts that specified path is well-formed full path.
+  example: []
+  syntax:
+    content: public static void IsWellFormedRelativePath(string path, string argName)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: Public Shared Sub IsWellFormedRelativePath(path As String, argName As String)
+  overload: CodeJam.IO.IoCode.IsWellFormedRelativePath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.IoCode.IsWellFormedContainerPath(System.String,System.String)
+  commentId: M:CodeJam.IO.IoCode.IsWellFormedContainerPath(System.String,System.String)
+  id: IsWellFormedContainerPath(System.String,System.String)
+  parent: CodeJam.IO.IoCode
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedContainerPath(String, String)
+  nameWithType: IoCode.IsWellFormedContainerPath(String, String)
+  fullName: CodeJam.IO.IoCode.IsWellFormedContainerPath(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedContainerPath
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 60
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Asserts that specified path is well formed and ends with directory or volume separator chars.
+  example: []
+  syntax:
+    content: public static void IsWellFormedContainerPath(string path, string argName)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: Public Shared Sub IsWellFormedContainerPath(path As String, argName As String)
+  overload: CodeJam.IO.IoCode.IsWellFormedContainerPath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.IoCode.IsWellFormedSimpleName(System.String,System.String)
+  commentId: M:CodeJam.IO.IoCode.IsWellFormedSimpleName(System.String,System.String)
+  id: IsWellFormedSimpleName(System.String,System.String)
+  parent: CodeJam.IO.IoCode
+  langs:
+  - csharp
+  - vb
+  name: IsWellFormedSimpleName(String, String)
+  nameWithType: IoCode.IsWellFormedSimpleName(String, String)
+  fullName: CodeJam.IO.IoCode.IsWellFormedSimpleName(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: IsWellFormedSimpleName
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 74
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Asserts that specified path is well-formed simple name.
+  example: []
+  syntax:
+    content: public static void IsWellFormedSimpleName(string path, string argName)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: Public Shared Sub IsWellFormedSimpleName(path As String, argName As String)
+  overload: CodeJam.IO.IoCode.IsWellFormedSimpleName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.IoCode.FileExists(System.String,System.String)
+  commentId: M:CodeJam.IO.IoCode.FileExists(System.String,System.String)
+  id: FileExists(System.String,System.String)
+  parent: CodeJam.IO.IoCode
+  langs:
+  - csharp
+  - vb
+  name: FileExists(String, String)
+  nameWithType: IoCode.FileExists(String, String)
+  fullName: CodeJam.IO.IoCode.FileExists(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: FileExists
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 89
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Asserts that specified file does exist.
+  example: []
+  syntax:
+    content: public static void FileExists(string filePath, string argName)
+    parameters:
+    - id: filePath
+      type: System.String
+      description: Path to the file.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: Public Shared Sub FileExists(filePath As String, argName As String)
+  overload: CodeJam.IO.IoCode.FileExists*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.IoCode.DirectoryExists(System.String,System.String)
+  commentId: M:CodeJam.IO.IoCode.DirectoryExists(System.String,System.String)
+  id: DirectoryExists(System.String,System.String)
+  parent: CodeJam.IO.IoCode
+  langs:
+  - csharp
+  - vb
+  name: DirectoryExists(String, String)
+  nameWithType: IoCode.DirectoryExists(String, String)
+  fullName: CodeJam.IO.IoCode.DirectoryExists(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: DirectoryExists
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 105
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Asserts that specified directory does exist.
+  example: []
+  syntax:
+    content: public static void DirectoryExists(string directoryPath, string argName)
+    parameters:
+    - id: directoryPath
+      type: System.String
+      description: Path to the directory.
+    - id: argName
+      type: System.String
+      description: Name of the argument.
+    content.vb: Public Shared Sub DirectoryExists(directoryPath As String, argName As String)
+  overload: CodeJam.IO.IoCode.DirectoryExists*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: CodeJam.IO.IoCode.PathIsFree(System.String)
+  commentId: M:CodeJam.IO.IoCode.PathIsFree(System.String)
+  id: PathIsFree(System.String)
+  parent: CodeJam.IO.IoCode
+  langs:
+  - csharp
+  - vb
+  name: PathIsFree(String)
+  nameWithType: IoCode.PathIsFree(String)
+  fullName: CodeJam.IO.IoCode.PathIsFree(System.String)
+  type: Method
+  source:
+    remote:
+      path: Main/src/IO/IoCode.cs
+      branch: master
+      repo: https://andrewvk@github.com/rsdn/CodeJam.git
+    id: PathIsFree
+    path: ../Main/src/IO/IoCode.cs
+    startLine: 119
+  assemblies:
+  - CodeJam
+  namespace: CodeJam.IO
+  summary: Asserts that specified path is not a path to existent file or a directory.
+  example: []
+  syntax:
+    content: public static void PathIsFree(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: The path.
+    content.vb: Public Shared Sub PathIsFree(path As String)
+  overload: CodeJam.IO.IoCode.PathIsFree*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: CodeJam.IO
+  commentId: N:CodeJam.IO
+  isExternal: false
+  name: CodeJam.IO
+  nameWithType: CodeJam.IO
+  fullName: CodeJam.IO
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: CodeJam.IO.IoCode.IsWellFormedPath*
+  commentId: Overload:CodeJam.IO.IoCode.IsWellFormedPath
+  isExternal: false
+  name: IsWellFormedPath
+  nameWithType: IoCode.IsWellFormedPath
+  fullName: CodeJam.IO.IoCode.IsWellFormedPath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CodeJam.IO.IoCode.IsWellFormedAbsolutePath*
+  commentId: Overload:CodeJam.IO.IoCode.IsWellFormedAbsolutePath
+  isExternal: false
+  name: IsWellFormedAbsolutePath
+  nameWithType: IoCode.IsWellFormedAbsolutePath
+  fullName: CodeJam.IO.IoCode.IsWellFormedAbsolutePath
+- uid: CodeJam.IO.IoCode.IsWellFormedRelativePath*
+  commentId: Overload:CodeJam.IO.IoCode.IsWellFormedRelativePath
+  isExternal: false
+  name: IsWellFormedRelativePath
+  nameWithType: IoCode.IsWellFormedRelativePath
+  fullName: CodeJam.IO.IoCode.IsWellFormedRelativePath
+- uid: CodeJam.IO.IoCode.IsWellFormedContainerPath*
+  commentId: Overload:CodeJam.IO.IoCode.IsWellFormedContainerPath
+  isExternal: false
+  name: IsWellFormedContainerPath
+  nameWithType: IoCode.IsWellFormedContainerPath
+  fullName: CodeJam.IO.IoCode.IsWellFormedContainerPath
+- uid: CodeJam.IO.IoCode.IsWellFormedSimpleName*
+  commentId: Overload:CodeJam.IO.IoCode.IsWellFormedSimpleName
+  isExternal: false
+  name: IsWellFormedSimpleName
+  nameWithType: IoCode.IsWellFormedSimpleName
+  fullName: CodeJam.IO.IoCode.IsWellFormedSimpleName
+- uid: CodeJam.IO.IoCode.FileExists*
+  commentId: Overload:CodeJam.IO.IoCode.FileExists
+  isExternal: false
+  name: FileExists
+  nameWithType: IoCode.FileExists
+  fullName: CodeJam.IO.IoCode.FileExists
+- uid: CodeJam.IO.IoCode.DirectoryExists*
+  commentId: Overload:CodeJam.IO.IoCode.DirectoryExists
+  isExternal: false
+  name: DirectoryExists
+  nameWithType: IoCode.DirectoryExists
+  fullName: CodeJam.IO.IoCode.DirectoryExists
+- uid: CodeJam.IO.IoCode.PathIsFree*
+  commentId: Overload:CodeJam.IO.IoCode.PathIsFree
+  isExternal: false
+  name: PathIsFree
+  nameWithType: IoCode.PathIsFree
+  fullName: CodeJam.IO.IoCode.PathIsFree

@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: BenchmarkDotNet.Configs
+  commentId: N:BenchmarkDotNet.Configs
+  id: BenchmarkDotNet.Configs
+  children:
+  - BenchmarkDotNet.Configs.ReadOnlyConfig
+  langs:
+  - csharp
+  - vb
+  name: BenchmarkDotNet.Configs
+  nameWithType: BenchmarkDotNet.Configs
+  fullName: BenchmarkDotNet.Configs
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: BenchmarkDotNet.Configs.ReadOnlyConfig
+  commentId: T:BenchmarkDotNet.Configs.ReadOnlyConfig
+  parent: BenchmarkDotNet.Configs
+  isExternal: false
+  name: ReadOnlyConfig
+  nameWithType: ReadOnlyConfig
+  fullName: BenchmarkDotNet.Configs.ReadOnlyConfig
+- uid: BenchmarkDotNet.Configs
+  commentId: N:BenchmarkDotNet.Configs
+  isExternal: false
+  name: BenchmarkDotNet.Configs
+  nameWithType: BenchmarkDotNet.Configs
+  fullName: BenchmarkDotNet.Configs

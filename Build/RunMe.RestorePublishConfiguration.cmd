@@ -1,1 +1,0 @@
-msbuild CodeJam.sln /p:Configuration=Publish /t:Restore

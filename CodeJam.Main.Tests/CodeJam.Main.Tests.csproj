@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.Tests</AssemblyName>
+		<RootNamespace>CodeJam</RootNamespace>
+		<ProjectGuid>{DD65E3F2-9658-4242-A8AA-056028473CB1}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35;net20</TargetFrameworks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'net20' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
+		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NUnit" Version="3.11.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CodeJam.Main\CodeJam.Main.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Arithmetic\OperatorsTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>OperatorsTests.tt</DependentUpon>
+		</Compile>
+		<None Update="Arithmetic\OperatorsTests.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>OperatorsTests.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Collections\Enumerable\MinMaxByTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>MinMaxByTests.tt</DependentUpon>
+		</Compile>
+		<None Update="Collections\Enumerable\MinMaxByTests.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>MinMaxByTests.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\RangeBoundaryToTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>RangeBoundaryToTests.tt</DependentUpon>
+		</Compile>
+		<None Update="Ranges\RangeBoundaryToTests.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>RangeBoundaryToTests.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Ranges\RangeTests.WithKey.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>RangeTests.WithKey.tt</DependentUpon>
+		</Compile>
+		<None Update="Ranges\RangeTests.WithKey.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>RangeTests.WithKey.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Structures\OneOfTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>OneOfTests.tt</DependentUpon>
+		</Compile>
+		<None Update="Structures\OneOfTests.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>OneOfTests.generated.cs</LastGenOutput>
+		</None>
+		<Compile Update="Threading\InterlockedOperationsTests.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>InterlockedOperationsTests.tt</DependentUpon>
+		</Compile>
+		<None Update="Threading\InterlockedOperationsTests.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>InterlockedOperationsTests.generated.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Strings\Data\Dates.Expected.txt" />
+		<EmbeddedResource Include="Strings\Data\Dates.txt" />
+		<EmbeddedResource Include="Strings\Data\Debs.Expected.txt" />
+		<EmbeddedResource Include="Strings\Data\Debs.txt" />
+		<EmbeddedResource Include="Strings\Data\DebVersions.Expected.txt" />
+		<EmbeddedResource Include="Strings\Data\DebVersions.txt" />
+		<EmbeddedResource Include="Strings\Data\Fractions.Expected.txt" />
+		<EmbeddedResource Include="Strings\Data\Fractions.txt" />
+		<EmbeddedResource Include="Strings\Data\Versions.Expected.txt" />
+		<EmbeddedResource Include="Strings\Data\Versions.txt" />
+		<EmbeddedResource Include="Strings\Data\Words.Expected.txt" />
+		<EmbeddedResource Include="Strings\Data\Words.txt" />
+	</ItemGroup>
+
+	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20'" >
+   		<ItemGroup>
+			<ReferencePath Condition="'%(FileName)' == 'NUnit.System.Linq'">
+				<Aliases>nunitlinq</Aliases>
+			</ReferencePath>
+		</ItemGroup>
+	</Target>
+</Project>

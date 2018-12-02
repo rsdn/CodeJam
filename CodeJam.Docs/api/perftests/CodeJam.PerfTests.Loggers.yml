@@ -1,0 +1,53 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.PerfTests.Loggers
+  commentId: N:CodeJam.PerfTests.Loggers
+  id: CodeJam.PerfTests.Loggers
+  children:
+  - CodeJam.PerfTests.Loggers.FilteringLogger
+  - CodeJam.PerfTests.Loggers.LogFilter
+  - CodeJam.PerfTests.Loggers.LoggerHelpers
+  - CodeJam.PerfTests.Loggers.RedirectLogger
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.PerfTests.Loggers
+  nameWithType: CodeJam.PerfTests.Loggers
+  fullName: CodeJam.PerfTests.Loggers
+  type: Namespace
+  assemblies:
+  - CodeJam.PerfTests
+references:
+- uid: CodeJam.PerfTests.Loggers.RedirectLogger
+  commentId: T:CodeJam.PerfTests.Loggers.RedirectLogger
+  isExternal: false
+  name: RedirectLogger
+  nameWithType: RedirectLogger
+  fullName: CodeJam.PerfTests.Loggers.RedirectLogger
+- uid: CodeJam.PerfTests.Loggers.LoggerHelpers
+  commentId: T:CodeJam.PerfTests.Loggers.LoggerHelpers
+  parent: CodeJam.PerfTests.Loggers
+  isExternal: false
+  name: LoggerHelpers
+  nameWithType: LoggerHelpers
+  fullName: CodeJam.PerfTests.Loggers.LoggerHelpers
+- uid: CodeJam.PerfTests.Loggers.LogFilter
+  commentId: T:CodeJam.PerfTests.Loggers.LogFilter
+  parent: CodeJam.PerfTests.Loggers
+  isExternal: false
+  name: LogFilter
+  nameWithType: LogFilter
+  fullName: CodeJam.PerfTests.Loggers.LogFilter
+- uid: CodeJam.PerfTests.Loggers.FilteringLogger
+  commentId: T:CodeJam.PerfTests.Loggers.FilteringLogger
+  parent: CodeJam.PerfTests.Loggers
+  isExternal: false
+  name: FilteringLogger
+  nameWithType: FilteringLogger
+  fullName: CodeJam.PerfTests.Loggers.FilteringLogger
+- uid: CodeJam.PerfTests.Loggers
+  commentId: N:CodeJam.PerfTests.Loggers
+  isExternal: false
+  name: CodeJam.PerfTests.Loggers
+  nameWithType: CodeJam.PerfTests.Loggers
+  fullName: CodeJam.PerfTests.Loggers

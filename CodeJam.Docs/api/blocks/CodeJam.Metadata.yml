@@ -1,0 +1,44 @@
+### YamlMime:ManagedReference
+items:
+- uid: CodeJam.Metadata
+  commentId: N:CodeJam.Metadata
+  id: CodeJam.Metadata
+  children:
+  - CodeJam.Metadata.IMetadataReader
+  - CodeJam.Metadata.MetadataException
+  - CodeJam.Metadata.XmlAttributeReader
+  langs:
+  - csharp
+  - vb
+  name: CodeJam.Metadata
+  nameWithType: CodeJam.Metadata
+  fullName: CodeJam.Metadata
+  type: Namespace
+  assemblies:
+  - CodeJam.Blocks
+references:
+- uid: CodeJam.Metadata.IMetadataReader
+  commentId: T:CodeJam.Metadata.IMetadataReader
+  parent: CodeJam.Metadata
+  isExternal: false
+  name: IMetadataReader
+  nameWithType: IMetadataReader
+  fullName: CodeJam.Metadata.IMetadataReader
+- uid: CodeJam.Metadata.MetadataException
+  commentId: T:CodeJam.Metadata.MetadataException
+  isExternal: false
+  name: MetadataException
+  nameWithType: MetadataException
+  fullName: CodeJam.Metadata.MetadataException
+- uid: CodeJam.Metadata.XmlAttributeReader
+  commentId: T:CodeJam.Metadata.XmlAttributeReader
+  isExternal: false
+  name: XmlAttributeReader
+  nameWithType: XmlAttributeReader
+  fullName: CodeJam.Metadata.XmlAttributeReader
+- uid: CodeJam.Metadata
+  commentId: N:CodeJam.Metadata
+  isExternal: false
+  name: CodeJam.Metadata
+  nameWithType: CodeJam.Metadata
+  fullName: CodeJam.Metadata
