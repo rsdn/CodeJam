@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\Build\Props\CodeJam.Default.props" />
 	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
@@ -23,7 +23,14 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net20'">
+		<PackageReference Include="NUnit" Version="3.11.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
+	</ItemGroup>
+
+	<!-- NUnit 3.11 is the last NUnit supporting .NET 2.0 -->
+	<!-- See: https://github.com/nunit/nunit/issues/3070 -->
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net20'">
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
 	</ItemGroup>
