@@ -18,10 +18,6 @@
 	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0'">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
-		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.11.0" />
