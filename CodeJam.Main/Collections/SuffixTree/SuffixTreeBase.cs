@@ -20,6 +20,7 @@ namespace CodeJam.Collections
 		protected const int RootNodeIndex = 0;
 
 		/// <summary>Tree nodes</summary>
+		[NotNull]
 		private readonly List<Node> _nodes;
 
 		/// <summary>The root node</summary>
@@ -55,9 +56,11 @@ namespace CodeJam.Collections
 		protected int NodesCount => _nodes.Count;
 
 		/// <summary>Concatenated input strings</summary>
+		[NotNull]
 		protected string InternalData { get; private set; }
 
 		/// <summary>List of locations of added strings inside the InternalData</summary>
+		[NotNull]
 		protected List<(int Start, int Length)> StringLocations { get; }
 
 		/// <summary>Constructs a base for a suffix tree</summary>
@@ -423,6 +426,7 @@ namespace CodeJam.Collections
 			/// A list of child nodes
 			/// <remarks>null for leaf nodes</remarks>
 			/// </summary>
+			[CanBeNull]
 			public List<int> Children { get; }
 			/// <summary>Shows whether it is a leaf or an internal node</summary>
 			public bool IsLeaf => Children == null;

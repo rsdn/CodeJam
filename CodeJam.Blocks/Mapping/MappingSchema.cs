@@ -156,10 +156,10 @@ namespace CodeJam.Mapping
 		//
 		private void InitGenericConvertProvider<T>() => InitGenericConvertProvider(typeof(T));
 
-		private bool InitGenericConvertProvider(params Type[] types) =>
+		private bool InitGenericConvertProvider([NotNull, ItemNotNull] params Type[] types) =>
 			Schemas.Aggregate(false, (cur, info) => cur || info.InitGenericConvertProvider(types));
 
-		private void SetGenericConvertProvider(Type type)
+		private void SetGenericConvertProvider([NotNull] Type type)
 		{
 			if (!type.IsGenericTypeDefinition)
 				throw new CodeJamMappingException($"'{type}' must be a generic type.");
@@ -194,8 +194,9 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Mapped value.</returns>
-		public object EnumToValue(Enum value)
+		public object EnumToValue([NotNull] Enum value)
 		{
+			Code.NotNull(value, nameof(value));
 			var toType = ConvertBuilder.GetDefaultMappingFromEnumType(this, value.GetType());
 			return Converter.ChangeType(value, toType, this);
 		}
@@ -348,7 +349,7 @@ namespace CodeJam.Mapping
 			Schemas[0].SetConvertInfo(typeof(TFrom), typeof(TTo), new ConvertInfo.LambdaInfo(ex, null, func, false));
 		}
 
-		private LambdaExpression AddNullCheck(LambdaExpression expr)
+		private LambdaExpression AddNullCheck([NotNull] LambdaExpression expr)
 		{
 			var p = expr.Parameters[0];
 
@@ -371,7 +372,7 @@ namespace CodeJam.Mapping
 			return expr;
 		}
 
-		private ConvertInfo.LambdaInfo GetConverter(Type from, Type to, bool create)
+		private ConvertInfo.LambdaInfo GetConverter([NotNull] Type from, [NotNull] Type to, bool create)
 		{
 			for (var i = 0; i < Schemas.Length; i++)
 			{
@@ -885,7 +886,7 @@ namespace CodeJam.Mapping
 		/// <returns>Array of mapping values.</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="type" /> is null.</exception>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
-		[NotNull, ItemNotNull]
+		[ItemNotNull]
 		public virtual MapValue[] GetMapValues([NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));
