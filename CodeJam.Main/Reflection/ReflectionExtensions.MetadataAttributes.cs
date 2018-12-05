@@ -34,7 +34,9 @@ namespace CodeJam.Reflection
 
 		// DONTTOUCH: Direct compare may result in false negative.
 		// See http://stackoverflow.com/questions/27645408 for explanation.
+		[NotNull]
 		private static readonly IEqualityComparer<Type> _typeComparer = new TypeTypeHandleComparer();
+		[NotNull]
 		private static readonly IEqualityComparer<MethodInfo> _methodComparer = new MethodMethodHandleComparer();
 
 		/// <summary>
@@ -126,7 +128,7 @@ namespace CodeJam.Reflection
 		/// including checks of <see cref="AttributeUsageAttribute" />.
 		/// Ordering of attributes at each level is undefined and depends on runtime implementation.
 		/// </remarks>
-		[NotNull]
+		[NotNull, ItemNotNull]
 		public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider,
 			bool thisLevelOnly)
@@ -144,6 +146,7 @@ namespace CodeJam.Reflection
 			}
 		}
 
+		[NotNull, ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForType<TAttribute>(
 			this Type type, bool thisLevelOnly)
 			where TAttribute : class =>
@@ -151,6 +154,7 @@ namespace CodeJam.Reflection
 					? GetAttributesForTypeSingleLevel<TAttribute>(type)
 					: GetAttributesForTypeWithNesting<TAttribute>(type);
 
+		[NotNull, ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForTypeSingleLevel<TAttribute>(
 			this Type type)
 			where TAttribute : class
@@ -166,6 +170,7 @@ namespace CodeJam.Reflection
 			}
 		}
 
+		[NotNull, ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForTypeWithNesting<TAttribute>(
 			this Type type)
 			where TAttribute : class
@@ -199,7 +204,8 @@ namespace CodeJam.Reflection
 			}
 		}
 
-		private static IEnumerable<TAttribute> GetAttributesForMember<TAttribute>(this MemberInfo member, bool thisLevelOnly)
+		[NotNull, ItemNotNull]
+		private static IEnumerable<TAttribute> GetAttributesForMember<TAttribute>([NotNull] this MemberInfo member, bool thisLevelOnly)
 			where TAttribute : class
 		{
 			// ReSharper disable once CoVariantArrayConversion
@@ -219,6 +225,7 @@ namespace CodeJam.Reflection
 		}
 
 		#region Get override chain
+		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChain(this MemberInfo member) =>
 			IsOverriden(member) ? _getOverrideChainCache(member) : new[] { member };
 
@@ -244,6 +251,7 @@ namespace CodeJam.Reflection
 				method.IsVirtual &&
 				!_methodComparer.Equals(method, method.GetBaseDefinition());
 
+		[NotNull]
 		private static Func<MemberInfo, MemberInfo[]> _getOverrideChainCache = Algorithms.Memoize(
 			(MemberInfo m) => GetOverrideChainDispatch(m), true);
 
@@ -252,6 +260,7 @@ namespace CodeJam.Reflection
 				BindingFlags.Public | BindingFlags.NonPublic |
 				BindingFlags.DeclaredOnly;
 
+		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChainDispatch(MemberInfo member)
 		{
 			// TODO: Use GetParentDefinition after https://github.com/dotnet/coreclr/issues/7135
@@ -267,10 +276,11 @@ namespace CodeJam.Reflection
 			}
 		}
 
+		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChainCore<TMember>(
-			TMember member,
-			Func<TMember, MethodInfo> accessorGetter,
-			Func<Type, IEnumerable<TMember>> membersGetter)
+			[NotNull] TMember member,
+			[NotNull] Func<TMember, MethodInfo> accessorGetter,
+			[NotNull] Func<Type, IEnumerable<TMember>> membersGetter)
 			where TMember : MemberInfo
 		{
 			var result = new List<MemberInfo>();
@@ -298,15 +308,17 @@ namespace CodeJam.Reflection
 		#region GetAttributesFromCandidates
 		private static readonly AttributeUsageAttribute _defaultUsage = new AttributeUsageAttribute(AttributeTargets.All);
 
+		[NotNull]
 		private static readonly Func<Type, AttributeUsageAttribute> _attributeUsages = Algorithms.Memoize(
 			(Type t) => t.GetCustomAttribute<AttributeUsageAttribute>(true) ?? _defaultUsage,
 			true);
 
 		// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Attribute.cs#L28
 		// Behavior matches the Attribute.InternalGetCustomAttributes() method.
+		[NotNull, ItemNotNull]
 		private static TAttribute[] GetAttributesFromCandidates<TAttribute>(
 			bool inherit,
-			params ICustomAttributeProvider[] traversePath)
+			[NotNull, ItemNotNull] params ICustomAttributeProvider[] traversePath)
 			where TAttribute : class
 		{
 			var result = new List<TAttribute>();

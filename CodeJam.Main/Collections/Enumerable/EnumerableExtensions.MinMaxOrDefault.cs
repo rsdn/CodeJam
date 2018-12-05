@@ -13,8 +13,11 @@ namespace CodeJam.Collections
 		private static class MinMaxOperators<T>
 		{
 			private static readonly bool _hasNaN = Operators<T>.HasNaN;
+			[NotNull]
 			private static readonly Func<T, T, bool> _areNotEqual = Operators<T>.AreNotEqual;
+			[NotNull]
 			private static readonly Func<T, T, bool> _greaterThan = Operators<T>.GreaterThan;
+			[NotNull]
 			private static readonly Comparer<T> _comparer = Comparer<T>.Default;
 
 			#region Operators<T>
@@ -172,7 +175,10 @@ namespace CodeJam.Collections
 
 			[MethodImpl(PlatformDependent.AggressiveInlining)]
 			public static T MinOrDefault<TSource>(
-				IEnumerable<TSource> source, Func<TSource, T> selector, IComparer<T> comparer, T defaultValue)
+				[NotNull] IEnumerable<TSource> source,
+				[NotNull] Func<TSource, T> selector,
+				[CanBeNull] IComparer<T> comparer,
+				[CanBeNull] T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
 				comparer = comparer ?? _comparer;
@@ -194,7 +200,10 @@ namespace CodeJam.Collections
 			}
 
 			[MethodImpl(PlatformDependent.AggressiveInlining)]
-			public static T MaxOrDefault(IEnumerable<T> source, IComparer<T> comparer, T defaultValue)
+			public static T MaxOrDefault(
+				[NotNull] IEnumerable<T> source,
+				[CanBeNull] IComparer<T> comparer,
+				[CanBeNull] T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
 				comparer = comparer ?? _comparer;
@@ -217,7 +226,10 @@ namespace CodeJam.Collections
 
 			[MethodImpl(PlatformDependent.AggressiveInlining)]
 			public static T MaxOrDefault<TSource>(
-				IEnumerable<TSource> source, Func<TSource, T> selector, IComparer<T> comparer, T defaultValue)
+				[NotNull] IEnumerable<TSource> source,
+				[NotNull] Func<TSource, T> selector,
+				[CanBeNull] IComparer<T> comparer,
+				[CanBeNull] T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
 				comparer = comparer ?? _comparer;

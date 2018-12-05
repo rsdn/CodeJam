@@ -372,6 +372,7 @@ namespace CodeJam.Mapping
 			return expr;
 		}
 
+		[CanBeNull]
 		private ConvertInfo.LambdaInfo GetConverter([NotNull] Type from, [NotNull] Type to, bool create)
 		{
 			for (var i = 0; i < Schemas.Length; i++)
