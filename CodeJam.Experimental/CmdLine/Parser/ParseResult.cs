@@ -1,3 +1,5 @@
+﻿using JetBrains.Annotations;
+
 namespace CodeJam.CmdLine
 {
 	///<summary>
@@ -8,7 +10,7 @@ namespace CodeJam.CmdLine
 		///<summary>
 		/// Initialize instance with result.
 		///</summary>
-		public ParseResult(T result, ICharInput inputRest)
+		public ParseResult([NotNull] T result, [NotNull] ICharInput inputRest)
 		{
 			Result = result;
 			InputRest = inputRest;
@@ -17,11 +19,11 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Parsing result.
 		/// </summary>
-		public T Result { get; }
+		[NotNull] public T Result { get; }
 
 		/// <summary>
 		/// Input rest.
 		/// </summary>
-		public ICharInput InputRest { get; }
+		[NotNull] public ICharInput InputRest { get; }
 	}
 }

@@ -515,6 +515,7 @@ namespace CodeJam.Reflection
 		/// <returns>Returns item type or null.</returns>
 		[CanBeNull]
 		[Pure]
+		[ContractAnnotation("type:null => null")]
 		public static Type GetItemType([CanBeNull] this Type type)
 		{
 			while (true)

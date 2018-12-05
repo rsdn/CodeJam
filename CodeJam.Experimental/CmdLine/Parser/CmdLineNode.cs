@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using JetBrains.Annotations;
 
@@ -13,12 +13,12 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public CmdLineNode(
-			string text,
+			[NotNull] string text,
 			int position,
 			int length,
 			[NotNull] QuotedOrNonquotedValueNode programName,
-			[NotNull] CommandNode[] commands,
-			[NotNull] OptionNode[] options) : base(text, position, length)
+			[NotNull, ItemNotNull] CommandNode[] commands,
+			[NotNull, ItemNotNull] OptionNode[] options) : base(text, position, length)
 		{
 			if (programName == null)
 				throw new ArgumentNullException(nameof(programName));
@@ -40,11 +40,13 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Commands.
 		/// </summary>
+		[NotNull, ItemNotNull]
 		public CommandNode[] Commands { get; }
 
 		/// <summary>
 		/// Options.
 		/// </summary>
+		[NotNull, ItemNotNull]
 		public OptionNode[] Options { get; }
 	}
 }

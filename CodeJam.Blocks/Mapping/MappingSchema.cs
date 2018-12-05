@@ -208,7 +208,8 @@ namespace CodeJam.Mapping
 		/// <param name="to">Type to convert to.</param>
 		/// <returns>Convert expression.</returns>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
-		protected internal virtual LambdaExpression TryGetConvertExpression(Type from, Type to)
+		[CanBeNull]
+		protected internal virtual LambdaExpression TryGetConvertExpression([NotNull] Type from, [NotNull]Type to)
 		{
 			var li = GetConverter(from, to, false);
 			return li == null ? null : (LambdaExpression)ReduceDefaultValue(li.CheckNullLambda);
@@ -237,6 +238,7 @@ namespace CodeJam.Mapping
 		/// <param name="checkNull">If <i>true</i>, created expression checks input value for <i>null</i>.</param>
 		/// <param name="createDefault">If <i>true</i>, new expression is created.</param>
 		/// <returns>Convert expression.</returns>
+		[CanBeNull]
 		public LambdaExpression GetConvertExpression(
 			[NotNull] Type from,
 			[NotNull] Type to,

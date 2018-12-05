@@ -7,7 +7,7 @@ namespace CodeJam.Collections
 	public struct Suffix
 	{
 		/// <summary>Buffer of all added strings</summary>
-		private readonly string _buffer;
+		[NotNull] private readonly string _buffer;
 		/// <summary>Offset to the beginning of the source string in the buffer</summary>
 		private readonly int _sourceOffset;
 

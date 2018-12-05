@@ -98,6 +98,7 @@ namespace CodeJam.Mapping
 			_convertInfo.Set(from, to, expr);
 		}
 
+		[CanBeNull]
 		public ConvertInfo.LambdaInfo GetConvertInfo([NotNull] Type from, [NotNull] Type to)
 			=> _convertInfo?.Get(from, to);
 

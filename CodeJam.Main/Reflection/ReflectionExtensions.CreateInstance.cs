@@ -10,7 +10,7 @@ namespace CodeJam.Reflection
 {
 	public partial class ReflectionExtensions
 	{
-		private static bool IsOptional(this ParameterInfo prm) =>
+		private static bool IsOptional([NotNull] this ParameterInfo prm) =>
 #if LESSTHAN_NET45
 			(prm.Attributes & ParameterAttributes.HasDefault) == ParameterAttributes.HasDefault
 #else
@@ -18,7 +18,7 @@ namespace CodeJam.Reflection
 #endif
 			;
 
-		private static bool IsCtorSuitable(ConstructorInfo ctor, ParamInfo[] parameters)
+		private static bool IsCtorSuitable([NotNull] ConstructorInfo ctor, [NotNull, ItemNotNull] ParamInfo[] parameters)
 		{
 			var ctorPrms = ctor.GetParameters();
 			var ctorMap = ctorPrms.ToDictionary(p => p.Name);
@@ -54,7 +54,7 @@ namespace CodeJam.Reflection
 		/// <exception cref="ArgumentException">No suitable constructors found</exception>
 		[NotNull]
 		[Pure]
-		public static object CreateInstance([NotNull] this Type type, params ParamInfo[] parameters)
+		public static object CreateInstance([NotNull] this Type type, [NotNull, ItemNotNull] params ParamInfo[] parameters)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -70,6 +70,7 @@ namespace CodeJam.Reflection
 					.GetParameters()
 					.Select(p => prmsMap.GetValueOrDefault(p.Name, k => p.DefaultValue))
 					.ToArray();
+			// ReSharper disable once AssignNullToNotNullAttribute
 			return ctor.Invoke(values);
 		}
 	}

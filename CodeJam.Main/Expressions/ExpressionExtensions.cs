@@ -641,7 +641,8 @@ namespace CodeJam.Expressions
 		#endregion
 
 		#region Find
-		private static Expression FindInternal<T>(IEnumerable<T> source, Func<T, Expression> func)
+		[CanBeNull]
+		private static Expression FindInternal<T>([NotNull] IEnumerable<T> source, [NotNull] Func<T, Expression> func)
 		{
 			foreach (var item in source)
 			{
@@ -653,7 +654,8 @@ namespace CodeJam.Expressions
 			return null;
 		}
 
-		private static Expression FindInternal<T>(IEnumerable<T> source, Func<Expression, bool> func)
+		[CanBeNull]
+		private static Expression FindInternal<T>([NotNull] IEnumerable<T> source, [NotNull] Func<Expression, bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -695,7 +697,9 @@ namespace CodeJam.Expressions
 		}
 
 		[SuppressMessage("ReSharper", "TailRecursiveCall")]
-		private static Expression FindInternal(this Expression expr, Func<Expression, bool> func)
+		[ContractAnnotation("expr:null => null")]
+		[CanBeNull]
+		private static Expression FindInternal([CanBeNull] this Expression expr, [NotNull] Func<Expression, bool> func)
 		{
 			if (expr == null || func(expr))
 				return expr;
@@ -1054,6 +1058,7 @@ namespace CodeJam.Expressions
 		}
 
 		[CanBeNull]
+		[ContractAnnotation("expr:null => null")]
 		private static Expression TransformInternal([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
 		{
 			if (expr == null)

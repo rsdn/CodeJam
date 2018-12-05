@@ -26,7 +26,7 @@ namespace CodeJam.Collections
 		/// <summary>The root node</summary>
 		protected Node Root => _nodes[RootNodeIndex];
 		/// <summary>The comparer to compare edges of a node against a char</summary>
-		protected Func<int, char, int> EdgeComparer { get; }
+		[NotNull] protected Func<int, char, int> EdgeComparer { get; }
 
 		/// <summary>The comparer to compare string locations against a string end</summary>
 		private readonly Func<(int Start, int End), int, int> _stringLocationByEndComparer =
@@ -253,7 +253,7 @@ namespace CodeJam.Collections
 		/// <summary>Locates the branch corresponding to the given string</summary>
 		/// <param name="s">The string to find</param>
 		/// <returns>The last matched edge and the matched length over this edge or null if no match found</returns>
-		[Pure]
+		[Pure][CanBeNull]
 		private Tuple<Node, int> FindBranch([NotNull] string s)
 		{
 			DebugCode.AssertState(s.Length > 0, "The string length should be positive");

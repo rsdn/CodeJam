@@ -177,7 +177,7 @@ namespace CodeJam.Reflection
 			SetExpressions();
 		}
 
-		internal MemberAccessor(TypeAccessor typeAccessor, MemberInfo memberInfo)
+		internal MemberAccessor([NotNull] TypeAccessor typeAccessor, [NotNull] MemberInfo memberInfo)
 		{
 			TypeAccessor = typeAccessor;
 
@@ -185,7 +185,7 @@ namespace CodeJam.Reflection
 			SetExpressions();
 		}
 
-		private void SetSimple(MemberInfo memberInfo)
+		private void SetSimple([NotNull] MemberInfo memberInfo)
 		{
 			MemberInfo = memberInfo;
 			var propertyInfo = MemberInfo as PropertyInfo;
@@ -249,9 +249,10 @@ namespace CodeJam.Reflection
 		private const FieldAttributes _enumField =
 			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
+		[NotNull]
 		private static readonly ConcurrentDictionary<Type,object> _defaultValues = new ConcurrentDictionary<Type,object>();
 
-		private object GetDefaultValue(Type type)
+		private object GetDefaultValue([NotNull] Type type)
 		{
 			if (_defaultValues.TryGetValue(type, out var value))
 				return value;
@@ -288,11 +289,13 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Member <see cref="MemberInfo"/>.
 		/// </summary>
+		[NotNull]
 		public MemberInfo MemberInfo { get; private set; }
 
 		/// <summary>
 		/// Parent <see cref="TypeAccessor"/>.
 		/// </summary>
+		[NotNull]
 		public TypeAccessor TypeAccessor { get; private set; }
 
 		/// <summary>
@@ -308,7 +311,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Member <see cref="Type"/>.
 		/// </summary>
-		public Type Type { get; private set; }
+		[NotNull] public Type Type { get; private set; }
 
 		/// <summary>
 		/// True, if the member is complex.
@@ -318,22 +321,22 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Getter expression of the member.
 		/// </summary>
-		public LambdaExpression GetterExpression { get; private set; }
+		[NotNull] public LambdaExpression GetterExpression { get; private set; }
 
 		/// <summary>
 		/// Setter expression of the member.
 		/// </summary>
-		public LambdaExpression SetterExpression { get; private set; }
+		[NotNull] public LambdaExpression SetterExpression { get; private set; }
 
 		/// <summary>
 		/// Member getter function.
 		/// </summary>
-		public Func<object,object> Getter { get; private set; }
+		[NotNull] public Func<object,object> Getter { get; private set; }
 
 		/// <summary>
 		/// Member setter action.
 		/// </summary>
-		public Action<object,object> Setter { get; private set; }
+		[NotNull] public Action<object,object> Setter { get; private set; }
 
 		/// <summary>
 		/// Member name.

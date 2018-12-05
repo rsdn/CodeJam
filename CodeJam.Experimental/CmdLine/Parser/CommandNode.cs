@@ -1,3 +1,5 @@
+﻿using JetBrains.Annotations;
+
 namespace CodeJam.CmdLine
 {
 	/// <summary>
@@ -8,7 +10,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		public CommandNode(string text, int position, int length) : base(text, position, length)
+		public CommandNode([NotNull] string text, int position, int length) : base(text, position, length)
 		{}
 	}
 }

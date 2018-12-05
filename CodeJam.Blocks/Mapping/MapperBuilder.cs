@@ -58,10 +58,11 @@ namespace CodeJam.Mapping
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][NotNull]
 		public Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> GetMapperExpression()
 			=> (Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>>)GetExpressionMapper().GetExpression();
 
+		[NotNull]
 		LambdaExpression IMapperBuilder.GetMapperLambdaExpression()
 			=> GetExpressionMapper().GetExpression();
 

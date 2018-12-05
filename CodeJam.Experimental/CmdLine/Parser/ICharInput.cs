@@ -1,3 +1,5 @@
+﻿using JetBrains.Annotations;
+
 namespace CodeJam.CmdLine
 {
 	///<summary>
@@ -18,6 +20,7 @@ namespace CodeJam.CmdLine
 		///<summary>
 		/// Return new input, advanced to 1 position.
 		///</summary>
+		[NotNull]
 		ICharInput GetNext();
 	}
 }

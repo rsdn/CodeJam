@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace CodeJam.CmdLine
 {
@@ -11,7 +11,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		protected CmdLineNodeBase(string text, int position, int length)
+		protected CmdLineNodeBase([NotNull] string text, int position, int length)
 		{
 			Text = text;
 			Position = position;
@@ -21,6 +21,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Node text.
 		/// </summary>
+		[NotNull]
 		public string Text { get; }
 
 		/// <summary>

@@ -104,6 +104,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
+		[CanBeNull]
 		private static Expression GetConvertion([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (IsConvertible(from) && IsConvertible(to) && to != typeof(bool) ||
@@ -113,6 +114,7 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
+		[CanBeNull]
 		private static Expression GetParse([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (from == typeof(string))
@@ -138,6 +140,7 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
+		[CanBeNull]
 		private static Expression GetToString([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (to == typeof(string) && !from.IsNullable())
@@ -155,6 +158,7 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
+		[CanBeNull]
 		private static Expression GetParseEnum([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (from == typeof(string) && to.IsEnum)
@@ -211,10 +215,13 @@ namespace CodeJam.Mapping
 		private const FieldAttributes _enumField =
 			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
+		[ContractAnnotation("=> halt")]
 		private static object ThrowLinqToDBException(string text) => throw new CodeJamConvertException(text);
 
+		[NotNull]
 		private static readonly MethodInfo _throwLinqToDBConvertException = InfoOf.Method(() => ThrowLinqToDBException(null));
 
+		[CanBeNull]
 		private static Expression GetToEnum(
 			[NotNull] Type from,
 			[NotNull] Type to,
