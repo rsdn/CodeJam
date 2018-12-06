@@ -13,7 +13,6 @@ namespace CodeJam.Collections
 	public class LazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue>
 	{
 		private readonly Func<TKey, TValue> _valueFactory;
-		private readonly IEqualityComparer<TKey> _comparer;
 		private readonly Dictionary<TKey, TValue> _map;
 
 		/// <summary>
@@ -26,7 +25,6 @@ namespace CodeJam.Collections
 			Code.NotNull(valueFactory,nameof(valueFactory));
 
 			_valueFactory = valueFactory;
-			_comparer = comparer;
 			_map = new Dictionary<TKey, TValue>(comparer);
 		}
 
