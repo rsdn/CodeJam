@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -304,6 +305,7 @@ namespace CodeJam.Arithmetic
 			}
 			catch (Exception ex)
 			{
+				Debug.Assert(compareMethod.DeclaringType != null, "compareMethod.DeclaringType");
 				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
 			}
 
@@ -319,6 +321,7 @@ namespace CodeJam.Arithmetic
 			}
 			catch (Exception ex)
 			{
+				Debug.Assert(compareMethod.DeclaringType != null, "compareMethod.DeclaringType");
 				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
 			}
 		}
@@ -403,7 +406,7 @@ namespace CodeJam.Arithmetic
 			}
 			catch (NotSupportedException ex)
 			{
-				ex.LogToCodeTraceSourceCatched();
+				ex.LogToCodeTraceSourceCaught();
 			}
 			return GetComparerComparison<T>(comparisonType);
 		}

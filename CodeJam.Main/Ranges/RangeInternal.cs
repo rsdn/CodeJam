@@ -75,10 +75,13 @@ namespace CodeJam.Ranges
 					.GetMethod(nameof(Format), bf)
 					.MakeGenericMethod(typeof(T));
 				// no boxing for IFormatProvider
-				return (Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
-					typeof(Func<T, string, IFormatProvider, string>),
-					method,
-					true);
+				var res =
+					(Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
+						typeof(Func<T, string, IFormatProvider, string>),
+						method,
+						true);
+				DebugCode.BugIf(res == null, "res == null");
+				return res;
 			}
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T).ToNullableUnderlying()))
 			{
@@ -87,10 +90,12 @@ namespace CodeJam.Ranges
 					.GetMethod(nameof(FormatNullable), bf)
 					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
 				// no boxing for IFormatProvider
-				return (Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
+				var res = (Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
 					typeof(Func<T, string, IFormatProvider, string>),
 					method,
 					true);
+				DebugCode.BugIf(res == null, "res == null");
+				return res;
 			}
 			return (value, format, formatProvider) => value?.ToString();
 		}

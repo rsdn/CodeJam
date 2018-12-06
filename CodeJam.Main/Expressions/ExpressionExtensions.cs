@@ -190,7 +190,7 @@ namespace CodeJam.Expressions
 								VisitInternal(((MemberListBinding)b).Initializers, p => VisitInternal(p.Arguments, func));
 								break;
 							case MemberBindingType.MemberBinding:
-								VisitInternal(((MemberMemberBinding)b).Bindings, (Action<MemberBinding>)Action);
+								VisitInternal(((MemberMemberBinding)b).Bindings, Action);
 								break;
 						}
 					}
@@ -198,7 +198,7 @@ namespace CodeJam.Expressions
 					var e = (MemberInitExpression)expr;
 
 					VisitInternal(e.NewExpression, func);
-					VisitInternal(e.Bindings, (Action<MemberBinding>)Action);
+					VisitInternal(e.Bindings, Action);
 
 					break;
 				}
@@ -1053,7 +1053,7 @@ namespace CodeJam.Expressions
 			return TransformInternal(expr, func);
 		}
 
-		[CanBeNull]
+		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
 		private static Expression TransformInternal([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
 		{
 			if (expr == null)
@@ -1189,6 +1189,7 @@ namespace CodeJam.Expressions
 				case ExpressionType.MemberAccess:
 				{
 					var e = (MemberExpression)expr;
+					DebugCode.BugIf(e.Expression == null, "e.Expression == null");
 					return e.Update(TransformInternal(e.Expression, func));
 				}
 
@@ -1280,6 +1281,7 @@ namespace CodeJam.Expressions
 				case ExpressionType.Index:
 				{
 					var e = (IndexExpression)expr;
+					DebugCode.BugIf(e.Object == null, "e.Object == null");
 					return e.Update(
 						TransformInternal(e.Object, func),
 						TransformInternal(e.Arguments, func));

@@ -67,7 +67,7 @@ namespace CodeJam
 		public static bool operator ==(ValueOption<T> left, ValueOption<T> right) => left.Equals(right);
 
 		/// <summary>
-		/// Unequality operator.
+		/// Inequality operator.
 		/// </summary>
 		/// <param name="left">Left operand.</param>
 		/// <param name="right">Right operand.</param>

@@ -332,7 +332,7 @@ namespace CodeJam
 			where TEnum : struct, Enum
 		{
 			#region Static fields
-			[NotNull, ItemNotNull]
+			[NotNull]
 			private static readonly HashSet<TEnum> _values = new HashSet<TEnum>((TEnum[])Enum.GetValues(typeof(TEnum)));
 			[NotNull]
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(ignoreCase: false);

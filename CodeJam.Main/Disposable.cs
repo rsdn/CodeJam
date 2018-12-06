@@ -26,7 +26,7 @@ namespace CodeJam
 		/// The <see cref="IDisposable"/> implementation that calls supplied action on <see cref="Dispose"/>.
 		/// </summary>
 		/// DONTTOUCH: DO NOT make it a struct, passing the structure by value will result in multiple Dispose() calls.
-		/// SEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
+		/// SEEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private sealed class AnonymousDisposable : IDisposable
 		{
 			private Action _disposeAction;
@@ -64,7 +64,7 @@ namespace CodeJam
 		/// The <see cref="IDisposable"/> implementation that calls supplied action on <see cref="Dispose"/>.
 		/// </summary>
 		/// DONTTOUCH: DO NOT make it a struct, passing the structure by value will result in multiple Dispose() calls.
-		/// SEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
+		/// SEEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private sealed class AnonymousDisposable<T> : IDisposable
 		{
 			private Action<T> _disposeAction;

@@ -95,7 +95,7 @@ namespace CodeJam.Collections
 				{
 					break;
 				}
-				UpdateActiveEdgeAndCurentPosition();
+				UpdateActiveEdgeAndCurrentPosition();
 			}
 		}
 
@@ -189,11 +189,11 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>Updates active edge and current position</summary>
-		private void UpdateActiveEdgeAndCurentPosition()
+		private void UpdateActiveEdgeAndCurrentPosition()
 		{
 			if (_nextSuffixOffset > _currentOffset)
 			{
-				// all pending proper subsuffixes have been processed
+				// all pending proper sub-suffixes have been processed
 				// start from the root
 				_currentOffset = _nextSuffixOffset;
 				_branchNodeIndex = RootNodeIndex;
