@@ -190,7 +190,7 @@ namespace CodeJam.Expressions
 								VisitInternal(((MemberListBinding)b).Initializers, p => VisitInternal(p.Arguments, func));
 								break;
 							case MemberBindingType.MemberBinding:
-								VisitInternal(((MemberMemberBinding)b).Bindings, (Action<MemberBinding>)Action);
+								VisitInternal(((MemberMemberBinding)b).Bindings, Action);
 								break;
 						}
 					}
@@ -198,7 +198,7 @@ namespace CodeJam.Expressions
 					var e = (MemberInitExpression)expr;
 
 					VisitInternal(e.NewExpression, func);
-					VisitInternal(e.Bindings, (Action<MemberBinding>)Action);
+					VisitInternal(e.Bindings, Action);
 
 					break;
 				}
@@ -642,7 +642,7 @@ namespace CodeJam.Expressions
 
 		#region Find
 		[CanBeNull]
-		private static Expression FindInternal<T>([NotNull] IEnumerable<T> source, [NotNull] Func<T, Expression> func)
+		private static Expression FindInternal<T>(IEnumerable<T> source, Func<T, Expression> func)
 		{
 			foreach (var item in source)
 			{
@@ -655,7 +655,7 @@ namespace CodeJam.Expressions
 		}
 
 		[CanBeNull]
-		private static Expression FindInternal<T>([NotNull] IEnumerable<T> source, [NotNull] Func<Expression, bool> func)
+		private static Expression FindInternal<T>(IEnumerable<T> source, Func<Expression, bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -699,7 +699,7 @@ namespace CodeJam.Expressions
 		[SuppressMessage("ReSharper", "TailRecursiveCall")]
 		[ContractAnnotation("expr:null => null")]
 		[CanBeNull]
-		private static Expression FindInternal([CanBeNull] this Expression expr, [NotNull] Func<Expression, bool> func)
+		private static Expression FindInternal(this Expression expr, Func<Expression, bool> func)
 		{
 			if (expr == null || func(expr))
 				return expr;
@@ -1058,7 +1058,7 @@ namespace CodeJam.Expressions
 		}
 
 		[CanBeNull]
-		[ContractAnnotation("expr:null => null")]
+		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
 		private static Expression TransformInternal([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
 		{
 			if (expr == null)
@@ -1194,6 +1194,7 @@ namespace CodeJam.Expressions
 				case ExpressionType.MemberAccess:
 				{
 					var e = (MemberExpression)expr;
+					DebugCode.BugIf(e.Expression == null, "e.Expression == null");
 					return e.Update(TransformInternal(e.Expression, func));
 				}
 
@@ -1285,6 +1286,7 @@ namespace CodeJam.Expressions
 				case ExpressionType.Index:
 				{
 					var e = (IndexExpression)expr;
+					DebugCode.BugIf(e.Object == null, "e.Object == null");
 					return e.Update(
 						TransformInternal(e.Object, func),
 						TransformInternal(e.Arguments, func));

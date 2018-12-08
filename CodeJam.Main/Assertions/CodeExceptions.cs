@@ -91,11 +91,11 @@ namespace CodeJam
 			return exception;
 		}
 
-		/// <summary>Logs the catched exception to the <see cref="CodeTraceSource"/>.</summary>
+		/// <summary>Logs the caught exception to the <see cref="CodeTraceSource"/>.</summary>
 		/// <typeparam name="TException">The type of the exception.</typeparam>
 		/// <param name="exception">The exception.</param>
 		/// <returns>The original exception.</returns>
-		internal static TException LogToCodeTraceSourceCatched<TException>([NotNull] this TException exception)
+		internal static TException LogToCodeTraceSourceCaught<TException>([NotNull] this TException exception)
 			where TException : Exception
 		{
 			var sb = new StringBuilder();

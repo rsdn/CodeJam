@@ -141,11 +141,11 @@ namespace CodeJam.Expressions
 			GetMemberExpression(expression).Member.Name;
 
 		/// <summary>
-		/// Returns a composited name of the property.
+		/// Returns a composed name of the property.
 		/// </summary>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
-		/// A composited name of the property.
+		/// A composed name of the property.
 		/// </returns>
 		[NotNull, Pure]
 		public static string GetFullPropertyName([NotNull] this LambdaExpression expression) =>
@@ -210,24 +210,24 @@ namespace CodeJam.Expressions
 							if (lastMember == null)
 								goto default;
 
-							var cexpr = (MethodCallExpression)expression;
-							var expr = cexpr.Object;
+							var cExpr = (MethodCallExpression)expression;
+							var expr = cExpr.Object;
 
 							if (expr == null)
 							{
-								if (cexpr.Arguments.Count == 0)
+								if (cExpr.Arguments.Count == 0)
 									goto default;
 
-								expr = cexpr.Arguments[0];
+								expr = cExpr.Arguments[0];
 							}
 
 							if (expr.NodeType != ExpressionType.MemberAccess)
 								goto default;
 
 							var member = ((MemberExpression)expr).Member;
-							var mtype = member.GetMemberType();
+							var mType = member.GetMemberType();
 
-							if (lastMember.ReflectedType != mtype.GetItemType())
+							if (lastMember.ReflectedType != mType.GetItemType())
 								goto default;
 
 							expression = expr;
@@ -237,12 +237,12 @@ namespace CodeJam.Expressions
 
 					case ExpressionType.MemberAccess:
 						{
-							var mexpr = (MemberExpression)expression;
-							var member = lastMember = mexpr.Member;
+							var mExpr = (MemberExpression)expression;
+							var member = lastMember = mExpr.Member;
 
 							yield return member;
 
-							expression = mexpr.Expression;
+							expression = mExpr.Expression;
 
 							break;
 						}

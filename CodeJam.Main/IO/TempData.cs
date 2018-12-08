@@ -132,31 +132,31 @@ namespace CodeJam.IO
 			protected override void DisposePath([NotNull] string path, bool disposing)
 			{
 				_info = null;
-				Exception catched = null;
+				Exception caught = null;
 				try
 				{
 					Directory.Delete(path, true);
 				}
 				catch (ArgumentException ex)
 				{
-					catched = ex;
+					caught = ex;
 				}
 				catch (IOException ex)
 				{
-					catched = ex;
+					caught = ex;
 				}
 				catch (UnauthorizedAccessException ex)
 				{
-					catched = ex;
+					caught = ex;
 				}
 				catch (NotSupportedException ex)
 				{
-					catched = ex;
+					caught = ex;
 				}
 
 				if (disposing)
 				{
-					catched?.LogToCodeTraceSourceCatched();
+					caught?.LogToCodeTraceSourceCaught();
 				}
 			}
 		}
@@ -195,31 +195,31 @@ namespace CodeJam.IO
 			protected override void DisposePath([NotNull] string path, bool disposing)
 			{
 				_info = null;
-				Exception catched = null;
+				Exception caught = null;
 				try
 				{
 					File.Delete(path);
 				}
 				catch (ArgumentException ex)
 				{
-					catched = ex;
+					caught = ex;
 				}
 				catch (IOException ex)
 				{
-					catched = ex;
+					caught = ex;
 				}
 				catch (UnauthorizedAccessException ex)
 				{
-					catched = ex;
+					caught = ex;
 				}
 				catch (NotSupportedException ex)
 				{
-					catched = ex;
+					caught = ex;
 				}
 
 				if (disposing)
 				{
-					catched?.LogToCodeTraceSourceCatched();
+					caught?.LogToCodeTraceSourceCaught();
 				}
 			}
 		}

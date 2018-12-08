@@ -50,7 +50,7 @@ namespace CodeJam
 				}
 				catch (Exception ex) when (exceptionHandler(ex))
 				{
-					ex.LogToCodeTraceSourceCatched();
+					ex.LogToCodeTraceSourceCaught();
 				}
 			}
 		}
