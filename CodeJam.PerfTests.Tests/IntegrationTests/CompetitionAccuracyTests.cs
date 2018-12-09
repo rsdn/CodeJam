@@ -1,17 +1,12 @@
-﻿using System;
+﻿using BenchmarkDotNet.Attributes;
+using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Running.Core;
+using JetBrains.Annotations;
+using NUnit.Framework;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
-
-using BenchmarkDotNet.Attributes;
-
-using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Core;
-
-using JetBrains.Annotations;
-
-using NUnit.Framework;
-
 using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
@@ -49,7 +44,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[1].MessageText,
-				"Target TooFast. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+				".Descriptor TooFast. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 
 
 			Assert.AreEqual(messages[2].RunNumber, 1);
@@ -58,7 +53,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[2].MessageText,
-				"Target TooFastX5. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+				".Descriptor TooFastX5. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 		}
 
 		[Test]
@@ -80,7 +75,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Benchmark TooSlow: measured run time is greater than 500.0 ms. " +
+				"BenchmarkCase TooSlow: measured run time is greater than 500.0 ms. " +
 					"There's a risk the peak timings were hidden by averages. " +
 					"Consider to reduce the number of iterations performed per each measurement.");
 		}
@@ -116,7 +111,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			}
 		}
 
-		#region Benchmark classes
+		#region BenchmarkCase classes
 		[PublicAPI]
 		[CompetitionModifier(typeof(CompetitionHighAccuracyModifier))]
 		public class TooFastBenchmark

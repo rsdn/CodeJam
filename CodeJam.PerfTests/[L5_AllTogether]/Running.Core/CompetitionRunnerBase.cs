@@ -53,7 +53,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		#region With competition features
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
@@ -62,7 +62,7 @@ namespace CodeJam.PerfTests.Running.Core
 				RunCore(typeof(T), null, competitionFeatures);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
@@ -74,7 +74,7 @@ namespace CodeJam.PerfTests.Running.Core
 				RunCore(thisReference.GetType(), null, competitionFeatures);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
@@ -86,7 +86,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		#region With config
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="competitionConfig">Custom competition config.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
@@ -95,7 +95,7 @@ namespace CodeJam.PerfTests.Running.Core
 				RunCore(typeof(T), competitionConfig, null);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
 		/// <param name="competitionConfig">Custom competition config.</param>
 		/// <returns>The state of the competition.</returns>
@@ -107,7 +107,7 @@ namespace CodeJam.PerfTests.Running.Core
 				RunCore(thisReference.GetType(), competitionConfig, null);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionConfig">Custom competition config.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
@@ -133,7 +133,7 @@ namespace CodeJam.PerfTests.Running.Core
 				Run(BenchmarkHelpers.GetBenchmarkTypes(assembly), competitionFeatures);
 
 		/// <summary>Runs all benchmarks defined in the assembly.</summary>
-		/// <param name="benchmarkTypes">Benchmark classes to run.</param>
+		/// <param name="benchmarkTypes">BenchmarkCase classes to run.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition for each benchmark that was run.</returns>
 		[NotNull]
@@ -164,7 +164,7 @@ namespace CodeJam.PerfTests.Running.Core
 				Run(BenchmarkHelpers.GetBenchmarkTypes(assembly), competitionConfig);
 
 		/// <summary>Runs all benchmarks defined in the assembly.</summary>
-		/// <param name="benchmarkTypes">Benchmark classes to run.</param>
+		/// <param name="benchmarkTypes">BenchmarkCase classes to run.</param>
 		/// <param name="competitionConfig">Custom competition config.</param>
 		/// <returns>The state of the competition for each benchmark that was run.</returns>
 		[NotNull]
@@ -186,7 +186,7 @@ namespace CodeJam.PerfTests.Running.Core
 		#endregion
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionConfig">Custom competition config (optional).</param>
 		/// <param name="competitionFeatures">
 		/// The competition features. Ignored if <paramref name="competitionConfig"/> is not <c>null</c>.
@@ -295,7 +295,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 		#region Override test running behavior
 		/// <summary>Returns output directory that should be used for running the test.</summary>
-		/// <param name="targetAssembly">The target assembly tests will be run for.</param>
+		/// <param name="targetAssembly">The descriptor assembly tests will be run for.</param>
 		/// <returns>
 		/// Output directory that should be used for running the test or <c>null</c> if the current directory should be used.
 		/// </returns>

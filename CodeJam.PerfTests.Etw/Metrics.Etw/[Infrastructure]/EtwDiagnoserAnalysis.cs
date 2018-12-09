@@ -24,7 +24,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <param name="config">The config.</param>
 		/// <param name="metricProviders">The metric providers.</param>
 		public EtwDiagnoserAnalysis(
-			[NotNull] Benchmark benchmark,
+			[NotNull] BenchmarkCase benchmark,
 			[NotNull] IConfig config,
 			[NotNull] IEtwMetricValueProvider[] metricProviders) : base(config, MessageSource.Diagnoser)
 		{
@@ -32,7 +32,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 			Code.NotNull(config, nameof(config));
 
 			RunGuid = Guid.NewGuid();
-			Benchmark = benchmark;
+			BenchmarkCase = benchmark;
 			MetricProviders = metricProviders;
 			TraceFile = TempData.CreateFile(null, $"{RunGuid}.etl");
 		}
@@ -44,7 +44,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <summary>Gets or sets the benchmark.</summary>
 		/// <value>The benchmark.</value>
 		[NotNull]
-		public Benchmark Benchmark { get; }
+		public BenchmarkCase BenchmarkCase { get; }
 
 		/// <summary>Gets the metric providers.</summary>
 		/// <value>The metric providers.</value>

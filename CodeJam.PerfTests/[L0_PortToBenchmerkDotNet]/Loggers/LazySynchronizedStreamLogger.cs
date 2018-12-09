@@ -1,8 +1,7 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.IO;
 using System.Threading;
-
-using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
 
@@ -14,7 +13,7 @@ namespace BenchmarkDotNet.Loggers
 	/// </summary>
 	/// <seealso cref="ILogger"/>
 	[PublicAPI]
-	public sealed class LazySynchronizedStreamLogger : IFlushableLogger
+	public sealed class LazySynchronizedStreamLogger : ILogger
 	{
 		private readonly Lazy<TextWriter> _writerLazy;
 

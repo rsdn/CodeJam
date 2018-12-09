@@ -40,7 +40,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
 		private const string CompetitionNode = "Competition";
-		private const string TargetAttribute = "Target";
+		private const string TargetAttribute = ".Descriptor";
 		private const string BaselineAttribute = "Baseline";
 		private const string MinAttribute = "Min";
 		private const string MaxAttribute = "Max";
@@ -324,8 +324,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region XML doc saving
-		/// <summary>Writes xml annotation document for the competition targets to the log.</summary>
-		/// <param name="competitionTargets">The competition targets to log.</param>
+		/// <summary>Writes xml annotation document for the competition descriptors to the log.</summary>
+		/// <param name="competitionTargets">The competition descriptors to log.</param>
 		/// <param name="messageLogger">The message logger.</param>
 		public static void LogXmlAnnotationDoc(
 			[NotNull] IReadOnlyCollection<CompetitionTarget> competitionTargets,
@@ -339,7 +339,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			// Create xml annotation doc
 			var xmlAnnotationDoc = new XDocument(new XElement(CompetitionBenchmarksRootNode));
-			var benchmarkType = competitionTargets.First().Target.Type;
+			var benchmarkType = competitionTargets.First().Descriptor.Type;
 			AddOrUpdateXmlAnnotation(xmlAnnotationDoc, competitionTargets, benchmarkType, true);
 
 			// Dump it
@@ -386,8 +386,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				: targetType.Name;
 
 		[NotNull]
-		private static string GetTargetMethodName(this Target target) =>
-			target.Method.Name;
+		private static string GetTargetMethodName(this Descriptor descriptor) =>
+			descriptor.WorkloadMethod.Name;
 
 		[NotNull]
 		// ReSharper disable once SuggestBaseTypeForParameter
@@ -519,31 +519,31 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region XML doc metric loading
-		/// <summary>Parses stored info for targets from the the xml annotation document.</summary>
-		/// <param name="targets">The targets.</param>
+		/// <summary>Parses stored info for descriptors from the the xml annotation document.</summary>
+		/// <param name="descriptors">The descriptors.</param>
 		/// <param name="metrics">The metrics to parse.</param>
 		/// <param name="xmlAnnotationDoc">The xml annotation document.</param>
 		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="analysis">State of the analysis.</param>
-		/// <returns>Parsed stored info for targets.</returns>
+		/// <returns>Parsed stored info for descriptors.</returns>
 		[NotNull]
-		public static Dictionary<Target, StoredTargetInfo> TryGetStoredTargets(
-			[NotNull] Target[] targets,
+		public static Dictionary<Descriptor, StoredTargetInfo> TryGetStoredTargets(
+			[NotNull] Descriptor[] descriptors,
 			[NotNull] IEnumerable<MetricInfo> metrics,
 			[NotNull] XDocument xmlAnnotationDoc,
 			bool useFullTypeName,
 			[NotNull] IMessageLogger analysis)
 		{
-			Code.NotNull(targets, nameof(targets));
+			Code.NotNull(descriptors, nameof(descriptors));
 			Code.NotNull(metrics, nameof(metrics));
 			Code.NotNull(xmlAnnotationDoc, nameof(xmlAnnotationDoc));
 			Code.NotNull(analysis, nameof(analysis));
 
-			var result = new Dictionary<Target, StoredTargetInfo>();
-			if (targets.Length == 0)
+			var result = new Dictionary<Descriptor, StoredTargetInfo>();
+			if (descriptors.Length == 0)
 				return result;
 
-			var targetTypeName = targets[0].Type.GetTargetTypeName(useFullTypeName);
+			var targetTypeName = descriptors[0].Type.GetTargetTypeName(useFullTypeName);
 
 			var metricsByName = metrics.ToDictionary(m => m.DisplayName);
 			var targetNodesByName =
@@ -553,14 +553,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				 select candidate)
 					.ToLookup(c => c.Name);
 
-			foreach (var target in targets)
+			foreach (var descriptor in descriptors)
 			{
-				var targetMethodName = target.GetTargetMethodName();
+				var targetMethodName = descriptor.GetTargetMethodName();
 				var targetNodes = targetNodesByName[targetMethodName].ToArray();
-				var storedTarget = TryParseTargetMetrics(target, targetNodes, metricsByName, analysis);
+				var storedTarget = TryParseTargetMetrics(descriptor, targetNodes, metricsByName, analysis);
 				if (storedTarget != null)
 				{
-					result.Add(target, storedTarget);
+					result.Add(descriptor, storedTarget);
 				}
 			}
 
@@ -569,7 +569,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[CanBeNull]
 		private static StoredTargetInfo TryParseTargetMetrics(
-			Target target, XElement[] targetNodes,
+			Descriptor descriptor, XElement[] targetNodes,
 			Dictionary<string, MetricInfo> metricsByName,
 			IMessageLogger messageLogger)
 		{
@@ -583,10 +583,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var primaryMetric = metricsByName.Values.SingleOrDefault(m => m.IsPrimaryMetric);
 			foreach (var targetNode in targetNodes)
 			{
-				baseline = baseline ?? TryParseBooleanValue(target, targetNode, BaselineAttribute, messageLogger);
+				baseline = baseline ?? TryParseBooleanValue(descriptor, targetNode, BaselineAttribute, messageLogger);
 				if (primaryMetric != null)
 				{
-					var storedMetric = TryParseTargetMetric(target, targetNode, primaryMetric, messageLogger);
+					var storedMetric = TryParseTargetMetric(descriptor, targetNode, primaryMetric, messageLogger);
 					if (storedMetric != null)
 					{
 						metrics.Add(storedMetric);
@@ -598,13 +598,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					if (!metricsByName.TryGetValue(metricNode.Name.LocalName, out var metric))
 					{
 						messageLogger.WriteWarningMessage(
-							target,
+							descriptor,
 							$"XML annotation contains metric {metricNode.Name} not listed in config; the metric is ignored.",
 							$"List of metrics is exposed as {nameof(ICompetitionConfig)}.{nameof(ICompetitionConfig.GetMetrics)}().");
 						continue;
 					}
 
-					var storedMetric = TryParseTargetMetric(target, metricNode, metric, messageLogger);
+					var storedMetric = TryParseTargetMetric(descriptor, metricNode, metric, messageLogger);
 					if (storedMetric != null)
 					{
 						metrics.Add(storedMetric);
@@ -616,12 +616,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		private static StoredMetricValue TryParseTargetMetric(
-			Target target, XElement targetNode,
+			Descriptor descriptor, XElement targetNode,
 			MetricInfo targetMetric,
 			IMessageLogger messageLogger)
 		{
-			var min = TryParseDoubleValue(target, targetNode, MinAttribute, double.NaN, messageLogger);
-			var max = TryParseDoubleValue(target, targetNode, MaxAttribute, double.NaN, messageLogger);
+			var min = TryParseDoubleValue(descriptor, targetNode, MinAttribute, double.NaN, messageLogger);
+			var max = TryParseDoubleValue(descriptor, targetNode, MaxAttribute, double.NaN, messageLogger);
 
 			if (min == null || max == null)
 				return null;
@@ -646,7 +646,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				if (unitValue == null)
 				{
 					messageLogger.WriteSetupErrorMessage(
-						target,
+						descriptor,
 						$"XML annotation contains metric {targetMetric} with invalid unit value {unitName}, skipped.");
 
 					return null;
@@ -658,21 +658,21 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		// ReSharper disable ConvertClosureToMethodGroup
 		private static double? TryParseDoubleValue(
-			Target target, XElement competitionNode,
+			Descriptor descriptor, XElement competitionNode,
 			string xmlAttributeName, double fallbackValue,
 			IMessageLogger messageLogger) =>
 				TryParseCore(
-					target, competitionNode,
+					descriptor, competitionNode,
 					xmlAttributeName,
 					s => XmlConvert.ToDouble(s),
 					fallbackValue,
 					messageLogger);
 
 		private static bool? TryParseBooleanValue(
-			Target target, XElement competitionNode,
+			Descriptor descriptor, XElement competitionNode,
 			string xmlAttributeName, IMessageLogger messageLogger) =>
 				TryParseCore(
-					target, competitionNode,
+					descriptor, competitionNode,
 					xmlAttributeName,
 					s => XmlConvert.ToBoolean(s),
 					false,
@@ -681,7 +681,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		// ReSharper restore ConvertClosureToMethodGroup
 
 		private static T? TryParseCore<T>(
-			Target target, XElement competitionNode,
+			Descriptor descriptor, XElement competitionNode,
 			string xmlAttributeName,
 			Func<string, T> parseCallback,
 			T fallbackValue,
@@ -700,8 +700,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				messageLogger.WriteExceptionMessage(
 					MessageSeverity.SetupError,
-					target,
-					$"XML annotation for {target.MethodDisplayInfo}: could not parse {xmlAttributeName}.",
+					descriptor,
+					$"XML annotation for {descriptor.WorkloadMethodDisplayInfo}: could not parse {xmlAttributeName}.",
 					ex);
 				return null;
 			}
@@ -709,9 +709,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region XML doc metric saving
-		/// <summary>Adds or updates xml annotation for the competition targets.</summary>
+		/// <summary>Adds or updates xml annotation for the competition descriptors.</summary>
 		/// <param name="xmlAnnotationDoc">The xml annotation document that will be updated.</param>
-		/// <param name="competitionTargets">The competition targets.</param>
+		/// <param name="competitionTargets">The competition descriptors.</param>
 		/// <param name="useFullTypeName">Use full type name in XML annotations.</param>
 		/// <param name="benchmarkType">The type of the benchmark.</param>
 		public static void AddOrUpdateXmlAnnotation(
@@ -731,7 +731,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			XElement lastTargetNode = null;
 			foreach (var competitionTarget in competitionTargets)
 			{
-				var targetMethodName = competitionTarget.Target.GetTargetMethodName();
+				var targetMethodName = competitionTarget.Descriptor.GetTargetMethodName();
 				var isBaseline = competitionTarget.Baseline;
 
 				lastTargetNode = competitionNode.GetOrAddElement(targetMethodName, lastTargetNode);

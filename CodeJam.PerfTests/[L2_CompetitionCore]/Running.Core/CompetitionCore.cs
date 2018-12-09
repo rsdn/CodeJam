@@ -87,13 +87,13 @@ namespace CodeJam.PerfTests.Running.Core
 			{
 				runLogger.WriteExceptionMessage(
 					MessageSeverity.ExecutionError,
-					$"Benchmark {competitionState.BenchmarkType.Name} failed.", ex.InnerException ?? ex);
+					$"BenchmarkCase {competitionState.BenchmarkType.Name} failed.", ex.InnerException ?? ex);
 			}
 			catch (Exception ex)
 			{
 				runLogger.WriteExceptionMessage(
 					MessageSeverity.ExecutionError,
-					$"Benchmark {competitionState.BenchmarkType.Name} failed.", ex);
+					$"BenchmarkCase {competitionState.BenchmarkType.Name} failed.", ex);
 			}
 			finally
 			{
@@ -239,13 +239,7 @@ namespace CodeJam.PerfTests.Running.Core
 			return true;
 		}
 
-		// TODO: HACK: remove as the method will be public
 		// ReSharper disable once AssignNullToNotNullAttribute
-		private static readonly Func<Type, MethodInfo[], ReadOnlyConfig, BenchmarkRunInfo> _typeToBenchmarkHack =
-			(Func<Type, MethodInfo[], ReadOnlyConfig, BenchmarkRunInfo>)Delegate.CreateDelegate(
-				typeof(Func<Type, MethodInfo[], ReadOnlyConfig, BenchmarkRunInfo>),
-				typeof(BenchmarkConverter).GetMethod("MethodsToBenchmarksWithFullConfig", BindingFlags.Static | BindingFlags.NonPublic));
-
 		private static void RunCore(CompetitionState competitionState, IMessageLogger messageLogger)
 		{
 			var logger = competitionState.Logger;
@@ -264,11 +258,10 @@ namespace CodeJam.PerfTests.Running.Core
 
 				// Running the benchmark
 				var benchmarkType = competitionState.BenchmarkType;
-				var runInfo = _typeToBenchmarkHack(
-					benchmarkType, benchmarkType.GetMethods(), new ReadOnlyConfig(competitionState.Config));
-				var summary = BenchmarkRunnerCore.Run(
-					runInfo,
-					j => j.Infrastructure?.Toolchain ?? InProcessToolchain.Instance);
+				var runInfo = BenchmarkConverter.TypeToBenchmarks(
+					benchmarkType,
+					new ReadOnlyConfig(competitionState.Config));
+				var summary = BenchmarkRunner.Run(runInfo);
 				competitionState.RunCompleted(summary);
 
 				// Dump messages if analysis was not run and there is a validation analyser.

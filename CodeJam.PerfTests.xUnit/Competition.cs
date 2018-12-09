@@ -17,7 +17,7 @@ namespace CodeJam.PerfTests
 
 		#region With competition features
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests
 				Runner.Run<T>(competitionFeatures);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
@@ -38,7 +38,7 @@ namespace CodeJam.PerfTests
 				Runner.Run(thisReference, competitionFeatures);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests
 
 		#region With config
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="competitionConfig">Custom competition config.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]
@@ -59,7 +59,7 @@ namespace CodeJam.PerfTests
 				Runner.Run<T>(competitionConfig);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
 		/// <param name="competitionConfig">Custom competition config.</param>
 		/// <returns>The state of the competition.</returns>
@@ -71,7 +71,7 @@ namespace CodeJam.PerfTests
 				Runner.Run(thisReference, competitionConfig);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionConfig">Custom competition config.</param>
 		/// <returns>The state of the competition.</returns>
 		[NotNull]

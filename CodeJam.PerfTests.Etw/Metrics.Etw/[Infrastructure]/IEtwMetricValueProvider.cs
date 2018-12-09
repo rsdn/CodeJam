@@ -38,7 +38,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <returns>The <see cref="IDisposable"/> to detach from metric handling.</returns>
 		IDisposable Subscribe(
 			[NotNull]TraceEventSource traceEventSource,
-			[NotNull]Benchmark benchmark,
+			[NotNull]BenchmarkCase benchmark,
 			[NotNull]IConfig config,
 			[NotNull]Func<TraceEvent, bool> filter);
 	}

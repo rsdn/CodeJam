@@ -54,20 +54,20 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				item.AnnotationContext = owner;
 			}
 
-			/// <summary>Gets the <see cref="AnnotationDocument"/> by target key.</summary>
+			/// <summary>Gets the <see cref="AnnotationDocument"/> by descriptor key.</summary>
 			/// <value>The <see cref="AnnotationDocument"/>.</value>
-			/// <param name="key">The target key.</param>
-			/// <returns><see cref="AnnotationDocument"/> for the target.</returns>
+			/// <param name="key">The descriptor key.</param>
+			/// <returns><see cref="AnnotationDocument"/> for the descriptor.</returns>
 			public AnnotationDocument this[AnnotationTargetKey key] => _documentsByTargets[key];
 
-			/// <summary>Determines whether the cache contains annotation document for the specified target key.</summary>
-			/// <param name="key">The target key.</param>
-			/// <returns><c>true</c> if the cache contains annotation document for the specified target key; otherwise, <c>false</c>.</returns>
+			/// <summary>Determines whether the cache contains annotation document for the specified descriptor key.</summary>
+			/// <param name="key">The descriptor key.</param>
+			/// <returns><c>true</c> if the cache contains annotation document for the specified descriptor key; otherwise, <c>false</c>.</returns>
 			public bool Contains(AnnotationTargetKey key) => _documentsByTargets.ContainsKey(key);
 
-			/// <summary>Adds target key for the document.</summary>
+			/// <summary>Adds descriptor key for the document.</summary>
 			/// <param name="annotationDocument">The annotation document.</param>
-			/// <param name="key">The target key.</param>
+			/// <param name="key">The descriptor key.</param>
 			public void AddTargetKey(AnnotationDocument annotationDocument, AnnotationTargetKey key)
 			{
 				Code.AssertArgument(
@@ -151,7 +151,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		/// <summary>Tries to get annotation document by the origin.</summary>
-		/// <param name="key">The target key.</param>
+		/// <param name="key">The descriptor key.</param>
 		/// <returns>The annotation document or <c>null</c> if not found.</returns>
 		[CanBeNull]
 		public AnnotationDocument TryGetDocument(AnnotationTargetKey key)
@@ -189,9 +189,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			_documentsCache.Add(annotationDocument);
 		}
 
-		/// <summary>Adds target key for the document.</summary>
+		/// <summary>Adds descriptor key for the document.</summary>
 		/// <param name="annotationDocument">The annotation document.</param>
-		/// <param name="key">The target key.</param>
+		/// <param name="key">The descriptor key.</param>
 		public void AddTargetKey([NotNull] AnnotationDocument annotationDocument, AnnotationTargetKey key)
 		{
 			Code.NotNull(annotationDocument, nameof(annotationDocument));

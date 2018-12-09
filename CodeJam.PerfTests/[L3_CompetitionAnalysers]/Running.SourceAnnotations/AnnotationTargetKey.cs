@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>
-	/// Key object for mapping annotation documents to the targets.
+	/// Key object for mapping annotation documents to the descriptors.
 	/// Depending on the caching schema the key may include 
 	/// <see cref="TargetMethod"/> only
 	/// or <see cref="BenchmarkType"/> only
@@ -18,7 +18,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AnnotationTargetKey"/> struct for method-level annotations.
 		/// </summary>
-		/// <param name="targetMethod">The target method.</param>
+		/// <param name="targetMethod">The descriptor method.</param>
 		public AnnotationTargetKey(RuntimeMethodHandle targetMethod)
 		{
 			TargetMethod = targetMethod;
@@ -39,7 +39,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// Initializes a new instance of the <see cref="AnnotationTargetKey"/> struct for method-level annotations
 		/// (annotations are not inherited).
 		/// </summary>
-		/// <param name="targetMethod">The target method.</param>
+		/// <param name="targetMethod">The descriptor method.</param>
 		/// <param name="benchmarkType">The benchmark type. Should be used if annotations are not inherited.</param>
 		public AnnotationTargetKey(RuntimeMethodHandle targetMethod, RuntimeTypeHandle benchmarkType)
 		{
@@ -51,8 +51,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <value><c>true</c> if this instance is empty; otherwise, <c>false</c>.</value>
 		public bool IsEmpty => TargetMethod == null && BenchmarkType == null;
 
-		/// <summary>The target method.</summary>
-		/// <value>The target method.</value>
+		/// <summary>The descriptor method.</summary>
+		/// <value>The descriptor method.</value>
 		public RuntimeMethodHandle? TargetMethod { get; }
 
 		/// <summary>Gets benchmark type. Should be used if annotations are not inherited.</summary>

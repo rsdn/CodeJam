@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using BenchmarkDotNet.Analysers;
+﻿using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Characteristics;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
@@ -18,6 +14,10 @@ using BenchmarkDotNet.Validators;
 using CodeJam.PerfTests.Metrics;
 
 using JetBrains.Annotations;
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace CodeJam.PerfTests.Configs
 {
@@ -50,39 +50,72 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Gets the column providers.</summary>
 		/// <value>The column providers.</value>
 		public List<IColumnProvider> ColumnProviders { get; } = new List<IColumnProvider>();
+
 		/// <summary>Gets the exporters.</summary>
 		/// <value>The exporters.</value>
 		public List<IExporter> Exporters { get; } = new List<IExporter>();
+
 		/// <summary>Gets the loggers.</summary>
 		/// <value>The loggers.</value>
 		public List<ILogger> Loggers { get; } = new List<ILogger>();
+
 		/// <summary>Gets the diagnosers.</summary>
 		/// <value>The diagnosers.</value>
 		public List<IDiagnoser> Diagnosers { get; } = new List<IDiagnoser>();
+
 		/// <summary>Gets the analysers.</summary>
 		/// <value>The analysers.</value>
 		public List<IAnalyser> Analysers { get; } = new List<IAnalyser>();
-		/// <summary>Gets the validators.</summary>
-		/// <value>The validators.</value>
-		public List<IValidator> Validators { get; } = new List<IValidator>();
-		/// <summary>Gets the filters.</summary>
-		/// <returns>Filters</returns>
-		public List<IFilter> Filters { get; } = new List<IFilter>();
+
 		/// <summary>Gets the jobs.</summary>
 		/// <value>The jobs.</value>
 		public List<Job> Jobs { get; } = new List<Job>();
+
+		/// <summary>Gets the validators.</summary>
+		/// <value>The validators.</value>
+		public List<IValidator> Validators { get; } = new List<IValidator>();
+
 		/// <summary>Gets hardware counters.</summary>
 		/// <returns>The hardware counters</returns>
 		public List<HardwareCounter> HardwareCounters { get; } = new List<HardwareCounter>();
+
+		/// <summary>Gets the filters.</summary>
+		/// <returns>Filters</returns>
+		public List<IFilter> Filters { get; } = new List<IFilter>();
+
 		/// <summary>Gets or sets the logical group rules.</summary>
 		/// <value>The logical group rules.</value>
 		public List<BenchmarkLogicalGroupRule> LogicalGroupRules { get; set; } = new List<BenchmarkLogicalGroupRule>();
+
 		/// <summary>Gets or sets the order provider.</summary>
 		/// <value>The order provider.</value>
-		public IOrderProvider OrderProvider { get; set; }
+		public IOrderer Orderer { get; set; }
+
 		/// <summary>Gets summary style.</summary>
 		/// <returns>The summary style</returns>
 		public ISummaryStyle SummaryStyle { get; set; }
+
+		/// <summary>Gets or sets a value indicating whether stop on first error performed.</summary>
+		/// <value><c>true</c> if stop on first error; otherwise, <c>false</c>.</value>
+		[PublicAPI]
+		public bool StopOnFirstError { get; set; }
+
+		/// <summary>Gets or sets the union rule.</summary>
+		/// <value>The union rule.</value>
+		[PublicAPI]
+		public ConfigUnionRule UnionRule { get; set; } = ConfigUnionRule.Union;
+
+		/// <summary>
+		/// Determines if all benchmarks results should be joined into a single summary or not
+		/// </summary>
+		/// <value><c>true</c> if all benchmarks results should be joined into a single summary; otherwise, <c>false</c>.</value> 
+		[PublicAPI]
+		public bool SummaryPerType { get; set; } = true;
+
+		/// <summary>Gets or sets the encoding. The default value is ASCII</summary>
+		/// <value>The encoding.</value>
+		[PublicAPI]
+		public Encoding Encoding { get; set; }
 
 		/// <summary>
 		/// determines if all auto-generated files should be kept or removed after running benchmarks
@@ -110,7 +143,8 @@ namespace CodeJam.PerfTests.Configs
 		#region Add methods
 		/// <summary>Adds the specified new columns.</summary>
 		/// <param name="newColumns">The new columns.</param>
-		public void Add(params IColumn[] newColumns) => ColumnProviders.AddRange(newColumns.Select(c => c.ToProvider()));
+		public void Add(params IColumn[] newColumns) =>
+			ColumnProviders.AddRange(newColumns.Select(c => c.ToProvider()));
 
 		/// <summary>Adds the specified new column providers.</summary>
 		/// <param name="newColumnProviders">The new column providers.</param>
@@ -160,11 +194,15 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Sets the specified provider.</summary>
 		/// <param name="provider">The provider.</param>
-		public void Set(IOrderProvider provider) => OrderProvider = provider ?? OrderProvider;
+		public void Set(IOrderer provider) => Orderer = provider ?? Orderer;
 
 		/// <summary>Sets the specified summary style.</summary>
 		/// <param name="summaryStyle">The summary style.</param>
 		public void Set(ISummaryStyle summaryStyle) => SummaryStyle = summaryStyle ?? SummaryStyle;
+
+		/// <summary>Sets the specified encoding.</summary>
+		/// <param name="encoding">The encoding.</param>
+		public void Set(Encoding encoding) => Encoding = encoding;
 
 		/// <summary>Sets the specified competition options.</summary>
 		/// <param name="competitionOptions">Competition options.</param>
@@ -187,7 +225,7 @@ namespace CodeJam.PerfTests.Configs
 			Add(config.GetHardwareCounters().ToArray());
 			Add(config.GetFilters().ToArray());
 			Add(config.GetLogicalGroupRules().ToArray());
-			OrderProvider = config.GetOrderProvider() ?? OrderProvider;
+			Orderer = config.GetOrderer() ?? Orderer;
 			KeepBenchmarkFiles |= config.KeepBenchmarkFiles;
 			ArtifactsPath = config.ArtifactsPath ?? ArtifactsPath;
 			SummaryStyle = SummaryStyle ?? config.GetSummaryStyle();
@@ -279,22 +317,15 @@ namespace CodeJam.PerfTests.Configs
 
 		/// <summary>Gets the order provider.</summary>
 		/// <returns>The order provider.</returns>
-		IOrderProvider IConfig.GetOrderProvider() => OrderProvider;
+		IOrderer IConfig.GetOrderer() => Orderer;
 
 		/// <summary>Gets summary style.</summary>
 		/// <returns>The summary style</returns>
 		ISummaryStyle IConfig.GetSummaryStyle() => SummaryStyle;
 
-		/// <summary>the default value is "./BenchmarkDotNet.Artifacts"</summary>
-		string IConfig.ArtifactsPath => ArtifactsPath;
-
 		/// <summary>Gets the logical group rules.</summary>
 		/// <returns></returns>
 		IEnumerable<BenchmarkLogicalGroupRule> IConfig.GetLogicalGroupRules() => LogicalGroupRules;
-
-		/// <summary>Gets the union rule.</summary>
-		/// <value>The union rule.</value>
-		ConfigUnionRule IConfig.UnionRule => ConfigUnionRule.Union;
 
 		/// <summary>Gets competition metrics.</summary>
 		/// <returns>The competition metrics.</returns>

@@ -7,40 +7,40 @@ using JetBrains.Annotations;
 
 namespace CodeJam.PerfTests.Analysers
 {
-	/// <summary>Competition target.</summary>
-	/// <seealso cref="Target"/>
+	/// <summary>Competition descriptor.</summary>
+	/// <seealso cref=".Descriptor"/>
 	public class CompetitionTarget
 	{
 		#region Fields & .ctor
 		/// <summary>Initializes a new instance of the <see cref="CompetitionTarget" /> class.</summary>
-		/// <param name="target">The target.</param>
-		/// <param name="metricValues">Competition metric values for the target.</param>
+		/// <param name="descriptor">The descriptor.</param>
+		/// <param name="metricValues">Competition metric values for the descriptor.</param>
 		public CompetitionTarget(
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] IReadOnlyList<CompetitionMetricValue> metricValues)
 		{
-			Code.NotNull(target, nameof(target));
+			Code.NotNull(descriptor, nameof(descriptor));
 			Code.NotNull(metricValues, nameof(metricValues));
 
-			Target = target;
+			Descriptor = descriptor;
 			MetricValues = metricValues;
 		}
 		#endregion
 
 		#region Properties
-		/// <summary>Gets benchmark target.</summary>
-		/// <value>The benchmark target.</value>
+		/// <summary>Gets benchmark descriptor.</summary>
+		/// <value>The benchmark descriptor.</value>
 		[NotNull]
-		public Target Target { get; }
+		public Descriptor Descriptor { get; }
 
-		/// <summary>Gets metric values for the target.</summary>
-		/// <value>The metric values for the target.</value>
+		/// <summary>Gets metric values for the descriptor.</summary>
+		/// <value>The metric values for the descriptor.</value>
 		[NotNull]
 		public IReadOnlyList<CompetitionMetricValue> MetricValues { get; }
 
-		/// <summary>Determines whether the target is baseline.</summary>
-		/// <value><c>true</c> if the benchmark target is baseline.</value>
-		public bool Baseline => Target.Baseline;
+		/// <summary>Determines whether the descriptor is baseline.</summary>
+		/// <value><c>true</c> if the benchmark descriptor is baseline.</value>
+		public bool Baseline => Descriptor.Baseline;
 		#endregion
 	}
 }

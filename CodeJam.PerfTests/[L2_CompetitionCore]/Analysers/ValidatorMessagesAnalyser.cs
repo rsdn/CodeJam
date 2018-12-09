@@ -36,9 +36,9 @@ namespace CodeJam.PerfTests.Analysers
 
 			foreach (var validationError in summary.ValidationErrors)
 			{
-				var message = validationError.Benchmark == null
+				var message = validationError.BenchmarkCase == null
 					? validationError.Message
-					: $"Benchmark {validationError.Benchmark.DisplayInfo}:{Environment.NewLine}\t{validationError.Message}";
+					: $"BenchmarkCase {validationError.BenchmarkCase.DisplayInfo}:{Environment.NewLine}\t{validationError.Message}";
 
 				if (validationError.IsCritical)
 				{

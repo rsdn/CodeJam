@@ -137,7 +137,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages.Length, 3);
 		}
 
-		#region Benchmark classes
+		#region BenchmarkCase classes
 		public class AnnotatedBenchmark
 		{
 			[CompetitionBaseline]

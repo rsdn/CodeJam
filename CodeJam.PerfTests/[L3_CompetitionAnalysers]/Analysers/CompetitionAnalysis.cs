@@ -13,7 +13,7 @@ namespace CodeJam.PerfTests.Analysers
 	/// <seealso cref="CodeJam.PerfTests.Analysers.Analysis"/>
 	internal class CompetitionAnalysis : SummaryAnalysis
 	{
-		/// <summary>Run state slot for the competition targets.</summary>
+		/// <summary>Run state slot for the competition descriptors.</summary>
 		private static readonly RunState<CompetitionTargets> _targetsSlot = new RunState<CompetitionTargets>();
 
 		/// <summary>Global annotation context.</summary>
@@ -30,8 +30,8 @@ namespace CodeJam.PerfTests.Analysers
 			AnnotationContext = _annotationContext.Value;
 		}
 
-		/// <summary>The competition targets.</summary>
-		/// <value>The competition targets.</value>
+		/// <summary>The competition descriptors.</summary>
+		/// <value>The competition descriptors.</value>
 		[NotNull]
 		public CompetitionTargets Targets { get; }
 

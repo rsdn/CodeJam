@@ -44,21 +44,21 @@ namespace CodeJam.PerfTests.Running.Core
 			$"{message} Exception: {ex.Message}";
 
 		/// <summary>Formats the message.</summary>
-		/// <param name="target">The target.</param>
+		/// <param name="descriptor">The descriptor.</param>
 		/// <param name="message">The message.</param>
 		/// <returns>Formatted message.</returns>
 		[NotNull]
-		internal static string FormatMessage([NotNull] Target target, [NotNull] string message) =>
-			$"Target {target.MethodDisplayInfo}. {message}";
+		internal static string FormatMessage([NotNull] Descriptor descriptor, [NotNull] string message) =>
+			$".Descriptor {descriptor.WorkloadMethodDisplayInfo}. {message}";
 
 		/// <summary>Formats the message.</summary>
-		/// <param name="target">The target.</param>
+		/// <param name="descriptor">The descriptor.</param>
 		/// <param name="message">The message.</param>
 		/// <param name="ex">The ex.</param>
 		/// <returns>Formatted message.</returns>
 		[NotNull]
-		internal static string FormatMessage([NotNull] Target target, [NotNull] string message, [NotNull] Exception ex) =>
-			$"Target {target.MethodDisplayInfo}. {message} Exception: {ex.Message}";
+		internal static string FormatMessage([NotNull] Descriptor descriptor, [NotNull] string message, [NotNull] Exception ex) =>
+			$".Descriptor {descriptor.WorkloadMethodDisplayInfo}. {message} Exception: {ex.Message}";
 
 		/// <summary>Formats the hint text.</summary>
 		/// <param name="ex">The ex.</param>

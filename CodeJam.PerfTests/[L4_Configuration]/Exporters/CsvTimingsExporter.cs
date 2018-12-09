@@ -1,17 +1,13 @@
-﻿using System;
-using System.Linq;
-
-using BenchmarkDotNet.Environments;
+﻿using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Exporters.Csv;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
-
 using CodeJam.Collections;
 using CodeJam.PerfTests.Running.Core;
-
 using JetBrains.Annotations;
+using System.Linq;
 
 namespace CodeJam.PerfTests.Exporters
 {
@@ -65,13 +61,13 @@ namespace CodeJam.PerfTests.Exporters
 			var c = HostEnvironmentInfo.MainCultureInfo;
 			var data =
 				from sWithIndex in summaries.Select((s, i) => new { s, i })
-				from benchmark in sWithIndex.s.GetSummaryOrderBenchmarks()
+				from benchmark in sWithIndex.s.GetSummaryOrderBenchmarksCases()
 				from measurement in sWithIndex.s[benchmark].AllMeasurements.Select((m, i) => new { m, i })
 				select new[]
 				{
 					(sWithIndex.i + 1).ToString(c),
 					CsvHelper.Escape(benchmark.Job.ToString(), _separator),
-					CsvHelper.Escape(benchmark.Target.MethodDisplayInfo, _separator),
+					CsvHelper.Escape(benchmark.Descriptor.WorkloadMethodDisplayInfo, _separator),
 					CsvHelper.Escape(benchmark.Parameters.DisplayInfo, _separator),
 					measurement.m.LaunchIndex.ToString(c),
 					measurement.i.ToString(c),
@@ -84,7 +80,7 @@ namespace CodeJam.PerfTests.Exporters
 			{
 				"RunNumber",
 				"Job",
-				"Target",
+				"Descriptor",
 				"Parameters",
 				"LaunchNumber",
 				"MeasurementNumber",

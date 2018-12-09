@@ -13,20 +13,20 @@ namespace CodeJam.PerfTests.Configs
 	{
 		#region Characteristics
 		/// <summary>Competition run parameters characteristic.</summary>
-		public static readonly Characteristic<CompetitionRunMode> RunOptionsCharacteristic = Characteristic.Create(
-			(CompetitionOptions o) => o.RunOptions);
+		public static readonly Characteristic<CompetitionRunMode> RunOptionsCharacteristic = CreateCharacteristic<CompetitionRunMode>(
+			nameof(RunOptions));
 
 		/// <summary>Competition annotations parameters characteristic.</summary>
-		public static readonly Characteristic<CompetitionAnnotationMode> AnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionOptions o) => o.Annotations);
+		public static readonly Characteristic<CompetitionAnnotationMode> AnnotationsCharacteristic = CreateCharacteristic<CompetitionAnnotationMode>(
+			nameof(Annotations));
 
 		/// <summary>Competition validation parameters characteristic.</summary>
-		public static readonly Characteristic<CompetitionCheckMode> ChecksCharacteristic = Characteristic.Create(
-			(CompetitionOptions o) => o.Checks);
+		public static readonly Characteristic<CompetitionCheckMode> ChecksCharacteristic = CreateCharacteristic<CompetitionCheckMode>(
+			nameof(Checks));
 
 		/// <summary>Competition adjustment parameters characteristic.</summary>
-		public static readonly Characteristic<CompetitionAdjustmentMode> AdjustmentsCharacteristic = Characteristic.Create(
-			(CompetitionOptions o) => o.Adjustments);
+		public static readonly Characteristic<CompetitionAdjustmentMode> AdjustmentsCharacteristic = CreateCharacteristic<CompetitionAdjustmentMode>(
+			nameof(Adjustments));
 		#endregion
 
 		/// <summary>Default competition options.</summary>

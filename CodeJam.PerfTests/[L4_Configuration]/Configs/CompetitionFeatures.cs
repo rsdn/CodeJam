@@ -15,44 +15,44 @@ namespace CodeJam.PerfTests.Configs
 	{
 		#region Characteristics
 		/// <summary>Burst mode characteristic</summary>
-		public static readonly Characteristic<bool> BurstModeCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.BurstMode);
+		public static readonly Characteristic<bool> BurstModeCharacteristic = CreateCharacteristic<bool>(
+			nameof(BurstMode));
 
 		/// <summary>The code is being run on a CI server characteristic.</summary>
-		public static readonly Characteristic<bool> ContinuousIntegrationModeCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.ContinuousIntegrationMode);
+		public static readonly Characteristic<bool> ContinuousIntegrationModeCharacteristic = CreateCharacteristic<bool>(
+			nameof(ContinuousIntegrationMode));
 
-		/// <summary>Target platform for the competition characteristic.</summary>
-		public static readonly Characteristic<Platform> PlatformCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.Platform);
+		/// <summary>.Descriptor platform for the competition characteristic.</summary>
+		public static readonly Characteristic<Platform> PlatformCharacteristic = CreateCharacteristic<Platform>(
+			nameof(Platform));
 
 		/// <summary>Source annotations feature characteristic.</summary>
-		public static readonly Characteristic<bool> AnnotateSourcesCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.AnnotateSources);
+		public static readonly Characteristic<bool> AnnotateSourcesCharacteristic = CreateCharacteristic<bool>(
+			nameof(AnnotateSources));
 
 		/// <summary>Ignore existing annotations characteristic.</summary>
-		public static readonly Characteristic<bool> IgnoreExistingAnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.IgnoreExistingAnnotations);
+		public static readonly Characteristic<bool> IgnoreExistingAnnotationsCharacteristic = CreateCharacteristic<bool>(
+			nameof(IgnoreExistingAnnotations));
 
 		/// <summary>URI of the log that contains competition limits from previous run(s) characteristic.</summary>
-		public static readonly Characteristic<string> PreviousRunLogUriCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.PreviousRunLogUri);
+		public static readonly Characteristic<string> PreviousRunLogUriCharacteristic = CreateCharacteristic<string>(
+			nameof(PreviousRunLogUri));
 
 		/// <summary>Fail tests if there are any warnings characteristic.</summary>
-		public static readonly Characteristic<bool> ReportWarningsAsErrorsCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.ReportWarningsAsErrors);
+		public static readonly Characteristic<bool> ReportWarningsAsErrorsCharacteristic = CreateCharacteristic<bool>(
+			nameof(ReportWarningsAsErrors));
 
 		/// <summary>Troubleshooting mode characteristic.</summary>
-		public static readonly Characteristic<bool> TroubleshootingModeCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.TroubleshootingMode);
+		public static readonly Characteristic<bool> TroubleshootingModeCharacteristic = CreateCharacteristic<bool>(
+			nameof(TroubleshootingMode));
 
 		/// <summary>Important info logger characteristic.</summary>
-		public static readonly Characteristic<bool> ImportantInfoLoggerCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.ImportantInfoLogger);
+		public static readonly Characteristic<bool> ImportantInfoLoggerCharacteristic = CreateCharacteristic<bool>(
+			nameof(ImportantInfoLogger));
 
 		/// <summary>Detailed logger characteristic.</summary>
-		public static readonly Characteristic<bool> DetailedLoggerCharacteristic = Characteristic.Create(
-			(CompetitionFeatures f) => f.DetailedLogger);
+		public static readonly Characteristic<bool> DetailedLoggerCharacteristic = CreateCharacteristic<bool>(
+			nameof(DetailedLogger));
 		#endregion
 
 		#region .ctors
@@ -94,7 +94,7 @@ namespace CodeJam.PerfTests.Configs
 		/// Performs single run per measurement.
 		/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1000 ns).
 		/// </summary>
-		/// <value>Target platform for the competition.</value>
+		/// <value>.Descriptor platform for the competition.</value>
 		public bool BurstMode
 		{
 			get => BurstModeCharacteristic[this];
@@ -119,8 +119,8 @@ namespace CodeJam.PerfTests.Configs
 			set => ContinuousIntegrationModeCharacteristic[this] = value;
 		}
 
-		/// <summary>Specifies target platform for the competition.</summary>
-		/// <value>Target platform for the competition.</value>
+		/// <summary>Specifies descriptor platform for the competition.</summary>
+		/// <value>.Descriptor platform for the competition.</value>
 		public Platform Platform
 		{
 			get => PlatformCharacteristic[this];

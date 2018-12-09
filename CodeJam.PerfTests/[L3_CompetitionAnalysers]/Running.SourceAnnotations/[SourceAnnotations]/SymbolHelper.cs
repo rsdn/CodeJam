@@ -40,38 +40,38 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private static readonly Guid _corSymSourceHashSha1 = new Guid("ff1816ec-aa5e-4d10-87f7-6f4963833460");
 
 		/// <summary>Tries to get path to the source file for the method.</summary>
-		/// <param name="target">The target.</param>
+		/// <param name="descriptor">The descriptor.</param>
 		/// <param name="messageLogger">The message logger.</param>
 		/// <returns>Path to the source file, or <c>null</c> if there is no PDB info for the method</returns>
 		[CanBeNull]
 		public static string TryGetSourcePath(
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] IMessageLogger messageLogger)
 		{
-			Code.NotNull(target, nameof(target));
+			Code.NotNull(descriptor, nameof(descriptor));
 			Code.NotNull(messageLogger, nameof(messageLogger));
 
 			string result = null;
 			try
 			{
 				// ReSharper disable once PossibleNullReferenceException
-				var reader = GetReader(target.Method.DeclaringType.Module);
+				var reader = GetReader(descriptor.WorkloadMethod.DeclaringType.Module);
 
-				var documentInfo = TryGetDocumentInfo(target, reader, messageLogger);
+				var documentInfo = TryGetDocumentInfo(descriptor, reader, messageLogger);
 				result = documentInfo?.GetName();
 
 				if (result == null)
 				{
 					messageLogger.WriteSetupErrorMessage(
-						target,
+						descriptor,
 						"No PDB data available.",
-						$"Ensure that there is actual pdb file for the assembly '{target.Method.DeclaringType?.Module.GetModulePath()}'.");
+						$"Ensure that there is actual pdb file for the assembly '{descriptor.WorkloadMethod.DeclaringType?.Module.GetModulePath()}'.");
 				}
 			}
 			catch (COMException ex)
 			{
 				messageLogger.WriteExceptionMessage(
-					MessageSeverity.ExecutionError, target,
+					MessageSeverity.ExecutionError, descriptor,
 					"Could not parse method symbols.", ex);
 			}
 
@@ -79,33 +79,33 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 
 		/// <summary>Tries to get source file information.</summary>
-		/// <param name="target">The target.</param>
+		/// <param name="descriptor">The descriptor.</param>
 		/// <param name="messageLogger">The message logger.</param>
 		/// <returns>Source file info.</returns>
 		[CanBeNull]
 		public static SourceAnnotationInfo TryGetSourceInfo(
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] IMessageLogger messageLogger)
 		{
 			SourceAnnotationInfo result = null;
 			try
 			{
 				// ReSharper disable once PossibleNullReferenceException
-				var reader = GetReader(target.Method.DeclaringType.Module);
+				var reader = GetReader(descriptor.WorkloadMethod.DeclaringType.Module);
 
-				result = TryGetSourceInfoCore(target, reader, messageLogger);
+				result = TryGetSourceInfoCore(descriptor, reader, messageLogger);
 				if (result == null)
 				{
 					messageLogger.WriteSetupErrorMessage(
-						target,
+						descriptor,
 						"No PDB data available.",
-						$"Ensure that there is actual pdb file for the assembly '{target.Method.DeclaringType?.Module.GetModulePath()}'.");
+						$"Ensure that there is actual pdb file for the assembly '{descriptor.WorkloadMethod.DeclaringType?.Module.GetModulePath()}'.");
 				}
 			}
 			catch (COMException ex)
 			{
 				messageLogger.WriteExceptionMessage(
-					MessageSeverity.ExecutionError, target,
+					MessageSeverity.ExecutionError, descriptor,
 					"Could not parse method symbols.", ex);
 			}
 
@@ -114,17 +114,17 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[CanBeNull]
 		private static SourceAnnotationInfo TryGetSourceInfoCore(
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] ISymUnmanagedReader reader,
 			[NotNull] IMessageLogger messageLogger)
 		{
-			var documentInfo = TryGetDocumentInfo(target, reader, messageLogger);
+			var documentInfo = TryGetDocumentInfo(descriptor, reader, messageLogger);
 			if (documentInfo == null)
 				return null;
 
 			var path = documentInfo.GetName();
 			// ReSharper disable once PossibleNullReferenceException
-			var methodLinesMap = GetMethodLinesMap(documentInfo, reader, target.Method.DeclaringType.Assembly);
+			var methodLinesMap = GetMethodLinesMap(documentInfo, reader, descriptor.WorkloadMethod.DeclaringType.Assembly);
 			var sourceLanguage = SourceLanguage.Unknown;
 			var checksumAlgorithm = PdbChecksumAlgorithm.Unknown;
 			var checksum = documentInfo.GetChecksum();
@@ -174,11 +174,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#region TryGetDocumentInfo
 		[CanBeNull]
 		private static ISymUnmanagedDocument TryGetDocumentInfo(
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] ISymUnmanagedReader reader,
 			[NotNull] IMessageLogger messageLogger)
 		{
-			var implMethod = ResolveBestMethodInfo(target.Method);
+			var implMethod = ResolveBestMethodInfo(descriptor.WorkloadMethod);
 
 			var methodSymbols = reader.GetMethod(implMethod.MetadataToken);
 			var documents = methodSymbols.GetDocumentsForMethod();
@@ -186,14 +186,14 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			if (documents.Length == 0)
 			{
 				messageLogger.WriteSetupErrorMessage(
-					target,
+					descriptor,
 					"No code found for the method.");
 				return null;
 			}
 			if (documents.Length > 1)
 			{
 				messageLogger.WriteSetupErrorMessage(
-					target,
+					descriptor,
 					"Method code spans multiple documents, this is not supported for now.");
 				return null;
 			}

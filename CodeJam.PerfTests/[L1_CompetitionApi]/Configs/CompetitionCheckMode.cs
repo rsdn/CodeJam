@@ -13,26 +13,30 @@ namespace CodeJam.PerfTests.Configs
 	public sealed class CompetitionCheckMode : CharacteristicObject<CompetitionCheckMode>
 	{
 		/// <summary>Check metric limits characteristic. Enabled by default.</summary>
-		public static readonly Characteristic<bool> CheckMetricsCharacteristic = Characteristic.Create(
-			(CompetitionCheckMode m) => m.CheckMetrics,
+		public static readonly Characteristic<bool> CheckMetricsCharacteristic =
+			Characteristic.Create<CompetitionCheckMode, bool>(
+			nameof(CheckMetrics),
 			true);
 
 		/// <summary>Timing limit to detect too fast benchmarks characteristic. Default is 1000 ns.</summary>
-		public static readonly Characteristic<TimeSpan> TooFastBenchmarkLimitCharacteristic = Characteristic.Create(
-			(CompetitionCheckMode m) => m.TooFastBenchmarkLimit,
-			BenchmarkHelpers.TimeSpanFromNanoseconds(1000));
+		public static readonly Characteristic<TimeSpan> TooFastBenchmarkLimitCharacteristic =
+			Characteristic.Create<CompetitionCheckMode, TimeSpan>(
+				nameof(TooFastBenchmarkLimitCharacteristic),
+				BenchmarkHelpers.TimeSpanFromNanoseconds(1000));
 
 		/// <summary>Timing limit to detect long-running benchmarks characteristic. Default is 500 ms.</summary>
-		public static readonly Characteristic<TimeSpan> LongRunningBenchmarkLimitCharacteristic = Characteristic.Create(
-			(CompetitionCheckMode m) => m.LongRunningBenchmarkLimit,
-			TimeSpan.FromMilliseconds(500));
+		public static readonly Characteristic<TimeSpan> LongRunningBenchmarkLimitCharacteristic =
+			Characteristic.Create<CompetitionCheckMode, TimeSpan>(
+				nameof(LongRunningBenchmarkLimitCharacteristic),
+				TimeSpan.FromMilliseconds(500));
 
 		/// <summary>
 		/// Maximum count of retries performed if metric limits check failed characteristic. Default is 3.
 		/// </summary>
-		public static readonly Characteristic<int> RerunsIfCheckFailedCharacteristic = Characteristic.Create(
-			(CompetitionCheckMode m) => m.RerunsIfValidationFailed,
-			3);
+		public static readonly Characteristic<int> RerunsIfCheckFailedCharacteristic =
+			Characteristic.Create<CompetitionCheckMode, int>(
+				nameof(RerunsIfValidationFailed),
+				3);
 
 		/// <summary>Check metric limits. Enabled by default.</summary>
 		/// <value><c>true</c> if metric limits should be checked.</value>

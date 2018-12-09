@@ -28,10 +28,10 @@ namespace BenchmarkDotNet.Helpers
 	[PublicAPI]
 	public static class BenchmarkHelpers
 	{
-		#region Benchmark-related
+		#region BenchmarkCase-related
 		/// <summary>Returns benchmark types from the assembly.</summary>
 		/// <param name="assembly">The assembly to get benchmarks from.</param>
-		/// <returns>Benchmark types from the assembly</returns>
+		/// <returns>BenchmarkCase types from the assembly</returns>
 		public static Type[] GetBenchmarkTypes([NotNull] Assembly assembly) =>
 			// Use reflection for a more maintainable way of creating the benchmark switcher,
 			// Benchmarks are listed in namespace order first (e.g. BenchmarkDotNet.Samples.CPU,
@@ -55,39 +55,40 @@ namespace BenchmarkDotNet.Helpers
 		/// <summary>Returns benchmarks for the summary sorted by execution order.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Benchmarks for the summary.</returns>
-		public static IEnumerable<Benchmark> GetExecutionOrderBenchmarks([NotNull] this Summary summary)
+		public static IEnumerable<BenchmarkCase> GetExecutionOrderBenchmarksCases([NotNull] this Summary summary)
 		{
-			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
-			return orderProvider.GetExecutionOrder(summary.Benchmarks);
+			var orderProvider = summary.Config.GetOrderer() ?? DefaultOrderer.Instance;
+			return orderProvider.GetExecutionOrder(summary.BenchmarksCases);
 		}
 
 		/// <summary>Returns benchmarks for the summary sorted by display order.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Benchmarks for the summary.</returns>
-		public static IEnumerable<Benchmark> GetSummaryOrderBenchmarks([NotNull] this Summary summary)
+		public static IEnumerable<BenchmarkCase> GetSummaryOrderBenchmarksCases([NotNull] this Summary summary)
 		{
-			var orderProvider = summary.Config.GetOrderProvider() ?? DefaultOrderProvider.Instance;
-			return orderProvider.GetSummaryOrder(summary.Benchmarks, summary);
+			var orderProvider = summary.Config.GetOrderer() ?? DefaultOrderer.Instance;
+			return orderProvider.GetSummaryOrder(summary.BenchmarksCases, summary);
 		}
 
 		/// <summary>Returns the baseline for the benchmark.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Baseline for the benchmark</returns>
-		public static Benchmark TryGetBaseline(
+		// TODO: migrate: review baseline logic
+		public static BenchmarkCase TryGetBaseline(
 			[NotNull] this Summary summary,
-			[NotNull] Benchmark benchmark) =>
-				summary.Benchmarks
+			[NotNull] BenchmarkCase benchmark) =>
+				summary.BenchmarksCases
 					.Where(b => b.Job.DisplayInfo == benchmark.Job.DisplayInfo)
 					.Where(b => b.Parameters.DisplayInfo == benchmark.Parameters.DisplayInfo)
-					.FirstOrDefault(b => b.Target.Baseline);
+					.FirstOrDefault(b => b.Descriptor.Baseline);
 
-		/// <summary>Gets the benchmark targets.</summary>
+		/// <summary>Gets the benchmark descriptors.</summary>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns></returns>
-		public static Target[] GetBenchmarkTargets(this Summary summary) =>
-			summary.GetSummaryOrderBenchmarks()
-				.Select(b => b.Target)
+		public static Descriptor[] GetBenchmarkDescriptors(this Summary summary) =>
+			summary.GetSummaryOrderBenchmarksCases()
+				.Select(b => b.Descriptor)
 				.Distinct()
 				.ToArray();
 		#endregion

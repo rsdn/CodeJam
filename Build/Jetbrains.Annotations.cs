@@ -301,8 +301,8 @@ namespace JetBrains.Annotations
 	internal sealed class CannotApplyEqualityOperatorAttribute : Attribute { }
 
 	/// <summary>
-	/// When applied to a target attribute, specifies a requirement for any type marked
-	/// with the target attribute to implement or inherit specific type or types.
+	/// When applied to a descriptor attribute, specifies a requirement for any type marked
+	/// with the descriptor attribute to implement or inherit specific type or types.
 	/// </summary>
 	/// <example><code>
 	/// [BaseTypeRequired(typeof(IComponent)] // Specify requirement
@@ -532,14 +532,14 @@ namespace JetBrains.Annotations
 	/// </summary>
 	/// <remarks>
 	/// You can apply the attribute on the whole method or on any of its additional parameters. The macro expression
-	/// is defined in the <see cref="MacroAttribute.Expression"/> property. When applied on a method, the target
-	/// template parameter is defined in the <see cref="MacroAttribute.Target"/> property. To apply the macro silently
+	/// is defined in the <see cref="MacroAttribute.Expression"/> property. When applied on a method, the descriptor
+	/// template parameter is defined in the <see cref="MacroAttribute.Descriptor"/> property. To apply the macro silently
 	/// for the parameter, set the <see cref="MacroAttribute.Editable"/> property value = -1.
 	/// </remarks>
 	/// <example>
 	/// Applying the attribute on a source template method:
 	/// <code>
-	/// [SourceTemplate, Macro(Target = "item", Expression = "suggestVariableName()")]
+	/// [SourceTemplate, Macro(.Descriptor = "item", Expression = "suggestVariableName()")]
 	/// public static void forEach&lt;T&gt;(this IEnumerable&lt;T&gt; collection) {
 	///   foreach (var item in collection) {
 	///     //$ $END$
@@ -565,20 +565,20 @@ namespace JetBrains.Annotations
 		[CanBeNull] public string Expression { get; set; }
 
 		/// <summary>
-		/// Allows specifying which occurrence of the target parameter becomes editable when the template is deployed.
+		/// Allows specifying which occurrence of the descriptor parameter becomes editable when the template is deployed.
 		/// </summary>
 		/// <remarks>
-		/// If the target parameter is used several times in the template, only one occurrence becomes editable;
+		/// If the descriptor parameter is used several times in the template, only one occurrence becomes editable;
 		/// other occurrences are changed synchronously. To specify the zero-based index of the editable occurrence,
 		/// use values >= 0. To make the parameter non-editable when the template is expanded, use -1.
 		/// </remarks>>
 		public int Editable { get; set; }
 
 		/// <summary>
-		/// Identifies the target parameter of a <see cref="SourceTemplateAttribute">source template</see> if the
+		/// Identifies the descriptor parameter of a <see cref="SourceTemplateAttribute">source template</see> if the
 		/// <see cref="MacroAttribute"/> is applied on a template method.
 		/// </summary>
-		[CanBeNull] public string Target { get; set; }
+		[CanBeNull] public string Descriptor { get; set; }
 	}
 
 	[AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]

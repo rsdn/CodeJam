@@ -29,30 +29,29 @@ namespace CodeJam.PerfTests.Configs.Factories
 	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public class CompetitionConfigFactory : ICompetitionConfigFactory
 	{
+		// TODO: migrate: review column list
 		/// <summary>Columns for default config. </summary>
 		public static IColumnProvider DefaultColumns = new CompositeColumnProvider(
-			DefaultColumnProviders.Target,
+			DefaultColumnProviders.Descriptor,
 			CompetitionOptionsColumnProvider.Instance,
 			DefaultColumnProviders.Job,
 			DefaultColumnProviders.Params,
-			DefaultColumnProviders.Diagnosers,
 			new SimpleColumnProvider(
 				StatisticColumn.Mean,
 				StatisticColumn.StdDev));
 
 		/// <summary>Columns for troubleshooting mode config. </summary>
 		public static IColumnProvider TroubleshootingModeColumns = new CompositeColumnProvider(
-			DefaultColumnProviders.Target,
+			DefaultColumnProviders.Descriptor,
 			CompetitionOptionsColumnProvider.Instance,
 			DefaultColumnProviders.Job,
 			DefaultColumnProviders.Params,
-			DefaultColumnProviders.Diagnosers,
 			DefaultColumnProviders.Statistics,
 			new SimpleColumnProvider(
 				StatisticColumn.Mean,
 				StatisticColumn.StdDev,
-				BaselineScaledColumn.Scaled,
-				BaselineScaledColumn.ScaledStdDev,
+				BaselineRatioColumn.RatioMean,
+				BaselineRatioColumn.RatioStdDev,
 				StatisticColumn.Min,
 				StatisticColumn.Max));
 
@@ -79,7 +78,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 		}
 
 		/// <summary>Creates competition config for type.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>Competition config for type.</returns>
 		[NotNull]
@@ -97,7 +96,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 		/// <summary>Default competition config job.</summary>
 		public static readonly Job DefaultJob = new Job("Competition")
 		{
-			Env =
+			Environment =
 			{
 				Gc =
 				{
@@ -108,7 +107,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			{
 				LaunchCount = 1,
 				WarmupCount = 128,
-				TargetCount = 256,
+				IterationCount = 256,
 				RunStrategy = RunStrategy.Throughput,
 				UnrollFactor = 16,
 				InvocationCount = 256
@@ -160,7 +159,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 				CreateCore(targetAssembly, competitionFeatures);
 
 		/// <summary>Creates competition config for type.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>Competition config for type.</returns>
 		public ICompetitionConfig Create(
@@ -301,12 +300,12 @@ namespace CodeJam.PerfTests.Configs.Factories
 			var job = new Job(jobId, DefaultJob);
 			if (platform != null)
 			{
-				job.Env.Platform = platform.GetValueOrDefault();
+				job.Environment.Platform = platform.GetValueOrDefault();
 			}
 			if (competitionFeatures.BurstMode)
 			{
 				job.Apply(BurstModeModifier);
-				job.Run.TargetCount *= 2;
+				job.Run.IterationCount *= 2;
 			}
 
 			if (competitionFeatures.TroubleshootingMode)

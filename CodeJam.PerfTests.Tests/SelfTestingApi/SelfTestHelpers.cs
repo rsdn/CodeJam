@@ -17,7 +17,7 @@ namespace CodeJam.PerfTests
 	[PublicAPI]
 	internal static class SelfTestHelpers
 	{
-		#region Benchmark tests-related
+		#region BenchmarkCase tests-related
 		// Jitting = 1, WarmupCount = 2, TargetCount = 2
 		public const int ExpectedSelfTestRunCount = 5;
 
@@ -39,7 +39,7 @@ namespace CodeJam.PerfTests
 			var runMode = config.GetJobs().Single().Run;
 
 			var singleLaunchCount = JittingCount * unrollFactor +
-				(runMode.WarmupCount + runMode.TargetCount) * runMode.InvocationCount;
+				(runMode.WarmupCount + runMode.IterationCount) * runMode.InvocationCount;
 
 			return singleLaunchCount * runMode.LaunchCount * methodsCount;
 		}

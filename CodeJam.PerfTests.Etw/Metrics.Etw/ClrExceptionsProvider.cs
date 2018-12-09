@@ -23,7 +23,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <summary>The category of metric values.</summary>
 		public const string Category = "Clr";
 
-		private class PerBenchmarkValues : Dictionary<Benchmark, long> { }
+		private class PerBenchmarkValues : Dictionary<BenchmarkCase, long> { }
 
 		private static readonly RunState<PerBenchmarkValues> _results = new RunState<PerBenchmarkValues>();
 
@@ -45,7 +45,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		{
 			var totalOps = benchmarkReport.GcStats.TotalOperations;
 
-			return _results[summary].TryGetValue(benchmarkReport.Benchmark, out var result)
+			return _results[summary].TryGetValue(benchmarkReport.BenchmarkCase, out var result)
 				? new[] { (double)result / totalOps }
 				: new double[0];
 		}
@@ -74,7 +74,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <param name="config">The configuration.</param>
 		/// <param name="filter">Filter for events that should be consumed.</param>
 		/// <returns>The <see cref="IDisposable" /> to detach from metric handling.</returns>
-		public IDisposable Subscribe(TraceEventSource traceEventSource, Benchmark benchmark, IConfig config, Func<TraceEvent, bool> filter)
+		public IDisposable Subscribe(TraceEventSource traceEventSource, BenchmarkCase benchmark, IConfig config, Func<TraceEvent, bool> filter)
 		{
 			var state = _results[config];
 			state[benchmark] = 0;

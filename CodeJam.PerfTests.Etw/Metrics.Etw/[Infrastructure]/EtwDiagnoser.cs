@@ -60,7 +60,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 
 		#region State manipulation
 		private EtwDiagnoserAnalysis CreateAnalysis(
-			Benchmark benchmark, IConfig config, IEtwMetricValueProvider[] metricProviders)
+			BenchmarkCase benchmark, IConfig config, IEtwMetricValueProvider[] metricProviders)
 		{
 			var diagnoserState = _diagnoserState[config];
 			Code.BugIf(diagnoserState.Analysis != null, "runState.Analysis != null");
@@ -119,7 +119,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 				return;
 			}
 
-			var analysis = CreateAnalysis(parameters.Benchmark, parameters.Config, metricProviders);
+			var analysis = CreateAnalysis(parameters.BenchmarkCase, parameters.Config, metricProviders);
 
 			EtwHelpers.WorkaroundEnsureNativeDlls();
 
@@ -167,7 +167,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 						.Where(m => m.ValuesProvider is IEtwMetricValueProvider p && p.IsKernelMetric);
 
 					analysis.WriteSetupErrorMessage(
-						analysis.Benchmark.Target,
+						analysis.BenchmarkCase.Descriptor,
 						$"The config contains kernel metric(s) {kernelMetrics.Select(m => m.DisplayName).Join(", ")} and therefore requires elevated run.",
 						"Run the competition with elevated permissions (as administrator).");
 
@@ -222,7 +222,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 				if (eventSource.EventsLost > 0)
 				{
 					analysis.WriteWarningMessage(
-						analysis.Benchmark.Target,
+						analysis.BenchmarkCase.Descriptor,
 						$"The analysis session contains {eventSource.EventsLost} lost event(s). Metric results may be inaccurate.",
 						"Consider to collect less events or to place the benchmark working directory on drive with least load.");
 				}
@@ -234,7 +234,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 					if (metricProvider.ProviderGuid == DiagnoserEventSource.SourceGuid)
 						continue;
 
-					var handler = metricProvider.Subscribe(eventSource, analysis.Benchmark, analysis.Config, timeAndProcessFilter);
+					var handler = metricProvider.Subscribe(eventSource, analysis.BenchmarkCase, analysis.Config, timeAndProcessFilter);
 					allHandlers.Add(handler);
 				}
 
@@ -251,11 +251,11 @@ namespace CodeJam.PerfTests.Metrics.Etw
 
 			var provider = new DiagnoserTimesProvider();
 			using (var eventSource = new ETWTraceEventSource(analysis.TraceFile.Path))
-			using (provider.Subscribe(eventSource, analysis.Benchmark, analysis.Config, currentRunFilter))
+			using (provider.Subscribe(eventSource, analysis.BenchmarkCase, analysis.Config, currentRunFilter))
 			{
 				eventSource.Process();
 			}
-			return provider.GetEvents(analysis.Benchmark, analysis.Config).ToArray();
+			return provider.GetEvents(analysis.BenchmarkCase, analysis.Config).ToArray();
 		}
 		#endregion
 
@@ -324,9 +324,10 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		#region Implementation of IDiagnoser
 		/// <summary>Processes the results.</summary>
 		/// <param name="results">The results.</param>
-		public void ProcessResults(DiagnoserResults results)
+		public IEnumerable<Metric> ProcessResults(DiagnoserResults results)
 		{
 			ProcessResultsCore();
+			throw new NotImplementedException();
 		}
 
 		/// <summary>Gets the column provider.</summary>
@@ -350,7 +351,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <summary>Gets diagnoser run mode.</summary>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>The diagnoser run mode.</returns>
-		public RunMode GetRunMode(Benchmark benchmark) => RunMode.ExtraRun;
+		public RunMode GetRunMode(BenchmarkCase benchmark) => RunMode.ExtraRun;
 
 		/// <summary>Handles the specified signal.</summary>
 		/// <param name="signal">The signal.</param>
@@ -358,15 +359,16 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <exception cref="NotImplementedException"></exception>
 		public void Handle(HostSignal signal, DiagnoserActionParameters parameters)
 		{
+			// TODO: migrate: cases
 			switch (signal)
 			{
 				case HostSignal.BeforeAnythingElse:
 					BeforeAnythingElse(parameters);
 					break;
-				case HostSignal.BeforeMainRun:
+				case HostSignal.BeforeActualRun:
 					BeforeMainRun(parameters);
 					break;
-				case HostSignal.AfterMainRun:
+				case HostSignal.AfterActualRun:
 					AfterMainRun(parameters);
 					break;
 				case HostSignal.AfterAll:
@@ -374,6 +376,10 @@ namespace CodeJam.PerfTests.Metrics.Etw
 					break;
 				case HostSignal.SeparateLogic:
 					SeparateLogic(parameters);
+					break;
+				case HostSignal.BeforeProcessStart:
+					break;
+				case HostSignal.AfterProcessExit:
 					break;
 				default:
 					throw CodeExceptions.UnexpectedArgumentValue(nameof(signal), signal);

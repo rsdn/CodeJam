@@ -18,7 +18,7 @@ namespace CodeJam.PerfTests.Configs.Factories
 			[CanBeNull] CompetitionFeatures competitionFeatures);
 
 		/// <summary>Creates competition config for type.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionFeatures">The competition features.</param>
 		/// <returns>Competition config for type.</returns>
 		[NotNull]

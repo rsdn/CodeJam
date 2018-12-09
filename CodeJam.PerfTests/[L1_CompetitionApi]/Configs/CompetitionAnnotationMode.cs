@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using BenchmarkDotNet.Characteristics;
 
 using JetBrains.Annotations;
@@ -12,20 +11,20 @@ namespace CodeJam.PerfTests.Configs
 	public sealed class CompetitionAnnotationMode : CharacteristicObject<CompetitionAnnotationMode>
 	{
 		/// <summary>Ignore existing source annotations characteristic.</summary>
-		public static readonly Characteristic<bool> IgnoreExistingAnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionAnnotationMode m) => m.IgnoreExistingAnnotations);
+		public static readonly Characteristic<bool> IgnoreExistingAnnotationsCharacteristic = CreateCharacteristic<bool>(
+			nameof(IgnoreExistingAnnotations));
 
 		/// <summary>Characteristic for URI of the log that contains logged source annotations from previous run(s).</summary>
-		public static readonly Characteristic<string> PreviousRunLogUriCharacteristic = Characteristic.Create(
-			(CompetitionAnnotationMode m) => m.PreviousRunLogUri);
+		public static readonly Characteristic<string> PreviousRunLogUriCharacteristic = CreateCharacteristic<string>(
+			nameof(PreviousRunLogUri));
 
 		/// <summary>Log source annotations characteristic.</summary>
-		public static readonly Characteristic<bool> LogAnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionAnnotationMode m) => m.LogAnnotations);
+		public static readonly Characteristic<bool> LogAnnotationsCharacteristic = CreateCharacteristic<bool>(
+			nameof(LogAnnotations));
 
 		/// <summary>Dont update sources with updated annotations.</summary>
-		public static readonly Characteristic<bool> DontSaveUpdatedAnnotationsCharacteristic = Characteristic.Create(
-			(CompetitionAnnotationMode m) => m.DontSaveUpdatedAnnotations);
+		public static readonly Characteristic<bool> DontSaveUpdatedAnnotationsCharacteristic = CreateCharacteristic<bool>(
+			nameof(DontSaveUpdatedAnnotations));
 
 		/// <summary>Existing source annotations should be igored.</summary>
 		/// <value><c>true</c>, if existing source annotations should be igored; otherwise, <c>false</c>.</value>

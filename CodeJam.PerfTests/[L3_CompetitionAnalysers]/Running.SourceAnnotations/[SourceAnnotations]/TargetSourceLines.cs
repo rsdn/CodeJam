@@ -7,14 +7,14 @@ using CodeJam.Ranges;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>
-	/// Information about benchmark target source lines
+	/// Information about benchmark descriptor source lines
 	/// </summary>
 	internal sealed class TargetSourceLines
 	{
 		private readonly Dictionary<RuntimeTypeHandle, int> _attributeLineNumbers;
 
 		/// <summary>Initializes a new instance of the <see cref="TargetSourceLines"/> class.</summary>
-		/// <param name="targetMethodHandle">Benchmark target method handle.</param>
+		/// <param name="targetMethodHandle">BenchmarkCase descriptor method handle.</param>
 		/// <param name="primaryAttributeLineNumber">Number of source line that contain primary annotation attribute.</param>
 		/// <param name="attributeCandidateLineNumbers">Range of source lines that may contain attribute annotations.</param>
 		/// <param name="attributeLineNumbers">Source lines that contain attribute annotations.</param>
@@ -47,8 +47,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			_attributeLineNumbers = attributeLineNumbers;
 		}
 
-		/// <summary>Gets benchmark target method handle.</summary>
-		/// <value>The benchmark target method handle.</value>
+		/// <summary>Gets benchmark descriptor method handle.</summary>
+		/// <value>The benchmark descriptor method handle.</value>
 		public RuntimeMethodHandle TargetMethodHandle { get; }
 
 		/// <summary>Gets number of source line that contain primary annotation attribute.</summary>

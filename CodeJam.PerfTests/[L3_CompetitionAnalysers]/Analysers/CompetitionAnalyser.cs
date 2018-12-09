@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using BenchmarkDotNet.Analysers;
+﻿using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-
 using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
@@ -15,8 +10,9 @@ using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.SourceAnnotations;
 using CodeJam.Reflection;
 using CodeJam.Strings;
-
 using JetBrains.Annotations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CodeJam.PerfTests.Analysers
 {
@@ -95,11 +91,11 @@ namespace CodeJam.PerfTests.Analysers
 				return;
 
 			Code.BugIf(
-				analysis.Targets.Any(t => t.Target.Type != analysis.RunState.BenchmarkType),
+				analysis.Targets.Any(t => t.Descriptor.Type != analysis.RunState.BenchmarkType),
 				"Trying to analyse code that does not belong to the benchmark.");
 
 			if (analysis.Targets.SelectMany(t => t.MetricValues).Any(m => m.Metric.IsRelative) &&
-				!analysis.Summary.GetBenchmarkTargets().Any(t => t.Baseline))
+				!analysis.Summary.GetBenchmarkDescriptors().Any(t => t.Baseline))
 			{
 				analysis.WriteSetupErrorMessage(
 					"No baseline member found. " +
@@ -131,8 +127,8 @@ namespace CodeJam.PerfTests.Analysers
 			AssertNoErrors(analysis);
 
 			var benchmarksByTarget = analysis.Summary
-				.GetSummaryOrderBenchmarks()
-				.GroupBy(b => analysis.Targets[b.Target])
+				.GetSummaryOrderBenchmarksCases()
+				.GroupBy(b => analysis.Targets[b.Descriptor])
 				.Where(g => g.Key != null);
 
 			var checkPassed = true;
@@ -149,7 +145,7 @@ namespace CodeJam.PerfTests.Analysers
 
 		private static bool OnCheckTarget(
 			[NotNull] CompetitionTarget competitionTarget,
-			[NotNull] Benchmark[] benchmarksForTarget,
+			[NotNull] BenchmarkCase[] benchmarksForTarget,
 			[NotNull] SummaryAnalysis analysis)
 		{
 			var result = true;
@@ -164,7 +160,7 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		private static bool CheckBenchmark(
-			Benchmark benchmark,
+			BenchmarkCase benchmark,
 			CompetitionMetricValue metricValue,
 			SummaryAnalysis analysis)
 		{
@@ -175,7 +171,7 @@ namespace CodeJam.PerfTests.Analysers
 			if (actualValues.IsEmpty)
 			{
 				analysis.AddTestErrorConclusion(
-					benchmark.Target,
+					benchmark.Descriptor,
 					$"Could not obtain {metric} metric values for {benchmark.DisplayInfo}.",
 					summary[benchmark]);
 
@@ -194,7 +190,7 @@ namespace CodeJam.PerfTests.Analysers
 			else
 			{
 				analysis.AddTestErrorConclusion(
-					benchmark.Target,
+					benchmark.Descriptor,
 					$"Metric {metric} {actualValues.ToString(metric.MetricUnits)} is out of limit {metricValue}.",
 					summary[benchmark]);
 
@@ -224,7 +220,7 @@ namespace CodeJam.PerfTests.Analysers
 					(from t in analysis.Targets
 					 from m in t.MetricValues
 					 where m.ValuesRange.IsEmpty
-					 group m.Metric.DisplayName by t.Target.MethodDisplayInfo
+					 group m.Metric.DisplayName by t.Descriptor.WorkloadMethod
 					 into g
 					 select g.Key + ": " + g.Join(", "))
 					.ToArray();

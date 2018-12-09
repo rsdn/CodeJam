@@ -51,7 +51,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="benchmarkReport">The benchmark report.</param>
 		/// <returns><c>true</c> if benchmark report is available.</returns>
 		protected static bool TryGetReport(
-			[NotNull] Benchmark benchmark, [NotNull] Summary summary,
+			[NotNull] BenchmarkCase benchmark, [NotNull] Summary summary,
 			out BenchmarkReport benchmarkReport)
 		{
 			benchmarkReport = summary[benchmark];
@@ -65,7 +65,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="baselineReport">The baseline report.</param>
 		/// <returns><c>true</c> if both benchmark and baseline reports are available.</returns>
 		protected static bool TryGetReports(
-			[NotNull] Benchmark benchmark, [NotNull] Summary summary,
+			[NotNull] BenchmarkCase benchmark, [NotNull] Summary summary,
 			out BenchmarkReport benchmarkReport, out BenchmarkReport baselineReport)
 		{
 			benchmarkReport = null;
@@ -116,7 +116,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Actual value for the benchmark or <c>null</c> if none.</returns>
-		public double? TryGetMeanValue(Benchmark benchmark, Summary summary)
+		public double? TryGetMeanValue(BenchmarkCase benchmark, Summary summary)
 		{
 			Code.NotNull(benchmark, nameof(benchmark));
 			Code.NotNull(summary, nameof(summary));
@@ -137,7 +137,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Metric that describes variance for the benchmark or <c>null</c> if none.</returns>
-		public double? TryGetVariance(Benchmark benchmark, Summary summary)
+		public double? TryGetVariance(BenchmarkCase benchmark, Summary summary)
 		{
 			Code.NotNull(benchmark, nameof(benchmark));
 			Code.NotNull(summary, nameof(summary));
@@ -158,7 +158,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="summary">Summary for the run.</param>
 		/// <param name="benchmark">The benchmark.</param>
 		/// <returns>Range that describes actual values for the benchmark (or empty range if none).</returns>
-		public MetricRange TryGetActualValues(Benchmark benchmark, Summary summary)
+		public MetricRange TryGetActualValues(BenchmarkCase benchmark, Summary summary)
 		{
 			Code.NotNull(benchmark, nameof(benchmark));
 			Code.NotNull(summary, nameof(summary));
@@ -181,7 +181,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="summary">Summary for the run.</param>
 		/// <returns>Range that describes expected limits for the benchmark (or empty range if none).</returns>
-		public MetricRange TryGetLimitValues(Benchmark benchmark, Summary summary)
+		public MetricRange TryGetLimitValues(BenchmarkCase benchmark, Summary summary)
 		{
 			Code.NotNull(benchmark, nameof(benchmark));
 			Code.NotNull(summary, nameof(summary));
@@ -256,7 +256,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="metricValues">The metric values.</param>
 		/// <returns><c>True</c> if values calculated successfully.</returns>
 		protected virtual bool TryGetValues(
-			[NotNull] Benchmark benchmark, [NotNull] Summary summary,
+			[NotNull] BenchmarkCase benchmark, [NotNull] Summary summary,
 			out double[] metricValues)
 		{
 			metricValues = null;
@@ -276,7 +276,7 @@ namespace CodeJam.PerfTests.Metrics
 		/// <param name="baselineMetricValues">The baseline metric values.</param>
 		/// <returns><c>True</c> if values calculated successfully.</returns>
 		protected virtual bool TryGetRelativeValues(
-			[NotNull] Benchmark benchmark, [NotNull] Summary summary,
+			[NotNull] BenchmarkCase benchmark, [NotNull] Summary summary,
 			out double[] metricValues, out double[] baselineMetricValues)
 		{
 			Code.NotNull(benchmark, nameof(benchmark));

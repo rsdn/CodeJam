@@ -38,7 +38,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			var runState = SelfTestCompetition.Run<IoReadBenchmark>();
 			var summary = runState.LastRunSummary;
-			var readBytes = MetricInfo.FromAttribute<FileIoReadAttribute>().ValuesProvider.TryGetMeanValue(summary.Benchmarks[0], summary);
+			var readBytes = MetricInfo.FromAttribute<FileIoReadAttribute>().ValuesProvider.TryGetMeanValue(summary.BenchmarksCases[0], summary);
 			Assert.Greater(readBytes, 0);
 		}
 
@@ -47,12 +47,12 @@ namespace CodeJam.PerfTests.IntegrationTests
 		{
 			var runState = SelfTestCompetition.Run<ThrowExceptionsBenchmark>();
 			var summary = runState.LastRunSummary;
-			var exceptions = MetricInfo.FromAttribute<ClrExceptionsAttribute>().ValuesProvider.TryGetMeanValue(summary.Benchmarks[0], summary);
+			var exceptions = MetricInfo.FromAttribute<ClrExceptionsAttribute>().ValuesProvider.TryGetMeanValue(summary.BenchmarksCases[0], summary);
 			//Assert.True(runState.CompletedSuccessfully);
 			Assert.Greater(exceptions ?? 1, 0);
 		}
 
-		#region Benchmark classes
+		#region BenchmarkCase classes
 		[PublicAPI]
 		[CompetitionModifier(typeof(CompetitionHighAccuracyBurstModeModifier))]
 		[CompetitionMeasureAll]

@@ -46,11 +46,11 @@ namespace CodeJam.PerfTests
 					{
 						LaunchCount = 1,
 						WarmupCount = 2,
-						TargetCount = 2,
+						IterationCount = 2,
 						InvocationCount = 1,
 						UnrollFactor = 1
 					},
-					Env =
+					Environment =
 					{
 						Affinity = new IntPtr(-1)
 					}
@@ -81,7 +81,7 @@ namespace CodeJam.PerfTests
 				{
 					LaunchCount = 1,
 					WarmupCount = 256,
-					TargetCount = 512
+					IterationCount = 512
 				}
 			});
 	}
@@ -96,7 +96,7 @@ namespace CodeJam.PerfTests
 				{
 					LaunchCount = 1,
 					WarmupCount = 10,
-					TargetCount = 10,
+					IterationCount = 10,
 					InvocationCount = 1,
 					UnrollFactor = 1
 				}

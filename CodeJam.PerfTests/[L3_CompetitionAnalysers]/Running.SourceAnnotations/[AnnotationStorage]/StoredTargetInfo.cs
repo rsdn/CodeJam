@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
 	/// <summary>
-	/// <summary>Transport class for stored target info values.</summary>
+	/// <summary>Transport class for stored descriptor info values.</summary>
 	/// </summary>
 	internal class StoredTargetInfo
 	{
@@ -19,7 +19,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Initializes a new instance of the <see cref="StoredTargetInfo"/> class.</summary>
 		/// <param name="metricValues">The stored metric values.</param>
 		/// <param name="baseline">
-		/// <c>true</c> if the target is baseline; 
+		/// <c>true</c> if the descriptor is baseline; 
 		/// <c>null</c> if baseline info is not persisted; 
 		/// otherwise, <c>false</c>.
 		/// </param>
@@ -36,9 +36,9 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <value>The stored metric values.</value>
 		public IReadOnlyList<StoredMetricValue> MetricValues { get; }
 
-		/// <summary>Gets a value indicating whether the target is a baseline.</summary>
+		/// <summary>Gets a value indicating whether the descriptor is a baseline.</summary>
 		/// <value>
-		/// <c>true</c> if the target is baseline; 
+		/// <c>true</c> if the descriptor is baseline; 
 		/// <c>null</c> if baseline info is not persisted; 
 		/// otherwise, <c>false</c>.
 		/// </value>

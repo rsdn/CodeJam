@@ -12,29 +12,29 @@ namespace CodeJam.PerfTests.Configs
 	public sealed class CompetitionRunMode : CharacteristicObject<CompetitionRunMode>
 	{
 		/// <summary>Allow debug builds characteristic.</summary>
-		public static readonly Characteristic<bool> AllowDebugBuildsCharacteristic = Characteristic.Create(
-			(CompetitionRunMode m) => m.AllowDebugBuilds);
+		public static readonly Characteristic<bool> AllowDebugBuildsCharacteristic = CreateCharacteristic<bool>(
+			nameof(AllowDebugBuilds));
 
 		/// <summary>Enable detailed logging characteristic.</summary>
-		public static readonly Characteristic<bool> DetailedLoggingCharacteristic = Characteristic.Create(
-			(CompetitionRunMode m) => m.DetailedLogging);
+		public static readonly Characteristic<bool> DetailedLoggingCharacteristic = CreateCharacteristic<bool>(
+			nameof(DetailedLogging));
 
 		/// <summary>Maximum runs allowed characteristic. Default is 10.</summary>
-		public static readonly Characteristic<int> MaxRunsAllowedCharacteristic = Characteristic.Create(
-			(CompetitionRunMode m) => m.MaxRunsAllowed,
+		public static readonly Characteristic<int> MaxRunsAllowedCharacteristic = Characteristic.Create<CompetitionRunMode, int>(
+			nameof(MaxRunsAllowed),
 			10);
 
 		/// <summary>Concurrent run behavior characteristic.</summary>
-		public static readonly Characteristic<ConcurrentRunBehavior> ConcurrentCharacteristic = Characteristic.Create(
-			(CompetitionRunMode m) => m.Concurrent);
+		public static readonly Characteristic<ConcurrentRunBehavior> ConcurrentCharacteristic = CreateCharacteristic<ConcurrentRunBehavior>(
+			nameof(Concurrent));
 
 		/// <summary>Report warnings as errors characteristic.</summary>
-		public static readonly Characteristic<bool> ReportWarningsAsErrorsCharacteristic = Characteristic.Create(
-			(CompetitionRunMode m) => m.ReportWarningsAsErrors);
+		public static readonly Characteristic<bool> ReportWarningsAsErrorsCharacteristic = CreateCharacteristic<bool>(
+			nameof(ReportWarningsAsErrors));
 
 		/// <summary>The code is being run on a CI server characteristic.</summary>
-		public static readonly Characteristic<bool> ContinuousIntegrationModeCharacteristic = Characteristic.Create(
-			(CompetitionRunMode m) => m.ContinuousIntegrationMode);
+		public static readonly Characteristic<bool> ContinuousIntegrationModeCharacteristic = CreateCharacteristic<bool>(
+			nameof(ContinuousIntegrationMode));
 
 		/// <summary>Allow debug builds to be used in competitions.</summary>
 		/// <value><c>true</c> if debug builds allowed; otherwise, <c>false</c>.</value>

@@ -85,10 +85,9 @@ namespace BenchmarkDotNet.Loggers
 		/// <param name="config">Config with loggers.</param>
 		public static void FlushLoggers(IConfig config)
 		{
-			var loggers = config.GetLoggers().OfType<IFlushableLogger>();
-			foreach (var flushable in loggers)
+			foreach (var logger in config.GetLoggers())
 			{
-				flushable.Flush();
+				logger.Flush();
 			}
 		}
 

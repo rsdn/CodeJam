@@ -47,7 +47,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <summary>The category of metric values.</summary>
 		public const string Category = "IO";
 
-		private class PerBenchmarkValues : Dictionary<Benchmark, IoData> { }
+		private class PerBenchmarkValues : Dictionary<BenchmarkCase, IoData> { }
 
 		private static readonly RunState<PerBenchmarkValues> _results = new RunState<PerBenchmarkValues>();
 
@@ -81,7 +81,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		protected override double[] GetValuesFromReport(BenchmarkReport benchmarkReport, Summary summary)
 		{
 			var totalOps = benchmarkReport.GcStats.TotalOperations;
-			if (!_results[summary].TryGetValue(benchmarkReport.Benchmark, out var result)) return new double[0];
+			if (!_results[summary].TryGetValue(benchmarkReport.BenchmarkCase, out var result)) return new double[0];
 			switch (MetricSource)
 			{
 				case IoMetricSource.FileIoRead:
@@ -117,7 +117,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <param name="config">The configuration.</param>
 		/// <param name="filter">Filter for events that should be consumed.</param>
 		/// <returns>The <see cref="IDisposable" /> to detach from metric handling.</returns>
-		public IDisposable Subscribe(TraceEventSource traceEventSource, Benchmark benchmark, IConfig config, Func<TraceEvent, bool> filter)
+		public IDisposable Subscribe(TraceEventSource traceEventSource, BenchmarkCase benchmark, IConfig config, Func<TraceEvent, bool> filter)
 		{
 			var accumulator = _results[config].GetOrAdd(benchmark);
 			var metricSource = MetricSource;

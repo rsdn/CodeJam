@@ -83,8 +83,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(messages.Length, 3);
 
-			Assert.AreEqual(messages[0].MessageText, "Target SlowerX2Async. Metric validation skipped as the method is marked with CompetitionBenchmarkAttribute.DoesNotCompete set to true.");
-			Assert.AreEqual(messages[1].MessageText, "Target SlowerX3Async. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+			Assert.AreEqual(messages[0].MessageText, ".Descriptor SlowerX2Async. Metric validation skipped as the method is marked with CompetitionBenchmarkAttribute.DoesNotCompete set to true.");
+			Assert.AreEqual(messages[1].MessageText, ".Descriptor SlowerX3Async. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 			Assert.AreEqual(messages[2].MessageText, "All competition metrics are ok.");
 		}
 
@@ -103,10 +103,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Target Baseline. Baseline flag on the method and in the annotation do not match.");
+				".Descriptor Baseline. Baseline flag on the method and in the annotation do not match.");
 			Assert.AreEqual(
 				messages[1].MessageText,
-				"Target SlowerX20. Baseline flag on the method and in the annotation do not match.");
+				".Descriptor SlowerX20. Baseline flag on the method and in the annotation do not match.");
 		}
 
 		[Test]
@@ -136,8 +136,8 @@ namespace CodeJam.PerfTests.IntegrationTests
 			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
 			Assert.AreEqual(messages.Length, 2);
-			Assert.AreEqual(messages[0].MessageText, "Target Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
-			Assert.AreEqual(messages[1].MessageText, "Target Benchmark2. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+			Assert.AreEqual(messages[0].MessageText, ".Descriptor Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+			Assert.AreEqual(messages[1].MessageText, ".Descriptor Benchmark2. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 		}
 
 		[Test]
@@ -159,7 +159,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Target Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+				".Descriptor Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
@@ -189,7 +189,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Runner);
 			Assert.That(
 				messages[0].MessageText,
-					Does.StartWith("Benchmark BadLimitsBenchmark failed. Exception: Invalid range [20.2..5.5]."));
+					Does.StartWith("BenchmarkCase BadLimitsBenchmark failed. Exception: Invalid range [20.2..5.5]."));
 		}
 
 		[Test]
@@ -209,7 +209,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[0].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
+			Assert.That(messages[0].MessageText, Does.StartWith(".Descriptor SlowerX10. Metric Scaled"));
 			Assert.That(messages[0].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
@@ -222,7 +222,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
 			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[2].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
+			Assert.That(messages[2].MessageText, Does.StartWith(".Descriptor SlowerX10. Metric Scaled"));
 			Assert.That(messages[2].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[3].RunNumber, 2);
@@ -235,7 +235,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);
 			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[4].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
+			Assert.That(messages[4].MessageText, Does.StartWith(".Descriptor SlowerX10. Metric Scaled"));
 			Assert.That(messages[4].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[5].RunNumber, 3);

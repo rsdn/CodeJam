@@ -28,21 +28,21 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	/// <seealso cref="CodeJam.PerfTests.Running.SourceAnnotations.IAnnotationStorage" />
 	internal class SourceAnnotationStorage : AnnotationStorageBase
 	{
-		/// <summary>Retrieves stored info for competition targets.</summary>
-		/// <param name="targets">Competition targets the metrics are retrieved for.</param>
+		/// <summary>Retrieves stored info for competition descriptors.</summary>
+		/// <param name="descriptors">Competition descriptors the metrics are retrieved for.</param>
 		/// <param name="analysis">State of the analysis.</param>
-		/// <returns>Stored info for competition targets.</returns>
-		protected override IReadOnlyDictionary<Target, StoredTargetInfo> GetStoredTargets(Target[] targets, Analysis analysis)
+		/// <returns>Stored info for competition descriptors.</returns>
+		protected override IReadOnlyDictionary<Descriptor, StoredTargetInfo> GetStoredTargets(Descriptor[] descriptors, Analysis analysis)
 		{
-			var result = new Dictionary<Target, StoredTargetInfo>();
+			var result = new Dictionary<Descriptor, StoredTargetInfo>();
 			var metrics = analysis.Config.GetMetrics().ToArray();
-			foreach (var target in targets)
+			foreach (var descriptor in descriptors)
 			{
-				var storedTarget = TryGetStoredTarget(target, metrics, analysis);
+				var storedTarget = TryGetStoredTarget(descriptor, metrics, analysis);
 
 				if (storedTarget != null)
 				{
-					result.Add(target, storedTarget);
+					result.Add(descriptor, storedTarget);
 				}
 			}
 			return result;
@@ -50,12 +50,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		[CanBeNull]
 		private static StoredTargetInfo TryGetStoredTarget(
-			Target target, MetricInfo[] metrics, IMessageLogger messageLogger)
+			Descriptor descriptor, MetricInfo[] metrics, IMessageLogger messageLogger)
 		{
 			var metricsByType = metrics.ToDictionary(m => m.AttributeType);
 			var result = new List<StoredMetricValue>(metricsByType.Count);
 
-			foreach (var metricAttribute in target.Method.GetMetadataAttributes<IStoredMetricValue>(true).ToArray())
+			foreach (var metricAttribute in descriptor.WorkloadMethod.GetMetadataAttributes<IStoredMetricValue>(true).ToArray())
 			{
 				if (!metricsByType.ContainsKey(metricAttribute.MetricAttributeType))
 				{
@@ -65,7 +65,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 						// TODO: common API for unknown metrics, refactor it to base?
 						var metricName = metricAttribute.MetricAttributeType.GetShortAttributeName();
 						messageLogger.WriteInfoMessage(
-							target,
+							descriptor,
 							$"Metric {metricName} not listed in config and therefore is ignored.",
 							$"List of metrics is exposed as {nameof(ICompetitionConfig)}.{nameof(ICompetitionConfig.GetMetrics)}().");
 					}
@@ -84,11 +84,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return new StoredTargetInfo(result.ToArray());
 		}
 
-		/// <summary>Saves stored metrics from competition targets.</summary>
-		/// <param name="competitionTargets">Competition targets with metrics to save.</param>
+		/// <summary>Saves stored metrics from competition descriptors.</summary>
+		/// <param name="competitionTargets">Competition descriptors with metrics to save.</param>
 		/// <param name="annotationContext">The annotation context.</param>
 		/// <param name="analysis">State of the analysis.</param>
-		/// <returns>Saved targets, if any.</returns>
+		/// <returns>Saved descriptors, if any.</returns>
 		protected override CompetitionTarget[] TrySaveAnnotationsCore(IReadOnlyCollection<CompetitionTarget> competitionTargets, AnnotationContext annotationContext, SummaryAnalysis analysis)
 		{
 			var result = new List<CompetitionTarget>();
@@ -109,8 +109,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			if (metrics.Length == 0)
 				return;
 
-			var target = targetToAnnotate.Target;
-			var targetKey = new AnnotationTargetKey(target.Method.MethodHandle);
+			var descriptor = targetToAnnotate.Descriptor;
+			var targetKey = new AnnotationTargetKey(descriptor.WorkloadMethod.MethodHandle);
 
 			var annotationFile = annotationContext.TryGetDocument(targetKey);
 			if (annotationFile == null)
@@ -125,7 +125,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					annotationFile = annotationContext.TryGetDocument(origin);
 					if (annotationFile == null)
 					{
-						var soureAnnotationFile = ParseAnnotationFile(target, origin, messageLogger);
+						var soureAnnotationFile = ParseAnnotationFile(descriptor, origin, messageLogger);
 
 						annotationFile = soureAnnotationFile;
 						annotationContext.AddDocument(annotationFile);
@@ -141,7 +141,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					else if (annotationFile is SourceAnnotationFile)
 					{
 						messageLogger.WriteSetupErrorMessage(
-							target,
+							descriptor,
 							$"The source file '{annotationFile.Origin}' does not contain code for method.");
 						return;
 					}
@@ -158,13 +158,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			var sourceAnnotationFile = (SourceAnnotationFile)annotationFile;
 			messageLogger.Logger.WriteHintLine(
-				$"Method {target.MethodDisplayInfo}: annotating file '{annotationFile.Origin}'");
+				$"Method {descriptor.WorkloadMethodDisplayInfo}: annotating file '{annotationFile.Origin}'");
 			// TODO: log line???
 			var annotated = TryUpdate(sourceAnnotationFile, targetToAnnotate);
 			if (!annotated)
 			{
 				messageLogger.WriteSetupErrorMessage(
-					target,
+					descriptor,
 					$"Could not find annotations in source file '{sourceAnnotationFile.Origin}'.");
 			}
 			else
@@ -173,15 +173,15 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				foreach (var metricValue in metrics)
 				{
 					messageLogger.Logger.WriteHintLine(
-						$"Method {target.MethodDisplayInfo}: metric {metricValue.Metric} {metricValue} updated.");
+						$"Method {descriptor.WorkloadMethodDisplayInfo}: metric {metricValue.Metric} {metricValue} updated.");
 				}
 			}
 		}
 
 		#region Parse
-		private static SourceAnnotationFile ParseAnnotationFile(Target target, string origin, IMessageLogger messageLogger)
+		private static SourceAnnotationFile ParseAnnotationFile(Descriptor descriptor, string origin, IMessageLogger messageLogger)
 		{
-			var documentInfo = SymbolHelper.TryGetSourceInfo(target, messageLogger);
+			var documentInfo = SymbolHelper.TryGetSourceInfo(descriptor, messageLogger);
 			if (documentInfo == null)
 				return new SourceAnnotationFile(origin, Array<string>.Empty);
 
@@ -267,7 +267,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		private static string TryGetAnnotationLocation(
 			[NotNull] CompetitionTarget targetToAnnotate,
 			[NotNull] IMessageLogger messageLogger) =>
-			SymbolHelper.TryGetSourcePath(targetToAnnotate.Target, messageLogger);
+			SymbolHelper.TryGetSourcePath(targetToAnnotate.Descriptor, messageLogger);
 
 		[NotNull]
 		private static string[] TryReadFileContent(string file, IMessageLogger messageLogger)
@@ -303,7 +303,6 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		}
 		#endregion
 
-
 		private static bool TryUpdate(
 			SourceAnnotationFile sourceCodeFile,
 			CompetitionTarget competitionTarget)
@@ -311,8 +310,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			if (!sourceCodeFile.Parsed)
 				return false;
 
-			var target = competitionTarget.Target;
-			var targetKey = target.Method.MethodHandle;
+			var descriptor = competitionTarget.Descriptor;
+			var targetKey = descriptor.WorkloadMethod.MethodHandle;
 
 			if (!sourceCodeFile.BenchmarkMethods.TryGetValue(
 				targetKey,

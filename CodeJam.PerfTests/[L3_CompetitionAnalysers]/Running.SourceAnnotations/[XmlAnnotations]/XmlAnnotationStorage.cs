@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
-
-using BenchmarkDotNet.Helpers;
+﻿using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-
 using CodeJam.Collections;
 using CodeJam.PerfTests.Analysers;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.PerfTests.Running.Helpers;
 using CodeJam.Strings;
-
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace CodeJam.PerfTests.Running.SourceAnnotations
 {
@@ -26,8 +23,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 	internal class XmlAnnotationStorage : AnnotationStorageBase
 	{
 		#region Static members, parse from log
-		/// <summary>Writes xml annotation document for the competition targets to the log.</summary>
-		/// <param name="competitionTargets">The competition targets to log.</param>
+		/// <summary>Writes xml annotation document for the competition descriptors to the log.</summary>
+		/// <param name="competitionTargets">The competition descriptors to log.</param>
 		/// <param name="messageLogger">The message logger.</param>
 		public static void LogXmlAnnotationDoc(
 			[NotNull] IReadOnlyCollection<CompetitionTarget> competitionTargets,
@@ -48,11 +45,11 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			return xmlAnnotationDocs ?? Array<XDocument>.Empty;
 		}
 
-		/// <summary>Retrieves stored info for competition targets from XML annotation docs.</summary>
-		/// <param name="competitionTargets">Competition targets the metrics are retrieved for.</param>
+		/// <summary>Retrieves stored info for competition descriptors from XML annotation docs.</summary>
+		/// <param name="competitionTargets">Competition descriptors the metrics are retrieved for.</param>
 		/// <param name="xmlAnnotationDocs">The XML annotation docs.</param>
 		/// <param name="analysis">State of the analysis.</param>
-		/// <returns>Stored info for competition targets.</returns>
+		/// <returns>Stored info for competition descriptors.</returns>
 		public static bool TryFillCompetitionTargetsFromLog(
 			IReadOnlyCollection<CompetitionTarget> competitionTargets,
 			XDocument[] xmlAnnotationDocs,
@@ -61,10 +58,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			analysis.Logger.WriteVerboseLine($"Parsing XML annotations ({xmlAnnotationDocs.Length} doc(s)) from log.");
 
 			var updated = false;
-			var targetsToFill = competitionTargets.Select(t => t.Target).ToArray();
+			var targetsToFill = competitionTargets.Select(t => t.Descriptor).ToArray();
 			var metrics = analysis.Config.GetMetrics().ToArray();
 
-			// TODO: common api to write message for multiple target + metrics.
+			// TODO: common api to write message for multiple descriptor + metrics.
 
 			foreach (var doc in xmlAnnotationDocs)
 			{
@@ -73,12 +70,12 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 				foreach (var competitionTarget in competitionTargets)
 				{
-					var storedTarget = storedTargets.GetValueOrDefault(competitionTarget.Target);
+					var storedTarget = storedTargets.GetValueOrDefault(competitionTarget.Descriptor);
 					if (storedTarget == null)
 						continue;
 
 					var parsedCompetitionTarget = ParseCompetitionTarget(
-						competitionTarget.Target,
+						competitionTarget.Descriptor,
 						metrics, storedTarget, analysis);
 
 					var parsedMetrics = parsedCompetitionTarget.MetricValues.ToDictionary(m => m.Metric);
@@ -97,7 +94,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 					if (!hasAnnotations && analysis.SafeToContinue && parsedMetrics.Any())
 					{
 						analysis.WriteWarningMessage(
-							$"No logged XML annotation for {competitionTarget.Target.MethodDisplayInfo} found. Check if the method was renamed.");
+							$"No logged XML annotation for {competitionTarget.Descriptor.WorkloadMethodDisplayInfo} found. Check if the method was renamed.");
 					}
 				}
 			}
@@ -144,23 +141,23 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			new ResourceKey(benchmarkType.Assembly, ResourceName);
 
 		#region Parse
-		/// <summary>Retrieves stored info for competition targets.</summary>
-		/// <param name="targets">Competition targets the metrics are retrieved for.</param>
+		/// <summary>Retrieves stored info for competition descriptors.</summary>
+		/// <param name="descriptors">Competition descriptors the metrics are retrieved for.</param>
 		/// <param name="analysis">State of the analysis.</param>
-		/// <returns>Stored info for competition targets.</returns>
-		protected override IReadOnlyDictionary<Target, StoredTargetInfo> GetStoredTargets(
-			Target[] targets, Analysis analysis)
+		/// <returns>Stored info for competition descriptors.</returns>
+		protected override IReadOnlyDictionary<Descriptor, StoredTargetInfo> GetStoredTargets(
+			Descriptor[] descriptors, Analysis analysis)
 		{
 			var resourceKey = GetResourceKey(analysis.RunState.BenchmarkType);
 
 			var xmlAnnotationDoc = XmlAnnotationHelpers.TryParseXmlAnnotationDoc(resourceKey, analysis);
 
 			if (xmlAnnotationDoc == null)
-				return new Dictionary<Target, StoredTargetInfo>();
+				return new Dictionary<Descriptor, StoredTargetInfo>();
 
 			var metrics = analysis.Config.GetMetrics();
 			var result = XmlAnnotationHelpers.TryGetStoredTargets(
-				targets, metrics,
+				descriptors, metrics,
 				xmlAnnotationDoc,
 				UseFullTypeName,
 				analysis);
@@ -170,8 +167,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		#endregion
 
 		#region Save
-		/// <summary>Saves stored metrics from competition targets.</summary>
-		/// <param name="competitionTargets">Competition targets with metrics to save.</param>
+		/// <summary>Saves stored metrics from competition descriptors.</summary>
+		/// <param name="competitionTargets">Competition descriptors with metrics to save.</param>
 		/// <param name="annotationContext">The annotation context.</param>
 		/// <param name="analysis">State of the analysis.</param>
 		/// <returns>
@@ -215,7 +212,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			var xmlAnnotationFile = (XmlAnnotationFile)annotationFile;
 			foreach (var targetToAnnotate in competitionTargets)
 			{
-				var target = targetToAnnotate.Target;
+				var descriptor = targetToAnnotate.Descriptor;
 
 				var metrics = targetToAnnotate.MetricValues.Where(m => m.HasUnsavedChanges).ToArray();
 				if (metrics.Length == 0)
@@ -226,7 +223,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 				foreach (var metricValue in metrics)
 				{
 					analysis.Logger.WriteVerboseLine(
-						$"Method {target.MethodDisplayInfo}: updating metric {metricValue.Metric} {metricValue}.");
+						$"Method {descriptor.WorkloadMethodDisplayInfo}: updating metric {metricValue.Metric} {metricValue}.");
 				}
 			}
 
@@ -242,13 +239,13 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 			foreach (var targetToAnnotate in competitionTargets)
 			{
-				var target = targetToAnnotate.Target;
+				var descriptor = targetToAnnotate.Descriptor;
 				var metrics = targetToAnnotate.MetricValues.Where(m => m.HasUnsavedChanges).ToArray();
 
 				foreach (var metricValue in metrics)
 				{
 					analysis.Logger.WriteHintLine(
-						$"Method {target.MethodDisplayInfo}: metric {metricValue.Metric} {metricValue} updated.");
+						$"Method {descriptor.WorkloadMethodDisplayInfo}: metric {metricValue.Metric} {metricValue} updated.");
 				}
 			}
 
@@ -260,10 +257,10 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			[NotNull] Summary summary,
 			[NotNull] IMessageLogger messageLogger)
 		{
-			var benchmarkType = summary.Benchmarks[0].Target.Type;
-			var sameTypeTarget = summary.GetExecutionOrderBenchmarks()
-				.Select(b => b.Target)
-				.FirstOrDefault(t => t.Method.DeclaringType == benchmarkType);
+			var benchmarkType = summary.BenchmarksCases[0].Descriptor.Type;
+			var sameTypeTarget = summary.GetExecutionOrderBenchmarksCases()
+				.Select(b => b.Descriptor)
+				.FirstOrDefault(t => t.WorkloadMethod.DeclaringType == benchmarkType);
 
 			if (sameTypeTarget == null)
 			{

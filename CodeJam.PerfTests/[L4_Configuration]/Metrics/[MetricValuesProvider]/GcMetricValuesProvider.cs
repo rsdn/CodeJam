@@ -34,7 +34,7 @@ namespace CodeJam.PerfTests.Metrics
 	}
 
 	/// <summary>
-	/// Implementation of <see cref="IMetricValuesProvider"/> that returns various values from Benchmark's GcStats
+	/// Implementation of <see cref="IMetricValuesProvider"/> that returns various values from BenchmarkCase's GcStats
 	/// </summary>
 	/// <seealso cref="MetricValuesProviderBase"/>
 	public class GcMetricValuesProvider : MetricValuesProviderBase

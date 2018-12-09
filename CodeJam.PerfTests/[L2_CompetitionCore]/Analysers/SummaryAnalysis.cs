@@ -1,15 +1,10 @@
-﻿using System;
-
-using System.Collections.Generic;
-
+﻿
 using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-
 using CodeJam.PerfTests.Running.Core;
-
 using JetBrains.Annotations;
-
+using System.Collections.Generic;
 using static CodeJam.PerfTests.Running.Core.MessageExtensions;
 
 namespace CodeJam.PerfTests.Analysers
@@ -73,16 +68,16 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		/// <summary>Reports test error conclusion.</summary>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="report">The report the message belongs to.</param>
 		public void AddTestErrorConclusion(
-			Target target,
+			Descriptor descriptor,
 			string message,
 			BenchmarkReport report = null)
 		{
-			this.WriteTestErrorMessage(target, message);
-			ConclusionsList.Add(Conclusion.CreateWarning(Id, FormatMessage(target, message), report));
+			this.WriteTestErrorMessage(descriptor, message);
+			ConclusionsList.Add(Conclusion.CreateWarning(Id, FormatMessage(descriptor, message), report));
 		}
 
 		/// <summary>Reports analyser warning conclusion.</summary>
@@ -99,18 +94,18 @@ namespace CodeJam.PerfTests.Analysers
 		}
 
 		/// <summary>Reports analyser warning conclusion.</summary>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hint how to fix the warning.</param>
 		/// <param name="report">The report the message belongs to.</param>
 		public void AddWarningConclusion(
-			Target target,
+			Descriptor descriptor,
 			string message,
 			string hint,
 			BenchmarkReport report = null)
 		{
-			this.WriteWarningMessage(target, message, hint);
-			ConclusionsList.Add(Conclusion.CreateWarning(Id, FormatMessage(target, message), report));
+			this.WriteWarningMessage(descriptor, message, hint);
+			ConclusionsList.Add(Conclusion.CreateWarning(Id, FormatMessage(descriptor, message), report));
 		}
 		#endregion
 	}

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading;
-
-using CodeJam;
+﻿using CodeJam;
 using CodeJam.Threading;
-
 using JetBrains.Annotations;
+using System;
+using System.Threading;
 
 // ReSharper disable once CheckNamespace
 
@@ -13,7 +11,7 @@ namespace BenchmarkDotNet.Loggers
 	/// <summary>Basic logger implementation that supports message filtering.</summary>
 	/// <seealso cref="ILogger"/>
 	[PublicAPI]
-	public class FilteringLogger : IFlushableLogger
+	public class FilteringLogger : ILogger
 	{
 		// DONTTOUCH: Check that all code does not hardcode content of the constants before changing
 
@@ -183,7 +181,6 @@ namespace BenchmarkDotNet.Loggers
 		}
 
 		/// <summary>Flushes the log.</summary>
-		void IFlushableLogger.Flush() =>
-			(WrappedLogger as IFlushableLogger)?.Flush();
+		public void Flush() => WrappedLogger.Flush();
 	}
 }

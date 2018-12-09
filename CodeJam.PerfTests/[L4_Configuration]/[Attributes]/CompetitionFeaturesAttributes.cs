@@ -10,7 +10,7 @@ namespace CodeJam.PerfTests
 {
 	/// <summary>
 	/// Enables burst mode feature.
-	/// Benchmark code is called once per measurement.
+	/// BenchmarkCase code is called once per measurement.
 	/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1000 ns).
 	/// </summary>
 	[PublicAPI]
@@ -82,12 +82,12 @@ namespace CodeJam.PerfTests
 		public CompetitionTroubleshootingModeAttribute() => TroubleshootingMode = true;
 	}
 
-	/// <summary>Specifies target platform for the competition.</summary>
+	/// <summary>Specifies descriptor platform for the competition.</summary>
 	[PublicAPI]
 	public class CompetitionPlatformAttribute : CompetitionFeaturesAttribute
 	{
 		/// <summary>Initializes a new instance of the <see cref="CompetitionPlatformAttribute"/> class.</summary>
-		/// <param name="targetPlatform">The target platform.</param>
+		/// <param name="targetPlatform">The descriptor platform.</param>
 		public CompetitionPlatformAttribute(Platform targetPlatform) => Platform = targetPlatform;
 	}
 }

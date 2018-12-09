@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-using BenchmarkDotNet.Analysers;
+﻿using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-
 using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.Strings;
-
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace CodeJam.PerfTests.Analysers
 {
@@ -45,27 +42,27 @@ namespace CodeJam.PerfTests.Analysers
 		};
 
 
-		private static IEnumerable<MethodInfo> GetInvokedMethods(Target target)
+		private static IEnumerable<MethodInfo> GetInvokedMethods(Descriptor descriptor)
 		{
-			yield return target.Method;
+			yield return descriptor.WorkloadMethod;
 
-			if (target.GlobalSetupMethod != null)
-				yield return target.GlobalSetupMethod;
-			if (target.IterationSetupMethod != null)
-				yield return target.IterationSetupMethod;
-			if (target.IterationCleanupMethod != null)
-				yield return target.IterationCleanupMethod;
-			if (target.GlobalCleanupMethod != null)
-				yield return target.GlobalCleanupMethod;
+			if (descriptor.GlobalSetupMethod != null)
+				yield return descriptor.GlobalSetupMethod;
+			if (descriptor.IterationSetupMethod != null)
+				yield return descriptor.IterationSetupMethod;
+			if (descriptor.IterationCleanupMethod != null)
+				yield return descriptor.IterationCleanupMethod;
+			if (descriptor.GlobalCleanupMethod != null)
+				yield return descriptor.GlobalCleanupMethod;
 		}
 
 		private static string[] GetTargetNames(
 			SummaryAnalysis analysis,
 			Func<BenchmarkReport, bool> benchmarkReportFilter) =>
-				analysis.Summary.GetSummaryOrderBenchmarks()
+				analysis.Summary.GetSummaryOrderBenchmarksCases()
 					.Select(b => analysis.Summary[b])
 					.Where(r => r != null && r.ExecuteResults.Any() && benchmarkReportFilter(r))
-					.Select(r => r.Benchmark.Target.MethodDisplayInfo)
+					.Select(r => r.BenchmarkCase.Descriptor.WorkloadMethodDisplayInfo)
 					.Distinct()
 					.ToArray();
 
@@ -92,7 +89,7 @@ namespace CodeJam.PerfTests.Analysers
 				analysis.WriteExecutionErrorMessage("Summary has validation errors.");
 			}
 
-			if (!summary.HasCriticalValidationErrors && summary.Benchmarks.IsNullOrEmpty())
+			if (!summary.HasCriticalValidationErrors && summary.BenchmarksCases.IsNullOrEmpty())
 			{
 				analysis.WriteSetupErrorMessage(
 					"Nothing to check as there is no methods in benchmark.",
@@ -102,15 +99,15 @@ namespace CodeJam.PerfTests.Analysers
 			if (summary.Config.GetJobs().Skip(1).Any())
 			{
 				analysis.WriteSetupErrorMessage(
-					"Benchmark configuration includes multiple jobs. " +
+					"BenchmarkCase configuration includes multiple jobs. " +
 						"This is not supported as there's no way to store metric annotations individually per each job.",
 					"Ensure that the config contains only one job.");
 			}
 
-			if (summary.Benchmarks.Select(b => b.Parameters).Distinct().Skip(1).Any())
+			if (summary.BenchmarksCases.Select(b => b.Parameters).Distinct().Skip(1).Any())
 			{
 				analysis.WriteInfoMessage(
-					"Benchmark configuration includes multiple parameters. " +
+					"BenchmarkCase configuration includes multiple parameters. " +
 						"Note that results for each parameter set will be merged.");
 			}
 
@@ -126,11 +123,11 @@ namespace CodeJam.PerfTests.Analysers
 			var summary = analysis.Summary;
 
 			// No duplicate names
-			var targets = summary.GetBenchmarkTargets();
+			var descriptors = summary.GetBenchmarkDescriptors();
 			var duplicateTargets = GetDuplicates(
-				targets,
-				t => t.Method.Name,
-				t => $"\r\n\t\t  {t.Method.DeclaringType}.{t.Method.Name}()");
+				descriptors,
+				t => t.WorkloadMethod.Name,
+				t => $"\r\n\t\t  {t.WorkloadMethod.DeclaringType}.{t.WorkloadMethod.Name}()");
 
 			if (duplicateTargets.NotNullNorEmpty())
 			{
@@ -140,7 +137,7 @@ namespace CodeJam.PerfTests.Analysers
 			}
 
 			// No conflict on attributes
-			var targetMethodsWithAttributes = targets
+			var targetMethodsWithAttributes = descriptors
 				.SelectMany(GetInvokedMethods)
 				.Distinct()
 				.SelectMany(
@@ -150,13 +147,13 @@ namespace CodeJam.PerfTests.Analysers
 								(method: m,
 								 attributeType: a.GetType(),
 								 baseAttribute: _knownUniqueMemberLevelAttributes.FirstOrDefault(ka => ka.IsInstanceOfType(a)),
-								 target: (a as TargetedAttribute)?.Target))
+								 descriptor: (a as TargetedAttribute)?.Target))
 							.Where(t => t.baseAttribute != null))
 				.ToArray();
 
 			var conflictingAttributes = GetDuplicates(
 				targetMethodsWithAttributes,
-				t => $"{t.method.DeclaringType}.{t.method.Name}({t.target})",
+				t => $"{t.method.DeclaringType}.{t.method.Name}({t.descriptor})",
 				t => $"\r\n\t\t  {t.attributeType.FullName}");
 
 			if (conflictingAttributes.NotNullNorEmpty())
@@ -169,7 +166,7 @@ namespace CodeJam.PerfTests.Analysers
 			// No multiple methods for an attribute
 			var conflictingMethods = GetDuplicates(
 				targetMethodsWithAttributes.Where(t => _knownUniqueTypeLevelAttributes.Contains(t.baseAttribute)),
-				t => $"{t.baseAttribute.FullName}({t.target})",
+				t => $"{t.baseAttribute.FullName}({t.descriptor})",
 				t => $"\r\n\t\t  {t.method.DeclaringType}.{t.method.Name}() ({t.attributeType.FullName})");
 
 			if (conflictingMethods.NotNullNorEmpty())
@@ -220,11 +217,11 @@ namespace CodeJam.PerfTests.Analysers
 
 			var benchmarksWithReports = summary.Reports
 				.Where(r => r.ExecuteResults.Any())
-				.Select(r => r.Benchmark);
+				.Select(r => r.BenchmarkCase);
 
-			var benchMissing = summary.GetSummaryOrderBenchmarks()
+			var benchMissing = summary.GetSummaryOrderBenchmarksCases()
 				.Except(benchmarksWithReports)
-				.Select(b => b.Target.MethodDisplayInfo)
+				.Select(b => b.Descriptor.WorkloadMethodDisplayInfo)
 				.Distinct().
 				ToArray();
 
@@ -249,7 +246,7 @@ namespace CodeJam.PerfTests.Analysers
 
 					if (tooFastReports.Any())
 					{
-						var benchmarks = tooFastReports.Length == 1 ? "Benchmark" : "Benchmarks";
+						var benchmarks = tooFastReports.Length == 1 ? "BenchmarkCase" : "Benchmarks";
 						var time = checksMode.TooFastBenchmarkLimit
 							.TotalNanoseconds()
 							.ToString(timeUnits);
@@ -268,7 +265,7 @@ namespace CodeJam.PerfTests.Analysers
 
 					if (tooSlowReports.Any())
 					{
-						var benchmarks = tooSlowReports.Length == 1 ? "Benchmark" : "Benchmarks";
+						var benchmarks = tooSlowReports.Length == 1 ? "BenchmarkCase" : "Benchmarks";
 						var time = checksMode.LongRunningBenchmarkLimit
 							.TotalNanoseconds()
 							.ToString(timeUnits);

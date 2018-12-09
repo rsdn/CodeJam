@@ -23,7 +23,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 	internal class DiagnoserTimesProvider : MetricValuesProviderBase, IEtwMetricValueProvider
 	{
 		#region Static members
-		private class PerBenchmarkValues : Dictionary<Benchmark, Dictionary<Guid, DiagnoserTraceScopeEvent>> { }
+		private class PerBenchmarkValues : Dictionary<BenchmarkCase, Dictionary<Guid, DiagnoserTraceScopeEvent>> { }
 
 		private static readonly RunState<PerBenchmarkValues> _results = new RunState<PerBenchmarkValues>(true);
 		#endregion
@@ -35,7 +35,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <param name="benchmark">The benchmark.</param>
 		/// <param name="config">The configuration.</param>
 		/// <returns><see cref="DiagnoserTraceScopeEvent"/> events for the <paramref name="benchmark"/>.</returns>
-		public IEnumerable<DiagnoserTraceScopeEvent> GetEvents(Benchmark benchmark, IConfig config) =>
+		public IEnumerable<DiagnoserTraceScopeEvent> GetEvents(BenchmarkCase benchmark, IConfig config) =>
 			_results[config].GetValueOrDefault(benchmark)?.Values.ToArray();
 
 		#region Overrides of MetricValuesProviderBase
@@ -50,7 +50,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <returns>Metric values from benchmark report</returns>
 		protected override double[] GetValuesFromReport(BenchmarkReport benchmarkReport, Summary summary)
 		{
-			if (!_results[summary].TryGetValue(benchmarkReport.Benchmark, out var result))
+			if (!_results[summary].TryGetValue(benchmarkReport.BenchmarkCase, out var result))
 				return new double[0];
 
 			return result.Values
@@ -85,7 +85,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <returns>The <see cref="IDisposable" /> to detach from metric handling.</returns>
 		public IDisposable Subscribe(
 			TraceEventSource traceEventSource,
-			Benchmark benchmark,
+			BenchmarkCase benchmark,
 			IConfig config,
 			Func<TraceEvent, bool> filter)
 		{

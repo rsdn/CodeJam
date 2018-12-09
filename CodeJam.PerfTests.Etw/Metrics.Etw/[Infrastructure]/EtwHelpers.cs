@@ -37,19 +37,19 @@ namespace CodeJam.PerfTests.Metrics.Etw
 			}
 		}
 
-		private static void CopyDirectoryIfExists(string source, string target, bool overwrite = false)
+		private static void CopyDirectoryIfExists(string source, string descriptor, bool overwrite = false)
 		{
 			DebugIoCode.IsWellFormedPath(source, nameof(source));
-			DebugIoCode.IsWellFormedPath(target, nameof(target));
+			DebugIoCode.IsWellFormedPath(descriptor, nameof(descriptor));
 
 			source = PathHelpers.EnsureContainerPath(Path.GetFullPath(source));
-			target = PathHelpers.EnsureContainerPath(Path.GetFullPath(target));
+			descriptor = PathHelpers.EnsureContainerPath(Path.GetFullPath(descriptor));
 
 			if (!Directory.Exists(source))
 				return;
 
-			if (!Directory.Exists(target))
-				Directory.CreateDirectory(target);
+			if (!Directory.Exists(descriptor))
+				Directory.CreateDirectory(descriptor);
 
 			foreach (var sourceDirectory in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
 			{
@@ -57,7 +57,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 					!sourceDirectory.Substring(0, source.Length).Equals(source, StringComparison.InvariantCultureIgnoreCase),
 					$"GetDirectories() return invalid path. {sourceDirectory} is not a child of {source}");
 
-				var targetDirectory = Path.Combine(target, sourceDirectory.Substring(source.Length));
+				var targetDirectory = Path.Combine(descriptor, sourceDirectory.Substring(source.Length));
 				Directory.CreateDirectory(targetDirectory);
 			}
 
@@ -68,7 +68,7 @@ namespace CodeJam.PerfTests.Metrics.Etw
 					!sourceFile.Substring(0, source.Length).Equals(source, StringComparison.InvariantCultureIgnoreCase),
 					$"GetFiles() return invalid path. {sourceFile} is not a child of {source}");
 
-				var targetFile = Path.Combine(target, sourceFile.Substring(source.Length));
+				var targetFile = Path.Combine(descriptor, sourceFile.Substring(source.Length));
 				if (overwrite || !File.Exists(targetFile))
 				{
 					File.Copy(sourceFile, targetFile, overwrite);

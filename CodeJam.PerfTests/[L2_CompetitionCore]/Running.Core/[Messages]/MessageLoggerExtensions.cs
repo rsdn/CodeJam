@@ -16,13 +16,13 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Writes message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">The explanation for the exception.</param>
 		/// <param name="hint">Hints for the message.</param>
 		public static void WriteMessage(
 			[NotNull] this IMessageLogger messageLogger,
 			MessageSeverity messageSeverity,
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] string message,
 			[CanBeNull] string hint = null)
 		{
@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			messageLogger.WriteMessage(
 				messageSeverity,
-				FormatMessage(target, message), hint);
+				FormatMessage(descriptor, message), hint);
 		}
 
 		/// <summary>Writes exception message.</summary>
@@ -58,14 +58,14 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Writes exception message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
 		/// <param name="messageSeverity">Severity of the message.</param>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">The explanation for the exception.</param>
 		/// <param name="ex">The exception to write.</param>
 		/// <param name="hint">Hints for the message.</param>
 		public static void WriteExceptionMessage(
 			[NotNull] this IMessageLogger messageLogger,
 			MessageSeverity messageSeverity,
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] string message,
 			[NotNull] Exception ex,
 			[CanBeNull] string hint = null)
@@ -75,7 +75,7 @@ namespace CodeJam.PerfTests.Running.Core
 
 			messageLogger.WriteMessage(
 				messageSeverity,
-				FormatMessage(target, message, ex),
+				FormatMessage(descriptor, message, ex),
 				FormatHintText(ex, hint));
 		}
 
@@ -91,15 +91,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Adds test execution failure message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hints for the message.</param>
 		public static void WriteExecutionErrorMessage(
 			[NotNull] this IMessageLogger messageLogger,
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] string message,
 			[CanBeNull] string hint = null) =>
-				messageLogger.WriteMessage(MessageSeverity.ExecutionError, target, message, hint);
+				messageLogger.WriteMessage(MessageSeverity.ExecutionError, descriptor, message, hint);
 
 		/// <summary>Adds test setup failure message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
@@ -113,15 +113,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Adds test setup failure message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hints for the message.</param>
 		public static void WriteSetupErrorMessage(
 			[NotNull] this IMessageLogger messageLogger,
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] string message,
 			[CanBeNull] string hint = null) =>
-				messageLogger.WriteMessage(MessageSeverity.SetupError, target, message, hint);
+				messageLogger.WriteMessage(MessageSeverity.SetupError, descriptor, message, hint);
 
 		/// <summary>Adds test error message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
@@ -135,15 +135,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Adds test error message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hints for the message.</param>
 		public static void WriteTestErrorMessage(
 			[NotNull] this IMessageLogger messageLogger,
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] string message,
 			[CanBeNull] string hint = null) =>
-				messageLogger.WriteMessage(MessageSeverity.TestError, target, message, hint);
+				messageLogger.WriteMessage(MessageSeverity.TestError, descriptor, message, hint);
 
 		/// <summary>Adds warning message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
@@ -157,15 +157,15 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Adds warning message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hints for the message.</param>
 		public static void WriteWarningMessage(
 			[NotNull] this IMessageLogger messageLogger,
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] string message,
 			[CanBeNull] string hint = null) =>
-				messageLogger.WriteMessage(MessageSeverity.Warning, target, message, hint);
+				messageLogger.WriteMessage(MessageSeverity.Warning, descriptor, message, hint);
 
 		/// <summary>Adds an info message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
@@ -179,14 +179,14 @@ namespace CodeJam.PerfTests.Running.Core
 
 		/// <summary>Adds an info message.</summary>
 		/// <param name="messageLogger">The message logger.</param>
-		/// <param name="target">Target the message applies for.</param>
+		/// <param name="descriptor">.Descriptor the message applies for.</param>
 		/// <param name="message">Message text.</param>
 		/// <param name="hint">Hints for the message.</param>
 		public static void WriteInfoMessage(
 			[NotNull] this IMessageLogger messageLogger,
-			[NotNull] Target target,
+			[NotNull] Descriptor descriptor,
 			[NotNull] string message,
 			[CanBeNull] string hint = null) =>
-				messageLogger.WriteMessage(MessageSeverity.Informational, target, message, hint);
+				messageLogger.WriteMessage(MessageSeverity.Informational, descriptor, message, hint);
 	}
 }

@@ -27,7 +27,7 @@ namespace CodeJam.PerfTests.Configs
 		/// Performs single run per measurement.
 		/// Recommended for use if single call time >> than timer resolution (recommended minimum is 1000 ns).
 		/// </summary>
-		/// <value>Target platform for the competition.</value>
+		/// <value>.Descriptor platform for the competition.</value>
 #if TARGETS_NET
 		[ConfigurationProperty(nameof(BurstMode), IsRequired = false)]
 		public bool BurstMode
@@ -62,8 +62,8 @@ namespace CodeJam.PerfTests.Configs
 		public bool ContinuousIntegrationMode { get; set; }
 #endif
 
-		/// <summary>Specifies target platform for the competition.</summary>
-		/// <value>Target platform for the competition.</value>
+		/// <summary>Specifies descriptor platform for the competition.</summary>
+		/// <value>.Descriptor platform for the competition.</value>
 #if TARGETS_NET
 		[ConfigurationProperty(nameof(Platform), IsRequired = false)]
 		public Platform? Platform
@@ -75,8 +75,8 @@ namespace CodeJam.PerfTests.Configs
 		public Platform? Platform { get; set; }
 #endif
 
-		/// <summary>Specifies target platform for the competition.</summary>
-		/// <value>Target platform for the competition.</value>
+		/// <summary>Specifies descriptor platform for the competition.</summary>
+		/// <value>.Descriptor platform for the competition.</value>
 		Platform ICompetitionFeatures.Platform => Platform.GetValueOrDefault();
 		#endregion
 

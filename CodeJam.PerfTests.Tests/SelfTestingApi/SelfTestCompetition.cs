@@ -13,7 +13,7 @@ namespace CodeJam.PerfTests
 		private static CompetitionRunnerBase Runner => new SelfTestCompetitionRunner();
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="competitionConfig">
 		/// The competition config.
 		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.
@@ -24,7 +24,7 @@ namespace CodeJam.PerfTests
 				Runner.Run<T>(competitionConfig);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <typeparam name="T">Benchmark class to run.</typeparam>
+		/// <typeparam name="T">BenchmarkCase class to run.</typeparam>
 		/// <param name="thisReference">Reference used to infer type of the benchmark.</param>
 		/// <param name="competitionConfig">
 		/// The competition config.
@@ -38,7 +38,7 @@ namespace CodeJam.PerfTests
 				Runner.Run(thisReference, competitionConfig);
 
 		/// <summary>Runs the benchmark.</summary>
-		/// <param name="benchmarkType">Benchmark class to run.</param>
+		/// <param name="benchmarkType">BenchmarkCase class to run.</param>
 		/// <param name="competitionConfig">
 		/// The competition config.
 		/// If<c>null</c> config from <see cref="CompetitionConfigAttribute"/> will be used.

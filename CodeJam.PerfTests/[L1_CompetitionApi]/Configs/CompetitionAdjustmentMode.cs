@@ -1,9 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-
-using BenchmarkDotNet.Characteristics;
-
+﻿using BenchmarkDotNet.Characteristics;
 using JetBrains.Annotations;
+using System.ComponentModel;
 
 namespace CodeJam.PerfTests.Configs
 {
@@ -13,21 +10,22 @@ namespace CodeJam.PerfTests.Configs
 	public sealed class CompetitionAdjustmentMode : CharacteristicObject<CompetitionAdjustmentMode>
 	{
 		/// <summary>Adjust metric limits characteristic.</summary>
-		public static readonly Characteristic<bool> AdjustMetricsCharacteristic = Characteristic.Create(
-			(CompetitionAdjustmentMode m) => m.AdjustMetrics);
+		public static readonly Characteristic<bool> AdjustMetricsCharacteristic = CreateCharacteristic<bool>(
+			nameof(AdjustMetrics));
 
 		/// <summary>Force adjustment of empty metric limits characteristic.</summary>
-		public static readonly Characteristic<bool> ForceEmptyMetricAdjustmentCharacteristic = Characteristic.Create(
-			(CompetitionAdjustmentMode m) => m.ForceEmptyMetricsAdjustment);
+		public static readonly Characteristic<bool> ForceEmptyMetricAdjustmentCharacteristic = CreateCharacteristic<bool>(
+			nameof(ForceEmptyMetricsAdjustment));
 
 		/// <summary>Characteristic for number of runs performed before adjusting metric limits.</summary>
-		public static readonly Characteristic<int> SkipRunsBeforeAdjustmentCharacteristic = Characteristic.Create(
-			(CompetitionAdjustmentMode m) => m.SkipRunsBeforeAdjustment);
+		public static readonly Characteristic<int> SkipRunsBeforeAdjustmentCharacteristic = CreateCharacteristic<int>(
+			nameof(SkipRunsBeforeAdjustment));
 
 		/// <summary>Characteristic for count of additional runs performed if metric limits were adjusted. Default is 2.</summary>
-		public static readonly Characteristic<int> RerunsIfAdjustedCharacteristic = Characteristic.Create(
-			(CompetitionAdjustmentMode m) => m.RerunsIfAdjusted,
-			2);
+		public static readonly Characteristic<int> RerunsIfAdjustedCharacteristic =
+			Characteristic.Create<CompetitionAdjustmentMode, int>(
+				nameof(RerunsIfAdjusted),
+				2);
 
 		/// <summary>Adjust metric limits if they do not match to the actual values.</summary>
 		/// <value>
