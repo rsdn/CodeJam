@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Nuspec.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.PerfTests.xUnit</AssemblyName>
+		<RootNamespace>CodeJam.PerfTests</RootNamespace>
+		<ProjectGuid>{92C6E5F8-FFEE-4269-92D7-BB9CFEB63D4B}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		
+		<PackageId>CodeJam.PerfTests.xUnit</PackageId>
+		<Title>CodeJam.PerfTests xUnit integration library</Title>
+		<Authors>Igor Sinicyn</Authors>
+		<Product>CodeJam</Product>
+		<Description>CodeJam.PerfTests.xUnit provides xUnit support for BenchmarkDotNet-driven performance tests.</Description>
+		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.PerfTests.Icon.png</PackageIconUrl>
+		<PackageTags>benchmark benchmarking performance perftests xunit</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="xunit" Version="2.3.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
+			<Link>Properties\Jetbrains.Annotations.cs</Link>
+		</Compile>
+	</ItemGroup>
+
+</Project>

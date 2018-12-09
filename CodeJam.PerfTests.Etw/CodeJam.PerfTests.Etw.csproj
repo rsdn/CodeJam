@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Nuspec.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.PerfTests.Etw</AssemblyName>
+		<RootNamespace>CodeJam.PerfTests</RootNamespace>
+		<ProjectGuid>{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net461</TargetFrameworks>
+
+		<PackageId>CodeJam.PerfTests.Etw</PackageId>
+		<Title>CodeJam.PerfTests core library</Title>
+		<Authors>Igor Sinicyn</Authors>
+		<Product>CodeJam</Product>
+		<Description>CodeJam.PerfTests.Etw contains ETW metric value providers that enables BenchmarkDotNet-driven performance tests for non-CPU-bound scenarios.</Description>
+		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.PerfTests.Icon.png</PackageIconUrl>
+		<PackageTags>benchmark benchmarking performance perftests etw</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="1.0.41" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Build\Jetbrains.Annotations.cs">
+			<Link>Properties\Jetbrains.Annotations.cs</Link>
+		</Compile>
+	</ItemGroup>
+
+</Project>

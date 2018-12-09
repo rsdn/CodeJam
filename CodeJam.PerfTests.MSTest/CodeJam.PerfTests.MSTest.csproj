@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Nuspec.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.PerfTests.MSTest</AssemblyName>
+		<RootNamespace>CodeJam.PerfTests</RootNamespace>
+		<ProjectGuid>{84C380D0-0EA7-4262-BB9E-44C7156EC091}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+
+		<PackageId>CodeJam.PerfTests.MSTest</PackageId>
+		<Title>CodeJam.PerfTests MSTest V2 integration library</Title>
+		<Authors>Igor Sinicyn</Authors>
+		<Product>CodeJam</Product>
+		<Description>CodeJam.PerfTests.MSTest provides MSTest V2 support for BenchmarkDotNet-driven performance tests.</Description>
+		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.PerfTests.Icon.png</PackageIconUrl>
+		<PackageTags>benchmark benchmarking performance perftests mstest mstestv2</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
+			<Link>Properties\Jetbrains.Annotations.cs</Link>
+		</Compile>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Nuspec.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.PerfTests</AssemblyName>
+		<RootNamespace>CodeJam.PerfTests</RootNamespace>
+		<ProjectGuid>{1D650545-A151-4211-8C29-C38A939403A6}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+
+		<PackageId>CodeJam.PerfTests.Core</PackageId>
+		<Title>CodeJam.PerfTests core library</Title>
+		<Authors>Igor Sinicyn</Authors>
+		<Product>CodeJam</Product>
+		<Description>CodeJam.PerfTests.Core is a infrastructure package that enables BenchmarkDotNet-driven performance tests.</Description>
+		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.PerfTests.Icon.png</PackageIconUrl>
+		<PackageTags>benchmark benchmarking performance perftests</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet.Core" Version="0.10.10" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0'">
+		<Reference Include="System.Configuration" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="1.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="1.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Build\Jetbrains.Annotations.cs">
+			<Link>Properties\Jetbrains.Annotations.cs</Link>
+		</Compile>
+
+		<Content Include="Readme.txt">
+			<Pack>true</Pack>
+			<PackagePath>Readme.txt</PackagePath>
+		</Content>
+
+	</ItemGroup>
+</Project>

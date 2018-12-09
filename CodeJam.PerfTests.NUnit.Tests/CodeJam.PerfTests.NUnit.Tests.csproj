@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+
+	<PropertyGroup>
+		<AssemblyName>CodeJam.PerfTests.NUnit.Tests</AssemblyName>
+		<RootNamespace>CodeJam.PerfTests</RootNamespace>
+		<ProjectGuid>{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}</ProjectGuid>
+		<OutputType>Exe</OutputType>
+		<PlatformTarget>x64</PlatformTarget>
+		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<StartupObject>CodeJam.Examples.PerfTests.ExamplesProgram</StartupObject>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\src-NUnit\CodeJam.PerfTests.NUnit.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NUnit" Version="3.8.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+	</ItemGroup>
+
+</Project>
