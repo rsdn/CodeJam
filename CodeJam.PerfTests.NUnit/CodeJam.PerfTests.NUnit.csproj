@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam.PerfTests</RootNamespace>
 		<ProjectGuid>{8ABF1A06-4643-49D6-A546-B7473DB10102}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
 
 		<PackageId>CodeJam.PerfTests.NUnit</PackageId>
 		<Title>CodeJam.PerfTests NUnit integration library</Title>
@@ -23,14 +23,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests\CodeJam.PerfTests.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.8.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
+		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
 	</ItemGroup>

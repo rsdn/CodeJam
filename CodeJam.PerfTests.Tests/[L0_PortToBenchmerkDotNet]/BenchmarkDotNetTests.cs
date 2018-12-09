@@ -24,14 +24,14 @@ namespace CodeJam.PerfTests
 
 			var c2 = clockB.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
-			var s2 = c2.Stop();
+			var s2 = c2.GetElapsed();
 			var t2 = s2.GetSeconds();
 
 			var c3 = clockB.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
-			var s3 = c3.Stop();
+			var s3 = c3.GetElapsed();
 			var t3 = s3.GetSeconds();
-			Console.WriteLine($"Clock {c2.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t2 / t3:P}");
+			Console.WriteLine($"Clock {clockB.GetType().Name} to {clockB.GetType().Name}: {t2 / t3:P}");
 
 			// if all CPU cores are busy the thread can be suspended for very long period of time.
 			Assume.That(Math.Abs(t2 - t3) / t2, Is.LessThanOrEqualTo(0.99));
@@ -45,14 +45,14 @@ namespace CodeJam.PerfTests
 
 			var c2 = clockB.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
-			var s2 = c2.Stop();
+			var s2 = c2.GetElapsed();
 			var t2 = s2.GetSeconds();
 
 			var c3 = clockB.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
-			var s3 = c3.Stop();
+			var s3 = c3.GetElapsed();
 			var t3 = s3.GetSeconds();
-			Console.WriteLine($"Clock {c2.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t2 / t3:P}");
+			Console.WriteLine($"Clock {clockB.GetType().Name} to {clockB.GetType().Name}: {t2 / t3:P}");
 
 			// if all CPU cores are busy the thread can be suspended for very long period of time.
 			Assume.That(Math.Abs(t2 - t3) / t2, Is.LessThanOrEqualTo(0.99));
@@ -69,17 +69,17 @@ namespace CodeJam.PerfTests
 			var c1 = clockA.Start();
 			var c2 = clockB.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
-			var s1 = c1.Stop();
-			var s2 = c2.Stop();
+			var s1 = c1.GetElapsed();
+			var s2 = c2.GetElapsed();
 			var t1 = s1.GetSeconds();
 			var t2 = s2.GetSeconds();
-			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c2.Clock.GetType().Name}: {t1 / t2:P}");
+			Console.WriteLine($"Clock {clockA.GetType().Name} to {clockB.GetType().Name}: {t1 / t2:P}");
 
 			var c3 = clockA.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
-			var s3 = c3.Stop();
+			var s3 = c3.GetElapsed();
 			var t3 = s3.GetSeconds();
-			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t1 / t3:P}");
+			Console.WriteLine($"Clock {clockA.GetType().Name} to {clockA.GetType().Name}: {t1 / t3:P}");
 
 			// If all CPU cores are busy all threads of the process can be suspended.
 			// We're not interested in accurate absolute values +/- 50% is acceptable.
@@ -98,17 +98,17 @@ namespace CodeJam.PerfTests
 			var c1 = clockA.Start();
 			var c2 = clockB.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
-			var s1 = c1.Stop();
-			var s2 = c2.Stop();
+			var s1 = c1.GetElapsed();
+			var s2 = c2.GetElapsed();
 			var t1 = s1.GetSeconds();
 			var t2 = s2.GetSeconds();
-			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c2.Clock.GetType().Name}: {t1 / t2:P}");
+			Console.WriteLine($"Clock {clockA.GetType().Name} to {clockB.GetType().Name}: {t1 / t2:P}");
 
 			var c3 = clockA.Start();
 			Thread.SpinWait(30 * 1000 * 1000);
-			var s3 = c3.Stop();
+			var s3 = c3.GetElapsed();
 			var t3 = s3.GetSeconds();
-			Console.WriteLine($"Clock {c1.Clock.GetType().Name} to {c3.Clock.GetType().Name}: {t1 / t3:P}");
+			Console.WriteLine($"Clock {clockA.GetType().Name} to {clockA.GetType().Name}: {t1 / t3:P}");
 
 			// if all CPU cores are busy the thread can be suspended for very long period of time.
 			Assume.That(Math.Abs(t1 - t2) / t2, Is.LessThanOrEqualTo(0.99));

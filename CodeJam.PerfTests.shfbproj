@@ -36,14 +36,16 @@
     <HelpTitle>CodeJam.PerfTests Documentation</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <DocumentationSources>
-      <DocumentationSource sourceFile="src\bin\Release\CodeJam.PerfTests.dll" />
-      <DocumentationSource sourceFile="src\bin\Release\CodeJam.PerfTests.xml" />
-      <DocumentationSource sourceFile="src-NUnit\bin\Release\CodeJam.PerfTests.NUnit.dll" />
-      <DocumentationSource sourceFile="src-NUnit\bin\Release\CodeJam.PerfTests.NUnit.xml" />
-      <DocumentationSource sourceFile="src-xUnit\bin\Release\CodeJam.PerfTests.xUnit.dll" />
-      <DocumentationSource sourceFile="src-xUnit\bin\Release\CodeJam.PerfTests.xUnit.xml" />
-      <DocumentationSource sourceFile="src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.dll" />
-      <DocumentationSource sourceFile="src-MSTest\bin\Release\CodeJam.PerfTests.MSTest.xml" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests\bin\$(Configuration)\net461\CodeJam.PerfTests.dll" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests\bin\$(Configuration)\net461\CodeJam.PerfTests.xml" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests.Etw\bin\$(Configuration)\net461\CodeJam.PerfTests.Etw.dll" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests.Etw\bin\$(Configuration)\net461\CodeJam.PerfTests.Etw.xml" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests.NUnit\bin\$(Configuration)\net461\CodeJam.PerfTests.NUnit.dll" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests.NUnit\bin\$(Configuration)\net461\CodeJam.PerfTests.NUnit.xml" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests.xUnit\bin\$(Configuration)\net461\CodeJam.PerfTests.xUnit.dll" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests.xUnit\bin\$(Configuration)\net461\CodeJam.PerfTests.xUnit.xml" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests.MSTest\bin\$(Configuration)\net461\CodeJam.PerfTests.MSTest.dll" />
+      <DocumentationSource sourceFile="CodeJam.PerfTests.MSTest\bin\$(Configuration)\net461\CodeJam.PerfTests.MSTest.xml" />
     </DocumentationSources>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="BenchmarkDotNet.Configs" isExposed="False" xmlns="" />
@@ -92,21 +94,25 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="tests-MSTest\CodeJam.PerfTests-Tests.MSTest.csproj">
-      <Name>CodeJam.PerfTests-Tests.MSTest</Name>
-      <Project>{B535D8EF-66CC-4701-845D-F4C44C49922E}</Project>
+    <ProjectReference Include="CodeJam.PerfTests\CodeJam.PerfTests.csproj">
+      <Name>CodeJam.PerfTests</Name>
+      <Project>{1D650545-A151-4211-8C29-C38A939403A6}</Project>
     </ProjectReference>
-    <ProjectReference Include="tests-xUnit\CodeJam.PerfTests-Tests.xUnit.csproj">
-      <Name>CodeJam.PerfTests-Tests.xUnit</Name>
-      <Project>{F70A32D4-EE5D-477F-965C-428119D4CD39}</Project>
+    <ProjectReference Include="CodeJam.PerfTests.Etw\CodeJam.PerfTests.Etw.csproj">
+      <Name>CodeJam.PerfTests.Etw</Name>
+      <Project>{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}</Project>
     </ProjectReference>
-    <ProjectReference Include="src-NUnit\CodeJam.PerfTests.NUnit.csproj">
+    <ProjectReference Include="CodeJam.PerfTests.NUnit\CodeJam.PerfTests.NUnit.csproj">
       <Name>CodeJam.PerfTests.NUnit</Name>
       <Project>{8ABF1A06-4643-49D6-A546-B7473DB10102}</Project>
     </ProjectReference>
-    <ProjectReference Include="src\CodeJam.PerfTests.csproj">
-      <Name>CodeJam.PerfTests</Name>
-      <Project>{1D650545-A151-4211-8C29-C38A939403A6}</Project>
+    <ProjectReference Include="CodeJam.PerfTests.xUnit\CodeJam.PerfTests.xUnit.csproj">
+      <Name>CodeJam.PerfTests.xUnit</Name>
+      <Project>{92C6E5F8-FFEE-4269-92D7-BB9CFEB63D4B}</Project>
+    </ProjectReference>
+    <ProjectReference Include="CodeJam.PerfTests.MSTest\CodeJam.PerfTests.MSTest.csproj">
+      <Name>CodeJam.PerfTests.MSTest</Name>
+      <Project>{84C380D0-0EA7-4262-BB9E-44C7156EC091}</Project>
     </ProjectReference>
   </ItemGroup>
 </Project>

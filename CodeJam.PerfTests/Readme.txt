@@ -1,4 +1,9 @@
-﻿CodeJam.PerfTests Release Notes
+﻿CodeJam.PerfTests Intro
+
+Please check TBD for intro and samples
+
+Release Notes
+
 -------------------------------
 # 0.2.0-beta
 * Update BenchmarkDotNet dependency to 0.10.9

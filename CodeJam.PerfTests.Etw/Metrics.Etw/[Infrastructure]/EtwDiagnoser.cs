@@ -5,10 +5,11 @@ using BenchmarkDotNet.Running;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-
+using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
+using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Validators;
@@ -258,28 +259,16 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		}
 		#endregion
 
-		#region Implementation of IDiagnoser
-		/// <summary>Gets the column provider.</summary>
-		/// <returns>The column provider.</returns>
-		public IColumnProvider GetColumnProvider() => new CompositeColumnProvider();
-
 		/// <summary>Called before jitting, warmup</summary>
 		/// <param name="parameters">The diagnoser action parameters</param>
-		public void BeforeAnythingElse(DiagnoserActionParameters parameters)
-		{
-			// Nothing to do here
-		}
-
-		/// <summary>Called after globalSetup, before run</summary>
-		/// <param name="parameters">The diagnoser action parameters</param>
-		public void AfterGlobalSetup(DiagnoserActionParameters parameters)
+		private void BeforeAnythingElse(DiagnoserActionParameters parameters)
 		{
 			StartTraceSession(parameters);
 		}
 
 		/// <summary>Called after globalSetup, warmup and pilot but before the main run</summary>
 		/// <param name="parameters">The diagnoser action parameters</param>
-		public void BeforeMainRun(DiagnoserActionParameters parameters)
+		private void BeforeMainRun(DiagnoserActionParameters parameters)
 		{
 			var analysis = _diagnoserState[parameters.Config].Analysis;
 			if (analysis == null) return;
@@ -290,8 +279,9 @@ namespace CodeJam.PerfTests.Metrics.Etw
 			DiagnoserEventSource.Instance.TraceStarted(analysis.RunGuid, analysis.IterationGuid);
 		}
 
-		/// <summary>Called after run, before global cleanup</summary>
-		public void BeforeGlobalCleanup(DiagnoserActionParameters parameters)
+		/// <summary>Called after after main run, but before global Cleanup</summary>
+		/// <param name="parameters">The diagnoser action parameters</param>
+		private void AfterMainRun(DiagnoserActionParameters parameters)
 		{
 			var analysis = _diagnoserState[parameters.Config].Analysis;
 			if (analysis == null) return;
@@ -302,10 +292,21 @@ namespace CodeJam.PerfTests.Metrics.Etw
 			CompleteTraceSession(analysis);
 		}
 
-		/// <summary>Processes the results.</summary>
-		/// <param name="benchmark">The benchmark.</param>
-		/// <param name="report">The report.</param>
-		public void ProcessResults(Benchmark benchmark, BenchmarkReport report)
+		/// <summary>Called after after all (the last thing the benchmarking engine does is to fire this signal)</summary>
+		/// <param name="parameters">The diagnoser action parameters</param>
+		private void AfterAll(DiagnoserActionParameters parameters)
+		{
+			// Nothing to do here.
+		}
+
+		/// <summary>Call used to run some code independent to the benchmarked process</summary>
+		/// <param name="parameters">The diagnoser action parameters</param>
+		private void SeparateLogic(DiagnoserActionParameters parameters)
+		{
+			// Nothing to do here.
+		}
+
+		private void ProcessResultsCore()
 		{
 			var analysis = _analysis;
 			if (analysis == null) return;
@@ -319,6 +320,19 @@ namespace CodeJam.PerfTests.Metrics.Etw
 				DisposeAnalysis(analysis);
 			}
 		}
+
+		#region Implementation of IDiagnoser
+		/// <summary>Processes the results.</summary>
+		/// <param name="results">The results.</param>
+		public void ProcessResults(DiagnoserResults results)
+		{
+			ProcessResultsCore();
+		}
+
+		/// <summary>Gets the column provider.</summary>
+		/// <returns>The column provider.</returns>
+		public IColumnProvider GetColumnProvider() => new CompositeColumnProvider();
+
 
 		/// <summary>Displays the results.</summary>
 		/// <param name="logger">The logger.</param>
@@ -338,6 +352,34 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <returns>The diagnoser run mode.</returns>
 		public RunMode GetRunMode(Benchmark benchmark) => RunMode.ExtraRun;
 
+		/// <summary>Handles the specified signal.</summary>
+		/// <param name="signal">The signal.</param>
+		/// <param name="parameters">The parameters.</param>
+		/// <exception cref="NotImplementedException"></exception>
+		public void Handle(HostSignal signal, DiagnoserActionParameters parameters)
+		{
+			switch (signal)
+			{
+				case HostSignal.BeforeAnythingElse:
+					BeforeAnythingElse(parameters);
+					break;
+				case HostSignal.BeforeMainRun:
+					BeforeMainRun(parameters);
+					break;
+				case HostSignal.AfterMainRun:
+					AfterMainRun(parameters);
+					break;
+				case HostSignal.AfterAll:
+					AfterAll(parameters);
+					break;
+				case HostSignal.SeparateLogic:
+					SeparateLogic(parameters);
+					break;
+				default:
+					throw CodeExceptions.UnexpectedArgumentValue(nameof(signal), signal);
+			}
+		}
+
 		/// <summary>Gets the diagnoser ids.</summary>
 		/// <value>The diagnoser ids.</value>
 		public IEnumerable<string> Ids => new[] { nameof(EtwDiagnoser) };
@@ -345,6 +387,11 @@ namespace CodeJam.PerfTests.Metrics.Etw
 		/// <summary>Gets the exporters.</summary>
 		/// <value>The exporters.</value>
 		public IEnumerable<IExporter> Exporters => Array<IExporter>.Empty;
+
+		/// <summary>Gets the analysers.</summary>
+		/// <value>The analysers.</value>
+		public IEnumerable<IAnalyser> Analysers => Array<IAnalyser>.Empty;
+
 		#endregion
 	}
 }

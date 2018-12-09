@@ -12,8 +12,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
-		<ProjectReference Include="..\src-Etw\CodeJam.PerfTests.Etw.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests\CodeJam.PerfTests.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests.Etw\CodeJam.PerfTests.Etw.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.8.1" />
@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
+		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
 	</ItemGroup>

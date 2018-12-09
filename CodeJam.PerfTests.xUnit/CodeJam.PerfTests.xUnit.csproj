@@ -9,8 +9,8 @@
 		<RootNamespace>CodeJam.PerfTests</RootNamespace>
 		<ProjectGuid>{92C6E5F8-FFEE-4269-92D7-BB9CFEB63D4B}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
-		
+		<TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
+
 		<PackageId>CodeJam.PerfTests.xUnit</PackageId>
 		<Title>CodeJam.PerfTests xUnit integration library</Title>
 		<Authors>Igor Sinicyn</Authors>
@@ -23,14 +23,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests\CodeJam.PerfTests.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="xunit" Version="2.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
+		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
 	</ItemGroup>

@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests\CodeJam.PerfTests.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="1.0.41" />

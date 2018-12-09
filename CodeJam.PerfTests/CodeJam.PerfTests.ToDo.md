@@ -10,6 +10,7 @@
 ## TODOs:
 
 ### TODO now:
+* Update ReadMe & docs
 * check metric if no annotations (test succeed???)
 * check exception if stored metrics are invalid (min > max)
 * Cache metric values (same as annotation context but for parsing the anotations).

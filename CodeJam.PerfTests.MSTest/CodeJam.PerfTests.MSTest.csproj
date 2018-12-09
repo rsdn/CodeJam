@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam.PerfTests</RootNamespace>
 		<ProjectGuid>{84C380D0-0EA7-4262-BB9E-44C7156EC091}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
 
 		<PackageId>CodeJam.PerfTests.MSTest</PackageId>
 		<Title>CodeJam.PerfTests MSTest V2 integration library</Title>
@@ -23,14 +23,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\CodeJam.PerfTests.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests\CodeJam.PerfTests.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\Build\Jetbrains.Annotations.cs">
+		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
 	</ItemGroup>

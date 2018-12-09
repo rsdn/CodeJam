@@ -9,11 +9,11 @@
 		<ProjectGuid>{F70A32D4-EE5D-477F-965C-428119D4CD39}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<PlatformTarget>x64</PlatformTarget>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src-xUnit\CodeJam.PerfTests.xUnit.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests.xUnit\CodeJam.PerfTests.xUnit.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="xunit" Version="2.3.1" />

@@ -65,15 +65,18 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Gets the validators.</summary>
 		/// <value>The validators.</value>
 		public List<IValidator> Validators { get; } = new List<IValidator>();
-		/// <summary>Gets hardware counters.</summary>
-		/// <returns>The hardware counters</returns>
-		public List<HardwareCounter> HardwareCounters { get; } = new List<HardwareCounter>();
 		/// <summary>Gets the filters.</summary>
 		/// <returns>Filters</returns>
 		public List<IFilter> Filters { get; } = new List<IFilter>();
 		/// <summary>Gets the jobs.</summary>
 		/// <value>The jobs.</value>
 		public List<Job> Jobs { get; } = new List<Job>();
+		/// <summary>Gets hardware counters.</summary>
+		/// <returns>The hardware counters</returns>
+		public List<HardwareCounter> HardwareCounters { get; } = new List<HardwareCounter>();
+		/// <summary>Gets or sets the logical group rules.</summary>
+		/// <value>The logical group rules.</value>
+		public List<BenchmarkLogicalGroupRule> LogicalGroupRules { get; set; } = new List<BenchmarkLogicalGroupRule>();
 		/// <summary>Gets or sets the order provider.</summary>
 		/// <value>The order provider.</value>
 		public IOrderProvider OrderProvider { get; set; }
@@ -85,6 +88,9 @@ namespace CodeJam.PerfTests.Configs
 		/// determines if all auto-generated files should be kept or removed after running benchmarks
 		/// </summary>
 		public bool KeepBenchmarkFiles { get; set; }
+
+		/// <summary>the default value is "./BenchmarkDotNet.Artifacts"</summary>
+		public string ArtifactsPath { get; set; }
 
 		/// <summary>Competition options.</summary>
 		/// <value>Competition options.</value>
@@ -136,14 +142,21 @@ namespace CodeJam.PerfTests.Configs
 			// DONTTOUCH: please DO NOT remove .Freeze() call.
 			Jobs.AddRange(newJobs.Select(j => j.Freeze()));
 
-		/// <summary>Adds the specified new competition metrics.</summary>
-		/// <param name="newMetrics">The new competition metrics.</param>
-		public void Add(params MetricInfo[] newMetrics) => Metrics.AddRange(newMetrics);
-
-
 		/// <summary>Adds the specified new hardware counters.</summary>
 		/// <param name="counters">The new hardware counters.</param>
 		public void Add(params HardwareCounter[] counters) => HardwareCounters.AddRange(counters);
+
+		/// <summary>Adds the specified new filters.</summary>
+		/// <param name="newFilters">The new filters.</param>
+		public void Add(params IFilter[] newFilters) => Filters.AddRange(newFilters);
+
+		/// <summary>Adds the rules.</summary>
+		/// <param name="rules">The rules.</param>
+		public void Add(params BenchmarkLogicalGroupRule[] rules) => LogicalGroupRules.AddRange(rules);
+
+		/// <summary>Adds the specified new competition metrics.</summary>
+		/// <param name="newMetrics">The new competition metrics.</param>
+		public void Add(params MetricInfo[] newMetrics) => Metrics.AddRange(newMetrics);
 
 		/// <summary>Sets the specified provider.</summary>
 		/// <param name="provider">The provider.</param>
@@ -169,12 +182,15 @@ namespace CodeJam.PerfTests.Configs
 			Add(config.GetLoggers().ToArray());
 			Add(config.GetDiagnosers().ToArray());
 			Add(config.GetAnalysers().ToArray());
-			Add(config.GetJobs().ToArray());
 			Add(config.GetValidators().ToArray());
+			Add(config.GetJobs().ToArray());
 			Add(config.GetHardwareCounters().ToArray());
-			Set(config.GetOrderProvider());
-			Set(config.GetSummaryStyle());
+			Add(config.GetFilters().ToArray());
+			Add(config.GetLogicalGroupRules().ToArray());
+			OrderProvider = config.GetOrderProvider() ?? OrderProvider;
 			KeepBenchmarkFiles |= config.KeepBenchmarkFiles;
+			ArtifactsPath = config.ArtifactsPath ?? ArtifactsPath;
+			SummaryStyle = SummaryStyle ?? config.GetSummaryStyle();
 
 			if (config is ICompetitionConfig competitionConfig)
 			{
@@ -268,6 +284,13 @@ namespace CodeJam.PerfTests.Configs
 		/// <summary>Gets summary style.</summary>
 		/// <returns>The summary style</returns>
 		ISummaryStyle IConfig.GetSummaryStyle() => SummaryStyle;
+
+		/// <summary>the default value is "./BenchmarkDotNet.Artifacts"</summary>
+		string IConfig.ArtifactsPath => ArtifactsPath;
+
+		/// <summary>Gets the logical group rules.</summary>
+		/// <returns></returns>
+		IEnumerable<BenchmarkLogicalGroupRule> IConfig.GetLogicalGroupRules() => LogicalGroupRules;
 
 		/// <summary>Gets the union rule.</summary>
 		/// <value>The union rule.</value>

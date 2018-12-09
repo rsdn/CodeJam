@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
@@ -28,6 +27,10 @@ namespace BenchmarkDotNet.Horology
 		public static readonly IClock Instance = new ThreadCycleTimeClock();
 		#endregion
 
+		/// <summary>Gets the title.</summary>
+		/// <value>The title.</value>
+		public string Title => "CPU cycles (Thread)";
+
 		/// <summary>Gets a value indicating whether this instance is available.</summary>
 		/// <value>
 		/// <c>true</c> if this instance is available; otherwise, <c>false</c>.
@@ -39,9 +42,8 @@ namespace BenchmarkDotNet.Horology
 		public Frequency Frequency => new Frequency(_frequency);
 
 		/// <summary>Gets the timestamp.</summary>
-		/// <returns></returns>
-		public long GetTimestamp() =>
-			CycleClockHelpers.GetCurrentThreadTimestamp();
+		/// <returns>Timestamp</returns>
+		public long GetTimestamp() => CycleClockHelpers.GetCurrentThreadTimestamp();
 
 		/// <summary>
 		/// Returns a <see cref="string"/> that represents this instance.

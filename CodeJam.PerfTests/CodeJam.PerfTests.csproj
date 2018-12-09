@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam.PerfTests</RootNamespace>
 		<ProjectGuid>{1D650545-A151-4211-8C29-C38A939403A6}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
 
 		<PackageId>CodeJam.PerfTests.Core</PackageId>
 		<Title>CodeJam.PerfTests core library</Title>
@@ -23,7 +23,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BenchmarkDotNet.Core" Version="0.10.10" />
+		<PackageReference Include="BenchmarkDotNet.Core" Version="0.10.14" />
+		<PackageReference Include="CodeJam" Version="2.1.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.2.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0'">
 		<Reference Include="System.Configuration" />

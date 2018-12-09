@@ -78,7 +78,7 @@ namespace BenchmarkDotNet.Horology
 					var t = clock.Start();
 					var ts1 = GetCurrentProcessTimestamp();
 					Thread.SpinWait(iterationsCount);
-					var t2 = t.Stop();
+					var t2 = t.GetElapsed();
 					var ts2 = GetCurrentProcessTimestamp();
 
 					freq = (long)((ts2 - ts1) / t2.GetSeconds());
@@ -106,7 +106,7 @@ namespace BenchmarkDotNet.Horology
 					var t = clock.Start();
 					var ts1 = GetCurrentThreadTimestamp();
 					Thread.SpinWait(iterationsCount);
-					var t2 = t.Stop();
+					var t2 = t.GetElapsed();
 					var ts2 = GetCurrentThreadTimestamp();
 
 					freq = (long)((ts2 - ts1) / t2.GetSeconds());

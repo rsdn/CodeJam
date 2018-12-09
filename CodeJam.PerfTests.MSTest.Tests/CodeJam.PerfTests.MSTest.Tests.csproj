@@ -9,11 +9,11 @@
 		<ProjectGuid>{B535D8EF-66CC-4701-845D-F4C44C49922E}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<PlatformTarget>x86</PlatformTarget>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src-MSTest\CodeJam.PerfTests.MSTest.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests.MSTest\CodeJam.PerfTests.MSTest.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />

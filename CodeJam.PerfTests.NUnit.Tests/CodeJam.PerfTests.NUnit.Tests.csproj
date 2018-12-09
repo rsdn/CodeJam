@@ -9,12 +9,12 @@
 		<ProjectGuid>{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}</ProjectGuid>
 		<OutputType>Exe</OutputType>
 		<PlatformTarget>x64</PlatformTarget>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
 		<StartupObject>CodeJam.Examples.PerfTests.ExamplesProgram</StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src-NUnit\CodeJam.PerfTests.NUnit.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests.NUnit\CodeJam.PerfTests.NUnit.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.8.1" />
