@@ -17,6 +17,7 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public static class Converter
 	{
+		[NotNull]
 		private static readonly ConcurrentDictionary<object, LambdaExpression> _expressions =
 			new ConcurrentDictionary<object, LambdaExpression>();
 
@@ -82,6 +83,7 @@ namespace CodeJam.Mapping
 			return l;
 		}
 
+		[NotNull]
 		private static readonly ConcurrentDictionary<object, Func<object, object>> _converters =
 			new ConcurrentDictionary<object, Func<object, object>>();
 
@@ -92,8 +94,10 @@ namespace CodeJam.Mapping
 		/// <param name="conversionType">The type of object to return.</param>
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
-		public static object ChangeType(object value, Type conversionType, MappingSchema mappingSchema = null)
+		public static object ChangeType([CanBeNull] object value, [NotNull] Type conversionType, MappingSchema mappingSchema = null)
 		{
+			Code.NotNull(conversionType, nameof(conversionType));
+
 			if (value == null || value is DBNull)
 				return mappingSchema == null ?
 					DefaultValue.GetValue(conversionType) :

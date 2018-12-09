@@ -215,6 +215,7 @@ namespace CodeJam.Mapping
 			return li == null ? null : (LambdaExpression)ReduceDefaultValue(li.CheckNullLambda);
 		}
 
+		[NotNull]
 		internal ConcurrentDictionary<object,Func<object,object>> Converters
 			=> Schemas[0].Converters;
 

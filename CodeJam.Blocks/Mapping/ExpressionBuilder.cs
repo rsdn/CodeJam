@@ -127,7 +127,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private Expression GetExpressionExImpl(Expression fromExpression, Type toType)
+		private Expression GetExpressionExImpl([NotNull] Expression fromExpression, [NotNull] Type toType)
 		{
 			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
 			var toAccessor   = TypeAccessor.GetAccessor(toType);

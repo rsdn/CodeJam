@@ -1035,6 +1035,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
 		[Pure, CanBeNull]
+		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
 		public static T Transform<T>([CanBeNull] this T expr, [NotNull] Func<Expression, Expression> func)
 			where T : LambdaExpression
 		{
@@ -1050,6 +1051,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
 		[Pure, CanBeNull]
+		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
 		public static Expression Transform([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
 		{
 			Code.NotNull(func, nameof(func));

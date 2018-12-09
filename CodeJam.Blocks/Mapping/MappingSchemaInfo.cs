@@ -103,7 +103,9 @@ namespace CodeJam.Mapping
 			=> _convertInfo?.Get(from, to);
 
 		private ConcurrentDictionary<object,Func<object,object>> _converters;
-		public  ConcurrentDictionary<object,Func<object,object>>  Converters
+
+		[NotNull]
+		public ConcurrentDictionary<object,Func<object,object>> Converters
 			=> _converters ?? (_converters = new ConcurrentDictionary<object,Func<object,object>>());
 
 		#endregion
