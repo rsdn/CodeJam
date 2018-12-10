@@ -30,9 +30,9 @@ namespace CodeJam.Mapping
 			public readonly Dictionary<ValueTuple<Type,Type>,ParameterExpression> Mappers     = new Dictionary<ValueTuple<Type,Type>, ParameterExpression>();
 			[NotNull]
 			public readonly HashSet<ValueTuple<Type,Type>>                        MapperTypes = new HashSet<ValueTuple<Type,Type>>();
-			[NotNull]
+			[NotNull, ItemNotNull]
 			public readonly List<ParameterExpression>                             Locals      = new List<ParameterExpression>();
-			[NotNull]
+			[NotNull, ItemNotNull]
 			public readonly List<Expression>                                      Expressions = new List<Expression>();
 
 			public ParameterExpression LocalDic;
@@ -68,6 +68,7 @@ namespace CodeJam.Mapping
 
 		#region GetExpressionEx
 
+		[CanBeNull]
 		public LambdaExpression GetExpressionEx()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
@@ -255,7 +256,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		[ContractAnnotation("expr:null => null")]
+		[ContractAnnotation("expr:null => null; expr:notnull => notnull")]
 		private static Expression Convert([CanBeNull] Expression expr, [NotNull] Type toType) =>
 			expr == null ? null : expr.Type == toType ? expr : Expression.Convert(expr, toType);
 
@@ -364,8 +365,8 @@ namespace CodeJam.Mapping
 		{
 			public MappingImpl(
 				[NotNull] ExpressionBuilder builder,
-				Expression        fromExpression,
-				Expression        toExpression)
+				[NotNull] Expression        fromExpression,
+				[NotNull] Expression        toExpression)
 			{
 				_builder        = builder;
 				_fromExpression = fromExpression;
@@ -376,14 +377,14 @@ namespace CodeJam.Mapping
 				_cacheMapper    = _builder._mapperBuilder.ProcessCrossReferences != false;
 			}
 
-			private readonly ExpressionBuilder         _builder;
-			private readonly Expression                _fromExpression;
-			private readonly Expression                _toExpression;
-			private readonly ParameterExpression       _localObject;
-			private readonly TypeAccessor              _fromAccessor;
-			private readonly TypeAccessor              _toAccessor;
-			private readonly List<Expression>          _expressions = new List<Expression>();
-			private readonly List<ParameterExpression> _locals      = new List<ParameterExpression>();
+			[NotNull] private readonly ExpressionBuilder         _builder;
+			[NotNull] private readonly Expression                _fromExpression;
+			[NotNull] private readonly Expression                _toExpression;
+			[NotNull] private readonly ParameterExpression       _localObject;
+			[NotNull] private readonly TypeAccessor              _fromAccessor;
+			[NotNull] private readonly TypeAccessor              _toAccessor;
+			[NotNull, ItemNotNull] private readonly List<Expression>          _expressions = new List<Expression>();
+			[NotNull, ItemNotNull] private readonly List<ParameterExpression> _locals      = new List<ParameterExpression>();
 			private readonly bool                      _cacheMapper;
 
 			//private Type _actualLocalObjectType;
@@ -633,10 +634,10 @@ namespace CodeJam.Mapping
 			}
 
 			private Expression BuildAssignment(
-				LambdaExpression getter,
-				LambdaExpression setter,
-				Type fromMemberType,
-				Expression toExpression,
+				[NotNull] LambdaExpression getter,
+				[NotNull] LambdaExpression setter,
+				[NotNull] Type fromMemberType,
+				[NotNull] Expression toExpression,
 				MemberAccessor toMember)
 			{
 				var getValue = getter.ReplaceParameters(_fromExpression);
@@ -719,6 +720,7 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
+		[CanBeNull]
 		private static Expression Select(
 			[NotNull] ExpressionBuilder builder,
 			Expression getValue,

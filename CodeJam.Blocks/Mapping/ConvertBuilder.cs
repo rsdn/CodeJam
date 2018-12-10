@@ -226,7 +226,7 @@ namespace CodeJam.Mapping
 			[NotNull] Type from,
 			[NotNull] Type to,
 			[NotNull] Expression expression,
-			[NotNull] MappingSchema mappingSchema)
+			[CanBeNull] MappingSchema mappingSchema)
 		{
 			if (to.IsEnum)
 			{
@@ -312,7 +312,12 @@ namespace CodeJam.Mapping
 			public MapValueAttribute[] Attrs;
 		}
 
-		private static Expression GetFromEnum(Type from, Type to, Expression expression, MappingSchema mappingSchema)
+		[CanBeNull]
+		private static Expression GetFromEnum(
+			[NotNull] Type from,
+			[NotNull] Type to,
+			[NotNull] Expression expression,
+			[CanBeNull] MappingSchema mappingSchema)
 		{
 			if (from.IsEnum)
 			{
@@ -459,10 +464,10 @@ namespace CodeJam.Mapping
 		}
 
 		private static ValueTuple<Expression, bool>? GetConverter(
-			MappingSchema mappingSchema,
-			Expression expr,
-			Type from,
-			Type to)
+			[CanBeNull] MappingSchema mappingSchema,
+			[NotNull] Expression expr,
+			[NotNull] Type from,
+			[NotNull] Type to)
 		{
 			if (from == to)
 				return ValueTuple.Create(expr, false);
@@ -497,10 +502,10 @@ namespace CodeJam.Mapping
 		}
 
 		private static ValueTuple<Expression, bool>? ConvertUnderlying(
-			MappingSchema mappingSchema,
-			Expression expr,
-			Type from, Type ufrom,
-			Type to, Type uto)
+			[CanBeNull] MappingSchema mappingSchema,
+			[NotNull] Expression expr,
+			[NotNull]Type from, [NotNull] Type ufrom,
+			[NotNull]Type to, [NotNull]Type uto)
 		{
 			ValueTuple<Expression, bool>? ex = null;
 
@@ -532,9 +537,9 @@ namespace CodeJam.Mapping
 
 		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 		public static ValueTuple<LambdaExpression, LambdaExpression, bool> GetConverter(
-			MappingSchema mappingSchema,
-			Type from,
-			Type to)
+			[CanBeNull] MappingSchema mappingSchema,
+			[NotNull] Type from,
+			[NotNull] Type to)
 		{
 			if (mappingSchema == null)
 				mappingSchema = MappingSchema.Default;
@@ -603,7 +608,8 @@ namespace CodeJam.Mapping
 
 		#region Default Enum Mapping Type
 
-		public static Type GetDefaultMappingFromEnumType(MappingSchema mappingSchema, Type enumType)
+		[CanBeNull]
+		public static Type GetDefaultMappingFromEnumType([NotNull] MappingSchema mappingSchema, [NotNull] Type enumType)
 		{
 			var type = enumType.ToNullableUnderlying();
 

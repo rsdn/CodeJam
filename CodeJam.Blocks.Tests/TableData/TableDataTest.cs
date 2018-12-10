@@ -4,6 +4,8 @@ using System.Linq;
 
 using CodeJam.Strings;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.TableData
@@ -23,7 +25,8 @@ namespace CodeJam.TableData
 			"abc, def, ghi   \r\no_p_r, stu, vwx\r\n\"123\", \" 4 5 6 \", \"78 \r\n9\"",
 			ExpectedResult = "(1) abc, def, ghi; (2) o_p_r, stu, vwx; (3) 123,  4 5 6 , 78 \r\n9")]
 		[TestCase("a\r\nb\r\nc\r\n\r\n\"\"", ExpectedResult = "(1) a; (2) b; (3) c; (5) ")]
-		public string ParseCsv(string src) =>
+		[NotNull]
+		public string ParseCsv([NotNull] string src) =>
 			CsvFormat
 				.CreateParser()
 				.Parse(src)
@@ -39,7 +42,8 @@ namespace CodeJam.TableData
 		[TestCase(
 			"abc ,def, ghi\r\n o_p_r,stu,vwx\r\n\"123\", \" 4 5 6 \",\"78 9\"",
 			ExpectedResult = "(1) abc , def,  ghi; (2)  o_p_r, stu, vwx; (3) \"123\",  \" 4 5 6 \", \"78 9\"")]
-		public string ParseCsvNoEscape(string src) =>
+		[NotNull]
+		public string ParseCsvNoEscape([NotNull] string src) =>
 			CsvFormat
 				.CreateParser(false)
 				.Parse(src)
@@ -52,7 +56,8 @@ namespace CodeJam.TableData
 		[TestCase("a,b\r\nc,d", ExpectedResult = "  a, b\r\n  c, d")]
 		[TestCase("a,b\r\ncc,dd", ExpectedResult = "  a, b\r\n  cc, dd")]
 		[TestCase("a,b\r\ncc,dd\r\ne,f", ExpectedResult = "  a, b\r\n  cc, dd\r\n  e , f ")]
-		public string PrintCsv(string source)
+		[NotNull]
+		public string PrintCsv([NotNull] string source)
 		{
 			var data = CsvFormat.CreateParser(true).Parse(source);
 			var result = new StringWriter();
@@ -66,7 +71,8 @@ namespace CodeJam.TableData
 		[TestCase("ab\r\ncd", new[] { 2 }, ExpectedResult = "(1) ab; (2) cd")]
 		[TestCase("ab\r\ncd", new[] { 1, 1 }, ExpectedResult = "(1) a, b; (2) c, d")]
 		[TestCase(" abc", new[] { 2, 2 }, ExpectedResult = "(1) a, bc")]
-		public string ParseFixedWidth(string source, int[] widths) =>
+		[NotNull]
+		public string ParseFixedWidth([NotNull] string source, [NotNull] int[] widths) =>
 			FixedWidthFormat
 				.CreateParser(widths)
 				.Parse(source)
@@ -77,7 +83,8 @@ namespace CodeJam.TableData
 		[TestCase("a",              new[] { 3 },    ExpectedResult = "a  ")]
 		[TestCase("  a b",          new[] { 3, 2 }, ExpectedResult = "a  b ")]
 		[TestCase("  a b\r\n  c d", new[] { 3, 2 }, ExpectedResult = "a  b \r\nc  d ")]
-		public string PrintFixedWidth(string source, int[] widths)
+		[NotNull]
+		public string PrintFixedWidth([NotNull] string source, [NotNull] int[] widths)
 		{
 			var res = new StringWriter();
 			FixedWidthFormat.Print(

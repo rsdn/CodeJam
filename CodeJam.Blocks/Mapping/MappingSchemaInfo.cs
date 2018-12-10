@@ -22,6 +22,7 @@ namespace CodeJam.Mapping
 		#region Default Values
 		private volatile ConcurrentDictionary<Type,object> _defaultValues;
 
+		[NotNull]
 		public Option<object> GetDefaultValue([NotNull] Type type)
 		{
 			if (_defaultValues == null)

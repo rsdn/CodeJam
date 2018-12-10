@@ -39,7 +39,8 @@ namespace CodeJam.Mapping
 			SetConverter<string, bool>(v => v.Length == 1 ? ToBoolean(v[0]) : bool.Parse(v));
 		}
 
-		private static XmlDocument CreateXmlDocument(string str)
+		[NotNull]
+		private static XmlDocument CreateXmlDocument([NotNull] string str)
 		{
 			var xml = new XmlDocument();
 			xml.LoadXml(str);
@@ -77,7 +78,8 @@ namespace CodeJam.Mapping
 		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr)
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
 
-		internal static LambdaExpression GetConverter(Type from, Type to)
+		[CanBeNull]
+		internal static LambdaExpression GetConverter([NotNull] Type from, [NotNull] Type to)
 		{
 			_expressions.TryGetValue(new { from, to }, out var l);
 			return l;
@@ -143,6 +145,7 @@ namespace CodeJam.Mapping
 
 		private static class ExprHolder<T>
 		{
+			[NotNull]
 			public static readonly ConcurrentDictionary<Type, Func<object, T>> Converters =
 				new ConcurrentDictionary<Type, Func<object, T>>();
 		}

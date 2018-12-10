@@ -90,6 +90,7 @@ namespace CodeJam.Reflection
 		#endregion
 
 		#region Static Members
+		[NotNull]
 		private static readonly ConcurrentDictionary<Type,TypeAccessor> _accessors =
 			new ConcurrentDictionary<Type,TypeAccessor>();
 
