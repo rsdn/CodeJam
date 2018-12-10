@@ -28,6 +28,13 @@ namespace CodeJam.Collections
 		/// <summary>The comparer to compare edges of a node against a char</summary>
 		[NotNull] protected Func<int, char, int> EdgeComparer { get; }
 
+		/// <summary>The matched edge and the matched length over this edge</summary>
+		private struct FindResult
+		{
+			public Node Node;
+			public int Length;
+		}
+
 		/// <summary>The comparer to compare string locations against a string end</summary>
 		private readonly Func<(int Start, int End), int, int> _stringLocationByEndComparer =
 			(position, end) => position.Item2 - end;
@@ -120,7 +127,7 @@ namespace CodeJam.Collections
 				return true;
 			}
 			var r = FindBranch(substring);
-			return r != null;
+			return r.HasValue;
 		}
 
 		/// <summary>Checks whether the suffix tree contains the given suffix or not</summary>
@@ -135,12 +142,12 @@ namespace CodeJam.Collections
 				return true;
 			}
 			var r = FindBranch(suffix);
-			if (r == null)
+			if (!r.HasValue)
 			{
 				return false;
 			}
-			var edge = r.Item1;
-			var length = r.Item2;
+			var edge = r.Value.Node;
+			var length = r.Value.Length;
 			if (length < edge.Length) // proper substring of a suffix?
 			{
 				return false;
@@ -164,13 +171,13 @@ namespace CodeJam.Collections
 				return All();
 			}
 			var first = FindBranch(prefix);
-			if (first == null)
+			if (!first.HasValue)
 			{
 				return Enumerable.Empty<Suffix>();
 			}
 			var length = prefix.Length;
-			var edge = first.Item1;
-			var matchLength = first.Item2;
+			var edge = first.Value.Node;
+			var matchLength = first.Value.Length;
 			if (matchLength < edge.Length)
 			{
 				length += edge.Length - matchLength;
@@ -253,8 +260,8 @@ namespace CodeJam.Collections
 		/// <summary>Locates the branch corresponding to the given string</summary>
 		/// <param name="s">The string to find</param>
 		/// <returns>The last matched edge and the matched length over this edge or null if no match found</returns>
-		[Pure][CanBeNull]
-		private Tuple<Node, int> FindBranch([NotNull] string s)
+		[Pure]
+		private ValueOption<FindResult> FindBranch([NotNull] string s)
 		{
 			DebugCode.AssertState(s.Length > 0, "The string length should be positive");
 			var currentNode = Root;
@@ -264,19 +271,19 @@ namespace CodeJam.Collections
 				var edgeIndex = FindEdge(currentNode, s[offset], out var edge);
 				if (edgeIndex == -1)
 				{
-					return null;
+					return ValueOption.None<FindResult>();
 				}
 				var edgeLength = edge.Length;
 				var compareLength = Math.Min(s.Length - offset, edgeLength);
 				if (compareLength > 1
 					&& string.Compare(s, offset + 1, InternalData, edge.Begin + 1, compareLength - 1) != 0)
 				{
-					return null;
+					return ValueOption.None<FindResult>();
 				}
 				offset += compareLength;
 				if (offset == s.Length)
 				{
-					return Tuple.Create(edge, compareLength);
+					return ValueOption.Some(new FindResult {Node = edge, Length = compareLength});
 				}
 				DebugCode.AssertState(compareLength == edgeLength, "Invalid compare length. Check logic");
 				currentNode = edge;
