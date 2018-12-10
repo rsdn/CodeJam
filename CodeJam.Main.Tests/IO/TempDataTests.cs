@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using NUnit.Framework;
@@ -13,6 +14,18 @@ namespace CodeJam.IO
 		private static void AssertDisposed<T>(Func<T> memberCallback) =>
 			Assert.Throws<ObjectDisposedException>(() => memberCallback());
 		#endregion
+
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		private static string CreateAndLeakTempDir(string s)
+		{
+			var dir2 = TempData.CreateDirectory();
+			var dir2Path = dir2.Path;
+			Assert.AreNotEqual(s, dir2Path, "Path should not match");
+			Assert.IsNotNull(dir2.Info, "Info is null");
+			Assert.IsTrue(dir2.Info.Exists, "Directory should exist");
+			GC.KeepAlive(dir2);
+			return dir2Path;
+		}
 
 		[Test]
 		public void Test01Directory()
@@ -35,16 +48,7 @@ namespace CodeJam.IO
 
 			// test for cleanup if leaked
 			{
-				var dir2 = TempData.CreateDirectory();
-				var dir2Path = dir2.Path;
-				Assert.AreNotEqual(dirPath, dir2Path, "Path should not match");
-				Assert.IsNotNull(dir2.Info, "Info is null");
-				Assert.IsTrue(dir2.Info.Exists, "Directory should exist");
-				GC.KeepAlive(dir2);
-
-				// clear GC root for a debug build
-				// ReSharper disable once RedundantAssignment
-				dir2 = null;
+				var dir2Path = CreateAndLeakTempDir(dirPath);
 				GC.Collect();
 				GC.WaitForPendingFinalizers();
 				GC.Collect();
@@ -118,6 +122,19 @@ namespace CodeJam.IO
 			Assert.IsFalse(File.Exists(dirPath), "Directory should NOT exist");
 		}
 
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		private static string CreateAndLeakTempFile(string filePath)
+		{
+			var file2 = TempData.CreateFile();
+			var file2Path = file2.Path;
+			Assert.AreNotEqual(filePath, file2Path, "Path should not match");
+			Assert.IsNotNull(file2.Info, "Info is null");
+			Assert.IsTrue(file2.Info.Exists, "File should exist");
+			GC.KeepAlive(file2);
+
+			return file2Path;
+		}
+
 		[Test]
 		public void Test04File()
 		{
@@ -139,19 +156,11 @@ namespace CodeJam.IO
 
 			// test for cleanup if leaked
 			{
-				var file2 = TempData.CreateFile();
-				var file2Path = file2.Path;
-				Assert.AreNotEqual(filePath, file2Path, "Path should not match");
-				Assert.IsNotNull(file2.Info, "Info is null");
-				Assert.IsTrue(file2.Info.Exists, "File should exist");
-				GC.KeepAlive(file2);
-
-				// clear GC root for a debug build
-				// ReSharper disable once RedundantAssignment
-				file2 = null;
+				var file2Path = CreateAndLeakTempFile(filePath);
 				GC.Collect();
 				GC.WaitForPendingFinalizers();
 				GC.Collect();
+
 				Assert.IsFalse(File.Exists(file2Path), "File should NOT exist");
 			}
 
@@ -217,6 +226,18 @@ namespace CodeJam.IO
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
 		}
 
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		private static string CreateAndLeakTempStream(string filePath)
+		{
+			var file2 = TempData.CreateFileStream();
+			var file2Path = file2.Name;
+			Assert.AreNotEqual(filePath, file2Path, "Path should not match");
+			Assert.IsTrue(File.Exists(file2.Name), "FileStream should exist");
+			GC.KeepAlive(file2);
+
+			return file2Path;
+		}
+
 		[Test]
 		public void Test07FileStream()
 		{
@@ -238,15 +259,7 @@ namespace CodeJam.IO
 
 			// test for cleanup if leaked
 			{
-				var file2 = TempData.CreateFileStream();
-				var file2Path = file2.Name;
-				Assert.AreNotEqual(filePath, file2Path, "Path should not match");
-				Assert.IsTrue(File.Exists(file2.Name), "FileStream should exist");
-				GC.KeepAlive(file2);
-
-				// clear GC root for a debug build
-				// ReSharper disable once RedundantAssignment
-				file2 = null;
+				var file2Path = CreateAndLeakTempStream(filePath);
 				GC.Collect();
 				GC.WaitForPendingFinalizers();
 				GC.Collect();

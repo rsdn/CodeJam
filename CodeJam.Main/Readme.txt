@@ -1,8 +1,15 @@
 ﻿CodeJam 2.1.1 Release Notes
 ---------------------------
 
+What's new in 2.2.0-beta1
+-------------------
+* Performance improvements in Fn class
+* string.StartsWith/EndsWith with specific char matching
+* Additional code annotations added
+* Fixes, refactoring and code cleanup
+
 What's new in 2.1.1
------------------------
+-------------------
 * Fix package dependencies
 * Fix version
 

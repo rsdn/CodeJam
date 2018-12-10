@@ -71,7 +71,7 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Unequality operator.
+		/// Inequality operator.
 		/// </summary>
 		/// <param name="left">Left operand.</param>
 		/// <param name="right">Right operand.</param>

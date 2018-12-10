@@ -159,7 +159,7 @@ namespace CodeJam.Dates
 
 		/// <summary>Splits the range by months.</summary>
 		/// <param name="range">The date range.</param>
-		/// <returns>Ranges splitted by first day of months in range.</returns>
+		/// <returns>Ranges split by first day of months in range.</returns>
 		[NotNull]
 		public static IEnumerable<Range<DateTime>> SplitByMonths(this Range<DateTime> range)
 		{
@@ -181,7 +181,7 @@ namespace CodeJam.Dates
 
 		/// <summary>Splits the range by years.</summary>
 		/// <param name="range">The date range.</param>
-		/// <returns>Ranges splitted by first day of years in range.</returns>
+		/// <returns>Ranges split by first day of years in range.</returns>
 		[NotNull]
 		public static IEnumerable<Range<DateTime>> SplitByYears(this Range<DateTime> range)
 		{
