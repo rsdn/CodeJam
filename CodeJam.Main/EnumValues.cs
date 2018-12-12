@@ -22,7 +22,8 @@ namespace CodeJam
 	[PublicAPI]
 	public class EnumValues : IReadOnlyCollection<EnumValue>
 	{
-		private static EnumValue[] GetValues(Type enumType)
+		[NotNull, ItemNotNull]
+		private static EnumValue[] GetValues([NotNull] Type enumType)
 		{
 			var result = new List<EnumValue>();
 			var actualType = enumType.ToNullableUnderlying();
@@ -52,12 +53,13 @@ namespace CodeJam
 		}
 
 		#region Fields & .ctor
+		[NotNull][ItemNotNull]
 		private readonly EnumValue[] _values;
 
-		private readonly IDictionary<string, EnumValue> _valuesByName;
-		private readonly IDictionary<string, EnumValue> _valuesByNameIgnoreCase;
-		private readonly IDictionary<Enum, EnumValue> _valuesByValue;
-		private readonly IDictionary<string, EnumValue> _valuesByDisplayName;
+		[NotNull] private readonly IDictionary<string, EnumValue> _valuesByName;
+		[NotNull] private readonly IDictionary<string, EnumValue> _valuesByNameIgnoreCase;
+		[NotNull] private readonly IDictionary<Enum, EnumValue> _valuesByValue;
+		[NotNull] private readonly IDictionary<string, EnumValue> _valuesByDisplayName;
 
 		/// <summary>Initializes a new instance of the <see cref="EnumValues" /> class.</summary>
 		/// <param name="enumType">Type of the enum.</param>

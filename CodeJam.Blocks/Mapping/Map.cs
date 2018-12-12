@@ -31,7 +31,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TTo">Type to map to.</typeparam>
 		/// <param name="setter">MapperBuilder parameter setter.</param>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][NotNull]
 		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>(
 			[NotNull] Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>> setter)
 		{
@@ -41,6 +41,7 @@ namespace CodeJam.Mapping
 
 		private static class MapHolder<T>
 		{
+			[NotNull]
 			public static readonly Mapper<T, T> Mapper =
 				GetMapper<T, T>(m => m
 					 .SetProcessCrossReferences(true)

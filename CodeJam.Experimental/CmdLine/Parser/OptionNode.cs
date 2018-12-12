@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace CodeJam.CmdLine
 {
@@ -11,7 +11,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		private OptionNode(string text, int position, int length, OptionType type)
+		private OptionNode([NotNull] string text, int position, int length, OptionType type)
 			: base(text, position, length)
 		{
 			Type = type;
@@ -21,7 +21,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			string text,
+			[NotNull] string text,
 			int position,
 			int length)
 			: this(text, position, length, OptionType.Valueless)
@@ -31,7 +31,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			string text,
+			[NotNull] string text,
 			int position,
 			int length,
 			bool boolValue)
@@ -44,10 +44,10 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			string text,
+			[NotNull] string text,
 			int position,
 			int length,
-			QuotedOrNonquotedValueNode value)
+			[NotNull] QuotedOrNonquotedValueNode value)
 			: this(text, position, length, OptionType.Value)
 		{
 			Value = value;
@@ -66,6 +66,6 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Option value.
 		/// </summary>
-		public QuotedOrNonquotedValueNode Value { get; }
+		[NotNull] public QuotedOrNonquotedValueNode Value { get; }
 	}
 }

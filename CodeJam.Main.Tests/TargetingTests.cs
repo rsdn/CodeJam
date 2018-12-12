@@ -4,6 +4,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
+using JetBrains.Annotations;
+
 // ReSharper disable once CheckNamespace
 
 namespace CodeJam
@@ -74,7 +76,7 @@ namespace CodeJam
 			GenerateTargetingConstants(".Net Core", "TARGETS_NETCORE", _netCoreMonikers);
 		}
 
-		private void GenerateTargetingConstants(string description, string platform, string monikersRaw)
+		private void GenerateTargetingConstants(string description, string platform, [NotNull] string monikersRaw)
 		{
 			var monikers = monikersRaw
 				.Split(new[] { "\r\n", ";" }, StringSplitOptions.RemoveEmptyEntries)

@@ -1,4 +1,6 @@
-using System;
+﻿using System;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.CmdLine
 {
@@ -12,15 +14,15 @@ namespace CodeJam.CmdLine
 		///</summary>
 		public const char Eof = '\0';
 
-		private readonly string _source;
+		[NotNull] private readonly string _source;
 
 		///<summary>
 		/// Initialize instance.
 		///</summary>
-		public CharInput(string source) : this(source, 0)
+		public CharInput([NotNull] string source) : this(source, 0)
 		{}
 
-		private CharInput(string source, int position)
+		private CharInput([NotNull] string source, int position)
 		{
 			_source = source;
 			Position = position;
@@ -32,6 +34,7 @@ namespace CodeJam.CmdLine
 
 		public int Position { get; }
 
+		[NotNull]
 		public ICharInput GetNext()
 		{
 			if (Current == Eof)

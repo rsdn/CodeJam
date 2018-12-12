@@ -68,7 +68,7 @@ namespace CodeJam
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
+				[NotNull, ItemNotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
 				int startIndex,
 				int endIndex)

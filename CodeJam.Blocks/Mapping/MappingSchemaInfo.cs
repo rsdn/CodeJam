@@ -22,6 +22,7 @@ namespace CodeJam.Mapping
 		#region Default Values
 		private volatile ConcurrentDictionary<Type,object> _defaultValues;
 
+		[NotNull]
 		public Option<object> GetDefaultValue([NotNull] Type type)
 		{
 			if (_defaultValues == null)
@@ -98,11 +99,14 @@ namespace CodeJam.Mapping
 			_convertInfo.Set(from, to, expr);
 		}
 
+		[CanBeNull]
 		public ConvertInfo.LambdaInfo GetConvertInfo([NotNull] Type from, [NotNull] Type to)
 			=> _convertInfo?.Get(from, to);
 
 		private ConcurrentDictionary<object,Func<object,object>> _converters;
-		public  ConcurrentDictionary<object,Func<object,object>>  Converters
+
+		[NotNull]
+		public ConcurrentDictionary<object,Func<object,object>> Converters
 			=> _converters ?? (_converters = new ConcurrentDictionary<object,Func<object,object>>());
 
 		#endregion

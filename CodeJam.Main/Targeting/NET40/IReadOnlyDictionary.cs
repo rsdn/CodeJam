@@ -34,7 +34,7 @@ namespace System.Collections.Generic
 		/// <returns>
 		/// true if the read-only dictionary contains an element that has the specified key; otherwise, false.
 		/// </returns>
-		bool ContainsKey(TKey key);
+		bool ContainsKey([NotNull] TKey key);
 
 		/// <summary>
 		/// Gets the value that is associated with the specified key.
@@ -48,7 +48,7 @@ namespace System.Collections.Generic
 		/// true if the object that implements the <see cref="IReadOnlyDictionary{TKey,TValue}"/> interface contains
 		/// an element that has the specified key; otherwise, false.
 		/// </returns>
-		bool TryGetValue(TKey key, out TValue value);
+		bool TryGetValue([NotNull] TKey key, out TValue value);
 
 		/// <summary>
 		/// Gets the element that has the specified key in the read-only dictionary.

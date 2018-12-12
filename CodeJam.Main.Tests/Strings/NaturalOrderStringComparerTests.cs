@@ -6,6 +6,8 @@ using System.Linq;
 
 using CodeJam.Reflection;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Strings
@@ -134,7 +136,8 @@ namespace CodeJam.Strings
 			Assert.AreEqual(expected, actual);
 		}
 
-		private static List<string> LoadTestData(string resourceName)
+		[NotNull, ItemNotNull]
+		private static List<string> LoadTestData([NotNull] string resourceName)
 		{
 			var assembly = typeof(NaturalOrderStringComparerTests).Assembly;
 			var list = new List<string>();

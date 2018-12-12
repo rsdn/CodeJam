@@ -14,13 +14,13 @@ namespace CodeJam.Expressions
 	static partial class ExpressionExtensions
 	{
 		#region Visit
-		private static void VisitInternal<T>(IEnumerable<T> source, Action<T> func)
+		private static void VisitInternal<T>([NotNull] IEnumerable<T> source, [NotNull, InstantHandle] Action<T> func)
 		{
 			foreach (var item in source)
 				func(item);
 		}
 
-		private static void VisitInternal<T>(IEnumerable<T> source, Action<Expression> func)
+		private static void VisitInternal<T>([NotNull] IEnumerable<T> source, [NotNull, InstantHandle] Action<Expression> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -32,14 +32,14 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expr"><see cref="Expression"/> to visit.</param>
 		/// <param name="func">Visit action.</param>
-		public static void Visit([CanBeNull] this Expression expr, [NotNull] Action<Expression> func)
+		public static void Visit([CanBeNull] this Expression expr, [NotNull, InstantHandle] Action<Expression> func)
 		{
 			Code.NotNull(func, nameof(func));
 
 			VisitInternal(expr, func);
 		}
 
-		private static void VisitInternal(this Expression expr, Action<Expression> func)
+		private static void VisitInternal([CanBeNull] this Expression expr, [NotNull, InstantHandle] Action<Expression> func)
 		{
 			if (expr == null)
 				return;
@@ -327,13 +327,13 @@ namespace CodeJam.Expressions
 			func(expr);
 		}
 
-		private static void VisitInternal<T>(IEnumerable<T> source, Func<T, bool> func)
+		private static void VisitInternal<T>([NotNull] IEnumerable<T> source, [NotNull, InstantHandle] Func<T, bool> func)
 		{
 			foreach (var item in source)
 				func(item);
 		}
 
-		private static void VisitInternal<T>(IEnumerable<T> source, Func<Expression, bool> func)
+		private static void VisitInternal<T>([NotNull] IEnumerable<T> source, [NotNull, InstantHandle] Func<Expression, bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -353,7 +353,7 @@ namespace CodeJam.Expressions
 		}
 
 		[SuppressMessage("ReSharper", "TailRecursiveCall")]
-		private static void VisitInternal(this Expression expr, Func<Expression, bool> func)
+		private static void VisitInternal([CanBeNull] this Expression expr, [NotNull, InstantHandle] Func<Expression, bool> func)
 		{
 			if (expr == null || !func(expr))
 				return;
@@ -641,6 +641,7 @@ namespace CodeJam.Expressions
 		#endregion
 
 		#region Find
+		[CanBeNull]
 		private static Expression FindInternal<T>(IEnumerable<T> source, Func<T, Expression> func)
 		{
 			foreach (var item in source)
@@ -653,6 +654,7 @@ namespace CodeJam.Expressions
 			return null;
 		}
 
+		[CanBeNull]
 		private static Expression FindInternal<T>(IEnumerable<T> source, Func<Expression, bool> func)
 			where T : Expression
 		{
@@ -695,6 +697,8 @@ namespace CodeJam.Expressions
 		}
 
 		[SuppressMessage("ReSharper", "TailRecursiveCall")]
+		[ContractAnnotation("expr:null => null")]
+		[CanBeNull]
 		private static Expression FindInternal(this Expression expr, Func<Expression, bool> func)
 		{
 			if (expr == null || func(expr))
@@ -951,7 +955,7 @@ namespace CodeJam.Expressions
 		/// <param name="lambda">Original lambda.</param>
 		/// <param name="exprToReplaceParameter">An expression to replace lambda parameter.</param>
 		/// <returns>Modified body.</returns>
-		[Pure]
+		[Pure][NotNull]
 		public static Expression ReplaceParameters(
 			[NotNull] this LambdaExpression lambda, [NotNull] Expression exprToReplaceParameter)
 		{
@@ -971,6 +975,7 @@ namespace CodeJam.Expressions
 		/// <param name="exprToReplaceParameter">Expressions to replace lambda parameters.</param>
 		/// <returns>Modified body.</returns>
 		[Pure]
+		[NotNull]
 		public static Expression ReplaceParameters(
 			[NotNull] this LambdaExpression lambda, [NotNull] params Expression[] exprToReplaceParameter)
 		{
@@ -991,7 +996,7 @@ namespace CodeJam.Expressions
 		}
 
 		[NotNull]
-		private static IEnumerable<T> TransformInternal<T>([NotNull] ICollection<T> source, [NotNull] Func<T, T> func)
+		private static IEnumerable<T> TransformInternal<T>([NotNull] ICollection<T> source, [NotNull, InstantHandle] Func<T, T> func)
 			where T : class
 		{
 			var modified = false;
@@ -1008,7 +1013,7 @@ namespace CodeJam.Expressions
 		}
 
 		[NotNull]
-		private static IEnumerable<T> TransformInternal<T>([NotNull] ICollection<T> source, [NotNull] Func<Expression, Expression> func)
+		private static IEnumerable<T> TransformInternal<T>([NotNull] ICollection<T> source, [NotNull, InstantHandle] Func<Expression, Expression> func)
 			where T : Expression
 		{
 			var modified = false;
@@ -1031,6 +1036,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
 		[Pure, CanBeNull]
+		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
 		public static T Transform<T>([CanBeNull] this T expr, [NotNull] Func<Expression, Expression> func)
 			where T : LambdaExpression
 		{
@@ -1046,15 +1052,17 @@ namespace CodeJam.Expressions
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
 		[Pure, CanBeNull]
-		public static Expression Transform([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
+		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
+		public static Expression Transform([CanBeNull] this Expression expr, [NotNull, InstantHandle] Func<Expression, Expression> func)
 		{
 			Code.NotNull(func, nameof(func));
 
 			return TransformInternal(expr, func);
 		}
 
+		[CanBeNull]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		private static Expression TransformInternal([CanBeNull] this Expression expr, [NotNull] Func<Expression, Expression> func)
+		private static Expression TransformInternal([CanBeNull] this Expression expr, [NotNull, InstantHandle] Func<Expression, Expression> func)
 		{
 			if (expr == null)
 				return null;
