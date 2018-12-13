@@ -8,6 +8,8 @@ using NUnit.Framework;
 
 using static CodeJam.Reflection.ParamInfo;
 
+// ReSharper disable NUnit.IncorrectArgumentType
+
 namespace CodeJam.Reflection
 {
 	[TestFixture]

@@ -10,6 +10,8 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
+// ReSharper disable NUnit.IncorrectArgumentType
+
 namespace CodeJam.Reflection
 {
 	[TestFixture(Category = "Reflection")]

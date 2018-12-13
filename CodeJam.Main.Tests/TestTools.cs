@@ -9,9 +9,11 @@ namespace CodeJam
 {
 	public static class TestTools
 	{
+		[NotNull]
 		public static Random GetTestRandom() =>
 			GetTestRandom(new Random().Next());
 
+		[NotNull]
 		public static Random GetTestRandom(int seed)
 		{
 			Console.WriteLine(
@@ -19,9 +21,11 @@ namespace CodeJam
 			return new Random(seed);
 		}
 
+		[NotNull, LinqTunnel]
 		public static IEnumerable<T> Shuffle<T>([NotNull] this IEnumerable<T> source, [NotNull] Random rnd) =>
 			source.OrderBy(i => rnd.Next());
 
+		[NotNull, LinqTunnel]
 		public static IEnumerable<Holder<T>> Wrap<T>([NotNull] this IEnumerable<T> source) =>
 			source.Select(i => new Holder<T>(i));
 

@@ -26,7 +26,10 @@ namespace CodeJam.Collections
 			return FlattenImpl(source, childrenSelector);
 		}
 
-		private static IEnumerable<T> FlattenImpl<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>> childrenSelector)
+		[NotNull, Pure, LinqTunnel]
+		private static IEnumerable<T> FlattenImpl<T>(
+			[NotNull] this IEnumerable<T> source,
+			[NotNull] Func<T, IEnumerable<T>> childrenSelector)
 		{
 			foreach (var root in source)
 			{
