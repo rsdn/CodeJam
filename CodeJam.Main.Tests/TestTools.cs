@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using JetBrains.Annotations;
+
 namespace CodeJam
 {
 	public static class TestTools
@@ -17,10 +19,10 @@ namespace CodeJam
 			return new Random(seed);
 		}
 
-		public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rnd) =>
+		public static IEnumerable<T> Shuffle<T>([NotNull] this IEnumerable<T> source, [NotNull] Random rnd) =>
 			source.OrderBy(i => rnd.Next());
 
-		public static IEnumerable<Holder<T>> Wrap<T>(this IEnumerable<T> source) =>
+		public static IEnumerable<Holder<T>> Wrap<T>([NotNull] this IEnumerable<T> source) =>
 			source.Select(i => new Holder<T>(i));
 
 		public static void PrintQuirks()
@@ -36,7 +38,7 @@ namespace CodeJam
 			PrintProps("System.AppContextSwitches");
 		}
 
-		private static void PrintProps(string typeName)
+		private static void PrintProps([NotNull] string typeName)
 		{
 			var type = typeof(int).Assembly.GetType(typeName);
 			if (type == null)

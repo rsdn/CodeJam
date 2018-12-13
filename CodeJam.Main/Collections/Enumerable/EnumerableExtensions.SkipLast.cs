@@ -36,7 +36,8 @@ namespace CodeJam.Collections
 			return SkipLastImpl(source, count);
 		}
 
-		private static IEnumerable<T> SkipLastImpl<T>(IEnumerable<T> source, int count)
+		[NotNull]
+		private static IEnumerable<T> SkipLastImpl<T>([NotNull] IEnumerable<T> source, int count)
 		{
 			var queue = new Queue<T>(count);
 

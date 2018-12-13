@@ -16,9 +16,9 @@ namespace CodeJam.Mapping
 		public class LambdaInfo
 		{
 			public LambdaInfo(
-				LambdaExpression checkNullLambda,
-				LambdaExpression lambda,
-				Delegate @delegate,
+				[NotNull] LambdaExpression checkNullLambda,
+				[CanBeNull] LambdaExpression lambda,
+				[CanBeNull] Delegate @delegate,
 				bool isSchemaSpecific)
 			{
 				CheckNullLambda = checkNullLambda;
@@ -27,9 +27,9 @@ namespace CodeJam.Mapping
 				IsSchemaSpecific = isSchemaSpecific;
 			}
 
-			public readonly LambdaExpression Lambda;
-			public readonly LambdaExpression CheckNullLambda;
-			public readonly Delegate Delegate;
+			[NotNull] public readonly LambdaExpression Lambda;
+			[NotNull] public readonly LambdaExpression CheckNullLambda;
+			[CanBeNull] public readonly Delegate Delegate;
 			public readonly bool IsSchemaSpecific;
 		}
 
@@ -51,10 +51,12 @@ namespace CodeJam.Mapping
 			dic[to] = expr;
 		}
 
+		[CanBeNull]
 		public LambdaInfo Get([NotNull] Type from, [NotNull] Type to) =>
 			_expressions.TryGetValue(from, out var dic) && dic.TryGetValue(to, out var li) ? li : null;
 
-		public LambdaInfo Create([NotNull] MappingSchema mappingSchema, [NotNull] Type from, [NotNull] Type to)
+		[NotNull]
+		public LambdaInfo Create([CanBeNull] MappingSchema mappingSchema, [NotNull] Type from, [NotNull] Type to)
 		{
 			var ex = ConvertBuilder.GetConverter(mappingSchema, from, to);
 			var lm = ex.Item1.Compile();

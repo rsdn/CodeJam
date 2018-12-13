@@ -26,12 +26,13 @@ namespace CodeJam.CmdLine
 		private const char _quota = '"';
 
 		[NotNull]
-		private static ParseResult<T> CreateResult<T>(T result, ICharInput inputRest) =>
+		private static ParseResult<T> CreateResult<T>([NotNull] T result, [NotNull] ICharInput inputRest) =>
 			new ParseResult<T>(result, inputRest);
 
 		/// <summary>
 		/// Parse command line.
 		/// </summary>
+		[NotNull]
 		public static CmdLineNode ParseCommandLine([NotNull] string source)
 		{
 			Code.NotNull(source, nameof(source));
@@ -79,7 +80,8 @@ namespace CodeJam.CmdLine
 					input);
 		}
 
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseNonquotedValue(ICharInput input)
+		[NotNull]
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseNonquotedValue([NotNull] ICharInput input)
 		{
 			var res = input.ConsumeWhileNonSpace();
 			return
@@ -95,7 +97,8 @@ namespace CodeJam.CmdLine
 		#region Commands and options
 		private static bool IsOptionPrefix(char prefixChar) => prefixChar == '/' || prefixChar == '-';
 
-		private static ParseResult<CommandOrOption> ParseCommandOrOption(ICharInput input)
+		[CanBeNull]
+		private static ParseResult<CommandOrOption> ParseCommandOrOption([NotNull] ICharInput input)
 		{
 			input = input.ConsumeSpaces();
 			if (IsOptionPrefix(input.Current))
@@ -110,7 +113,8 @@ namespace CodeJam.CmdLine
 					: new ParseResult<CommandOrOption>(new CommandOrOption(command.Result), command.InputRest);
 		}
 
-		private static ParseResult<CommandNode> ParseCommand(ICharInput input)
+		[CanBeNull]
+		private static ParseResult<CommandNode> ParseCommand([NotNull] ICharInput input)
 		{
 			var res = input.ConsumeWhileNonSpace();
 			if (input.IsEof())
@@ -121,7 +125,8 @@ namespace CodeJam.CmdLine
 					res.InputRest);
 		}
 
-		private static ParseResult<OptionNode> ParseOption(ICharInput input)
+		[NotNull]
+		private static ParseResult<OptionNode> ParseOption([NotNull] ICharInput input)
 		{
 			var startPos = input.Position;
 

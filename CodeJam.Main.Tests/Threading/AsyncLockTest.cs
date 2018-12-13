@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Threading
@@ -14,7 +16,7 @@ namespace CodeJam.Threading
 	public class AsyncLockTest
 	{
 		private static async Task<bool> TryTakeAndHold(
-			AsyncLock asyncLock, TimeSpan holdTime, CancellationToken cancellation = default(CancellationToken), Action callback = null)
+			[NotNull] AsyncLock asyncLock, TimeSpan holdTime, CancellationToken cancellation = default(CancellationToken), Action callback = null)
 		{
 			try
 			{

@@ -7,6 +7,7 @@ namespace CodeJam.Collections
 {
 	partial class EnumerableExtensions
 	{
+		[NotNull]
 		private static Exception NoElementsException() => new InvalidOperationException("Collection has no elements");
 
 		#region Min
