@@ -56,6 +56,7 @@ namespace CodeJam.Arithmetic
 				: Convert(arg, operandType);
 		}
 
+		[NotNull]
 		private static Expression PrepareResult(
 			[NotNull] Expression body,
 			[NotNull] Type argType,
@@ -64,6 +65,7 @@ namespace CodeJam.Arithmetic
 				? Convert(body, resultType)
 				: body;
 
+		[NotNull]
 		private static TDelegate CompileOperatorCore<TDelegate>(
 			[NotNull, InstantHandle] Func<Expression[], Expression> expressionFactory,
 			[NotNull, InstantHandle] Func<Exception, Exception> exceptionFactory,
@@ -329,8 +331,9 @@ namespace CodeJam.Arithmetic
 
 		[SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
 		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+		[NotNull]
 		private static MethodCallExpression BuildEnumComparisonCore(
-			MethodInfo compareMethod,
+			[NotNull] MethodInfo compareMethod,
 			ParameterExpression argA,
 			ParameterExpression argB)
 		{
@@ -345,8 +348,9 @@ namespace CodeJam.Arithmetic
 
 		[SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
 		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+		[NotNull]
 		private static Expression BuildNullableEnumComparisonCore<T>(
-			MethodInfo compareMethod,
+			[NotNull] MethodInfo compareMethod,
 			ParameterExpression argA,
 			ParameterExpression argB)
 		{

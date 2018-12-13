@@ -28,11 +28,12 @@ namespace CodeJam.CmdLine
 		///<summary>
 		/// Convert string to char input.
 		///</summary>
-		private static ICharInput ToCharInput([NotNull] this string source) => new CharInput(source);
+		[NotNull] private static ICharInput ToCharInput([NotNull] this string source) => new CharInput(source);
 
 		/// <summary>
 		/// Consume single char.
 		/// </summary>
+		[NotNull]
 		private static ICharInput ConsumeChar([NotNull] this ICharInput input, char charToConsume)
 		{
 			if (input.Current != charToConsume)
@@ -45,6 +46,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume leading spaces.
 		/// </summary>
+		[NotNull]
 		private static ICharInput ConsumeSpaces([NotNull] this ICharInput input)
 		{
 			while (char.IsWhiteSpace(input.Current))
@@ -55,6 +57,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume while space character or end of file reached.
 		/// </summary>
+		[NotNull]
 		private static ParseResult<string> ConsumeWhileNonSpace([NotNull] this ICharInput input)
 		{
 			var sb = new StringBuilder();
@@ -85,6 +88,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume while predicate is true.
 		/// </summary>
+		[NotNull]
 		private static ParseResult<string> ConsumeWhile([NotNull] this ICharInput input, [NotNull] Func<char, bool> predicate)
 		{
 			var sb = new StringBuilder();
@@ -100,6 +104,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume many elements.
 		/// </summary>
+		[NotNull]
 		private static ParseResult<T[]> ConsumeTillEof<T>(
 			[NotNull] this ICharInput input,
 			[NotNull] Func<ICharInput, ParseResult<T>> consumer)

@@ -3,6 +3,8 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 // ReSharper disable ClassNeverInstantiated.Local
@@ -28,10 +30,11 @@ namespace CodeJam.Mapping
 			where TFrom : new()
 			where TTo   : new()
 		{
-			public MapHelper<TFrom,TTo> Map(bool action, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
+			public MapHelper<TFrom,TTo> Map(bool action, [NotNull] Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 				=> Map(action, new TFrom(), setter);
 
-			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
+			[NotNull]
+			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, [NotNull] Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 			{
 				var mapper = setter(new MapperBuilder<TFrom,TTo>()).GetMapper();
 

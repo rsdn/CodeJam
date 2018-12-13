@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Strings
@@ -23,7 +25,7 @@ namespace CodeJam.Strings
 		[TestCase("abc", StringOrigin.End,   2, ExpectedResult = "bc")]
 		[TestCase("abc", StringOrigin.Begin, 4, ExpectedResult = "abc")]
 		[TestCase("abc", StringOrigin.End,   4, ExpectedResult = "abc")]
-		public string SubstringOrigin(string str, StringOrigin origin, int length) => str.Substring(origin, length);
+		public string SubstringOrigin([NotNull] string str, StringOrigin origin, int length) => str.Substring(origin, length);
 
 		[TestCase("abc", null, ExpectedResult = "abc")]
 		[TestCase("abc", "", ExpectedResult = "abc")]
@@ -31,7 +33,7 @@ namespace CodeJam.Strings
 		[TestCase("abc", "ab", ExpectedResult = "c")]
 		[TestCase("abc", "ac", ExpectedResult = "abc")]
 		[TestCase("abc", "abc", ExpectedResult = "")]
-		public string TrimPrefix(string str, string prefix) => str.TrimPrefix(prefix);
+		public string TrimPrefix([NotNull] string str, [NotNull] string prefix) => str.TrimPrefix(prefix);
 
 		[TestCase("abc", null, ExpectedResult = "abc")]
 		[TestCase("abc", "", ExpectedResult = "abc")]
@@ -39,7 +41,7 @@ namespace CodeJam.Strings
 		[TestCase("abc", "bc", ExpectedResult = "a")]
 		[TestCase("abc", "ac", ExpectedResult = "abc")]
 		[TestCase("abc", "abc", ExpectedResult = "")]
-		public string TrimSuffix(string str, string suffix) => str.TrimSuffix(suffix);
+		public string TrimSuffix([NotNull] string str, [NotNull] string suffix) => str.TrimSuffix(suffix);
 
 		[TestCase(0, ExpectedResult = "0")]
 		[TestCase(1, ExpectedResult = "1 bytes")]
@@ -66,7 +68,7 @@ namespace CodeJam.Strings
 		[TestCase(new byte[] { 0xAB, 0x9F }, "-", ExpectedResult = "AB-9F")]
 		[TestCase(new byte[] { 0xAB, 0x9F }, "..", ExpectedResult = "AB..9F")]
 		[TestCase(new byte[] { 0xAB, 0x9F, 0xA }, "..", ExpectedResult = "AB..9F..0A")]
-		public string ToHexString(byte[] data, string sep) => data.ToHexString(sep);
+		public string ToHexString([NotNull] byte[] data, [NotNull] string sep) => data.ToHexString(sep);
 
 		[TestCase(new byte[] {}, ExpectedResult = "")]
 		[TestCase(new byte[] { 0 }, ExpectedResult = "00")]
@@ -75,14 +77,14 @@ namespace CodeJam.Strings
 		[TestCase(new byte[] { 0x9F }, ExpectedResult = "9F")]
 		[TestCase(new byte[] { 0xAB, 0x9F }, ExpectedResult = "AB9F")]
 		[TestCase(new byte[] { 0xAB, 0x9F, 0xA }, ExpectedResult = "AB9F0A")]
-		public string ToHexString(byte[] data) => data.ToHexString();
+		public string ToHexString([NotNull] byte[] data) => data.ToHexString();
 
 		[TestCase("quoted", ExpectedResult = "quoted")]
 		[TestCase("\"quoted", ExpectedResult = "\"quoted")]
 		[TestCase("quoted\"", ExpectedResult = "quoted\"")]
 		[TestCase("quo\"ted", ExpectedResult = "quo\"ted")]
 		[TestCase("\"quoted\"", ExpectedResult = "quoted")]
-		public string Unquote(string str) => str.Unquote();
+		public string Unquote([NotNull] string str) => str.Unquote();
 
 		[TestCase("1", ExpectedResult = 1)]
 		[TestCase("+1", ExpectedResult = 1)]

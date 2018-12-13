@@ -439,7 +439,7 @@ namespace CodeJam.Reflection
 		/// <item>If the member is an event, returns <see cref="EventInfo.EventHandlerType"/>.</item>
 		/// </list>
 		/// </returns>
-		[Pure]
+		[Pure][NotNull]
 		public static Type GetMemberType([NotNull] this MemberInfo memberInfo)
 		{
 			Code.NotNull(memberInfo, nameof(memberInfo));
@@ -453,6 +453,7 @@ namespace CodeJam.Reflection
 				case MemberTypes.Method:
 					return ((MethodInfo)memberInfo).ReturnType;
 				case MemberTypes.Constructor:
+					// ReSharper disable once AssignNullToNotNullAttribute
 					return memberInfo.DeclaringType;
 				case MemberTypes.Event:
 					return ((EventInfo)memberInfo).EventHandlerType;
@@ -514,6 +515,7 @@ namespace CodeJam.Reflection
 		/// <returns>Returns item type or null.</returns>
 		[CanBeNull]
 		[Pure]
+		[ContractAnnotation("type:null => null")]
 		public static Type GetItemType([CanBeNull] this Type type)
 		{
 			while (true)

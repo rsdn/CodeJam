@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 using static CodeJam.Reflection.ParamInfo;
@@ -19,14 +21,16 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(OptsPrmsCtor), new string[0], ExpectedResult = "(a:avaldef, b:bvaldef)")]
 		[TestCase(typeof(OptsPrmsCtor), new [] {"a:aval"}, ExpectedResult = "(a:aval, b:bvaldef)")]
 		[TestCase(typeof(OptsPrmsCtor), new[] { "a:aval", "b:bval" }, ExpectedResult = "(a:aval, b:bval)")]
-		public string Test(Type type, string[] paramStrs)
+		[NotNull]
+		public string Test([NotNull] Type type, [NotNull, ItemNotNull] string[] paramStrs)
 		{
 			var inst = type.CreateInstance(ParseParams(paramStrs));
 			Assert.IsNotNull(inst);
 			return inst.ToString();
 		}
 
-		private static ParamInfo[] ParseParams(IEnumerable<string> paramStrs) =>
+		[NotNull, ItemNotNull]
+		private static ParamInfo[] ParseParams([NotNull, ItemNotNull] IEnumerable<string> paramStrs) =>
 			paramStrs
 				.Select(
 					s =>
@@ -45,7 +49,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(ReqPrmsCtor), new[] { "!a:aval" })]
 		[TestCase(typeof(ReqPrmsCtor), new[] { "!a:aval", "!c:cval" })]
 		[TestCase(typeof(OptsPrmsCtor), new[] { "!c:cval" })]
-		public void NoSuitableCtors(Type type, string[] paramStrs) =>
+		public void NoSuitableCtors([NotNull] Type type, [NotNull, ItemNotNull] string[] paramStrs) =>
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 			Assert.Throws<ArgumentException>(() => type.CreateInstance(ParseParams(paramStrs)));
 

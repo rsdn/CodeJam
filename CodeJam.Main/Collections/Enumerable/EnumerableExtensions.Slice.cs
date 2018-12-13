@@ -42,14 +42,16 @@ namespace CodeJam.Collections
 			return SliceImpl(source, startIndex, count);
 		}
 
-		private static IEnumerable<T> SliceImpl<T>(IList<T> list, int index, int count)
+		[NotNull]
+		private static IEnumerable<T> SliceImpl<T>([NotNull] IList<T> list, int index, int count)
 		{
 			var total = list.Count;
 			while (index < total && count-- > 0)
 				yield return list[index++];
 		}
 
-		private static IEnumerable<T> SliceImpl<T>(IEnumerable<T> source, int index, int count)
+		[NotNull]
+		private static IEnumerable<T> SliceImpl<T>([NotNull] IEnumerable<T> source, int index, int count)
 		{
 			using (var e = source.GetEnumerator())
 			{

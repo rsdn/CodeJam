@@ -179,10 +179,10 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void InRange<T>(
-			T value,
+			[NotNull] T value,
 			[NotNull, InvokerParameterName] string argName,
-			T fromValue,
-			T toValue)
+			[NotNull] T fromValue,
+			[NotNull] T toValue)
 		{
 			// DONTTOUCH: handles the NaN values
 			if (!(Operators<T>.GreaterThanOrEqual(value, fromValue) && Operators<T>.LessThanOrEqual(value, toValue)))

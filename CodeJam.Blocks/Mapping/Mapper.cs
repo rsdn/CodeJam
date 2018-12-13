@@ -18,13 +18,13 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public class Mapper<TFrom, TTo>
 	{
-		private MapperBuilder<TFrom, TTo> _mapperBuilder;
-		private Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> _mapperExpression;
+		[NotNull] private MapperBuilder<TFrom, TTo> _mapperBuilder;
+		[CanBeNull] private Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> _mapperExpression;
 		private Expression<Func<TFrom, TTo>> _mapperExpressionEx;
 		private Func<TFrom, TTo, IDictionary<object, object>, TTo> _mapper;
 		private Func<TFrom, TTo> _mapperEx;
 
-		internal Mapper(MapperBuilder<TFrom, TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
+		internal Mapper([NotNull] MapperBuilder<TFrom, TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.

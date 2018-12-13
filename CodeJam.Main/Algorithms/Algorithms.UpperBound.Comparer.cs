@@ -83,11 +83,11 @@ namespace CodeJam
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The upper bound for the value</returns>
 		private static int UpperBoundCore<TElement, TValue>(
-			this IList<TElement> list,
+			[NotNull] this IList<TElement> list,
 			TValue value,
 			int startIndex,
 			int endIndex,
-			Func<TElement, TValue, int> comparer)
+			[NotNull] Func<TElement, TValue, int> comparer)
 		{
 			while (startIndex < endIndex)
 			{

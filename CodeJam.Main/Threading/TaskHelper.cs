@@ -112,7 +112,7 @@ namespace CodeJam.Threading
 		/// <param name="tasks">The tasks to wait on for completion.</param>
 		/// <returns>A task that represents the completion of all of the supplied tasks.</returns>
 		[NotNull]
-		public static Task WhenAll([NotNull] this IEnumerable<Task> tasks) => Task.WhenAll(tasks);
+		public static Task WhenAll([NotNull, ItemNotNull] this IEnumerable<Task> tasks) => Task.WhenAll(tasks);
 
 		/// <summary>
 		/// Creates a task that will complete when all of the <see cref="Task{TResult}"/> objects in an enumerable collection
@@ -123,7 +123,7 @@ namespace CodeJam.Threading
 		/// <returns>A task that represents the completion of all of the supplied tasks.</returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<TResult[]> WhenAll<TResult>([NotNull] this IEnumerable<Task<TResult>> tasks) => Task.WhenAll(tasks);
+		public static Task<TResult[]> WhenAll<TResult>([NotNull, ItemNotNull] this IEnumerable<Task<TResult>> tasks) => Task.WhenAll(tasks);
 		#endregion
 
 		#region WhenAny
@@ -138,7 +138,7 @@ namespace CodeJam.Threading
 		/// </returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<Task<TResult>> WhenAny<TResult>([NotNull] this IEnumerable<Task<TResult>> tasks) => Task.WhenAny(tasks);
+		public static Task<Task<TResult>> WhenAny<TResult>([NotNull, ItemNotNull] this IEnumerable<Task<TResult>> tasks) => Task.WhenAny(tasks);
 
 		/// <summary>
 		/// Creates a task that will complete when any of the supplied tasks have completed.
@@ -150,7 +150,7 @@ namespace CodeJam.Threading
 		/// </returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<Task> WhenAny([NotNull] this IEnumerable<Task> tasks) => Task.WhenAny(tasks);
+		public static Task<Task> WhenAny([NotNull, ItemNotNull] this IEnumerable<Task> tasks) => Task.WhenAny(tasks);
 		#endregion
 #endif
 	}

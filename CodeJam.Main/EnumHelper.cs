@@ -85,7 +85,7 @@ namespace CodeJam
 		/// <param name="result">The parsed value.</param>
 		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool TryParse<TEnum>(string name, out TEnum result)
+		public static bool TryParse<TEnum>([NotNull] string name, out TEnum result)
 			where TEnum : struct, Enum =>
 				TryParse(name, false, out result);
 
@@ -325,6 +325,7 @@ namespace CodeJam
 		#endregion
 
 		#region Holder struct
+		[NotNull]
 		private static readonly ILazyDictionary<Type, EnumValues> _enumValuesCache = LazyDictionary.Create(
 			(Type enumType) => new EnumValues(enumType.ToNullableUnderlying()),
 			LazyThreadSafetyMode.ExecutionAndPublication);
