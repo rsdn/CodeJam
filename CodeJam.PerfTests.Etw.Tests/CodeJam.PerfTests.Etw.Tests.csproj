@@ -4,15 +4,16 @@
 	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
 
 	<PropertyGroup>
-		<AssemblyName>CodeJam.PerfTests-Tests</AssemblyName>
+		<AssemblyName>CodeJam.PerfTests.Etw.Tests</AssemblyName>
 		<RootNamespace>CodeJam.PerfTests</RootNamespace>
-		<ProjectGuid>{08E84F45-2782-4D2E-85C0-FE86AF491C94}</ProjectGuid>
+		<ProjectGuid>{F2989C3A-4129-467B-A867-9CEF5B64C318}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net461</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\CodeJam.PerfTests\CodeJam.PerfTests.csproj" />
+		<ProjectReference Include="..\CodeJam.PerfTests.Etw\CodeJam.PerfTests.Etw.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.8.1" />
@@ -26,15 +27,14 @@
 		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
+		<Compile Include="..\CodeJam.PerfTests.Tests\SelfTestingApi\SelfTestCompetition.cs" Link="SelfTestingApi\SelfTestCompetition.cs" />
+		<Compile Include="..\CodeJam.PerfTests.Tests\SelfTestingApi\SelfTestCompetitionRunner.cs" Link="SelfTestingApi\SelfTestCompetitionRunner.cs" />
+		<Compile Include="..\CodeJam.PerfTests.Tests\SelfTestingApi\SelfTestConfigFactory.cs" Link="SelfTestingApi\SelfTestConfigFactory.cs" />
+		<Compile Include="..\CodeJam.PerfTests.Tests\SelfTestingApi\SelfTestHelpers.cs" Link="SelfTestingApi\SelfTestHelpers.cs" />
 	</ItemGroup>
+
 	<ItemGroup>
-		<None Include="Assets\CompetitionAnnotateTests.log.txt">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<EmbeddedResource Include="Assets\CompetitionRunTests.xml" />
-		<None Include="Assets\SampleFile.txt">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
+	  <Folder Include="SelfTestingApi\" />
 	</ItemGroup>
 
 </Project>

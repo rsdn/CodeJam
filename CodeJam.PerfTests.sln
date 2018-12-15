@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests.xUnit.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests.MSTest.Tests", "CodeJam.PerfTests.MSTest.Tests\CodeJam.PerfTests.MSTest.Tests.csproj", "{B535D8EF-66CC-4701-845D-F4C44C49922E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeJam.PerfTests.Etw.Tests", "CodeJam.PerfTests.Etw.Tests\CodeJam.PerfTests.Etw.Tests.csproj", "{F2989C3A-4129-467B-A867-9CEF5B64C318}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{B535D8EF-66CC-4701-845D-F4C44C49922E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B535D8EF-66CC-4701-845D-F4C44C49922E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B535D8EF-66CC-4701-845D-F4C44C49922E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2989C3A-4129-467B-A867-9CEF5B64C318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2989C3A-4129-467B-A867-9CEF5B64C318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2989C3A-4129-467B-A867-9CEF5B64C318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2989C3A-4129-467B-A867-9CEF5B64C318}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C} = {F3EABF15-EEED-4DB5-81EB-D09C76446CEC}
 		{F70A32D4-EE5D-477F-965C-428119D4CD39} = {F3EABF15-EEED-4DB5-81EB-D09C76446CEC}
 		{B535D8EF-66CC-4701-845D-F4C44C49922E} = {F3EABF15-EEED-4DB5-81EB-D09C76446CEC}
+		{F2989C3A-4129-467B-A867-9CEF5B64C318} = {F3EABF15-EEED-4DB5-81EB-D09C76446CEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D282F995-E5B5-4A94-8404-2E2EE664DDBE}

@@ -19,7 +19,7 @@ namespace BenchmarkDotNet.Horology
 		private static readonly long _frequency;
 
 		static ProcessCycleTimeClock() =>
-			_isAvailable = CycleClockHelpers.EstimateProcessCycleTimeFrequency(
+			_isAvailable = CycleClockHelpers.TryEstimateProcessCycleTimeFrequency(
 				Chronometer.BestClock,
 				1000 * 1000, out _frequency);
 

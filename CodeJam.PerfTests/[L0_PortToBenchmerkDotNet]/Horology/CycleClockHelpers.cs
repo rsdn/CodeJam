@@ -69,7 +69,7 @@ namespace BenchmarkDotNet.Horology
 		/// <param name="iterationsCount">Iterations performed to estimate the time.</param>
 		/// <param name="frequency">The frequency.</param>
 		/// <returns>Frequency coefficient for process cycle time</returns>
-		public static bool EstimateProcessCycleTimeFrequency(IClock clock, int iterationsCount, out long frequency)
+		public static bool TryEstimateProcessCycleTimeFrequency(IClock clock, int iterationsCount, out long frequency)
 		{
 			var freq = default(long);
 			var result = RunHighestPriorityIfWindows(
@@ -97,7 +97,7 @@ namespace BenchmarkDotNet.Horology
 		/// <param name="iterationsCount">Iterations performed to estimate the time.</param>
 		/// <param name="frequency">The frequency.</param>
 		/// <returns>Frequency coefficient for thread cycle time</returns>
-		public static bool EstimateThreadCycleTimeFrequency(IClock clock, int iterationsCount, out long frequency)
+		public static bool TryEstimateThreadCycleTimeFrequency(IClock clock, int iterationsCount, out long frequency)
 		{
 			var freq = default(long);
 			var result = RunHighestPriorityIfWindows(
