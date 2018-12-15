@@ -56,15 +56,15 @@ namespace CodeJam
 			var summationRange = ValueTuple.Create(5, 8);
 			var expected = histogram.Where(_ => _.Key >= summationRange.Item1 && _.Key <= summationRange.Item2).Sum(_ => _.Value);
 
-			Func<KeyValuePair<int, int>, KeyValuePair<int, int>, int> comparer = (x, y) => Comparer<int>.Default.Compare(x.Key, y.Key);
-			Func<KeyValuePair<int, int>, int, int> keyComparer = (x, y) => Comparer<int>.Default.Compare(x.Key, y);
+			int Comparer(KeyValuePair<int, int> x, KeyValuePair<int, int> y) => Comparer<int>.Default.Compare(x.Key, y.Key);
+			int KeyComparer(KeyValuePair<int, int> x, int y) => Comparer<int>.Default.Compare(x.Key, y);
 
 			// First, sort it!
-			histogram.Sort((x,y) => comparer(x, y));
+			histogram.Sort((x,y) => Comparer(x, y));
 
 			// Find the index range
-			var indexFrom = histogram.LowerBound(summationRange.Item1, 0, histogram.Count, keyComparer);
-			var indexTo = histogram.UpperBound(summationRange.Item2, indexFrom, histogram.Count, keyComparer);
+			var indexFrom = histogram.LowerBound(summationRange.Item1, 0, histogram.Count, KeyComparer);
+			var indexTo = histogram.UpperBound(summationRange.Item2, indexFrom, histogram.Count, KeyComparer);
 
 			var sum = 0;
 			for (var index = indexFrom; index < indexTo; ++index)
