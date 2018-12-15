@@ -1,8 +1,12 @@
 ﻿CodeJam 2.1.1 Release Notes
 ---------------------------
 
+What's new in 2.2.0-beta2
+-------------------------
+* DictionaryExtensions.GetOrAddAsync/AddOrUpdateAsync
+
 What's new in 2.2.0-beta1
--------------------
+-------------------------
 * Performance improvements in Fn class
 * string.StartsWith/EndsWith with specific char matching
 * Additional code annotations added

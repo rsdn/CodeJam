@@ -90,7 +90,7 @@ namespace CodeJam.Collections
 			return result;
 		}
 
-#if !LESSTHAN_NET40
+#if !LESSTHAN_NET45
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist.
 		/// </summary>
@@ -154,7 +154,7 @@ namespace CodeJam.Collections
 			return addValue;
 		}
 
-#if !LESSTHAN_NET40
+#if !LESSTHAN_NET45
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
@@ -228,7 +228,7 @@ namespace CodeJam.Collections
 			return newAddValue;
 		}
 
-#if !LESSTHAN_NET40
+#if !LESSTHAN_NET45
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
@@ -296,7 +296,7 @@ namespace CodeJam.Collections
 			return newAddValue;
 		}
 
-#if !LESSTHAN_NET40
+#if !LESSTHAN_NET45
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
