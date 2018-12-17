@@ -4,6 +4,7 @@
 What's new in 2.2.0-beta2
 -------------------------
 * DictionaryExtensions.GetOrAddAsync/AddOrUpdateAsync
+* LazyDictionary ctors and Create with initial data supplied
 
 What's new in 2.2.0-beta1
 -------------------------

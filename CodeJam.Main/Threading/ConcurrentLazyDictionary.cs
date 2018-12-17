@@ -21,9 +21,24 @@ namespace CodeJam.Threading
 		[NotNull]
 		private readonly Func<TKey, TValue> _valueFactory;
 		[NotNull]
-		private readonly IEqualityComparer<TKey> _comparer;
-		[NotNull]
 		private readonly ConcurrentDictionary<TKey, TValue> _map;
+
+		/// <summary>
+		/// Initialize instance.
+		/// </summary>
+		/// <param name="valueFactory">Function to create value on demand.</param>
+		/// <param name="comparer">Key comparer.</param>
+		/// <param name="collection">The <see cref="IEnumerable{T}"/> whose elements are copied to new.</param>
+		public ConcurrentLazyDictionary(
+			[NotNull] Func<TKey, TValue> valueFactory,
+			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
+			[NotNull] IEqualityComparer<TKey> comparer)
+		{
+			Code.NotNull(valueFactory, nameof(valueFactory));
+
+			_valueFactory = valueFactory;
+			_map = new ConcurrentDictionary<TKey, TValue>(collection, comparer);
+		}
 
 		/// <summary>
 		/// Initialize instance.
@@ -35,7 +50,6 @@ namespace CodeJam.Threading
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
 			_valueFactory = valueFactory;
-			_comparer = comparer;
 			_map = new ConcurrentDictionary<TKey, TValue>(comparer);
 		}
 
@@ -45,6 +59,17 @@ namespace CodeJam.Threading
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		public ConcurrentLazyDictionary([NotNull] Func<TKey, TValue> valueFactory)
 			: this(valueFactory, EqualityComparer<TKey>.Default)
+		{ }
+
+		/// <summary>
+		/// Initialize instance.
+		/// </summary>
+		/// <param name="valueFactory">Function to create value on demand.</param>
+		/// <param name="collection">The <see cref="IEnumerable{T}"/> whose elements are copied to new.</param>
+		public ConcurrentLazyDictionary(
+			[NotNull] Func<TKey, TValue> valueFactory,
+			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection)
+			: this(valueFactory, collection, EqualityComparer<TKey>.Default)
 		{ }
 
 		/// <summary>

@@ -20,6 +20,23 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		/// <param name="comparer">Key comparer.</param>
+		/// <param name="collection">The <see cref="IEnumerable{T}"/> whose elements are copied to new.</param>
+		public LazyDictionary(
+			[NotNull] Func<TKey, TValue> valueFactory,
+			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
+			[CanBeNull] IEqualityComparer<TKey> comparer)
+		{
+			Code.NotNull(valueFactory,nameof(valueFactory));
+
+			_valueFactory = valueFactory;
+			_map = new Dictionary<TKey, TValue>(comparer);
+		}
+
+		/// <summary>
+		/// Initialize instance.
+		/// </summary>
+		/// <param name="valueFactory">Function to create value on demand.</param>
+		/// <param name="comparer">Key comparer.</param>
 		public LazyDictionary([NotNull] Func<TKey, TValue> valueFactory, [CanBeNull] IEqualityComparer<TKey> comparer)
 		{
 			Code.NotNull(valueFactory,nameof(valueFactory));
@@ -34,6 +51,16 @@ namespace CodeJam.Collections
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		public LazyDictionary([NotNull] Func<TKey, TValue> valueFactory)
 			: this(valueFactory, EqualityComparer<TKey>.Default) { }
+
+		/// <summary>
+		/// Initialize instance.
+		/// </summary>
+		/// <param name="valueFactory">Function to create value on demand.</param>
+		/// <param name="collection">The <see cref="IEnumerable{T}"/> whose elements are copied to new.</param>
+		public LazyDictionary(
+			[NotNull] Func<TKey, TValue> valueFactory,
+			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection)
+			: this(valueFactory, collection, EqualityComparer<TKey>.Default) { }
 
 		/// <summary>
 		/// Clears all created values
