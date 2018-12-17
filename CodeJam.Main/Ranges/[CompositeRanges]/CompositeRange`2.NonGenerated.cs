@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using CodeJam.Collections;
+
 using JetBrains.Annotations;
 
 using static CodeJam.Ranges.CompositeRangeInternal;

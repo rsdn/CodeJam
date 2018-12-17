@@ -21,6 +21,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Icon.png</PackageIconUrl>
 		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<!-- #region Targeting -->
