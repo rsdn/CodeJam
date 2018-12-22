@@ -4,6 +4,8 @@ using System.Linq;
 
 using CodeJam.Strings;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Collections
@@ -104,7 +106,9 @@ namespace CodeJam.Collections
 						.ToArray());
 		}
 
-		private static ICollection<string> GetDepStructure(IEnumerable<string> source, out Dictionary<string, string[]> deps)
+		[NotNull, ItemNotNull]
+		private static ICollection<string> GetDepStructure(
+			[NotNull, ItemNotNull] IEnumerable<string> source, out Dictionary<string, string[]> deps)
 		{
 			var items = new HashSet<string>();
 			deps = new Dictionary<string, string[]>();
@@ -122,7 +126,7 @@ namespace CodeJam.Collections
 			return items;
 		}
 
-		private static IEnumerable<Holder> GetDepStructure(IEnumerable<string> source, out Dictionary<Holder, Holder[]> deps)
+		private static IEnumerable<Holder> GetDepStructure([NotNull] IEnumerable<string> source, out Dictionary<Holder, Holder[]> deps)
 		{
 			Dictionary<string, string[]> innerDeps;
 			var items = GetDepStructure(source, out innerDeps);

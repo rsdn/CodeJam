@@ -36,7 +36,8 @@ namespace CodeJam.Collections
 			return TakeLastImpl(source, count);
 		}
 
-		private static IEnumerable<T> TakeLastImpl<T>(IList<T> source, int count)
+		[NotNull, Pure]
+		private static IEnumerable<T> TakeLastImpl<T>([NotNull] IList<T> source, int count)
 		{
 			var total = source.Count;
 			count = Math.Min(total, count);
@@ -45,7 +46,8 @@ namespace CodeJam.Collections
 				yield return source[i];
 		}
 
-		private static IEnumerable<T> TakeLastImpl<T>(IEnumerable<T> source, int count)
+		[NotNull]
+		private static IEnumerable<T> TakeLastImpl<T>([NotNull] IEnumerable<T> source, int count)
 		{
 			var queue = new Queue<T>(count);
 			foreach (var item in source)

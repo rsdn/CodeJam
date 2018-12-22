@@ -64,11 +64,11 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Commands.
 		/// </summary>
-		public CommandRule[] Commands { get; }
+		[NotNull, ItemNotNull] public CommandRule[] Commands { get; }
 
 		/// <summary>
 		/// Options.
 		/// </summary>
-		public OptionRule[] Options { get; }
+		[NotNull, ItemNotNull] public OptionRule[] Options { get; }
 	}
 }

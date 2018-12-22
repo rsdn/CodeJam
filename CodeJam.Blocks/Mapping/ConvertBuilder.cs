@@ -226,7 +226,7 @@ namespace CodeJam.Mapping
 			[NotNull] Type from,
 			[NotNull] Type to,
 			[NotNull] Expression expression,
-			[CanBeNull] MappingSchema mappingSchema)
+			[NotNull] MappingSchema mappingSchema)
 		{
 			if (to.IsEnum)
 			{
@@ -317,7 +317,7 @@ namespace CodeJam.Mapping
 			[NotNull] Type from,
 			[NotNull] Type to,
 			[NotNull] Expression expression,
-			[CanBeNull] MappingSchema mappingSchema)
+			[NotNull] MappingSchema mappingSchema)
 		{
 			if (from.IsEnum)
 			{
@@ -501,11 +501,14 @@ namespace CodeJam.Mapping
 			return ex != null ? ValueTuple.Create(ex, false) : (ValueTuple<Expression, bool>?)null;
 		}
 
+		[CanBeNull]
 		private static ValueTuple<Expression, bool>? ConvertUnderlying(
 			[CanBeNull] MappingSchema mappingSchema,
 			[NotNull] Expression expr,
-			[NotNull]Type from, [NotNull] Type ufrom,
-			[NotNull]Type to, [NotNull]Type uto)
+			[NotNull] Type from,
+			[NotNull] Type ufrom,
+			[NotNull] Type to,
+			[NotNull] Type uto)
 		{
 			ValueTuple<Expression, bool>? ex = null;
 

@@ -3,6 +3,8 @@ using System.Linq;
 
 using CodeJam.Strings;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Collections
@@ -52,7 +54,7 @@ namespace CodeJam.Collections
 		[TestCase(new[] {3, 1, 8},       ExpectedResult = true)]
 		[TestCase(new[] {3, 1},          ExpectedResult = true)]
 		[TestCase(new[] {1},             ExpectedResult = true)]
-		public bool PageIdentityTest(int[] source) =>
+		public bool PageIdentityTest([NotNull] int[] source) =>
 			// Page from 0 to sequence.Count returns the same sequence
 			ReferenceEquals(source.Page(1, source.Length), source);
 	}

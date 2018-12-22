@@ -80,7 +80,7 @@ namespace CodeJam
 			/// <summary>
 			/// The function that always returns <c>true</c>.
 			/// </summary>
-			public static readonly Func<T, bool> Value = Methods.Instance.GetTrue;
+			[NotNull] public static readonly Func<T, bool> Value = Methods.Instance.GetTrue;
 		}
 
 		private static class FalseValue
@@ -88,7 +88,7 @@ namespace CodeJam
 			/// <summary>
 			/// The function that always returns <c>false</c>.
 			/// </summary>
-			public static readonly Func<T, bool> Value = Methods.Instance.GetFalse;
+			[NotNull] public static readonly Func<T, bool> Value = Methods.Instance.GetFalse;
 		}
 
 		private static class TruePredicateValue
@@ -96,7 +96,7 @@ namespace CodeJam
 			/// <summary>
 			/// The function that always returns <c>true</c>.
 			/// </summary>
-			public static readonly Predicate<T> Value = Methods.Instance.GetTrue;
+			[NotNull] public static readonly Predicate<T> Value = Methods.Instance.GetTrue;
 		}
 
 		private static class FalsePredicateValue
@@ -104,7 +104,7 @@ namespace CodeJam
 			/// <summary>
 			/// The function that always returns <c>false</c>.
 			/// </summary>
-			public static readonly Predicate<T> Value = Methods.Instance.GetFalse;
+			[NotNull] public static readonly Predicate<T> Value = Methods.Instance.GetFalse;
 		}
 
 		private static class SelfValue
@@ -112,7 +112,7 @@ namespace CodeJam
 			/// <summary>
 			/// The function that returns the same object which was passed as parameter.
 			/// </summary>
-			public static readonly Func<T, T> Value = Methods.Instance.GetSelf;
+			[NotNull] public static readonly Func<T, T> Value = Methods.Instance.GetSelf;
 		}
 
 		private static class SelfConverterValue
@@ -120,7 +120,7 @@ namespace CodeJam
 			/// <summary>
 			/// The function that returns the same object which was passed as parameter.
 			/// </summary>
-			public static readonly Converter<T, T> Value = Methods.Instance.GetSelf;
+			[NotNull] public static readonly Converter<T, T> Value = Methods.Instance.GetSelf;
 		}
 
 		private static class IsNullValue
@@ -128,7 +128,7 @@ namespace CodeJam
 			/// <summary>
 			/// The function that returns <c>true</c> if an object is <c>null</c>.
 			/// </summary>
-			public static readonly Func<T, bool> Value = Methods.Instance.GetIsNull;
+			[NotNull] public static readonly Func<T, bool> Value = Methods.Instance.GetIsNull;
 		}
 
 		private static class IsNotNullValue
@@ -136,7 +136,7 @@ namespace CodeJam
 			/// <summary>
 			/// The function that returns <c>true</c> if an object is not <c>null</c>.
 			/// </summary>
-			public static readonly Func<T, bool> Value = Methods.Instance.GetIsNotNull;
+			[NotNull] public static readonly Func<T, bool> Value = Methods.Instance.GetIsNotNull;
 		}
 
 		#endregion
