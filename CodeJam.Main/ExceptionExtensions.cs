@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 using CodeJam.Strings;
@@ -65,6 +66,13 @@ namespace CodeJam
 
 						if (foundInnerException)
 							ex = ex.InnerException;
+						break;
+
+					case ReflectionTypeLoadException rtle:
+						foreach (var e in rtle.LoaderExceptions)
+						{
+							ToDiagnosticString(e, stringBuilder);
+						}
 						break;
 				}
 			}
