@@ -267,7 +267,7 @@ namespace CodeJam.Collections
 			public string Name { get; set; }
 		}
 
-		private static IEnumerable<MemberAccessor> GetIdentifiers(TypeAccessor typeAccessor)
+		private static IEnumerable<MemberAccessor> GetIdentifiers([NotNull] TypeAccessor typeAccessor)
 		{
 			foreach (var member in typeAccessor.Members)
 				if (member.MemberInfo.GetCustomAttribute<IdentifierAttribute>() != null)

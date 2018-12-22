@@ -102,6 +102,7 @@ namespace CodeJam.Ranges
 				lastBoundary.GetComplementation() >= nextRange.From;
 		}
 
+		[NotNull]
 		private static IEnumerable<Range<T, TKey>> MergeRangesCore(
 			IEnumerable<Range<T, TKey>> sortedRanges)
 		{

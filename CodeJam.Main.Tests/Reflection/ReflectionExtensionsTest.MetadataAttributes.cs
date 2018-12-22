@@ -27,6 +27,8 @@ using static NUnit.Framework.Assert;
 
 [assembly: ReflectionExtensionsTest.MI("A+"), ReflectionExtensionsTest.MN("A+")]
 
+// ReSharper disable NUnit.IncorrectArgumentType
+
 namespace CodeJam.Reflection
 {
 	[TestFixture(Category = "Reflection")]

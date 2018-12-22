@@ -1343,6 +1343,7 @@ namespace CodeJam.Expressions
 		}
 		#endregion
 
+		[CanBeNull]
 		private static Func<Expression, string> _getDebugView;
 
 		/// <summary>
@@ -1350,6 +1351,7 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expression">Expression to get DebugView.</param>
 		/// <returns>DebugView value.</returns>
+		[NotNull]
 		public static string GetDebugView([NotNull] this Expression expression)
 		{
 			Code.NotNull(expression, nameof(expression));
