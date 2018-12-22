@@ -113,7 +113,7 @@ namespace CodeJam.Arithmetic
 			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
 		[CanBeNull]
-		private static FieldInfo? TryGetOpField<T>([NotNull] string fieldName)
+		private static FieldInfo TryGetOpField<T>([NotNull] string fieldName)
 		{
 			var t = typeof(T).ToNullableUnderlying();
 
