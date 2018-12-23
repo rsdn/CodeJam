@@ -10,8 +10,6 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-	// TODO: Add tests
-
 	/// <summary>
 	/// The <see cref="Exception"/> class extensions.
 	/// </summary>
@@ -58,6 +56,8 @@ namespace CodeJam
 						writer.Write('-');
 					writer.WriteLine();
 				}
+				else
+					fromNewLine = false;
 
 				writer.WriteLine(exceptionText);
 
@@ -126,6 +126,8 @@ namespace CodeJam
 						await writer.WriteAsync('-');
 					await writer.WriteLineAsync();
 				}
+				else
+					fromNewLine = false;
 
 				await writer.WriteLineAsync(exceptionText);
 
