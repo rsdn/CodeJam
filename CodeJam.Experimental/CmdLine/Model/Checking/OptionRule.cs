@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 
 using JetBrains.Annotations;
@@ -105,6 +105,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// List of command names, that option depend on.
 		/// </summary>
+		[NotNull]
 		public string[] DependOnCommands { get; }
 	}
 }

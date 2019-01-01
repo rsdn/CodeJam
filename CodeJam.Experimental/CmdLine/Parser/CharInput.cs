@@ -34,7 +34,6 @@ namespace CodeJam.CmdLine
 
 		public int Position { get; }
 
-		[NotNull]
 		public ICharInput GetNext()
 		{
 			if (Current == Eof)

@@ -110,10 +110,10 @@ namespace CodeJam.Arithmetic
 			B
 		}
 
-		private static void AssertOperator<T>(Func<T> opGetter) =>
+		private static void AssertOperator<T>([NotNull] Func<T> opGetter) =>
 			Assert.DoesNotThrow(() => opGetter());
 
-		private static void AssertNoOperator<T>(Func<T> opGetter) =>
+		private static void AssertNoOperator<T>([NotNull] Func<T> opGetter) =>
 			Assert.Throws<NotSupportedException>(() => opGetter());
 
 		private static int NormalizeComparison(int value) =>

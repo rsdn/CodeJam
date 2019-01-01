@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam
@@ -56,15 +58,15 @@ namespace CodeJam
 			var summationRange = ValueTuple.Create(5, 8);
 			var expected = histogram.Where(_ => _.Key >= summationRange.Item1 && _.Key <= summationRange.Item2).Sum(_ => _.Value);
 
-			Func<KeyValuePair<int, int>, KeyValuePair<int, int>, int> comparer = (x, y) => Comparer<int>.Default.Compare(x.Key, y.Key);
-			Func<KeyValuePair<int, int>, int, int> keyComparer = (x, y) => Comparer<int>.Default.Compare(x.Key, y);
+			int Comparer(KeyValuePair<int, int> x, KeyValuePair<int, int> y) => Comparer<int>.Default.Compare(x.Key, y.Key);
+			int KeyComparer(KeyValuePair<int, int> x, int y) => Comparer<int>.Default.Compare(x.Key, y);
 
 			// First, sort it!
-			histogram.Sort((x,y) => comparer(x, y));
+			histogram.Sort((x,y) => Comparer(x, y));
 
 			// Find the index range
-			var indexFrom = histogram.LowerBound(summationRange.Item1, 0, histogram.Count, keyComparer);
-			var indexTo = histogram.UpperBound(summationRange.Item2, indexFrom, histogram.Count, keyComparer);
+			var indexFrom = histogram.LowerBound(summationRange.Item1, 0, histogram.Count, KeyComparer);
+			var indexTo = histogram.UpperBound(summationRange.Item2, indexFrom, histogram.Count, KeyComparer);
 
 			var sum = 0;
 			for (var index = indexFrom; index < indexTo; ++index)
@@ -146,7 +148,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 15.0, 0, 3, 3)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 5.0, 1, 4, 2)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 30000.0, 0, 4, 4)]
-		public void Test07WithAllParams(double[] data, double value, int from, int to, int expected)
+		public void Test07WithAllParams([NotNull] double[] data, double value, int from, int to, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -160,7 +162,7 @@ namespace CodeJam
 
 		[Test]
 		[TestCase(new double[0], 11.0, 0)]
-		public void Test08WithComparer(double[] data, double value, int expected)
+		public void Test08WithComparer([NotNull] double[] data, double value, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -177,7 +179,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 42.0, 6, 6)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 1002.0, 3, 7)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 12.0, 1, 4)]
-		public void Test09WithFrom(double[] data, double value, int from, int expected)
+		public void Test09WithFrom([NotNull] double[] data, double value, int from, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -201,7 +203,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 12.0, 4)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 3.0, 1)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 14534.0, 8)]
-		public void Test10WithoutParams(double[] data, double value, int expected)
+		public void Test10WithoutParams([NotNull] double[] data, double value, int expected)
 		{
 			var list = (IList<double>)data;
 			Assert.That(list.UpperBound(value, Comparer<double>.Default.Compare), Is.EqualTo(expected));

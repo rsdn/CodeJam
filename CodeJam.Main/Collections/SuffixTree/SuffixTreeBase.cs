@@ -138,24 +138,17 @@ namespace CodeJam.Collections
 		{
 			Code.NotNull(suffix, nameof(suffix));
 			if (suffix == string.Empty)
-			{
 				return true;
-			}
 			var r = FindBranch(suffix);
 			if (!r.HasValue)
-			{
 				return false;
-			}
 			var edge = r.Value.Node;
 			var length = r.Value.Length;
 			if (length < edge.Length) // proper substring of a suffix?
-			{
 				return false;
-			}
 			if (edge.IsLeaf) // a terminal edge?
-			{
 				return true;
-			}
+			DebugCode.BugIf(edge.Children == null, "edge.Children == null");
 			return GetNode(edge.Children[0]).Length == 0; // has a child terminal edge of zero length
 		}
 
@@ -207,6 +200,7 @@ namespace CodeJam.Collections
 			var branchPoint = new BranchPoint { Node = node, EdgeIndex = 0 };
 			for (;;)
 			{
+				DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
 				var edge = GetNode(branchPoint.Node.Children[branchPoint.EdgeIndex]);
 				var edgeLength = edge.Length;
 				length += edgeLength;
@@ -226,6 +220,7 @@ namespace CodeJam.Collections
 				{
 					length -= edgeLength;
 					var nextEdgeIndex = branchPoint.EdgeIndex + 1;
+					DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
 					if (nextEdgeIndex < branchPoint.Node.Children.Count)
 					{
 						branchPoint.EdgeIndex = nextEdgeIndex;
@@ -270,21 +265,15 @@ namespace CodeJam.Collections
 			{
 				var edgeIndex = FindEdge(currentNode, s[offset], out var edge);
 				if (edgeIndex == -1)
-				{
 					return ValueOption.None<FindResult>();
-				}
 				var edgeLength = edge.Length;
 				var compareLength = Math.Min(s.Length - offset, edgeLength);
 				if (compareLength > 1
 					&& string.Compare(s, offset + 1, InternalData, edge.Begin + 1, compareLength - 1) != 0)
-				{
 					return ValueOption.None<FindResult>();
-				}
 				offset += compareLength;
 				if (offset == s.Length)
-				{
-					return ValueOption.Some(new FindResult {Node = edge, Length = compareLength});
-				}
+					return ValueOption.Some(new FindResult { Node = edge, Length = compareLength });
 				DebugCode.AssertState(compareLength == edgeLength, "Invalid compare length. Check logic");
 				currentNode = edge;
 				// continue search from the next level
@@ -304,6 +293,7 @@ namespace CodeJam.Collections
 			{
 				return -1;
 			}
+			DebugCode.BugIf(node.Children == null, "node.Children == null");
 			var edgeIndex = node.Children.LowerBound(c, EdgeComparer);
 			if (edgeIndex == node.Children.Count)
 			{
@@ -361,6 +351,7 @@ namespace CodeJam.Collections
 					var nextChild = t.Length;
 					if (nextChild >= 0)
 					{
+						DebugCode.BugIf(node.Children == null, "node.Children == null");
 						currentIndex = node.Children[nextChild];
 						stack.Add((t.Item1, nextChild - 1));
 						break;

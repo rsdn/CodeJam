@@ -1,3 +1,5 @@
+﻿using JetBrains.Annotations;
+
 namespace CodeJam.CmdLine
 {
 	/// <summary>
@@ -9,7 +11,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public QuotedOrNonquotedValueNode(
-			string text,
+			[NotNull] string text,
 			int position,
 			int length,
 			bool quoted) : base(text, position, length)
