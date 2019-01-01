@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 		/// An <see cref="IEnumerable{T}"/> that contains the elements from both input sequences, excluding duplicates.
 		/// </returns>
 		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Union<T>([NotNull] this IEnumerable<T> source, params T[] elements) =>
+		public static IEnumerable<T> Union<T>([NotNull] this IEnumerable<T> source, [NotNull] params T[] elements) =>
 			source.Union(elements.AsEnumerable());
 
 		/// <summary>
@@ -39,7 +39,8 @@ namespace CodeJam.Collections
 			return ConcatCore(source, element);
 		}
 
-		private static IEnumerable<T> ConcatCore<T>(IEnumerable<T> source, T element)
+		[Pure, NotNull, LinqTunnel]
+		private static IEnumerable<T> ConcatCore<T>([NotNull] IEnumerable<T> source, T element)
 		{
 			foreach (var item in source)
 				yield return item;
@@ -54,14 +55,15 @@ namespace CodeJam.Collections
 		/// <param name="elements">Elements to concat.</param>
 		/// <returns>Concatenated enumerable</returns>
 		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Concat<T>([NotNull] this IEnumerable<T> source, params T[] elements)
+		public static IEnumerable<T> Concat<T>([NotNull] this IEnumerable<T> source, [NotNull] params T[] elements)
 		{
 			Code.NotNull(source, nameof(source));
 
 			return ConcatCore(source, elements);
 		}
 
-		private static IEnumerable<T> ConcatCore<T>(IEnumerable<T> source, T[] elements)
+		[Pure, NotNull, LinqTunnel]
+		private static IEnumerable<T> ConcatCore<T>([NotNull] IEnumerable<T> source, [NotNull] T[] elements)
 		{
 			foreach (var item in source)
 				yield return item;
@@ -101,14 +103,15 @@ namespace CodeJam.Collections
 		/// <param name="elements">Elements to prepend.</param>
 		/// <returns>Concatenated enumerable</returns>
 		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Prepend<T>([NotNull] this IEnumerable<T> source, params T[] elements)
+		public static IEnumerable<T> Prepend<T>([NotNull] this IEnumerable<T> source, [NotNull] params T[] elements)
 		{
 			Code.NotNull(source, nameof(source));
 
 			return PrependCore(source, elements);
 		}
 
-		private static IEnumerable<T> PrependCore<T>(IEnumerable<T> source, T[] elements)
+		[Pure, NotNull, LinqTunnel]
+		private static IEnumerable<T> PrependCore<T>([NotNull] IEnumerable<T> source, [NotNull] T[] elements)
 		{
 			foreach (var element in elements)
 				yield return element;
@@ -436,7 +439,8 @@ namespace CodeJam.Collections
 			return ToStringsCore(source);
 		}
 
-		private static IEnumerable<string> ToStringsCore<T>(IEnumerable<T> source)
+		[NotNull, Pure]
+		private static IEnumerable<string> ToStringsCore<T>([NotNull] IEnumerable<T> source)
 		{
 			// ReSharper disable once LoopCanBeConvertedToQuery
 			foreach (var obj in source)

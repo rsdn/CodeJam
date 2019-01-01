@@ -119,6 +119,7 @@ namespace CodeJam.Assertions
 
 #if !LESSTHAN_NET35
 		[Test]
+		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
 		public void TestOutOfRangeNullableDouble()
 		{
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 1, 2));

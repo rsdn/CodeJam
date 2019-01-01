@@ -17,8 +17,8 @@ namespace CodeJam.Collections
 		where TOwner : class
 		where TItem : class
 	{
-		private readonly Func<TItem, TOwner> _ownerGetter;
-		private readonly Action<TItem, TOwner> _ownerSetter;
+		[NotNull] private readonly Func<TItem, TOwner> _ownerGetter;
+		[NotNull] private readonly Action<TItem, TOwner> _ownerSetter;
 
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TOwner, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
@@ -60,9 +60,9 @@ namespace CodeJam.Collections
 		where TOwner : class
 		where TItem : class
 	{
-		private readonly Func<TItem, TOwner> _ownerGetter;
-		private readonly Action<TItem, TOwner> _ownerSetter;
-		private readonly Func<TItem, TKey> _keyGetter;
+		[NotNull] private readonly Func<TItem, TOwner> _ownerGetter;
+		[NotNull] private readonly Action<TItem, TOwner> _ownerSetter;
+		[NotNull] private readonly Func<TItem, TKey> _keyGetter;
 
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TOwner, TKey, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>

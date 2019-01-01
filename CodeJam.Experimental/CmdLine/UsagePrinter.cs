@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -6,11 +6,13 @@ using System.Text;
 
 using CodeJam.Strings;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.CmdLine
 {
 	internal static class UsagePrinter
 	{
-		public static void PrintUsage(CmdLineRules rules, TextWriter writer, PrintUsageSettings settings)
+		public static void PrintUsage([NotNull] CmdLineRules rules, [NotNull] TextWriter writer, [NotNull] PrintUsageSettings settings)
 		{
 			var titleExists = false;
 			if (!settings.ProductNameString.IsNullOrEmpty())
@@ -130,7 +132,8 @@ namespace CodeJam.CmdLine
 			}
 		}
 
-		private static string GetOptionDescription(OptionRule opt)
+		[NotNull]
+		private static string GetOptionDescription([NotNull] OptionRule opt)
 		{
 			var sb = new StringBuilder(opt.Description);
 			if (opt.Required)
@@ -140,7 +143,8 @@ namespace CodeJam.CmdLine
 			return sb.ToString();
 		}
 
-		private static string GetOptionString(OptionRule opt, bool full, string optPrefix)
+		[NotNull]
+		private static string GetOptionString([NotNull] OptionRule opt, bool full, string optPrefix)
 		{
 			switch (opt.Type)
 			{
@@ -183,12 +187,13 @@ namespace CodeJam.CmdLine
 		#region ItemDescriptor class
 		private class ItemDescriptor
 		{
-			public ItemDescriptor(string name, string description)
+			public ItemDescriptor([NotNull] string name, string description)
 			{
 				Name = name;
 				Description = description;
 			}
 
+			[NotNull]
 			public string Name { get; }
 
 			public string Description { get; }

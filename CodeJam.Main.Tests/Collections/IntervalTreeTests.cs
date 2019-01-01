@@ -5,6 +5,8 @@ using System.Linq;
 using CodeJam.Collections;
 using CodeJam.Strings;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 namespace CodeJam.Ranges
@@ -73,7 +75,7 @@ namespace CodeJam.Ranges
 			}
 		}
 
-		private static void AssertSameOverlap(CompositeRange<int, string> ranges, IntervalTree<int, string> tree, Range<int> overlapRange) =>
+		private static void AssertSameOverlap(CompositeRange<int, string> ranges, [NotNull] IntervalTree<int, string> tree, Range<int> overlapRange) =>
 			Assert.AreEqual(
 				ranges.SubRanges.Where(r => r.HasIntersection(overlapRange)).Join(";"),
 				tree.Intersect(overlapRange).Join(";"));

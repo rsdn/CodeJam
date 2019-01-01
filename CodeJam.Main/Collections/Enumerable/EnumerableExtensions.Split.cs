@@ -27,14 +27,16 @@ namespace CodeJam.Collections
 			return SplitImpl(source, size);
 		}
 
-		private static IEnumerable<T[]> SplitImpl<T>(IEnumerable<T> source, int size)
+		[NotNull, Pure, LinqTunnel]
+		private static IEnumerable<T[]> SplitImpl<T>([NotNull] IEnumerable<T> source, int size)
 		{
 			using (var enumerator = source.GetEnumerator())
 				while (enumerator.MoveNext())
 					yield return SplitSequence(enumerator, size);
 		}
 
-		private static T[] SplitSequence<T>(IEnumerator<T> enumerator, int size)
+		[NotNull]
+		private static T[] SplitSequence<T>([NotNull] IEnumerator<T> enumerator, int size)
 		{
 			var count = 0;
 			var items = new T[size];

@@ -5,6 +5,8 @@ using System.Linq;
 
 using CodeJam.Ranges;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Collections
 {
 	/// <summary>
@@ -12,8 +14,8 @@ namespace CodeJam.Collections
 	/// </summary>
 	public class IntervalTree<T, TKey>
 	{
-		private readonly Range<T, TKey>[] _sortedRanges;
-		private readonly int[] _treeIndexes;
+		[NotNull] private readonly Range<T, TKey>[] _sortedRanges;
+		[NotNull] private readonly int[] _treeIndexes;
 
 		/// <summary>
 		/// Initialize instance.
@@ -80,6 +82,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Find intersection between specified range and source.
 		/// </summary>
+		[NotNull]
 		public List<Range<T, TKey>> Intersect(Range<T> intersection)
 		{
 			var result = new List<Range<T, TKey>>();
@@ -87,7 +90,7 @@ namespace CodeJam.Collections
 			return result;
 		}
 
-		private void Intersect(int startIndex, int middleIndex, int endIndex, Range<T> intersection, List<Range<T, TKey>> result)
+		private void Intersect(int startIndex, int middleIndex, int endIndex, Range<T> intersection, [NotNull] List<Range<T, TKey>> result)
 		{
 			while (true)
 			{

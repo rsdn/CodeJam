@@ -25,7 +25,7 @@ namespace CodeJam.Expressions
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
 		[NotNull, Pure]
-		public static MemberExpression GetMemberExpression(this LambdaExpression expression)
+		public static MemberExpression GetMemberExpression([NotNull] this LambdaExpression expression)
 		{
 			var body = expression.Body;
 			return body is UnaryExpression unary

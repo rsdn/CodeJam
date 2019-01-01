@@ -17,8 +17,9 @@ namespace CodeJam.Ranges
 	public partial struct CompositeRange<T, TKey>
 	{
 		#region Helpers
+		[NotNull]
 		private static IEnumerable<Range<T>> MergeRangesNoKeyCore(
-			IEnumerable<Range<T, TKey>> sortedRanges)
+			[NotNull] IEnumerable<Range<T, TKey>> sortedRanges)
 		{
 			var temp = Range<T>.Empty;
 			foreach (var range in sortedRanges)
