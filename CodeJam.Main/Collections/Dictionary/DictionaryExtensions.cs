@@ -1,6 +1,8 @@
 ﻿using System;
 #if !LESSTHAN_NET35
 using System.Collections.Concurrent;
+#endif
+#if !LESSTHAN_NET45
 using System.Threading.Tasks;
 #endif
 using System.Collections.Generic;
