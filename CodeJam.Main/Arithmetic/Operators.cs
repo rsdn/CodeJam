@@ -1,12 +1,15 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Threading;
 
 using JetBrains.Annotations;
+#endif
 
 namespace CodeJam.Arithmetic
 {
+#if !LESSTHAN_NET35
 	/// <summary>
 	/// Callbacks for common arithmetic actions.
 	/// Look at OperatorsPerformanceTest to see why.
@@ -172,4 +175,5 @@ namespace CodeJam.Arithmetic
 		}
 		#endregion
 	}
+#endif
 }

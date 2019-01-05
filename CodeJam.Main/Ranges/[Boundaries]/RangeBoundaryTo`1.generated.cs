@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#if !LESSTHAN_NET35
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -40,7 +41,7 @@ namespace CodeJam.Ranges
 		IComparable<RangeBoundaryTo<T>>, IComparable<RangeBoundaryFrom<T>>, IComparable<T>, IComparable,
 		IFormattable
 	{
-		#region Static members
+#region Static members
 		private const int _equalResult = 0;
 
 		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
@@ -118,22 +119,22 @@ namespace CodeJam.Ranges
 			return true;
 		}
 
-		#region Predefined values
+#region Predefined values
 		/// <summary>Empty range boundary, ∅.</summary>
 		public static readonly RangeBoundaryTo<T> Empty;
 
 		/// <summary>Positive infinity, +∞.</summary>
 		public static readonly RangeBoundaryTo<T> PositiveInfinity = new RangeBoundaryTo<T>(
 			default, RangeBoundaryToKind.Infinite);
-		#endregion
+#endregion
 
-		#region Formattable logic
+#region Formattable logic
 		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
-		#endregion
+#endregion
 
-		#endregion
+#endregion
 
-		#region Fields & .ctor
+#region Fields & .ctor
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
 		private T _value;
 		private RangeBoundaryToKind _kind;
@@ -204,9 +205,9 @@ namespace CodeJam.Ranges
 			_kind = boundaryKind;
 		}
 #endif
-		#endregion
+#endregion
 
-		#region Properties
+#region Properties
 		/// <summary>The kind of the boundary.</summary>
 		/// <value>The kind of the boundary.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
@@ -280,9 +281,9 @@ namespace CodeJam.Ranges
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
 		public T GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
-		#endregion
+#endregion
 
-		#region Methods
+#region Methods
 		/// <summary>
 		/// Returns complementation for the boundary. The conversions are:
 		/// * 'a]' -> '(a'
@@ -378,9 +379,9 @@ namespace CodeJam.Ranges
 		/// </returns>
 		[Pure]
 		public RangeBoundaryTo<T> ToInclusive() => IsExclusiveBoundary ? Range.BoundaryTo(_value) : this;
-		#endregion
+#endregion
 
-		#region IEquatable<RangeBoundaryTo<T>>
+#region IEquatable<RangeBoundaryTo<T>>
 		/// <summary>Indicates whether the current boundary is equal to another.</summary>
 		/// <param name="other">The boundary to compare with this.</param>
 		/// <returns>
@@ -413,9 +414,9 @@ namespace CodeJam.Ranges
 
 			return (int)_kind;
 		}
-		#endregion
+#endregion
 
-		#region IComparable<RangeBoundaryTo<T>>
+#region IComparable<RangeBoundaryTo<T>>
 		/// <summary>
 		/// Compares the current boundary with another one. Following order is used:
 		/// '∅' &lt; '+∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '-∞'.
@@ -492,7 +493,7 @@ namespace CodeJam.Ranges
 			return result;
 		}
 
-		#region IComparable<T>
+#region IComparable<T>
 		/// <summary>
 		/// Compares the current boundary with the value of another To boundary. Following order is used:
 		/// '∅' &lt; '+∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '-∞'.
@@ -511,9 +512,9 @@ namespace CodeJam.Ranges
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(T other) =>
 			CompareTo(Range.GetCompareToBoundary(other));
-		#endregion
+#endregion
 
-		#region IComparable
+#region IComparable
 		/// <summary>
 		/// Compares the current boundary with the boundary or with the value of another boundary of the same kind. Following order is used:
 		/// '∅' &lt; '+∞' &lt; 'a)' &lt; '[a' == 'a]' &lt; '(a' &lt; '-∞'.
@@ -539,11 +540,11 @@ namespace CodeJam.Ranges
 					return CompareTo((T)obj);
 			}
 		}
-		#endregion
+#endregion
 
-		#endregion
+#endregion
 
-		#region ToString
+#region ToString
 		/// <summary> Returns string representation of the boundary. </summary>
 		/// <returns> The string representation of the boundary. </returns>
 		[Pure]
@@ -616,6 +617,7 @@ namespace CodeJam.Ranges
 			}
 			return result;
 		}
-		#endregion
+#endregion
 	}
 }
+#endif

@@ -1,5 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ include file="RangeBoundaryToReplacer.ttinclude" #>
+#if !LESSTHAN_NET35
 <#
 	Run(
 		new ReplaceInfo // Swap parts in ToString()
@@ -15,3 +16,4 @@
 			ThrowOnFail = true
 		});
 #>
+#endif

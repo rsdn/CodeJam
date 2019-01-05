@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
@@ -76,3 +77,4 @@ namespace CodeJam.Threading
 		}
 	}
 }
+#endif

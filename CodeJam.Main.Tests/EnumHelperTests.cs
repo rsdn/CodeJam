@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -360,3 +361,4 @@ namespace CodeJam
 		public string GetDisplay(NameDescEnum value) => EnumHelper.GetEnumValue(value).ToString();
 	}
 }
+#endif

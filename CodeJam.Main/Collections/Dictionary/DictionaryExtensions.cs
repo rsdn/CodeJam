@@ -1,7 +1,11 @@
 ﻿using System;
+#if !LESSTHAN_NET35
 using System.Collections.Concurrent;
-using System.Collections.Generic;
+#endif
+#if !LESSTHAN_NET45
 using System.Threading.Tasks;
+#endif
+using System.Collections.Generic;
 
 using JetBrains.Annotations;
 
@@ -327,6 +331,7 @@ namespace CodeJam.Collections
 		}
 #endif
 
+#if !LESSTHAN_NET35
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="ConcurrentDictionary{TKey,TValue}"/> if the key does not already exist,
 		///   or updates a key/value pair <see cref="ConcurrentDictionary{TKey,TValue}"/> by using the specified function
@@ -345,6 +350,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			return dictionary.AddOrUpdate(key, valueFactory, (k, oldValue) => valueFactory(k));
 		}
+#endif
 		#endregion
 	}
 }

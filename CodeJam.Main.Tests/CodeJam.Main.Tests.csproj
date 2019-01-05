@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\Build\Props\CodeJam.Default.props" />
 	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
@@ -8,22 +8,29 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{DD65E3F2-9658-4242-A8AA-056028473CB1}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35;net20</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0'">
+	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'net20' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
 		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net20'">
+		<PackageReference Include="NUnit" Version="3.11.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
+	</ItemGroup>
+
+	<!-- NUnit 3.11 is the last NUnit supporting .NET 2.0 -->
+	<!-- See: https://github.com/nunit/nunit/issues/3070 -->
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net20'">
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
 	</ItemGroup>
@@ -97,4 +104,12 @@
 		<EmbeddedResource Include="Strings\Data\Words.Expected.txt" />
 		<EmbeddedResource Include="Strings\Data\Words.txt" />
 	</ItemGroup>
+
+	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20'" >
+   		<ItemGroup>
+			<ReferencePath Condition="'%(FileName)' == 'NUnit.System.Linq'">
+				<Aliases>nunitlinq</Aliases>
+			</ReferencePath>
+		</ItemGroup>
+	</Target>
 </Project>

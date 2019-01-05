@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
@@ -104,3 +105,4 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
+#endif

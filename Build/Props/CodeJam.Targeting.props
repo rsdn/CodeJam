@@ -1,7 +1,7 @@
 ﻿<Project>
 	<PropertyGroup>
-		<CopyMeTargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35</CopyMeTargetFrameworks>
-		<CopyMeTestTargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35</CopyMeTestTargetFrameworks>
+		<CopyMeTargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35;net20</CopyMeTargetFrameworks>
+		<CopyMeTestTargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35;net20</CopyMeTestTargetFrameworks>
 		<CopyMeMinimalTargetFrameworks>net461;netcoreapp2.0</CopyMeMinimalTargetFrameworks>
 	</PropertyGroup>
 
