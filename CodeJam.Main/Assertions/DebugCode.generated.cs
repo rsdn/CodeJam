@@ -180,6 +180,7 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
 
+#if !LESSTHAN_NET35
 		/// <summary>Assertion for the argument in range</summary>
 		/// <typeparam name="T">Type of the value</typeparam>
 		/// <param name="value">The value.</param>
@@ -198,6 +199,7 @@ namespace CodeJam
 			if (!(Operators<T>.GreaterThanOrEqual(value, fromValue) && Operators<T>.LessThanOrEqual(value, toValue)))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
+#endif
 		#endregion
 
 		#region Argument validation - valid count

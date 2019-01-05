@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.Globalization;
 
 using CodeJam.Strings;
@@ -103,3 +104,4 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
+#endif

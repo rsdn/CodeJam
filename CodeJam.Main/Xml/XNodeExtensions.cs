@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -270,3 +271,4 @@ namespace CodeJam.Xml
 		}
 	}
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -505,3 +506,4 @@ namespace CodeJam.Arithmetic
 		#endregion
 	}
 }
+#endif

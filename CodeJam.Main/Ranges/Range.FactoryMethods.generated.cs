@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#if !LESSTHAN_NET35
 using System;
 using System.Runtime.CompilerServices;
 
@@ -90,7 +91,7 @@ namespace CodeJam.Ranges
 				fromValue, RangeBoundaryFromKind.Inclusive,
 				toValue, RangeBoundaryToKind.Inclusive, key);
 
-		/// <summary>Tries to create the range. Returnss empty range if failed.</summary>
+		/// <summary>Tries to create the range. Returns an empty range if failed.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="fromValue">The value of the boundary From exclusive.</param>
@@ -131,3 +132,4 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
+#endif

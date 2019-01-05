@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿#if !LESSTHAN_NET35
+using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading;
@@ -129,3 +130,4 @@ namespace CodeJam.Threading
 		}
 	}
 }
+#endif

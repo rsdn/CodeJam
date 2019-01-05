@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
@@ -152,3 +153,4 @@ namespace CodeJam.Assertions
 		}
 	}
 }
+#endif

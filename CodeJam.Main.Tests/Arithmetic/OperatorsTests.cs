@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -14,7 +15,7 @@ namespace CodeJam.Arithmetic
 	[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 	public partial class OperatorsTests
 	{
-		#region Test helpers
+#region Test helpers
 		private class ClassNoComparable
 		{
 			[UsedImplicitly]
@@ -224,7 +225,7 @@ namespace CodeJam.Arithmetic
 				Operators<T>.LessThanOrEqual(value2, value2),
 				compareResult22 <= 0);
 		}
-		#endregion
+#endregion
 
 		[Test]
 		public void Test00OperatorsSupported()
@@ -461,3 +462,4 @@ namespace CodeJam.Arithmetic
 		}
 	}
 }
+#endif

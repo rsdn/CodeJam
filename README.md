@@ -32,6 +32,14 @@ CodeJam.PerfTests is performance testing framework for .Net projects.
 It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods
 with timing limits and to check the limits each time the test is run.
 
+### .NET Framework 2.0 support
+.NET Framework 2.0 support is very limited. Functionality not supported:
+
+* Ranges - all related classes are not supported due to lack of expressions support
+* Operators - all related classes are not supported due to lack of expressions support
+* Expressions - all related classes are not supported due to lack of expressions support
+* LINQ to XML extensions - .NET 2.0 doesn't have LINQ XML related classes
+
 ### .NET Framework 3.5 support
 .NET Framework 3.5 support is limited. Functionality not supported:
 
@@ -88,7 +96,7 @@ All such places are marked with `// BASEDON: ` comment. Here they are:
 
 - [`CodeExceptions`](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Assertions/CodeExceptions.cs#L55): trace source design follows style introduced by the `System.Diagnostics.PresentationTraceSources`.
 - [`NaturalOrderStringComparer`](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Strings/NaturalOrderStringComparer.cs): based on [the C version by Martin Pool](http://sourcefrog.net/projects/natsort/)
-- Types that enables targeting to [.Net 3.5](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Targeting/NET35) and [.Net 4.0](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Targeting/NET40), all taken from [CoreFx ](https://github.com/dotnet/corefx)and [CoreClr](https://github.com/dotnet/coreclr/) projects.
+- Types that enables targeting to [.Net 2.0](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Targeting/NET20), [.Net 3.5](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Targeting/NET35) and [.Net 4.0](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Targeting/NET40), all taken from [CoreFx ](https://github.com/dotnet/corefx)and [CoreClr](https://github.com/dotnet/coreclr/) projects.
 - [`InterlockedOperations`](https://github.com/rsdn/CodeJam/blob/master/CodeJam.Main/Threading/InterlockedOperations.tt) uses CAS loop undercover, reference to the Roslyn implementation given as a proof the code is correct.
 
 

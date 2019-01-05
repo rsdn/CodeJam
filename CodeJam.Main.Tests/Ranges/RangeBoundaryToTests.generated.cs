@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#if !LESSTHAN_NET35
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -309,3 +310,4 @@ namespace CodeJam.Ranges
 		}
 	}
 }
+#endif

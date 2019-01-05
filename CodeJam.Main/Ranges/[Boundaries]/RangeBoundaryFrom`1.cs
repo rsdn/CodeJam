@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -613,3 +614,4 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 
 using JetBrains.Annotations;
 
@@ -24,3 +25,4 @@ namespace CodeJam.Ranges
 			new CompositeRange<T>(ranges);
 	}
 }
+#endif
