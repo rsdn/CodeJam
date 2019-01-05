@@ -79,6 +79,7 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("arg:null => stop")]
 		public static void NotNullNorEmpty(
 			[CanBeNull] string arg,
 			[NotNull, InvokerParameterName] string argName)
