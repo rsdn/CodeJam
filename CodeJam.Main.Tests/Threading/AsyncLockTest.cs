@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET45
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -9,6 +8,8 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 
 using NUnit.Framework;
+
+#if !NET40
 
 namespace CodeJam.Threading
 {
@@ -106,4 +107,5 @@ namespace CodeJam.Threading
 		}
 	}
 }
+
 #endif

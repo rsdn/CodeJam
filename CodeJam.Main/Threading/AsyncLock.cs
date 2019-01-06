@@ -1,9 +1,11 @@
-﻿#if !LESSTHAN_NET45
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 using JetBrains.Annotations;
+
+// Pending Theraot.Core SemaphoreSlim supporting .NET 4.0
+#if !NET40
 
 namespace CodeJam.Threading
 {
