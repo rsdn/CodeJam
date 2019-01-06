@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -454,4 +453,3 @@ namespace CodeJam.Collections
 		#endregion
 	}
 }
-#endif

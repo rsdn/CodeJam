@@ -6,7 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-#if !LESSTHAN_NET35
 using System;
 
 using NUnit.Framework;
@@ -230,4 +229,3 @@ namespace CodeJam.Arithmetic
 		#endregion
 	}
 }
-#endif

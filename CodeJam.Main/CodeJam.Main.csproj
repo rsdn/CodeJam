@@ -71,14 +71,6 @@
 		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
-		<Compile Update="Algorithms\Algorithms.EqualRange.generated.cs">
-			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
-			<AutoGen>True</AutoGen>
-		</Compile>
-		<None Update="Algorithms\Algorithms.EqualRange.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>Algorithms.EqualRange.generated.cs</LastGenOutput>
-		</None>
 		<Compile Update="Algorithms\Algorithms.LowerBound.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Algorithms.LowerBound.tt</DependentUpon>
@@ -106,6 +98,7 @@
 		<Compile Update="Arithmetic\Operators.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Operators.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Arithmetic\Operators.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -350,6 +343,10 @@
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 
 </Project>

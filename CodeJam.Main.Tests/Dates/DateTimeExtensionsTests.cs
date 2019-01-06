@@ -11,8 +11,6 @@ namespace CodeJam.Dates
 	// TODO: tests with lastDayOfMont / tests with DST
 	public static class DateTimeExtensionsTests
 	{
-#if !LESSTHAN_NET35
-
 		[Test]
 		public static void TestDateTimeExtensions()
 		{
@@ -84,8 +82,7 @@ namespace CodeJam.Dates
 			AreEqual(kind, d.FirstDayOfYear().Kind, "#3");
 			AreEqual(kind, d.LastDayOfYear().Kind, "#4");
 		}
-
-#endif
+		
 		[TestCase(0d)]
 		[TestCase(3d)]
 		[TestCase(-2d)]

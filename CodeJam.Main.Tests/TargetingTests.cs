@@ -2,9 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Linq;
-#if !LESSTHAN_NET35
 using System.Threading.Tasks;
-#endif
 
 using JetBrains.Annotations;
 
@@ -113,7 +111,6 @@ namespace CodeJam
 			Assert.AreEqual(PlatformDependent.TargetPlatform, ExpectedTarget);
 		}
 
-#if !LESSTHAN_NET35
 		[Test]
 		public void TestTasks()
 		{
@@ -121,7 +118,6 @@ namespace CodeJam
 			var r = t.Result;
 			Assert.AreEqual(r, 42);
 		}
-#endif
 
 		[Test]
 		public void TestTuple()

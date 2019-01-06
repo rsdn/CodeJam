@@ -1,4 +1,4 @@
-![CodeJam.Main.Icon](/images/nuget/CodeJam.Main.Icon.png)
+﻿![CodeJam.Main.Icon](/images/nuget/CodeJam.Main.Icon.png)
 
 ##  CodeJam
 
@@ -33,11 +33,8 @@ It allows to compare multiple implementations by execution time (*~memory limits
 with timing limits and to check the limits each time the test is run.
 
 ### .NET Framework 2.0 support
-.NET Framework 2.0 support is very limited. Functionality not supported:
+.NET Framework 2.0 support is limited. Functionality not supported:
 
-* Ranges - all related classes are not supported due to lack of expressions support
-* Operators - all related classes are not supported due to lack of expressions support
-* Expressions - all related classes are not supported due to lack of expressions support
 * LINQ to XML extensions - .NET 2.0 doesn't have LINQ XML related classes
 
 ### .NET Framework 3.5 support

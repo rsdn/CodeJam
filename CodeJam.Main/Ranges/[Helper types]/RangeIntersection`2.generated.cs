@@ -7,7 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#if !LESSTHAN_NET35
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,4 +132,3 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
-#endif

@@ -1,4 +1,4 @@
-﻿#if NET35
+﻿#if LESSTHAN_NET40
 
 // BASEDON: https://github.com/dotnet/corefx/blob/e0ba7aa8026280ee3571179cc06431baf1dfaaac/src/System.Threading.Tasks.Parallel/src/System/Threading/Tasks/ParallelRangeManager.cs
 

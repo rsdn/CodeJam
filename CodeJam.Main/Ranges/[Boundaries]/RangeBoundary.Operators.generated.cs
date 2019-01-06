@@ -7,7 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#if !LESSTHAN_NET35
 using System;
 using System.Runtime.CompilerServices;
 
@@ -323,4 +322,3 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
-#endif

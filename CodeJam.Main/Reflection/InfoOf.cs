@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -201,4 +200,3 @@ namespace CodeJam.Reflection
 		#endregion
 	}
 }
-#endif

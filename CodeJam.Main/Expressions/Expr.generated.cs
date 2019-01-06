@@ -7,7 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#if !LESSTHAN_NET35
 using System;
 using System.Linq.Expressions;
 
@@ -265,4 +264,3 @@ namespace CodeJam.Expressions
 		#endregion
 	}
 }
-#endif
