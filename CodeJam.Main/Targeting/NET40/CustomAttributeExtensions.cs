@@ -13,8 +13,7 @@ namespace System.Reflection
 	/// <summary>
 	/// Contains static methods for retrieving custom attributes.
 	/// </summary>
-	[PublicAPI]
-	public static class CustomAttributeExtensions
+	internal static class CustomAttributeExtensions
 	{
 #region APIs that return a single attribute
 		/// <summary>

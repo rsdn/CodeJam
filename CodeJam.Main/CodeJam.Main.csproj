@@ -56,13 +56,14 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="Theraot.Core" Version="2.2.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
-		<PackageReference Include="TaskParallelLibrary" Version="1.0.2856.0" />
+		<PackageReference Include="Theraot.Core" Version="2.2.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
-		<PackageReference Include="LinqBridge" Version="1.3.0" />
+		<PackageReference Include="Theraot.Core" Version="2.2.0" />
 	</ItemGroup>
 	<!-- #endregion -->
 

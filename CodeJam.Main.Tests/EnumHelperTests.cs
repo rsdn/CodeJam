@@ -12,7 +12,7 @@ using NUnit.Framework;
 using static NUnit.Framework.Assert;
 
 #if LESSTHAN_NET40
-using EnumTargetingHelpers = CodeJam.Targeting.EnumTargeting;
+using EnumTargetingHelpers = Theraot.Core.EnumHelper;
 #else
 using EnumTargetingHelpers = System.Enum;
 #endif

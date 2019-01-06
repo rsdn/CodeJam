@@ -10,7 +10,7 @@ using CodeJam.Reflection;
 
 using JetBrains.Annotations;
 
-#if LESSTHAN_NET40
+#if NET35
 using CodeJam.Targeting;
 #endif
 

@@ -3,7 +3,7 @@ using System.Linq;
 
 using NUnit.Framework;
 
-#if LESSTHAN_NET40
+#if NET35
 using CodeJam.Targeting;
 #endif
 

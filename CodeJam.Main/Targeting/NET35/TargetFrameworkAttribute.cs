@@ -1,4 +1,6 @@
-﻿#if LESSTHAN_NET40
+﻿// Once Theraot v3 is be released, this file can be removed.
+
+#if LESSTHAN_NET40
 // ReSharper disable all
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable IDE0044 // Make field readonly

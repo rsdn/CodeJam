@@ -1,4 +1,6 @@
-﻿#if LESSTHAN_NET40
+﻿// Once Theraot v3 is be released, this file can be removed.
+
+#if LESSTHAN_NET40
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations/DisplayAttribute.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
@@ -19,7 +21,7 @@ namespace System.ComponentModel.DataAnnotations
 		AllowMultiple = false)]
 	public sealed class DisplayAttribute : Attribute
 	{
-		#region Member Fields
+#region Member Fields
 
 		private readonly LocalizableString _description = new LocalizableString("Description");
 		private readonly LocalizableString _groupName = new LocalizableString("GroupName");
@@ -31,13 +33,13 @@ namespace System.ComponentModel.DataAnnotations
 		private int? _order;
 		private Type _resourceType;
 
-		#endregion
+#endregion
 
-		#region All Constructors
+#region All Constructors
 
-		#endregion
+#endregion
 
-		#region Properties
+#region Properties
 
 		/// <summary>
 		///     Gets or sets the ShortName attribute property, which may be a resource key string.
@@ -300,9 +302,9 @@ namespace System.ComponentModel.DataAnnotations
 			set { _order = value; }
 		}
 
-		#endregion
+#endregion
 
-		#region Methods
+#region Methods
 
 		/// <summary>
 		///     Gets the UI display string for ShortName.
@@ -487,7 +489,7 @@ namespace System.ComponentModel.DataAnnotations
 		{
 			return _order;
 		}
-		#endregion
+#endregion
 	}
 }
 #endif

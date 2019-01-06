@@ -1,4 +1,6 @@
-﻿#if LESSTHAN_NET40
+﻿// Once Theraot v3 is be released, this file can be removed.
+
+#if LESSTHAN_NET40
 //BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations/LocalizableString.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

@@ -20,7 +20,7 @@ using JetBrains.Annotations;
 
 using StringClass =
 #if LESSTHAN_NET40
-	CodeJam.Targeting.StringTargeting
+	Theraot.Core.StringHelper
 #else
 	System.String
 #endif

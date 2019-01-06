@@ -1,9 +1,13 @@
-﻿#if LESSTHAN_NET40
+﻿// Once Theraot v3 is be released, this file can be removed.
+
+#if NET35
 // BASEDON: https://github.com/dotnet/corefx/blob/bffef76f6af208e2042a2f27bc081ee908bb390b/src/System.Linq/src/System/Linq/Zip.cs
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.Targeting
 {
@@ -27,6 +31,7 @@ namespace CodeJam.Targeting
 		/// An <see cref="IEnumerable{T}"/> that contains elements of the two input sequences, combined by
 		/// <paramref name="resultSelector"/>.
 		/// </returns>
+		[NotNull]
 		public static IEnumerable<TResult> Zip<TFirst, TSecond, TResult>(
 			this IEnumerable<TFirst> first, IEnumerable<TSecond> second,
 			Func<TFirst, TSecond, TResult> resultSelector)
@@ -38,10 +43,11 @@ namespace CodeJam.Targeting
 			return ZipIterator(first, second, resultSelector);
 		}
 
+		[NotNull]
 		private static IEnumerable<TResult> ZipIterator<TFirst, TSecond, TResult>(
-			IEnumerable<TFirst> first,
-			IEnumerable<TSecond> second,
-			Func<TFirst, TSecond, TResult> resultSelector)
+			[NotNull] IEnumerable<TFirst> first,
+			[NotNull] IEnumerable<TSecond> second,
+			[NotNull] Func<TFirst, TSecond, TResult> resultSelector)
 		{
 			using (var e1 = first.GetEnumerator())
 			using (var e2 = second.GetEnumerator())
