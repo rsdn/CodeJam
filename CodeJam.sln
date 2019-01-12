@@ -7,22 +7,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{C99F66F0-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Experimental", "Experimental", "{D56CF63D-0A29-4F5A-8E2C-0DAF338119EE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C7E7F10-7332-42A4-A73D-1F05E656B0EC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocks", "Blocks", "{3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{52A32895-CD49-4F28-A507-5F7B2FD50CD7}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		appveyor.doc.yml = appveyor.doc.yml
+		appveyor.yml = appveyor.yml
 		CodeJamDoc.shfbproj = CodeJamDoc.shfbproj
 		CONTRIBUTING.md = CONTRIBUTING.md
 		LICENSE = LICENSE
 		README.md = README.md
 		TestsGuidelines.md = TestsGuidelines.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocks", "Blocks", "{3C9AF2DF-1323-4471-B4DE-DE3D1A2A580C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{52A32895-CD49-4F28-A507-5F7B2FD50CD7}"
-	ProjectSection(SolutionItems) = preProject
-		appveyor.doc.yml = appveyor.doc.yml
-		appveyor.yml = appveyor.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "Build\Build.csproj", "{A5E8EB9D-6AF1-45AA-88E2-3233211A7170}"
