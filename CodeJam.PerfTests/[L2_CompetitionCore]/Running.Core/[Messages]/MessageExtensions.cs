@@ -49,7 +49,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <returns>Formatted message.</returns>
 		[NotNull]
 		internal static string FormatMessage([NotNull] Descriptor descriptor, [NotNull] string message) =>
-			$".Descriptor {descriptor.WorkloadMethodDisplayInfo}. {message}";
+			$"Target {descriptor.WorkloadMethodDisplayInfo}. {message}";
 
 		/// <summary>Formats the message.</summary>
 		/// <param name="descriptor">The descriptor.</param>
@@ -58,7 +58,7 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <returns>Formatted message.</returns>
 		[NotNull]
 		internal static string FormatMessage([NotNull] Descriptor descriptor, [NotNull] string message, [NotNull] Exception ex) =>
-			$".Descriptor {descriptor.WorkloadMethodDisplayInfo}. {message} Exception: {ex.Message}";
+			$"Target {descriptor.WorkloadMethodDisplayInfo}. {message} Exception: {ex.Message}";
 
 		/// <summary>Formats the hint text.</summary>
 		/// <param name="ex">The ex.</param>
@@ -94,7 +94,10 @@ namespace CodeJam.PerfTests.Running.Core
 			}
 		}
 
-		private static string ToLogString(this IMessage message) => string.Format(
+		/// <summary>Converts the message to log string.</summary>
+		/// <param name="message">The message.</param>
+		/// <returns></returns>
+		internal static string ToLogString(this IMessage message) => string.Format(
 			HostEnvironmentInfo.MainCultureInfo,
 			"#{0}.{1,-2} {2:00.000}s, {3,-23} {4}",
 			message.RunNumber,

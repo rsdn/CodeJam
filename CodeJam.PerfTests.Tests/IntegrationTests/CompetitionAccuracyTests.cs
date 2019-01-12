@@ -1,12 +1,17 @@
-﻿using BenchmarkDotNet.Attributes;
-using CodeJam.PerfTests.Configs;
-using CodeJam.PerfTests.Running.Core;
-using JetBrains.Annotations;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
+
+using BenchmarkDotNet.Attributes;
+
+using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Running.Core;
+
+using JetBrains.Annotations;
+
+using NUnit.Framework;
+
 using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests.IntegrationTests
@@ -19,9 +24,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void CompetitionTooFastBenchmark()
 		{
 			var runState = SelfTestCompetition.Run<TooFastBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			var summary = runState.LastRunSummary;
-			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
+			Assert.AreEqual(summary.GetNonMandatoryValidationErrors().Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -44,7 +49,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[1].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[1].MessageText,
-				".Descriptor TooFast. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+				"Target TooFast. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 
 
 			Assert.AreEqual(messages[2].RunNumber, 1);
@@ -53,16 +58,16 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[2].MessageText,
-				".Descriptor TooFastX5. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+				"Target TooFastX5. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 		}
 
 		[Test]
 		public static void CompetitionTooSlowBenchmark()
 		{
 			var runState = SelfTestCompetition.Run<TooSlowBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			var summary = runState.LastRunSummary;
-			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
+			Assert.AreEqual(summary.GetNonMandatoryValidationErrors().Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -88,9 +93,9 @@ namespace CodeJam.PerfTests.IntegrationTests
 				.WithLongRunningBenchmarkLimit(TimeSpan.FromMinutes(2));
 
 			var runState = SelfTestCompetition.Run<TooSlowBenchmark>(overrideConfig);
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			var summary = runState.LastRunSummary;
-			Assert.AreEqual(summary?.ValidationErrors.Length, 0);
+			Assert.AreEqual(summary.GetNonMandatoryValidationErrors().Length, 0);
 			Assert.AreEqual(runState.RunNumber, 1);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -104,7 +109,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			IgnoreIfDebug();
 
 			var runState = SelfTestCompetition.Run<HighAccuracyBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			if (messages.All(m => m.MessageText != "All competition metrics are ok."))
 			{
 				Assert.Ignore("The environment does not provide accurate timings. Test results cannot be trusted.");

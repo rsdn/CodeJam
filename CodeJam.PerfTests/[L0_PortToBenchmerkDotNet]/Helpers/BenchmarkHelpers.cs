@@ -78,10 +78,7 @@ namespace BenchmarkDotNet.Helpers
 		public static BenchmarkCase TryGetBaseline(
 			[NotNull] this Summary summary,
 			[NotNull] BenchmarkCase benchmark) =>
-				summary.BenchmarksCases
-					.Where(b => b.Job.DisplayInfo == benchmark.Job.DisplayInfo)
-					.Where(b => b.Parameters.DisplayInfo == benchmark.Parameters.DisplayInfo)
-					.FirstOrDefault(b => b.Descriptor.Baseline);
+				summary.GetBaseline(summary.GetLogicalGroupKey(benchmark));
 
 		/// <summary>Gets the benchmark descriptors.</summary>
 		/// <param name="summary">Summary for the run.</param>

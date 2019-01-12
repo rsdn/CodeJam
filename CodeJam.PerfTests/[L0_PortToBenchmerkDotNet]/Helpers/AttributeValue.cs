@@ -12,7 +12,7 @@ namespace BenchmarkDotNet.Helpers
 	/// <typeparam name="T">Type of value. It's re Use interface if possible.</typeparam>
 	public sealed class AttributeValue<T> where T : class
 	{
-		private readonly Lazy<T> _valueLazy;
+		private readonly Lazy<T> _valueWrapper;
 
 		/// <summary>Initializes a new instance of the <see cref="AttributeValue{T}"/> class.</summary>
 		/// <param name="valueType">Type of the value. Should have a public parameterless constructor.</param>
@@ -26,7 +26,7 @@ namespace BenchmarkDotNet.Helpers
 			if (!typeof(T).GetTypeInfo().IsAssignableFrom(valueType))
 				throw new ArgumentNullException($"The {argName} is not derived from {typeof(T)}.");
 
-			_valueLazy = new Lazy<T>(
+			_valueWrapper = new Lazy<T>(
 				() => (T)Activator.CreateInstance(valueType),
 				LazyThreadSafetyMode.ExecutionAndPublication);
 		}
@@ -39,13 +39,13 @@ namespace BenchmarkDotNet.Helpers
 			if (valueFactory == null)
 				throw new ArgumentNullException(nameof(valueFactory));
 
-			_valueLazy = new Lazy<T>(
+			_valueWrapper = new Lazy<T>(
 				valueFactory,
 				LazyThreadSafetyMode.ExecutionAndPublication);
 		}
 
 		/// <summary>The value provided by the attribute.</summary>
 		/// <value>The value provided by the attribute.</value>
-		public T Value => _valueLazy.Value;
+		public T Value => _valueWrapper.Value;
 	}
 }

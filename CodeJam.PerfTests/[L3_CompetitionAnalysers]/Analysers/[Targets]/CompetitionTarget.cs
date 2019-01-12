@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 namespace CodeJam.PerfTests.Analysers
 {
 	/// <summary>Competition descriptor.</summary>
-	/// <seealso cref=".Descriptor"/>
+	/// <seealso cref="Target"/>
 	public class CompetitionTarget
 	{
 		#region Fields & .ctor

@@ -12,6 +12,15 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>pdbonly</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
 	</ItemGroup>
@@ -106,7 +115,7 @@
 	</ItemGroup>
 
 	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20'">
-   		<ItemGroup>
+		<ItemGroup>
 			<ReferencePath Condition="'%(FileName)' == 'NUnit.System.Linq'">
 				<Aliases>nunitlinq</Aliases>
 			</ReferencePath>

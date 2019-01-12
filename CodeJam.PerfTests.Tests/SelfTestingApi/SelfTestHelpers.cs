@@ -1,12 +1,16 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
 using BenchmarkDotNet.Environments;
+using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Validators;
 
+using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
+using CodeJam.PerfTests.Running.Core;
 
 using JetBrains.Annotations;
 
@@ -17,7 +21,6 @@ namespace CodeJam.PerfTests
 	[PublicAPI]
 	internal static class SelfTestHelpers
 	{
-		#region BenchmarkCase tests-related
 		// Jitting = 1, WarmupCount = 2, TargetCount = 2
 		public const int ExpectedSelfTestRunCount = 5;
 
@@ -54,6 +57,54 @@ namespace CodeJam.PerfTests
 				Assert.Ignore("Please run as a release build");
 			}
 		}
-		#endregion
+
+		private static readonly string[] _mandatoryValidationErrors =
+			"which defines benchmarks references non-optimized;which defines benchmarks is non-optimized".Split(';');
+
+		public static ValidationError[] GetNonMandatoryValidationErrors([CanBeNull] this Summary summary)
+		{
+			return (summary?.ValidationErrors)
+				.EmptyIfNull()
+				.Where(e => !_mandatoryValidationErrors.Any(text => e.Message.Contains(text)))
+				.ToArray();
+		}
+
+		public static IMessage[] GetNonMandatoryMessages([NotNull] this CompetitionState competitionState)
+		{
+			int runMessageNumber = 0;
+			int runNumber = 0;
+			var result = new List<IMessage>();
+			foreach (var message in competitionState.GetMessages())
+			{
+				if (runNumber != message.RunNumber)
+				{
+					runNumber = message.RunNumber;
+					runMessageNumber = message.RunMessageNumber;
+				}
+
+				if (_mandatoryValidationErrors.Any(text => message.MessageText.Contains(text)))
+					continue;
+
+				if (runMessageNumber == message.RunMessageNumber)
+				{
+					result.Add(message);
+				}
+				else
+				{
+					result.Add(
+						new Message(
+							message.RunNumber,
+							runMessageNumber,
+							message.Elapsed,
+							message.MessageSource,
+							message.MessageSeverity,
+							message.MessageText,
+							message.HintText));
+				}
+				runMessageNumber++;
+			}
+
+			return result.ToArray();
+		}
 	}
 }

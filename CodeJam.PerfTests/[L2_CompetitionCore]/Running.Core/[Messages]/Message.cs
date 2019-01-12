@@ -26,7 +26,7 @@ namespace CodeJam.PerfTests.Running.Core
 		{
 			DebugCode.ValidCount(runNumber, nameof(runNumber));
 			DebugCode.ValidCount(runMessageNumber, nameof(runMessageNumber));
-			DebugCode.AssertArgument(elapsed > TimeSpan.Zero, nameof(messageSeverity), "Elapsed time should be positive.");
+			DebugCode.AssertArgument(elapsed >= TimeSpan.Zero, nameof(messageSeverity), "Elapsed time should be positive.");
 			DebugEnumCode.Defined(messageSource, nameof(messageSource));
 			DebugEnumCode.Defined(messageSeverity, nameof(messageSeverity));
 			Code.NotNullNorEmpty(messageText, nameof(messageText));
@@ -67,5 +67,9 @@ namespace CodeJam.PerfTests.Running.Core
 		/// <summary>Gets text that describes possible solution of the problem or additional varbose info.</summary>
 		/// <value>Hints for the message.</value>
 		public string HintText { get; }
+
+		/// <summary>Returns a <see cref="string" /> that represents this instance.</summary>
+		/// <returns>A <see cref="string" /> that represents this instance.</returns>
+		public override string ToString() => this.ToLogString();
 	}
 }

@@ -40,7 +40,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		private const string CompetitionBenchmarksRootNode = "CompetitionBenchmarks";
 		private const string CompetitionNode = "Competition";
-		private const string TargetAttribute = ".Descriptor";
+		private const string TargetAttribute = "Target";
 		private const string BaselineAttribute = "Baseline";
 		private const string MinAttribute = "Min";
 		private const string MaxAttribute = "Max";

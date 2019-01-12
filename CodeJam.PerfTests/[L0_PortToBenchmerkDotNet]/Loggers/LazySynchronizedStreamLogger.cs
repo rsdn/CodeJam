@@ -1,13 +1,14 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading;
+
+using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
 
 namespace BenchmarkDotNet.Loggers
 {
-	// BASEDON: https://github.com/dotnet/BenchmarkDotNet/blob/master/src/BenchmarkDotNet.Core/Loggers/StreamLogger.cs
+	// BASEDON: https://github.com/dotnet/BenchmarkDotNet/blob/master/src/BenchmarkDotNet/Loggers/StreamLogger.cs
 	/// <summary>
 	/// Implementation of <see cref="ILogger"/> that supports lazy initialization and prevents output interleaving.
 	/// </summary>

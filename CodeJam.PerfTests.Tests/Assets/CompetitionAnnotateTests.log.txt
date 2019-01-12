@@ -3,7 +3,7 @@
 // !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBaselineChangedBenchmark, CodeJam.PerfTests-Tests">
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBaselineChangedBenchmark, CodeJam.PerfTests.Tests">
 		<Baseline Min="5" Max="100" />
 		<SlowerX20 Baseline="true" />
 	</Competition>
@@ -13,7 +13,7 @@
 // !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedWithTimeAndGcBenchmark, CodeJam.PerfTests-Tests">
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedWithTimeAndGcBenchmark, CodeJam.PerfTests.Tests">
 		<Baseline Baseline="true">
 			<ExpectedTime Min="0" Max="10" Unit="Sec"/>
 			<GcAllocations Min="0" Max="6" Unit="KB"/>
@@ -23,7 +23,7 @@
 			<GcAllocations Min="0" Max="3" Unit="GB"/>
 		</SlowerX20>
 	</Competition>
-	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedWithTimeAndGcNoRelativeBenchmark, CodeJam.PerfTests-Tests">
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedWithTimeAndGcNoRelativeBenchmark, CodeJam.PerfTests.Tests">
 		<BaseX1>
 			<ExpectedTime Min="0" Max="5" Unit="Sec"/>
 			<GcAllocations Min="0" Max="5" Unit="KB"/>
@@ -42,7 +42,7 @@ some log text
 // !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests.Tests">
 		<Baseline Baseline="true" />
 		<SlowerX20 Min="20" Max="20" />
 	</Competition>
@@ -53,7 +53,7 @@ some log text
 // !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests.Tests">
 		<Baseline Baseline="true" />
 		<SlowerX20 Min="15" Max="25" />
 	</Competition>
@@ -64,7 +64,7 @@ some log text
 // !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests.Tests">
 		<Baseline Baseline="true" />
 		<SlowerX20 Min="10" Max="30" />
 	</Competition>
@@ -75,7 +75,7 @@ some log text
 // !<-- ------ xml_annotation_begin ------
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests.Tests">
 		<Baseline Baseline="true" />
 		<SlowerX20 Min="12" Max="28" />
 	</Competition>
@@ -98,7 +98,7 @@ some log text
 // !<-- ----- xml_annotation_begin1 ------ ---bad region
 <?xml version="1.0" encoding="utf-8"?>
 <CompetitionBenchmarks>
-	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests-Tests">
+	<Competition Target="CodeJam.PerfTests.IntegrationTests.CompetitionAnnotateTests+AnnotatedBenchmark, CodeJam.PerfTests.Tests">
 		<Baseline Baseline="true" />
 		<SlowerX20 Min="1" Max="100" />
 	</Competition>

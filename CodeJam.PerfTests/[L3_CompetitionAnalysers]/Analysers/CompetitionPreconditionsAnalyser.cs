@@ -1,18 +1,21 @@
-﻿using BenchmarkDotNet.Analysers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+
+using BenchmarkDotNet.Analysers;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Helpers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+
 using CodeJam.Collections;
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 using CodeJam.Strings;
+
 using JetBrains.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
 namespace CodeJam.PerfTests.Analysers
 {
@@ -104,11 +107,12 @@ namespace CodeJam.PerfTests.Analysers
 					"Ensure that the config contains only one job.");
 			}
 
-			if (summary.BenchmarksCases.Select(b => b.Parameters).Distinct().Skip(1).Any())
+			var logicGroups = summary.BenchmarksCases.Select(c => summary.GetLogicalGroupKey(c)).Distinct();
+			if (logicGroups.Skip(1).Any())
 			{
 				analysis.WriteInfoMessage(
-					"BenchmarkCase configuration includes multiple parameters. " +
-						"Note that results for each parameter set will be merged.");
+					"BenchmarkCase configuration includes multiple logic groups. " +
+						"Note that results for each logic group will be merged.");
 			}
 
 			CheckMembers(analysis);
@@ -147,7 +151,7 @@ namespace CodeJam.PerfTests.Analysers
 								(method: m,
 								 attributeType: a.GetType(),
 								 baseAttribute: _knownUniqueMemberLevelAttributes.FirstOrDefault(ka => ka.IsInstanceOfType(a)),
-								 descriptor: (a as TargetedAttribute)?.Target))
+								 descriptor: (a as TargetedAttribute)?.Targets.EmptyIfNull().Join(";")))
 							.Where(t => t.baseAttribute != null))
 				.ToArray();
 

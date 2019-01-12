@@ -35,7 +35,9 @@ namespace BenchmarkDotNet.Loggers
 		/// <param name="header">The separator line text.</param>
 		/// <param name="topHeader">Write top-level header.</param>
 		public static void WriteSeparatorLine(
-			[NotNull] this ILogger logger, [CanBeNull] string header, bool topHeader)
+			[NotNull] this ILogger logger,
+			[CanBeNull] string header,
+			bool topHeader)
 		{
 			var separatorChar = topHeader ? '=' : '-';
 			var logKind = topHeader ? LogKind.Header : LogKind.Help;

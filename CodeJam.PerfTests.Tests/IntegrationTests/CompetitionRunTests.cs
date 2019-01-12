@@ -1,5 +1,5 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,11 +28,11 @@ namespace CodeJam.PerfTests.IntegrationTests
 			{
 				var summary = runState.LastRunSummary;
 
-				Assert.AreEqual(summary?.ValidationErrors.Length, 0);
+				Assert.AreEqual(summary.GetNonMandatoryValidationErrors().Length, 0);
 			}
 
 			Assert.IsTrue(runState.Completed);
-			Assert.AreEqual(runState.HighestMessageSeverity, expectedSeverity);
+			Assert.AreEqual(runState.GetNonMandatoryMessages().Select(m => m.MessageSeverity).Max(), expectedSeverity);
 			Assert.AreEqual(runState.RunNumber, runNumber);
 			Assert.AreEqual(runState.RunsLeft, 0);
 			Assert.AreEqual(runState.RunLimitExceeded, false);
@@ -45,13 +45,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<EmptyBenchmark>();
-			var messages = runState.GetMessages();
+			Assert.IsEmpty(runState.LastRunSummary.Reports);
+			//var messages = runState.GetNonMandatoryMessages();
 
-			Assert.AreEqual(_callCounter, 0);
-			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
-			Assert.AreEqual(messages.Length, 1);
-
-			Assert.AreEqual(messages[0].MessageText, "Nothing to check as there is no methods in benchmark.");
+			//Assert.AreEqual(_callCounter, 0);
+			//AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
+			//Assert.AreEqual(messages.Length, 1);
+			//
+			//Assert.AreEqual(messages[0].MessageText, "Nothing to check as there is no methods in benchmark.");
 		}
 
 		[Test]
@@ -60,7 +61,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<OkBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
@@ -76,15 +77,15 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<XmlTaskOkBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, 2 * ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
 			Assert.AreEqual(messages.Length, 3);
 
-			Assert.AreEqual(messages[0].MessageText, ".Descriptor SlowerX2Async. Metric validation skipped as the method is marked with CompetitionBenchmarkAttribute.DoesNotCompete set to true.");
-			Assert.AreEqual(messages[1].MessageText, ".Descriptor SlowerX3Async. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+			Assert.AreEqual(messages[0].MessageText, "Target SlowerX2Async. Metric validation skipped as the method is marked with CompetitionBenchmarkAttribute.DoesNotCompete set to true.");
+			Assert.AreEqual(messages[1].MessageText, "Target SlowerX3Async. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 			Assert.AreEqual(messages[2].MessageText, "All competition metrics are ok.");
 		}
 
@@ -94,7 +95,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<XmlBaselineChangedBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
@@ -103,10 +104,10 @@ namespace CodeJam.PerfTests.IntegrationTests
 
 			Assert.AreEqual(
 				messages[0].MessageText,
-				".Descriptor Baseline. Baseline flag on the method and in the annotation do not match.");
+				"Target Baseline. Baseline flag on the method and in the annotation do not match.");
 			Assert.AreEqual(
 				messages[1].MessageText,
-				".Descriptor SlowerX20. Baseline flag on the method and in the annotation do not match.");
+				"Target SlowerX20. Baseline flag on the method and in the annotation do not match.");
 		}
 
 		[Test]
@@ -115,7 +116,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<XmlFullAnnotationBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
@@ -130,14 +131,14 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<NoBaselineOkBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.Informational);
 
 			Assert.AreEqual(messages.Length, 2);
-			Assert.AreEqual(messages[0].MessageText, ".Descriptor Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
-			Assert.AreEqual(messages[1].MessageText, ".Descriptor Benchmark2. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+			Assert.AreEqual(messages[0].MessageText, "Target Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+			Assert.AreEqual(messages[1].MessageText, "Target Benchmark2. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 		}
 
 		[Test]
@@ -146,7 +147,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<NoBaselineFailBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.SetupError);
@@ -159,7 +160,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				".Descriptor Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
+				"Target Benchmark1. Metric validation skipped as the method is not marked with CompetitionBenchmarkAttribute.");
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
 			Assert.AreEqual(messages[1].RunMessageNumber, 2);
@@ -176,7 +177,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<BadLimitsBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			AssertCompetitionCompleted(runState, MessageSeverity.ExecutionError, skipSummary: true);
@@ -198,7 +199,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<LimitsFailBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, 3 * ExpectedRunCount); // 3x rerun
 			AssertCompetitionCompleted(runState, MessageSeverity.TestError, runNumber: 3);
@@ -209,7 +210,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].RunMessageNumber, 1);
 			Assert.AreEqual(messages[0].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[0].MessageText, Does.StartWith(".Descriptor SlowerX10. Metric Scaled"));
+			Assert.That(messages[0].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
 			Assert.That(messages[0].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[1].RunNumber, 1);
@@ -222,7 +223,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[2].RunMessageNumber, 1);
 			Assert.AreEqual(messages[2].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[2].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[2].MessageText, Does.StartWith(".Descriptor SlowerX10. Metric Scaled"));
+			Assert.That(messages[2].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
 			Assert.That(messages[2].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[3].RunNumber, 2);
@@ -235,7 +236,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[4].RunMessageNumber, 1);
 			Assert.AreEqual(messages[4].MessageSeverity, MessageSeverity.TestError);
 			Assert.AreEqual(messages[4].MessageSource, MessageSource.Analyser);
-			Assert.That(messages[4].MessageText, Does.StartWith(".Descriptor SlowerX10. Metric Scaled"));
+			Assert.That(messages[4].MessageText, Does.StartWith("Target SlowerX10. Metric Scaled"));
 			Assert.That(messages[4].MessageText, Does.Contain(" is out of limit "));
 
 			Assert.AreEqual(messages[5].RunNumber, 3);
@@ -253,7 +254,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<LimitsEmptyFailBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount); // 3x rerun
 			AssertCompetitionCompleted(runState, MessageSeverity.Warning, runNumber: 1);
@@ -266,7 +267,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Assert.AreEqual(messages[0].MessageSource, MessageSource.Analyser);
 			Assert.AreEqual(
 				messages[0].MessageText,
-				"Some benchmark metrics are empty and were ignored. Empty metrics are: SlowerX10: Scaled.");
+				"Some benchmark metrics are empty and were ignored. Empty metrics are: Void SlowerX10(): Scaled.");
 		}
 
 		#region Perf test helpers

@@ -1,17 +1,22 @@
-﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Engines;
-using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Toolchains.InProcess;
-using BenchmarkDotNet.Validators;
-using CodeJam.Collections;
-using CodeJam.PerfTests.Configs;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Characteristics;
+using BenchmarkDotNet.Engines;
+using BenchmarkDotNet.Environments;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Toolchains.InProcess;
+
+using CodeJam.PerfTests.Configs;
+
+using NUnit.Framework;
+
 using static CodeJam.PerfTests.SelfTestHelpers;
 
 namespace CodeJam.PerfTests
@@ -83,7 +88,7 @@ namespace CodeJam.PerfTests
 			//Assert.AreEqual(_iterationCleanupCounter, (MethodsCount - 1) * iterationsNoUnroll);
 			//Assert.AreEqual(_iterationCleanupTargetCounter, 1 * iterationsNoUnroll);
 
-			var a = summary?.ValidationErrors.ToArray() ?? Array<ValidationError>.Empty;
+			var a = summary.GetNonMandatoryValidationErrors();
 			foreach (var validationError in a)
 			{
 				Console.WriteLine(validationError.Message);
@@ -117,6 +122,9 @@ namespace CodeJam.PerfTests
 					{
 						Checks = { TooFastBenchmarkLimit = TimeSpan.Zero }
 					});
+
+			var config2 = new ManualCompetitionConfig(config);
+			config2.Validators.Add(InProcessValidator.FailOnError);
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
 				.LastRunSummary;
@@ -134,14 +142,26 @@ namespace CodeJam.PerfTests
 			//Assert.AreEqual(_iterationCleanupCounter, (MethodsCount - 1) * iterationsNoUnroll);
 			//Assert.AreEqual(_iterationCleanupTargetCounter, 1 * iterationsNoUnroll);
 
-			Assert.IsFalse(Enumerable.Any(summary?.ValidationErrors));
+			Assert.AreEqual(summary.GetNonMandatoryValidationErrors().Length, 0);
 		}
+
+		private static BenchmarkRunInfo[] GetSupportedBenchmarks(
+			BenchmarkRunInfo[] benchmarkRunInfos, CompositeLogger logger, IResolver resolver)
+			=> benchmarkRunInfos.Select(
+				info => new BenchmarkRunInfo(
+					info.BenchmarksCases.Where(
+						benchmark => benchmark.Job.Infrastructure.Toolchain.IsSupported(benchmark, logger, resolver)).ToArray(),
+					info.Type,
+					info.Config))
+				.Where(infos => infos.BenchmarksCases.Any())
+				.ToArray();
 
 		[Test]
 		public static void TestInProcessBenchmarkWithValidation()
 		{
 			ResetCounters();
 
+			Assert.AreEqual(IntPtr.Size, 8);
 			// DONTTOUCH: config SHOULD NOT match the default platform (x64).
 			var config = new ManualCompetitionConfig(
 				CompetitionHelpers.CreateConfig(
@@ -151,6 +171,13 @@ namespace CodeJam.PerfTests
 						Platform = Platform.X86
 					}));
 			config.Add(InProcessValidator.FailOnError);
+
+			var r = BenchmarkConverter.TypeToBenchmarks(typeof(InProcessBenchmarkAllCases), config);
+			var r2 = GetSupportedBenchmarks(
+				new[] { r },
+				new CompositeLogger(ConsoleLogger.Default),
+				new CompositeResolver(EnvironmentResolver.Instance, InfrastructureResolver.Instance));
+			Console.WriteLine(r2.Length);
 
 			var summary = SelfTestCompetition
 				.Run<InProcessBenchmarkAllCases>(config)
@@ -166,11 +193,9 @@ namespace CodeJam.PerfTests
 			Assert.AreEqual(_iterationCleanupCounter, 0);
 			Assert.AreEqual(_iterationCleanupTargetCounter, 0);
 
-			Assert.AreEqual(summary?.ValidationErrors.Length, 1);
-			Assert.IsTrue(summary?.ValidationErrors[0].IsCritical);
-			Assert.AreEqual(
-				summary?.ValidationErrors[0].Message,
-				"Job SelfTestConfigX86, EnvMode.Platform was run as X64 (X86 expected). Fix your test runner options.");
+			// HACK: see https://github.com/dotnet/BenchmarkDotNet/issues/989
+			Assert.IsEmpty(summary.BenchmarksCases);
+			Assert.IsEmpty(summary.Reports);
 		}
 
 		public class InProcessBenchmarkAllCases

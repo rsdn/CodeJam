@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 
@@ -54,7 +53,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<BenchmarkWithoutConfig>(CompetitionHelpers.ConfigForAssembly);
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
@@ -72,7 +71,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			var runState = SelfTestCompetition.Run<BenchmarkWithConfig>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);
@@ -84,7 +83,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			Interlocked.Exchange(ref _callCounter, 0);
 
 			runState = SelfTestCompetition.Run<Nested.BenchmarkWithConfig2>();
-			messages = runState.GetMessages();
+			messages = runState.GetNonMandatoryMessages();
 
 			Assert.AreEqual(_callCounter, ExpectedRunCount);
 			Assert.AreEqual(messages.Length, 1);

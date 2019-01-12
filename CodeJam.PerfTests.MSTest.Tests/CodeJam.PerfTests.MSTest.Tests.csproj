@@ -2,6 +2,7 @@
 
 	<Import Project="..\Build\Props\CodeJam.Default.props" />
 	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
+	<Import Project="..\Build\Props\CodeJam.FullPdb.props" />
 
 	<PropertyGroup>
 		<AssemblyName>CodeJam.PerfTests.MSTest.Tests</AssemblyName>
@@ -16,8 +17,8 @@
 		<ProjectReference Include="..\CodeJam.PerfTests.MSTest\CodeJam.PerfTests.MSTest.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
-		<PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+		<PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />

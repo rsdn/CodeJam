@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.PerfTests.Configs;
 using CodeJam.PerfTests.Configs.Factories;
-using CodeJam.PerfTests.Metrics;
 using CodeJam.PerfTests.Running.Core;
 
 using NUnit.Framework;
@@ -63,13 +61,13 @@ namespace CodeJam.PerfTests.IntegrationTests
 		private static readonly ICompetitionConfig _remoteLogConfig = CompetitionHelpers
 			.CreateConfig(typeof(AnnotatedBenchmark))
 			.WithPreviousRunLogUri(
-				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/1995d15f0a433324c6c61af195bdf68f4c2833b3/CompetitionAnnotateTests.log");
+				"https://gist.githubusercontent.com/ig-sinicyn/91ac0badca95b19fc7de6f683a51b9d2/raw/f652698b055259bbe39ef1a74ce17e0c66e003c5/CompetitionAnnotateTests.log");
 
 		[Test]
 		public static void TestAnnotateFromRemoteLog()
 		{
 			var runState = SelfTestCompetition.Run<AnnotatedBenchmark>(_remoteLogConfig);
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -85,7 +83,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 			// TODO: message if no XML annotation
 			// TODO: exact message validation
 			var runState = SelfTestCompetition.Run<AnnotatedBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -99,7 +97,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void TestAnnotateFromLocalLogTimeAndGc()
 		{
 			var runState = SelfTestCompetition.Run<AnnotatedWithTimeAndGcBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -113,7 +111,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void TestAnnotateFromLocalLogTimeAndGcNoRelative()
 		{
 			var runState = SelfTestCompetition.Run<AnnotatedWithTimeAndGcNoRelativeBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.Warning);
 			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
@@ -127,7 +125,7 @@ namespace CodeJam.PerfTests.IntegrationTests
 		public static void TestAnnotateBaselineChangedFromLocalLog()
 		{
 			var runState = SelfTestCompetition.Run<AnnotatedBaselineChangedBenchmark>();
-			var messages = runState.GetMessages();
+			var messages = runState.GetNonMandatoryMessages();
 			Assert.AreEqual(runState.HighestMessageSeverity, MessageSeverity.SetupError);
 			Assert.IsTrue(runState.Completed);
 			Assert.AreEqual(runState.RunNumber, 1);
