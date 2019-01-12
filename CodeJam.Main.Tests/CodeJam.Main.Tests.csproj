@@ -8,14 +8,14 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{DD65E3F2-9658-4242-A8AA-056028473CB1}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35;net20</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35;net30;net20</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'net20' ">
+	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30' AND '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
@@ -105,7 +105,7 @@
 		<EmbeddedResource Include="Strings\Data\Words.txt" />
 	</ItemGroup>
 
-	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20'" >
+	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20' OR '$(TargetFramework)' == 'net30'" >
    		<ItemGroup>
 			<ReferencePath Condition="'%(FileName)' == 'NUnit.System.Linq'">
 				<Aliases>nunitlinq</Aliases>
