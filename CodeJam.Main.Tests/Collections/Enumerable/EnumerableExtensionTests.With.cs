@@ -4,7 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 
 #if NET35
-using CodeJam.Targeting;
+using Theraot.Collections;
 #endif
 
 namespace CodeJam.Collections

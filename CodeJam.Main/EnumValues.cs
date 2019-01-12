@@ -11,7 +11,7 @@ using CodeJam.Reflection;
 using JetBrains.Annotations;
 
 #if NET35
-using CodeJam.Targeting;
+using Theraot.Collections;
 #endif
 
 namespace CodeJam
