@@ -9,7 +9,15 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-#if !NET40
+#if LESSTHAN_NET45
+using Theraot.Core;
+#endif
+
+#if NET40
+using TaskEx = System.Threading.Tasks.TaskEx;
+#else
+using TaskEx = System.Threading.Tasks.Task;
+#endif
 
 namespace CodeJam.Threading
 {
@@ -24,7 +32,7 @@ namespace CodeJam.Threading
 				using (await asyncLock.AcquireAsync(holdTime, cancellation))
 				{
 					callback?.Invoke();
-					await Task.Delay(holdTime);
+					await TaskEx.Delay(holdTime);
 				}
 				return true;
 			}
@@ -54,14 +62,14 @@ namespace CodeJam.Threading
 			var cts2 = new CancellationTokenSource();
 			var sw2 = Stopwatch.StartNew();
 			var lock2 = TryTakeAndHold(asyncLock, holdTime, cts2.Token);
-			await Task.Delay(delayTime);
+			await TaskEx.Delay(delayTime);
 			cts2.Cancel();
 			var lock2Taken = await lock2;
 			sw2.Stop();
 
 			var sw3 = Stopwatch.StartNew();
 			var lock3 = TryTakeAndHold(asyncLock, delayTime);
-			await Task.Delay(delayTime);
+			await TaskEx.Delay(delayTime);
 			var lock3Taken = await lock3;
 			sw3.Stop();
 
@@ -90,7 +98,7 @@ namespace CodeJam.Threading
 				{
 					Assert.IsFalse(opActive);
 					opActive = true;
-					await Task.Delay(200 + num * timeInc);
+					await TaskEx.Delay(200 + num * timeInc);
 					Assert.IsTrue(opActive);
 					opActive = false;
 				}
@@ -99,7 +107,7 @@ namespace CodeJam.Threading
 			var sw = Stopwatch.StartNew();
 			await Enumerable
 				.Range(0, 10)
-				.Select(i => Task.Run(() => Op(i)))
+				.Select(i => TaskEx.Run(() => Op(i)))
 				.WhenAll();
 			sw.Stop();
 			Assert.IsFalse(opActive);
@@ -107,5 +115,3 @@ namespace CodeJam.Threading
 		}
 	}
 }
-
-#endif

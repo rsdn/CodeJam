@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 
 using JetBrains.Annotations;
 
-// Pending Theraot.Core SemaphoreSlim supporting .NET 4.0
-#if !NET40
+#if LESSTHAN_NET45
+using Theraot.Core;
+#endif
 
 namespace CodeJam.Threading
 {
@@ -194,5 +195,3 @@ namespace CodeJam.Threading
 		}
 	}
 }
-
-#endif
