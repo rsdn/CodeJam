@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-using CodeJam.Arithmetic;
-using CodeJam.Strings;
+ using CodeJam.Arithmetic;
+ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -81,7 +81,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg:null => stop")]
 		public static void NotNullNorEmpty(
-			[CanBeNull] string arg,
+			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (string.IsNullOrEmpty(arg))
@@ -93,8 +93,9 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("arg:null => stop")]
 		public static void NotNullNorWhiteSpace(
-			[CanBeNull] string arg,
+			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrWhiteSpace())
@@ -132,6 +133,8 @@ namespace CodeJam
 			if (!condition)
 				throw CodeExceptions.Argument(argName, messageFormat, args);
 		}
+
+		public static ArgumentAssertion<T> Arg<T>(T arg, string argName) => new ArgumentAssertion<T>(arg, argName);
 		#endregion
 
 		#region Argument validation - in range
