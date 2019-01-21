@@ -134,6 +134,13 @@ namespace CodeJam
 				throw CodeExceptions.Argument(argName, messageFormat, args);
 		}
 
+		/// <summary>
+		/// Creates <see cref="ArgumentAssertion{T}"/> for fluent assertions.
+		/// </summary>
+		/// <typeparam name="T">Type of argument</typeparam>
+		/// <param name="arg">Argument value.</param>
+		/// <param name="argName">Argument name.</param>
+		/// <returns><see cref="ArgumentAssertion{T}"/> instance.</returns>
 		public static ArgumentAssertion<T> Arg<T>(T arg, string argName) => new ArgumentAssertion<T>(arg, argName);
 		#endregion
 
