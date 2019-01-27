@@ -3,6 +3,8 @@
 
 What's new in 2.2.0-beta2
 -------------------------
+* Add DictionaryCollectionExtensions
+* Fluent assertions
 * Limited .NET framework 2.0 support
 * ExceptionExtensions.ToDiagnosticString[Async] improvements
 * DictionaryExtensions.GetOrAddAsync/AddOrUpdateAsync
