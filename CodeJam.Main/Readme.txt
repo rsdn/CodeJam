@@ -9,6 +9,7 @@ What's new in 2.2.0-beta2
 * ExceptionExtensions.ToDiagnosticString[Async] improvements
 * DictionaryExtensions.GetOrAddAsync/AddOrUpdateAsync
 * LazyDictionary ctors and Create with initial data supplied
+* Fixes, refactoring and code cleanup
 
 What's new in 2.2.0-beta1
 -------------------------

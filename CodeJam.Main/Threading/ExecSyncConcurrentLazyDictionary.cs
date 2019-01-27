@@ -117,7 +117,7 @@ namespace CodeJam.Threading
 		/// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
 		/// <exception cref="T:System.ArgumentNullException">
 		/// <paramref name="key" /> is null.</exception>
-		public bool TryGetValue([NotNull] TKey key, out TValue value)
+		public bool TryGetValue(TKey key, out TValue value)
 		{
 			var res = _map.TryGetValue(key, out var lv);
 			value = res ? lv.Value : default;
