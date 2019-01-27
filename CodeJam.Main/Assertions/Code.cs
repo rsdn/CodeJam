@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-using CodeJam.Arithmetic;
-using CodeJam.Strings;
+ using CodeJam.Arithmetic;
+ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -74,6 +74,49 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNull(argName);
 		}
 
+		/// <summary>
+		/// Ensures that supplied enumerable is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Enumerable.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotEmpty<T>(IEnumerable<T> arg, [NotNull, InvokerParameterName] string argName)
+		{
+			using (var en = arg.GetEnumerator())
+				if (!en.MoveNext())
+					throw CodeExceptions.ArgumentEmpty(argName);
+		}
+
+		/// <summary>
+		/// Ensures that supplied collection is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Collection.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotEmpty<T>(ICollection<T> arg, [NotNull, InvokerParameterName] string argName)
+		{
+			if (arg.Count == 0)
+				throw CodeExceptions.ArgumentEmpty(argName);
+		}
+
+		/// <summary>
+		/// Ensures that supplied array is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Array.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotEmpty<T>(T[] arg, [NotNull, InvokerParameterName] string argName)
+		{
+			if (arg.Length == 0)
+				throw CodeExceptions.ArgumentEmpty(argName);
+		}
+
 		/// <summary>Ensures that <paramref name="arg"/> is not null nor empty</summary>
 		/// <param name="arg">The argument.</param>
 		/// <param name="argName">Name of the argument.</param>
@@ -81,7 +124,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg:null => stop")]
 		public static void NotNullNorEmpty(
-			[CanBeNull] string arg,
+			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (string.IsNullOrEmpty(arg))
@@ -93,8 +136,9 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("arg:null => stop")]
 		public static void NotNullNorWhiteSpace(
-			[CanBeNull] string arg,
+			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrWhiteSpace())
@@ -132,6 +176,18 @@ namespace CodeJam
 			if (!condition)
 				throw CodeExceptions.Argument(argName, messageFormat, args);
 		}
+
+		/// <summary>
+		/// Creates <see cref="ArgumentAssertion{T}"/> for fluent assertions.
+		/// </summary>
+		/// <typeparam name="T">Type of argument</typeparam>
+		/// <param name="arg">Argument value.</param>
+		/// <param name="argName">Argument name.</param>
+		/// <returns><see cref="ArgumentAssertion{T}"/> instance.</returns>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static ArgumentAssertion<T> Arg<T>(T arg, [InvokerParameterName] string argName) =>
+			new ArgumentAssertion<T>(arg, argName);
 		#endregion
 
 		#region Argument validation - in range
