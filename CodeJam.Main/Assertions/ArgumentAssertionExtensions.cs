@@ -52,6 +52,45 @@ namespace CodeJam
 			return arg;
 		}
 
+		/// <summary>
+		/// Ensures that supplied enumerable is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">The argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static ArgumentAssertion<IEnumerable<T>> NotEmpty<T>(this ArgumentAssertion<IEnumerable<T>> arg)
+		{
+			Code.NotEmpty(arg.Argument, arg.ArgumentName);
+			return arg;
+		}
+
+		/// <summary>
+		/// Ensures that supplied collection is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">The argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static ArgumentAssertion<ICollection<T>> NotEmpty<T>(this ArgumentAssertion<ICollection<T>> arg)
+		{
+			Code.NotEmpty(arg.Argument, arg.ArgumentName);
+			return arg;
+		}
+
+		/// <summary>
+		/// Ensures that supplied array is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">The argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static ArgumentAssertion<T[]> NotEmpty<T>(this ArgumentAssertion<T[]> arg)
+		{
+			Code.NotEmpty(arg.Argument, arg.ArgumentName);
+			return arg;
+		}
+
 		/// <summary>Ensures that <paramref name="arg"/> is not null nor empty</summary>
 		/// <param name="arg">The argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]

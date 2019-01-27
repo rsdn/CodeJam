@@ -74,6 +74,49 @@ namespace CodeJam
 				throw CodeExceptions.ArgumentNull(argName);
 		}
 
+		/// <summary>
+		/// Ensures that supplied enumerable is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Enumerable.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotEmpty<T>(IEnumerable<T> arg, [NotNull, InvokerParameterName] string argName)
+		{
+			using (var en = arg.GetEnumerator())
+				if (!en.MoveNext())
+					throw CodeExceptions.ArgumentEmpty(argName);
+		}
+
+		/// <summary>
+		/// Ensures that supplied collection is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Collection.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotEmpty<T>(ICollection<T> arg, [NotNull, InvokerParameterName] string argName)
+		{
+			if (arg.Count == 0)
+				throw CodeExceptions.ArgumentEmpty(argName);
+		}
+
+		/// <summary>
+		/// Ensures that supplied array is not empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Array.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotEmpty<T>(T[] arg, [NotNull, InvokerParameterName] string argName)
+		{
+			if (arg.Length == 0)
+				throw CodeExceptions.ArgumentEmpty(argName);
+		}
+
 		/// <summary>Ensures that <paramref name="arg"/> is not null nor empty</summary>
 		/// <param name="arg">The argument.</param>
 		/// <param name="argName">Name of the argument.</param>
@@ -141,7 +184,10 @@ namespace CodeJam
 		/// <param name="arg">Argument value.</param>
 		/// <param name="argName">Argument name.</param>
 		/// <returns><see cref="ArgumentAssertion{T}"/> instance.</returns>
-		public static ArgumentAssertion<T> Arg<T>(T arg, string argName) => new ArgumentAssertion<T>(arg, argName);
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static ArgumentAssertion<T> Arg<T>(T arg, [InvokerParameterName] string argName) =>
+			new ArgumentAssertion<T>(arg, argName);
 		#endregion
 
 		#region Argument validation - in range
