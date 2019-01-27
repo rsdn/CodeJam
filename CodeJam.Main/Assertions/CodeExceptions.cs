@@ -136,6 +136,22 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
+		/// <summary>
+		/// Creates <see cref="ArgumentException"/>.
+		/// </summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <returns>Initialized instance of <see cref="ArgumentException"/></returns>
+		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[MustUseReturnValue]
+		public static ArgumentException ArgumentEmpty([NotNull, InvokerParameterName] string argumentName)
+		{
+			BreakIfAttached();
+			return new ArgumentException(
+				argumentName,
+				$"Collection {argumentName} must not be empty.")
+				.LogToCodeTraceSourceBeforeThrow();
+		}
+
 		/// <summary>Creates <see cref="ArgumentException"/> for empty string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>

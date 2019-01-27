@@ -1,8 +1,12 @@
-﻿CodeJam.Blocks 2.1.1 Release Notes
+﻿CodeJam.Blocks 2.2.0-beta1 Release Notes
 ----------------------------------
 
+What's new in 2.2.0-beta1
+-------------------------
+* Additional code annotation for ReSharper
+
 What's new in 2.1.1
------------------------
+-------------------
 * Fix package dependencies
 * Fix version
 
