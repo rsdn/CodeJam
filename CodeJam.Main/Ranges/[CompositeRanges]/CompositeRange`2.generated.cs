@@ -19,7 +19,7 @@ using JetBrains.Annotations;
 
 using StringClass =
 #if LESSTHAN_NET40
-	Theraot.Core.StringHelper
+	Theraot.Core.StringEx
 #else
 	System.String
 #endif

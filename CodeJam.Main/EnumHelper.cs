@@ -15,7 +15,7 @@ using JetBrains.Annotations;
 using static CodeJam.PlatformDependent;
 
 #if LESSTHAN_NET40
-using EnumTargetingHelpers = Theraot.Core.EnumHelper;
+using EnumTargetingHelpers = System.EnumEx;
 #else
 using EnumTargetingHelpers = System.Enum;
 #endif

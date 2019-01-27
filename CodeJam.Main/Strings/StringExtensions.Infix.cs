@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 using StringClass =
 #if LESSTHAN_NET40
-	Theraot.Core.StringHelper
+	System.StringEx
 #else
 	System.String
 #endif
