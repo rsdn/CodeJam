@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-#if !LESSTHAN_NET45
 using System.Threading.Tasks;
-#endif
 
 using NUnit.Framework;
 

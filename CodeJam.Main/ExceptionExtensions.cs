@@ -2,9 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
-#if !LESSTHAN_NET45
 using System.Threading.Tasks;
-#endif
 
 using CodeJam.Strings;
 
