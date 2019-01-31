@@ -16,6 +16,8 @@ namespace CodeJam
 		public const string ExpectedTarget =
 #if NET20
 			".NETFramework,Version=v2.0";
+#elif NET30
+			".NETFramework,Version=v3.0";
 #elif NET35
 			".NETFramework,Version=v3.5";
 #elif NET40

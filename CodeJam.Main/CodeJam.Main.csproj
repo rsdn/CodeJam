@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35;net20</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35;net30;net20</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<PackageId>CodeJam</PackageId>
@@ -28,6 +28,11 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
 		<AssemblyAttribute Include="System.Runtime.Versioning.TargetFrameworkAttribute">
 			<_Parameter1>.NETFramework,Version=v3.5</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net30'">
+		<AssemblyAttribute Include="System.Runtime.Versioning.TargetFrameworkAttribute">
+			<_Parameter1>.NETFramework,Version=v3.0</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net20'">
@@ -64,6 +69,9 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net30' ">
 		<PackageReference Include="Theraot.Core" Version="3.0.0-beta3" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net30' ">
+		<PackageReference Include="LinqBridge" Version="1.3.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
 		<PackageReference Include="Theraot.Core" Version="3.0.0-beta3" />

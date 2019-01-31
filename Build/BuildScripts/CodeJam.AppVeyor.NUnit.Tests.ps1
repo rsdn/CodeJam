@@ -34,6 +34,21 @@ if ($LastExitCode -ne 0) {
 	$host.SetShouldExit($LastExitCode)
 }
 
+#run .net3.0 tests
+$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net30_nunit_results.xml"
+$a = (gci -include $include -r | `
+	where { $_.fullname -match "\\bin\\Release\\net\d" -and $_.fullname -notmatch $exclude } | `
+	select -ExpandProperty FullName)
+echo "nunit3-console $a --framework=net-3.0 --result=$logFileName"
+&"nunit3-console" $a "--result=$logFileName"
+if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
+$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
+if ($LastExitCode -ne 0) {
+	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
+	$host.SetShouldExit($LastExitCode)
+}
+
 #run .net3.5 tests
 $logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net35_nunit_results.xml"
 $a = (gci -include $include -r | `
