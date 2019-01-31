@@ -16,7 +16,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.</exception>
 		[NotNull, Pure]
 #if LESSTHAN_NET45
-		public static ReadOnlyCollectionWithReadOnly<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionWithReadOnly<T>(array);
+		public static ReadOnlyCollectionEx<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionEx<T>(array);
 #else
 		public static ReadOnlyCollection<T> AsReadOnly<T>([NotNull] this T[] array) => Array.AsReadOnly(array);
 #endif

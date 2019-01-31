@@ -278,7 +278,7 @@ namespace CodeJam.Mapping
 				.ToMapping      ("Field3", "Field2")
 				.ToMapping<Dest>("Field6", "Field7")
 #if LESSTHAN_NET45
-				.FromMapping(new DictionaryWithReadOnly<string,string> { ["Field5"] = "Field4" }));
+				.FromMapping(new DictionaryEx<string,string> { ["Field5"] = "Field4" }));
 #else
 				.FromMapping(new Dictionary<string,string> { ["Field5"] = "Field4" }));
 #endif

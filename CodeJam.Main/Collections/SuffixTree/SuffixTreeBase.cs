@@ -328,7 +328,7 @@ namespace CodeJam.Collections
 			var sb = new StringBuilder();
 			var currentIndex = RootNodeIndex;
 #if LESSTHAN_NET45
-			var stack = new ListWithReadOnly<(int Start, int Length)>();
+			var stack = new ListEx<(int Start, int Length)>();
 #else
 			var stack = new List<(int Start, int Length)>();
 #endif
