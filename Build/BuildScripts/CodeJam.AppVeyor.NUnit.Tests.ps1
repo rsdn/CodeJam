@@ -92,7 +92,7 @@ if ($LastExitCode -ne 0) {
 	$host.SetShouldExit($LastExitCode)
 }
 echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-$wc.UploadFile("https://ci.appveyor.com/api/testresults/mstest/$env:APPVEYOR_JOB_ID", "$logFileName")
+$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
 if ($LastExitCode -ne 0) {
 	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/mstest/$env:APPVEYOR_JOB_ID from $logFileName"
 	$host.SetShouldExit($LastExitCode)
