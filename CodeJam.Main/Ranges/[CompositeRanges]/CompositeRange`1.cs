@@ -288,7 +288,7 @@ namespace CodeJam.Ranges
 		/// <param name="format">The format string.</param>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure, NotNull]
+		[Pure]
 		public string ToString(string format, IFormatProvider formatProvider)
 		{
 			if (IsEmpty)
