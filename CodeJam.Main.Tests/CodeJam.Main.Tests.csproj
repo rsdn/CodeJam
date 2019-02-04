@@ -31,8 +31,16 @@
 	<!-- NUnit 3.11 is the last NUnit supporting .NET 2.0 -->
 	<!-- See: https://github.com/nunit/nunit/issues/3070 -->
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net20'">
-		<PackageReference Include="NUnit" Version="3.11.0" />
+		<PackageReference Include="NUnit" Version="[3.11.0]" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
+    	<PackageReference Include="NUnit" Version="[3.8.1]" />
+  	</ItemGroup>
+
+	<ItemGroup Condition="('$(TargetFramework)' == 'netstandard1.0') OR ('$(TargetFramework)' == 'netstandard1.1') OR ('$(TargetFramework)' == 'netstandard1.2')">
+    	<PackageReference Include="NUnit" Version="[3.6.1]" />
 	</ItemGroup>
 
 	<ItemGroup>
