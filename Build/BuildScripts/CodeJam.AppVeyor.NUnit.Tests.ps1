@@ -9,7 +9,7 @@ $wc = New-Object System.Net.WebClient
 $targetsDotNet = "net472","net461","net45","net40","net35","net20"
 foreach ($target in $targetsDotNet) {
 	#run .net tests
-	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\$($framework)_nunit_results.xml"
+	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\$($target)_nunit_results.xml"
 	$a = (gci -include $include -r | `
 		where { $_.fullname -match "\\bin\\Release\\$($target)" -and $_.fullname -notmatch $exclude } | `
 		select -ExpandProperty FullName)
