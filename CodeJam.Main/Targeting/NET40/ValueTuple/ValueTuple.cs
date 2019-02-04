@@ -1,4 +1,4 @@
-﻿#if LESSTHAN_NET45
+﻿#if LESSTHAN_NET47
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/ValueTuple/ValueTuple.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
@@ -32,7 +32,7 @@ namespace System
 	/// - they are mutable rather than readonly, and
 	/// - their members (such as Item1, Item2, etc) are fields rather than properties.
 	/// </summary>
-	public struct ValueTuple
+	internal struct ValueTuple
 		: IEquatable<ValueTuple>, IStructuralEquatable, IStructuralComparable, IComparable, IComparable<ValueTuple>,
 			ITupleInternal
 	{
@@ -76,7 +76,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple other)
@@ -295,7 +295,7 @@ namespace System
 
 	/// <summary>Represents a 1-tuple, or singleton, as a value type.</summary>
 	/// <typeparam name="T1">The type of the tuple's only component.</typeparam>
-	public struct ValueTuple<T1>
+	internal struct ValueTuple<T1>
 		: IEquatable<ValueTuple<T1>>, IStructuralEquatable, IStructuralComparable, IComparable, IComparable<ValueTuple<T1>>,
 			ITupleInternal
 	{
@@ -374,7 +374,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple<T1> other)
@@ -443,7 +443,7 @@ namespace System
 	/// <typeparam name="T1">The type of the tuple's first component.</typeparam>
 	/// <typeparam name="T2">The type of the tuple's second component.</typeparam>
 	[StructLayout(LayoutKind.Auto)]
-	public struct ValueTuple<T1, T2>
+	internal struct ValueTuple<T1, T2>
 		: IEquatable<ValueTuple<T1, T2>>, IStructuralEquatable, IStructuralComparable, IComparable,
 			IComparable<ValueTuple<T1, T2>>, ITupleInternal
 	{
@@ -547,7 +547,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple<T1, T2> other)
@@ -633,7 +633,7 @@ namespace System
 	/// <typeparam name="T2">The type of the tuple's second component.</typeparam>
 	/// <typeparam name="T3">The type of the tuple's third component.</typeparam>
 	[StructLayout(LayoutKind.Auto)]
-	public struct ValueTuple<T1, T2, T3>
+	internal struct ValueTuple<T1, T2, T3>
 		: IEquatable<ValueTuple<T1, T2, T3>>, IStructuralEquatable, IStructuralComparable, IComparable,
 			IComparable<ValueTuple<T1, T2, T3>>, ITupleInternal
 	{
@@ -728,7 +728,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple<T1, T2, T3> other)
@@ -821,7 +821,7 @@ namespace System
 	/// <typeparam name="T3">The type of the tuple's third component.</typeparam>
 	/// <typeparam name="T4">The type of the tuple's fourth component.</typeparam>
 	[StructLayout(LayoutKind.Auto)]
-	public struct ValueTuple<T1, T2, T3, T4>
+	internal struct ValueTuple<T1, T2, T3, T4>
 		: IEquatable<ValueTuple<T1, T2, T3, T4>>, IStructuralEquatable, IStructuralComparable, IComparable,
 			IComparable<ValueTuple<T1, T2, T3, T4>>, ITupleInternal
 	{
@@ -925,7 +925,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple<T1, T2, T3, T4> other)
@@ -1027,7 +1027,7 @@ namespace System
 	/// <typeparam name="T4">The type of the tuple's fourth component.</typeparam>
 	/// <typeparam name="T5">The type of the tuple's fifth component.</typeparam>
 	[StructLayout(LayoutKind.Auto)]
-	public struct ValueTuple<T1, T2, T3, T4, T5>
+	internal struct ValueTuple<T1, T2, T3, T4, T5>
 		: IEquatable<ValueTuple<T1, T2, T3, T4, T5>>, IStructuralEquatable, IStructuralComparable, IComparable,
 			IComparable<ValueTuple<T1, T2, T3, T4, T5>>, ITupleInternal
 	{
@@ -1140,7 +1140,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple<T1, T2, T3, T4, T5> other)
@@ -1253,7 +1253,7 @@ namespace System
 	/// <typeparam name="T5">The type of the tuple's fifth component.</typeparam>
 	/// <typeparam name="T6">The type of the tuple's sixth component.</typeparam>
 	[StructLayout(LayoutKind.Auto)]
-	public struct ValueTuple<T1, T2, T3, T4, T5, T6>
+	internal struct ValueTuple<T1, T2, T3, T4, T5, T6>
 		: IEquatable<ValueTuple<T1, T2, T3, T4, T5, T6>>, IStructuralEquatable, IStructuralComparable, IComparable,
 			IComparable<ValueTuple<T1, T2, T3, T4, T5, T6>>, ITupleInternal
 	{
@@ -1375,7 +1375,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple<T1, T2, T3, T4, T5, T6> other)
@@ -1497,7 +1497,7 @@ namespace System
 	/// <typeparam name="T6">The type of the tuple's sixth component.</typeparam>
 	/// <typeparam name="T7">The type of the tuple's seventh component.</typeparam>
 	[StructLayout(LayoutKind.Auto)]
-	public struct ValueTuple<T1, T2, T3, T4, T5, T6, T7>
+	internal struct ValueTuple<T1, T2, T3, T4, T5, T6, T7>
 		: IEquatable<ValueTuple<T1, T2, T3, T4, T5, T6, T7>>, IStructuralEquatable, IStructuralComparable, IComparable,
 			IComparable<ValueTuple<T1, T2, T3, T4, T5, T6, T7>>, ITupleInternal
 	{
@@ -1628,7 +1628,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple<T1, T2, T3, T4, T5, T6, T7> other)
@@ -1759,7 +1759,7 @@ namespace System
 	/// <typeparam name="T7">The type of the tuple's seventh component.</typeparam>
 	/// <typeparam name="TRest">The type of the tuple's eighth component.</typeparam>
 	[StructLayout(LayoutKind.Auto)]
-	public struct ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>
+	internal struct ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>
 		: IEquatable<ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>>, IStructuralEquatable, IStructuralComparable, IComparable,
 			IComparable<ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>>, ITupleInternal
 		where TRest : struct
@@ -1906,7 +1906,7 @@ namespace System
 		/// <returns>
 		/// A signed number indicating the relative values of this instance and <paramref name="other"/>.
 		/// Returns less than zero if this instance is less than <paramref name="other"/>, zero if this
-		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater 
+		/// instance is equal to <paramref name="other"/>, and greater than zero if this instance is greater
 		/// than <paramref name="other"/>.
 		/// </returns>
 		public int CompareTo(ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> other)
