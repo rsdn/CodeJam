@@ -32,7 +32,7 @@ foreach ($target in $targetsDotNetWithRunner) {
 	$a = (gci -include $include -r | `
 		where { $_.fullname -match "\\bin\\Release\\$($target)" -and $_.fullname -notmatch $exclude } | `
 		select -ExpandProperty FullName)
-	$framework = $target.Substring(0, $target.Length - 2) + "-" + $target.Substring($target.Length - 2)
+	$framework = $target.Substring(0, $target.Length - 2) + "-" + $target.Substring($target.Length - 2, 1) + "." + $target.Substring($target.Length - 1)
 	echo "nunit3-console $a --framework=$($framework) --result=$logFileName"
 	&"nunit3-console" $a "--framework=$($framework) --result=$logFileName"
 	if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
