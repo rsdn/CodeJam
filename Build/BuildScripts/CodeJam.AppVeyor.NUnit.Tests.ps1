@@ -34,7 +34,7 @@ foreach ($target in $targetsDotNetWithRunner) {
 		select -ExpandProperty FullName)
 	$framework = $target.Substring(0, $target.Length - 2) + "-" + $target.Substring($target.Length - 2, 1) + "." + $target.Substring($target.Length - 1)
 	echo "nunit3-console $a --framework=$($framework) --result=$logFileName"
-	&"nunit3-console" $a "--framework=$($framework) --result=$logFileName"
+	&"nunit3-console" $a "--framework=net-4.5 --result=$logFileName"
 	if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
 	echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
 	$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
