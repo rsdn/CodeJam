@@ -54,7 +54,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Member mappers.
 		/// </summary>
-		List<ValueTuple<LambdaExpression,LambdaExpression>> MemberMappers { get; set; }
+		List<MemberMapper> MemberMappers { get; set; }
 
 		/// <summary>
 		/// If true, processes object cross references.
@@ -80,5 +80,21 @@ namespace CodeJam.Mapping
 		/// </summary>
 		[NotNull] Type ToType { get; }
 	}
+
+	/// <summary>Member Mapper</summary>
+	public struct MemberMapper
+	{
+		public MemberMapper(LambdaExpression from, LambdaExpression to)
+		{
+			From = from;
+			To = to;
+		}
+
+		/// <summary>From</summary>
+        public readonly LambdaExpression From;
+
+		/// <summary>To</summary>
+		public readonly LambdaExpression To;
+    }
 }
 #endif
