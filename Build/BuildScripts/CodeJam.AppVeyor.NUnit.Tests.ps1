@@ -2,17 +2,39 @@
 $includePerfTests = "*.Tests.Performance.dll"
 $exclude = "Experimental\\.*?\\CodeJam.Tests.Performance.dll"
 
+mkdir "$env:APPVEYOR_BUILD_FOLDER\_Results" -ErrorAction SilentlyContinue
+
 $wc = New-Object System.Net.WebClient
 
-$targetsDotNet = "net461","net472","net45","net40","net35","net30","net20"
-
+$targetsDotNet = "net472","net461"
 foreach ($target in $targetsDotNet) {
 	#run .net tests
-	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net_nunit_($target)_results.xml"
+	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net_nunit_$($target)_results.xml"
 	$a = (gci -include $include -r | `
-		where { $_.fullname -match "\\bin\\Release\\net\d" -and $_.fullname -notmatch $exclude } | `
+		where { $_.fullname -match "\\bin\\Release\\$($target)" -and $_.fullname -notmatch $exclude } | `
 		select -ExpandProperty FullName)
-	$cmdRunTest =  "nunit3-console $a --framework=($target) --result=$logFileName"
+	$cmdRunTest = "nunit3-console $a --result=$logFileName"
+	echo $cmdRunTest
+	$cmdRunTest
+	if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+	echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
+	$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
+	if ($LastExitCode -ne 0) {
+		echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
+		$host.SetShouldExit($LastExitCode)
+	}
+}
+
+$targetsDotNetWithRunner = "net45","net40","net35","net30","net20"
+
+foreach ($target in $targetsDotNetWithRunner) {
+	#run .net tests
+	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net_nunit_$($target)_results.xml"
+	$a = (gci -include $include -r | `
+		where { $_.fullname -match "\\bin\\Release\\$($target)" -and $_.fullname -notmatch $exclude } | `
+		select -ExpandProperty FullName)
+	$framework = $target.Substring($target.Length - 2, 1) + "." + $target.Substring($target.Length - 1)
+	$cmdRunTest = "nunit3-console $a --framework=$($framework) --result=$logFileName"
 	echo $cmdRunTest
 	&$cmdRunTest
 	if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
