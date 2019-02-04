@@ -84,6 +84,7 @@ namespace CodeJam.Mapping
 	/// <summary>Member Mapper</summary>
 	public struct MemberMapper
 	{
+		/// <summary>Constructor</summary>
 		public MemberMapper(LambdaExpression from, LambdaExpression to)
 		{
 			From = from;
