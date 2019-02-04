@@ -25,7 +25,7 @@ foreach ($target in $targetsDotNet) {
 	}
 }
 
-$targetsDotNetWithRunner = "net45","net40","net35","net30","net20"
+$targetsDotNetWithRunner = "net45","net40","net35","net20"
 
 foreach ($target in $targetsDotNetWithRunner) {
 	#run .net tests

@@ -8,7 +8,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{DD65E3F2-9658-4242-A8AA-056028473CB1}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35;net30;net20</TargetFrameworks>
+		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35;net20</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
