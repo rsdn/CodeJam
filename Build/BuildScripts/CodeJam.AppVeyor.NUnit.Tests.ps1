@@ -4,64 +4,24 @@ $exclude = "Experimental\\.*?\\CodeJam.Tests.Performance.dll"
 
 $wc = New-Object System.Net.WebClient
 
-#run .net tests
-$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net_nunit_results.xml"
-$a = (gci -include $include -r | `
-	where { $_.fullname -match "\\bin\\Release\\net\d" -and $_.fullname -notmatch $exclude } | `
-	select -ExpandProperty FullName)
-echo "nunit3-console $a --result=$logFileName"
-&"nunit3-console" $a "--result=$logFileName"
-if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
-echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
-if ($LastExitCode -ne 0) {
-	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-	$host.SetShouldExit($LastExitCode)
-}
+$targetsDotNet = "net461","net472","net45","net40","net35","net30","net20"
 
-#run .net2.0 tests
-$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net20_nunit_results.xml"
-$a = (gci -include $include -r | `
-	where { $_.fullname -match "\\bin\\Release\\net\d" -and $_.fullname -notmatch $exclude } | `
-	select -ExpandProperty FullName)
-echo "nunit3-console $a --framework=net-2.0 --result=$logFileName"
-&"nunit3-console" $a "--result=$logFileName"
-if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
-echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
-if ($LastExitCode -ne 0) {
-	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-	$host.SetShouldExit($LastExitCode)
-}
-
-#run .net3.0 tests
-$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net30_nunit_results.xml"
-$a = (gci -include $include -r | `
-	where { $_.fullname -match "\\bin\\Release\\net\d" -and $_.fullname -notmatch $exclude } | `
-	select -ExpandProperty FullName)
-echo "nunit3-console $a --framework=net-3.0 --result=$logFileName"
-&"nunit3-console" $a "--result=$logFileName"
-if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
-echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
-if ($LastExitCode -ne 0) {
-	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-	$host.SetShouldExit($LastExitCode)
-}
-
-#run .net3.5 tests
-$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net35_nunit_results.xml"
-$a = (gci -include $include -r | `
-	where { $_.fullname -match "\\bin\\Release\\net\d" -and $_.fullname -notmatch $exclude } | `
-	select -ExpandProperty FullName)
-echo "nunit3-console $a --framework=net-3.5 --result=$logFileName"
-&"nunit3-console" $a "--result=$logFileName"
-if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
-echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
-if ($LastExitCode -ne 0) {
-	echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-	$host.SetShouldExit($LastExitCode)
+foreach ($target in $targetsDotNet) {
+	#run .net tests
+	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\net_nunit_($target)_results.xml"
+	$a = (gci -include $include -r | `
+		where { $_.fullname -match "\\bin\\Release\\net\d" -and $_.fullname -notmatch $exclude } | `
+		select -ExpandProperty FullName)
+	$cmdRunTest =  "nunit3-console $a --framework=($target) --result=$logFileName"
+	echo $cmdRunTest
+	&$cmdRunTest
+	if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+	echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
+	$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
+	if ($LastExitCode -ne 0) {
+		echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
+		$host.SetShouldExit($LastExitCode)
+	}
 }
 
 #run .net perftests
@@ -80,6 +40,7 @@ if ($LastExitCode -ne 0) {
 #}
 
 #run .net core tests
+$targetsDotNetCore = "netcoreapp2.0"
 $a = (gci -include $include -r | `
 	where { $_.fullname -match "\\bin\\Release\\netcore" -and $_.fullname -notmatch $exclude } | `
 	select -ExpandProperty FullName)
