@@ -24,7 +24,7 @@ foreach ($target in $targetsDotNet) {
 	}
 }
 
-$targetsDotNetWithRunner = "net45","net40","net35","net30","net20"
+$targetsDotNetWithRunner = "net45","net40","net35","net20"
 
 foreach ($target in $targetsDotNetWithRunner) {
 	#run .net tests
@@ -32,7 +32,7 @@ foreach ($target in $targetsDotNetWithRunner) {
 	$a = (gci -include $include -r | `
 		where { $_.fullname -match "\\bin\\Release\\$($target)" -and $_.fullname -notmatch $exclude } | `
 		select -ExpandProperty FullName)
-	$framework = $target.Substring($target.Length - 2, 1) + "." + $target.Substring($target.Length - 1)
+	$framework = $target.Substring(0, $target.Length - 2) + "-" + $target.Substring($target.Length - 2)
 	echo "nunit3-console $a --framework=$($framework) --result=$logFileName"
 	&"nunit3-console" $a "--framework=$($framework) --result=$logFileName"
 	if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
