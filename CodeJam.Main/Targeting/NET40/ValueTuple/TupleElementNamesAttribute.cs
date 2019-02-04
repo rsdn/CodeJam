@@ -1,4 +1,4 @@
-﻿#if LESSTHAN_NET45
+﻿#if LESSTHAN_NET47
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/Runtime/CompilerServices/TupleElementNamesAttribute.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
@@ -13,7 +13,7 @@ namespace System.Runtime.CompilerServices
     /// Indicates that the use of <see cref="System.ValueTuple"/> on a member is meant to be treated as a tuple with element names.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Event )]
-    public sealed class TupleElementNamesAttribute : Attribute
+    internal sealed class TupleElementNamesAttribute : Attribute
     {
         private readonly string[] _transformNames;
 

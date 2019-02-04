@@ -1,4 +1,4 @@
-﻿#if LESSTHAN_NET45
+﻿#if LESSTHAN_NET47
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/ValueTuple/TupleExtensions.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
@@ -12,7 +12,7 @@ namespace System
 	/// <summary>
 	/// Provides extension methods for <see cref="Tuple"/> instances to interop with C# tuples features (deconstruction syntax, converting from and to <see cref="ValueTuple"/>).
 	/// </summary>
-	public static class TupleExtensions
+	internal static class TupleExtensions
 	{
 #region Deconstruct
 		/// <summary>

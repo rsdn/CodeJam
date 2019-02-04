@@ -36,8 +36,8 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>The comparer to compare string locations against a string end</summary>
-		private readonly Func<(int Start, int End), int, int> _stringLocationByEndComparer =
-			(position, end) => position.Item2 - end;
+		private readonly Func<StringLocation, int, int> _stringLocationByEndComparer =
+			(position, end) => position.Length - end;
 
 		/// <summary>Adds a new node</summary>
 		/// <param name="node">A node to add</param>
@@ -66,9 +66,26 @@ namespace CodeJam.Collections
 		[NotNull]
 		protected string InternalData { get; private set; }
 
+		/// <summary>String location</summary>
+		protected struct StringLocation
+		{
+			/// <summary>Constructor</summary>
+			public StringLocation(int start, int length)
+			{
+				Start = start;
+				Length = length;
+			}
+
+			/// <summary>Start</summary>
+			public readonly int Start;
+
+			/// <summary>Length</summary>
+			public readonly int Length;
+		}
+
 		/// <summary>List of locations of added strings inside the InternalData</summary>
 		[NotNull]
-		protected List<(int Start, int Length)> StringLocations { get; }
+		protected List<StringLocation> StringLocations { get; }
 
 		/// <summary>Constructs a base for a suffix tree</summary>
 		protected SuffixTreeBase()
@@ -76,7 +93,7 @@ namespace CodeJam.Collections
 			InternalData = string.Empty;
 			var root = new Node(0, 0, false);
 			_nodes = new List<Node> { root };
-			StringLocations = new List<(int, int)>();
+			StringLocations = new List<StringLocation>();
 			EdgeComparer = (index, c) =>
 			{
 				var node = GetNode(index);
@@ -103,7 +120,7 @@ namespace CodeJam.Collections
 			}
 			var begin = InternalData.Length;
 			InternalData = InternalData + data;
-			StringLocations.Add((begin, InternalData.Length));
+			StringLocations.Add(new StringLocation(begin, InternalData.Length));
 			BuildFor(begin, InternalData.Length);
 		}
 
@@ -310,7 +327,7 @@ namespace CodeJam.Collections
 		{
 			// CSC bug?
 			// ReSharper disable once RedundantTypeArgumentsOfMethod
-			var index = StringLocations.LowerBound<(int, int), int>(end, _stringLocationByEndComparer);
+			var index = StringLocations.LowerBound(end, _stringLocationByEndComparer);
 			DebugCode.AssertState(
 				index < StringLocations.Count && StringLocations[index].Length == end,
 				"Invalid source index computed. Check logic");
@@ -328,9 +345,9 @@ namespace CodeJam.Collections
 			var sb = new StringBuilder();
 			var currentIndex = RootNodeIndex;
 #if LESSTHAN_NET45
-			var stack = new ListWithReadOnly<(int Start, int Length)>();
+			var stack = new ListWithReadOnly<StringLocation>();
 #else
-			var stack = new List<(int Start, int Length)>();
+			var stack = new List<StringLocation>();
 #endif
 			for (;;)
 			{
@@ -338,7 +355,7 @@ namespace CodeJam.Collections
 				var node = GetNode(currentIndex);
 				if (node.Children != null)
 				{
-					stack.Add((currentIndex, node.Children.Count - 2));
+					stack.Add(new StringLocation(currentIndex, node.Children.Count - 2));
 					currentIndex = node.Children[node.Children.Count - 1];
 					continue;
 				}
@@ -353,7 +370,7 @@ namespace CodeJam.Collections
 					{
 						DebugCode.BugIf(node.Children == null, "node.Children == null");
 						currentIndex = node.Children[nextChild];
-						stack.Add((t.Item1, nextChild - 1));
+						stack.Add(new StringLocation(t.Start, nextChild - 1));
 						break;
 					}
 				}
@@ -372,7 +389,7 @@ namespace CodeJam.Collections
 		private void PrintNodeWithPath(
 			[NotNull] StringBuilder sb,
 			int nodeIndex,
-			[NotNull] IReadOnlyList<(int Start, int Length)> stack)
+			[NotNull] IReadOnlyList<StringLocation> stack)
 		{
 			if (stack.Count > 0)
 			{
