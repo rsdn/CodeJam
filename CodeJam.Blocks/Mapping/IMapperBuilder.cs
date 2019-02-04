@@ -92,7 +92,7 @@ namespace CodeJam.Mapping
 		}
 
 		/// <summary>From</summary>
-        public readonly LambdaExpression From;
+		public readonly LambdaExpression From;
 
 		/// <summary>To</summary>
 		public readonly LambdaExpression To;
