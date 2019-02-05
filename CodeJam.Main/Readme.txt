@@ -1,5 +1,9 @@
-﻿CodeJam 2.2.0-beta2 Release Notes
+﻿CodeJam 2.2.0-beta3 Release Notes
 ---------------------------------
+
+What's new in 2.2.0-beta2
+-------------------------
+* Remove System.ValueTuple dependency
 
 What's new in 2.2.0-beta2
 -------------------------

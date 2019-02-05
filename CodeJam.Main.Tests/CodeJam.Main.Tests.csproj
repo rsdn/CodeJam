@@ -114,7 +114,7 @@
 	</ItemGroup>
 
 	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20' OR '$(TargetFramework)' == 'net30'" >
-   	<ItemGroup>
+   		<ItemGroup>
 			<ReferencePath Condition="'%(FileName)' == 'NUnit.System.Linq'">
 				<Aliases>nunitlinq</Aliases>
 			</ReferencePath>
