@@ -18,6 +18,8 @@ namespace CodeJam
 		public const string ExpectedTarget =
 #if NET20
 			".NETFramework,Version=v2.0";
+#elif NET30
+			".NETFramework,Version=v3.0";
 #elif NET35
 			".NETFramework,Version=v3.5";
 #elif NET40
@@ -28,8 +30,16 @@ namespace CodeJam
 			".NETFramework,Version=v4.6.1";
 #elif NET472
 			".NETFramework,Version=v4.7.2";
+#elif NET48
+			".NETFramework,Version=v4.8";
 #elif NETCOREAPP2_0
 			".NETCoreApp,Version=v2.0";
+#elif NETCOREAPP2_1
+			".NETCoreApp,Version=v2.1";
+#elif NETCOREAPP2_2
+			".NETCoreApp,Version=v2.2";
+#elif NETCOREAPP3_0
+			".NETCoreApp,Version=v3.0";
 #else
 			"UNKNOWN";
 #endif
@@ -44,14 +54,18 @@ namespace CodeJam
 			netstandard1.4
 			netstandard1.5
 			netstandard1.6
-			netstandard2.0";
+			netstandard2.0
+			netstandard2.1
+			netstandard2.2";
 
 		/// <summary>The net core monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks</summary>
 		private const string _netCoreMonikers = @"
 			netcoreapp1.0
 			netcoreapp1.1
 			netcoreapp2.0
-			netcoreapp2.1";
+			netcoreapp2.1
+			netcoreapp2.2
+			netcoreapp3.0";
 
 		/// <summary>The net framework monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks</summary>
 		private const string _netFrameworkMonikers = @"
@@ -68,7 +82,8 @@ namespace CodeJam
 			net462
 			net47
 			net471
-			net472";
+			net472
+			net48";
 
 		/// <summary>This test generates conditional build constants for various FW monikers.</summary>
 		[Test]
