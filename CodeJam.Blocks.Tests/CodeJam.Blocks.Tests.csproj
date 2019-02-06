@@ -8,7 +8,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35</TargetFrameworks>
+		<TargetFrameworks>net47;net46;net45;net40;net35;netcoreapp2.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30' AND '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">

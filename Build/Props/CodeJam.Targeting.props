@@ -1,8 +1,8 @@
 ﻿<Project>
 	<PropertyGroup>
-		<CopyMeTargetFrameworks>net461;netcoreapp2.0;netstandard2.0;net472;net45;net40;net35;net20</CopyMeTargetFrameworks>
-		<CopyMeTestTargetFrameworks>net461;netcoreapp2.0;net472;net45;net40;net35;net20</CopyMeTestTargetFrameworks>
-		<CopyMeMinimalTargetFrameworks>net461;netcoreapp2.0</CopyMeMinimalTargetFrameworks>
+		<CopyMeTargetFrameworks>net47;net46;net45;net40;net35;net20;netcoreapp2.0;netstandard2.0</CopyMeTargetFrameworks>
+		<CopyMeTestTargetFrameworks>net47;net46;net45;net40;net35;net20;netcoreapp2.0</CopyMeTestTargetFrameworks>
+		<CopyMeMinimalTargetFrameworks>net46;netcoreapp2.0</CopyMeMinimalTargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'net461' ">

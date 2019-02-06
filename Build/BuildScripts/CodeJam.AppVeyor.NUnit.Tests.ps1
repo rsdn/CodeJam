@@ -6,7 +6,7 @@ mkdir "$env:APPVEYOR_BUILD_FOLDER\_Results" -ErrorAction SilentlyContinue
 
 $wc = New-Object System.Net.WebClient
 
-$targetsDotNet = "net472","net461","net45","net40","net35","net20"
+$targetsDotNet = "net47","net46","net45","net40","net35","net20"
 foreach ($target in $targetsDotNet) {
 	#run .net tests
 	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\$($target)_nunit_results.xml"

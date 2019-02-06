@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\Build\CodeJam.Default.props" />
-	<Import Project="..\..\Build\CodeJam.PerfTests.Default.props" />
-	<Import Project="..\..\Build\CodeJam.Targeting.props" />
+	<Import Project="..\..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\..\Build\Props\CodeJam.Targeting.props" />
 
 	<PropertyGroup>
 		<AssemblyName>CodeJam.PerfTests-Tests.NUnit</AssemblyName>
@@ -10,12 +9,12 @@
 		<ProjectGuid>{15F5BFE8-8B7C-4DF6-9E31-48A4BF9FED1C}</ProjectGuid>
 		<OutputType>Exe</OutputType>
 		<PlatformTarget>x64</PlatformTarget>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
 		<StartupObject>CodeJam.Examples.PerfTests.ExamplesProgram</StartupObject>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFrameworks>net46</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
