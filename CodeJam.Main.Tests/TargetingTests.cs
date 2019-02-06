@@ -26,8 +26,20 @@ namespace CodeJam
 			".NETFramework,Version=v4.0";
 #elif NET45
 			".NETFramework,Version=v4.5";
+#elif NET451
+			".NETFramework,Version=v4.5.1";
+#elif NET452
+			".NETFramework,Version=v4.5.2";
+#elif NET46
+			".NETFramework,Version=v4.6";
 #elif NET461
 			".NETFramework,Version=v4.6.1";
+#elif NET462
+			".NETFramework,Version=v4.6.2";
+#elif NET47
+			".NETFramework,Version=v4.7";
+#elif NET471
+			".NETFramework,Version=v4.7.1";
 #elif NET472
 			".NETFramework,Version=v4.7.2";
 #elif NET48
