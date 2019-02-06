@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\Build\CodeJam.Default.props" />
-	<Import Project="..\..\Build\CodeJam.PerfTests.Default.props" />
-	<Import Project="..\..\Build\CodeJam.Targeting.props" />
+	<Import Project="..\..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\..\Build\Props\CodeJam.Targeting.props" />
 
 	<PropertyGroup>
 		<AssemblyName>CodeJam.PerfTests-Tests.xUnit</AssemblyName>
@@ -10,11 +9,11 @@
 		<ProjectGuid>{F70A32D4-EE5D-477F-965C-428119D4CD39}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<PlatformTarget>x64</PlatformTarget>
-		<TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFrameworks>net46</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

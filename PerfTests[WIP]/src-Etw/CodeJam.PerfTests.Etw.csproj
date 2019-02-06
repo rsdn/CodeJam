@@ -1,16 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\Build\CodeJam.Default.props" />
-	<Import Project="..\..\Build\CodeJam.PerfTests.Default.props" />
-	<Import Project="..\..\Build\CodeJam.Targeting.props" />
-
+	<Import Project="..\..\Build\Props\CodeJam.Default.props" />
+	<Import Project="..\..\Build\Props\CodeJam.Nuspec.props" />
+	<Import Project="..\..\Build\Props\CodeJam.Targeting.props" />
 	<PropertyGroup>
 		<AssemblyName>CodeJam.PerfTests.Etw</AssemblyName>
 		<RootNamespace>CodeJam.PerfTests</RootNamespace>
 		<ProjectGuid>{0F9C7A70-2B31-4364-BD7F-EE5BB6F3E38D}</ProjectGuid>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFrameworks>net46</TargetFrameworks>
 
 		<PackageId>CodeJam.PerfTests.Etw</PackageId>
 		<Title>CodeJam.PerfTests core library</Title>
@@ -27,7 +26,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)' != 'Publish' ">
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFrameworks>net46</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
