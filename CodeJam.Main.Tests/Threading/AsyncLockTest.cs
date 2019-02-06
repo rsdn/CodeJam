@@ -46,7 +46,9 @@ namespace CodeJam.Threading
 			}
 		}
 
+#if !LESSTHAN_NET40
 		[Test]
+#endif
 		[SuppressMessage("ReSharper", "MethodSupportsCancellation")]
 		public async Task LockCancellationTest()
 		{
@@ -82,7 +84,19 @@ namespace CodeJam.Threading
 			Assert.Less(sw3.Elapsed, holdTime - delayTime);
 		}
 
+#if LESSTHAN_NET40
 		[Test]
+		public void LockCancellationTestDotNetLessThan40()
+		{
+			LockCancellationTest().Wait();
+			Assert.IsTrue(true);
+		}
+#endif
+
+
+#if !LESSTHAN_NET40
+		[Test]
+#endif
 		public async Task LockTest()
 		{
 			var asyncLock = new AsyncLock();
@@ -113,5 +127,14 @@ namespace CodeJam.Threading
 			Assert.IsFalse(opActive);
 			Assert.GreaterOrEqual(sw.ElapsedMilliseconds, time * count + timeInc * count / 2);
 		}
+
+#if LESSTHAN_NET40
+		[Test]
+		public void LockTestDotNetLessThan40()
+		{
+			LockTest().Wait();
+			Assert.IsTrue(true);
+		}
+#endif
 	}
 }
