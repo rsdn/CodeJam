@@ -35,10 +35,10 @@
     <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <DocumentationSources>
-      <DocumentationSource sourceFile="CodeJam.Main\bin\$(Configuration)\net461\CodeJam.xml" />
-      <DocumentationSource sourceFile="CodeJam.Main\bin\$(Configuration)\net461\CodeJam.dll" />
-      <DocumentationSource sourceFile="CodeJam.Blocks\bin\$(Configuration)\net461\CodeJam.Blocks.xml" />
-      <DocumentationSource sourceFile="CodeJam.Blocks\bin\$(Configuration)\net461\CodeJam.Blocks.dll" />
+      <DocumentationSource sourceFile="CodeJam.Main\bin\$(Configuration)\net46\CodeJam.xml" />
+      <DocumentationSource sourceFile="CodeJam.Main\bin\$(Configuration)\net46\CodeJam.dll" />
+      <DocumentationSource sourceFile="CodeJam.Blocks\bin\$(Configuration)\net46\CodeJam.Blocks.xml" />
+      <DocumentationSource sourceFile="CodeJam.Blocks\bin\$(Configuration)\net46\CodeJam.Blocks.dll" />
     </DocumentationSources>
     <ProjectSummary>CodeJam library</ProjectSummary>
     <NamespaceSummaries>
