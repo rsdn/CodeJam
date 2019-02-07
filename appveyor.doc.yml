@@ -13,9 +13,8 @@ install:
     xcopy /E /S C:\EWSoftware.SHFB.2018.12.10 C:\EWSoftware.SHFB.2015.10.10.0\
 before_build:
 - cmd: nuget restore CodeJam.sln
-build:
-  project: CodeJamDoc.sln
-  verbosity: minimal
+build_script:
+  msbuild CodeJamDoc.sln /warnaserror /t:Restore;Build /v:m
 after_build:
 - cmd: 7z a -r CodeJamDoc.zip Help\*.*
 artifacts:
