@@ -6,12 +6,13 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	static partial class EnumerableExtensions
 	{
 		#region TopoSort
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
@@ -25,6 +26,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
@@ -38,6 +40,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key selector.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
@@ -53,6 +57,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key selector.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
@@ -68,6 +74,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key selector.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
@@ -85,6 +93,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key selector.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
@@ -102,6 +112,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
@@ -119,6 +130,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
@@ -138,6 +150,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/> separated by dependency level.</returns>
@@ -151,6 +164,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/> separated by dependency level.</returns>
@@ -164,6 +178,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
@@ -179,6 +194,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
@@ -250,7 +266,8 @@ namespace CodeJam.Collections
 			}
 		}
 
-		private static ArgumentException CycleException(string argName) =>
+		[NotNull]
+		private static ArgumentException CycleException([NotNull] string argName) =>
 			CodeExceptions.Argument(argName, "Cycle detected.");
 		#endregion
 	}

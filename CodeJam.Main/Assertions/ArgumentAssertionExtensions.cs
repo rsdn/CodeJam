@@ -20,6 +20,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<T> NotNull<T>([NoEnumeration] this ArgumentAssertion<T> arg) where T : class
@@ -33,6 +34,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<T?> NotNull<T>([NoEnumeration] this ArgumentAssertion<T?> arg) where T : struct
@@ -44,6 +46,7 @@ namespace CodeJam
 		/// <summary>Ensures that all items in <paramref name="arg"/> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<IEnumerable<T>> ItemNotNull<T>(this ArgumentAssertion<IEnumerable<T>> arg) where T : class
@@ -57,6 +60,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">The argument.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<IEnumerable<T>> NotEmpty<T>(this ArgumentAssertion<IEnumerable<T>> arg)
@@ -70,6 +74,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">The argument.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<ICollection<T>> NotEmpty<T>(this ArgumentAssertion<ICollection<T>> arg)
@@ -83,6 +88,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">The argument.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<T[]> NotEmpty<T>(this ArgumentAssertion<T[]> arg)
@@ -93,6 +99,7 @@ namespace CodeJam
 
 		/// <summary>Ensures that <paramref name="arg"/> is not null nor empty</summary>
 		/// <param name="arg">The argument.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<string> NotNullNorEmpty(this ArgumentAssertion<string> arg)
@@ -103,6 +110,7 @@ namespace CodeJam
 
 		/// <summary>Ensures that <paramref name="arg"/> is not null nor white space</summary>
 		/// <param name="arg">The argument.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<string> NotNullNorWhiteSpace(this ArgumentAssertion<string> arg)
@@ -112,9 +120,11 @@ namespace CodeJam
 		}
 
 		/// <summary>Assertion for the argument value</summary>
+		/// <typeparam name="T">Type of the value.</typeparam>
 		/// <param name="arg">The argument.</param>
 		/// <param name="condition">The condition to check</param>
 		/// <param name="message">The message.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static ArgumentAssertion<T> Assert<T>(
@@ -127,10 +137,12 @@ namespace CodeJam
 		}
 
 		/// <summary>Assertion for the argument value</summary>
+		/// <typeparam name="T">Type of the value.</typeparam>
 		/// <param name="arg">Argument.</param>
 		/// <param name="condition">The condition to check</param>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">Format string arguments.</param>
+		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static ArgumentAssertion<T> Assert<T>(

@@ -23,6 +23,7 @@ namespace CodeJam
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
+		/// <typeparam name="TResult">Result type</typeparam>
 		/// <param name="case1Selector">Calculation function for <typeparamref name="T1"/></param>
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <returns>Calculated value.</returns>
@@ -58,6 +59,7 @@ namespace CodeJam
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
+		/// <typeparam name="TResult">Result type</typeparam>
 		/// <param name="case1Selector">Calculation function for <typeparamref name="T1"/></param>
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <param name="case3Selector">Calculation function for <typeparamref name="T3"/></param>
@@ -101,6 +103,7 @@ namespace CodeJam
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
+		/// <typeparam name="TResult">Result type</typeparam>
 		/// <param name="case1Selector">Calculation function for <typeparamref name="T1"/></param>
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <param name="case3Selector">Calculation function for <typeparamref name="T3"/></param>
@@ -152,6 +155,7 @@ namespace CodeJam
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
+		/// <typeparam name="TResult">Result type</typeparam>
 		/// <param name="case1Selector">Calculation function for <typeparamref name="T1"/></param>
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <param name="case3Selector">Calculation function for <typeparamref name="T3"/></param>
@@ -211,6 +215,7 @@ namespace CodeJam
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
+		/// <typeparam name="TResult">Result type</typeparam>
 		/// <param name="case1Selector">Calculation function for <typeparamref name="T1"/></param>
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <param name="case3Selector">Calculation function for <typeparamref name="T3"/></param>
@@ -278,6 +283,7 @@ namespace CodeJam
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
+		/// <typeparam name="TResult">Result type</typeparam>
 		/// <param name="case1Selector">Calculation function for <typeparamref name="T1"/></param>
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <param name="case3Selector">Calculation function for <typeparamref name="T3"/></param>
@@ -353,6 +359,7 @@ namespace CodeJam
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
+		/// <typeparam name="TResult">Result type</typeparam>
 		/// <param name="case1Selector">Calculation function for <typeparamref name="T1"/></param>
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <param name="case3Selector">Calculation function for <typeparamref name="T3"/></param>

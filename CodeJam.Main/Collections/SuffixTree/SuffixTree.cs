@@ -63,6 +63,7 @@ namespace CodeJam.Collections
 		private bool LinkPending => _pendingLinkIndexFrom != InvalidNodeIndex;
 
 		/// <summary>Appends suffixes for the last added string</summary>
+		/// <inheritdoc cref="SuffixTreeBase.BuildFor"/>
 		protected override void BuildFor(int begin, int end)
 		{
 			Code.BugIf(begin >= end, "Invalid parameters passed");

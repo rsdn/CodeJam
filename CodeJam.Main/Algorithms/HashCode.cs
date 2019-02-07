@@ -111,6 +111,7 @@ namespace CodeJam
 		/// <summary>
 		/// Combines hash codes.
 		/// </summary>
+		/// <typeparam name="T">Type of array values.</typeparam>
 		/// <param name="values">The collection to combine hash codes.</param>
 		/// <returns>
 		/// Combined hash code.
@@ -132,6 +133,7 @@ namespace CodeJam
 		/// <summary>
 		/// Combines hash codes.
 		/// </summary>
+		/// <typeparam name="T">Type of collection values.</typeparam>
 		/// <param name="values">The sequence to combine hash codes.</param>
 		/// <returns>
 		/// Combined hash code.

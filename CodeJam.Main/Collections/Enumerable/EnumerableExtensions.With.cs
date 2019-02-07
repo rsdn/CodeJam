@@ -10,6 +10,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Associates an index to each element of the source sequence.
 		/// </summary>
+		/// <typeparam name="T">Type of elements in source.</typeparam>
 		/// <param name="source">The input sequence.</param>
 		/// <returns>
 		/// A sequence of elements paired with their index in the sequence.
@@ -21,7 +22,8 @@ namespace CodeJam.Collections
 			return IndexImpl(source);
 		}
 
-		private static IEnumerable<IndexedItem<T>> IndexImpl<T>(IEnumerable<T> source)
+		[NotNull, Pure, LinqTunnel]
+		private static IEnumerable<IndexedItem<T>> IndexImpl<T>([NotNull] IEnumerable<T> source)
 		{
 			using (var enumerator = source.GetEnumerator())
 				if (enumerator.MoveNext())
@@ -58,6 +60,7 @@ namespace CodeJam.Collections
 			return CombineWithPreviousImpl(source, prevNextSelector);
 		}
 
+		[NotNull, Pure]
 		private static IEnumerable<TResult> CombineWithPreviousImpl<T, TResult>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, T, TResult> prevNextSelector)
@@ -93,6 +96,7 @@ namespace CodeJam.Collections
 			return CombineWithPreviousImpl(source, seed, prevNextSelector);
 		}
 
+		[NotNull, Pure]
 		private static IEnumerable<TResult> CombineWithPreviousImpl<T, TResult>(
 			[NotNull] this IEnumerable<T> source,
 			T seed,
@@ -125,6 +129,7 @@ namespace CodeJam.Collections
 			return CombineWithNextImpl(source, combineLast, prevNextSelector);
 		}
 
+		[NotNull, Pure]
 		private static IEnumerable<TResult> CombineWithNextImpl<T, TResult>(
 			[NotNull] this IEnumerable<T> source, T combineLast,
 			[NotNull] Func<T, T, TResult> prevNextSelector)

@@ -19,6 +19,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the <see cref="MemberInfo"/>.
 		/// </summary>
+		/// <typeparam name="TValue">Type of value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
@@ -30,6 +31,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the <see cref="MemberInfo"/>.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
@@ -41,6 +43,8 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the <see cref="MemberInfo"/>.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
+		/// <typeparam name="TValue">Type of value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
@@ -54,6 +58,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the property.
 		/// </summary>
+		/// <typeparam name="TValue">Type of value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
@@ -65,6 +70,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the property.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
@@ -76,6 +82,8 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the property.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
+		/// <typeparam name="TValue">Type of value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
@@ -89,6 +97,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the field.
 		/// </summary>
+		/// <typeparam name="TValue">Type of value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
@@ -100,6 +109,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the field.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
@@ -111,6 +121,8 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the field.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
+		/// <typeparam name="TValue">Type of value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
@@ -124,6 +136,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the constructor.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
@@ -134,6 +147,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the constructor.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
@@ -147,6 +161,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the method.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
@@ -158,6 +173,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the method.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
@@ -169,6 +185,8 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the method.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
+		/// <typeparam name="TResult">Type of result.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
@@ -191,6 +209,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the method.
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.

@@ -8,6 +8,7 @@ namespace CodeJam.Collections
 	/// <summary>
 	/// Represents an element associated with its index in a sequence.
 	/// </summary>
+	/// <typeparam name="T">Type of item.</typeparam>
 	[PublicAPI]
 	public struct IndexedItem<T> : IEquatable<IndexedItem<T>>
 	{

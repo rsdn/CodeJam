@@ -21,6 +21,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key of the element to add.</param>
 		/// <returns>
@@ -44,6 +46,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key of the element to add.</param>
 		/// <param name="value">the value to be added, if the key does not already exist</param>
@@ -70,6 +74,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key of the element to add.</param>
 		/// <param name="valueFactory">The function used to generate a value for the key</param>
@@ -98,6 +104,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key of the element to add.</param>
 		/// <param name="valueFactory">The function used to generate a value for the key</param>
@@ -128,6 +136,8 @@ namespace CodeJam.Collections
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
 		///   if the key already exists.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="addValue">The value to be added for an absent key</param>
@@ -164,6 +174,8 @@ namespace CodeJam.Collections
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
 		///   if the key already exists.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="addValue">The value to be added for an absent key</param>
@@ -200,6 +212,8 @@ namespace CodeJam.Collections
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
 		///   if the key already exists.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="addValueFactory">The function used to generate a value for an absent key</param>
@@ -238,6 +252,8 @@ namespace CodeJam.Collections
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
 		///   if the key already exists.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="addValueFactory">The function used to generate a value for an absent key</param>
@@ -276,6 +292,8 @@ namespace CodeJam.Collections
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
 		///   if the key already exists.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="valueFactory">The function used to generate a value.</param>
@@ -306,6 +324,8 @@ namespace CodeJam.Collections
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
 		///   if the key already exists.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="valueFactory">The function used to generate a value.</param>
@@ -337,6 +357,8 @@ namespace CodeJam.Collections
 		///   or updates a key/value pair <see cref="ConcurrentDictionary{TKey,TValue}"/> by using the specified function
 		///   if the key already exists.
 		/// </summary>
+		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+		/// <typeparam name="TValue">The type of the value in the dictionary.</typeparam>
 		/// <param name="dictionary">The dictionary.</param>
 		/// <param name="key">The key to be added or whose value should be updated</param>
 		/// <param name="valueFactory">The function used to generate a value.</param>

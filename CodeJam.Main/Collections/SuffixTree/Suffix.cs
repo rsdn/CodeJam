@@ -44,6 +44,7 @@ namespace CodeJam.Collections
 
 		/// <summary>String conversion operator</summary>
 		/// <param name="suffix">The suffix to convert</param>
+		/// <returns>Suffix converted to string</returns>
 		public static implicit operator string(Suffix suffix) => suffix.Value;
 	}
 }
