@@ -12,6 +12,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
@@ -25,6 +26,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
@@ -102,6 +104,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
@@ -119,6 +122,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
@@ -138,6 +142,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/> separated by dependency level.</returns>
@@ -164,6 +169,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
@@ -179,6 +185,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
