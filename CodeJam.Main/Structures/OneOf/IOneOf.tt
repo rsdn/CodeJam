@@ -19,6 +19,7 @@ namespace CodeJam
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
+		/// <typeparam name="TResult">Result type</typeparam>
 <#	for (var k = 1; k <= i; k++){#>
 		/// <param name="case<#=k#>Selector">Calculation function for <typeparamref name="T<#=k#>"/></param>
 <#	}#>

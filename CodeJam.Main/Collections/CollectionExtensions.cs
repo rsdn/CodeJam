@@ -14,6 +14,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Indicates whether the specified collection is <c>null</c> or empty.
 		/// </summary>
+		/// <typeparam name="T">Type of the collection values</typeparam>
 		/// <param name="collection">The collection to test for emptiness.</param>
 		/// <returns>
 		/// <c>true</c>, if the <paramref name="collection"/> parameter is <c>null</c>
@@ -27,7 +28,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Indicates whether the specified array is <c>null</c> or empty.
 		/// </summary>
-		/// <param name="array">The collection to test for emptiness.</param>
+		/// <typeparam name="T">Type of the array values</typeparam>
+		/// <param name="array">The array to test for emptiness.</param>
 		/// <returns>
 		/// <c>true</c>, if the <paramref name="array"/> parameter is <c>null</c>
 		/// or empty; otherwise, <c>false</c>.
@@ -48,6 +50,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Indicates whether the specified collection is not null nor empty.
 		/// </summary>
+		/// <typeparam name="T">Type of the collection values</typeparam>
 		/// <param name="collection">The collection to test.</param>
 		/// <returns>
 		/// <c>true</c>, if the <paramref name="collection"/> parameter is not null nor empty; otherwise, <c>false</c>.
@@ -60,7 +63,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Indicates whether the specified array is is not null nor empty.
 		/// </summary>
-		/// <param name="array">The collection to test.</param>
+		/// <typeparam name="T">Type of the array values</typeparam>
+		/// <param name="array">The array.</param>
 		/// <returns>
 		/// <c>true</c>, if the <paramref name="array"/> parameter is not null nor empty; otherwise, <c>false</c>.
 		/// </returns>
