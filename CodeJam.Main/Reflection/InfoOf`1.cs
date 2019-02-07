@@ -12,6 +12,7 @@ namespace CodeJam.Reflection
 	/// <summary>
 	/// Provides a helper class to get the property, field, ctor or method from an expression.
 	/// </summary>
+	/// <typeparam name="T">Type of object.</typeparam>
 	[PublicAPI]
 	public static class InfoOf<T>
 	{

@@ -18,6 +18,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateList<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, ICollection<TValue>> dict,
 			[NotNull] TKey key,
@@ -34,6 +37,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateList<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, IList<TValue>> dict,
 			[NotNull] TKey key,
@@ -50,6 +56,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateList<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, List<TValue>> dict,
 			[NotNull] TKey key,
@@ -70,6 +79,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateHashSet<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, ICollection<TValue>> dict,
 			[NotNull] TKey key,
@@ -87,6 +99,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateHashSet<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, ISet<TValue>> dict,
 			[NotNull] TKey key,
@@ -104,6 +119,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateHashSet<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, HashSet<TValue>> dict,
 			[NotNull] TKey key,
@@ -124,6 +142,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateCollection<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, ICollection<TValue>> dict,
 			[NotNull] TKey key,
@@ -142,6 +163,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateCollection<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, ISet<TValue>> dict,
 			[NotNull] TKey key,
@@ -160,6 +184,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateCollection<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, IList<TValue>> dict,
 			[NotNull] TKey key,
@@ -178,6 +205,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateCollection<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, List<TValue>> dict,
 			[NotNull] TKey key,
@@ -196,6 +226,9 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 		/// <typeparam name="TValue">The type of the values in collection in the dictionary.</typeparam>
+		/// <param name="dict">The dictionary</param>
+		/// <param name="key">The key</param>
+		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateCollection<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, HashSet<TValue>> dict,
 			[NotNull] TKey key,

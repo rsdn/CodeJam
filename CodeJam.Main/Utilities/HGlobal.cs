@@ -19,7 +19,6 @@ namespace CodeJam
 		/// <summary>
 		/// Create a new HGlobal with sizeof(<typeparam name="T"/>).
 		/// </summary>
-		/// <typeparam name="T">Type of the value.</typeparam>
 		/// <returns><see cref="HGlobalScope{T}"/> instance</returns>
 		[NotNull]
 		public static HGlobalScope<T> Create<T>() where T : struct => new HGlobalScope<T>();

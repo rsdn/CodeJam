@@ -14,6 +14,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Sorts the elements of a sequence in ascending order according to a key.
 		/// </summary>
+		/// <typeparam name="T">Type of elements in source.</typeparam>
 		/// <param name="source">A sequence of values to order.</param>
 		/// <param name="property">The property name.</param>
 		/// <returns>
@@ -26,6 +27,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Sorts the elements of a sequence in descending order according to a key.
 		/// </summary>
+		/// <typeparam name="T">Type of elements in source.</typeparam>
 		/// <param name="source">A sequence of values to order.</param>
 		/// <param name="property">The property name.</param>
 		/// <returns>
@@ -39,6 +41,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Performs a subsequent ordering of the elements in a sequence in ascending order according to a key.
 		/// </summary>
+		/// <typeparam name="T">Type of elements in source.</typeparam>
 		/// <param name="source">An <see cref="IOrderedEnumerable{TElement}"/> that contains elements to sort.</param>
 		/// <param name="property">The property name.</param>
 		/// <returns>

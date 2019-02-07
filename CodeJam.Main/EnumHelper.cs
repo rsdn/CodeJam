@@ -287,6 +287,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="TEnum">Enum type</typeparam>
 		/// <param name="value">Enum value.</param>
+		/// <returns>Enum value display name.</returns>
 		/// <remarks>
 		/// Returns description of enum value specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
 		/// specified.
@@ -301,6 +302,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="TEnum">Enum type</typeparam>
 		/// <param name="value">Enum value.</param>
+		/// <returns>Enum value description.</returns>
 		/// <remarks>
 		/// Returns description of enum value specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
 		/// specified.

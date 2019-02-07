@@ -108,6 +108,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="TKey">The type of the key.</typeparam>
 		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
 		/// <returns>The dictionary or <c>null</c> if the dictionary is <c>null</c>.</returns>
 		[Pure]
 		[NotNull]
