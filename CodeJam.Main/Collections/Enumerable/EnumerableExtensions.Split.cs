@@ -10,6 +10,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Splits the input sequence into a sequence of chunks of the specified size.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">The sequence to split into chunks.</param>
 		/// <param name="size">The size of the chunks.</param>
 		/// <returns>

@@ -11,12 +11,14 @@ namespace CodeJam.Reflection
 	/// <summary>
 	/// Provides a helper class to get the property, field, ctor or method from an expression.
 	/// </summary>
+	/// <typeparam name="T">Type of object.</typeparam>
 	[PublicAPI]
 	public static class InfoOf<T>
 	{
 		/// <summary>
 		/// Returns the property or field.
 		/// </summary>
+		/// <typeparam name="TValue">Member value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
@@ -28,6 +30,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the property.
 		/// </summary>
+		/// <typeparam name="TValue">Member value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
@@ -39,6 +42,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the field.
 		/// </summary>
+		/// <typeparam name="TValue">Member value.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
@@ -61,6 +65,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Returns the method.
 		/// </summary>
+		/// <typeparam name="TResult">Type of result.</typeparam>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.

@@ -3,6 +3,7 @@
 	/// <summary>
 	/// Builder type for argument assertions.
 	/// </summary>
+	/// <typeparam name="T">Type of the argument.</typeparam>
 	public struct ArgumentAssertion<T>
 	{
 		/// <summary>

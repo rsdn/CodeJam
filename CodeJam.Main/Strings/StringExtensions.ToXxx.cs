@@ -10,6 +10,7 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Culture invariant version of <see cref="IFormattable.ToString(string,System.IFormatProvider)"/>
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="s">Object to convert.</param>
 		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
 		[NotNull, Pure]
@@ -19,6 +20,7 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Culture invariant version of <see cref="IFormattable.ToString(string,System.IFormatProvider)"/>
 		/// </summary>
+		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="s">Object to convert.</param>
 		/// <param name="format">Format string</param>
 		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>

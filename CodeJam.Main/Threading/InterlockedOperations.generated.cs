@@ -432,6 +432,7 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <typeparam name="T">Type of value.</typeparam>
 		/// <param name="value">Value to change.</param>
 		/// <param name="updateCallback">Function to calculate new value.</param>
 		/// <returns>New value.</returns>
@@ -457,6 +458,7 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements lock-free update pattern implementation based on compare-and-swap loop
 		/// </summary>
+		/// <typeparam name="T">Type of value.</typeparam>
 		/// <param name="value">Value to change.</param>
 		/// <param name="newValue">Precalculated new value.</param>
 		/// <param name="updateCallback">Function to calculate new value.</param>

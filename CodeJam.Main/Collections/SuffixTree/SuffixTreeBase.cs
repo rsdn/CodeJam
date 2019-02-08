@@ -70,6 +70,8 @@ namespace CodeJam.Collections
 		protected struct StringLocation
 		{
 			/// <summary>Constructor</summary>
+			/// <param name="start">An edge start offset</param>
+			/// <param name="length">Length of location</param>
 			public StringLocation(int start, int length)
 			{
 				Start = start;
@@ -335,6 +337,8 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>Appends suffixes for the last added string</summary>
+		/// <param name="begin">An edge start offset</param>
+		/// <param name="end">An edge end offset</param>
 		protected abstract void BuildFor(int begin, int end);
 
 		/// <summary>Prints the tree structure to the string for the debugging purposes</summary>

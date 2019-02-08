@@ -9,6 +9,8 @@ namespace CodeJam.Collections
 	/// <summary>
 	/// Dictionary with lazy values initialization.
 	/// </summary>
+	/// <typeparam name="TKey">Type of key.</typeparam>
+	/// <typeparam name="TValue">Type of value.</typeparam>
 	[PublicAPI]
 	public class LazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue>
 	{

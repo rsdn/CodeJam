@@ -12,6 +12,7 @@ namespace CodeJam.Reflection
 	/// <summary>
 	/// Provides fast access to type and its members.
 	/// </summary>
+	/// <typeparam name="T">Type to access.</typeparam>
 	public class TypeAccessor<T> : TypeAccessor
 	{
 		static TypeAccessor()

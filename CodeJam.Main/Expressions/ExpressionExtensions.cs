@@ -1032,6 +1032,7 @@ namespace CodeJam.Expressions
 		/// <summary>
 		/// Transforms original expression.
 		/// </summary>
+		/// <typeparam name="T">Type of expression.</typeparam>
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>

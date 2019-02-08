@@ -11,6 +11,8 @@ namespace CodeJam.Collections
 	/// <summary>
 	/// Interval tree implementation.
 	/// </summary>
+	/// <typeparam name="T">Type of item.</typeparam>
+	/// <typeparam name="TKey">Type of key.</typeparam>
 	public class IntervalTree<T, TKey>
 	{
 		[NotNull] private readonly Range<T, TKey>[] _sortedRanges;
@@ -19,6 +21,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Initialize instance.
 		/// </summary>
+		/// <param name="source">Range to create tree from.</param>
 		public IntervalTree(CompositeRange<T, TKey> source)
 		{
 			_sortedRanges = source.SubRanges.ToArray();
@@ -81,6 +84,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Find intersection between specified range and source.
 		/// </summary>
+		/// <param name="intersection">Range for intersection test.</param>
+		/// <returns>List of intersected ranges.</returns>
 		[NotNull]
 		public List<Range<T, TKey>> Intersect(Range<T> intersection)
 		{

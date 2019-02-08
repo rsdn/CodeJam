@@ -14,8 +14,8 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements Provider-Consumer pattern.
 		/// </summary>
-		/// <typeparam name="TSource"></typeparam>
-		/// <typeparam name="TTarget"></typeparam>
+		/// <typeparam name="TSource">Type of source value</typeparam>
+		/// <typeparam name="TTarget">Type of target value</typeparam>
 		/// <param name="source">Incoming data.</param>
 		/// <param name="providerCount">Number of provider threads.</param>
 		/// <param name="providerFunc">Provider function</param>
@@ -58,8 +58,8 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements Provider-Consumer pattern.
 		/// </summary>
-		/// <typeparam name="TSource"></typeparam>
-		/// <typeparam name="TTarget"></typeparam>
+		/// <typeparam name="TSource">Type of source value</typeparam>
+		/// <typeparam name="TTarget">Type of target value</typeparam>
 		/// <param name="source">Incoming data.</param>
 		/// <param name="providerFunc">Provider function</param>
 		/// <param name="consumerCount">Number of consumer threads.</param>
@@ -76,8 +76,8 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements Provider-Consumer pattern.
 		/// </summary>
-		/// <typeparam name="TSource"></typeparam>
-		/// <typeparam name="TTarget"></typeparam>
+		/// <typeparam name="TSource">Type of source value</typeparam>
+		/// <typeparam name="TTarget">Type of target value</typeparam>
 		/// <param name="source">Incoming data.</param>
 		/// <param name="providerCount">Number of provider threads.</param>
 		/// <param name="providerFunc">Provider function</param>
@@ -94,8 +94,8 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Implements Provider-Consumer pattern.
 		/// </summary>
-		/// <typeparam name="TSource"></typeparam>
-		/// <typeparam name="TTarget"></typeparam>
+		/// <typeparam name="TSource">Type of source value</typeparam>
+		/// <typeparam name="TTarget">Type of target value</typeparam>
 		/// <param name="source">Incoming data.</param>
 		/// <param name="providerFunc">Provider function</param>
 		/// <param name="consumerAction">Consumer action.</param>
@@ -141,7 +141,7 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Runs in parallel actions for provided data source.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="T">Type of element in source</typeparam>
 		/// <param name="source">Source to run.</param>
 		/// <param name="parallelCount">number of threads to use.</param>
 		/// <param name="action">Action to run.</param>
@@ -168,7 +168,7 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// Runs in parallel actions for provided data source.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="T">Type of element in source</typeparam>
 		/// <param name="source">Source to run.</param>
 		/// <param name="action">Action to run.</param>
 		/// <param name="processName">Process name.</param>

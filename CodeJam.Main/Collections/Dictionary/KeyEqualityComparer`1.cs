@@ -9,6 +9,8 @@ namespace CodeJam.Collections
 	/// An implementation of the <see cref="IEqualityComparer{T}"/>
 	/// interface for compare values by comparing their extracted key values.
 	/// </summary>
+	/// <typeparam name="T">The type of the comparing elements.</typeparam>
+	/// <typeparam name="TKey">The type of the key.</typeparam>
 	[PublicAPI]
 	public sealed class KeyEqualityComparer<T, TKey> : IEqualityComparer<T>
 	{

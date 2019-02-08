@@ -63,6 +63,7 @@ namespace CodeJam
 		/// <summary>
 		/// The <see cref="IDisposable"/> implementation that calls supplied action on <see cref="Dispose"/>.
 		/// </summary>
+		/// <typeparam name="T">Disposable state type.</typeparam>
 		/// DONTTOUCH: DO NOT make it a struct, passing the structure by value will result in multiple Dispose() calls.
 		/// SEEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private sealed class AnonymousDisposable<T> : IDisposable
@@ -122,6 +123,7 @@ namespace CodeJam
 		/// <summary>
 		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
 		/// </summary>
+		/// <typeparam name="T">Disposable state type.</typeparam>
 		/// <param name="disposeAction">The dispose action.</param>
 		/// <param name="state">A value that contains data for the disposal action.</param>
 		/// <returns>

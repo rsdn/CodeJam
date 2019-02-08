@@ -10,6 +10,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Returns a flattened sequence from a graph or hierarchy of elements by using the specified children selector.
 		/// </summary>
+		/// <typeparam name="T">Type of elements in enumeration.</typeparam>
 		/// <param name="source">The source hierarchy to flatten.</param>
 		/// <param name="childrenSelector">A function used to retrieve the children of an element.</param>
 		/// <returns>

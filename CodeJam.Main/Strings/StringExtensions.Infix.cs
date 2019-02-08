@@ -193,6 +193,7 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Concatenates the members of a collection, using the specified separator between each member.
 		/// </summary>
+		/// <typeparam name="T">Type of value</typeparam>
 		/// <param name="values">A collection that contains the strings to concatenate.</param>
 		/// <param name="separator">
 		/// The string to use as a separator. <paramref name="separator"/> is included in the returned string only
@@ -211,6 +212,7 @@ namespace CodeJam.Strings
 		/// <summary>
 		/// Concatenates the members of a collection.
 		/// </summary>
+		/// <typeparam name="T">Type of value</typeparam>
 		/// <param name="values">A collection that contains the strings to concatenate.</param>
 		/// <returns>
 		/// A string that consists of the members of <paramref name="values"/>.

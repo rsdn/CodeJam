@@ -10,6 +10,7 @@ namespace CodeJam
 	/// <summary>
 	/// Wraps Marshal.AllocHGlobal and Marshal.FreeHGlobal using generic.
 	/// </summary>
+	/// <typeparam name="T">Type of the wrapped value behind.</typeparam>
 	[PublicAPI]
 	[SecurityCritical]
 	public class HGlobalScope<T> : HGlobalScope where T : struct

@@ -15,6 +15,8 @@ namespace CodeJam.Threading
 	/// <remarks>
 	/// Thread safe.
 	/// </remarks>
+	/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+	/// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
 	[PublicAPI]
 	public class ConcurrentLazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue>
 	{

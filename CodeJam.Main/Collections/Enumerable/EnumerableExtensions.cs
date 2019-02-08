@@ -15,6 +15,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Produces the set union of two sequences by using the default equality comparer.
 		/// </summary>
+		/// <typeparam name="T">The type of the elements.</typeparam>
 		/// <param name="source">An <see cref="IEnumerable{T}"/> whose distinct elements form the first set for the union.</param>
 		/// <param name="elements">An <see cref="IEnumerable{T}"/> whose distinct elements form the second set for the union.</param>
 		/// <returns>
@@ -87,7 +88,8 @@ namespace CodeJam.Collections
 			return PrependCore(source, element);
 		}
 
-		private static IEnumerable<T> PrependCore<T>(IEnumerable<T> source, T element)
+		[Pure, NotNull, LinqTunnel]
+		private static IEnumerable<T> PrependCore<T>([NotNull] IEnumerable<T> source, T element)
 		{
 			yield return element;
 			foreach (var item in source)
@@ -209,6 +211,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Returns a sequence with distinct elements from the input sequence based on the specified key.
 		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key .</typeparam>
 		/// <param name="source">The sequence to return distinct elements from.</param>
 		/// <param name="keySelector">A function to extract the key for each element.</param>
 		/// <returns>
@@ -223,6 +227,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Returns a sequence with distinct elements from the input sequence based on the specified key and key comparer.
 		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key .</typeparam>
 		/// <param name="source">The sequence to return distinct elements from.</param>
 		/// <param name="keySelector">A function to extract the key for each element.</param>
 		/// <param name="comparer">An <see cref="IEqualityComparer{T}"/> to compare values.</param>
@@ -239,6 +245,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Produces the set difference of two sequences by using the specified key to compare values.
 		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key .</typeparam>
 		/// <param name="first">An <see cref="IEnumerable{T}"/> whose elements that are not also in second will be returned.</param>
 		/// <param name="second">An <see cref="IEnumerable{T}"/> whose elements that also occur in the first sequence will cause those elements to be removed from the returned sequence.</param>
 		/// <param name="keySelector">A function to extract the key for each element.</param>
@@ -255,6 +263,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Produces the set difference of two sequences by using the specified key and <see cref="IEqualityComparer{T}"/> to compare values.
 		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key .</typeparam>
 		/// <param name="first">An <see cref="IEnumerable{T}"/> whose elements that are not also in second will be returned.</param>
 		/// <param name="second">An <see cref="IEnumerable{T}"/> whose elements that also occur in the first sequence will cause those elements to be removed from the returned sequence.</param>
 		/// <param name="keySelector">A function to extract the key for each element.</param>
@@ -273,6 +283,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Produces the set intersection of two sequences by using the specified key to compare values.
 		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key .</typeparam>
 		/// <param name="first">An <see cref="IEnumerable{T}"/> whose distinct elements that also appear in second will be returned.</param>
 		/// <param name="second">An <see cref="IEnumerable{T}"/> whose distinct elements that also appear in the first sequence will be returned.</param>
 		/// <param name="keySelector">A function to extract the key for each element.</param>
@@ -289,6 +301,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Produces the set intersection of two sequences by using the specified key and <see cref="IEqualityComparer{T}"/> to compare values.
 		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key .</typeparam>
 		/// <param name="first">An <see cref="IEnumerable{T}"/> whose distinct elements that also appear in second will be returned.</param>
 		/// <param name="second">An <see cref="IEnumerable{T}"/> whose distinct elements that also appear in the first sequence will be returned.</param>
 		/// <param name="keySelector">A function to extract the key for each element.</param>
@@ -307,6 +321,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Produces the set union of two sequences by using the specified key to compare values.
 		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key .</typeparam>
 		/// <param name="first">An <see cref="IEnumerable{T}"/> whose distinct elements form the first set for the union.</param>
 		/// <param name="second">An <see cref="IEnumerable{T}"/> whose distinct elements form the second set for the union.</param>
 		/// <param name="keySelector">A function to extract the key for each element.</param>
@@ -323,6 +339,8 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Produces the set union of two sequences by using the specified key and <see cref="IEqualityComparer{T}"/> to compare values.
 		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <typeparam name="TKey">The type of the key .</typeparam>
 		/// <param name="first">An <see cref="IEnumerable{T}"/> whose distinct elements form the first set for the union.</param>
 		/// <param name="second">An <see cref="IEnumerable{T}"/> whose distinct elements form the second set for the union.</param>
 		/// <param name="keySelector">A function to extract the key for each element.</param>

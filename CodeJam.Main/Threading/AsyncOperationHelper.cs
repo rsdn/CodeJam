@@ -68,6 +68,7 @@ namespace CodeJam.Threading
 		/// Invokes a <paramref name="runner"/> on the thread or context appropriate for the application model and returns
 		/// result.
 		/// </summary>
+		/// <typeparam name="T">Type of the value returned by <paramref name="runner"/></typeparam>
 		/// <param name="asyncOp"></param>
 		/// <param name="runner">
 		/// A <see cref="Func{TResult}"/> that wraps the delegate to be called when the operation ends.
