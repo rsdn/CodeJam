@@ -15,7 +15,7 @@ namespace CodeJam.Utilities
 			{
 				Assert.AreEqual(sizeof(int), h.Length);
 				Assert.NotNull(h.Data);
-				
+
 				Marshal.WriteInt32(h.Data, 100);
 				Assert.AreEqual(100, h.Value);
 			}

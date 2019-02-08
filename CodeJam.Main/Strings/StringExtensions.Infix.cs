@@ -240,6 +240,8 @@ namespace CodeJam.Strings
 		[Pure]
 		public static byte[] FromBase64([NotNull] this string str) => Convert.FromBase64String(str);
 
+#if !LESSTHAN_NETSTANDARD20
+
 		/// <summary>
 		/// Converts an array of bytes to its equivalent string representation that is encoded with base-64 digits.
 		/// A parameter specifies whether to insert line breaks in the return value.
@@ -256,6 +258,22 @@ namespace CodeJam.Strings
 			[NotNull] this byte[] data,
 			Base64FormattingOptions options = Base64FormattingOptions.None) =>
 				Convert.ToBase64String(data, options);
+
+#else
+
+		/// <summary>
+		/// Converts an array of bytes to its equivalent string representation that is encoded with base-64 digits.
+		/// A parameter specifies whether to insert line breaks in the return value.
+		/// </summary>
+		/// <param name="data">an array of bytes.</param>
+		/// <returns>The string representation in base 64 of the elements in <paramref name="data"/>.</returns>
+		[NotNull]
+		[Pure]
+		public static string ToBase64(
+			[NotNull] this byte[] data) =>
+				Convert.ToBase64String(data);
+
+#endif
 
 		/// <summary>
 		/// Encodes all the characters in the specified string into a sequence of bytes.

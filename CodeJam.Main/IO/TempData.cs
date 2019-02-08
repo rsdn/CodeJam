@@ -18,7 +18,11 @@ namespace CodeJam.IO
 		/// Contains logic to proof the removal will be performed even on resource leak.
 		/// </summary>
 		[PublicAPI]
-		public abstract class TempBase : CriticalFinalizerObject, IDisposable
+		public abstract class TempBase :
+#if !LESSTHAN_NETSTANDARD20
+			CriticalFinalizerObject,
+#endif
+			IDisposable
 		{
 			/// <summary>Checks that the path is valid.</summary>
 			/// <param name="path">The path.</param>
