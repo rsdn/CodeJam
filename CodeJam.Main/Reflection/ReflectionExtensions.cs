@@ -60,7 +60,8 @@ namespace CodeJam.Reflection
 				sb.Append(", ");
 
 				var index = -1;
-				var assemblyFullName = t.Assembly.FullName;
+
+				var assemblyFullName = t.GetAssembly().FullName;
 
 				while (true)
 				{
@@ -83,7 +84,7 @@ namespace CodeJam.Reflection
 
 			void WriteGenericArguments(StringBuilder sb, Type t)
 			{
-				DebugCode.AssertState(t.IsGenericType && !t.IsGenericTypeDefinition, "Invalid type");
+				DebugCode.AssertState(t.GetIsGenericType() && !t.GetIsGenericTypeDefinition(), "Invalid type");
 
 				sb.Append('[');
 
@@ -132,7 +133,7 @@ namespace CodeJam.Reflection
 
 			void Write(StringBuilder sb, Type t)
 			{
-				if (t.IsGenericType && !t.IsGenericTypeDefinition)
+				if (t.GetIsGenericType() && !t.GetIsGenericTypeDefinition())
 				{
 					WriteType(sb, t);
 					WriteGenericArguments(sb, t);
@@ -175,7 +176,7 @@ namespace CodeJam.Reflection
 		public static bool IsInstantiable([NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
-			return !(type.IsAbstract || type.IsInterface || type.IsArray || type.ContainsGenericParameters);
+			return !(type.GetIsAbstract() || type.GetIsInterface() || type.IsArray || type.GetContainsGenericParameters());
 		}
 
 		/// <summary>
@@ -189,7 +190,7 @@ namespace CodeJam.Reflection
 		public static bool IsStatic([NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
-			return type.IsClass && type.IsAbstract && type.IsSealed;
+			return type.GetIsClass() && type.GetIsAbstract() && type.GetIsSealed();
 		}
 
 		/// <summary>
@@ -203,7 +204,7 @@ namespace CodeJam.Reflection
 		public static bool IsNullable([NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
-			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+			return type.GetIsGenericType() && type.GetGenericTypeDefinition() == typeof(Nullable<>);
 		}
 
 		/// <summary>
@@ -304,7 +305,7 @@ namespace CodeJam.Reflection
 		public static bool IsNullableEnum([NotNull] this Type type)
 		{
 			var arg = Nullable.GetUnderlyingType(type);
-			return arg != null && arg.IsEnum;
+			return arg != null && arg.GetIsEnum();
 		}
 
 		/// <summary>
@@ -329,13 +330,13 @@ namespace CodeJam.Reflection
 
 			while (true)
 			{
-				if (check.IsInterface)
+				if (check.GetIsInterface())
 					// ReSharper disable once LoopCanBeConvertedToQuery
 					foreach (var interfaceType in type.GetInterfaces())
 						if (interfaceType == check || interfaceType.IsSubClass(check))
 							return true;
 
-				if (type.IsGenericType && !type.IsGenericTypeDefinition)
+				if (type.GetIsGenericType() && !type.GetIsGenericTypeDefinition())
 				{
 					var definition = type.GetGenericTypeDefinition();
 					DebugCode.BugIf(definition == null, "definition == null");
@@ -343,7 +344,7 @@ namespace CodeJam.Reflection
 						return true;
 				}
 
-				type = type.BaseType;
+				type = type.GetBaseType();
 
 				if (type == null)
 					return false;
@@ -387,7 +388,7 @@ namespace CodeJam.Reflection
 			Code.NotNull(type, nameof(type));
 
 			type = Nullable.GetUnderlyingType(type) ?? type;
-			return type.IsEnum ? Enum.GetUnderlyingType(type) : type;
+			return type.GetIsEnum() ? Enum.GetUnderlyingType(type) : type;
 		}
 
 		/// <summary>
@@ -423,7 +424,7 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 
-			return type.IsEnum ? Enum.GetUnderlyingType(type) : type;
+			return type.GetIsEnum() ? Enum.GetUnderlyingType(type) : type;
 		}
 
 		/// <summary>
@@ -473,11 +474,11 @@ namespace CodeJam.Reflection
 			Code.NotNull(type, nameof(type));
 
 			return
-				!type.IsPublic &&
-				 type.IsGenericType &&
+				!type.GetIsPublic() &&
+				 type.GetIsGenericType() &&
 				(type.Name.StartsWith("<>f__AnonymousType", StringComparison.Ordinal) ||
 				 type.Name.StartsWith("VB$AnonymousType", StringComparison.Ordinal) &&
-				Attribute.IsDefined(type, typeof(CompilerGeneratedAttribute), false));
+				 type.GetIsDefined(typeof(CompilerGeneratedAttribute), false));
 		}
 
 		/// <summary>
@@ -529,7 +530,7 @@ namespace CodeJam.Reflection
 				if (type == typeof(object))
 					return null;
 
-				if (type.IsGenericType)
+				if (type.GetIsGenericType())
 					foreach (var aType in type.GetGenericArguments())
 						if (typeof(IEnumerable<>).MakeGenericType(aType).IsAssignableFrom(type))
 							return aType;
@@ -545,7 +546,7 @@ namespace CodeJam.Reflection
 							return eType;
 					}
 
-				type = type.BaseType;
+				type = type.GetBaseType();
 			}
 		}
 	}

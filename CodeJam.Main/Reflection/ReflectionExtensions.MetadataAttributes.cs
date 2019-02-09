@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -351,3 +352,4 @@ namespace CodeJam.Reflection
 		#endregion
 	}
 }
+#endif
