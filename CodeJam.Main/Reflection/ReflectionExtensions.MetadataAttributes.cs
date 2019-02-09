@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -24,7 +25,6 @@ namespace CodeJam.Reflection
 			public int GetHashCode(Type obj) => obj.TypeHandle.GetHashCode();
 		}
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 		private sealed class MethodMethodHandleComparer : IEqualityComparer<MethodInfo>
 		{
 			public bool Equals(MethodInfo x, MethodInfo y) =>
@@ -32,17 +32,13 @@ namespace CodeJam.Reflection
 
 			public int GetHashCode(MethodInfo obj) => obj.MethodHandle.GetHashCode();
 		}
-#endif
-
 		// DONTTOUCH: Direct compare may result in false negative.
 		// See http://stackoverflow.com/questions/27645408 for explanation.
 		[NotNull]
 		private static readonly IEqualityComparer<Type> _typeComparer = new TypeTypeHandleComparer();
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 		[NotNull]
 		private static readonly IEqualityComparer<MethodInfo> _methodComparer = new MethodMethodHandleComparer();
-#endif
 
 		/// <summary>
 		/// Performs search for metadata attribute.
@@ -229,8 +225,6 @@ namespace CodeJam.Reflection
 			}
 		}
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-
 		#region Get override chain
 		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChain(this MemberInfo member) =>
@@ -311,9 +305,7 @@ namespace CodeJam.Reflection
 			return result.ToArray();
 		}
 		#endregion
-
-#endif
-
+		
 		#region GetAttributesFromCandidates
 		private static readonly AttributeUsageAttribute _defaultUsage = new AttributeUsageAttribute(AttributeTargets.All);
 
@@ -358,8 +350,6 @@ namespace CodeJam.Reflection
 			return result.ToArray();
 		}
 
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-
 		// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Attribute.cs#L28
 		// Behavior matches the Attribute.InternalGetCustomAttributes() method.
 		[NotNull, ItemNotNull]
@@ -395,8 +385,8 @@ namespace CodeJam.Reflection
 			}
 			return result.ToArray();
 		}
-#endif
 
 		#endregion
 	}
 }
+#endif

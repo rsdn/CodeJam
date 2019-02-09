@@ -71,7 +71,7 @@ namespace CodeJam.Reflection
 								if (i == infos.Length - 1)
 									return Expression.Assign(ret, next);
 
-								if (next.Type.IsClass || next.Type.IsNullable())
+								if (next.Type.GetIsClass() || next.Type.IsNullable())
 								{
 									var local = Expression.Variable(next.Type);
 
@@ -126,7 +126,7 @@ namespace CodeJam.Reflection
 									}
 									else
 									{
-										if (next.Type.IsClass || next.Type.IsNullable())
+										if (next.Type.GetIsClass() || next.Type.IsNullable())
 										{
 											var local = Expression.Variable(next.Type);
 
@@ -257,7 +257,7 @@ namespace CodeJam.Reflection
 			if (_defaultValues.TryGetValue(type, out var value))
 				return value;
 
-			if (!type.IsClass && !type.IsNullable())
+			if (!type.GetIsClass() && !type.IsNullable())
 			{
 				var mi = InfoOf.Method(() => GetDefaultValue<int>());
 

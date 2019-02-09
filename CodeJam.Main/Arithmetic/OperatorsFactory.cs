@@ -31,7 +31,7 @@ namespace CodeJam.Arithmetic
 			}
 
 			var result = argType;
-			if (temp.IsEnum)
+			if (temp.GetIsEnum())
 			{
 				result = Enum.GetUnderlyingType(temp);
 				if (nullable)
@@ -260,7 +260,7 @@ namespace CodeJam.Arithmetic
 			if (t == typeof(string))
 				return (Func<T, T, int>)(object)(Func<string, string, int>)string.CompareOrdinal;
 
-			if (t.IsEnum)
+			if (t.GetIsEnum())
 				return EnumComparison<T>(false);
 
 			if (t.IsNullableEnum())

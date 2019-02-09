@@ -2,6 +2,8 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
+using CodeJam;
+
 using JetBrains.Annotations;
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 using System.Collections.Generic;
@@ -9,14 +11,13 @@ using System.Linq;
 #endif
 
 // ReSharper disable once CheckNamespace
-namespace CodeJam
+namespace System
 {
 	/// <summary>
 	/// Extension methods for <see cref="System.Type"/>
 	/// </summary>
 	internal static class TypeExtensions
 	{
-		[NotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static Assembly GetAssembly([NotNull] this Type type)
 		{
@@ -201,7 +202,7 @@ namespace CodeJam
 			return Attribute.IsDefined(type, attributeType, inherit);
 #endif
 		}
-		
+
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool GetIsArray([NotNull] this Type type)
 		{
@@ -212,7 +213,17 @@ namespace CodeJam
 #endif
 		}
 
-		[NotNull]
+
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static PropertyInfo GetProperty<T>([NotNull] this Type type, [NotNull] string propertyName)
+		{
+#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+			return type.GetTypeInfo().GetProperty(propertyName);
+#else
+			return type.GetProperty(propertyName);
+#endif
+		}
+
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static T GetPropertyValue<T>([NotNull] this Type type, [NotNull] string propertyName, object target)
 		{
@@ -236,7 +247,6 @@ namespace CodeJam
 #endif
 		}
 
-		[NotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static T GetFieldValue<T>([NotNull] this Type type, [NotNull] string fieldName, object target)
 		{
@@ -292,7 +302,7 @@ namespace CodeJam
 			}
 		}
 
-		[NotNull]
+		[NotNull, ItemNotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static Type[] GetGenericArguments([NotNull] this Type type) => type.GetTypeInfo().GenericTypeArguments;
 
@@ -303,25 +313,29 @@ namespace CodeJam
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool GetIsSubclassOf([NotNull] this Type type, [NotNull] Type c) => type.GetTypeInfo().IsSubclassOf(c);
 
-		[NotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static T GetCustomAttribute<T>([NotNull] this Type type) where T : Attribute
 			=> type.GetTypeInfo().GetCustomAttribute<T>();
 
-		[NotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static T GetCustomAttribute<T>([NotNull] this Type type, bool inherit) where T : Attribute
 			=> type.GetTypeInfo().GetCustomAttribute<T>(inherit);
 
-		[NotNull]
+		[NotNull, ItemNotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static Attribute[] GetCustomAttributes([NotNull] this Type type)
 			=> type.GetTypeInfo().GetCustomAttributes().ToArray();
 
-		[NotNull]
+		[NotNull, ItemNotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static Attribute[] GetCustomAttributes([NotNull] this Type type, Type attributeType, bool inherit)
 			=> type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).ToArray();
+
+
+		[NotNull]
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static InterfaceMapping GetInterfaceMap([NotNull] this Type type, Type interfaceType)
+			=> type.GetTypeInfo().GetRuntimeInterfaceMap(interfaceType);
 #endif
 	}
 }

@@ -78,8 +78,8 @@ namespace CodeJam
 							writer.WriteLine("Fusion log is empty or disabled.");
 						else
 							writer.Write(fex.FusionLog);
-						break;
 #endif
+						break;
 
 					case AggregateException aex when aex.InnerExceptions != null:
 						var foundInnerException = false;
@@ -151,8 +151,8 @@ namespace CodeJam
 							await writer.WriteLineAsync("Fusion log is empty or disabled.");
 						else
 							await writer.WriteAsync(fex.FusionLog);
-						break;
 #endif
+						break;
 
 					case AggregateException aex when aex.InnerExceptions != null:
 						var foundInnerException = false;

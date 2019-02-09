@@ -66,7 +66,7 @@ namespace CodeJam
 		internal EnumValues([NotNull] Type enumType)
 		{
 			Code.NotNull(enumType, nameof(enumType));
-			if (!enumType.IsEnum)
+			if (!enumType.GetIsEnum())
 				throw CodeExceptions.Argument(nameof(enumType), $"The {nameof(enumType)} ({enumType}) arg should be a enum type.");
 			EnumType = enumType;
 			_values = GetValues(enumType);

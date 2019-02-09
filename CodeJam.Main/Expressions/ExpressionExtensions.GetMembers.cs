@@ -227,7 +227,7 @@ namespace CodeJam.Expressions
 							var member = ((MemberExpression)expr).Member;
 							var mType = member.GetMemberType();
 
-							if (lastMember.ReflectedType != mType.GetItemType())
+							if (lastMember.GetReflectedType() != mType.GetItemType())
 								goto default;
 
 							expression = expr;
