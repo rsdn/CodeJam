@@ -13,7 +13,7 @@ namespace CodeJam
 	[PublicAPI]
 	[SecurityCritical]
 	public class HGlobalScope :
-#if !LESSTHAN_NETSTANDARD20
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 		CriticalFinalizerObject,
 #endif
 		IDisposable

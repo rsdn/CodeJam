@@ -125,8 +125,6 @@ namespace CodeJam.Collections
 		/// <paramref name="length" /> is greater than the number of elements from <paramref name="sourceIndex" /> to the end of <paramref name="sourceArray" />.-or-<paramref name="length" /> is greater than the number of elements from <paramref name="destinationIndex" /> to the end of <paramref name="destinationArray" />.</exception>
 		public static void ConstrainedCopy([NotNull] this Array sourceArray, int sourceIndex, [NotNull] Array destinationArray, int destinationIndex, int length) => Array.ConstrainedCopy(sourceArray, sourceIndex, destinationArray, destinationIndex, length);
 
-#if !LESSTHAN_NETSTANDARD20
-
 		/// <summary>Converts an array of one type to an array of another type.</summary>
 		/// <returns>An array of the target type containing the converted elements from the source array.</returns>
 		/// <param name="array">The one-dimensional, zero-based <see cref="Array" /> to convert to a target type.</param>
@@ -137,8 +135,6 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.-or-<paramref name="converter" /> is null.</exception>
 		[NotNull, Pure]
 		public static TOutput[] ConvertAll<TInput, TOutput>([NotNull] this TInput[] array, [NotNull, InstantHandle] Converter<TInput, TOutput> converter) => Array.ConvertAll(array, converter);
-
-#endif
 
 		#region Copy
 

@@ -42,15 +42,11 @@ namespace CodeJam
 		[NotNull]
 		public static Func<T, T> Self => SelfValue.Value;
 
-#if !LESSTHAN_NETSTANDARD20
-
 		/// <summary>
 		/// Gets the function that returns the same object which was passed as parameter.
 		/// </summary>
 		[NotNull]
 		public static Converter<T, T> SelfConverter => SelfConverterValue.Value;
-
-#endif
 
 		/// <summary>
 		/// Gets the function that returns <c>true</c> if an object is <c>null</c>.
@@ -119,8 +115,6 @@ namespace CodeJam
 			[NotNull] public static readonly Func<T, T> Value = Methods.Instance.GetSelf;
 		}
 
-#if !LESSTHAN_NETSTANDARD20
-
 		private static class SelfConverterValue
 		{
 			/// <summary>
@@ -128,8 +122,6 @@ namespace CodeJam
 			/// </summary>
 			[NotNull] public static readonly Converter<T, T> Value = Methods.Instance.GetSelf;
 		}
-
-#endif
 
 		private static class IsNullValue
 		{

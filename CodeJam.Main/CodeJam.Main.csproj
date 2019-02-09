@@ -75,10 +75,13 @@
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
 		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
 		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
+		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+		<PackageReference Include="System.Reflection" Version="4.3.0" />
 		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
 		<PackageReference Include="System.Runtime" Version="4.3.0" />
 		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
+		<PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
 		<PackageReference Include="Theraot.Core" Version="3.0.1" />
 	</ItemGroup>
 	<!-- #endregion -->

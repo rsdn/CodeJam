@@ -73,11 +73,14 @@ namespace CodeJam
 
 						writer.WriteLine($"File Name: {fex.FileName}");
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 						if (fex.FusionLog.IsNullOrEmpty())
 							writer.WriteLine("Fusion log is empty or disabled.");
 						else
 							writer.Write(fex.FusionLog);
 						break;
+#endif
+
 					case AggregateException aex when aex.InnerExceptions != null:
 						var foundInnerException = false;
 
@@ -143,11 +146,14 @@ namespace CodeJam
 
 						await writer.WriteLineAsync($"File Name: {fex.FileName}");
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 						if (fex.FusionLog.IsNullOrEmpty())
 							await writer.WriteLineAsync("Fusion log is empty or disabled.");
 						else
 							await writer.WriteAsync(fex.FusionLog);
 						break;
+#endif
+
 					case AggregateException aex when aex.InnerExceptions != null:
 						var foundInnerException = false;
 

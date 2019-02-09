@@ -19,7 +19,7 @@ namespace CodeJam.IO
 		/// </summary>
 		[PublicAPI]
 		public abstract class TempBase :
-#if !LESSTHAN_NETSTANDARD20
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 			CriticalFinalizerObject,
 #endif
 			IDisposable

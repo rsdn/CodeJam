@@ -30,7 +30,7 @@ namespace CodeJam
 		{
 		}
 
-#pragma warning disable 618  'Marshal.SizeOf(Type)', 'Marshal.PtrToStructure(IntPtr, Type)' are obsolete
+#pragma warning disable 618 // 'Marshal.SizeOf(Type)', 'Marshal.PtrToStructure(IntPtr, Type)' are obsolete
 
 		/// <summary>
 		/// Value

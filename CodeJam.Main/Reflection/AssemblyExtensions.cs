@@ -15,6 +15,8 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public static class AssemblyExtensions
 	{
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+
 		/// <summary>
 		/// Checks that the assembly is build with <see cref="DebuggableAttribute.IsJITOptimizerDisabled"/>
 		/// set to <c>false</c>.
@@ -27,6 +29,7 @@ namespace CodeJam.Reflection
 			Code.NotNull(assembly, nameof(assembly));
 			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
 		}
+#endif
 
 		/// <summary>
 		/// Loads the specified manifest resource from this assembly, and checks if it exists.

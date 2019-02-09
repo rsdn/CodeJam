@@ -240,7 +240,7 @@ namespace CodeJam.Strings
 		[Pure]
 		public static byte[] FromBase64([NotNull] this string str) => Convert.FromBase64String(str);
 
-#if !LESSTHAN_NETSTANDARD20
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 
 		/// <summary>
 		/// Converts an array of bytes to its equivalent string representation that is encoded with base-64 digits.
