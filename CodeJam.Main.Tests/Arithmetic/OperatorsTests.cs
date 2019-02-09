@@ -300,8 +300,13 @@ namespace CodeJam.Arithmetic
 		public void Test02NullableComparisonOperators()
 		{
 			Assert.AreNotEqual(
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 				1.CompareTo(null) > 0,
+#else
+				Comparer<object>.Default.Compare(1, null) > 0,
+#endif
 				Operators<int?>.GreaterThan(1, null));
+
 
 			Assert.AreEqual(
 #pragma warning disable CS0464 // Comparing with null of struct type always produces 'false'

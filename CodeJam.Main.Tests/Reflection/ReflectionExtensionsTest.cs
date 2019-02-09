@@ -93,6 +93,7 @@ namespace CodeJam.Reflection
 			new object[] {typeof(WithoutNsTestClass), "WithoutNsTestClass, CodeJam.Tests" }
 		};
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 		[Test]
 		public void IsDebugAssemblyTest()
 		{
@@ -102,8 +103,9 @@ namespace CodeJam.Reflection
 			const bool isDebug = false;
 #endif
 			// ReSharper disable once ConditionIsAlwaysTrueOrFalse
-			Assert.AreEqual(typeof(ReflectionExtensionsTest).Assembly.IsDebugAssembly(), isDebug);
+			Assert.AreEqual(typeof(ReflectionExtensionsTest).GetAssembly().IsDebugAssembly(), isDebug);
 		}
+#endif
 
 		[TestCaseSource(nameof(_source))]
 		public void GetShortAssemblyQualifiedNameTest([NotNull] Type type, [NotNull] string expected)

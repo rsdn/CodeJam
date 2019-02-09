@@ -287,19 +287,6 @@ namespace System
 		}
 
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-		[NotNull]
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
-		public static IEnumerable<MethodInfo> GetMethods(this Type someType)
-		{
-			var t = someType;
-			while (t != null)
-			{
-				var ti = t.GetTypeInfo();
-				foreach (var m in ti.DeclaredMethods)
-					yield return m;
-				t = ti.BaseType;
-			}
-		}
 
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool GetIsAssignableFrom([NotNull] this Type type, [NotNull] Type otherType)

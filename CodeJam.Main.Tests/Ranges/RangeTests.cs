@@ -218,8 +218,13 @@ namespace CodeJam.Ranges
 			AreEqual(Range.CreateExclusive(value1, empty, 3).ToString("000"), "'3':(001..+∞)");
 			AreEqual(Range.Create((int?)1, null, key).ToString(), "'Hello!':[1..+∞)");
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 			var cultureRu = CultureInfo.GetCultureInfo("ru-RU");
 			var cultureEn = CultureInfo.GetCultureInfo("en-US");
+#else
+			var cultureRu = new CultureInfo("ru-RU");
+			var cultureEn = new CultureInfo("en-US");
+#endif
 			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureRu), "'1,1':[001,500..002,500]");
 			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureEn), "'1.1':[001.500..002.500]");
 			AreEqual(Range.Create(1.5, 2.5, (string)null).ToString(null, cultureRu), "'':[1,5..2,5]");
