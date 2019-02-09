@@ -32,13 +32,13 @@ CodeJam.PerfTests is performance testing framework for .Net projects.
 It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods
 with timing limits and to check the limits each time the test is run.
 
-### .NET Standard 1.6  support
+### .NET Standard 1.6, 1.5 support
 Almost all features are supported.
-CodeJam.Reflection is partially implemented.
+CodeJam.Reflection lacks few methods.
 
 ### .NET Core 1.1, 1.0 support
 Almost all features are supported.
-CodeJam.Reflection is partially implemented.
+CodeJam.Reflection lacks few methods.
 
 ### .NET Framework 2.0 support
 .NET Framework 2.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:

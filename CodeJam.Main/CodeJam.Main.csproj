@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;netstandard2.0;netstandard1.6</TargetFrameworks>
+		<TargetFrameworks>net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;netstandard2.0;netstandard1.6;netstandard1.5</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<PackageId>CodeJam</PackageId>
@@ -72,6 +72,48 @@
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
+		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
+		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+		<PackageReference Include="System.Reflection" Version="4.3.0" />
+		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+		<PackageReference Include="System.Runtime" Version="4.3.0" />
+		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
+		<PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
+		<PackageReference Include="Theraot.Core" Version="3.0.1" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
+		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
+		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+		<PackageReference Include="System.Reflection" Version="4.3.0" />
+		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+		<PackageReference Include="System.Runtime" Version="4.3.0" />
+		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
+		<PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
+		<PackageReference Include="Theraot.Core" Version="3.0.1" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
+		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
+		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+		<PackageReference Include="System.Reflection" Version="4.3.0" />
+		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+		<PackageReference Include="System.Runtime" Version="4.3.0" />
+		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
+		<PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
+		<PackageReference Include="Theraot.Core" Version="3.0.1" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
 		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
 		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
