@@ -1,4 +1,4 @@
-﻿#if !LESSTHAN_NET40 && !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+﻿#if !LESSTHAN_NET40
 using System;
 using System.Linq;
 using System.Linq.Expressions;

@@ -1,6 +1,4 @@
-﻿#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-
-using System;
+﻿using System;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -63,5 +61,3 @@ namespace CodeJam.Collections
 		}
 	}
 }
-
-#endif
