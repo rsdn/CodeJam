@@ -12,10 +12,10 @@ namespace CodeJam
 		public static readonly string TargetPlatform =
 			typeof(PlatformDependent).Assembly.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName;
 
-		/// <summary>MethodImplOptions.AggressiveInlining or 0, if not supported by target platform</summary>
+		/// <summary>MethodImplOptions.AggressiveInlining or explicit value if not supported by target platform to allow inlining when running on higher framework</summary>
 		public const MethodImplOptions AggressiveInlining =
 #if LESSTHAN_NET45
-			0;
+			(MethodImplOptions)256;
 #else
 			MethodImplOptions.AggressiveInlining;
 #endif
