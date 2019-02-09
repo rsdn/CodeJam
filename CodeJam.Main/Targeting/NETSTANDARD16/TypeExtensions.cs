@@ -201,6 +201,16 @@ namespace CodeJam
 			return Attribute.IsDefined(type, attributeType, inherit);
 #endif
 		}
+		
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static bool GetIsArray([NotNull] this Type type)
+		{
+#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+			return type.GetTypeInfo().IsArray;
+#else
+			return type.IsArray;
+#endif
+		}
 
 		[NotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
@@ -315,5 +325,3 @@ namespace CodeJam
 #endif
 	}
 }
-
-#endif

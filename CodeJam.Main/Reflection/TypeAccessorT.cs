@@ -21,20 +21,20 @@ namespace CodeJam.Reflection
 			//
 			var type = typeof(T);
 
-			if (type.IsValueType)
+			if (type.GetIsValueType())
 			{
 				CreateInstanceExpression = () => default;
 				_createInstance          = () => default;
 			}
 			else
 			{
-				var ctor = type.IsAbstract ? null : type.GetDefaultConstructor();
+				var ctor = type.GetIsAbstract() ? null : type.GetDefaultConstructor();
 
 				if (ctor == null)
 				{
 					Expression<Func<T>> mi;
 
-					if (type.IsAbstract) mi = () => ThrowAbstractException();
+					if (type.GetIsAbstract()) mi = () => ThrowAbstractException();
 					else                 mi = () => ThrowException();
 
 					var body = Expression.Call(null, ((MethodCallExpression)mi.Body).Method);
@@ -61,7 +61,7 @@ namespace CodeJam.Reflection
 			// Add explicit interface implementation properties support
 			// Or maybe we should support all private fields/properties?
 			//
-			if (!type.IsInterface && !type.IsArray)
+			if (!type.GetIsInterface() && !type.GetIsArray())
 			{
 				var interfaceMethods = type.GetInterfaces().SelectMany(ti => type.GetInterfaceMap(ti).TargetMethods).ToList();
 

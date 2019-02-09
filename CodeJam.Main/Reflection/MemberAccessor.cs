@@ -52,7 +52,7 @@ namespace CodeJam.Reflection
 				MemberInfo = lastInfo.member;
 				Type       = lastInfo.type;
 
-				var checkNull = infos.Take(infos.Length - 1).Any(info => info.type.IsClass || info.type.IsNullable());
+				var checkNull = infos.Take(infos.Length - 1).Any(info => info.type.GetIsClass() || info.type.IsNullable());
 
 				// Build getter.
 				//

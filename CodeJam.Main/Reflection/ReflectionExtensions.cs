@@ -494,11 +494,15 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 			var info = type.GetConstructor(
 				BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
 				null,
 				Type.EmptyTypes,
 				null);
+#else
+			var info = type.GetTypeInfo().GetConstructor(Type.EmptyTypes);
+#endif
 
 			if (info == null && exceptionIfNotExists)
 			{
