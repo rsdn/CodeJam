@@ -213,9 +213,8 @@ namespace System
 #endif
 		}
 
-
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
-		public static PropertyInfo GetProperty<T>([NotNull] this Type type, [NotNull] string propertyName)
+		public static PropertyInfo GetProperty([NotNull] this Type type, [NotNull] string propertyName)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 			return type.GetTypeInfo().GetProperty(propertyName);
@@ -301,10 +300,6 @@ namespace System
 				t = ti.BaseType;
 			}
 		}
-
-		[NotNull, ItemNotNull]
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
-		public static Type[] GetGenericArguments([NotNull] this Type type) => type.GetTypeInfo().GenericTypeArguments;
 
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool GetIsAssignableFrom([NotNull] this Type type, [NotNull] Type otherType)

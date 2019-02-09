@@ -172,6 +172,8 @@ namespace CodeJam.Expressions
 			return name;
 		}
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/>.
 		/// </summary>
@@ -227,7 +229,7 @@ namespace CodeJam.Expressions
 							var member = ((MemberExpression)expr).Member;
 							var mType = member.GetMemberType();
 
-							if (lastMember.GetReflectedType() != mType.GetItemType())
+							if (lastMember.ReflectedType != mType.GetItemType())
 								goto default;
 
 							expression = expr;
@@ -264,6 +266,6 @@ namespace CodeJam.Expressions
 			}
 		}
 
-
+#endif
 	}
 }

@@ -75,11 +75,18 @@ namespace CodeJam.Ranges
 					.GetMethod(nameof(Format), bf)
 					.MakeGenericMethod(typeof(T));
 				// no boxing for IFormatProvider
-				var res =
-					(Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
+				var res = (Func<T, string, IFormatProvider, string>)
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+					Delegate.CreateDelegate(
 						typeof(Func<T, string, IFormatProvider, string>),
 						method,
 						true);
+#else
+					method.CreateDelegate(
+						typeof(Func<T, string, IFormatProvider, string>),
+						typeof(RangeInternal));
+#endif
+
 				DebugCode.BugIf(res == null, "res == null");
 				return res;
 			}
@@ -90,10 +97,17 @@ namespace CodeJam.Ranges
 					.GetMethod(nameof(FormatNullable), bf)
 					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
 				// no boxing for IFormatProvider
-				var res = (Func<T, string, IFormatProvider, string>)Delegate.CreateDelegate(
-					typeof(Func<T, string, IFormatProvider, string>),
-					method,
-					true);
+				var res = (Func<T, string, IFormatProvider, string>)
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+					Delegate.CreateDelegate(
+						typeof(Func<T, string, IFormatProvider, string>),
+						method,
+						true);
+#else
+					method.CreateDelegate(
+						typeof(Func<T, string, IFormatProvider, string>),
+						typeof(RangeInternal));
+#endif
 				DebugCode.BugIf(res == null, "res == null");
 				return res;
 			}
