@@ -33,9 +33,11 @@ It allows to compare multiple implementations by execution time (*~memory limits
 with timing limits and to check the limits each time the test is run.
 
 ### .NET Standard 1.6  support
+Almost all features are supported.
 CodeJam.Reflection is partially implemented.
 
-### .NET Core 1.1 support
+### .NET Core 1.1, 1.0 support
+Almost all features are supported.
 CodeJam.Reflection is partially implemented.
 
 ### .NET Framework 2.0 support

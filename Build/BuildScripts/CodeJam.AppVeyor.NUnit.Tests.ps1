@@ -41,7 +41,7 @@ foreach ($target in $targetsDotNet) {
 #}
 
 #run .net core tests
-$targetsDotNetCore = "netcoreapp2.0","netcoreapp1.1"
+$targetsDotNetCore = "netcoreapp2.0","netcoreapp1.1","netcoreapp1.0"
 foreach ($target in $targetsDotNetCore) {
 	$a = (gci -include $include -r | `
 		where { $_.fullname -match "\\bin\\Release\\$($target)" -and $_.fullname -notmatch $exclude } | `
