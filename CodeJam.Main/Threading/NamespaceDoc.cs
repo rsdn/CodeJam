@@ -1,8 +1,5 @@
 ﻿using System;
-
-#if DEBUG
 using System.Runtime.CompilerServices;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.Threading
@@ -15,4 +12,3 @@ namespace CodeJam.Threading
 	internal class NamespaceDoc
 	{ }
 }
-#endif

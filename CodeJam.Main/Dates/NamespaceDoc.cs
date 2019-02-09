@@ -1,8 +1,5 @@
-﻿#if DEBUG
-using System;
-
+﻿using System;
 using System.Runtime.CompilerServices;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.Dates
@@ -19,4 +16,3 @@ namespace CodeJam.Dates
 	internal class NamespaceDoc
 	{ }
 }
-#endif

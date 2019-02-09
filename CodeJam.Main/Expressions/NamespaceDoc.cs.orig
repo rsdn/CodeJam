@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+﻿#if DEBUG
+using System;
+=======
 ﻿using System;
+>>>>>>> base/master
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
@@ -14,3 +19,7 @@ namespace CodeJam.Expressions
 	internal class NamespaceDoc
 	{}
 }
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> base/master

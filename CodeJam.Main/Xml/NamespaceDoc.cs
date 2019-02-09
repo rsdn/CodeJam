@@ -1,5 +1,4 @@
-﻿#if DEBUG
-using System;
+﻿using System;
 
 using System.Runtime.CompilerServices;
 
@@ -15,4 +14,3 @@ namespace CodeJam.Xml
 	internal class NamespaceDoc
 	{ }
 }
-#endif
