@@ -1,8 +1,5 @@
 ﻿using System;
-
-#if DEBUG
 using System.Runtime.CompilerServices;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.Arithmetic
@@ -16,4 +13,3 @@ namespace CodeJam.Arithmetic
 	internal class NamespaceDoc
 	{ }
 }
-#endif
