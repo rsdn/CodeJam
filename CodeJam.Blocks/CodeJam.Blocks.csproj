@@ -48,13 +48,13 @@
 		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NET40\ValueTuple\TupleElementNamesAttribute.cs">
+		<Compile Include="..\CodeJam.Main\Targeting\ValueTuple\TupleElementNamesAttribute.cs">
 			<Link>Targeting\ValueTuple\TupleElementNamesAttribute.cs</Link>
 		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NET40\ValueTuple\TupleExtensions.cs">
+		<Compile Include="..\CodeJam.Main\Targeting\ValueTuple\TupleExtensions.cs">
 			<Link>Targeting\ValueTuple\TupleExtensions.cs</Link>
 		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NET40\ValueTuple\ValueTuple.cs">
+		<Compile Include="..\CodeJam.Main\Targeting\ValueTuple\ValueTuple.cs">
 			<Link>Targeting\ValueTuple\ValueTuple.cs</Link>
 		</Compile>
 		<Content Include="Readme.txt">
