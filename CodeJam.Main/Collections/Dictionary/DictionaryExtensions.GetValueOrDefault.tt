@@ -40,7 +40,7 @@ foreach (var type in types) {#>
 }
 <#+
 private void Header1(string type) {#>
-#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
+#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -72,7 +72,7 @@ private void ConflictBody1() {#>
 
 <#+
 private void Header2(string type) {#>
-#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
+#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
 		/// in <paramref name="dictionary"/>

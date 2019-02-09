@@ -16,10 +16,19 @@ namespace CodeJam
 		[NotNull]
 		public static Random GetTestRandom(int seed)
 		{
+			var currentMethod =
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+				MethodBase.GetCurrentMethod().Name
+#else
+				GetCurrentMethod();
+#endif
+				;
 			Console.WriteLine(
-				$"{MethodBase.GetCurrentMethod().Name}: Rnd seed: {seed} (use the seed to reproduce test results).");
+				$"{currentMethod}: Rnd seed: {seed} (use the seed to reproduce test results).");
 			return new Random(seed);
 		}
+
+		private static string GetCurrentMethod([System.Runtime.CompilerServices.CallerMemberName] string memberName = "") => memberName;
 
 		[NotNull, LinqTunnel]
 		public static IEnumerable<T> Shuffle<T>([NotNull] this IEnumerable<T> source, [NotNull] Random rnd) =>
@@ -31,7 +40,7 @@ namespace CodeJam
 
 		public static void PrintQuirks()
 		{
-			var assembly = typeof(int).Assembly;
+			var assembly = typeof(int).GetAssembly();
 
 			Console.WriteLine($"{PlatformDependent.TargetPlatform}. Running on {assembly}");
 			Console.WriteLine();
@@ -44,7 +53,7 @@ namespace CodeJam
 
 		private static void PrintProps([NotNull] string typeName)
 		{
-			var type = typeof(int).Assembly.GetType(typeName);
+			var type = typeof(int).GetAssembly().GetType(typeName);
 			if (type == null)
 			{
 				Console.WriteLine($"No type {typeName} found.");

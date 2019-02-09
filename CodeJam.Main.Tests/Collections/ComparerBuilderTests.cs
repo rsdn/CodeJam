@@ -93,6 +93,8 @@ namespace CodeJam.Collections
 			Assert.That(comparer.Equals(o1, o2), Is.EqualTo(expected));
 		}
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+
 		[Test]
 		public void MethodHandleTest()
 		{
@@ -114,6 +116,8 @@ namespace CodeJam.Collections
 			Assert.False(comparer.Equals(a, b), "ComparerBuilder fails");
 			Assert.True(comparer.Equals(a, b2), "ComparerBuilder fails");
 		}
+
+#endif
 
 		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 		private class TestClass

@@ -3,6 +3,8 @@ using System;
 using System.Linq;
 using System.Threading;
 
+using NUnit.Framework.Constraints;
+
 namespace CodeJam.Threading
 {
 	[TestFixture]
@@ -46,9 +48,9 @@ namespace CodeJam.Threading
 						Thread.Sleep(300);
 					}
 				});
-
-			Assert.That(Thread.VolatileRead(ref _providerCount), Is.EqualTo(5));
-			Assert.That(Thread.VolatileRead(ref _consumerCount), Is.EqualTo(2));
+			
+			Assert.That(VolatileRead(ref _providerCount), Is.EqualTo(5));
+			Assert.That(VolatileRead(ref _consumerCount), Is.EqualTo(2));
 		}
 
 		private static int _actionCount;
@@ -73,7 +75,7 @@ namespace CodeJam.Threading
 				}))
 				.RunInParallel(5);
 
-			Assert.That(Thread.VolatileRead(ref _actionCount), Is.EqualTo(5));
+			Assert.That(VolatileRead(ref _actionCount), Is.EqualTo(5));
 		}
 
 		//[Ignore("Test seems to fail on a single core environment")]
@@ -106,7 +108,7 @@ namespace CodeJam.Threading
 					a();
 				});
 
-			Assert.That(Thread.VolatileRead(ref _actionCount), Is.EqualTo(5));
+			Assert.That(VolatileRead(ref _actionCount), Is.EqualTo(5));
 		}
 
 		[Test]
@@ -125,7 +127,14 @@ namespace CodeJam.Threading
 					}
 				});
 
-			Assert.That(Thread.VolatileRead(ref _actionCount), Is.EqualTo(5));
+			Assert.That(VolatileRead(ref _actionCount), Is.EqualTo(5));
 		}
+
+		private static int VolatileRead(ref int location) =>
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+			Thread.VolatileRead(ref location);
+#else
+			Volatile.Read(ref location);
+#endif		
 	}
 }

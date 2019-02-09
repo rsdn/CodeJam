@@ -214,7 +214,7 @@ namespace System
 		}
 
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
-		public static PropertyInfo GetProperty([NotNull] this Type type, [NotNull] string propertyName)
+		public static PropertyInfo GetGetProperty([NotNull] this Type type, [NotNull] string propertyName)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 			return type.GetTypeInfo().GetProperty(propertyName);
