@@ -1,8 +1,5 @@
 ﻿using System;
-
-#if DEBUG
 using System.Runtime.CompilerServices;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.Strings
@@ -16,4 +13,3 @@ namespace CodeJam.Strings
 	internal class NamespaceDoc
 	{}
 }
-#endif

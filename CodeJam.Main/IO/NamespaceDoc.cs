@@ -1,7 +1,5 @@
-﻿#if DEBUG
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
-
 using JetBrains.Annotations;
 
 namespace CodeJam.IO
@@ -13,4 +11,3 @@ namespace CodeJam.IO
 	[CompilerGenerated]
 	internal class NamespaceDoc { }
 }
-#endif
