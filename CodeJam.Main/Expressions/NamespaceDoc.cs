@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !LESSTHAN_NET35
+using System;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
@@ -14,3 +15,4 @@ namespace CodeJam.Expressions
 	internal class NamespaceDoc
 	{}
 }
+#endif
