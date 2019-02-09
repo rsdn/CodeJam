@@ -1,6 +1,4 @@
-﻿#if !LESSTHAN_NETSTANDARD20
-
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
@@ -78,5 +76,3 @@ namespace CodeJam.Threading
 		}
 	}
 }
-
-#endif

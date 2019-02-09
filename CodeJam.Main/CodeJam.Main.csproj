@@ -41,76 +41,6 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.2' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.1" />
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
@@ -131,6 +61,24 @@
 		<PackageReference Include="Theraot.Core" Version="3.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
+		<PackageReference Include="Theraot.Core" Version="3.0.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
+		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
+		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+		<PackageReference Include="System.Runtime" Version="4.3.0" />
+		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Thread" Version="4.3.0" />
 		<PackageReference Include="Theraot.Core" Version="3.0.1" />
 	</ItemGroup>
 	<!-- #endregion -->
