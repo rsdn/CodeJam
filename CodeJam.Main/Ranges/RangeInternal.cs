@@ -67,8 +67,6 @@ namespace CodeJam.Ranges
 		[NotNull]
 		internal static Func<T, string, IFormatProvider, string> CreateFormattableCallback<T>()
 		{
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-
 			const BindingFlags bf = BindingFlags.Static | BindingFlags.NonPublic;
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T)))
 			{
@@ -76,12 +74,19 @@ namespace CodeJam.Ranges
 				var method = typeof(RangeInternal)
 					.GetMethod(nameof(Format), bf)
 					.MakeGenericMethod(typeof(T));
+
 				// no boxing for IFormatProvider
-				var res = (Func<T, string, IFormatProvider, string>)
+				var res =
+					(Func<T, string, IFormatProvider, string>)
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 					Delegate.CreateDelegate(
 						typeof(Func<T, string, IFormatProvider, string>),
 						method,
 						true);
+#else				
+					method.CreateDelegate(
+						typeof(Func<T, string, IFormatProvider, string>));
+#endif
 
 				DebugCode.BugIf(res == null, "res == null");
 				return res;
@@ -92,17 +97,22 @@ namespace CodeJam.Ranges
 				var method = typeof(RangeInternal)
 					.GetMethod(nameof(FormatNullable), bf)
 					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
+
 				// no boxing for IFormatProvider
 				var res = (Func<T, string, IFormatProvider, string>)
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 					Delegate.CreateDelegate(
 						typeof(Func<T, string, IFormatProvider, string>),
 						method,
 						true);
+#else
+				method.CreateDelegate(
+					typeof(Func<T, string, IFormatProvider, string>));
+#endif
 
 				DebugCode.BugIf(res == null, "res == null");
 				return res;
 			}
-#endif
 
 			return (value, format, formatProvider) => value?.ToString();
 		}
