@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -15,10 +16,10 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
 		[NotNull, Pure]
-#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-		public static ReadOnlyCollectionEx<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionEx<T>(array);
-#else
+#if !LESSTHAN_NET45 && !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 		public static ReadOnlyCollection<T> AsReadOnly<T>([NotNull] this T[] array) => Array.AsReadOnly(array);
+#else
+		public static ReadOnlyCollectionEx<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionEx<T>(array);
 #endif
 
 		#region BinarySearch
@@ -138,7 +139,7 @@ namespace CodeJam.Collections
 #if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 			Array.ConvertAll(array, converter);
 #else
-			array.ConvertAll(converter);
+			array.Select(e => converter(e)).ToArray();
 #endif
 
 		#region Copy
@@ -180,7 +181,7 @@ namespace CodeJam.Collections
 		/// <paramref name="length" /> is greater than the number of elements in <paramref name="sourceArray" />.-or-<paramref name="length" /> is greater than the number of elements in <paramref name="destinationArray" />.</exception>
 		/// <filterpriority>1</filterpriority>
 		public static void Copy([NotNull] this Array sourceArray, [NotNull] Array destinationArray, long length) => Array.Copy(sourceArray, destinationArray, length);
-		
+
 		/// <summary>Copies a range of elements from an <see cref="Array" /> starting at the specified source index and pastes them to another <see cref="Array" /> starting at the specified destination index. The length and the indexes are specified as 32-bit integers.</summary>
 		/// <param name="sourceArray">The <see cref="Array" /> that contains the data to copy.</param>
 		/// <param name="sourceIndex">A 32-bit integer that represents the index in the <paramref name="sourceArray" /> at which copying begins.</param>
