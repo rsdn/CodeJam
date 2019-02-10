@@ -33,12 +33,12 @@ It allows to compare multiple implementations by execution time (*~memory limits
 with timing limits and to check the limits each time the test is run.
 
 ### .NET Standard 1.6, 1.5 support
-Almost all features are supported.
-CodeJam.Reflection lacks few methods.
+CodeJam: Almost all features are supported.
+CodeJam.Blocks: Not supported.
 
 ### .NET Core 1.1, 1.0 support
-Almost all features are supported.
-CodeJam.Reflection lacks few methods.
+CodeJam: Almost all features are supported.
+CodeJam.Blocks: Not supported.
 
 ### .NET Framework 2.0 support
 .NET Framework 2.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:
@@ -57,7 +57,6 @@ CodeJam.Reflection lacks few methods.
 * ExpressionExtensions - all visitor related functionality excluded due to expression tree incompatibility
 * MemberAccessor/TypeAccessor - excluded due to expression tree incompatibility
 * ComparerBuilder - excluded due to absence of TypeAccessor and MemberAccessor classes
-* Enumerable.ToDiagnosticString - excluded due to absence of TypeAccessor class
 * PerfTests package not support FW 3.5 at all.
 
 ### Contribute!
