@@ -41,7 +41,7 @@ foreach ($target in $targetsDotNet) {
 #}
 
 #run .net core tests
-$targetsDotNetCore = "netcoreapp2.0"
+$targetsDotNetCore = "netcoreapp2.0","netcoreapp1.1","netcoreapp1.0"
 foreach ($target in $targetsDotNetCore) {
 	$a = (gci -include $include -r | `
 		where { $_.fullname -match "\\bin\\Release\\$($target)" -and $_.fullname -notmatch $exclude } | `
@@ -50,31 +50,6 @@ foreach ($target in $targetsDotNetCore) {
 	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\$($target)_nunit_results.xml"
 	echo "dotnet vstest $a --logger:'trx;LogFileName=$logFileName'"
 	dotnet vstest $a --logger:"trx;LogFileName=$logFileName"
-	if ($LastExitCode -ne 0) {
-		echo "FAIL: dotnet vstest $a --logger:'trx;LogFileName=$logFileName'"
-		$host.SetShouldExit($LastExitCode)
-	}
-	echo "UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-	$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID", "$logFileName")
-	if ($LastExitCode -ne 0) {
-		echo "FAIL: UploadFile: https://ci.appveyor.com/api/testresults/nunit3/$env:APPVEYOR_JOB_ID from $logFileName"
-		$host.SetShouldExit($LastExitCode)
-	}
-}
-
-#run legacy .net core tests
-$targetsDotNetCoreLegacy= "netcoreapp1.1","netcoreapp1.0"
-foreach ($target in $targetsDotNetCoreLegacy) {
-	$a = (gci -include $include -r | `
-		where { $_.fullname -match "\\bin\\Release\\$($target)" -and $_.fullname -notmatch $exclude } | `
-		select -ExpandProperty FullName)
-
-	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\$($target)_nunit_results.xml"
-	#echo "dotnet vstest $a --logger:'trx;LogFileName=$logFileName'"
-	#dotnet vstest $a --logger:"trx;LogFileName=$logFileName"
-	echo "dotnet test CodeJam.Main.Tests\CodeJam.Main.Tests.csproj --verbosity=diagnostic --no-build --no-restore --framework=$target --logger:'trx;LogFileName=$logFileName'"
-	dotnet test CodeJam.Main.Tests\CodeJam.Main.Tests.csproj --verbosity=diagnostic --no-build --no-restore --framework=$target --logger:"trx;LogFileName=$logFileName"
-
 	if ($LastExitCode -ne 0) {
 		echo "FAIL: dotnet vstest $a --logger:'trx;LogFileName=$logFileName'"
 		$host.SetShouldExit($LastExitCode)
