@@ -68,6 +68,8 @@ namespace CodeJam.Metadata
 		{
 		}
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MetadataException"/> class
 		/// with serialized data.
@@ -81,6 +83,8 @@ namespace CodeJam.Metadata
 			: base(info, context)
 		{
 		}
+
+#endif
 	}
 }
 #endif

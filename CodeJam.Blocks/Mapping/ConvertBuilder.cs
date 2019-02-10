@@ -26,7 +26,13 @@ namespace CodeJam.Mapping
 		{
 			try
 			{
-				return Convert.ChangeType(value, conversionType, Thread.CurrentThread.CurrentCulture);
+				return Convert.ChangeType(value, conversionType,
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+					Thread.CurrentThread.CurrentCulture
+#else
+					CultureInfo.CurrentCulture
+#endif
+					);
 			}
 			catch (Exception ex)
 			{
@@ -82,7 +88,7 @@ namespace CodeJam.Mapping
 
 		private static bool IsConvertible([NotNull] Type type)
 		{
-			if (type.IsEnum)
+			if (type.GetIsEnum())
 				return false;
 
 			switch (Type.GetTypeCode(type))
@@ -161,7 +167,7 @@ namespace CodeJam.Mapping
 		[CanBeNull]
 		private static Expression GetParseEnum([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
-			if (from == typeof(string) && to.IsEnum)
+			if (from == typeof(string) && to.GetIsEnum())
 			{
 				var values = Enum.GetValues(to);
 				var names = Enum.GetNames(to);
@@ -228,7 +234,7 @@ namespace CodeJam.Mapping
 			[NotNull] Expression expression,
 			[NotNull] MappingSchema mappingSchema)
 		{
-			if (to.IsEnum)
+			if (to.GetIsEnum())
 			{
 				var toFields = mappingSchema.GetMapValues(to);
 
@@ -319,7 +325,7 @@ namespace CodeJam.Mapping
 			[NotNull] Expression expression,
 			[NotNull] MappingSchema mappingSchema)
 		{
-			if (from.IsEnum)
+			if (from.GetIsEnum())
 			{
 				var fromFields = from.GetFields()
 					.Where(f => (f.Attributes & _enumField) == _enumField)
@@ -376,7 +382,7 @@ namespace CodeJam.Mapping
 					}
 				}
 
-				if (to.IsEnum)
+				if (to.GetIsEnum())
 				{
 					var toFields = to.GetFields()
 						.Where(f => (f.Attributes & _enumField) == _enumField)
@@ -572,7 +578,7 @@ namespace CodeJam.Mapping
 							ex.Value.Item1,
 							new DefaultValueExpression(mappingSchema, to)) as Expression,
 						ex.Value.Item2);
-				else if (from.IsClass)
+				else if (from.GetIsClass())
 					ex = ValueTuple.Create(
 						Expression.Condition(Expression.NotEqual(p, Expression.Constant(null, from)), ex.Value.Item1, new DefaultValueExpression(mappingSchema, to)) as Expression,
 						ex.Value.Item2);
@@ -616,7 +622,7 @@ namespace CodeJam.Mapping
 		{
 			var type = enumType.ToNullableUnderlying();
 
-			if (!type.IsEnum)
+			if (!type.GetIsEnum())
 				return null;
 
 			var fields =
@@ -652,7 +658,7 @@ namespace CodeJam.Mapping
 			if (defaultType == null)
 				defaultType = Enum.GetUnderlyingType(type);
 
-			if (enumType.IsNullable() && !defaultType.IsClass && !defaultType.IsNullable())
+			if (enumType.IsNullable() && !defaultType.GetIsClass() && !defaultType.IsNullable())
 				defaultType = typeof(Nullable<>).MakeGenericType(defaultType);
 
 			return defaultType;

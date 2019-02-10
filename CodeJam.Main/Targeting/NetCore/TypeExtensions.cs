@@ -286,7 +286,22 @@ namespace System
 #endif
 		}
 
+		
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static MethodInfo GetMethod(
+			[NotNull] this Type type,
+			string name,
+			BindingFlags bindingAttr,
+			object binder,
+			Type[] types)
+		{
+			if (binder != null) throw new NotImplementedException();
+
+			return type.GetTypeInfo().GetMethod(name, bindingAttr) ??
+				type.GetTypeInfo().GetMethod(name, types);
+		}
 
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool GetIsAssignableFrom([NotNull] this Type type, [NotNull] Type otherType)

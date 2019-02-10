@@ -67,6 +67,8 @@ namespace CodeJam.Mapping
 		{
 		}
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamConvertException"/> class
 		/// with serialized data.
@@ -80,6 +82,8 @@ namespace CodeJam.Mapping
 			: base(info, context)
 		{
 		}
+
+#endif
 	}
 }
 #endif

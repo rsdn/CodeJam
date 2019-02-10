@@ -8,21 +8,49 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net47;net46;net45;net40;net35;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0</TargetFrameworks>
 	</PropertyGroup>
 
+	<ItemGroup Condition="  '$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1' OR '$(TargetFramework)' == 'netcoreapp2.0' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp1.0' AND '$(TargetFramework)' != 'netcoreapp1.1' AND '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30' AND '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
 		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net20'">
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
+	</ItemGroup>
+
+	<!-- NUnit 3.11 is the last NUnit supporting .NET 2.0 -->
+	<!-- See: https://github.com/nunit/nunit/issues/3070 -->
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net20'">
+		<PackageReference Include="NUnit" Version="[3.11.0]" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
+    	<PackageReference Include="NUnit" Version="[3.8.1]" />
+  	</ItemGroup>
+
+	<ItemGroup Condition="('$(TargetFramework)' == 'netstandard1.0') OR ('$(TargetFramework)' == 'netstandard1.1') OR ('$(TargetFramework)' == 'netstandard1.2')">
+    	<PackageReference Include="NUnit" Version="[3.6.1]" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\CodeJam.Blocks\CodeJam.Blocks.csproj" />
 	</ItemGroup>
 
+	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20' OR '$(TargetFramework)' == 'net30'" >
+   		<ItemGroup>
+			<ReferencePath Condition="'%(FileName)' == 'NUnit.System.Linq'">
+				<Aliases>nunitlinq</Aliases>
+			</ReferencePath>
+		</ItemGroup>
+	</Target>
 </Project>

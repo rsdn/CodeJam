@@ -33,12 +33,10 @@ It allows to compare multiple implementations by execution time (*~memory limits
 with timing limits and to check the limits each time the test is run.
 
 ### .NET Standard 1.6, 1.5 support
-CodeJam: Almost all features are supported.
-CodeJam.Blocks: Not supported.
+Almost all features are supported.
 
 ### .NET Core 1.1, 1.0 support
-CodeJam: Almost all features are supported.
-CodeJam.Blocks: Not supported.
+Almost all features are supported.
 
 ### .NET Framework 2.0 support
 .NET Framework 2.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:

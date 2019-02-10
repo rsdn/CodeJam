@@ -100,7 +100,11 @@ namespace CodeJam.Mapping
 		{
 			Code.NotNull(conversionType, nameof(conversionType));
 
-			if (value == null || value is DBNull)
+			if (value == null
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+				|| value is DBNull
+#endif
+				)
 				return mappingSchema == null ?
 					DefaultValue.GetValue(conversionType) :
 					mappingSchema.GetDefaultValue(conversionType);
@@ -159,7 +163,11 @@ namespace CodeJam.Mapping
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
 		public static T ChangeTypeTo<T>(object value, MappingSchema mappingSchema = null)
 		{
-			if (value == null || value is DBNull)
+			if (value == null
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+				|| value is DBNull
+#endif
+				)
 				return mappingSchema == null ?
 					DefaultValue<T>.Value :
 					(T)mappingSchema.GetDefaultValue(typeof(T));
@@ -197,7 +205,7 @@ namespace CodeJam.Mapping
 		internal static bool IsDefaultValuePlaceHolder(Expression expr) =>
 			expr is MemberExpression me
 					&& me.Member.Name == "Value"
-					&& me.Member.DeclaringType?.IsGenericType == true
+					&& me.Member.DeclaringType?.GetIsGenericType() == true
 				? me.Member.DeclaringType.GetGenericTypeDefinition() == typeof(DefaultValue<>)
 				: expr is DefaultValueExpression;
 
