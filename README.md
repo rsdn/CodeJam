@@ -114,7 +114,7 @@ all images included in this distribution under the directory named `images`
 according to the terms and conditions of the Creative Commons Attribution-ShareAlike 4.0 International License.
 Use following text as a template for attribution:
 
-```
+`
 CodeJam logo (c) by Arthur Kozyrev
 
 CodeJam logo is licensed under a
@@ -122,6 +122,6 @@ Creative Commons Attribution-ShareAlike 4.0 International License.
 
 You should have received a copy of the license along with this
 work. If not, see <http://creativecommons.org/licenses/by-sa/4.0/>
-```
+`
 
 See the file `LICENSE-CC-BY-SA` for details.
