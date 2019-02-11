@@ -323,27 +323,8 @@ namespace System
 
 			if (bindingAttr == BindingFlags.Default) bindingAttr = DefaultLookup;
 
-			var methods = type.GetTypeInfo().DeclaredMethods.Where(m => m.Name == name);
-			
-			return methods
-				.FilterMembers(bindingAttr)
-				.Where(m =>
-				{
-					if (types.Length == 0) return true;
-
-					var parameters = m.GetParameters();
-					if (parameters.Length != types.Length) return false;
-
-					for (var i = 0; i < parameters.Length; i++)
-					{
-						if (!parameters[i].ParameterType.Equals(types[i])) return false;
-					}
-
-					return true;
-				})
-				.FirstOrDefault();
+			return type.GetMethods(bindingAttr).Where(m => m.Name == name).TryFindParametersTypesMatch(types);
 		}
-
 
 		[NotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
@@ -361,15 +342,19 @@ namespace System
 
 			if (bindingAttr == BindingFlags.Default) bindingAttr = DefaultLookup;
 
-			var constructors = type.GetTypeInfo().DeclaredConstructors;
-		
-			return constructors
-				.FilterMembers(bindingAttr)
-				.Where(c =>
+			return type.GetConstructors(bindingAttr).TryFindParametersTypesMatch(types);
+		}
+
+		[CanBeNull]
+		private static T TryFindParametersTypesMatch<T>(
+			[NotNull, ItemNotNull] this IEnumerable<T> methods,
+			[NotNull, ItemNotNull] Type[] types)
+			where T : MethodBase
+			=> methods.Where(m =>
 				{
 					if (types.Length == 0) return true;
 
-					var parameters = c.GetParameters();
+					var parameters = m.GetParameters();
 					if (parameters.Length != types.Length) return false;
 
 					for (var i = 0; i < parameters.Length; i++)
@@ -380,22 +365,6 @@ namespace System
 					return true;
 				})
 				.FirstOrDefault();
-		}
-
-		[NotNull, ItemNotNull, LinqTunnel]
-		private static IEnumerable<T> FilterMembers<T>(
-			[NotNull, ItemNotNull] this IEnumerable<T> methods,
-			BindingFlags bindingAttr)
-			where T : MethodBase
-			=> methods.Where(m =>
-				// Skip RTSpecialName
-				!m.Attributes.HasFlag(MethodAttributes.RTSpecialName) &&
-				(
-					(bindingAttr.HasFlag(BindingFlags.Instance) && !m.IsStatic) ||
-					(bindingAttr.HasFlag(BindingFlags.Static) && m.IsStatic) ||
-					(bindingAttr.HasFlag(BindingFlags.NonPublic) && !m.IsPublic) ||
-					(bindingAttr.HasFlag(BindingFlags.Public) && m.IsPublic)
-				));
 
 		private const BindingFlags DefaultLookup = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
 
