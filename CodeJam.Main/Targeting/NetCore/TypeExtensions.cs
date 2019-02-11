@@ -1,6 +1,10 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
+
+#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+using System.Collections.Generic;
 using System.Linq;
+#endif
 
 using CodeJam;
 
@@ -322,26 +326,22 @@ namespace System
 			var methods = type.GetTypeInfo().DeclaredMethods.Where(m => m.Name == name);
 			
 			return methods
-					.Where(m =>
-						(bindingAttr.HasFlag(BindingFlags.Instance) && !m.IsStatic) ||
-						(bindingAttr.HasFlag(BindingFlags.Static) && m.IsStatic) ||
-						(bindingAttr.HasFlag(BindingFlags.NonPublic) && !m.IsPublic) ||
-						(bindingAttr.HasFlag(BindingFlags.Public) && m.IsPublic))
-					.Where(m =>
+				.FilterMembers(bindingAttr)
+				.Where(m =>
+				{
+					if (types.Length == 0) return true;
+
+					var parameters = m.GetParameters();
+					if (parameters.Length != types.Length) return false;
+
+					for (var i = 0; i < parameters.Length; i++)
 					{
-						if (types.Length == 0) return true;
+						if (!parameters[i].ParameterType.Equals(types[i])) return false;
+					}
 
-						var parameters = m.GetParameters();
-						if (parameters.Length != types.Length) return false;
-
-						for (var i = 0; i < parameters.Length; i++)
-						{
-							if (!parameters[i].ParameterType.Equals(types[i])) return false;
-						}
-
-						return true;
-					})
-					.FirstOrDefault();
+					return true;
+				})
+				.FirstOrDefault();
 		}
 
 
@@ -364,27 +364,39 @@ namespace System
 			var constructors = type.GetTypeInfo().DeclaredConstructors;
 		
 			return constructors
-					.Where(c =>
-						(bindingAttr.HasFlag(BindingFlags.Instance) && !c.IsStatic) ||
-						(bindingAttr.HasFlag(BindingFlags.Static) && c.IsStatic) ||
-						(bindingAttr.HasFlag(BindingFlags.NonPublic) && !c.IsPublic) ||
-						(bindingAttr.HasFlag(BindingFlags.Public) && c.IsPublic))
-					.Where(c =>
+				.FilterMembers(bindingAttr)
+				.Where(c =>
+				{
+					if (types.Length == 0) return true;
+
+					var parameters = c.GetParameters();
+					if (parameters.Length != types.Length) return false;
+
+					for (var i = 0; i < parameters.Length; i++)
 					{
-						if (types.Length == 0) return true;
+						if (!parameters[i].ParameterType.Equals(types[i])) return false;
+					}
 
-						var parameters = c.GetParameters();
-						if (parameters.Length != types.Length) return false;
-
-						for (var i = 0; i < parameters.Length; i++)
-						{
-							if (!parameters[i].ParameterType.Equals(types[i])) return false;
-						}
-
-						return true;
-					})
-					.FirstOrDefault();
+					return true;
+				})
+				.FirstOrDefault();
 		}
+
+		[NotNull, ItemNotNull, LinqTunnel]
+		private static IEnumerable<T> FilterMembers<T>(
+			[NotNull, ItemNotNull] this IEnumerable<T> methods,
+			BindingFlags bindingAttr)
+			where T : MethodBase
+			=> methods.Where(m =>
+				// Skip SpecialName and RTSpecialName
+				!m.IsSpecialName &&
+				!m.Attributes.HasFlag(MethodAttributes.RTSpecialName) &&
+				(
+					(bindingAttr.HasFlag(BindingFlags.Instance) && !m.IsStatic) ||
+					(bindingAttr.HasFlag(BindingFlags.Static) && m.IsStatic) ||
+					(bindingAttr.HasFlag(BindingFlags.NonPublic) && !m.IsPublic) ||
+					(bindingAttr.HasFlag(BindingFlags.Public) && m.IsPublic)
+				));
 
 		private const BindingFlags DefaultLookup = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
 
