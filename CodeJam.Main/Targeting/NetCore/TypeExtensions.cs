@@ -1,9 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
-
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 using System.Linq;
-#endif
 
 using CodeJam;
 
@@ -296,8 +293,9 @@ namespace System
 			[NotNull] string name,
 			BindingFlags bindingAttr,
 			[CanBeNull] object binder,
-			Type[] types)
+			[NotNull, ItemNotNull] Type[] types)
 		{
+			if (name == null) throw new ArgumentNullException(name, nameof(name));
 			if (binder != null) throw new NotImplementedException();
 			if (types.Length != 0) throw new NotImplementedException();
 
@@ -310,26 +308,40 @@ namespace System
 			[NotNull] string name,
 			BindingFlags bindingAttr,
 			[CanBeNull] object binder,
-			Type[] types,
+			[NotNull, ItemNotNull] Type[] types,
 			[CanBeNull] ParameterModifier[] modifiers)
 		{
-			if (name == null) throw new ArgumentNullException(name, nameof(name));
-			if (binder != null) throw new NotImplementedException();
-			if (types.Length != 0) throw new NotImplementedException();
-			if (modifiers != null) throw new NotImplementedException();
+			if (name == null) throw new ArgumentNullException(nameof(name));
+			if (binder != null) throw new NotImplementedException(nameof(binder));
+			if (types == null) throw new ArgumentNullException(nameof(types));
+			if (types.Any(t => t == null)) throw new ArgumentNullException(nameof(types));
+			if (modifiers != null) throw new NotImplementedException(nameof(modifiers));
+
+			if (bindingAttr == BindingFlags.Default) bindingAttr = DefaultLookup;
 
 			var methods = type.GetTypeInfo().DeclaredMethods.Where(m => m.Name == name);
+			
+			return methods
+					.Where(m =>
+						(bindingAttr.HasFlag(BindingFlags.Instance) && !m.IsStatic) ||
+						(bindingAttr.HasFlag(BindingFlags.Static) && m.IsStatic) ||
+						(bindingAttr.HasFlag(BindingFlags.NonPublic) && !m.IsPublic) ||
+						(bindingAttr.HasFlag(BindingFlags.Public) && m.IsPublic))
+					.Where(m =>
+					{
+						if (types.Length == 0) return true;
 
-			if (bindingAttr != BindingFlags.Default)
-			{
-				methods = methods.Where(c =>
-					(bindingAttr.HasFlag(BindingFlags.Instance) && !c.IsStatic) ||
-					(bindingAttr.HasFlag(BindingFlags.Static) && c.IsStatic) ||
-					(bindingAttr.HasFlag(BindingFlags.NonPublic) && !c.IsPublic) ||
-					(bindingAttr.HasFlag(BindingFlags.Public) && c.IsPublic));
-			}
+						var parameters = m.GetParameters();
+						if (parameters.Length != types.Length) return false;
 
-			return methods.FirstOrDefault();
+						for (var i = 0; i < parameters.Length; i++)
+						{
+							if (!parameters[i].ParameterType.Equals(types[i])) return false;
+						}
+
+						return true;
+					})
+					.FirstOrDefault();
 		}
 
 
@@ -339,26 +351,42 @@ namespace System
 			[NotNull] this Type type,
 			BindingFlags bindingAttr,
 			[CanBeNull] object binder,
-			Type[] types,
+			[NotNull, ItemNotNull] Type[] types,
 			[CanBeNull] ParameterModifier[] modifiers)
 		{
-			if (binder != null) throw new NotImplementedException();
-			if (types.Length != 0) throw new NotImplementedException();
-			if (modifiers != null) throw new NotImplementedException();
+			if (binder != null) throw new NotImplementedException(nameof(binder));
+			if (types == null) throw new ArgumentNullException(nameof(types));
+			if (types.Any(t => t == null)) throw new ArgumentNullException(nameof(types));
+			if (modifiers != null) throw new NotImplementedException(nameof(modifiers));
+
+			if (bindingAttr == BindingFlags.Default) bindingAttr = DefaultLookup;
 
 			var constructors = type.GetTypeInfo().DeclaredConstructors;
+		
+			return constructors
+					.Where(c =>
+						(bindingAttr.HasFlag(BindingFlags.Instance) && !c.IsStatic) ||
+						(bindingAttr.HasFlag(BindingFlags.Static) && c.IsStatic) ||
+						(bindingAttr.HasFlag(BindingFlags.NonPublic) && !c.IsPublic) ||
+						(bindingAttr.HasFlag(BindingFlags.Public) && c.IsPublic))
+					.Where(c =>
+					{
+						if (types.Length == 0) return true;
 
-			if (bindingAttr != BindingFlags.Default)
-			{
-				constructors = constructors.Where(c =>
-					(bindingAttr.HasFlag(BindingFlags.Instance) && !c.IsStatic) ||
-					(bindingAttr.HasFlag(BindingFlags.Static) && c.IsStatic) ||
-					(bindingAttr.HasFlag(BindingFlags.NonPublic) && !c.IsPublic) ||
-					(bindingAttr.HasFlag(BindingFlags.Public) && c.IsPublic));
-			}
+						var parameters = c.GetParameters();
+						if (parameters.Length != types.Length) return false;
 
-			return constructors.FirstOrDefault();
+						for (var i = 0; i < parameters.Length; i++)
+						{
+							if (!parameters[i].ParameterType.Equals(types[i])) return false;
+						}
+
+						return true;
+					})
+					.FirstOrDefault();
 		}
+
+		private const BindingFlags DefaultLookup = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
 
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static bool GetIsAssignableFrom([NotNull] this Type type, [NotNull] Type otherType)
