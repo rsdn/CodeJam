@@ -53,6 +53,7 @@ with timing limits and to check the limits each time the test is run.
 * ExpressionExtensions - all visitor related functionality excluded due to expression tree incompatibility
 * MemberAccessor/TypeAccessor - excluded due to expression tree incompatibility
 * ComparerBuilder - excluded due to absence of TypeAccessor and MemberAccessor classes
+* Enumerable.ToDiagnosticString - excluded due to absence of TypeAccessor class
 * PerfTests package not support FW 3.5 at all.
 
 ### Contribute!
