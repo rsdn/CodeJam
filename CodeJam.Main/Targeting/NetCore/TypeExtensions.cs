@@ -299,9 +299,9 @@ namespace System
 			Type[] types)
 		{
 			if (binder != null) throw new NotImplementedException();
+			if (types.Length != 0) throw new NotImplementedException();
 
-			return type.GetTypeInfo().GetMethod(name, bindingAttr) ??
-				type.GetTypeInfo().GetMethod(name, types);
+			return type.GetMethod(name, bindingAttr, binder, types, null);
 		}
 
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
@@ -313,10 +313,23 @@ namespace System
 			Type[] types,
 			[CanBeNull] ParameterModifier[] modifiers)
 		{
+			if (name == null) throw new ArgumentNullException(name, nameof(name));
 			if (binder != null) throw new NotImplementedException();
+			if (types.Length != 0) throw new NotImplementedException();
+			if (modifiers != null) throw new NotImplementedException();
 
-			return type.GetTypeInfo().GetMethod(name, bindingAttr) ??
-				type.GetTypeInfo().GetMethod(name, types, modifiers);
+			var methods = type.GetTypeInfo().DeclaredMethods.Where(m => m.Name == name);
+
+			if (bindingAttr != BindingFlags.Default)
+			{
+				methods = methods.Where(c =>
+					(bindingAttr.HasFlag(BindingFlags.Instance) && !c.IsStatic) ||
+					(bindingAttr.HasFlag(BindingFlags.Static) && c.IsStatic) ||
+					(bindingAttr.HasFlag(BindingFlags.NonPublic) && !c.IsPublic) ||
+					(bindingAttr.HasFlag(BindingFlags.Public) && c.IsPublic));
+			}
+
+			return methods.FirstOrDefault();
 		}
 
 
