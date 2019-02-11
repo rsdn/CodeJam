@@ -388,8 +388,7 @@ namespace System
 			BindingFlags bindingAttr)
 			where T : MethodBase
 			=> methods.Where(m =>
-				// Skip SpecialName and RTSpecialName
-				!m.IsSpecialName &&
+				// Skip RTSpecialName
 				!m.Attributes.HasFlag(MethodAttributes.RTSpecialName) &&
 				(
 					(bindingAttr.HasFlag(BindingFlags.Instance) && !m.IsStatic) ||
