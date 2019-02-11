@@ -1,14 +1,18 @@
-﻿#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+﻿using System;
 
-using System;
+#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 using System.Globalization;
+#endif
 
+// ReSharper disable once CheckNamespace
 namespace CodeJam
 {
-	internal class InvariantCultureStringComparer : StringComparer
+#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+
+	internal sealed class InvariantCultureStringComparer : StringComparer
 	{
-		public static readonly InvariantCultureStringComparer CompareCase = new InvariantCultureStringComparer(false);
-		public static readonly InvariantCultureStringComparer IgnoreCase = new InvariantCultureStringComparer(true);
+		public static readonly StringComparer CompareCase = new InvariantCultureStringComparer(false);
+		public static readonly StringComparer IgnoreCase = new InvariantCultureStringComparer(true);
 
 		private static readonly CompareInfo _invariantCulture = new CultureInfo("").CompareInfo;
 
@@ -40,6 +44,14 @@ namespace CodeJam
 
 		#endregion
 	}
-}
+
+#else
+
+	internal static class InvariantCultureStringComparer
+	{
+		public static readonly StringComparer CompareCase = StringComparer.InvariantCulture;
+		public static readonly StringComparer IgnoreCase = StringComparer.InvariantCultureIgnoreCase;
+	}
 
 #endif
+}

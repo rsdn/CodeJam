@@ -1,7 +1,10 @@
 ﻿#if !LESSTHAN_NET40
 using System;
-using System.Data.SqlTypes;
 using System.Globalization;
+
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+using System.Data.SqlTypes;
+#endif
 
 using NUnit.Framework;
 
@@ -131,11 +134,13 @@ namespace CodeJam.Mapping
 			Convert<DateTime,string>.Expression = null;
 		}
 
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 		[Test]
 		public void FromValue()
 		{
 			Assert.AreEqual(10, ConvertTo<int>.From(new SqlInt32(10)));
 		}
+#endif
 
 //		[Test]
 //		public void ToBinary()

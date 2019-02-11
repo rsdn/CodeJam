@@ -583,7 +583,7 @@ namespace CodeJam.Mapping
 
 		private class Object3
 		{
-			public HashSet<string> HashSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+			public HashSet<string> HashSet = new HashSet<string>(InvariantCultureStringComparer.IgnoreCase);
 		}
 
 		[Test]

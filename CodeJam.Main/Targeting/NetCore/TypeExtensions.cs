@@ -1,16 +1,16 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
+
+#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+using System.Linq;
+#endif
 
 using CodeJam;
 
 using JetBrains.Annotations;
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-using System.Collections.Generic;
-using System.Linq;
-#endif
 
 // ReSharper disable once CheckNamespace
+
 namespace System
 {
 	/// <summary>
@@ -18,6 +18,7 @@ namespace System
 	/// </summary>
 	internal static class TypeExtensions
 	{
+		[NotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static Assembly GetAssembly([NotNull] this Type type)
 		{
@@ -152,7 +153,7 @@ namespace System
 #endif
 		}
 
-		[NotNull]
+		[CanBeNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static Type GetBaseType([NotNull] this Type type)
 		{
@@ -230,7 +231,7 @@ namespace System
 			var property = type.GetTypeInfo().GetDeclaredProperty(propertyName);
 			return (T)property.GetValue(target);
 #else
-			return (T) type.InvokeMember(propertyName, BindingFlags.GetProperty, null, target, null);
+			return (T)type.InvokeMember(propertyName, BindingFlags.GetProperty, null, target, null);
 #endif
 		}
 
@@ -253,7 +254,7 @@ namespace System
 			var field = type.GetTypeInfo().GetDeclaredField(fieldName);
 			return (T)field.GetValue(target);
 #else
-			return (T) type.InvokeMember(fieldName, BindingFlags.GetField | BindingFlags.GetProperty, null, target, null);
+			return (T)type.InvokeMember(fieldName, BindingFlags.GetField | BindingFlags.GetProperty, null, target, null);
 #endif
 		}
 
@@ -282,25 +283,68 @@ namespace System
 			var method = type.GetTypeInfo().GetDeclaredMethod(methodName);
 			method.Invoke(target, new object[] { value });
 #else
-			type.InvokeMember(methodName, BindingFlags.InvokeMethod, null, target, new object[] {value});
+			type.InvokeMember(methodName, BindingFlags.InvokeMethod, null, target, new object[] { value });
 #endif
 		}
 
-		
+
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static MethodInfo GetMethod(
 			[NotNull] this Type type,
-			string name,
+			[NotNull] string name,
 			BindingFlags bindingAttr,
-			object binder,
+			[CanBeNull] object binder,
 			Type[] types)
 		{
 			if (binder != null) throw new NotImplementedException();
 
 			return type.GetTypeInfo().GetMethod(name, bindingAttr) ??
 				type.GetTypeInfo().GetMethod(name, types);
+		}
+
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static MethodInfo GetMethod(
+			[NotNull] this Type type,
+			[NotNull] string name,
+			BindingFlags bindingAttr,
+			[CanBeNull] object binder,
+			Type[] types,
+			[CanBeNull] ParameterModifier[] modifiers)
+		{
+			if (binder != null) throw new NotImplementedException();
+
+			return type.GetTypeInfo().GetMethod(name, bindingAttr) ??
+				type.GetTypeInfo().GetMethod(name, types, modifiers);
+		}
+
+
+		[NotNull]
+		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		public static ConstructorInfo GetConstructor(
+			[NotNull] this Type type,
+			BindingFlags bindingAttr,
+			[CanBeNull] object binder,
+			Type[] types,
+			[CanBeNull] ParameterModifier[] modifiers)
+		{
+			if (binder != null) throw new NotImplementedException();
+			if (types.Length != 0) throw new NotImplementedException();
+			if (modifiers != null) throw new NotImplementedException();
+
+			var constructors = type.GetTypeInfo().DeclaredConstructors;
+
+			if (bindingAttr != BindingFlags.Default)
+			{
+				constructors = constructors.Where(c =>
+					(bindingAttr.HasFlag(BindingFlags.Instance) && !c.IsStatic) ||
+					(bindingAttr.HasFlag(BindingFlags.Static) && c.IsStatic) ||
+					(bindingAttr.HasFlag(BindingFlags.NonPublic) && !c.IsPublic) ||
+					(bindingAttr.HasFlag(BindingFlags.Public) && c.IsPublic));
+			}
+
+			return constructors.FirstOrDefault();
 		}
 
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
@@ -328,11 +372,11 @@ namespace System
 		public static Attribute[] GetCustomAttributes([NotNull] this Type type, Type attributeType, bool inherit)
 			=> type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).ToArray();
 
-
 		[NotNull]
 		[MethodImpl(PlatformDependent.AggressiveInlining)]
 		public static InterfaceMapping GetInterfaceMap([NotNull] this Type type, Type interfaceType)
 			=> type.GetTypeInfo().GetRuntimeInterfaceMap(interfaceType);
+
 #endif
 	}
 }

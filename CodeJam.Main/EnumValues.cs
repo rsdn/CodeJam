@@ -73,20 +73,12 @@ namespace CodeJam
 			_valuesByName = _values
 				.ToDictionary(
 					f => f.Name,
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-					StringComparer.InvariantCulture,
-#else
 					InvariantCultureStringComparer.CompareCase,
-#endif
 					DictionaryDuplicate.FirstWins);
 			_valuesByNameIgnoreCase = _values
 				.ToDictionary(
 					f => f.Name,
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-					StringComparer.InvariantCultureIgnoreCase,
-#else
 					InvariantCultureStringComparer.IgnoreCase,
-#endif
 					DictionaryDuplicate.FirstWins);
 			_valuesByValue = _values
 				.ToDictionary(
@@ -96,11 +88,7 @@ namespace CodeJam
 				.Where(f => f.DisplayName != null)
 				.ToDictionary(
 					f => f.DisplayName,
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-					StringComparer.InvariantCulture,
-#else
 					InvariantCultureStringComparer.CompareCase,
-#endif
 					DictionaryDuplicate.FirstWins);
 		}
 		#endregion
