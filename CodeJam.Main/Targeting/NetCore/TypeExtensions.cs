@@ -352,8 +352,6 @@ namespace System
 			where T : MethodBase
 			=> methods.Where(m =>
 				{
-					if (types.Length == 0) return true;
-
 					var parameters = m.GetParameters();
 					if (parameters.Length != types.Length) return false;
 
