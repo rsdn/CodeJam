@@ -8,14 +8,15 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{DD65E3F2-9658-4242-A8AA-056028473CB1}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0</TargetFrameworks>
+		<TargetFrameworks>net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;netstandard2.0;netstandard1.6;netstandard1.5</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<IsTestProject>true</IsTestProject>
 	</PropertyGroup>
 
-	<ItemGroup Condition="  '$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1' OR '$(TargetFramework)' == 'netcoreapp2.0' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1' OR '$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netstandard1.0' OR '$(TargetFramework)' == 'netstandard1.1' OR '$(TargetFramework)' == 'netstandard1.2' OR '$(TargetFramework)' == 'netstandard1.3' OR '$(TargetFramework)' == 'netstandard1.4' OR '$(TargetFramework)' == 'netstandard1.5' OR '$(TargetFramework)' == 'netstandard1.6' OR '$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netstandard2.1' OR '$(TargetFramework)' == 'netstandard2.2' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp1.0' AND '$(TargetFramework)' != 'netcoreapp1.1' AND '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
+	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp1.0' AND '$(TargetFramework)' != 'netcoreapp1.1' AND '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TargetFramework)' != 'netcoreapp2.2' AND '$(TargetFramework)' != 'netstandard1.0' AND '$(TargetFramework)' != 'netstandard1.1' AND '$(TargetFramework)' != 'netstandard1.2' AND '$(TargetFramework)' != 'netstandard1.3' AND '$(TargetFramework)' != 'netstandard1.4' AND '$(TargetFramework)' != 'netstandard1.5' AND '$(TargetFramework)' != 'netstandard1.6' AND '$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netstandard2.1' AND '$(TargetFramework)' != 'netstandard2.2' AND '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30' AND '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
@@ -25,7 +26,38 @@
 
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net20'">
 		<PackageReference Include="NUnit" Version="3.11.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'netstandard1.0' AND '$(TargetFramework)' != 'netstandard1.1' AND '$(TargetFramework)' != 'netstandard1.2' AND '$(TargetFramework)' != 'netstandard1.3' AND '$(TargetFramework)' != 'netstandard1.4' AND '$(TargetFramework)' != 'netstandard1.5' AND '$(TargetFramework)' != 'netstandard1.6' AND '$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netstandard2.1' AND '$(TargetFramework)' != 'netstandard2.2'">
 		<PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
+		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
+		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
+		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
+		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.2' ">
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
+		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
+		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
+		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
 	</ItemGroup>
 
 	<!-- NUnit 3.11 is the last NUnit supporting .NET 2.0 -->
