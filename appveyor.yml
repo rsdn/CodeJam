@@ -47,7 +47,8 @@ nuget:
 #  verbosity: minimal
 
 build_script:
-  msbuild CodeJam.sln /p:Configuration=Release /t:Restore;Build /v:m
+- nuget locals all -clear
+- msbuild CodeJam.sln /p:Configuration=Release /t:Restore;Build /v:m
 
 #test:
 #  assemblies:
