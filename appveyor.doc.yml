@@ -14,7 +14,7 @@ install:
 before_build:
 - cmd: nuget restore CodeJam.sln
 build_script:
-- msbuild CodeJamDoc.sln /warnaserror /t:Restore;Build /v:m
+- msbuild CodeJamDoc.sln /warnaserror /t:Build /p:Configuration=Release /v:m
 after_build:
 - cmd: 7z a -r CodeJamDoc.zip Help\*.*
 artifacts:
