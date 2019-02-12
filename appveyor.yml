@@ -49,7 +49,7 @@ nuget:
 before_build:
 - cmd: nuget restore CodeJam.sln
 build_script:
-- msbuild CodeJam.sln /p:Configuration=Release /t:Build /v:m
+- msbuild CodeJam.sln /p:Configuration=Release /t:Restore;Build /v:m
 
 #test:
 #  assemblies:
