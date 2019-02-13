@@ -78,9 +78,6 @@
 		<Compile Include="..\CodeJam.Main\Targeting\ValueTuple\ValueTuple.cs">
 			<Link>Targeting\ValueTuple\ValueTuple.cs</Link>
 		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NetCore\Converter.cs">
-			<Link>Targeting\NetCore\Converter.cs</Link>
-		</Compile>
 		<Compile Include="..\CodeJam.Main\Targeting\NetCore\InvariantCultureStringComparer.cs">
 			<Link>Targeting\NetCore\InvariantCultureStringComparer.cs</Link>
 		</Compile>
