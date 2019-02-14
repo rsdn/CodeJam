@@ -39,21 +39,27 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
 		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
 		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
 		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
 		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
 		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
 		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
 	</ItemGroup>
 	<!-- #endregion -->

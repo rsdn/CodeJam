@@ -28,7 +28,9 @@ namespace CodeJam
 			return new Random(seed);
 		}
 
+#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 		private static string GetCurrentMethod([System.Runtime.CompilerServices.CallerMemberName] string memberName = "") => memberName;
+#endif
 
 		[NotNull, LinqTunnel]
 		public static IEnumerable<T> Shuffle<T>([NotNull] this IEnumerable<T> source, [NotNull] Random rnd) =>

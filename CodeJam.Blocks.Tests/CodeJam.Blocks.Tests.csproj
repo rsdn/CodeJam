@@ -17,6 +17,30 @@
 	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp1.0' AND '$(TargetFramework)' != 'netcoreapp1.1' AND '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TargetFramework)' != 'netcoreapp2.2' AND '$(TargetFramework)' != 'netstandard1.0' AND '$(TargetFramework)' != 'netstandard1.1' AND '$(TargetFramework)' != 'netstandard1.2' AND '$(TargetFramework)' != 'netstandard1.3' AND '$(TargetFramework)' != 'netstandard1.4' AND '$(TargetFramework)' != 'netstandard1.5' AND '$(TargetFramework)' != 'netstandard1.6' AND '$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netstandard2.1' AND '$(TargetFramework)' != 'netstandard2.2' AND '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.2' ">
+		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
+		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+	</ItemGroup>
+
+
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30' AND '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
 		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />

@@ -31,32 +31,32 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
-		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
-		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.2' ">
-		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
-		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 		<PackageReference Include="System.Diagnostics.TextWriterTraceListener" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.0.1" />
 	</ItemGroup>
 
 	<!-- NUnit 3.11 is the last NUnit supporting .NET 2.0 -->

@@ -1,8 +1,7 @@
 ﻿#if !LESSTHAN_NET40
 using System;
 using System.Globalization;
-
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if !LESSTHAN_NETCOREAPP20
 using System.Data.SqlTypes;
 #endif
 
@@ -134,7 +133,7 @@ namespace CodeJam.Mapping
 			Convert<DateTime,string>.Expression = null;
 		}
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if !LESSTHAN_NETCOREAPP20
 		[Test]
 		public void FromValue()
 		{

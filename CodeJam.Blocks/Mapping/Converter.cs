@@ -100,11 +100,7 @@ namespace CodeJam.Mapping
 		{
 			Code.NotNull(conversionType, nameof(conversionType));
 
-			if (value == null
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-				|| value is DBNull
-#endif
-				)
+			if (value == null || value is DBNull)
 				return mappingSchema == null ?
 					DefaultValue.GetValue(conversionType) :
 					mappingSchema.GetDefaultValue(conversionType);
@@ -163,11 +159,7 @@ namespace CodeJam.Mapping
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
 		public static T ChangeTypeTo<T>(object value, MappingSchema mappingSchema = null)
 		{
-			if (value == null
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-				|| value is DBNull
-#endif
-				)
+			if (value == null || value is DBNull)
 				return mappingSchema == null ?
 					DefaultValue<T>.Value :
 					(T)mappingSchema.GetDefaultValue(typeof(T));
