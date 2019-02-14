@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using CodeJam.Targeting;
+
 using JetBrains.Annotations;
 
 namespace CodeJam
@@ -18,18 +20,17 @@ namespace CodeJam
 		{
 			var currentMethod =
 #if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-				MethodBase.GetCurrentMethod().Name
+				MethodBase.GetCurrentMethod().Name;
 #else
-				GetCurrentMethod();
+				GetCurrentMethodName();
 #endif
-				;
 			Console.WriteLine(
 				$"{currentMethod}: Rnd seed: {seed} (use the seed to reproduce test results).");
 			return new Random(seed);
 		}
 
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-		private static string GetCurrentMethod([System.Runtime.CompilerServices.CallerMemberName] string memberName = "") => memberName;
+		private static string GetCurrentMethodName([System.Runtime.CompilerServices.CallerMemberName] string memberName = "") => memberName;
 #endif
 
 		[NotNull, LinqTunnel]
@@ -44,7 +45,7 @@ namespace CodeJam
 		{
 			var assembly = typeof(int).GetAssembly();
 
-			Console.WriteLine($"{PlatformDependent.TargetPlatform}. Running on {assembly}");
+			Console.WriteLine($"{PlatformHelper.TargetPlatform}. Running on {assembly}");
 			Console.WriteLine();
 			PrintProps("System.Runtime.Versioning.BinaryCompatibility");
 			Console.WriteLine();
@@ -69,7 +70,6 @@ namespace CodeJam
 				Console.WriteLine($"\t * {prop.Name}: {prop.GetValue(null, null)}");
 			}
 		}
-
 	}
 
 	public class Holder<T>

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -6,13 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 #endif
 
-using CodeJam;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
 using JetBrains.Annotations;
 
-// ReSharper disable once CheckNamespace
-
-namespace System
+namespace CodeJam.Targeting
 {
 	/// <summary>
 	/// Extension methods for <see cref="System.Type"/>
@@ -20,7 +19,7 @@ namespace System
 	internal static class TypeExtensions
 	{
 		[NotNull]
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static Assembly GetAssembly([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -30,7 +29,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsSealed([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -40,7 +39,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsAbstract([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -50,7 +49,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsEnum([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -60,7 +59,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsClass([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -70,7 +69,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsPrimitive([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -80,7 +79,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsPublic([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -90,7 +89,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsNestedPublic([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -100,7 +99,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsFromLocalAssembly([NotNull] this Type type)
 		{
 #if SILVERLIGHT
@@ -124,7 +123,7 @@ namespace System
 			}
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsGenericType([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -134,7 +133,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsGenericTypeDefinition([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -144,7 +143,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsInterface([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -155,7 +154,7 @@ namespace System
 		}
 
 		[CanBeNull]
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static Type GetBaseType([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -165,7 +164,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsValueType([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -175,7 +174,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetContainsGenericParameters([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -185,7 +184,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsDefined([NotNull] this Type type, [NotNull] Type attributeType)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -195,7 +194,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsDefined([NotNull] this Type type, [NotNull] Type attributeType, bool inherit)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -205,7 +204,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsArray([NotNull] this Type type)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -215,7 +214,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static PropertyInfo GetGetProperty([NotNull] this Type type, [NotNull] string propertyName)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -225,7 +224,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static T GetPropertyValue<T>([NotNull] this Type type, [NotNull] string propertyName, object target)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -236,7 +235,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static void SetPropertyValue(
 			[NotNull] this Type type, [NotNull] string propertyName, object target, object value)
 		{
@@ -248,7 +247,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static T GetFieldValue<T>([NotNull] this Type type, [NotNull] string fieldName, object target)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -259,7 +258,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static void SetFieldValue([NotNull] this Type type, [NotNull] string fieldName, object target, object value)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -277,7 +276,7 @@ namespace System
 #endif
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static void InvokeMethod<T>([NotNull] this Type type, [NotNull] string methodName, object target, T value)
 		{
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
@@ -291,7 +290,7 @@ namespace System
 
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static MethodInfo GetMethod(
 			[NotNull] this Type type,
 			[NotNull] string name,
@@ -306,7 +305,7 @@ namespace System
 			return type.GetMethod(name, bindingAttr, binder, types, null);
 		}
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static MethodInfo GetMethod(
 			[NotNull] this Type type,
 			[NotNull] string name,
@@ -327,7 +326,7 @@ namespace System
 		}
 
 		[NotNull]
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static ConstructorInfo GetConstructor(
 			[NotNull] this Type type,
 			BindingFlags bindingAttr,
@@ -366,33 +365,33 @@ namespace System
 
 		private const BindingFlags DefaultLookup = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsAssignableFrom([NotNull] this Type type, [NotNull] Type otherType)
 			=> type.GetTypeInfo().IsAssignableFrom(otherType.GetTypeInfo());
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsSubclassOf([NotNull] this Type type, [NotNull] Type c) => type.GetTypeInfo().IsSubclassOf(c);
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static T GetCustomAttribute<T>([NotNull] this Type type) where T : Attribute
 			=> type.GetTypeInfo().GetCustomAttribute<T>();
 
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static T GetCustomAttribute<T>([NotNull] this Type type, bool inherit) where T : Attribute
 			=> type.GetTypeInfo().GetCustomAttribute<T>(inherit);
 
 		[NotNull, ItemNotNull]
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static Attribute[] GetCustomAttributes([NotNull] this Type type)
 			=> type.GetTypeInfo().GetCustomAttributes().ToArray();
 
 		[NotNull, ItemNotNull]
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static Attribute[] GetCustomAttributes([NotNull] this Type type, Type attributeType, bool inherit)
 			=> type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).ToArray();
 
 		[NotNull]
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		public static InterfaceMapping GetInterfaceMap([NotNull] this Type type, Type interfaceType)
 			=> type.GetTypeInfo().GetRuntimeInterfaceMap(interfaceType);
 

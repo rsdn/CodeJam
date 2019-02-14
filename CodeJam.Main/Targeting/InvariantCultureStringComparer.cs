@@ -5,7 +5,7 @@ using System.Globalization;
 #endif
 
 // ReSharper disable once CheckNamespace
-namespace CodeJam
+namespace CodeJam.Targeting
 {
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 

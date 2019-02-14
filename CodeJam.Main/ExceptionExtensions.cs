@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using CodeJam.Strings;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -73,12 +74,10 @@ namespace CodeJam
 
 						writer.WriteLine($"File Name: {fex.FileName}");
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-						if (fex.FusionLog.IsNullOrEmpty())
+						if (fex.GetFusionLog().IsNullOrEmpty())
 							writer.WriteLine("Fusion log is empty or disabled.");
 						else
-							writer.Write(fex.FusionLog);
-#endif
+							writer.Write(fex.GetFusionLog());
 						break;
 
 					case AggregateException aex when aex.InnerExceptions != null:
@@ -146,12 +145,10 @@ namespace CodeJam
 
 						await writer.WriteLineAsync($"File Name: {fex.FileName}");
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-						if (fex.FusionLog.IsNullOrEmpty())
+						if (fex.GetFusionLog().IsNullOrEmpty())
 							await writer.WriteLineAsync("Fusion log is empty or disabled.");
 						else
-							await writer.WriteAsync(fex.FusionLog);
-#endif
+							await writer.WriteAsync(fex.GetFusionLog());
 						break;
 
 					case AggregateException aex when aex.InnerExceptions != null:

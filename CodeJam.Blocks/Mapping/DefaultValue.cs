@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 

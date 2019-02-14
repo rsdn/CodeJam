@@ -3,6 +3,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 
+using CodeJam.Targeting;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Metadata

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Linq;
 
 using CodeJam.Expressions;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 
 using JetBrains.Annotations;
+using CodeJam.Targeting;
 
 using NUnit.Framework;
 

@@ -5,6 +5,8 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Xml;
 
+using CodeJam.Targeting;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Mapping

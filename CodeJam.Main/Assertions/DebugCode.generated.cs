@@ -18,7 +18,7 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PlatformDependent;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
 namespace CodeJam
 {

@@ -17,7 +17,7 @@ using CodeJam.Arithmetic;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PlatformDependent;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 using static CodeJam.Ranges.RangeInternal;
 
 // The file contains members to be shared between RangeBoundaryTo<T> and RangeBoundaryFrom<T>.

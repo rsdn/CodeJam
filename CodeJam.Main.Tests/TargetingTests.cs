@@ -4,6 +4,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
+using CodeJam.Targeting;
+
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
@@ -139,7 +141,7 @@ namespace CodeJam
 		public void TestTargeting()
 		{
 			TestTools.PrintQuirks();
-			Assert.AreEqual(PlatformDependent.TargetPlatform, ExpectedTarget);
+			Assert.AreEqual(PlatformHelper.TargetPlatform, ExpectedTarget);
 		}
 
 		[Test]

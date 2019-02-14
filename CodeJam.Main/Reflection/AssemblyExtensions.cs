@@ -29,6 +29,7 @@ namespace CodeJam.Reflection
 			Code.NotNull(assembly, nameof(assembly));
 			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
 		}
+
 #endif
 
 		/// <summary>

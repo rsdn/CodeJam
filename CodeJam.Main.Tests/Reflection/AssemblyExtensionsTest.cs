@@ -4,6 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 
+using CodeJam.Targeting;
+
 namespace CodeJam.Reflection
 {
 	[TestFixture]

@@ -6,10 +6,10 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading;
 
 using CodeJam.Collections;
 using CodeJam.Expressions;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -26,13 +26,7 @@ namespace CodeJam.Mapping
 		{
 			try
 			{
-				return Convert.ChangeType(value, conversionType,
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-					Thread.CurrentThread.CurrentCulture
-#else
-					CultureInfo.CurrentCulture
-#endif
-					);
+				return Convert.ChangeType(value, conversionType, CultureInfo.CurrentCulture);
 			}
 			catch (Exception ex)
 			{

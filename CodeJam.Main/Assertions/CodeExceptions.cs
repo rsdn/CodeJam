@@ -5,9 +5,10 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-using JetBrains.Annotations;
+using CodeJam.Targeting;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
-using static CodeJam.PlatformDependent;
+using JetBrains.Annotations;
 
 namespace CodeJam
 {
@@ -82,12 +83,10 @@ namespace CodeJam
 		{
 			var sb = new StringBuilder();
 			exception.ToDiagnosticString(sb);
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 			if (exception.StackTrace == null)
 			{
-				sb.Append(new StackTrace());
+				sb.Append(StackTraceHelper.GetStackTrace());
 			}
-#endif
 
 			CodeTraceSource.TraceEvent(TraceEventType.Error, 0, sb.ToString());
 			return exception;
@@ -103,12 +102,10 @@ namespace CodeJam
 			var sb = new StringBuilder();
 			sb.Append("Swallowed: ");
 			exception.ToDiagnosticString(sb);
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 			if (exception.StackTrace == null)
 			{
-				sb.Append(new StackTrace());
+				sb.Append(StackTraceHelper.GetStackTrace());
 			}
-#endif
 
 			CodeTraceSource.TraceEvent(TraceEventType.Warning, 0, sb.ToString());
 			return exception;

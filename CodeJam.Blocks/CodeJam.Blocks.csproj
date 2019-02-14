@@ -72,24 +72,11 @@
 		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\PlatformDependent.cs">
-			<Link>Targeting\PlatformDependent.cs</Link>
+
+		<Compile Include="..\CodeJam.Main\Targeting\**\*.cs">
+			<Link>Targeting\%(Compile.Filename)</Link>
 		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\ValueTuple\TupleElementNamesAttribute.cs">
-			<Link>Targeting\ValueTuple\TupleElementNamesAttribute.cs</Link>
-		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\ValueTuple\TupleExtensions.cs">
-			<Link>Targeting\ValueTuple\TupleExtensions.cs</Link>
-		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\ValueTuple\ValueTuple.cs">
-			<Link>Targeting\ValueTuple\ValueTuple.cs</Link>
-		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NetCore\InvariantCultureStringComparer.cs">
-			<Link>Targeting\NetCore\InvariantCultureStringComparer.cs</Link>
-		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NetCore\TypeExtensions.cs">
-			<Link>Targeting\NetCore\TypeExtensions.cs</Link>
-		</Compile>
+
 		<Content Include="Readme.txt">
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>

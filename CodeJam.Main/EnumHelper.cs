@@ -9,10 +9,11 @@ using System.Threading;
 using CodeJam.Arithmetic;
 using CodeJam.Collections;
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PlatformDependent;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
 #if !LESSTHAN_NET40
 using EnumEx = System.Enum;

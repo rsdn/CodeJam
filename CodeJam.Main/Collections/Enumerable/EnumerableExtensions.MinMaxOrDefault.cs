@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
 using JetBrains.Annotations;
 
@@ -21,7 +22,7 @@ namespace CodeJam.Collections
 			private static readonly Comparer<T> _comparer = Comparer<T>.Default;
 
 			#region Operators<T>
-			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			[MethodImpl(AggressiveInlining)]
 			public static T MinOrDefault(IEnumerable<T> source, T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
@@ -51,7 +52,7 @@ namespace CodeJam.Collections
 				}
 			}
 
-			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			[MethodImpl(AggressiveInlining)]
 			public static T MinOrDefault<TSource>(IEnumerable<TSource> source, Func<TSource, T> selector, T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
@@ -82,7 +83,7 @@ namespace CodeJam.Collections
 				}
 			}
 
-			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			[MethodImpl(AggressiveInlining)]
 			public static T MaxOrDefault(IEnumerable<T> source, T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
@@ -115,7 +116,7 @@ namespace CodeJam.Collections
 				}
 			}
 
-			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			[MethodImpl(AggressiveInlining)]
 			public static T MaxOrDefault<TSource>(IEnumerable<TSource> source, Func<TSource, T> selector, T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
@@ -151,7 +152,7 @@ namespace CodeJam.Collections
 			#endregion
 
 			#region Comparer<T>
-			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			[MethodImpl(AggressiveInlining)]
 			public static T MinOrDefault(IEnumerable<T> source, IComparer<T> comparer, T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
@@ -173,7 +174,7 @@ namespace CodeJam.Collections
 				}
 			}
 
-			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			[MethodImpl(AggressiveInlining)]
 			public static T MinOrDefault<TSource>(
 				[NotNull] IEnumerable<TSource> source,
 				[NotNull] Func<TSource, T> selector,
@@ -199,7 +200,7 @@ namespace CodeJam.Collections
 				}
 			}
 
-			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			[MethodImpl(AggressiveInlining)]
 			public static T MaxOrDefault(
 				[NotNull] IEnumerable<T> source,
 				[CanBeNull] IComparer<T> comparer,
@@ -224,7 +225,7 @@ namespace CodeJam.Collections
 				}
 			}
 
-			[MethodImpl(PlatformDependent.AggressiveInlining)]
+			[MethodImpl(AggressiveInlining)]
 			public static T MaxOrDefault<TSource>(
 				[NotNull] IEnumerable<TSource> source,
 				[NotNull] Func<TSource, T> selector,

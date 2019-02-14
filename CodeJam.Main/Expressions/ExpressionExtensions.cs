@@ -1,4 +1,4 @@
-#if !LESSTHAN_NET40
+﻿#if !LESSTHAN_NET40
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -227,7 +227,7 @@ namespace CodeJam.Expressions
 					break;
 				}
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if !LESSTHAN_NETSTANDARD20
 
 				case ExpressionType.Dynamic:
 				{
@@ -544,7 +544,7 @@ namespace CodeJam.Expressions
 					break;
 				}
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if !LESSTHAN_NETSTANDARD20
 
 				case ExpressionType.Dynamic:
 				{
@@ -873,7 +873,7 @@ namespace CodeJam.Expressions
 							FindInternal(e.Variables, func);
 				}
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if !LESSTHAN_NETSTANDARD20
 
 				case ExpressionType.Dynamic:
 				{
@@ -1286,7 +1286,7 @@ namespace CodeJam.Expressions
 				case ExpressionType.Parameter:
 					return expr;
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if !LESSTHAN_NETSTANDARD20
 
 				case ExpressionType.Dynamic:
 				{

@@ -2,6 +2,7 @@
 using System.Reflection;
 
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -76,17 +77,7 @@ namespace CodeJam.Ranges
 					.MakeGenericMethod(typeof(T));
 
 				// no boxing for IFormatProvider
-				var res =
-					(Func<T, string, IFormatProvider, string>)
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-					Delegate.CreateDelegate(
-						typeof(Func<T, string, IFormatProvider, string>),
-						method,
-						true);
-#else				
-					method.CreateDelegate(
-						typeof(Func<T, string, IFormatProvider, string>));
-#endif
+				var res = DelegateHelper.CreateDelegate<Func<T, string, IFormatProvider, string>>(method);
 
 				DebugCode.BugIf(res == null, "res == null");
 				return res;
@@ -99,16 +90,7 @@ namespace CodeJam.Ranges
 					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
 
 				// no boxing for IFormatProvider
-				var res = (Func<T, string, IFormatProvider, string>)
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-					Delegate.CreateDelegate(
-						typeof(Func<T, string, IFormatProvider, string>),
-						method,
-						true);
-#else
-				method.CreateDelegate(
-					typeof(Func<T, string, IFormatProvider, string>));
-#endif
+				var res = DelegateHelper.CreateDelegate<Func<T, string, IFormatProvider, string>>(method);
 
 				DebugCode.BugIf(res == null, "res == null");
 				return res;

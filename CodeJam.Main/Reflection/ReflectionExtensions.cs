@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 using CodeJam.Strings;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 

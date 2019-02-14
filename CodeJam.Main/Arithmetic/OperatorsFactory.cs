@@ -7,6 +7,7 @@ using System.Reflection;
 
 using CodeJam.Collections;
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
