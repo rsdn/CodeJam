@@ -349,7 +349,7 @@ namespace CodeJam.Collections
 			var sb = new StringBuilder();
 			var currentIndex = RootNodeIndex;
 #if LESSTHAN_NET45
-			var stack = new ListWithReadOnly<StringLocation>();
+			var stack = new ListEx<StringLocation>();
 #else
 			var stack = new List<StringLocation>();
 #endif

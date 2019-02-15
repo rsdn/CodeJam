@@ -72,7 +72,7 @@ namespace CodeJam.Collections
 				yield return element;
 		}
 
-#if TARGETS_NET || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
+#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Prepends specified <paramref name="element"/> to the collection start.
 		/// </summary>
@@ -121,7 +121,7 @@ namespace CodeJam.Collections
 				yield return item;
 		}
 
-#if LESSTHAN_NET472 || LESSTHAN_NETCORE20 || TARGETS_NETSTANDARD
+#if LESSTHAN_NET472 || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
 		/// </summary>

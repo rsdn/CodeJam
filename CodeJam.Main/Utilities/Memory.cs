@@ -1,8 +1,9 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
 
 using JetBrains.Annotations;
+
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
 namespace CodeJam
 {
@@ -37,7 +38,7 @@ namespace CodeJam
 		/// <returns>
 		/// true if all count bytes of the <paramref name="p1"/> and <paramref name="p2"/> are equal; otherwise, false.
 		/// </returns>
-		[MethodImpl(PlatformDependent.AggressiveInlining)]
+		[MethodImpl(AggressiveInlining)]
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		public static bool CompareInline(byte* p1, byte* p2, int count)
 		{

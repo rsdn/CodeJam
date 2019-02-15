@@ -5,9 +5,10 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-using JetBrains.Annotations;
+using CodeJam.Targeting;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
-using static CodeJam.PlatformDependent;
+using JetBrains.Annotations;
 
 namespace CodeJam
 {
@@ -84,7 +85,7 @@ namespace CodeJam
 			exception.ToDiagnosticString(sb);
 			if (exception.StackTrace == null)
 			{
-				sb.Append(new StackTrace());
+				sb.Append(StackTraceHelper.GetStackTrace());
 			}
 
 			CodeTraceSource.TraceEvent(TraceEventType.Error, 0, sb.ToString());
@@ -103,7 +104,7 @@ namespace CodeJam
 			exception.ToDiagnosticString(sb);
 			if (exception.StackTrace == null)
 			{
-				sb.Append(new StackTrace());
+				sb.Append(StackTraceHelper.GetStackTrace());
 			}
 
 			CodeTraceSource.TraceEvent(TraceEventType.Warning, 0, sb.ToString());

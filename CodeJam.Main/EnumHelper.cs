@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,15 +9,14 @@ using System.Threading;
 using CodeJam.Arithmetic;
 using CodeJam.Collections;
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PlatformDependent;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
-#if LESSTHAN_NET40
-using EnumTargetingHelpers = CodeJam.Targeting.EnumTargeting;
-#else
-using EnumTargetingHelpers = System.Enum;
+#if !LESSTHAN_NET40
+using EnumEx = System.Enum;
 #endif
 
 namespace CodeJam
@@ -29,7 +27,7 @@ namespace CodeJam
 	[PublicAPI]
 	public static class EnumHelper
 	{
-		#region Perf-critical metadata checks
+#region Perf-critical metadata checks
 		/// <summary>Determines whether the specified value is defined.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value to check.</param>
@@ -99,7 +97,7 @@ namespace CodeJam
 		public static bool TryParse<TEnum>([NotNull] string name, bool ignoreCase, out TEnum result)
 			where TEnum : struct, Enum =>
 				Holder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result) ||
-					EnumTargetingHelpers.TryParse(name, ignoreCase, out result);
+					EnumEx.TryParse(name, ignoreCase, out result);
 
 		/// <summary>Try to parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
@@ -125,9 +123,9 @@ namespace CodeJam
 				return result;
 			return (TEnum)Enum.Parse(typeof(TEnum), name, ignoreCase);
 		}
-		#endregion
+#endregion
 
-		#region Flag checks
+#region Flag checks
 		/// <summary>Determines whether the specified flag is set.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
@@ -171,9 +169,9 @@ namespace CodeJam
 		public static bool IsFlagUnset<TEnum>(this TEnum value, TEnum flags)
 			where TEnum : struct, Enum =>
 				!Holder<TEnum>.IsAnyFlagSetCallback(value, flags);
-		#endregion
+#endregion
 
-		#region Flag operations
+#region Flag operations
 		/// <summary>Sets the flag.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
@@ -212,9 +210,9 @@ namespace CodeJam
 				enabled
 					? SetFlag(value, flag)
 					: ClearFlag(value, flag);
-		#endregion
+#endregion
 
-		#region Enum values
+#region Enum values
 
 		/// <summary>Returns a dictionary containing the enum names and their values.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
@@ -246,9 +244,9 @@ namespace CodeJam
 		public static TEnum[] GetValues<TEnum>()
 			where TEnum : struct, Enum =>
 				Holder<TEnum>.GetNameValues(false).Values.ToArray();
-		#endregion
+#endregion
 
-		#region DisplayName/Description
+#region DisplayName/Description
 		/// <summary>Gets enum values collection that contains information about enum type and its values.</summary>
 		/// <typeparam name="TEnum">Enum type</typeparam>
 		/// <returns>The enum values collection.</returns>
@@ -324,9 +322,9 @@ namespace CodeJam
 		public static FieldInfo GetField<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
 				GetEnumValue(value).UnderlyingField;
-		#endregion
+#endregion
 
-		#region Holder struct
+#region Holder struct
 		[NotNull]
 		private static readonly ILazyDictionary<Type, EnumValues> _enumValuesCache = LazyDictionary.Create(
 			(Type enumType) => new EnumValues(enumType.ToNullableUnderlying()),
@@ -335,22 +333,22 @@ namespace CodeJam
 		private static class Holder<TEnum>
 			where TEnum : struct, Enum
 		{
-			#region Static fields
+#region Static fields
 			[NotNull]
 			private static readonly HashSet<TEnum> _values = new HashSet<TEnum>((TEnum[])Enum.GetValues(typeof(TEnum)));
 			[NotNull]
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(ignoreCase: false);
 			[NotNull]
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(ignoreCase: true);
-			#endregion
+#endregion
 
-			#region Init helpers
+#region Init helpers
 			[NotNull]
 			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(bool ignoreCase)
 			{
 				var result =
 #if LESSTHAN_NET45
-					new DictionaryWithReadOnly<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
+					new DictionaryEx<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
 #else
 					new Dictionary<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
 #endif
@@ -382,9 +380,9 @@ namespace CodeJam
 
 				return result;
 			}
-			#endregion
+#endregion
 
-			#region API
+#region API
 			public static bool IsFlagsEnum { get; } = typeof(TEnum).GetCustomAttribute<FlagsAttribute>() != null;
 			public static TEnum FlagsMask { get; } = GetFlagsMaskCore();
 			[NotNull]
@@ -406,9 +404,8 @@ namespace CodeJam
 			[MethodImpl(AggressiveInlining)]
 			public static bool AreFlagsDefined(TEnum flags) =>
 				_values.Contains(flags) || IsFlagsEnum && IsFlagSetCallback(FlagsMask, flags);
-			#endregion
+#endregion
 		}
-		#endregion
+#endregion
 	}
 }
-#endif

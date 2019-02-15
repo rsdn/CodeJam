@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Linq;
 
 using CodeJam.Expressions;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -52,7 +53,7 @@ namespace CodeJam.Reflection
 				MemberInfo = lastInfo.member;
 				Type       = lastInfo.type;
 
-				var checkNull = infos.Take(infos.Length - 1).Any(info => info.type.IsClass || info.type.IsNullable());
+				var checkNull = infos.Take(infos.Length - 1).Any(info => info.type.GetIsClass() || info.type.IsNullable());
 
 				// Build getter.
 				//
@@ -71,7 +72,7 @@ namespace CodeJam.Reflection
 								if (i == infos.Length - 1)
 									return Expression.Assign(ret, next);
 
-								if (next.Type.IsClass || next.Type.IsNullable())
+								if (next.Type.GetIsClass() || next.Type.IsNullable())
 								{
 									var local = Expression.Variable(next.Type);
 
@@ -126,7 +127,7 @@ namespace CodeJam.Reflection
 									}
 									else
 									{
-										if (next.Type.IsClass || next.Type.IsNullable())
+										if (next.Type.GetIsClass() || next.Type.IsNullable())
 										{
 											var local = Expression.Variable(next.Type);
 
@@ -257,7 +258,7 @@ namespace CodeJam.Reflection
 			if (_defaultValues.TryGetValue(type, out var value))
 				return value;
 
-			if (!type.IsClass && !type.IsNullable())
+			if (!type.GetIsClass() && !type.IsNullable())
 			{
 				var mi = InfoOf.Method(() => GetDefaultValue<int>());
 

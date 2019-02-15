@@ -117,7 +117,6 @@ namespace CodeJam.Assertions
 			Assert.DoesNotThrow(() => Code.InRange(3, "arg00", double.NegativeInfinity, double.PositiveInfinity));
 		}
 
-#if !LESSTHAN_NET35
 		[Test]
 		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
 		public void TestOutOfRangeNullableDouble()
@@ -173,7 +172,6 @@ namespace CodeJam.Assertions
 			Assert.DoesNotThrow(() => Code.InRange("c", "arg00", "c", "d"));
 			Assert.DoesNotThrow(() => Code.InRange("c", "arg00", null, "eee"));
 		}
-#endif
 
 		[Test]
 		public void TestValidCount()

@@ -9,13 +9,9 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using EnumerableClass =
-#if LESSTHAN_NET40
-	CodeJam.Targeting.EnumerableTargeting
-#else
-	System.Linq.Enumerable
+#if NET35
+using Theraot.Collections;
 #endif
-	;
 
 namespace CodeJam.TableData
 {
@@ -369,14 +365,9 @@ namespace CodeJam.TableData
 					nameof(columnWidths),
 					"columnWidth array to short");
 
-				return
-					EnumerableClass
-						// ReSharper disable once InvokeAsExtensionMethod
-						.Zip(
-							values.Select(EscapeValue),
-							columnWidths,
-							(s, w) => s.PadRight(w))
-						.Join(", ");
+				return values
+					.Select(EscapeValue).Zip(columnWidths, (s, w) => s.PadRight(w))
+					.Join(", ");
 			}
 		}
 
@@ -397,13 +388,7 @@ namespace CodeJam.TableData
 			/// <param name="columnWidths">Array of column widths. If null - value is ignored.</param>
 			/// <returns>String representation of values</returns>
 			public string FormatLine(string[] values, int[] columnWidths) =>
-				EnumerableClass
-					// ReSharper disable once InvokeAsExtensionMethod
-					.Zip(
-						values,
-						columnWidths,
-						(s, w) => s.PadLeft(w))
-					.Join(", ");
+				values.Zip(columnWidths, (s, w) => s.PadLeft(w)).Join(", ");
 			#endregion
 		}
 		#endregion

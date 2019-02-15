@@ -2,11 +2,10 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
-#if !LESSTHAN_NET45
 using System.Threading.Tasks;
-#endif
 
 using CodeJam.Strings;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -75,11 +74,12 @@ namespace CodeJam
 
 						writer.WriteLine($"File Name: {fex.FileName}");
 
-						if (fex.FusionLog.IsNullOrEmpty())
+						if (fex.GetFusionLog().IsNullOrEmpty())
 							writer.WriteLine("Fusion log is empty or disabled.");
 						else
-							writer.Write(fex.FusionLog);
+							writer.Write(fex.GetFusionLog());
 						break;
+
 					case AggregateException aex when aex.InnerExceptions != null:
 						var foundInnerException = false;
 
@@ -145,11 +145,12 @@ namespace CodeJam
 
 						await writer.WriteLineAsync($"File Name: {fex.FileName}");
 
-						if (fex.FusionLog.IsNullOrEmpty())
+						if (fex.GetFusionLog().IsNullOrEmpty())
 							await writer.WriteLineAsync("Fusion log is empty or disabled.");
 						else
-							await writer.WriteAsync(fex.FusionLog);
+							await writer.WriteAsync(fex.GetFusionLog());
 						break;
+
 					case AggregateException aex when aex.InnerExceptions != null:
 						var foundInnerException = false;
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -55,7 +56,7 @@ namespace CodeJam.Mapping
 			if (_defaultValues.TryGetValue(type, out var value))
 				return value;
 
-			if (type.IsEnum)
+			if (type.GetIsEnum())
 			{
 				var mapValues = ms.GetMapValues(type);
 
@@ -70,7 +71,7 @@ namespace CodeJam.Mapping
 				}
 			}
 
-			if (value == null && !type.IsClass && !type.IsNullable())
+			if (value == null && !type.GetIsClass() && !type.IsNullable())
 			{
 				var mi = InfoOf.Method(() => GetValue<int>());
 

@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 using CodeJam.Collections;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -242,7 +243,7 @@ namespace CodeJam.Mapping
 		{
 			var type = originalType;
 
-			if (type.IsInterface && type.IsGenericType)
+			if (type.GetIsInterface() && type.GetIsGenericType())
 			{
 				var definition = type.GetGenericTypeDefinition();
 
@@ -278,7 +279,7 @@ namespace CodeJam.Mapping
 			var fromItemType = fromType.GetItemType();
 			var toItemType   = toType.  GetItemType();
 
-			if (toType.IsGenericType && !toType.IsGenericTypeDefinition)
+			if (toType.GetIsGenericType() && !toType.GetIsGenericTypeDefinition())
 			{
 				var toDefinition = toType.GetGenericTypeDefinition();
 				DebugCode.BugIf(toDefinition == null, "toDefinition == null");
@@ -600,7 +601,7 @@ namespace CodeJam.Mapping
 					var selectExpr = Select(_builder, _fromExpression, fromItemType, toItemType);
 					_expressions.Add(Call(_localObject, addRangeMethodInfo, selectExpr));
 				}
-				else if (toListType.IsGenericType && !toListType.IsGenericTypeDefinition)
+				else if (toListType.GetIsGenericType() && !toListType.GetIsGenericTypeDefinition())
 				{
 					if (toListType.IsSubClass(typeof(ICollection<>)))
 					{

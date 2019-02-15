@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET45
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -9,6 +8,16 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 
 using NUnit.Framework;
+
+#if LESSTHAN_NET45
+using Theraot.Core;
+#endif
+
+#if NET40
+using TaskEx = System.Threading.Tasks.TaskEx;
+#else
+using TaskEx = System.Threading.Tasks.Task;
+#endif
 
 namespace CodeJam.Threading
 {
@@ -23,7 +32,7 @@ namespace CodeJam.Threading
 				using (await asyncLock.AcquireAsync(holdTime, cancellation))
 				{
 					callback?.Invoke();
-					await Task.Delay(holdTime);
+					await TaskEx.Delay(holdTime);
 				}
 				return true;
 			}
@@ -37,7 +46,9 @@ namespace CodeJam.Threading
 			}
 		}
 
+#if !LESSTHAN_NET40
 		[Test]
+#endif
 		[SuppressMessage("ReSharper", "MethodSupportsCancellation")]
 		public async Task LockCancellationTest()
 		{
@@ -53,14 +64,14 @@ namespace CodeJam.Threading
 			var cts2 = new CancellationTokenSource();
 			var sw2 = Stopwatch.StartNew();
 			var lock2 = TryTakeAndHold(asyncLock, holdTime, cts2.Token);
-			await Task.Delay(delayTime);
+			await TaskEx.Delay(delayTime);
 			cts2.Cancel();
 			var lock2Taken = await lock2;
 			sw2.Stop();
 
 			var sw3 = Stopwatch.StartNew();
 			var lock3 = TryTakeAndHold(asyncLock, delayTime);
-			await Task.Delay(delayTime);
+			await TaskEx.Delay(delayTime);
 			var lock3Taken = await lock3;
 			sw3.Stop();
 
@@ -73,7 +84,19 @@ namespace CodeJam.Threading
 			Assert.Less(sw3.Elapsed, holdTime - delayTime);
 		}
 
+#if LESSTHAN_NET40
 		[Test]
+		public void LockCancellationTestDotNetLessThan40()
+		{
+			LockCancellationTest().Wait();
+			Assert.IsTrue(true);
+		}
+#endif
+
+
+#if !LESSTHAN_NET40
+		[Test]
+#endif
 		public async Task LockTest()
 		{
 			var asyncLock = new AsyncLock();
@@ -89,7 +112,7 @@ namespace CodeJam.Threading
 				{
 					Assert.IsFalse(opActive);
 					opActive = true;
-					await Task.Delay(200 + num * timeInc);
+					await TaskEx.Delay(200 + num * timeInc);
 					Assert.IsTrue(opActive);
 					opActive = false;
 				}
@@ -98,12 +121,20 @@ namespace CodeJam.Threading
 			var sw = Stopwatch.StartNew();
 			await Enumerable
 				.Range(0, 10)
-				.Select(i => Task.Run(() => Op(i)))
+				.Select(i => TaskEx.Run(() => Op(i)))
 				.WhenAll();
 			sw.Stop();
 			Assert.IsFalse(opActive);
 			Assert.GreaterOrEqual(sw.ElapsedMilliseconds, time * count + timeInc * count / 2);
 		}
+
+#if LESSTHAN_NET40
+		[Test]
+		public void LockTestDotNetLessThan40()
+		{
+			LockTest().Wait();
+			Assert.IsTrue(true);
+		}
+#endif
 	}
 }
-#endif

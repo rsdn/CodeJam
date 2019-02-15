@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading;
@@ -47,9 +46,9 @@ namespace CodeJam.Threading
 						Thread.Sleep(300);
 					}
 				});
-
-			Assert.That(Thread.VolatileRead(ref _providerCount), Is.EqualTo(5));
-			Assert.That(Thread.VolatileRead(ref _consumerCount), Is.EqualTo(2));
+			
+			Assert.That(Volatile.Read(ref _providerCount), Is.EqualTo(5));
+			Assert.That(Volatile.Read(ref _consumerCount), Is.EqualTo(2));
 		}
 
 		private static int _actionCount;
@@ -74,7 +73,7 @@ namespace CodeJam.Threading
 				}))
 				.RunInParallel(5);
 
-			Assert.That(Thread.VolatileRead(ref _actionCount), Is.EqualTo(5));
+			Assert.That(Volatile.Read(ref _actionCount), Is.EqualTo(5));
 		}
 
 		//[Ignore("Test seems to fail on a single core environment")]
@@ -107,7 +106,7 @@ namespace CodeJam.Threading
 					a();
 				});
 
-			Assert.That(Thread.VolatileRead(ref _actionCount), Is.EqualTo(5));
+			Assert.That(Volatile.Read(ref _actionCount), Is.EqualTo(5));
 		}
 
 		[Test]
@@ -126,8 +125,7 @@ namespace CodeJam.Threading
 					}
 				});
 
-			Assert.That(Thread.VolatileRead(ref _actionCount), Is.EqualTo(5));
+			Assert.That(Volatile.Read(ref _actionCount), Is.EqualTo(5));
 		}
 	}
 }
-#endif

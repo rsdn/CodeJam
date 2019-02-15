@@ -1,4 +1,4 @@
-﻿#if LESSTHAN_NET47
+﻿#if (LESSTHAN_NET47 && !LESSTHAN_NET40) || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 // BASEDON: https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/Runtime/CompilerServices/TupleElementNamesAttribute.cs
 
 // Licensed to the .NET Foundation under one or more agreements.

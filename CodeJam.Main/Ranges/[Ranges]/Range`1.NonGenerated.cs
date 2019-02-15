@@ -1,11 +1,10 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PlatformDependent;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 using static CodeJam.Ranges.RangeInternal;
 
 // The file contains members that should not be copied into Range<T, TKey>. DO NOT remove it
@@ -117,4 +116,3 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
-#endif

@@ -5,6 +5,8 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Xml;
 
+using CodeJam.Targeting;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Mapping
@@ -197,7 +199,7 @@ namespace CodeJam.Mapping
 		internal static bool IsDefaultValuePlaceHolder(Expression expr) =>
 			expr is MemberExpression me
 					&& me.Member.Name == "Value"
-					&& me.Member.DeclaringType?.IsGenericType == true
+					&& me.Member.DeclaringType?.GetIsGenericType() == true
 				? me.Member.DeclaringType.GetGenericTypeDefinition() == typeof(DefaultValue<>)
 				: expr is DefaultValueExpression;
 

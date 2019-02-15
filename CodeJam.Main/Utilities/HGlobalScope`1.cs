@@ -30,6 +30,8 @@ namespace CodeJam
 		{
 		}
 
+#pragma warning disable 618 // 'Marshal.SizeOf(Type)', 'Marshal.PtrToStructure(IntPtr, Type)' are obsolete
+
 		/// <summary>
 		/// Value
 		/// </summary>
@@ -39,6 +41,8 @@ namespace CodeJam
 		/// Size of the of the generic parameter <typeparamref name="T"/>.
 		/// </summary>
 		private static readonly int _size = Marshal.SizeOf(typeof(T));
+
+#pragma warning restore 618
 
 		/// <summary>
 		/// Validate <paramref name="cb" /> is at least as the size of <typeparamref name="T"/>.

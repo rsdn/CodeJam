@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,7 +10,7 @@ using JetBrains.Annotations;
 
 using StringClass =
 #if LESSTHAN_NET40
-	CodeJam.Targeting.StringTargeting
+	System.StringEx
 #else
 	System.String
 #endif
@@ -308,4 +307,3 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
-#endif

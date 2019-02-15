@@ -1,10 +1,9 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PlatformDependent;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 
 namespace CodeJam.Ranges
 {
@@ -105,4 +104,3 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
-#endif

@@ -7,11 +7,12 @@ using System.Reflection;
 
 using CodeJam.Collections;
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
-#if LESSTHAN_NET40
-using CodeJam.Targeting;
+#if NET35
+using Theraot.Collections;
 #endif
 
 namespace CodeJam
@@ -66,19 +67,19 @@ namespace CodeJam
 		internal EnumValues([NotNull] Type enumType)
 		{
 			Code.NotNull(enumType, nameof(enumType));
-			if (!enumType.IsEnum)
+			if (!enumType.GetIsEnum())
 				throw CodeExceptions.Argument(nameof(enumType), $"The {nameof(enumType)} ({enumType}) arg should be a enum type.");
 			EnumType = enumType;
 			_values = GetValues(enumType);
 			_valuesByName = _values
 				.ToDictionary(
 					f => f.Name,
-					StringComparer.InvariantCulture,
+					InvariantCultureStringComparer.CompareCase,
 					DictionaryDuplicate.FirstWins);
 			_valuesByNameIgnoreCase = _values
 				.ToDictionary(
 					f => f.Name,
-					StringComparer.InvariantCultureIgnoreCase,
+					InvariantCultureStringComparer.IgnoreCase,
 					DictionaryDuplicate.FirstWins);
 			_valuesByValue = _values
 				.ToDictionary(
@@ -88,7 +89,7 @@ namespace CodeJam
 				.Where(f => f.DisplayName != null)
 				.ToDictionary(
 					f => f.DisplayName,
-					StringComparer.InvariantCulture,
+					InvariantCultureStringComparer.CompareCase,
 					DictionaryDuplicate.FirstWins);
 		}
 		#endregion

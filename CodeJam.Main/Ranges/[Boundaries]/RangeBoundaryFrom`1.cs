@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -9,7 +8,7 @@ using CodeJam.Arithmetic;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PlatformDependent;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 using static CodeJam.Ranges.RangeInternal;
 
 // The file contains members to be shared between RangeBoundaryFrom<T> and RangeBoundaryTo<T>.
@@ -614,4 +613,3 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
-#endif

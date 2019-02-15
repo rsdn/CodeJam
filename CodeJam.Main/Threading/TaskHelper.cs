@@ -1,9 +1,14 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
+#if NET40
+using TaskEx = System.Threading.Tasks.TaskEx;
+#else
+using TaskEx = System.Threading.Tasks.Task;
+#endif
 
 using JetBrains.Annotations;
 
@@ -103,7 +108,6 @@ namespace CodeJam.Threading
 		public static void WaitAll([NotNull] this IEnumerable<Task> tasks) => Task.WaitAll(tasks.ToArray());
 		#endregion
 
-#if !LESSTHAN_NET45
 		#region WhenAll
 		/// <summary>
 		/// Creates a task that will complete when all of the <see cref="Task"/> objects in an enumerable collection
@@ -112,25 +116,25 @@ namespace CodeJam.Threading
 		/// <param name="tasks">The tasks to wait on for completion.</param>
 		/// <returns>A task that represents the completion of all of the supplied tasks.</returns>
 		[NotNull]
-		public static Task WhenAll([NotNull, ItemNotNull] this IEnumerable<Task> tasks) => Task.WhenAll(tasks);
+		public static Task WhenAll([NotNull, ItemNotNull] this IEnumerable<Task> tasks) => TaskEx.WhenAll(tasks);
 
 		/// <summary>
 		/// Creates a task that will complete when all of the <see cref="Task{TResult}"/> objects in an enumerable collection
 		/// have completed.
 		/// </summary>
-		/// <typeparam name="TResult">The type of the completed task.</typeparam>
+		/// <typeparam name="TResult">The type of the completed Task.</typeparam>
 		/// <param name="tasks">The tasks to wait on for completion.</param>
 		/// <returns>A task that represents the completion of all of the supplied tasks.</returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<TResult[]> WhenAll<TResult>([NotNull, ItemNotNull] this IEnumerable<Task<TResult>> tasks) => Task.WhenAll(tasks);
+		public static Task<TResult[]> WhenAll<TResult>([NotNull, ItemNotNull] this IEnumerable<Task<TResult>> tasks) => TaskEx.WhenAll(tasks);
 		#endregion
 
 		#region WhenAny
 		/// <summary>
 		/// Creates a task that will complete when any of the supplied tasks have completed.
 		/// </summary>
-		/// <typeparam name="TResult">The type of the completed task.</typeparam>
+		/// <typeparam name="TResult">The type of the completed Task.</typeparam>
 		/// <param name="tasks">The tasks to wait on for completion.</param>
 		/// <returns>
 		/// A task that represents the completion of one of the supplied tasks. The return task's Result is the task that
@@ -138,7 +142,7 @@ namespace CodeJam.Threading
 		/// </returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<Task<TResult>> WhenAny<TResult>([NotNull, ItemNotNull] this IEnumerable<Task<TResult>> tasks) => Task.WhenAny(tasks);
+		public static Task<Task<TResult>> WhenAny<TResult>([NotNull, ItemNotNull] this IEnumerable<Task<TResult>> tasks) => TaskEx.WhenAny(tasks);
 
 		/// <summary>
 		/// Creates a task that will complete when any of the supplied tasks have completed.
@@ -150,9 +154,7 @@ namespace CodeJam.Threading
 		/// </returns>
 		[NotNull]
 		[ItemNotNull]
-		public static Task<Task> WhenAny([NotNull, ItemNotNull] this IEnumerable<Task> tasks) => Task.WhenAny(tasks);
+		public static Task<Task> WhenAny([NotNull, ItemNotNull] this IEnumerable<Task> tasks) => TaskEx.WhenAny(tasks);
 		#endregion
-#endif
 	}
 }
-#endif

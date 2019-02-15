@@ -3,8 +3,8 @@ using System.Linq;
 
 using NUnit.Framework;
 
-#if LESSTHAN_NET40
-using CodeJam.Targeting;
+#if NET35
+using Theraot.Collections;
 #endif
 
 namespace CodeJam.Collections

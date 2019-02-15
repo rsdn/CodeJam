@@ -7,6 +7,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
+using CodeJam.Targeting;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Mapping
@@ -113,7 +115,7 @@ namespace CodeJam.Mapping
 					return o.Value;
 			}
 
-			if (type.IsEnum)
+			if (type.GetIsEnum())
 			{
 				var mapValues = GetMapValues(type);
 
@@ -161,7 +163,7 @@ namespace CodeJam.Mapping
 
 		private void SetGenericConvertProvider([NotNull] Type type)
 		{
-			if (!type.IsGenericTypeDefinition)
+			if (!type.GetIsGenericTypeDefinition())
 				throw new CodeJamMappingException($"'{type}' must be a generic type.");
 
 			Schemas[0].SetGenericConvertProvider(type);
@@ -366,7 +368,7 @@ namespace CodeJam.Mapping
 						new DefaultValueExpression(this, expr.Body.Type)),
 					expr.Parameters);
 
-			if (p.Type.IsClass)
+			if (p.Type.GetIsClass())
 				return Expression.Lambda(
 					Expression.Condition(
 						Expression.NotEqual(p, Expression.Constant(null, p.Type)),
@@ -390,8 +392,8 @@ namespace CodeJam.Mapping
 					return i == 0 ? li : new ConvertInfo.LambdaInfo(li.CheckNullLambda, li.CheckNullLambda, null, false);
 			}
 
-			var isFromGeneric = from.IsGenericType && !from.IsGenericTypeDefinition;
-			var isToGeneric   = to.  IsGenericType && !to.  IsGenericTypeDefinition;
+			var isFromGeneric = from.GetIsGenericType() && !from.GetIsGenericTypeDefinition();
+			var isToGeneric   = to.  GetIsGenericType() && !to.  GetIsGenericTypeDefinition();
 
 			if (isFromGeneric || isToGeneric)
 			{
@@ -862,7 +864,7 @@ namespace CodeJam.Mapping
 			{
 				type = type.ToNullableUnderlying();
 
-				if (type.IsEnum || type.IsPrimitive || IsStructIsScalarType && type.IsValueType)
+				if (type.GetIsEnum() || type.GetIsPrimitive() || IsStructIsScalarType && type.GetIsValueType())
 					ret = true;
 			}
 
@@ -915,7 +917,7 @@ namespace CodeJam.Mapping
 
 			var underlyingType = type.ToNullableUnderlying();
 
-			if (underlyingType.IsEnum)
+			if (underlyingType.GetIsEnum())
 			{
 				var fields =
 				(

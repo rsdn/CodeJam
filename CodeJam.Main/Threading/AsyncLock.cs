@@ -1,9 +1,12 @@
-﻿#if !LESSTHAN_NET45
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 using JetBrains.Annotations;
+
+#if LESSTHAN_NET45
+using Theraot.Core;
+#endif
 
 namespace CodeJam.Threading
 {
@@ -192,5 +195,3 @@ namespace CodeJam.Threading
 		}
 	}
 }
-
-#endif

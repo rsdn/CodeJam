@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
 using NUnit.Framework;
@@ -176,4 +175,3 @@ namespace CodeJam.Ranges
 		}
 	}
 }
-#endif

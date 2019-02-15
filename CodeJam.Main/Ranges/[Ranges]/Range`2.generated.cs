@@ -7,7 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#if !LESSTHAN_NET35
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
@@ -16,7 +15,7 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using static CodeJam.PlatformDependent;
+using static CodeJam.Targeting.MethodImplOptionsExt;
 using static CodeJam.Ranges.RangeInternal;
 
 // The file contains members to be shared between Range<T, TKey> and Range<T, TKey>.
@@ -158,4 +157,3 @@ namespace CodeJam.Ranges
 		#endregion
 	}
 }
-#endif

@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -171,7 +170,7 @@ namespace CodeJam.Expressions
 				name = expression.Member.Name + "." + name;
 
 			return name;
-		}
+		}	
 
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/>.
@@ -225,11 +224,14 @@ namespace CodeJam.Expressions
 							if (expr.NodeType != ExpressionType.MemberAccess)
 								goto default;
 
+							// ReflectedType is not supported in .NET Core
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 							var member = ((MemberExpression)expr).Member;
 							var mType = member.GetMemberType();
 
 							if (lastMember.ReflectedType != mType.GetItemType())
 								goto default;
+#endif
 
 							expression = expr;
 
@@ -264,8 +266,5 @@ namespace CodeJam.Expressions
 				}
 			}
 		}
-
-
 	}
 }
-#endif

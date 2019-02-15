@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 
 using JetBrains.Annotations;
+using CodeJam.Targeting;
 
 using NUnit.Framework;
 
@@ -278,7 +279,7 @@ namespace CodeJam.Mapping
 				.ToMapping      ("Field3", "Field2")
 				.ToMapping<Dest>("Field6", "Field7")
 #if LESSTHAN_NET45
-				.FromMapping(new DictionaryWithReadOnly<string,string> { ["Field5"] = "Field4" }));
+				.FromMapping(new DictionaryEx<string,string> { ["Field5"] = "Field4" }));
 #else
 				.FromMapping(new Dictionary<string,string> { ["Field5"] = "Field4" }));
 #endif
@@ -583,7 +584,7 @@ namespace CodeJam.Mapping
 
 		private class Object3
 		{
-			public HashSet<string> HashSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+			public HashSet<string> HashSet = new HashSet<string>(InvariantCultureStringComparer.IgnoreCase);
 		}
 
 		[Test]

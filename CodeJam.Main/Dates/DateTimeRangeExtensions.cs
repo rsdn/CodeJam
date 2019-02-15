@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET35
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 using CodeJam.Ranges;
@@ -203,4 +202,3 @@ namespace CodeJam.Dates
 		#endregion
 	}
 }
-#endif

@@ -1,14 +1,15 @@
-﻿using System;
+﻿#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 using CodeJam.Collections;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
-
 namespace CodeJam.Reflection
 {
 	/// <summary>
@@ -31,11 +32,11 @@ namespace CodeJam.Reflection
 
 			public int GetHashCode(MethodInfo obj) => obj.MethodHandle.GetHashCode();
 		}
-
 		// DONTTOUCH: Direct compare may result in false negative.
 		// See http://stackoverflow.com/questions/27645408 for explanation.
 		[NotNull]
 		private static readonly IEqualityComparer<Type> _typeComparer = new TypeTypeHandleComparer();
+
 		[NotNull]
 		private static readonly IEqualityComparer<MethodInfo> _methodComparer = new MethodMethodHandleComparer();
 
@@ -159,7 +160,7 @@ namespace CodeJam.Reflection
 			this Type type)
 			where TAttribute : class
 		{
-			var inheritanceTypes = Sequence.CreateWhileNotNull(type, t => t.BaseType)
+			var inheritanceTypes = Sequence.CreateWhileNotNull(type, t => t.GetBaseType())
 				.ToArray();
 
 			// ReSharper disable once CoVariantArrayConversion
@@ -182,7 +183,7 @@ namespace CodeJam.Reflection
 				var inheritanceTypes = Sequence.Create(
 					typeToCheck,
 					t => t != null && !visited.Contains(t),
-					t => t.BaseType)
+					t => t.GetBaseType())
 					.ToArray();
 
 				if (inheritanceTypes.Length == 0)
@@ -198,7 +199,7 @@ namespace CodeJam.Reflection
 				}
 			}
 
-			foreach (var attribute in GetAttributesFromCandidates<TAttribute>(true, type.Assembly))
+			foreach (var attribute in GetAttributesFromCandidates<TAttribute>(true, type.GetAssembly()))
 			{
 				yield return attribute;
 			}
@@ -304,7 +305,7 @@ namespace CodeJam.Reflection
 			return result.ToArray();
 		}
 		#endregion
-
+		
 		#region GetAttributesFromCandidates
 		private static readonly AttributeUsageAttribute _defaultUsage = new AttributeUsageAttribute(AttributeTargets.All);
 
@@ -348,6 +349,44 @@ namespace CodeJam.Reflection
 			}
 			return result.ToArray();
 		}
+
+		// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Attribute.cs#L28
+		// Behavior matches the Attribute.InternalGetCustomAttributes() method.
+		[NotNull, ItemNotNull]
+		private static TAttribute[] GetAttributesFromCandidates<TAttribute>(
+			bool inherit,
+			[NotNull, ItemNotNull] params Type[] traversePath)
+			where TAttribute : class
+		{
+			var result = new List<TAttribute>();
+			var visitedAttributes = new HashSet<Type>(_typeComparer);
+			var checkInherited = false;
+			foreach (var attributeProvider in traversePath)
+			{
+				var attributeCandidates = attributeProvider
+					.GetCustomAttributes(typeof(TAttribute), inherit)
+					.Cast<TAttribute>();
+				foreach (var attribute in attributeCandidates)
+				{
+					var attributeType = attribute.GetType();
+
+					var visited = !visitedAttributes.Add(attributeType);
+					var usage = _attributeUsages(attributeType);
+
+					if (checkInherited && !usage.Inherited)
+						continue;
+					if (visited && !usage.AllowMultiple)
+						continue;
+
+					result.Add(attribute);
+				}
+
+				checkInherited = true;
+			}
+			return result.ToArray();
+		}
+
 		#endregion
 	}
 }
+#endif

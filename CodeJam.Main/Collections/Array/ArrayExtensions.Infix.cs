@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -15,10 +16,10 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
 		[NotNull, Pure]
-#if LESSTHAN_NET45
-		public static ReadOnlyCollectionWithReadOnly<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionWithReadOnly<T>(array);
-#else
+#if !LESSTHAN_NET45 && !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 		public static ReadOnlyCollection<T> AsReadOnly<T>([NotNull] this T[] array) => Array.AsReadOnly(array);
+#else
+		public static ReadOnlyCollectionEx<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionEx<T>(array);
 #endif
 
 		#region BinarySearch
@@ -134,7 +135,12 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="converter" /> is null.</exception>
 		[NotNull, Pure]
-		public static TOutput[] ConvertAll<TInput, TOutput>([NotNull] this TInput[] array, [NotNull, InstantHandle] Converter<TInput, TOutput> converter) => Array.ConvertAll(array, converter);
+		public static TOutput[] ConvertAll<TInput, TOutput>([NotNull] this TInput[] array, [NotNull, InstantHandle] Converter<TInput, TOutput> converter) =>
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+			Array.ConvertAll(array, converter);
+#else
+			array.Select(e => converter(e)).ToArray();
+#endif
 
 		#region Copy
 
@@ -155,6 +161,8 @@ namespace CodeJam.Collections
 		/// <paramref name="length" /> is greater than the number of elements in <paramref name="sourceArray" />.-or-<paramref name="length" /> is greater than the number of elements in <paramref name="destinationArray" />.</exception>
 		/// <filterpriority>1</filterpriority>
 		public static void Copy([NotNull] this Array sourceArray, [NotNull] Array destinationArray, int length) => Array.Copy(sourceArray, destinationArray, length);
+
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 
 		/// <summary>Copies a range of elements from an <see cref="Array" /> starting at the first element and pastes them into another <see cref="Array" /> starting at the first element. The length is specified as a 64-bit integer.</summary>
 		/// <param name="sourceArray">The <see cref="Array" /> that contains the data to copy.</param>
@@ -213,6 +221,8 @@ namespace CodeJam.Collections
 		/// <paramref name="length" /> is greater than the number of elements from <paramref name="sourceIndex" /> to the end of <paramref name="sourceArray" />.-or-<paramref name="length" /> is greater than the number of elements from <paramref name="destinationIndex" /> to the end of <paramref name="destinationArray" />.</exception>
 		/// <filterpriority>1</filterpriority>
 		public static void Copy([NotNull] this Array sourceArray, int sourceIndex, [NotNull] Array destinationArray, int destinationIndex, int length) => Array.Copy(sourceArray, sourceIndex, destinationArray, destinationIndex, length);
+
+#endif
 
 		#endregion Copy
 
@@ -351,7 +361,14 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="action" /> is null.</exception>
-		public static void ForEach<T>([NotNull] this T[] array, [NotNull, InstantHandle] Action<T> action) => Array.ForEach(array, action);
+		public static void ForEach<T>([NotNull] this T[] array, [NotNull, InstantHandle] Action<T> action)
+		{
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+			Array.ForEach(array, action);
+#else
+			foreach (var item in array) action(item);
+#endif
+		}
 
 		#region [Last]IndexOf
 

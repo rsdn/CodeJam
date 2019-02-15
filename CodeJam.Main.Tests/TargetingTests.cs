@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using System;
 using System.Linq;
-#if !LESSTHAN_NET35
 using System.Threading.Tasks;
-#endif
+
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -44,6 +44,10 @@ namespace CodeJam
 			".NETFramework,Version=v4.7.2";
 #elif NET48
 			".NETFramework,Version=v4.8";
+#elif NETCOREAPP1_0
+			".NETCoreApp,Version=v1.0";
+#elif NETCOREAPP1_1
+			".NETCoreApp,Version=v1.1";
 #elif NETCOREAPP2_0
 			".NETCoreApp,Version=v2.0";
 #elif NETCOREAPP2_1
@@ -137,10 +141,9 @@ namespace CodeJam
 		public void TestTargeting()
 		{
 			TestTools.PrintQuirks();
-			Assert.AreEqual(PlatformDependent.TargetPlatform, ExpectedTarget);
+			Assert.AreEqual(PlatformHelper.TargetPlatform, ExpectedTarget);
 		}
 
-#if !LESSTHAN_NET35
 		[Test]
 		public void TestTasks()
 		{
@@ -148,7 +151,6 @@ namespace CodeJam
 			var r = t.Result;
 			Assert.AreEqual(r, 42);
 		}
-#endif
 
 		[Test]
 		public void TestTuple()

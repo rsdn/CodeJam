@@ -12,7 +12,11 @@ namespace CodeJam
 	/// </summary>
 	[PublicAPI]
 	[SecurityCritical]
-	public class HGlobalScope : CriticalFinalizerObject, IDisposable
+	public class HGlobalScope :
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+		CriticalFinalizerObject,
+#endif
+		IDisposable
 	{
 		/// <summary>
 		/// Internal pointer.

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -139,7 +140,7 @@ namespace CodeJam.Strings
 		[NotNull, ItemNotNull]
 		private static List<string> LoadTestData([NotNull] string resourceName)
 		{
-			var assembly = typeof(NaturalOrderStringComparerTests).Assembly;
+			var assembly = typeof(NaturalOrderStringComparerTests).GetAssembly();
 			var list = new List<string>();
 
 			using (var stream = assembly.GetRequiredResourceStream(resourceName))

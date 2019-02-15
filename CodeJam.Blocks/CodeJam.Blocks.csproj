@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{0DFF0859-2400-4487-83AD-0ED10203D6D9}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net47;net46;net45;net40;net35;net20;netcoreapp2.0;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;netstandard2.0;netstandard1.6;netstandard1.5</TargetFrameworks>
 
 		<PackageId>CodeJam.Blocks</PackageId>
 		<Title>CodeJam.Blocks library</Title>
@@ -38,6 +38,30 @@
 			<_Parameter1>.NETFramework,Version=v2.0</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
+		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
+		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
+		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
+		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
+		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
+		<PackageReference Include="System.Data.Common" Version="4.1.0" />
+		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+	</ItemGroup>
 	<!-- #endregion -->
 
 	<ItemGroup>
@@ -48,15 +72,11 @@
 		<Compile Include="..\Build\Jetbrains.Annotations.cs">
 			<Link>Properties\Jetbrains.Annotations.cs</Link>
 		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NET40\ValueTuple\TupleElementNamesAttribute.cs">
-			<Link>Targeting\NET40\ValueTuple\TupleElementNamesAttribute.cs</Link>
+
+		<Compile Include="..\CodeJam.Main\Targeting\**\*.cs">
+			<Link>Targeting\%(Compile.Filename)</Link>
 		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NET40\ValueTuple\TupleExtensions.cs">
-			<Link>Targeting\NET40\ValueTuple\TupleExtensions.cs</Link>
-		</Compile>
-		<Compile Include="..\CodeJam.Main\Targeting\NET40\ValueTuple\ValueTuple.cs">
-			<Link>Targeting\NET40\ValueTuple\ValueTuple.cs</Link>
-		</Compile>
+
 		<Content Include="Readme.txt">
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>

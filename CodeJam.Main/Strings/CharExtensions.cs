@@ -33,7 +33,12 @@ namespace CodeJam.Strings
 		/// alphabetic.
 		/// </returns>
 		[Pure]
-		public static char ToLower(this char chr, [NotNull] CultureInfo culture) => char.ToLower(chr, culture);
+		public static char ToLower(this char chr, [NotNull] CultureInfo culture) =>
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+			char.ToLower(chr, culture);
+#else
+			CharEx.ToLower(chr, culture);
+#endif
 
 		/// <summary>
 		/// Converts the value of a Unicode character to its lowercase equivalent using the casing rules of the invariant
@@ -69,7 +74,12 @@ namespace CodeJam.Strings
 		/// alphabetic.
 		/// </returns>
 		[Pure]
-		public static char ToUpper(this char chr, [NotNull] CultureInfo culture) => char.ToUpper(chr, culture);
+		public static char ToUpper(this char chr, [NotNull] CultureInfo culture) =>
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+			char.ToUpper(chr, culture);
+#else
+			CharEx.ToUpper(chr, culture);
+#endif
 
 		/// <summary>
 		/// Converts the value of a Unicode character to its uppercase equivalent using the casing rules of the invariant

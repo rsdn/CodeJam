@@ -6,6 +6,7 @@ using System.Reflection;
 using CodeJam.Strings;
 using CodeJam.Collections;
 using CodeJam.Reflection;
+using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -34,6 +35,8 @@ namespace CodeJam.Reflection
 	[TestFixture(Category = "Reflection")]
 	public partial class ReflectionExtensionsTest
 	{
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+
 		private enum AttributesSource
 		{
 			All,
@@ -132,7 +135,7 @@ namespace CodeJam.Reflection
 			if (attributesSource != AttributesSource.All)
 			{
 				var result = attributesSource == AttributesSource.Assembly
-					? GetAttributesString<TAttribute>(type.Assembly, searchMode)
+					? GetAttributesString<TAttribute>(type.GetAssembly(), searchMode)
 					: GetAttributesString<TAttribute>(type, searchMode);
 				AreEqual(result, expected);
 			}
@@ -179,7 +182,37 @@ namespace CodeJam.Reflection
 				.Select(g => g.Key + ":" + g.Join(","))
 				.Join("; ");
 		}
+
+		private static string GetAttributesString<TAttribute>([NotNull] Type source, SearchMode searchMode)
+			where TAttribute : class, ITestInterface
+		{
+			IEnumerable<TAttribute> attributes;
+			switch (searchMode)
+			{
+				case SearchMode.Attributes:
+					attributes = source.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>();
+					break;
+				case SearchMode.MetadataAttributes:
+					attributes = source.GetMetadataAttributes<TAttribute>();
+					break;
+				case SearchMode.MetadataAttributesSingleLevel:
+					attributes = source.GetMetadataAttributes<TAttribute>(thisLevelOnly: true);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null);
+			}
+
+			return attributes
+				.GroupWhileEquals(
+					a => a.Origin,
+					a => a.GetType().Name.Split('+').Last().Replace("Attribute", ""))
+				.Select(g => g.Key + ":" + g.Join(","))
+				.Join("; ");
+		}
+
 		#endregion
+
+#endif
 
 		#region Attributes
 		private interface ITestInterface

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-#if !LESSTHAN_NET45
 using System.Threading.Tasks;
-#endif
 
 using NUnit.Framework;
 
@@ -30,7 +28,11 @@ namespace CodeJam
 		{
 			try
 			{
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 				Assembly.Load("CodeJamJamJam.dll");
+#else
+				Assembly.Load(new AssemblyName("CodeJamJamJam.dll"));
+#endif
 			}
 			catch (Exception ex)
 			{
@@ -78,7 +80,11 @@ namespace CodeJam
 		{
 			try
 			{
+#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 				Assembly.Load("CodeJamJamJam.dll");
+#else
+				Assembly.Load(new AssemblyName("CodeJamJamJam.dll"));
+#endif
 			}
 			catch (Exception ex)
 			{
