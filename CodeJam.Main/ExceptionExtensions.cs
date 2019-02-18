@@ -110,13 +110,22 @@ namespace CodeJam
 		/// <param name="fromNewLine">If <c>true</c> - do not inject separator line from start.</param>
 		/// <returns>Detailed exception text.</returns>
 		[NotNull]
-		public static async Task ToDiagnosticStringAsync(
+		public static Task ToDiagnosticStringAsync(
 			[CanBeNull] this Exception exception,
 			[NotNull] TextWriter writer,
 			bool fromNewLine = true)
 		{
 			Code.NotNull(writer, nameof(writer));
 
+			return ToDiagnosticStringImplAsync(exception, writer, fromNewLine);
+		}
+
+		[NotNull]
+		private static async Task ToDiagnosticStringImplAsync(
+			[CanBeNull] this Exception exception,
+			[NotNull] TextWriter writer,
+			bool fromNewLine = true)
+		{
 			// ReSharper disable once PossibleNullReferenceException
 			for (var ex = exception; ex != null; ex = ex.InnerException)
 			{

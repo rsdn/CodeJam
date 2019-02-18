@@ -112,7 +112,7 @@ namespace CodeJam.Collections
 		///   dictionary, or the new value if the key was not in the dictionary.
 		/// </returns>
 		[CollectionAccess(CollectionAccessType.Read | CollectionAccessType.UpdatedContent)]
-		public static async Task<TValue> GetOrAddAsync<TKey, TValue>(
+		public static Task<TValue> GetOrAddAsync<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, Task<TValue>> valueFactory)
@@ -120,6 +120,15 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
+			return GetOrAddImplAsync(dictionary, key, valueFactory);
+		}
+
+		[CollectionAccess(CollectionAccessType.Read | CollectionAccessType.UpdatedContent)]
+		private static async Task<TValue> GetOrAddImplAsync<TKey, TValue>(
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			[NotNull] TKey key,
+			[NotNull, InstantHandle] Func<TKey, Task<TValue>> valueFactory)
+		{
 			if (!dictionary.TryGetValue(key, out var result))
 			{
 				result = await valueFactory(key);
@@ -185,7 +194,7 @@ namespace CodeJam.Collections
 		///   updateValueFactory (if the key was present).
 		/// </returns>
 		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
-		public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(
+		public static Task<TValue> AddOrUpdateAsync<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
 			TValue addValue,
@@ -194,6 +203,16 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
 
+			return AddOrUpdateImplAsync(dictionary, key, addValue, updateValueFactory);
+		}
+
+		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
+		private static async Task<TValue> AddOrUpdateImplAsync<TKey, TValue>(
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			[NotNull] TKey key,
+			TValue addValue,
+			[NotNull, InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
+		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
 				var newValue = await updateValueFactory(key, result);
@@ -263,7 +282,7 @@ namespace CodeJam.Collections
 		///   updateValueFactory (if the key was present).
 		/// </returns>
 		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
-		public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(
+		public static Task<TValue> AddOrUpdateAsync<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, Task<TValue>> addValueFactory,
@@ -273,6 +292,16 @@ namespace CodeJam.Collections
 			Code.NotNull(addValueFactory, nameof(addValueFactory));
 			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
 
+			return AddOrUpdateImplAsync(dictionary, key, addValueFactory, updateValueFactory);
+		}
+
+		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
+		private static async Task<TValue> AddOrUpdateImplAsync<TKey, TValue>(
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			[NotNull] TKey key,
+			[NotNull, InstantHandle] Func<TKey, Task<TValue>> addValueFactory,
+			[NotNull, InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
+		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
 				var newValue = await updateValueFactory(key, result);
@@ -329,7 +358,7 @@ namespace CodeJam.Collections
 		/// <param name="valueFactory">The function used to generate a value.</param>
 		/// <returns>The new value for the key.</returns>
 		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
-		public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(
+		public static Task<TValue> AddOrUpdateAsync<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, Task<TValue>> valueFactory)
@@ -337,6 +366,15 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
+			return AddOrUpdateImplAsync(dictionary, key, valueFactory);
+		}
+
+		[CollectionAccess(CollectionAccessType.ModifyExistingContent | CollectionAccessType.UpdatedContent)]
+		private static async Task<TValue> AddOrUpdateImplAsync<TKey, TValue>(
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			[NotNull] TKey key,
+			[NotNull, InstantHandle] Func<TKey, Task<TValue>> valueFactory)
+		{
 			if (dictionary.ContainsKey(key))
 			{
 				var newValue = await valueFactory(key);
@@ -367,6 +405,8 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
+			Code.NotNull(valueFactory, nameof(valueFactory));
+
 			return dictionary.AddOrUpdate(key, valueFactory, (k, oldValue) => valueFactory(k));
 		}
 
