@@ -17,9 +17,9 @@ build_script:
 - msbuild CodeJamDoc.sln /warnaserror /nowarn:NU3005 /t:Restore;Build /p:Configuration=Release /v:m
 - git clone https://github.com/rsdn/CodeJam.wiki.git c:\projects\codejam.wiki
 - cd c:\projects\codejam.wiki
-- rd /s /q media
-- move /Y ..\codejam\Help\media \.
 - git rm media\*.*
+- rd media
+- move /Y ..\codejam\Help\media \.
 - git add media\*.
 - git rm Doc\*.md
 - rd Doc
