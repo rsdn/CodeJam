@@ -24,8 +24,8 @@ build_script:
 - move /Y ..\codejam\Help Doc
 - move Doc\Home.md Doc\DocHome.md
 - git add Doc\*.md
-- git commit -m "Update doc"
-- git push CodeJam.wiki
+# - git commit -m "Update doc"
+# - git push CodeJam.wiki
 after_build:
 - cmd: 7z a -r CodeJamDoc.zip Help\*.*
 artifacts:
