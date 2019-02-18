@@ -18,7 +18,7 @@ build_script:
 - git clone https://github.com/rsdn/CodeJam.wiki.git c:\projects\codejam.wiki
 - cd c:\projects\codejam.wiki
 - git rm media\*.*
-- move /Y ..\codejam\Help\media \.
+- move /Y ..\codejam\Help\media .
 - git add media\*.*
 - git rm Doc\*.*
 - move /Y ..\codejam\Help Doc
