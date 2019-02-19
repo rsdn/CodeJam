@@ -27,8 +27,9 @@ build_script:
 - git add Doc\*.md
 # - git commit -m "Update doc"
 # - git push CodeJam.wiki
+- cd c:\projects\codejam
 after_build:
-- cmd: 7z a -r CodeJamDoc.zip Doc\*.*
+- cmd: 7z a -r CodeJamDoc.zip c:\projects\codejam.wiki\Doc\*.*
 artifacts:
 - path: CodeJamDoc.zip
   name: CodeJamDoc
