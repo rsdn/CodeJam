@@ -21,15 +21,16 @@ build_script:
 - move /Y ..\codejam\Help\media .
 - git add media\*.*
 - git rm Doc\*.*
+- move /Y ..\codejam\Help\LastBuild.log ..\codejam\LastBuild.log
 - move /Y ..\codejam\Help Doc
 - move Doc\Home.md Doc\DocHome.md
 - git add Doc\*.md
 # - git commit -m "Update doc"
 # - git push CodeJam.wiki
 after_build:
-- cmd: 7z a -r CodeJamDoc.zip Help\*.*
+- cmd: 7z a -r CodeJamDoc.zip Doc\*.*
 artifacts:
 - path: CodeJamDoc.zip
   name: CodeJamDoc
 on_finish:
-- ps: Push-AppveyorArtifact C:\projects\codejam\Help\LastBuild.log
+- ps: Push-AppveyorArtifact C:\projects\codejam\LastBuild.log
