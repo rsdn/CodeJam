@@ -82,7 +82,7 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void NotEmpty<T>(IEnumerable<T> arg, [NotNull, InvokerParameterName] string argName)
+		public static void NotEmpty<T>([NotNull] IEnumerable<T> arg, [NotNull, InvokerParameterName] string argName)
 		{
 			using (var en = arg.GetEnumerator())
 				if (!en.MoveNext())
@@ -97,7 +97,7 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void NotEmpty<T>(ICollection<T> arg, [NotNull, InvokerParameterName] string argName)
+		public static void NotEmpty<T>([NotNull] ICollection<T> arg, [NotNull, InvokerParameterName] string argName)
 		{
 			if (arg.Count == 0)
 				throw CodeExceptions.ArgumentEmpty(argName);
@@ -111,7 +111,7 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void NotEmpty<T>(T[] arg, [NotNull, InvokerParameterName] string argName)
+		public static void NotEmpty<T>([NotNull] T[] arg, [NotNull, InvokerParameterName] string argName)
 		{
 			if (arg.Length == 0)
 				throw CodeExceptions.ArgumentEmpty(argName);
@@ -225,7 +225,7 @@ namespace CodeJam
 			if (!(value >= fromValue && value <= toValue))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
-		
+
 		/// <summary>Assertion for the argument in range</summary>
 		/// <typeparam name="T">Type of the value</typeparam>
 		/// <param name="value">The value.</param>
