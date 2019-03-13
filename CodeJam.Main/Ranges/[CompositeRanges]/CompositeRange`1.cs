@@ -231,6 +231,7 @@ namespace CodeJam.Ranges
 		/// <summary>Collection of subranges.</summary>
 		/// <value>The collection of subranges.</value>
 		[NotNull]
+		// ReSharper disable once ConstantNullCoalescingCondition
 		public ReadOnlyCollection<Range<T>> SubRanges => _ranges ?? _emptyRanges;
 
 		#region T4-dont-replace

@@ -1,4 +1,4 @@
-// BASEDON: https://github.com/StephenCleary/AsyncEx AwaitableDisposable class.
+﻿// BASEDON: https://github.com/StephenCleary/AsyncEx AwaitableDisposable class.
 
 using System;
 using System.Threading.Tasks;
@@ -16,6 +16,7 @@ namespace CodeJam.Threading
 	/// This prevents usage errors like <code>using (lock.AcquireAsync())</code> when the appropriate usage should be <code>using (await lock.AcquireAsync())</code>.
 	/// </summary>
 	/// <typeparam name="T">The type of the result of the underlying task.</typeparam>
+	[PublicAPI]
 	public struct AwaitableNonDisposable<T> where T : IDisposable
 	{
 		/// <summary>
@@ -40,10 +41,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <returns>Underlying task.</returns>
 		[NotNull][MethodImpl(AggressiveInlining)]
-		public Task<T> AsTask()
-		{
-			return _task;
-		}
+		public Task<T> AsTask() => _task;
 
 		/// <summary>
 		/// Implicit conversion to the underlying task.
@@ -51,20 +49,14 @@ namespace CodeJam.Threading
 		/// <param name="source">The awaitable wrapper.</param>
 		/// <returns>Underlying task</returns>
 		[NotNull][MethodImpl(AggressiveInlining)]
-		public static implicit operator Task<T>([NotNull] AwaitableNonDisposable<T> source)
-		{
-			return source.AsTask();
-		}
+		public static implicit operator Task<T>(AwaitableNonDisposable<T> source) => source.AsTask();
 
 		/// <summary>
 		/// Infrastructure. Returns the task awaiter for the underlying task.
 		/// </summary>
 		/// <returns>Task awaiter for the underlying task.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public TaskAwaiter<T> GetAwaiter()
-		{
-			return _task.GetAwaiter();
-		}
+		public TaskAwaiter<T> GetAwaiter() => _task.GetAwaiter();
 
 		/// <summary>
 		/// Infrastructure. Returns a configured task awaiter for the underlying task.
@@ -73,8 +65,6 @@ namespace CodeJam.Threading
 		/// <returns>A configured task awaiter for the underlying task.</returns>
 		[MethodImpl(AggressiveInlining)]
 		public ConfiguredTaskAwaitable<T> ConfigureAwait(bool continueOnCapturedContext)
-		{
-			return _task.ConfigureAwait(continueOnCapturedContext);
-		}
+			=> _task.ConfigureAwait(continueOnCapturedContext);
 	}
 }

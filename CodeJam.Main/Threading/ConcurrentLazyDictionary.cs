@@ -47,12 +47,12 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		/// <param name="comparer">Key comparer.</param>
-		public ConcurrentLazyDictionary([NotNull] Func<TKey, TValue> valueFactory, [NotNull] IEqualityComparer<TKey> comparer)
+		public ConcurrentLazyDictionary([NotNull] Func<TKey, TValue> valueFactory, [CanBeNull] IEqualityComparer<TKey> comparer)
 		{
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
 			_valueFactory = valueFactory;
-			_map = new ConcurrentDictionary<TKey, TValue>(comparer);
+			_map = new ConcurrentDictionary<TKey, TValue>(comparer ?? EqualityComparer<TKey>.Default);
 		}
 
 		/// <summary>

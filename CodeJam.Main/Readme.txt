@@ -1,6 +1,8 @@
 ﻿CodeJam 2.2.0-beta3 Release Notes
 ---------------------------------
 
+What's new in 2.2.0-beta3
+-------------------------
 * Add frameworks support: .NET Standard 1.6, .NET Standard 1.5, .NET Core 1.0, .NET Core 1.1.
 * Extend .NET 2.0, .NET 3.5 and .NET 4.0 support.
 * Use Theraot.Core dependency for older frameworks targeting.

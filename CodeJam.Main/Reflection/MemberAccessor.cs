@@ -21,6 +21,7 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public class MemberAccessor
 	{
+		// ReSharper disable once NotNullMemberIsNotInitialized
 		internal MemberAccessor([NotNull] TypeAccessor typeAccessor, [NotNull] string memberName)
 		{
 			TypeAccessor = typeAccessor;
@@ -178,6 +179,7 @@ namespace CodeJam.Reflection
 			SetExpressions();
 		}
 
+		// ReSharper disable once NotNullMemberIsNotInitialized
 		internal MemberAccessor([NotNull] TypeAccessor typeAccessor, [NotNull] MemberInfo memberInfo)
 		{
 			TypeAccessor = typeAccessor;

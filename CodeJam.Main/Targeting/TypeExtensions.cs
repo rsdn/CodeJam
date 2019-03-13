@@ -243,7 +243,7 @@ namespace CodeJam.Targeting
 			var property = type.GetTypeInfo().GetDeclaredProperty(propertyName);
 			property.SetValue(target, value);
 #else
-			type.InvokeMember(propertyName, BindingFlags.SetProperty, null, target, new object[] { value });
+			type.InvokeMember(propertyName, BindingFlags.SetProperty, null, target, new[] { value });
 #endif
 		}
 
@@ -272,7 +272,7 @@ namespace CodeJam.Targeting
 				type.SetPropertyValue(fieldName, target, value);
 			}
 #else
-			type.InvokeMember(fieldName, BindingFlags.SetField | BindingFlags.SetProperty, null, target, new object[] { value });
+			type.InvokeMember(fieldName, BindingFlags.SetField | BindingFlags.SetProperty, null, target, new[] { value });
 #endif
 		}
 

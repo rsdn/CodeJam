@@ -25,8 +25,6 @@ namespace CodeJam.Threading
 		[NotNull]
 		private readonly Func<TKey, TValue> _valueFactory;
 		[NotNull]
-		private readonly IEqualityComparer<TKey> _comparer;
-		[NotNull]
 		private readonly ConcurrentDictionary<TKey, Lazy<TValue>> _map;
 
 		/// <summary>
@@ -43,7 +41,6 @@ namespace CodeJam.Threading
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
 			_valueFactory = valueFactory;
-			_comparer = comparer;
 			_map = new ConcurrentDictionary<TKey, Lazy<TValue>>(
 				collection
 					.Select(v => new KeyValuePair<TKey, Lazy<TValue>>(
@@ -59,13 +56,12 @@ namespace CodeJam.Threading
 		/// <param name="comparer">Key comparer.</param>
 		public ExecSyncConcurrentLazyDictionary(
 			[NotNull] Func<TKey, TValue> valueFactory,
-			[NotNull] IEqualityComparer<TKey> comparer)
+			[CanBeNull] IEqualityComparer<TKey> comparer)
 		{
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
 			_valueFactory = valueFactory;
-			_comparer = comparer;
-			_map = new ConcurrentDictionary<TKey, Lazy<TValue>>(comparer);
+			_map = new ConcurrentDictionary<TKey, Lazy<TValue>>(comparer ?? EqualityComparer<TKey>.Default);
 		}
 
 		/// <summary>

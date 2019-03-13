@@ -171,7 +171,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
-			[NotNull] IEqualityComparer<TKey> comparer,
+			[CanBeNull] IEqualityComparer<TKey> comparer,
 			LazyThreadSafetyMode threadSafety)
 		{
 			switch (threadSafety)
