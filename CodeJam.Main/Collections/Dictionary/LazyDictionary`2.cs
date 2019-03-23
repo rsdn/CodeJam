@@ -32,6 +32,7 @@ namespace CodeJam.Collections
 
 			_valueFactory = valueFactory;
 			_map = new Dictionary<TKey, TValue>(comparer);
+			_map.AddRange(collection);
 		}
 
 		/// <summary>
