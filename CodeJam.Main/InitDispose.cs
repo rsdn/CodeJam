@@ -81,7 +81,7 @@ namespace CodeJam
 			Code.NotNull(initDisposeAction, nameof(initDisposeAction));
 
 			initDisposeAction(true);
-			return Disposable.Create<bool>(initDisposeAction, false);
+			return Disposable.Create(initDisposeAction, false);
 		}
 	}
 }
