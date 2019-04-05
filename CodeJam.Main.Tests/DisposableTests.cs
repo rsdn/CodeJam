@@ -125,5 +125,71 @@ namespace CodeJam
 			Assert.IsTrue(disposed);
 			Assert.AreEqual("state", state);
 		}
+
+		[Test]
+		public static void InitDisposeTest1()
+		{
+			var i = 0;
+
+			using (InitDispose.Create(
+				() => Assert.That(++i, Is.EqualTo(1)),
+				() => Assert.That(++i, Is.EqualTo(3))))
+			{
+				Assert.That(++i, Is.EqualTo(2));
+			}
+
+			Assert.That(++i, Is.EqualTo(4));
+		}
+
+		[Test]
+		public static void InitDisposeTest2()
+		{
+			var i = 0;
+
+			using (InitDispose.Create(
+				() => Assert.That(++i, Is.EqualTo(1).Or.EqualTo(3))))
+			{
+				Assert.That(++i, Is.EqualTo(2));
+			}
+
+			Assert.That(++i, Is.EqualTo(4));
+		}
+
+		[Test]
+		public static void InitDisposeTest3()
+		{
+			var i = 0;
+
+			using (InitDispose.Create(
+				isInit => Assert.That(i += isInit ? 1 : 2, Is.EqualTo(1).Or.EqualTo(4))))
+			{
+				Assert.That(++i, Is.EqualTo(2));
+			}
+
+			Assert.That(++i, Is.EqualTo(5));
+		}
+
+		[Test]
+		public static void InitDisposeTest4()
+		{
+			var i = 0;
+
+			using (InitDispose.Create(
+				() =>
+				{
+					Assert.That(++i, Is.EqualTo(1));
+					return "123";
+				},
+				s =>
+				{
+					Assert.That(++i, Is.EqualTo(3));
+					Assert.That(s,   Is.EqualTo("123"));
+				}))
+			{
+				Assert.That(++i, Is.EqualTo(2));
+			}
+
+			Assert.That(++i, Is.EqualTo(4));
+		}
 	}
 }
