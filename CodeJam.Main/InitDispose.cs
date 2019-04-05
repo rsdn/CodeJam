@@ -57,7 +57,7 @@ namespace CodeJam
 		[NotNull, Pure]
 		public static IDisposable Create([NotNull] Action initDisposeAction)
 		{
-			Code.NotNull(initDisposeAction,    nameof(initDisposeAction));
+			Code.NotNull(initDisposeAction, nameof(initDisposeAction));
 
 			initDisposeAction();
 			return Disposable.Create(initDisposeAction);
@@ -78,7 +78,7 @@ namespace CodeJam
 		[NotNull, Pure]
 		public static IDisposable Create([NotNull] Action<bool> initDisposeAction)
 		{
-			Code.NotNull(initDisposeAction,    nameof(initDisposeAction));
+			Code.NotNull(initDisposeAction, nameof(initDisposeAction));
 
 			initDisposeAction(true);
 			return Disposable.Create<bool>(initDisposeAction, false);
