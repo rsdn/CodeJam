@@ -31,6 +31,7 @@ namespace CodeJam
 		/// Calls <paramref name="initAction"/> and
 		/// creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
 		/// </summary>
+		/// <typeparam name="T">Type of the initialization value.</typeparam>
 		/// <param name="initAction">The init action.</param>
 		/// <param name="disposeAction">The dispose action.</param>
 		/// <returns>
