@@ -1,6 +1,11 @@
 ﻿CodeJam 2.2.0-beta3 Release Notes
 ---------------------------------
 
+What's new in 2.2.0-rc1
+-------------------------
+* Add deconstructor to IndexedItem<T>, used in WithIndex extension method.
+* Code cleanup.
+
 What's new in 2.2.0-beta3
 -------------------------
 * Add frameworks support: .NET Standard 1.6, .NET Standard 1.5, .NET Core 1.0, .NET Core 1.1.
