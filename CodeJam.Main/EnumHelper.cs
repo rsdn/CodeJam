@@ -9,6 +9,7 @@ using System.Threading;
 using CodeJam.Arithmetic;
 using CodeJam.Collections;
 using CodeJam.Reflection;
+// ReSharper disable once RedundantUsingDirective
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;

@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+// ReSharper disable once RedundantUsingDirective
 using System.Linq;
 
 using JetBrains.Annotations;
