@@ -59,6 +59,36 @@ namespace CodeJam.Collections
 			IsLast = isLast;
 		}
 
+		/// <summary>
+		/// Deconstructs instance.
+		/// </summary>
+		public void Deconstruct(out int index, out T item)
+		{
+			index = Index;
+			item = Item;
+		}
+
+		/// <summary>
+		/// Deconstructs instance.
+		/// </summary>
+		public void Deconstruct(out int index, out T item, out bool isFirst)
+		{
+			index = Index;
+			item = Item;
+			isFirst = IsFirst;
+		}
+
+		/// <summary>
+		/// Deconstructs instance.
+		/// </summary>
+		public void Deconstruct(out int index, out T item, out bool isFirst, out bool isLast)
+		{
+			index = Index;
+			item = Item;
+			isFirst = IsFirst;
+			isLast = IsLast;
+		}
+
 		#region Equality members
 		/// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
 		/// <returns>

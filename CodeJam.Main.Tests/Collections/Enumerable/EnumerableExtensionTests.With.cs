@@ -18,8 +18,8 @@ namespace CodeJam.Collections
 			for (var n = 1; n < 10; n++)
 			{
 				var list = Enumerable.Range(0, n).WithIndex().ToArray();
-				foreach (var value in list)
-					Assert.AreEqual(value.Item, value.Index, "#Index");
+				foreach (var (index, item) in list)
+					Assert.AreEqual(item, index, "#Index");
 
 				Assert.IsTrue(list[0].IsFirst, "#IsFirst");
 				Assert.IsTrue(list.Last().IsLast, "#IsLast");
