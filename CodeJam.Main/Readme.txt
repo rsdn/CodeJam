@@ -1,4 +1,4 @@
-﻿CodeJam 2.2.0-beta3 Release Notes
+﻿CodeJam 2.2.0 Release Notes
 ---------------------------------
 
 What's new in 2.2.0

@@ -1,4 +1,4 @@
-﻿CodeJam.Blocks 2.2.0-beta1 Release Notes
+﻿CodeJam.Blocks 2.2.0 Release Notes
 ----------------------------------
 
 What's new in 2.2.0-beta1
