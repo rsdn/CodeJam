@@ -28,6 +28,104 @@ namespace CodeJam.Strings
 		public static string ToInvariantString<T>([NotNull] this T s, string format) where T : IFormattable =>
 			s.ToString(format, CultureInfo.InvariantCulture);
 
+#if !LESSTHAN_NETCOREAPP20 && !LESSTHAN_NETSTANDARD20
+		/// <summary>
+		/// Determines whether the beginning of this string instance matches the specified string when compared using the
+		/// invariant culture.
+		/// </summary>
+		/// <param name="str">String to check.</param>
+		/// <param name="value">The string to compare.</param>
+		/// <returns><c>true</c> if this instance begins with value; otherwise, <c>false</c>. </returns>
+		public static bool StartsWithInvariant(this string str, string value) =>
+			str.StartsWith(value, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		public static int IndexOfInvariant(this string str, string value) =>
+			str.IndexOf(value, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture. Parameter specify the starting search position in the current string.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		public static int IndexOfInvariant(this string str, string value, int startIndex) =>
+			str.IndexOf(value, startIndex, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture. Parameters specify the starting search position in the current string and
+		/// the number of characters in the current string to search.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <param name="count">The number of character positions to examine.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		public static int IndexOfInvariant(this string str, string value, int startIndex, int count) =>
+			str.IndexOf(value, startIndex, count, StringComparison.InvariantCulture);
+
+				/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		public static int LastIndexOfInvariant(this string str, string value) =>
+			str.LastIndexOf(value, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture. Parameter specify the starting search position in the current string.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		public static int LastIndexOfInvariant(this string str, string value, int startIndex) =>
+			str.LastIndexOf(value, startIndex, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture. Parameters specify the starting search position in the current string and
+		/// the number of characters in the current string to search.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <param name="count">The number of character positions to examine.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		public static int LastIndexOfInvariant(this string str, string value, int startIndex, int count) =>
+			str.LastIndexOf(value, startIndex, count, StringComparison.InvariantCulture);
+#endif
+
 		#region DateTime
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-specific format to its

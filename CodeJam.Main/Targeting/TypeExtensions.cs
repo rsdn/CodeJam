@@ -89,39 +89,39 @@ namespace CodeJam.Targeting
 #endif
 		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsNestedPublic([NotNull] this Type type)
-		{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			return type.GetTypeInfo().IsNestedPublic;
-#else
-			return type.IsNestedPublic;
-#endif
-		}
+//		[MethodImpl(AggressiveInlining)]
+//		public static bool GetIsNestedPublic([NotNull] this Type type)
+//		{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//			return type.GetTypeInfo().IsNestedPublic;
+//#else
+//			return type.IsNestedPublic;
+//#endif
+//		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsFromLocalAssembly([NotNull] this Type type)
-		{
-#if SILVERLIGHT
-			string assemblyName = type.GetAssembly().FullName;
-#else
-			var assemblyName = type.GetAssembly().GetName().Name;
-#endif
+//		[MethodImpl(AggressiveInlining)]
+//		public static bool GetIsFromLocalAssembly([NotNull] this Type type)
+//		{
+//#if SILVERLIGHT
+//			string assemblyName = type.GetAssembly().FullName;
+//#else
+//			var assemblyName = type.GetAssembly().GetName().Name;
+//#endif
 
-			try
-			{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-				Assembly.Load(new AssemblyName { Name = assemblyName });
-#else
-				Assembly.Load(assemblyName);
-#endif
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
+//			try
+//			{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//				Assembly.Load(new AssemblyName { Name = assemblyName });
+//#else
+//				Assembly.Load(assemblyName);
+//#endif
+//				return true;
+//			}
+//			catch
+//			{
+//				return false;
+//			}
+//		}
 
 		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsGenericType([NotNull] this Type type)
@@ -184,15 +184,15 @@ namespace CodeJam.Targeting
 #endif
 		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsDefined([NotNull] this Type type, [NotNull] Type attributeType)
-		{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			return type.GetTypeInfo().IsDefined(attributeType);
-#else
-			return Attribute.IsDefined(type, attributeType);
-#endif
-		}
+//		[MethodImpl(AggressiveInlining)]
+//		public static bool GetIsDefined([NotNull] this Type type, [NotNull] Type attributeType)
+//		{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//			return type.GetTypeInfo().IsDefined(attributeType);
+//#else
+//			return Attribute.IsDefined(type, attributeType);
+//#endif
+//		}
 
 		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsDefined([NotNull] this Type type, [NotNull] Type attributeType, bool inherit)
@@ -214,78 +214,78 @@ namespace CodeJam.Targeting
 #endif
 		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static PropertyInfo GetGetProperty([NotNull] this Type type, [NotNull] string propertyName)
-		{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			return type.GetTypeInfo().GetProperty(propertyName);
-#else
-			return type.GetProperty(propertyName);
-#endif
-		}
+//		[MethodImpl(AggressiveInlining)]
+//		public static PropertyInfo GetGetProperty([NotNull] this Type type, [NotNull] string propertyName)
+//		{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//			return type.GetTypeInfo().GetProperty(propertyName);
+//#else
+//			return type.GetProperty(propertyName);
+//#endif
+//		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static T GetPropertyValue<T>([NotNull] this Type type, [NotNull] string propertyName, object target)
-		{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			var property = type.GetTypeInfo().GetDeclaredProperty(propertyName);
-			return (T)property.GetValue(target);
-#else
-			return (T)type.InvokeMember(propertyName, BindingFlags.GetProperty, null, target, null);
-#endif
-		}
+//		[MethodImpl(AggressiveInlining)]
+//		public static T GetPropertyValue<T>([NotNull] this Type type, [NotNull] string propertyName, object target)
+//		{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//			var property = type.GetTypeInfo().GetDeclaredProperty(propertyName);
+//			return (T)property.GetValue(target);
+//#else
+//			return (T)type.InvokeMember(propertyName, BindingFlags.GetProperty, null, target, null);
+//#endif
+//		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static void SetPropertyValue(
-			[NotNull] this Type type, [NotNull] string propertyName, object target, object value)
-		{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			var property = type.GetTypeInfo().GetDeclaredProperty(propertyName);
-			property.SetValue(target, value);
-#else
-			type.InvokeMember(propertyName, BindingFlags.SetProperty, null, target, new[] { value });
-#endif
-		}
+//		[MethodImpl(AggressiveInlining)]
+//		public static void SetPropertyValue(
+//			[NotNull] this Type type, [NotNull] string propertyName, object target, object value)
+//		{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//			var property = type.GetTypeInfo().GetDeclaredProperty(propertyName);
+//			property.SetValue(target, value);
+//#else
+//			type.InvokeMember(propertyName, BindingFlags.SetProperty, null, target, new[] { value });
+//#endif
+//		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static T GetFieldValue<T>([NotNull] this Type type, [NotNull] string fieldName, object target)
-		{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			var field = type.GetTypeInfo().GetDeclaredField(fieldName);
-			return (T)field.GetValue(target);
-#else
-			return (T)type.InvokeMember(fieldName, BindingFlags.GetField | BindingFlags.GetProperty, null, target, null);
-#endif
-		}
+//		[MethodImpl(AggressiveInlining)]
+//		public static T GetFieldValue<T>([NotNull] this Type type, [NotNull] string fieldName, object target)
+//		{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//			var field = type.GetTypeInfo().GetDeclaredField(fieldName);
+//			return (T)field.GetValue(target);
+//#else
+//			return (T)type.InvokeMember(fieldName, BindingFlags.GetField | BindingFlags.GetProperty, null, target, null);
+//#endif
+//		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static void SetFieldValue([NotNull] this Type type, [NotNull] string fieldName, object target, object value)
-		{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			var field = type.GetTypeInfo().GetDeclaredField(fieldName);
-			if (field != null)
-			{
-				field.SetValue(target, value);
-			}
-			else
-			{
-				type.SetPropertyValue(fieldName, target, value);
-			}
-#else
-			type.InvokeMember(fieldName, BindingFlags.SetField | BindingFlags.SetProperty, null, target, new[] { value });
-#endif
-		}
+//		[MethodImpl(AggressiveInlining)]
+//		public static void SetFieldValue([NotNull] this Type type, [NotNull] string fieldName, object target, object value)
+//		{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//			var field = type.GetTypeInfo().GetDeclaredField(fieldName);
+//			if (field != null)
+//			{
+//				field.SetValue(target, value);
+//			}
+//			else
+//			{
+//				type.SetPropertyValue(fieldName, target, value);
+//			}
+//#else
+//			type.InvokeMember(fieldName, BindingFlags.SetField | BindingFlags.SetProperty, null, target, new[] { value });
+//#endif
+//		}
 
-		[MethodImpl(AggressiveInlining)]
-		public static void InvokeMethod<T>([NotNull] this Type type, [NotNull] string methodName, object target, T value)
-		{
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			var method = type.GetTypeInfo().GetDeclaredMethod(methodName);
-			method.Invoke(target, new object[] { value });
-#else
-			type.InvokeMember(methodName, BindingFlags.InvokeMethod, null, target, new object[] { value });
-#endif
-		}
+//		[MethodImpl(AggressiveInlining)]
+//		public static void InvokeMethod<T>([NotNull] this Type type, [NotNull] string methodName, object target, T value)
+//		{
+//#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+//			var method = type.GetTypeInfo().GetDeclaredMethod(methodName);
+//			method.Invoke(target, new object[] { value });
+//#else
+//			type.InvokeMember(methodName, BindingFlags.InvokeMethod, null, target, new object[] { value });
+//#endif
+//		}
 
 
 #if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20

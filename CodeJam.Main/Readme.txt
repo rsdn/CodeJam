@@ -1,8 +1,13 @@
 ﻿CodeJam 2.2.0-beta3 Release Notes
 ---------------------------------
 
+What's new in 2.2.0
+-----------------------
+* StartsWithInvariant/EndsWithInvariant/IndexOfInvariant/LastIndexOfInvariant methods.
+* Code cleanup.
+
 What's new in 2.2.0-rc1
--------------------------
+-----------------------
 * Add deconstructor to IndexedItem<T>, used in WithIndex extension method.
 * Code cleanup.
 
