@@ -1,5 +1,9 @@
-﻿CodeJam 2.2.0 Release Notes
+﻿CodeJam 2.2.1 Release Notes
 ---------------------------------
+
+What's new in 2.2.1
+-----------------------
+* Add missing 4.7.2 build
 
 What's new in 2.2.0
 -----------------------

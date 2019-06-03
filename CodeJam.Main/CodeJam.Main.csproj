@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\Build\Props\CodeJam.Default.props" />
 	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;netstandard2.0;netstandard1.6;netstandard1.5</TargetFrameworks>
+		<TargetFrameworks>net472;net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;netstandard2.0;netstandard1.6;netstandard1.5</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<PackageId>CodeJam</PackageId>
@@ -41,6 +41,9 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
