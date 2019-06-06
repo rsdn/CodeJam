@@ -2,11 +2,11 @@
 ---------------------------------
 
 What's new in 2.2.1
------------------------
+-------------------------
 * Add missing 4.7.2 build
 
 What's new in 2.2.0
------------------------
+-------------------
 * StartsWithInvariant/EndsWithInvariant/IndexOfInvariant/LastIndexOfInvariant methods.
 * Code cleanup.
 

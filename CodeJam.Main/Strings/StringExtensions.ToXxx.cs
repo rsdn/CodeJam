@@ -36,7 +36,8 @@ namespace CodeJam.Strings
 		/// <param name="str">String to check.</param>
 		/// <param name="value">The string to compare.</param>
 		/// <returns><c>true</c> if this instance begins with value; otherwise, <c>false</c>. </returns>
-		public static bool StartsWithInvariant(this string str, string value) =>
+		[Pure]
+		public static bool StartsWithInvariant([NotNull] this string str, [NotNull] string value) =>
 			str.StartsWith(value, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -49,7 +50,8 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		public static int IndexOfInvariant(this string str, string value) =>
+		[Pure]
+		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value) =>
 			str.IndexOf(value, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -63,7 +65,8 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		public static int IndexOfInvariant(this string str, string value, int startIndex) =>
+		[Pure]
+		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, int startIndex) =>
 			str.IndexOf(value, startIndex, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -79,7 +82,8 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		public static int IndexOfInvariant(this string str, string value, int startIndex, int count) =>
+		[Pure]
+		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, int startIndex, int count) =>
 			str.IndexOf(value, startIndex, count, StringComparison.InvariantCulture);
 
 				/// <summary>
@@ -92,7 +96,8 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		public static int LastIndexOfInvariant(this string str, string value) =>
+		[Pure]
+		public static int LastIndexOfInvariant([NotNull] this string str, [NotNull] string value) =>
 			str.LastIndexOf(value, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -106,7 +111,8 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		public static int LastIndexOfInvariant(this string str, string value, int startIndex) =>
+		[Pure]
+		public static int LastIndexOfInvariant([NotNull] this string str, [NotNull] string value, int startIndex) =>
 			str.LastIndexOf(value, startIndex, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -122,7 +128,12 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		public static int LastIndexOfInvariant(this string str, string value, int startIndex, int count) =>
+		[Pure]
+		public static int LastIndexOfInvariant(
+			[NotNull] this string str,
+			[NotNull] string value,
+			int startIndex,
+			int count) =>
 			str.LastIndexOf(value, startIndex, count, StringComparison.InvariantCulture);
 #endif
 
