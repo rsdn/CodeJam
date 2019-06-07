@@ -81,6 +81,10 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs instance.
 		/// </summary>
+		/// <param name="index">The index of the element in a sequence.</param>
+		/// <param name="item">The value of the element.</param>
+		/// <param name="isFirst">A value indicating whether this instance is first.</param>
+		/// <param name="isLast">A value indicating whether this instance is last.</param>
 		public void Deconstruct(out int index, out T item, out bool isFirst, out bool isLast)
 		{
 			index = Index;
