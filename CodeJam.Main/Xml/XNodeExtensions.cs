@@ -4,7 +4,9 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
+#if LESSTHAN_NET472 || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
 using CodeJam.Collections;
+#endif
 using CodeJam.Strings;
 
 using JetBrains.Annotations;

@@ -13,6 +13,7 @@ namespace CodeJam.Collections
 	/// </summary>
 	/// <typeparam name="T">Type of item.</typeparam>
 	/// <typeparam name="TKey">Type of key.</typeparam>
+	[PublicAPI]
 	public class IntervalTree<T, TKey>
 	{
 		[NotNull] private readonly Range<T, TKey>[] _sortedRanges;
