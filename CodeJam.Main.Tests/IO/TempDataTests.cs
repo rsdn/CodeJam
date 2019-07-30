@@ -28,7 +28,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test01Directory()
+		public void TestDirectory()
 		{
 			var tempPath = Path.GetTempPath();
 			string dirPath;
@@ -76,7 +76,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test02DirectoryNestedContent()
+		public void TestDirectoryNestedContent()
 		{
 			string dirPath;
 			string nestedFile;
@@ -99,7 +99,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test03DirectorySpecificPath()
+		public void TestDirectorySpecificPath()
 		{
 			var tempPath = Path.GetTempPath();
 			var dirName = TempData.GetTempName();
@@ -136,7 +136,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test04File()
+		public void TestFile()
 		{
 			var tempPath = Path.GetTempPath();
 			string filePath;
@@ -185,7 +185,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test05FileContent()
+		public void TestFileContent()
 		{
 			string filePath;
 			using (var file = TempData.CreateFile())
@@ -203,7 +203,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test06FileSpecificPath()
+		public void TestFileSpecificPath()
 		{
 			var tempPath = Path.GetTempPath();
 			var fileName = TempData.GetTempName();
@@ -226,6 +226,58 @@ namespace CodeJam.IO
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
 		}
 
+		[Test]
+		public void TestFileSpecificPathSubDirectory()
+		{
+			var tempPath = Path.Combine(Path.GetTempPath(), TempData.GetTempName());
+			Assert.IsFalse(Directory.Exists(tempPath), "Directory should NOT exist");
+			var fileName = TempData.GetTempName();
+			var filePath = Path.Combine(tempPath, fileName);
+
+			using (var file = TempData.CreateFile(tempPath, fileName))
+			{
+				Assert.AreEqual(file.Path, filePath);
+				Assert.IsNotNull(file.Info, "Info is null");
+				Assert.IsTrue(file.Info.Exists, "File should exist");
+			}
+			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
+			Directory.Delete(tempPath);
+		}
+
+		[Test]
+		public void TestFileStreamSpecificPathSubDirectory()
+		{
+			var tempPath = Path.Combine(Path.GetTempPath(), TempData.GetTempName());
+			Assert.IsFalse(Directory.Exists(tempPath), "Directory should NOT exist");
+			var fileName = TempData.GetTempName();
+			var filePath = Path.Combine(tempPath, fileName);
+
+			using (var file = TempData.CreateFileStream(tempPath, fileName))
+			{
+				Assert.AreEqual(file.Name, filePath);
+				Assert.IsTrue(File.Exists(filePath), "File should exist");
+			}
+			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
+			Directory.Delete(tempPath);
+		}
+		[Test]
+		public void TestDirectorySpecificPathSubDirectory()
+		{
+			var tempPath = Path.Combine(Path.GetTempPath(), TempData.GetTempName());
+			Assert.IsFalse(Directory.Exists(tempPath), "Directory should NOT exist");
+			var dirName = TempData.GetTempName();
+			var dirPath = Path.Combine(tempPath, dirName);
+
+			using (var directory = TempData.CreateDirectory(tempPath, dirName))
+			{
+				Assert.AreEqual(directory.Path, dirPath);
+				Assert.IsNotNull(directory.Info, "Info is null");
+				Assert.IsTrue(directory.Info.Exists, "Directory should exist");
+			}
+			Assert.IsFalse(File.Exists(dirPath), "Directory should NOT exist");
+			Directory.Delete(tempPath);
+		}
+
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static string CreateAndLeakTempStream(string filePath)
 		{
@@ -239,7 +291,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test07FileStream()
+		public void TestFileStream()
 		{
 			var tempPath = Path.GetTempPath();
 			string filePath;
@@ -269,7 +321,7 @@ namespace CodeJam.IO
 
 #if !LESSTHAN_NET45
 		[Test]
-		public void Test08FileStreamContent()
+		public void TestFileStreamContent()
 		{
 			string filePath;
 			using (var fileStream = TempData.CreateFileStream())
@@ -290,7 +342,7 @@ namespace CodeJam.IO
 #endif
 
 		[Test]
-		public void Test09FileStreamSpecificPath()
+		public void TestFileStreamSpecificPath()
 		{
 			var tempPath = Path.GetTempPath();
 			var fileName = Guid.NewGuid() + ".tmp";
@@ -305,7 +357,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test10FileWrapperWithDefaultPath()
+		public void TestFileWrapperWithDefaultPath()
 		{
 			string filePath;
 			using (var file = new TempData.TempFile())
@@ -323,7 +375,7 @@ namespace CodeJam.IO
 		}
 
 		[Test]
-		public void Test11FileWrapperWithCustomPath()
+		public void TestFileWrapperWithCustomPath()
 		{
 			var tempPath = Path.GetTempPath();
 			var fileName = TempData.GetTempName();

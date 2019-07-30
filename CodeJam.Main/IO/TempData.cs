@@ -294,6 +294,9 @@ namespace CodeJam.IO
 
 			var filePath = Path.Combine(dirPath, fileName);
 			var result = new TempFile(filePath);
+
+			// DONTTOUCH: File.Create() requires existing directory and the filePath may be a relative path.
+			Directory.CreateDirectory(Path.GetDirectoryName(filePath) ?? dirPath);
 			using (File.Create(filePath)) { }
 			return result;
 		}
@@ -331,6 +334,9 @@ namespace CodeJam.IO
 				fileName = GetTempName();
 
 			var filePath = Path.Combine(dirPath, fileName);
+
+			// DONTTOUCH: new FileStream() requires existing directory and the filePath may be a relative path.
+			Directory.CreateDirectory(Path.GetDirectoryName(filePath) ?? dirPath);
 			return new FileStream(
 				filePath, FileMode.CreateNew,
 				fileAccess, FileShare.Read, bufferSize,
