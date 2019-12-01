@@ -9,10 +9,6 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-#if NET35
-using Theraot.Collections;
-#endif
-
 namespace CodeJam.TableData
 {
 	/// <summary>

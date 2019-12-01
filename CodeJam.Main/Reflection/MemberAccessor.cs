@@ -1,11 +1,13 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Linq;
 
 using CodeJam.Expressions;
 using CodeJam.Targeting;
@@ -253,7 +255,7 @@ namespace CodeJam.Reflection
 			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
 		[NotNull]
-		private static readonly ConcurrentDictionary<Type,object> _defaultValues = new ConcurrentDictionary<Type,object>();
+		private static readonly ConcurrentDictionary<Type, object> _defaultValues = new ConcurrentDictionary<Type, object>();
 
 		private object GetDefaultValue([NotNull] Type type)
 		{
@@ -334,12 +336,12 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Member getter function.
 		/// </summary>
-		[NotNull] public Func<object,object> Getter { get; private set; }
+		[NotNull] public Func<object, object> Getter { get; private set; }
 
 		/// <summary>
 		/// Member setter action.
 		/// </summary>
-		[NotNull] public Action<object,object> Setter { get; private set; }
+		[NotNull] public Action<object, object> Setter { get; private set; }
 
 		/// <summary>
 		/// Member name.

@@ -1,11 +1,11 @@
-﻿using System;
+﻿#if LESSTHAN_NET35
+extern alias nunitlinq;
+#endif
+
+using System;
 using System.Linq;
 
 using NUnit.Framework;
-
-#if NET35
-using Theraot.Collections;
-#endif
 
 namespace CodeJam.Collections
 {

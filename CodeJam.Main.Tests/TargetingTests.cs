@@ -1,12 +1,18 @@
-﻿using CodeJam.Strings;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 
+using CodeJam.Strings;
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
+
+using NUnit.Framework;
+
+#if NET40
+using TaskEx = System.Threading.Tasks.TaskEx;
+#else
+using TaskEx = System.Threading.Tasks.Task;
+#endif
 
 // ReSharper disable once CheckNamespace
 
@@ -15,7 +21,7 @@ namespace CodeJam
 	[TestFixture]
 	public class TargetingTests
 	{
-		public const string ExpectedTarget =
+		public const string ExpectedCodeJamTarget =
 #if NET20
 			".NETFramework,Version=v2.0";
 #elif NET30
@@ -35,25 +41,21 @@ namespace CodeJam
 #elif NET461
 			".NETFramework,Version=v4.6.1";
 #elif NET462
-			".NETFramework,Version=v4.6.2";
+			".NETFramework,Version=v4.6.1";
 #elif NET47
-			".NETFramework,Version=v4.7";
+			".NETFramework,Version=v4.6.1";
 #elif NET471
-			".NETFramework,Version=v4.7.1";
+			".NETFramework,Version=v4.6.1";
 #elif NET472
 			".NETFramework,Version=v4.7.2";
 #elif NET48
-			".NETFramework,Version=v4.8";
+			".NETFramework,Version=v4.7.2";
 #elif NETCOREAPP1_0
 			".NETCoreApp,Version=v1.0";
 #elif NETCOREAPP1_1
-			".NETCoreApp,Version=v1.1";
-#elif NETCOREAPP2_0
-			".NETCoreApp,Version=v2.0";
+			".NETCoreApp,Version=v1.0";
 #elif NETCOREAPP2_1
-			".NETCoreApp,Version=v2.1";
-#elif NETCOREAPP2_2
-			".NETCoreApp,Version=v2.2";
+			".NETCoreApp,Version=v2.0";
 #elif NETCOREAPP3_0
 			".NETCoreApp,Version=v3.0";
 #else
@@ -61,7 +63,7 @@ namespace CodeJam
 #endif
 
 		// https://docs.microsoft.com/en-us/dotnet/standard/frameworks
-		/// <summary>The net standard monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks</summary>
+		/// <summary>The net standard monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks </summary>
 		private const string _netStandardMonikers = @"
 			netstandard1.0
 			netstandard1.1
@@ -74,16 +76,17 @@ namespace CodeJam
 			netstandard2.1
 			netstandard2.2";
 
-		/// <summary>The net core monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks</summary>
+		/// <summary> The net core monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks </summary>
 		private const string _netCoreMonikers = @"
 			netcoreapp1.0
 			netcoreapp1.1
 			netcoreapp2.0
 			netcoreapp2.1
 			netcoreapp2.2
-			netcoreapp3.0";
+			netcoreapp3.0
+			netcoreapp3.1";
 
-		/// <summary>The net framework monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks</summary>
+		/// <summary> The net framework monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks </summary>
 		private const string _netFrameworkMonikers = @"
 			net11
 			net20
@@ -108,7 +111,7 @@ namespace CodeJam
 		{
 			GenerateTargetingConstants(".Net Framework", "TARGETS_NET", _netFrameworkMonikers);
 			GenerateTargetingConstants(".Net Standard", "TARGETS_NETSTANDARD", _netStandardMonikers);
-			GenerateTargetingConstants(".Net Core", "TARGETS_NETCORE", _netCoreMonikers);
+			GenerateTargetingConstants(".Net Core", "TARGETS_NETCOREAPP", _netCoreMonikers);
 		}
 
 		private void GenerateTargetingConstants(string description, string platform, [NotNull] string monikersRaw)
@@ -141,13 +144,13 @@ namespace CodeJam
 		public void TestTargeting()
 		{
 			TestTools.PrintQuirks();
-			Assert.AreEqual(PlatformHelper.TargetPlatform, ExpectedTarget);
+			Assert.AreEqual(PlatformHelper.TargetPlatform, ExpectedCodeJamTarget);
 		}
 
 		[Test]
 		public void TestTasks()
 		{
-			var t = Task.Factory.StartNew(() => 42);
+			var t = TaskEx.Run(() => 42);
 			var r = t.Result;
 			Assert.AreEqual(r, 42);
 		}

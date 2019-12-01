@@ -4,13 +4,11 @@ using System.Text;
 
 using JetBrains.Annotations;
 
-using StringClass =
-#if LESSTHAN_NET40
-	System.StringEx
+#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
+using StringEx = System.StringEx;
 #else
-	System.String
+using StringEx = System.String;
 #endif
-	;
 
 namespace CodeJam.Strings
 {
@@ -53,7 +51,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => true")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool IsNullOrWhiteSpace([CanBeNull] this string str) => StringClass.IsNullOrWhiteSpace(str);
+		public static bool IsNullOrWhiteSpace([CanBeNull] this string str) => StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Returns an empty string for null value.
@@ -87,7 +85,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => false")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool NotNullNorWhiteSpace([CanBeNull] this string str) => !StringClass.IsNullOrWhiteSpace(str);
+		public static bool NotNullNorWhiteSpace([CanBeNull] this string str) => !StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Replaces one or more format items in a specified string with the string representation of a specified object.
@@ -146,7 +144,8 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull, Pure]
 		[StringFormatMethod("format")]
-		public static string FormatWith([NotNull] this string format, [NotNull] params object[] args) => string.Format(format, args);
+		public static string FormatWith([NotNull] this string format, [NotNull] params object[] args) =>
+			string.Format(format, args);
 
 		/// <summary>
 		/// Concatenates all the elements of a string array, using the specified separator between each element.
@@ -188,7 +187,7 @@ namespace CodeJam.Strings
 		[NotNull, Pure]
 		public static string Join([NotNull, InstantHandle] this IEnumerable<string> values, [CanBeNull] string separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
-			StringClass.Join(separator, values);
+			StringEx.Join(separator, values);
 
 		/// <summary>
 		/// Concatenates the members of a collection, using the specified separator between each member.
@@ -207,7 +206,7 @@ namespace CodeJam.Strings
 		[NotNull, Pure]
 		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values, [CanBeNull] string separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
-			StringClass.Join(separator, values);
+			StringEx.Join(separator, values);
 
 		/// <summary>
 		/// Concatenates the members of a collection.
@@ -221,7 +220,7 @@ namespace CodeJam.Strings
 		[NotNull, Pure]
 		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
-			StringClass.Join("", values);
+			StringEx.Join("", values);
 
 		/// <summary>
 		/// Returns length of argument, even if argument is null.
@@ -240,8 +239,10 @@ namespace CodeJam.Strings
 		[Pure]
 		public static byte[] FromBase64([NotNull] this string str) => Convert.FromBase64String(str);
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 // PUBLIC_API_CHANGES
+		// Base64FormattingOptions is missing if targeting to these frameworks
+#else
 		/// <summary>
 		/// Converts an array of bytes to its equivalent string representation that is encoded with base-64 digits.
 		/// A parameter specifies whether to insert line breaks in the return value.
@@ -254,12 +255,9 @@ namespace CodeJam.Strings
 		/// <returns>The string representation in base 64 of the elements in <paramref name="data"/>.</returns>
 		[NotNull]
 		[Pure]
-		public static string ToBase64(
-			[NotNull] this byte[] data,
-			Base64FormattingOptions options = Base64FormattingOptions.None) =>
-				Convert.ToBase64String(data, options);
-
-#else
+		public static string ToBase64([NotNull] this byte[] data, Base64FormattingOptions options) =>
+			Convert.ToBase64String(data, options);
+#endif
 
 		/// <summary>
 		/// Converts an array of bytes to its equivalent string representation that is encoded with base-64 digits.
@@ -269,11 +267,8 @@ namespace CodeJam.Strings
 		/// <returns>The string representation in base 64 of the elements in <paramref name="data"/>.</returns>
 		[NotNull]
 		[Pure]
-		public static string ToBase64(
-			[NotNull] this byte[] data) =>
-				Convert.ToBase64String(data);
-
-#endif
+		public static string ToBase64([NotNull] this byte[] data) =>
+			Convert.ToBase64String(data);
 
 		/// <summary>
 		/// Encodes all the characters in the specified string into a sequence of bytes.

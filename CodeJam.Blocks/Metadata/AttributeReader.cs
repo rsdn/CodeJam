@@ -1,9 +1,9 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Linq;
 using System.Reflection;
-
-using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
@@ -13,33 +13,13 @@ namespace CodeJam.Metadata
 	{
 		[NotNull]
 		public T[] GetAttributes<T>([NotNull] Type type, bool inherit = true)
-			where T : Attribute
-		{
-			var attrs = type.GetCustomAttributes(typeof(T), inherit);
-			var arr   = new T[attrs.Length];
-
-			for (var i = 0; i < attrs.Length; i++)
-				arr[i] = (T)attrs[i];
-
-			return arr;
-		}
+			where T : Attribute =>
+			type.GetTypeInfo().GetCustomAttributes<T>(inherit).ToArray();
 
 		[NotNull]
 		public T[] GetAttributes<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
-			where T : Attribute
-		{
-			var attrs = memberInfo.GetCustomAttributes(typeof(T), inherit)
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-				.ToArray()
-#endif
-				;
-			var arr   = new T[attrs.Length];
-
-			for (var i = 0; i < attrs.Length; i++)
-				arr[i] = (T)attrs[i];
-
-			return arr;
-		}
+			where T : Attribute =>
+			memberInfo.GetCustomAttributes<T>(inherit).ToArray();
 	}
 }
 #endif

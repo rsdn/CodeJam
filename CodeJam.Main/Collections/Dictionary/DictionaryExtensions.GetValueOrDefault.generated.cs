@@ -18,56 +18,6 @@ namespace CodeJam.Collections
 	partial class DictionaryExtensions
 	{
 		#region IDictionary<TKey, TValue> overloads
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
-		/// <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
-		/// in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure, CanBeNull]
-		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
-			=> GetValueOrDefault(dictionary, key, default(TValue));
-#endif
-
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
-		/// in <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <param name="defaultValue">Default value.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
-		/// does not exists in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure, CanBeNull]
-		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			TValue defaultValue)
-		{
-			Code.NotNull(dictionary, nameof(dictionary));
-
-			TValue result;
-			return
-				dictionary.TryGetValue(key, out result)
-					? result
-					: defaultValue;
-		}
-#endif
-
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -189,56 +139,6 @@ namespace CodeJam.Collections
 		#endregion
 
 		#region IReadOnlyDictionary<TKey, TValue> overloads
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
-		/// <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
-		/// in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure, CanBeNull]
-		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
-			=> GetValueOrDefault(dictionary, key, default(TValue));
-#endif
-
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
-		/// in <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <param name="defaultValue">Default value.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
-		/// does not exists in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure, CanBeNull]
-		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>(
-			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			TValue defaultValue)
-		{
-			Code.NotNull(dictionary, nameof(dictionary));
-
-			TValue result;
-			return
-				dictionary.TryGetValue(key, out result)
-					? result
-					: defaultValue;
-		}
-#endif
-
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -360,56 +260,6 @@ namespace CodeJam.Collections
 		#endregion
 
 		#region Dictionary<TKey, TValue> overloads
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
-		/// <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
-		/// in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure, CanBeNull]
-		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this Dictionary<TKey, TValue> dictionary, [NotNull] TKey key)
-			=> GetValueOrDefault(dictionary, key, default(TValue));
-#endif
-
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
-		/// in <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <param name="defaultValue">Default value.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
-		/// does not exists in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure, CanBeNull]
-		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>(
-			[NotNull] this Dictionary<TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			TValue defaultValue)
-		{
-			Code.NotNull(dictionary, nameof(dictionary));
-
-			TValue result;
-			return
-				dictionary.TryGetValue(key, out result)
-					? result
-					: defaultValue;
-		}
-#endif
-
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -531,56 +381,6 @@ namespace CodeJam.Collections
 		#endregion
 
 		#region ConcurrentDictionary<TKey, TValue> overloads
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
-		/// <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
-		/// in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure, CanBeNull]
-		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this ConcurrentDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
-			=> GetValueOrDefault(dictionary, key, default(TValue));
-#endif
-
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
-		/// in <paramref name="dictionary"/>
-		/// </summary>
-		/// <typeparam name="TKey">The type of the key.</typeparam>
-		/// <typeparam name="TValue">The type of the value.</typeparam>
-		/// <param name="dictionary">The dictionary.</param>
-		/// <param name="key">The key.</param>
-		/// <param name="defaultValue">Default value.</param>
-		/// <returns>
-		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
-		/// does not exists in <paramref name="dictionary"/>
-		/// </returns>
-		[Pure, CanBeNull]
-		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>(
-			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			TValue defaultValue)
-		{
-			Code.NotNull(dictionary, nameof(dictionary));
-
-			TValue result;
-			return
-				dictionary.TryGetValue(key, out result)
-					? result
-					: defaultValue;
-		}
-#endif
-
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -699,6 +499,213 @@ namespace CodeJam.Collections
 					? resultSelector(key, result)
 					: defaultValueFactory(key);
 		}
+		#endregion
+
+	}
+}
+
+namespace CodeJam.Collections.Backported
+{
+	/// <summary>
+	/// Extensions for <see cref="IDictionary{TKey,TValue}"/>
+	/// that are not included in previous FW versions
+	/// </summary>
+	public static class DictionaryExtensions
+	{
+		#region IDictionary<TKey, TValue> overloads
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
+		/// <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
+		/// in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
+		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
+			=> GetValueOrDefault(dictionary, key, default(TValue));
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this IDictionary<TKey, TValue> dictionary,
+			[NotNull] TKey key,
+			TValue defaultValue)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? result
+					: defaultValue;
+		}
+
+		#endregion
+
+		#region IReadOnlyDictionary<TKey, TValue> overloads
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
+		/// <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
+		/// in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
+		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
+			=> GetValueOrDefault(dictionary, key, default(TValue));
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
+			[NotNull] TKey key,
+			TValue defaultValue)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? result
+					: defaultValue;
+		}
+
+		#endregion
+
+		#region Dictionary<TKey, TValue> overloads
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
+		/// <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
+		/// in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
+		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this Dictionary<TKey, TValue> dictionary, [NotNull] TKey key)
+			=> GetValueOrDefault(dictionary, key, default(TValue));
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			[NotNull] TKey key,
+			TValue defaultValue)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? result
+					: defaultValue;
+		}
+
+		#endregion
+
+		#region ConcurrentDictionary<TKey, TValue> overloads
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
+		/// <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
+		/// in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
+		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this ConcurrentDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
+			=> GetValueOrDefault(dictionary, key, default(TValue));
+
+		/// <summary>
+		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
+		/// in <paramref name="dictionary"/>
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <param name="defaultValue">Default value.</param>
+		/// <returns>
+		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
+		/// does not exists in <paramref name="dictionary"/>
+		/// </returns>
+		[Pure, CanBeNull]
+		[CollectionAccess(CollectionAccessType.Read)]
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
+			[NotNull] TKey key,
+			TValue defaultValue)
+		{
+			Code.NotNull(dictionary, nameof(dictionary));
+
+			TValue result;
+			return
+				dictionary.TryGetValue(key, out result)
+					? result
+					: defaultValue;
+		}
+
 		#endregion
 
 	}

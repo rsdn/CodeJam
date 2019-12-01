@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
 using JetBrains.Annotations;
 
@@ -58,7 +57,7 @@ namespace CodeJam.Strings
 		[TestCase(1048576L << 40, ExpectedResult = "1 EB")]
 		public string ToByteSizeString(long value) => value.ToByteSizeString(CultureInfo.InvariantCulture);
 
-		[TestCase(new byte[] {}, null, ExpectedResult = "")]
+		[TestCase(new byte[] { }, null, ExpectedResult = "")]
 		[TestCase(new byte[] { 0 }, null, ExpectedResult = "00")]
 		[TestCase(new byte[] { 0x12 }, null, ExpectedResult = "12")]
 		[TestCase(new byte[] { 0xAB }, null, ExpectedResult = "AB")]
@@ -70,7 +69,7 @@ namespace CodeJam.Strings
 		[TestCase(new byte[] { 0xAB, 0x9F, 0xA }, "..", ExpectedResult = "AB..9F..0A")]
 		public string ToHexString([NotNull] byte[] data, [NotNull] string sep) => data.ToHexString(sep);
 
-		[TestCase(new byte[] {}, ExpectedResult = "")]
+		[TestCase(new byte[] { }, ExpectedResult = "")]
 		[TestCase(new byte[] { 0 }, ExpectedResult = "00")]
 		[TestCase(new byte[] { 0x12 }, ExpectedResult = "12")]
 		[TestCase(new byte[] { 0xAB }, ExpectedResult = "AB")]
@@ -116,8 +115,18 @@ namespace CodeJam.Strings
 		[TestCase("1.3e3", ExpectedResult = 1300.0)]
 		[TestCase("NaN", ExpectedResult = double.NaN)]
 		[TestCase("-Infinity", ExpectedResult = double.NegativeInfinity)]
+#if LESSTHAN_NETCOREAPP20
 		[TestCase("-∞", ExpectedResult = null)]
+#elif LESSTHAN_NETCOREAPP21
+		[TestCase("-∞", ExpectedResult = double.NegativeInfinity)]
+#else
+		[TestCase("-∞", ExpectedResult = null)]
+#endif
+#if TARGETS_NET || LESSTHAN_NETCOREAPP30
 		[TestCase("-infinity", ExpectedResult = null)]
+#else
+		[TestCase("-infinity", ExpectedResult = double.NegativeInfinity)]
+#endif
 		[TestCase("- 1.0 ", ExpectedResult = null)]
 		[TestCase("1,0", ExpectedResult = null)]
 		[TestCase("1.0a", ExpectedResult = null)]

@@ -13,10 +13,11 @@ namespace CodeJam
 	[PublicAPI]
 	[SecurityCritical]
 	public class HGlobalScope :
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-		CriticalFinalizerObject,
-#endif
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 		IDisposable
+#else
+		CriticalFinalizerObject, IDisposable
+#endif
 	{
 		/// <summary>
 		/// Internal pointer.
@@ -27,7 +28,7 @@ namespace CodeJam
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
-		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
+		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 		internal HGlobalScope(int cb)
 		{
 			_ptr = Marshal.AllocHGlobal(cb);

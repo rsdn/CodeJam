@@ -11,10 +11,6 @@ using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
-#if NET35
-using Theraot.Collections;
-#endif
-
 namespace CodeJam
 {
 	/// <summary>
@@ -29,10 +25,9 @@ namespace CodeJam
 			var result = new List<EnumValue>();
 			var actualType = enumType.ToNullableUnderlying();
 
-			var fields =
-				actualType
-					.GetFields(BindingFlags.Public | BindingFlags.Static)
-					.ToDictionary(m => m.Name, StringComparer.Ordinal);
+			var fields = actualType
+				.GetFields(BindingFlags.Public | BindingFlags.Static)
+				.ToDictionary(m => m.Name, StringComparer.Ordinal);
 			var enumNames = Enum.GetNames(enumType);
 			var enumValues = Enum.GetValues(enumType).Cast<object>();
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
-using static CodeJam.Targeting.MethodImplOptionsExt;
+using static CodeJam.Targeting.MethodImplOptionsEx;
 
 using JetBrains.Annotations;
 

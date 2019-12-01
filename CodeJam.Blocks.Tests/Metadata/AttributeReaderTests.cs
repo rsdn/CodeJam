@@ -1,4 +1,6 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 // TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 
 using System;
 

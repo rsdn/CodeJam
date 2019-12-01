@@ -28,7 +28,9 @@ namespace CodeJam.Strings
 		public static string ToInvariantString<T>([NotNull] this T s, string format) where T : IFormattable =>
 			s.ToString(format, CultureInfo.InvariantCulture);
 
-#if !LESSTHAN_NETCOREAPP20 && !LESSTHAN_NETSTANDARD20
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 // PUBLIC_API_CHANGES
+		// StringComparison.InvariantCulture is missing in these frameworks
+#else
 		/// <summary>
 		/// Determines whether the beginning of this string instance matches the specified string when compared using the
 		/// invariant culture.
@@ -86,7 +88,7 @@ namespace CodeJam.Strings
 		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, int startIndex, int count) =>
 			str.IndexOf(value, startIndex, count, StringComparison.InvariantCulture);
 
-				/// <summary>
+		/// <summary>
 		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
 		/// using the invariant culture.
 		/// </summary>
@@ -134,7 +136,7 @@ namespace CodeJam.Strings
 			[NotNull] string value,
 			int startIndex,
 			int count) =>
-			str.LastIndexOf(value, startIndex, count, StringComparison.InvariantCulture);
+				str.LastIndexOf(value, startIndex, count, StringComparison.InvariantCulture);
 #endif
 
 		#region DateTime
@@ -161,10 +163,10 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static DateTime? ToDateTime(
-				[CanBeNull] this string str,
-				DateTimeStyles dateStyle = DateTimeStyles.None,
-				[CanBeNull] IFormatProvider provider = null) =>
-			DateTime.TryParse(str, provider, dateStyle, out var result) ? (DateTime?)result : null;
+			[CanBeNull] this string str,
+			DateTimeStyles dateStyle = DateTimeStyles.None,
+			[CanBeNull] IFormatProvider provider = null) =>
+				DateTime.TryParse(str, provider, dateStyle, out var result) ? (DateTime?)result : null;
 
 		/// <summary>
 		/// Converts the string representation of a number in a specified style and culture-invariant format to its
@@ -186,9 +188,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static DateTime? ToDateTimeInvariant(
-				[CanBeNull] this string str,
-				DateTimeStyles dateStyle = DateTimeStyles.None) =>
-			DateTime.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out var result) ? (DateTime?)result : null;
+			[CanBeNull] this string str,
+			DateTimeStyles dateStyle = DateTimeStyles.None) =>
+				DateTime.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out var result) ? (DateTime?)result : null;
 		#endregion
 	}
 }

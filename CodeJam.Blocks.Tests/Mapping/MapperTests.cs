@@ -1,10 +1,13 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 // TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Diagnostics;
 using System.Linq;
 
-using JetBrains.Annotations;
 using CodeJam.Targeting;
+
+using JetBrains.Annotations;
 
 using NUnit.Framework;
 

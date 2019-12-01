@@ -3,7 +3,7 @@ using System.Runtime.ConstrainedExecution;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
+using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
@@ -51,9 +51,9 @@ namespace CodeJam
 				do
 				{
 					if (*(long*)bp1 != *(long*)bp2
-						|| *(long*)(bp1 + 1*8) != *(long*)(bp2 + 1*8)
-						|| *(long*)(bp1 + 2*8) != *(long*)(bp2 + 2*8)
-						|| *(long*)(bp1 + 3*8) != *(long*)(bp2 + 3*8))
+						|| *(long*)(bp1 + 1 * 8) != *(long*)(bp2 + 1 * 8)
+						|| *(long*)(bp1 + 2 * 8) != *(long*)(bp2 + 2 * 8)
+						|| *(long*)(bp1 + 3 * 8) != *(long*)(bp2 + 3 * 8))
 						return false;
 
 					bp1 += 32;

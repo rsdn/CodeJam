@@ -217,7 +217,7 @@ namespace CodeJam.Collections
 
 			var branchStack = new Stack<BranchPoint>();
 			var branchPoint = new BranchPoint { Node = node, EdgeIndex = 0 };
-			for (;;)
+			for (; ; )
 			{
 				DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
 				var edge = GetNode(branchPoint.Node.Children[branchPoint.EdgeIndex]);
@@ -235,7 +235,7 @@ namespace CodeJam.Collections
 				yield return CreateSuffix(edge.End, length);
 
 				// Move to the next suffix branch
-				for (;;)
+				for (; ; )
 				{
 					length -= edgeLength;
 					var nextEdgeIndex = branchPoint.EdgeIndex + 1;
@@ -280,7 +280,7 @@ namespace CodeJam.Collections
 			DebugCode.AssertState(s.Length > 0, "The string length should be positive");
 			var currentNode = Root;
 			var offset = 0;
-			for (;;)
+			for (; ; )
 			{
 				var edgeIndex = FindEdge(currentNode, s[offset], out var edge);
 				if (edgeIndex == -1)
@@ -348,12 +348,8 @@ namespace CodeJam.Collections
 		{
 			var sb = new StringBuilder();
 			var currentIndex = RootNodeIndex;
-#if LESSTHAN_NET45
-			var stack = new ListEx<StringLocation>();
-#else
 			var stack = new List<StringLocation>();
-#endif
-			for (;;)
+			for (; ; )
 			{
 				PrintNodeWithPath(sb, currentIndex, stack);
 				var node = GetNode(currentIndex);
@@ -393,7 +389,7 @@ namespace CodeJam.Collections
 		private void PrintNodeWithPath(
 			[NotNull] StringBuilder sb,
 			int nodeIndex,
-			[NotNull] IReadOnlyList<StringLocation> stack)
+			[NotNull] IList<StringLocation> stack)
 		{
 			if (stack.Count > 0)
 			{

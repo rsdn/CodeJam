@@ -1,7 +1,8 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,9 +10,12 @@ using System.Reflection;
 
 using CodeJam.Collections;
 using CodeJam.Expressions;
+using CodeJam.Reflection;
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Mapping
 {
@@ -85,6 +89,25 @@ namespace CodeJam.Mapping
 			if (type.GetIsEnum())
 				return false;
 
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10
+			switch (type)
+			{
+				case Type t when t == typeof(Boolean):
+				case Type t2 when t2 == typeof(Byte):
+				case Type t3 when t3 == typeof(SByte):
+				case Type t4 when t4 == typeof(Int16):
+				case Type t5 when t5 == typeof(Int32):
+				case Type t6 when t6 == typeof(Int64):
+				case Type t7 when t7 == typeof(UInt16):
+				case Type t8 when t8 == typeof(UInt32):
+				case Type t9 when t9 == typeof(UInt64):
+				case Type t10 when t10 == typeof(Single):
+				case Type t11 when t11 == typeof(Double):
+				case Type t12 when t12 == typeof(Decimal):
+				case Type t14 when t14 == typeof(Char): return true;
+				default: return false;
+			}
+#else
 			switch (Type.GetTypeCode(type))
 			{
 				case TypeCode.Boolean:
@@ -102,6 +125,7 @@ namespace CodeJam.Mapping
 				case TypeCode.Char: return true;
 				default: return false;
 			}
+#endif
 		}
 
 		[CanBeNull]

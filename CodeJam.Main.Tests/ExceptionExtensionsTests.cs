@@ -16,7 +16,8 @@ namespace CodeJam
 			var ex = new Exception("123", new ApplicationException());
 			var text = ex.ToDiagnosticString();
 
-			Assert.That(text,
+			Assert.That(
+				text,
 				Contains
 					.Substring("--------------------------------------")
 					.And
@@ -28,11 +29,7 @@ namespace CodeJam
 		{
 			try
 			{
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-				Assembly.Load("CodeJamJamJam.dll");
-#else
 				Assembly.Load(new AssemblyName("CodeJamJamJam.dll"));
-#endif
 			}
 			catch (Exception ex)
 			{
@@ -53,26 +50,28 @@ namespace CodeJam
 		}
 
 #if !LESSTHAN_NET45
+		private static async Task<string> GetTextAsync(Exception ex)
+		{
+			var writer = new StringWriter();
+			await ex.ToDiagnosticStringAsync(writer);
+			await writer.FlushAsync();
+
+			var text = writer.ToString();
+			return text;
+		}
+
 		[Test]
 		public async Task InternalExceptionTestAsync()
 		{
 			var ex = new Exception("123", new ApplicationException());
 			var text = await GetTextAsync(ex);
 
-			Assert.That(text,
+			Assert.That(
+				text,
 				Contains
 					.Substring("--------------------------------------")
 					.And
 					.Contains("Exception: System.ApplicationException"));
-		}
-
-		private static async Task<string> GetTextAsync(Exception ex)
-		{
-			var writer = new StringWriter();
-			await ex.ToDiagnosticStringAsync(writer);
-			await writer.FlushAsync();
-			var text = writer.ToString();
-			return text;
 		}
 
 		[Test]
@@ -80,11 +79,7 @@ namespace CodeJam
 		{
 			try
 			{
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-				Assembly.Load("CodeJamJamJam.dll");
-#else
 				Assembly.Load(new AssemblyName("CodeJamJamJam.dll"));
-#endif
 			}
 			catch (Exception ex)
 			{
@@ -96,10 +91,10 @@ namespace CodeJam
 		}
 
 		[Test]
-		public async Task AggregateExceptionTestAsync()
+		public void AggregateExceptionTestAsync()
 		{
 			var ex = new AggregateException("000", new Exception("123"), new Exception("456"));
-			var text = await GetTextAsync(ex);
+			var text = GetTextAsync(ex).Result;
 
 			Assert.That(text, Contains.Substring("000").And.Contains("123").And.Contains("456"));
 		}

@@ -1,10 +1,17 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET35
+extern alias nunitlinq;
+#endif
+#if LESSTHAN_NET40 // TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Linq;
 
 using CodeJam.Ranges;
 
 using NUnit.Framework;
+
+using Range = CodeJam.Ranges.Range;
 
 namespace CodeJam.Collections
 {

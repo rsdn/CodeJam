@@ -1,4 +1,6 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 // TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,8 +95,9 @@ namespace CodeJam.Collections
 			Assert.That(comparer.Equals(o1, o2), Is.EqualTo(expected));
 		}
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-
+#if LESSTHAN_NETCOREAPP20
+		// MethodHandle is missing if targeting to these frameworks
+#else
 		[Test]
 		public void MethodHandleTest()
 		{
@@ -116,7 +119,6 @@ namespace CodeJam.Collections
 			Assert.False(comparer.Equals(a, b), "ComparerBuilder fails");
 			Assert.True(comparer.Equals(a, b2), "ComparerBuilder fails");
 		}
-
 #endif
 
 		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]

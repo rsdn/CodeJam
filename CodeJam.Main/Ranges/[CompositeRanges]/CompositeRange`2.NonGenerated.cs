@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using CodeJam.Collections;
+using CodeJam.Collections.Backported;
 
 using JetBrains.Annotations;
 

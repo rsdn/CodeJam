@@ -1,9 +1,8 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 // TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Globalization;
-#if !LESSTHAN_NETCOREAPP20
-using System.Data.SqlTypes;
-#endif
 
 using NUnit.Framework;
 
@@ -133,11 +132,13 @@ namespace CodeJam.Mapping
 			Convert<DateTime,string>.Expression = null;
 		}
 
-#if !LESSTHAN_NETCOREAPP20
+#if LESSTHAN_NETCOREAPP20
+		// SqlInt32 is missing if targeting to these frameworks
+#else
 		[Test]
 		public void FromValue()
 		{
-			Assert.AreEqual(10, ConvertTo<int>.From(new SqlInt32(10)));
+			Assert.AreEqual(10, ConvertTo<int>.From(new System.Data.SqlTypes.SqlInt32(10)));
 		}
 #endif
 

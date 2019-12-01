@@ -17,14 +17,6 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using StringClass =
-#if LESSTHAN_NET40
-	System.StringEx
-#else
-	System.String
-#endif
-	;
-
 using static CodeJam.Ranges.CompositeRangeInternal;
 
 // The file contains members to be shared between CompositeRange<T, TKey> and CompositeRange<T, TKey>.
@@ -104,7 +96,7 @@ namespace CodeJam.Ranges
 
 		[NotNull]
 		private static IEnumerable<Range<T, TKey>> MergeRangesCore(
-			IEnumerable<Range<T, TKey>> sortedRanges)
+			[NotNull] IEnumerable<Range<T, TKey>> sortedRanges)
 		{
 			var temp = Range<T, TKey>.Empty;
 			foreach (var range in sortedRanges)
@@ -133,6 +125,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Predefined values
+		[NotNull]
 		private static readonly ReadOnlyCollection<Range<T, TKey>> _emptyRanges = Array<Range<T, TKey>>.Empty.AsReadOnly();
 
 		#region T4-dont-replace
@@ -150,7 +143,7 @@ namespace CodeJam.Ranges
 
 		#region Fields & .ctor()
 		// TODO: REMOVE readonly modifier. Same reason as for Range<T, TKey>. Proof: NestedStructAccessPerfTests.
-		private readonly ReadOnlyCollection<Range<T, TKey>> _ranges; // TODO: own collection?
+		[NotNull] private readonly ReadOnlyCollection<Range<T, TKey>> _ranges; // TODO: own collection?
 		private readonly bool _hasRangesToMerge;
 
 		#region T4-dont-replace
@@ -240,6 +233,7 @@ namespace CodeJam.Ranges
 		/// <summary>Collection of subranges.</summary>
 		/// <value>The collection of subranges.</value>
 		[NotNull]
+		// ReSharper disable once ConstantNullCoalescingCondition
 		public ReadOnlyCollection<Range<T, TKey>> SubRanges => _ranges ?? _emptyRanges;
 
 		#region T4-dont-replace

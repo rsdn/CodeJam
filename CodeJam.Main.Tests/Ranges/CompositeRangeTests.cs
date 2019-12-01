@@ -1,10 +1,9 @@
-﻿#if !LESSTHAN_NET45
+﻿#if LESSTHAN_NET45
 // NET 4.0 uses binary array sorting instead of introspection sort, most of tests belongs on order of elements to be preserved
+#else
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 
 using CodeJam.Strings;
 
@@ -12,9 +11,10 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
+using static CodeJam.Ranges.RangeTestHelpers;
 using static NUnit.Framework.Assert;
 
-using static CodeJam.Ranges.RangeTestHelpers;
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Ranges
 {

@@ -2,6 +2,7 @@
 	<PropertyGroup>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 
+		<!-- Filled on each project individually -->
 		<!--<PackageId></PackageId>
 		<Title></Title>
 		<Authors></Authors>

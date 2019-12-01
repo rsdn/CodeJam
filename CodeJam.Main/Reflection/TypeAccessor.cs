@@ -1,4 +1,6 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -62,8 +64,8 @@ namespace CodeJam.Reflection
 
 		#region Items
 		[NotNull]
-		private readonly ConcurrentDictionary<string,MemberAccessor> _membersByName =
-			new ConcurrentDictionary<string,MemberAccessor>();
+		private readonly ConcurrentDictionary<string, MemberAccessor> _membersByName =
+			new ConcurrentDictionary<string, MemberAccessor>();
 
 		/// <summary>
 		/// Returns <see cref="MemberAccessor"/> by its name.
@@ -91,8 +93,8 @@ namespace CodeJam.Reflection
 
 		#region Static Members
 		[NotNull]
-		private static readonly ConcurrentDictionary<Type,TypeAccessor> _accessors =
-			new ConcurrentDictionary<Type,TypeAccessor>();
+		private static readonly ConcurrentDictionary<Type, TypeAccessor> _accessors =
+			new ConcurrentDictionary<Type, TypeAccessor>();
 
 		/// <summary>
 		/// Creates an instance of <see cref="TypeAccessor"/>.

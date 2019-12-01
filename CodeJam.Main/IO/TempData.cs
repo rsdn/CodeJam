@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.ConstrainedExecution;
 using System.Threading;
 
 using JetBrains.Annotations;
@@ -19,10 +18,11 @@ namespace CodeJam.IO
 		/// </summary>
 		[PublicAPI]
 		public abstract class TempBase :
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-			CriticalFinalizerObject,
-#endif
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 			IDisposable
+#else
+			System.Runtime.ConstrainedExecution.CriticalFinalizerObject, IDisposable
+#endif
 		{
 			/// <summary>Checks that the path is valid.</summary>
 			/// <param name="path">The path.</param>

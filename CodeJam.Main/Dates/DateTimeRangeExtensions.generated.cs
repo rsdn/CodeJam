@@ -14,6 +14,8 @@ using CodeJam.Ranges;
 
 using JetBrains.Annotations;
 
+using Range = CodeJam.Ranges.Range;
+
 namespace CodeJam.Dates
 {
 	/// <summary>
@@ -167,7 +169,7 @@ namespace CodeJam.Dates
 
 		/// <summary>Splits the range by months.</summary>
 		/// <param name="range">The date range.</param>
-		/// <returns>Ranges splitted by first day of months in range.</returns>
+		/// <returns>Ranges split by first day of months in range.</returns>
 		[NotNull]
 		public static IEnumerable<Range<DateTimeOffset>> SplitByMonths(this Range<DateTimeOffset> range)
 		{
@@ -189,7 +191,7 @@ namespace CodeJam.Dates
 
 		/// <summary>Splits the range by years.</summary>
 		/// <param name="range">The date range.</param>
-		/// <returns>Ranges splitted by first day of years in range.</returns>
+		/// <returns>Ranges split by first day of years in range.</returns>
 		[NotNull]
 		public static IEnumerable<Range<DateTimeOffset>> SplitByYears(this Range<DateTimeOffset> range)
 		{

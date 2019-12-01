@@ -168,7 +168,7 @@ namespace CodeJam.Expressions
 				name = expression.Member.Name + "." + name;
 
 			return name;
-		}	
+		}
 
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/>.
@@ -222,12 +222,13 @@ namespace CodeJam.Expressions
 							if (expr.NodeType != ExpressionType.MemberAccess)
 								goto default;
 
-							// ReflectedType is not supported in .NET Core
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+							// ReflectedType is missing if targeting to these frameworks
+#else
 							var member = ((MemberExpression)expr).Member;
-							var mType = member.GetMemberType();
+							var memberType = member.GetMemberType();
 
-							if (lastMember.ReflectedType != mType.GetItemType())
+							if (lastMember.ReflectedType != memberType.GetItemType())
 								goto default;
 #endif
 

@@ -1,5 +1,4 @@
-﻿#if !LESSTHAN_NET45
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -137,7 +136,7 @@ namespace CodeJam.Reflection
 		[Test]
 		public void ExtractingPropertyGetMethod()
 		{
-			var expected = typeof(User).GetProperty("Name").GetMethod;
+			var expected = typeof(User).GetProperty("Name").GetGetMethod();
 			var method1 = InfoOf.Method(() => new User().Name);
 			var method2 = InfoOf.Method<User>(u => u.Name);
 			var method3 = InfoOf.Method<User, string>(u => u.Name);
@@ -176,4 +175,3 @@ namespace CodeJam.Reflection
 		#endregion
 	}
 }
-#endif

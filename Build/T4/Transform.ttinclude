@@ -5,9 +5,28 @@
 <#@ import namespace="System.Collections.Concurrent" #>
 <#@ import namespace="System.Text.RegularExpressions" #><#+
 
+	internal enum ReplaceMode
+	{
+		Normal, Swap, Ignore
+	}
+
+	internal class ReplaceInfo
+	{
+		public string Pattern { get; set; }
+		public string Replacement { get; set; }
+		public bool ThrowOnFail { get; set; }
+		public bool WholeWord { get; set; }
+		public bool EscapePattern { get; set; }
+		public ReplaceMode Mode { get; set; }
+
+		public bool SwapMode => Mode == ReplaceMode.Swap;
+		public bool IgnoreMode => Mode == ReplaceMode.Ignore;
+	}
+
 	// ReSharper disable UnusedMember.Local
 	private void Transform(string sourceFileName, ReplaceInfo[] additionalReplaces, params ReplaceInfo[] replaces)
 	{
+		// DONTTOUCH: additional replaces should be applied BEFORE normal replaces
 		var replaceList = new List<ReplaceInfo>(additionalReplaces);
 		replaceList.AddRange(replaces);
 		Transform(sourceFileName, replaceList.ToArray());
@@ -21,8 +40,8 @@
 			throw new FileNotFoundException("File '" + filePath + "' does not exist.");
 		}
 
-		var ignoreReplaces = new ConcurrentDictionary<string, string>();
-		Func<string, ReplaceInfo, string> replaceIgnoredCore = (text, replaceInfo) =>
+		var placeholderReplaces = new ConcurrentDictionary<string, string>();
+		Func<string, ReplaceInfo, string> replaceWithPlaceholdersCore = (text, replaceInfo) =>
 		{
 			var pattern = replaceInfo.SwapMode ? replaceInfo.Replacement : replaceInfo.Pattern;
 			var replacement = replaceInfo.SwapMode ? replaceInfo.Pattern : null;
@@ -37,7 +56,7 @@
 			var newText = Regex.Replace(
 				text,
 				pattern,
-				m => ignoreReplaces.GetOrAdd(replacement ?? m.Value, s => "%" + Guid.NewGuid() + "%"));
+				m => placeholderReplaces.GetOrAdd(replacement ?? m.Value, _ => "%" + Guid.NewGuid() + "%"));
 
 			if (replaceInfo.ThrowOnFail && newText == text)
 				throw new InvalidOperationException("The match for " + pattern + " not found");
@@ -68,7 +87,7 @@
 		// swap-or-ignore patterns.
 		foreach (var replaceInfo in replaces.Where(r => r.IgnoreMode || r.SwapMode))
 		{
-			sourceText = replaceIgnoredCore(sourceText, replaceInfo);
+			sourceText = replaceWithPlaceholdersCore(sourceText, replaceInfo);
 		}
 
 		// usual replaces
@@ -77,30 +96,12 @@
 			sourceText = replaceCore(sourceText, replaceInfo);
 		}
 
-		// restore ignored text
-		foreach (var ignoreReplace in ignoreReplaces)
+		// restore placeholders values
+		foreach (var placeholderReplace in placeholderReplaces)
 		{
-			sourceText = sourceText.Replace(ignoreReplace.Value, ignoreReplace.Key);
+			sourceText = sourceText.Replace(placeholderReplace.Value, placeholderReplace.Key);
 		}
 
 		Write(sourceText);
-	}
-
-	internal enum ReplaceMode
-	{
-		Normal, Swap, Ignore
-	}
-
-	internal class ReplaceInfo
-	{
-		public string Pattern { get; set; }
-		public string Replacement { get; set; }
-		public bool ThrowOnFail { get; set; }
-		public bool WholeWord { get; set; }
-		public bool EscapePattern { get; set; }
-		public ReplaceMode Mode { get; set; }
-
-		public bool SwapMode => Mode == ReplaceMode.Swap;
-		public bool IgnoreMode => Mode == ReplaceMode.Ignore;
 	}
 #>

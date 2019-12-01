@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
-#if !LESSTHAN_NET45
-using System.Threading.Tasks;
-#endif
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using JetBrains.Annotations;
 
@@ -98,7 +96,6 @@ namespace CodeJam.Collections
 			return result;
 		}
 
-#if !LESSTHAN_NET45
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist.
 		/// </summary>
@@ -136,7 +133,6 @@ namespace CodeJam.Collections
 			}
 			return result;
 		}
-#endif
 
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
@@ -175,7 +171,6 @@ namespace CodeJam.Collections
 			return addValue;
 		}
 
-#if !LESSTHAN_NET45
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
@@ -222,7 +217,6 @@ namespace CodeJam.Collections
 			dictionary.Add(key, addValue);
 			return addValue;
 		}
-#endif
 
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
@@ -263,7 +257,6 @@ namespace CodeJam.Collections
 			return newAddValue;
 		}
 
-#if !LESSTHAN_NET45
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
@@ -312,7 +305,6 @@ namespace CodeJam.Collections
 			dictionary.Add(key, newAddValue);
 			return newAddValue;
 		}
-#endif
 
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
@@ -345,7 +337,6 @@ namespace CodeJam.Collections
 			return newAddValue;
 		}
 
-#if !LESSTHAN_NET45
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}"/> if the key does not already exist,
 		///   or updates a key/value pair <see cref="IDictionary{TKey,TValue}"/> by using the specified function
@@ -385,7 +376,6 @@ namespace CodeJam.Collections
 			dictionary.Add(key, newAddValue);
 			return newAddValue;
 		}
-#endif
 
 		/// <summary>
 		///   Adds a key/value pair to the <see cref="ConcurrentDictionary{TKey,TValue}"/> if the key does not already exist,

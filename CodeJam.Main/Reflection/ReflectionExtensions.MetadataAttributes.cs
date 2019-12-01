@@ -1,4 +1,6 @@
-﻿#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+﻿#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
+// ICustomAttributeProvider & .GetMetadataToken() are missing if targeting to these frameworks
+#else
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ using CodeJam.Targeting;
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
+
 namespace CodeJam.Reflection
 {
 	/// <summary>
@@ -17,29 +20,55 @@ namespace CodeJam.Reflection
 	/// </summary>
 	public static partial class ReflectionExtensions
 	{
-		private sealed class TypeTypeHandleComparer : IEqualityComparer<Type>
+		private sealed class TypeHandleComparer : IEqualityComparer<Type>
 		{
+			public static TypeHandleComparer Default { get; } = new TypeHandleComparer();
+
 			public bool Equals(Type x, Type y) =>
-				x is null ? y is null : (object)y != null && x.TypeHandle.Equals(y.TypeHandle);
+				x is null ? y is null : y != null && x.TypeHandle.Equals(y.TypeHandle);
 
 			public int GetHashCode(Type obj) => obj.TypeHandle.GetHashCode();
 		}
 
 		private sealed class MethodMethodHandleComparer : IEqualityComparer<MethodInfo>
 		{
-			public bool Equals(MethodInfo x, MethodInfo y) =>
-				x is null ? y is null : (object)y != null && x.MethodHandle.Equals(y.MethodHandle);
+			public static MethodMethodHandleComparer Default { get; } = new MethodMethodHandleComparer();
 
-			public int GetHashCode(MethodInfo obj) => obj.MethodHandle.GetHashCode();
+			public bool Equals(MethodInfo x, MethodInfo y)
+			{
+				if (x is null) return y is null;
+				if (y == null) return false;
+
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+				return TypeHandleComparer.Default.Equals(x.DeclaringType, y.DeclaringType)
+					&& x.GetMetadataToken() == y.GetMetadataToken();
+#else
+				return x.MethodHandle.Equals(y.MethodHandle);
+#endif
+			}
+
+			public int GetHashCode(MethodInfo obj)
+			{
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+				return HashCode.Combine(
+					TypeHandleComparer.Default.GetHashCode(obj.DeclaringType),
+					obj.GetMetadataToken());
+#else
+				return obj.MethodHandle.GetHashCode();
+#endif
+			}
 		}
+
 		// DONTTOUCH: Direct compare may result in false negative.
 		// See http://stackoverflow.com/questions/27645408 for explanation.
 		[NotNull]
-		private static readonly IEqualityComparer<Type> _typeComparer = new TypeTypeHandleComparer();
+		private static readonly IEqualityComparer<Type> _typeComparer = TypeHandleComparer.Default;
 
 		[NotNull]
-		private static readonly IEqualityComparer<MethodInfo> _methodComparer = new MethodMethodHandleComparer();
+		private static readonly IEqualityComparer<MethodInfo> _methodComparer = MethodMethodHandleComparer.Default;
 
+		#region GetMetadataAttributes
+#pragma warning disable 1574, 1584, 1581, 1580 // cref could not be resolved
 		/// <summary>
 		/// Performs search for metadata attribute.
 		/// The search is performed in the following order
@@ -145,6 +174,7 @@ namespace CodeJam.Reflection
 					_ => GetAttributesFromCandidates<TAttribute>(true, attributeProvider)
 				};
 		}
+#pragma warning restore 1574, 1584, 1581, 1580
 
 		[NotNull, ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForType<TAttribute>(
@@ -205,7 +235,8 @@ namespace CodeJam.Reflection
 		}
 
 		[NotNull, ItemNotNull]
-		private static IEnumerable<TAttribute> GetAttributesForMember<TAttribute>([NotNull] this MemberInfo member, bool thisLevelOnly)
+		private static IEnumerable<TAttribute> GetAttributesForMember<TAttribute>(
+			[NotNull] this MemberInfo member, bool thisLevelOnly)
 			where TAttribute : class
 		{
 			// ReSharper disable once CoVariantArrayConversion
@@ -223,21 +254,28 @@ namespace CodeJam.Reflection
 				}
 			}
 		}
+		#endregion
 
 		#region Get override chain
 		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChain(this MemberInfo member) =>
 			IsOverriden(member) ? _getOverrideChainCache(member) : new[] { member };
 
-		private static bool IsOverriden(MemberInfo member) =>
-			member switch
+		private static bool IsOverriden(MemberInfo member)
+		{
+			return member switch
 			{
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+				TypeInfo _ => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
+#else
 				Type _ => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
+#endif
 				MethodInfo method => IsOverriden(method),
 				PropertyInfo property => IsOverriden(property.GetAccessors(true)[0]),
 				EventInfo eventInfo => IsOverriden(eventInfo.GetAddMethod(true)),
 				_ => false
 			};
+		}
 
 		private static bool IsOverriden([CanBeNull] MethodInfo method) =>
 			method != null &&
@@ -283,7 +321,7 @@ namespace CodeJam.Reflection
 			var result = new List<MemberInfo>();
 			var implMethod = accessorGetter(member);
 			var baseDefinition = implMethod.GetBaseDefinition();
-			var typesToCheck = Sequence.CreateWhileNotNull(implMethod.DeclaringType, t => t.BaseType);
+			var typesToCheck = Sequence.CreateWhileNotNull(implMethod.DeclaringType, t => t.GetBaseType());
 			foreach (var type in typesToCheck)
 			{
 				foreach (var candidate in membersGetter(type))
@@ -301,13 +339,13 @@ namespace CodeJam.Reflection
 			return result.ToArray();
 		}
 		#endregion
-		
+
 		#region GetAttributesFromCandidates
 		private static readonly AttributeUsageAttribute _defaultUsage = new AttributeUsageAttribute(AttributeTargets.All);
 
 		[NotNull]
 		private static readonly Func<Type, AttributeUsageAttribute> _attributeUsages = Algorithms.Memoize(
-			(Type t) => t.GetCustomAttribute<AttributeUsageAttribute>(true) ?? _defaultUsage,
+			(Type t) => t.GetTypeInfo().GetCustomAttribute<AttributeUsageAttribute>(true) ?? _defaultUsage,
 			true);
 
 		// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Attribute.cs#L28
@@ -324,8 +362,7 @@ namespace CodeJam.Reflection
 			foreach (var attributeProvider in traversePath)
 			{
 				var attributeCandidates = attributeProvider
-					.GetCustomAttributes(typeof(TAttribute), inherit)
-					.Cast<TAttribute>();
+					.GetCustomAttributesWithInterfaceSupport<TAttribute>(inherit);
 				foreach (var attribute in attributeCandidates)
 				{
 					var attributeType = attribute.GetType();
@@ -346,7 +383,7 @@ namespace CodeJam.Reflection
 			return result.ToArray();
 		}
 
-		// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Attribute.cs#L28
+		// BASEDON: https://github.com/dotnet/runtime/blob/master/src/coreclr/src/System.Private.CoreLib/src/System/Attribute.CoreCLR.cs#L16
 		// Behavior matches the Attribute.InternalGetCustomAttributes() method.
 		[NotNull, ItemNotNull]
 		private static TAttribute[] GetAttributesFromCandidates<TAttribute>(
@@ -360,8 +397,7 @@ namespace CodeJam.Reflection
 			foreach (var attributeProvider in traversePath)
 			{
 				var attributeCandidates = attributeProvider
-					.GetCustomAttributes(typeof(TAttribute), inherit)
-					.Cast<TAttribute>();
+					.GetCustomAttributesWithInterfaceSupport<TAttribute>(inherit);
 				foreach (var attribute in attributeCandidates)
 				{
 					var attributeType = attribute.GetType();
@@ -381,8 +417,8 @@ namespace CodeJam.Reflection
 			}
 			return result.ToArray();
 		}
-
 		#endregion
 	}
 }
+
 #endif

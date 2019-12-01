@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -10,6 +8,8 @@ using CodeJam.Targeting;
 using JetBrains.Annotations;
 
 using NUnit.Framework;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Strings
 {

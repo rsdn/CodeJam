@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -12,6 +11,8 @@ using CodeJam.Targeting;
 using JetBrains.Annotations;
 
 using static System.Linq.Expressions.Expression;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Arithmetic
 {
@@ -86,7 +87,7 @@ namespace CodeJam.Arithmetic
 			}
 
 			body = PrepareResult(body, args[0].Type, resultType);
-#if LESSTHAN_NET40
+#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
 			var result = Lambda<TDelegate>(body, args);
 #else
 			var result = Lambda<TDelegate>(body, methodName, args);
@@ -312,7 +313,7 @@ namespace CodeJam.Arithmetic
 				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
 			}
 
-#if LESSTHAN_NET40
+#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
 			var result = Lambda<Func<T, T, int>>(body, new[] { argA, argB });
 #else
 			const string compareToName = nameof(int.CompareTo);

@@ -8,14 +8,6 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using StringClass =
-#if LESSTHAN_NET40
-	System.StringEx
-#else
-	System.String
-#endif
-	;
-
 using static CodeJam.Ranges.CompositeRangeInternal;
 
 // The file contains members to be shared between CompositeRange<T> and CompositeRange<T, TKey>.

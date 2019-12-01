@@ -6,8 +6,8 @@ using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
 using static CodeJam.Ranges.RangeInternal;
+using static CodeJam.Targeting.MethodImplOptionsEx;
 
 // The file contains members to be shared between Range<T> and Range<T, TKey>.
 

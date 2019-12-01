@@ -2,9 +2,7 @@
 extern alias nunitlinq;
 #endif
 
-using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -12,6 +10,8 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Collections
 {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using CodeJam.Strings;
 using CodeJam.Collections;
 using CodeJam.Reflection;
+using CodeJam.Strings;
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
@@ -35,8 +35,6 @@ namespace CodeJam.Reflection
 	[TestFixture(Category = "Reflection")]
 	public partial class ReflectionExtensionsTest
 	{
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-
 		private enum AttributesSource
 		{
 			All,
@@ -163,7 +161,7 @@ namespace CodeJam.Reflection
 			switch (searchMode)
 			{
 				case SearchMode.Attributes:
-					attributes = source.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>();
+					attributes = source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true);
 					break;
 				case SearchMode.MetadataAttributes:
 					attributes = source.GetMetadataAttributes<TAttribute>();
@@ -190,13 +188,13 @@ namespace CodeJam.Reflection
 			switch (searchMode)
 			{
 				case SearchMode.Attributes:
-					attributes = source.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>();
+					attributes = source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true);
 					break;
 				case SearchMode.MetadataAttributes:
-					attributes = source.GetMetadataAttributes<TAttribute>();
+					attributes = source.GetTypeInfo().GetMetadataAttributes<TAttribute>();
 					break;
 				case SearchMode.MetadataAttributesSingleLevel:
-					attributes = source.GetMetadataAttributes<TAttribute>(thisLevelOnly: true);
+					attributes = source.GetTypeInfo().GetMetadataAttributes<TAttribute>(thisLevelOnly: true);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null);
@@ -211,8 +209,6 @@ namespace CodeJam.Reflection
 		}
 
 		#endregion
-
-#endif
 
 		#region Attributes
 		private interface ITestInterface

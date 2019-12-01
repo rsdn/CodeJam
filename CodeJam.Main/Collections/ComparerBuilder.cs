@@ -1,17 +1,20 @@
-﻿#if !LESSTHAN_NET40
-
+﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-// ReSharper disable once RedundantUsingDirective
 using System.Reflection;
+
+// ReSharper disable once RedundantUsingDirective
 
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
 	using Expressions;
+
 	using Reflection;
 
 	/// <summary>

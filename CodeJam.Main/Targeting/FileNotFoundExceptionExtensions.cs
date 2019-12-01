@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Runtime.CompilerServices;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
-
 using JetBrains.Annotations;
+
+using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam.Targeting
 {
@@ -12,10 +12,10 @@ namespace CodeJam.Targeting
 		[NotNull]
 		[MethodImpl(AggressiveInlining)]
 		public static string GetFusionLog([NotNull] this FileNotFoundException ex) =>
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-			ex.FusionLog;
-#else
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 			"";
+#else
+			ex.FusionLog;
 #endif
 
 	}

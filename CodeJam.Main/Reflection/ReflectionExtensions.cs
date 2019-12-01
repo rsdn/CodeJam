@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+using System.Linq;
+#endif
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,6 +20,9 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public static partial class ReflectionExtensions
 	{
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
+		// CodeBase is missing if targeting to these frameworks
+#else
 		/// <summary>
 		/// Returns path to the <paramref name="module"/> file.
 		/// </summary>
@@ -31,13 +36,14 @@ namespace CodeJam.Reflection
 
 			var assemblyPath = module.Assembly.GetAssemblyPath();
 
-			return module == module.Assembly.ManifestModule
+			return Equals(module, module.Assembly.ManifestModule)
 				? assemblyPath
-				: Path.Combine(
+				: System.IO.Path.Combine(
 					// ReSharper disable once AssignNullToNotNullAttribute
-					Path.GetDirectoryName(assemblyPath),
+					System.IO.Path.GetDirectoryName(assemblyPath),
 					module.Name);
 		}
+#endif
 
 		/// <summary>
 		/// Gets the short form of assembly qualified type name (without assembly version or assembly key).
@@ -218,6 +224,28 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 			while (true) // tail recursion expanded
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10
+				switch (type)
+				{
+					case Type t when t == typeof(SByte):
+					case Type t2 when t2 == typeof(Byte):
+					case Type t3 when t3 == typeof(Int16):
+					case Type t4 when t4 == typeof(UInt16):
+					case Type t5 when t5 == typeof(Int32):
+					case Type t6 when t6 == typeof(UInt32):
+					case Type t7 when t7 == typeof(Int64):
+					case Type t8 when t8 == typeof(UInt64):
+					case Type t9 when t9 == typeof(Decimal):
+					case Type t10 when t10 == typeof(Single):
+					case Type t11 when t11 == typeof(Double):
+						return true;
+					case Type t12 when Nullable.GetUnderlyingType(t12) is Type nullableType:
+						type = nullableType;
+						continue;
+					default:
+						return false;
+				}
+#else
 				switch (Type.GetTypeCode(type))
 				{
 					case TypeCode.SByte:
@@ -240,6 +268,7 @@ namespace CodeJam.Reflection
 					default:
 						return false;
 				}
+#endif
 		}
 
 		/// <summary>
@@ -252,15 +281,34 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 			while (true) // tail recursion expanded
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10
+				switch (type)
+				{
+					case Type t when t == typeof(SByte):
+					case Type t2 when t2 == typeof(Byte):
+					case Type t3 when t3 == typeof(Int16):
+					case Type t4 when t4 == typeof(UInt16):
+					case Type t5 when t5 == typeof(Int32):
+					case Type t6 when t6 == typeof(UInt32):
+					case Type t7 when t7 == typeof(Int64):
+					case Type t8 when t8 == typeof(UInt64):
+						return true;
+					case Type t12 when Nullable.GetUnderlyingType(t12) is Type nullableType:
+						type = nullableType;
+						continue;
+					default:
+						return false;
+				}
+#else
 				switch (Type.GetTypeCode(type))
 				{
+					case TypeCode.SByte:
 					case TypeCode.Byte:
 					case TypeCode.Int16:
-					case TypeCode.Int32:
-					case TypeCode.Int64:
-					case TypeCode.SByte:
 					case TypeCode.UInt16:
+					case TypeCode.Int32:
 					case TypeCode.UInt32:
+					case TypeCode.Int64:
 					case TypeCode.UInt64:
 						return true;
 					case TypeCode.Object:
@@ -271,6 +319,7 @@ namespace CodeJam.Reflection
 					default:
 						return false;
 				}
+#endif
 		}
 
 		/// <summary>
@@ -441,21 +490,22 @@ namespace CodeJam.Reflection
 		/// <item>If the member is an event, returns <see cref="EventInfo.EventHandlerType"/>.</item>
 		/// </list>
 		/// </returns>
-		[Pure][NotNull]
+		[Pure]
+		[NotNull]
 		public static Type GetMemberType([NotNull] this MemberInfo memberInfo)
 		{
 			Code.NotNull(memberInfo, nameof(memberInfo));
 
-			return
-				// ReSharper disable once AssignNullToNotNullAttribute
-				memberInfo.MemberType switch
-				{
-					MemberTypes.Property => ((PropertyInfo)memberInfo).PropertyType,
-					MemberTypes.Field => ((FieldInfo)memberInfo).FieldType, MemberTypes.Method => ((MethodInfo)memberInfo).ReturnType,
-					MemberTypes.Constructor => memberInfo.DeclaringType,
-					MemberTypes.Event => ((EventInfo)memberInfo).EventHandlerType,
-					_ => throw new InvalidOperationException()
-				};
+			// ReSharper disable once AssignNullToNotNullAttribute
+			return memberInfo switch
+			{
+				PropertyInfo propertyInfo => propertyInfo.PropertyType,
+				FieldInfo fieldInfo => fieldInfo.FieldType,
+				MethodInfo methodInfo => methodInfo.ReturnType,
+				ConstructorInfo constructorInfo => constructorInfo.DeclaringType,
+				EventInfo eventInfo => eventInfo.EventHandlerType,
+				_ => throw new InvalidOperationException()
+			};
 		}
 
 		/// <summary>
@@ -468,12 +518,11 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 
-			return
-				!type.GetIsPublic() &&
-				 type.GetIsGenericType() &&
-				(type.Name.StartsWith("<>f__AnonymousType", StringComparison.Ordinal) ||
-				 type.Name.StartsWith("VB$AnonymousType", StringComparison.Ordinal) &&
-				 type.GetIsDefined(typeof(CompilerGeneratedAttribute), false));
+			return !type.GetIsPublic()
+				&& type.GetIsGenericType()
+				&& (type.Name.StartsWith("<>f__AnonymousType", StringComparison.Ordinal)
+					|| type.Name.StartsWith("VB$AnonymousType", StringComparison.Ordinal))
+				&& type.GetIsDefined(typeof(CompilerGeneratedAttribute), false);
 		}
 
 		/// <summary>
@@ -488,12 +537,17 @@ namespace CodeJam.Reflection
 		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type, bool exceptionIfNotExists = false)
 		{
 			Code.NotNull(type, nameof(type));
-
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+			var info = type
+				.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+				.FirstOrDefault(c => c.GetParameters().Length == 0);
+#else
 			var info = type.GetConstructor(
 				BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
 				null,
 				Type.EmptyTypes,
 				null);
+#endif
 
 			if (info == null && exceptionIfNotExists)
 			{

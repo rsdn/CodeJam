@@ -1,4 +1,7 @@
-﻿using System;
+﻿#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
+// Thread is missing if targeting to these frameworks
+#else
+using System;
 using System.Collections.Generic;
 
 using JetBrains.Annotations;
@@ -11,6 +14,7 @@ namespace CodeJam.Threading
 	[PublicAPI]
 	public static class ParallelExtensions
 	{
+
 		/// <summary>
 		/// Implements Provider-Consumer pattern.
 		/// </summary>
@@ -173,3 +177,4 @@ namespace CodeJam.Threading
 			=> RunInParallel(source, Environment.ProcessorCount, action, processName);
 	}
 }
+#endif

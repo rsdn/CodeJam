@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
 using NUnit.Framework;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Arithmetic
 {
@@ -14,7 +15,7 @@ namespace CodeJam.Arithmetic
 	[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 	public partial class OperatorsTests
 	{
-#region Test helpers
+		#region Test helpers
 		private class ClassNoComparable
 		{
 			[UsedImplicitly]
@@ -224,7 +225,7 @@ namespace CodeJam.Arithmetic
 				Operators<T>.LessThanOrEqual(value2, value2),
 				compareResult22 <= 0);
 		}
-#endregion
+		#endregion
 
 		[Test]
 		public void Test00OperatorsSupported()
@@ -300,11 +301,7 @@ namespace CodeJam.Arithmetic
 		public void Test02NullableComparisonOperators()
 		{
 			Assert.AreNotEqual(
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-				1.CompareTo(null) > 0,
-#else
 				Comparer<object>.Default.Compare(1, null) > 0,
-#endif
 				Operators<int?>.GreaterThan(1, null));
 
 

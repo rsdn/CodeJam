@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
+using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
@@ -12,6 +12,20 @@ namespace CodeJam
 	// Part that excluded from debug assertions generation.
 	partial class Code
 	{
+		#region Argument validation
+		/// <summary>
+		/// Creates <see cref="ArgumentAssertion{T}"/> for fluent assertions.
+		/// </summary>
+		/// <typeparam name="T">Type of argument</typeparam>
+		/// <param name="arg">Argument value.</param>
+		/// <param name="argName">Argument name.</param>
+		/// <returns><see cref="ArgumentAssertion{T}"/> instance.</returns>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static ArgumentAssertion<T> Arg<T>(T arg, [InvokerParameterName] string argName) =>
+			new ArgumentAssertion<T>(arg, argName);
+		#endregion
+
 		#region DisposedIf assertions (DO NOT copy into DebugCode)
 		// NB: ObjectDisposedException should be thrown from all builds or not thrown at all.
 		// There's no point in pairing these assertions with a debug-time-only ones

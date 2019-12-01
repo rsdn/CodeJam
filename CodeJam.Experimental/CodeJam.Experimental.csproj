@@ -9,9 +9,8 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{7BD77DA2-A731-400C-A88E-215FC592E6E3}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 
 		<PackageId>CodeJam.Experimental</PackageId>
@@ -21,7 +20,7 @@
 		<Description>CodeJam.Experimental contains preview version of features to be included in future releases of CodeJam.</Description>
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Experimental.Icon.png</PackageIconUrl>
+		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>extension experimental</PackageTags>
 	</PropertyGroup>
 
@@ -32,8 +31,12 @@
 	<ItemGroup>
 		<Content Include="Readme.txt">
 			<Pack>true</Pack>
-			<PackagePath>README.txt</PackagePath>
+			<PackagePath>Readme.txt</PackagePath>
 		</Content>
+		<None Include="..\images\nuget\CodeJam.Main.Experimental.Icon.png">
+			<Pack>true</Pack>
+			<PackagePath>icon.png</PackagePath>
+		</None>
 	</ItemGroup>
 
 </Project>

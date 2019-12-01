@@ -14,6 +14,8 @@ using CodeJam.Ranges;
 
 using JetBrains.Annotations;
 
+using Range = CodeJam.Ranges.Range;
+
 namespace CodeJam
 {
 	partial class Algorithms

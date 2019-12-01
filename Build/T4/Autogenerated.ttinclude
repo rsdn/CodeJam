@@ -73,12 +73,14 @@
 				temp[i] = _regions.Pop();
 			return temp;
 		}
+
 		private void PushRegion(string regionName, string regionLevelKey) =>
 			_regions.Push(new RegionData(regionName, regionLevelKey));
 
 		public void WriteRegionLine(
 			Action<string> writeLineCallback,
-			string regionName, string regionLevelKey)
+			string regionName,
+			string regionLevelKey)
 		{
 			var region = FindRegion(regionLevelKey);
 

@@ -9,8 +9,9 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net472;net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;netstandard2.0;netstandard1.6;netstandard1.5</TargetFrameworks>
+		<TargetFrameworks>net472;net461;net45;net40;net35;net20;netstandard2.1;netstandard2.0;netstandard1.5;netstandard1.3;netcoreapp3.0;netcoreapp2.0;netcoreapp1.0</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 
 		<PackageId>CodeJam</PackageId>
 		<Title>CodeJam library</Title>
@@ -19,7 +20,7 @@
 		<Description>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</Description>
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageIconUrl>https://raw.githubusercontent.com/rsdn/CodeJam/master/images/nuget/CodeJam.Main.Icon.png</PackageIconUrl>
+		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
 		<LangVersion>8.0</LangVersion>
 
@@ -29,7 +30,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 	</ItemGroup>
 
 	<!-- #region Targeting -->
@@ -49,129 +50,77 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
+	</ItemGroup>
+
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
-		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
-		<Reference Include="System.ComponentModel.DataAnnotations" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-		<Reference Include="System.ComponentModel.DataAnnotations" />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net30' ">
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
+		<PackageReference Include="Theraot.Core" Version="3.1.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
+		<PackageReference Include="Theraot.Core" Version="3.1.0" />
 	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
-
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-		<PackageReference Include="System.Reflection" Version="4.3.0" />
-		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
-		<PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
+		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
+		<PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
 		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
 		<PackageReference Include="System.Reflection" Version="4.3.0" />
-		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
-		<PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-		<PackageReference Include="System.Reflection" Version="4.3.0" />
-		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
-		<PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
+		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
+		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
+		<PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
 		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
 		<PackageReference Include="System.Reflection" Version="4.3.0" />
-		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Thread" Version="4.0.0" />
-		<PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
+		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-		<PackageReference Include="System.Reflection" Version="4.3.0" />
-		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Thread" Version="4.3.0" />
-		<PackageReference Include="System.Threading.ThreadPool" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.0' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
-		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.0.11" />
-		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
-		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-		<PackageReference Include="System.Reflection" Version="4.3.0" />
-		<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.0" />
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Thread" Version="4.3.0" />
-		<PackageReference Include="System.Threading.ThreadPool" Version="4.3.0" />
-		<PackageReference Include="Theraot.Core" Version="3.0.2" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
+		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.0" />
 	</ItemGroup>
 	<!-- #endregion -->
 
 	<ItemGroup>
-		<Compile Include="..\Build\Jetbrains.Annotations.cs">
-			<Link>Properties\Jetbrains.Annotations.cs</Link>
-		</Compile>
 		<Compile Update="Algorithms\Algorithms.EqualRange.generated.cs">
 			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
@@ -247,7 +196,11 @@
 		</None>
 		<Compile Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.generated.cs">
 			<AutoGen>True</AutoGen>
+			<DependentUpon>DictionaryExtensions.Backported.GetValueOrDefault.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.generated.cs">
 			<DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
 		</Compile>
 		<None Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -264,6 +217,7 @@
 		<Compile Update="Dates\DateTimeExtensions.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DateTimeExtensions.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Dates\DateTimeExtensions.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -272,13 +226,13 @@
 		<Compile Update="Dates\DateTimeRangeExtensions.generated.cs">
 			<DependentUpon>DateTimeRangeExtensions.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Dates\DateTimeRangeExtensions.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>DateTimeRangeExtensions.generated.cs</LastGenOutput>
 		</None>
 		<Compile Update="Expressions\Expr.generated.cs">
-			<DependentUpon>ExpressionHelper.Func.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Expr.tt</DependentUpon>
 		</Compile>
@@ -305,6 +259,7 @@
 		<Compile Update="Ranges\[Boundaries]\RangeBoundaryTo`1.generated.cs">
 			<DependentUpon>RangeBoundaryTo`1.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Boundaries]\RangeBoundaryTo`1.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -313,6 +268,7 @@
 		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.generated.cs">
 			<DependentUpon>CompositeRange`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.Operations.generated.cs">
 			<DependentUpon>CompositeRange`2.Operations.tt</DependentUpon>
@@ -337,7 +293,6 @@
 		<Compile Update="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.generated.cs">
 			<DependentUpon>CompositeRangeExtensions.WithKey.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -346,11 +301,11 @@
 		<Compile Update="Ranges\[Ranges]\Range`2.generated.cs">
 			<DependentUpon>Range`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Ranges\[Ranges]\Range`2.Operations.generated.cs">
 			<DependentUpon>Range`2.Operations.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Ranges]\Range`2.Operations.tt">
 			<LastGenOutput>Range`2.Operations.generated.cs</LastGenOutput>
@@ -371,6 +326,7 @@
 		<Compile Update="Ranges\Range.FactoryMethods.generated.cs">
 			<DependentUpon>Range.FactoryMethods.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\Range.FactoryMethods.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -435,6 +391,7 @@
 		<Compile Update="Threading\TaskHelper.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>TaskHelper.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Threading\TaskHelper.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -452,14 +409,13 @@
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>
 		</Content>
+		<None Include="..\images\nuget\CodeJam.Main.Icon.png">
+			<Pack>true</Pack>
+			<PackagePath>icon.png</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Targeting\NetCore\" />
-	</ItemGroup>
-
 </Project>
