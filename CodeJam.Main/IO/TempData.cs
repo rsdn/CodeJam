@@ -124,7 +124,7 @@ namespace CodeJam.IO
 				get
 				{
 					AssertNotDisposed();
-					return _info ?? (_info = new DirectoryInfo(Path));
+					return _info ??= new DirectoryInfo(Path);
 				}
 			}
 
@@ -187,7 +187,7 @@ namespace CodeJam.IO
 				get
 				{
 					AssertNotDisposed();
-					return _info ?? (_info = new FileInfo(Path));
+					return _info ??= new FileInfo(Path);
 				}
 			}
 

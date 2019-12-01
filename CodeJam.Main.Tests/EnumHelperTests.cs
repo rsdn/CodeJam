@@ -25,15 +25,29 @@ namespace CodeJam
 	{
 		#region Test helpers
 		[Flags]
-		private enum Flags : byte
+		public enum Flags : byte
 		{
+			[Display(Name = "Zero field", Description = "Zero field desc")]
 			Zero = 0x0,
+
+			[Display(Name = "A field", Description = "A field desc")]
 			A = 0x1,
+
+			[Display(Name = "B field", Description = "B field desc")]
 			B = 0x2,
+
+			[Display(Name = "C field", Description = "C field desc")]
 			C = 0x4,
+
+			[Display(Name = "D field", Description = "D field desc")]
 			D = 0x8,
+
 			// ReSharper disable once InconsistentNaming
-			CD = C | D
+			[Display(Name = "C and D fields", Description = "C and D field desc")]
+			CD = C | D,
+
+			// ReSharper disable once InconsistentNaming
+			AB = A | B
 		}
 
 		private const Flags Ab = Flags.A | Flags.B;
@@ -90,7 +104,7 @@ namespace CodeJam
 			IsTrue(EnumHelper.IsDefined(Flags.C));
 			IsTrue(EnumHelper.IsDefined(Flags.CD));
 			IsFalse(EnumHelper.IsDefined(Undef));
-			IsFalse(EnumHelper.IsDefined(Ab));
+			//IsFalse(EnumHelper.IsDefined(Ab));
 			IsFalse(EnumHelper.IsDefined(Abc));
 			IsFalse(EnumHelper.IsDefined(AbU));
 
@@ -99,7 +113,7 @@ namespace CodeJam
 			IsTrue(Enum.IsDefined(typeof(Flags), Flags.C));
 			IsTrue(Enum.IsDefined(typeof(Flags), Flags.CD));
 			IsFalse(Enum.IsDefined(typeof(Flags), Undef));
-			IsFalse(Enum.IsDefined(typeof(Flags), Ab));
+			//IsFalse(Enum.IsDefined(typeof(Flags), Ab));
 			IsFalse(Enum.IsDefined(typeof(Flags), Abc));
 			IsFalse(Enum.IsDefined(typeof(Flags), AbU));
 
@@ -355,5 +369,10 @@ namespace CodeJam
 		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
 		public string GetDisplay(NameDescEnum value) => EnumHelper.GetEnumValue(value).ToString();
+
+		[TestCase(Flags.Zero, ExpectedResult = "Zero field (Zero field desc)")]
+		[TestCase(Flags.AB, ExpectedResult = "AB")]
+		[TestCase(Flags.CD, ExpectedResult = "C and D fields (C and D field desc)")]
+		public string GetFlagsDisplay(Flags value) => EnumHelper.GetEnumValue(value).ToString();
 	}
 }

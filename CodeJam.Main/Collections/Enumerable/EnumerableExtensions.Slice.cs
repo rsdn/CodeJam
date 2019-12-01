@@ -53,15 +53,13 @@ namespace CodeJam.Collections
 		[NotNull]
 		private static IEnumerable<T> SliceImpl<T>([NotNull] IEnumerable<T> source, int index, int count)
 		{
-			using (var e = source.GetEnumerator())
-			{
-				while (index > 0 && e.MoveNext())
-					index--;
+			using var e = source.GetEnumerator();
+			while (index > 0 && e.MoveNext())
+				index--;
 
-				if (index == 0)
-					while (count-- > 0 && e.MoveNext())
-						yield return e.Current;
-			}
+			if (index == 0)
+				while (count-- > 0 && e.MoveNext())
+					yield return e.Current;
 		}
 	}
 }

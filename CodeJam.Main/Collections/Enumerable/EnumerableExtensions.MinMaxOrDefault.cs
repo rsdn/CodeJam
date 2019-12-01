@@ -30,26 +30,24 @@ namespace CodeJam.Collections
 				var greaterThan = _greaterThan;
 				var areNotEqual = _areNotEqual;
 
-				using (var enumerator = source.GetEnumerator())
-				{
-					if (!enumerator.MoveNext())
-						return defaultValue;
+				using var enumerator = source.GetEnumerator();
+				if (!enumerator.MoveNext())
+					return defaultValue;
 
-					var result = enumerator.Current;
-					if (_hasNaN && areNotEqual(result, result))
-						return result;
-
-					while (enumerator.MoveNext())
-					{
-						var candidate = enumerator.Current;
-						if (_hasNaN && areNotEqual(candidate, candidate))
-							return candidate;
-
-						if (candidate != null && (result == null || greaterThan(result, candidate)))
-							result = candidate;
-					}
+				var result = enumerator.Current;
+				if (_hasNaN && areNotEqual(result, result))
 					return result;
+
+				while (enumerator.MoveNext())
+				{
+					var candidate = enumerator.Current;
+					if (_hasNaN && areNotEqual(candidate, candidate))
+						return candidate;
+
+					if (candidate != null && (result == null || greaterThan(result, candidate)))
+						result = candidate;
 				}
+				return result;
 			}
 
 			[MethodImpl(AggressiveInlining)]
@@ -61,26 +59,24 @@ namespace CodeJam.Collections
 				var greaterThan = _greaterThan;
 				var areNotEqual = _areNotEqual;
 
-				using (var enumerator = source.GetEnumerator())
-				{
-					if (!enumerator.MoveNext())
-						return defaultValue;
+				using var enumerator = source.GetEnumerator();
+				if (!enumerator.MoveNext())
+					return defaultValue;
 
-					var result = selector(enumerator.Current);
-					if (_hasNaN && areNotEqual(result, result))
-						return result;
-
-					while (enumerator.MoveNext())
-					{
-						var candidate = selector(enumerator.Current);
-						if (_hasNaN && areNotEqual(candidate, candidate))
-							return candidate;
-
-						if (candidate != null && (result == null || greaterThan(result, candidate)))
-							result = candidate;
-					}
+				var result = selector(enumerator.Current);
+				if (_hasNaN && areNotEqual(result, result))
 					return result;
+
+				while (enumerator.MoveNext())
+				{
+					var candidate = selector(enumerator.Current);
+					if (_hasNaN && areNotEqual(candidate, candidate))
+						return candidate;
+
+					if (candidate != null && (result == null || greaterThan(result, candidate)))
+						result = candidate;
 				}
+				return result;
 			}
 
 			[MethodImpl(AggressiveInlining)]
@@ -91,29 +87,27 @@ namespace CodeJam.Collections
 				var greaterThan = _greaterThan;
 				var areNotEqual = _areNotEqual;
 
-				using (var enumerator = source.GetEnumerator())
+				using var enumerator = source.GetEnumerator();
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = enumerator.Current;
+				while (enumerator.MoveNext())
 				{
-					if (!enumerator.MoveNext())
-						return defaultValue;
+					var candidate = enumerator.Current;
 
-					var result = enumerator.Current;
-					while (enumerator.MoveNext())
+					if (candidate != null)
 					{
-						var candidate = enumerator.Current;
+						var candidateIsNan = _hasNaN && areNotEqual(candidate, candidate);
 
-						if (candidate != null)
+						// DONTTOUCH: !greaterThan used for result NaN handling
+						if (result == null || !candidateIsNan && !greaterThan(result, candidate))
 						{
-							var candidateIsNan = _hasNaN && areNotEqual(candidate, candidate);
-
-							// DONTTOUCH: !greaterThan used for result NaN handling
-							if (result == null || !candidateIsNan && !greaterThan(result, candidate))
-							{
-								result = candidate;
-							}
+							result = candidate;
 						}
 					}
-					return result;
 				}
+				return result;
 			}
 
 			[MethodImpl(AggressiveInlining)]
@@ -125,29 +119,27 @@ namespace CodeJam.Collections
 				var greaterThan = _greaterThan;
 				var areNotEqual = _areNotEqual;
 
-				using (var enumerator = source.GetEnumerator())
+				using var enumerator = source.GetEnumerator();
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = selector(enumerator.Current);
+				while (enumerator.MoveNext())
 				{
-					if (!enumerator.MoveNext())
-						return defaultValue;
+					var candidate = selector(enumerator.Current);
 
-					var result = selector(enumerator.Current);
-					while (enumerator.MoveNext())
+					if (candidate != null)
 					{
-						var candidate = selector(enumerator.Current);
+						var candidateIsNan = _hasNaN && areNotEqual(candidate, candidate);
 
-						if (candidate != null)
+						// DONTTOUCH: !greaterThan used for result NaN handling
+						if (result == null || !candidateIsNan && !greaterThan(result, candidate))
 						{
-							var candidateIsNan = _hasNaN && areNotEqual(candidate, candidate);
-
-							// DONTTOUCH: !greaterThan used for result NaN handling
-							if (result == null || !candidateIsNan && !greaterThan(result, candidate))
-							{
-								result = candidate;
-							}
+							result = candidate;
 						}
 					}
-					return result;
 				}
+				return result;
 			}
 			#endregion
 
@@ -156,22 +148,20 @@ namespace CodeJam.Collections
 			public static T MinOrDefault(IEnumerable<T> source, IComparer<T> comparer, T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
-				comparer = comparer ?? _comparer;
+				comparer ??= _comparer;
 
-				using (var enumerator = source.GetEnumerator())
+				using var enumerator = source.GetEnumerator();
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = enumerator.Current;
+				while (enumerator.MoveNext())
 				{
-					if (!enumerator.MoveNext())
-						return defaultValue;
-
-					var result = enumerator.Current;
-					while (enumerator.MoveNext())
-					{
-						var candidate = enumerator.Current;
-						if (candidate != null && (result == null || comparer.Compare(result, candidate) > 0))
-							result = candidate;
-					}
-					return result;
+					var candidate = enumerator.Current;
+					if (candidate != null && (result == null || comparer.Compare(result, candidate) > 0))
+						result = candidate;
 				}
+				return result;
 			}
 
 			[MethodImpl(AggressiveInlining)]
@@ -182,22 +172,20 @@ namespace CodeJam.Collections
 				[CanBeNull] T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
-				comparer = comparer ?? _comparer;
+				comparer ??= _comparer;
 
-				using (var enumerator = source.GetEnumerator())
+				using var enumerator = source.GetEnumerator();
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = selector(enumerator.Current);
+				while (enumerator.MoveNext())
 				{
-					if (!enumerator.MoveNext())
-						return defaultValue;
-
-					var result = selector(enumerator.Current);
-					while (enumerator.MoveNext())
-					{
-						var candidate = selector(enumerator.Current);
-						if (candidate != null && (result == null || comparer.Compare(result, candidate) > 0))
-							result = candidate;
-					}
-					return result;
+					var candidate = selector(enumerator.Current);
+					if (candidate != null && (result == null || comparer.Compare(result, candidate) > 0))
+						result = candidate;
 				}
+				return result;
 			}
 
 			[MethodImpl(AggressiveInlining)]
@@ -207,22 +195,20 @@ namespace CodeJam.Collections
 				[CanBeNull] T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
-				comparer = comparer ?? _comparer;
+				comparer ??= _comparer;
 
-				using (var enumerator = source.GetEnumerator())
+				using var enumerator = source.GetEnumerator();
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = enumerator.Current;
+				while (enumerator.MoveNext())
 				{
-					if (!enumerator.MoveNext())
-						return defaultValue;
-
-					var result = enumerator.Current;
-					while (enumerator.MoveNext())
-					{
-						var candidate = enumerator.Current;
-						if (candidate != null && (result == null || comparer.Compare(result, candidate) < 0))
-							result = candidate;
-					}
-					return result;
+					var candidate = enumerator.Current;
+					if (candidate != null && (result == null || comparer.Compare(result, candidate) < 0))
+						result = candidate;
 				}
+				return result;
 			}
 
 			[MethodImpl(AggressiveInlining)]
@@ -233,22 +219,20 @@ namespace CodeJam.Collections
 				[CanBeNull] T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
-				comparer = comparer ?? _comparer;
+				comparer ??= _comparer;
 
-				using (var enumerator = source.GetEnumerator())
+				using var enumerator = source.GetEnumerator();
+				if (!enumerator.MoveNext())
+					return defaultValue;
+
+				var result = selector(enumerator.Current);
+				while (enumerator.MoveNext())
 				{
-					if (!enumerator.MoveNext())
-						return defaultValue;
-
-					var result = selector(enumerator.Current);
-					while (enumerator.MoveNext())
-					{
-						var candidate = selector(enumerator.Current);
-						if (candidate != null && (result == null || comparer.Compare(result, candidate) < 0))
-							result = candidate;
-					}
-					return result;
+					var candidate = selector(enumerator.Current);
+					if (candidate != null && (result == null || comparer.Compare(result, candidate) < 0))
+						result = candidate;
 				}
+				return result;
 			}
 			#endregion
 		}

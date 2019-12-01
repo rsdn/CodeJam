@@ -446,22 +446,16 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(memberInfo, nameof(memberInfo));
 
-			switch (memberInfo.MemberType)
-			{
-				case MemberTypes.Property:
-					return ((PropertyInfo)memberInfo).PropertyType;
-				case MemberTypes.Field:
-					return ((FieldInfo)memberInfo).FieldType;
-				case MemberTypes.Method:
-					return ((MethodInfo)memberInfo).ReturnType;
-				case MemberTypes.Constructor:
-					// ReSharper disable once AssignNullToNotNullAttribute
-					return memberInfo.DeclaringType;
-				case MemberTypes.Event:
-					return ((EventInfo)memberInfo).EventHandlerType;
-				default:
-					throw new InvalidOperationException();
-			}
+			return
+				// ReSharper disable once AssignNullToNotNullAttribute
+				memberInfo.MemberType switch
+				{
+					MemberTypes.Property => ((PropertyInfo)memberInfo).PropertyType,
+					MemberTypes.Field => ((FieldInfo)memberInfo).FieldType, MemberTypes.Method => ((MethodInfo)memberInfo).ReturnType,
+					MemberTypes.Constructor => memberInfo.DeclaringType,
+					MemberTypes.Event => ((EventInfo)memberInfo).EventHandlerType,
+					_ => throw new InvalidOperationException()
+				};
 		}
 
 		/// <summary>

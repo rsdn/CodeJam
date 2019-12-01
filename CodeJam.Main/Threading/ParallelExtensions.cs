@@ -34,25 +34,23 @@ namespace CodeJam.Threading
 			Code.NotNull(providerFunc, nameof(providerFunc));
 			Code.NotNull(consumerAction, nameof(consumerAction));
 
-			using (var providerQueue = new ParallelQueue(providerCount, processName + "_provider_"))
-			using (var consumerQueue = new ParallelQueue(consumerCount, processName + "_consumer_"))
+			using var providerQueue = new ParallelQueue(providerCount, processName + "_provider_");
+			using var consumerQueue = new ParallelQueue(consumerCount, processName + "_consumer_");
+			foreach (var item in source)
 			{
-				foreach (var item in source)
+				var pItem = item;
+
+				providerQueue.EnqueueItem(() =>
 				{
-					var pItem = item;
+					var data = providerFunc(pItem);
 
-					providerQueue.EnqueueItem(() =>
-					{
-						var data = providerFunc(pItem);
-
-						// ReSharper disable once AccessToDisposedClosure
-						consumerQueue.EnqueueItem(() => consumerAction(data));
-					});
-				}
-
-				providerQueue.WaitAll();
-				consumerQueue.WaitAll();
+					// ReSharper disable once AccessToDisposedClosure
+					consumerQueue.EnqueueItem(() => consumerAction(data));
+				});
 			}
+
+			providerQueue.WaitAll();
+			consumerQueue.WaitAll();
 		}
 
 		/// <summary>
@@ -118,16 +116,14 @@ namespace CodeJam.Threading
 			int parallelCount,
 			string processName = "ParallelProcess")
 		{
-			using (var queue = new ParallelQueue(parallelCount, processName + '_'))
+			using var queue = new ParallelQueue(parallelCount, processName + '_');
+			foreach (var action in source)
 			{
-				foreach (var action in source)
-				{
-					var data = action;
-					queue.EnqueueItem(data);
-				}
-
-				queue.WaitAll();
+				var data = action;
+				queue.EnqueueItem(data);
 			}
+
+			queue.WaitAll();
 		}
 
 		/// <summary>
@@ -152,17 +148,15 @@ namespace CodeJam.Threading
 			[NotNull, InstantHandle] Action<T> action,
 			string processName = "ParallelProcess")
 		{
-			using (var queue = new ParallelQueue(parallelCount, processName + '_'))
+			using var queue = new ParallelQueue(parallelCount, processName + '_');
+			foreach (var item in source)
 			{
-				foreach (var item in source)
-				{
-					var data = item;
-					var run = action;
-					queue.EnqueueItem(() => run(data));
-				}
-
-				queue.WaitAll();
+				var data = item;
+				var run = action;
+				queue.EnqueueItem(() => run(data));
 			}
+
+			queue.WaitAll();
 		}
 
 		/// <summary>

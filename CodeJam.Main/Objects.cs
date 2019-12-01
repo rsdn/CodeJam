@@ -8,6 +8,6 @@ namespace CodeJam
 		private static Random _random;
 
 		public static Random Random
-			=> _random ?? (_random = new Random(unchecked((int)DateTime.Now.Ticks)));
+			=> _random ??= new Random(unchecked((int)DateTime.Now.Ticks));
 	}
 }

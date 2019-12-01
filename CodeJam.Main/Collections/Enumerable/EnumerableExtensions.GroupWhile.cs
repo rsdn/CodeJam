@@ -49,7 +49,7 @@ namespace CodeJam.Collections
 			[NotNull] Func<T, TKey> keySelector,
 			[CanBeNull] IEqualityComparer<TKey> comparer)
 		{
-			comparer = comparer ?? EqualityComparer<TKey>.Default;
+			comparer ??= EqualityComparer<TKey>.Default;
 			var key = default(TKey);
 			var groupingList = new List<T>();
 
@@ -119,7 +119,7 @@ namespace CodeJam.Collections
 			[NotNull] Func<T, TItem> itemSelector,
 			[CanBeNull] IEqualityComparer<TKey> comparer)
 		{
-			comparer = comparer ?? EqualityComparer<TKey>.Default;
+			comparer ??= EqualityComparer<TKey>.Default;
 			var key = default(TKey);
 			var groupingList = new List<TItem>();
 

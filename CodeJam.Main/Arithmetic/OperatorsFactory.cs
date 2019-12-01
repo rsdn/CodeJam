@@ -430,19 +430,15 @@ namespace CodeJam.Arithmetic
 			}
 
 			var comparison = Comparison<T>();
-			switch (comparisonType)
-			{
-				case ExpressionType.GreaterThan:
-					return (a, b) => comparison(a, b) > 0;
-				case ExpressionType.GreaterThanOrEqual:
-					return (a, b) => comparison(a, b) >= 0;
-				case ExpressionType.LessThan:
-					return (a, b) => comparison(a, b) < 0;
-				case ExpressionType.LessThanOrEqual:
-					return (a, b) => comparison(a, b) <= 0;
-				default:
-					throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType);
-			}
+			return
+				comparisonType switch
+				{
+					ExpressionType.GreaterThan => (Func<T, T, bool>)((a, b) => comparison(a, b) > 0),
+					ExpressionType.GreaterThanOrEqual => (Func<T, T, bool>)((a, b) => comparison(a, b) >= 0),
+					ExpressionType.LessThan => (Func<T, T, bool>)((a, b) => comparison(a, b) < 0),
+					ExpressionType.LessThanOrEqual => (Func<T, T, bool>)((a, b) => comparison(a, b) <= 0),
+					_ => throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType)
+				};
 		}
 		#endregion
 

@@ -98,15 +98,13 @@ namespace CodeJam.Strings
 				return "";
 			if (length >= strLen)
 				return str;
-			switch (origin)
-			{
-				case StringOrigin.Begin:
-					return str.Substring(0, length);
-				case StringOrigin.End:
-					return str.Substring(strLen - length, length);
-				default:
-					throw CodeExceptions.Argument(nameof(origin), $"Invalid {nameof(StringOrigin)} value.");
-			}
+			return
+				origin switch
+				{
+					StringOrigin.Begin => str.Substring(0, length),
+					StringOrigin.End => str.Substring(strLen - length, length),
+					_ => throw CodeExceptions.Argument(nameof(origin), $"Invalid {nameof(StringOrigin)} value.")
+				};
 		}
 
 		/// <summary>

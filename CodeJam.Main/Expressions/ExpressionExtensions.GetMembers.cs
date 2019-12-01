@@ -67,15 +67,13 @@ namespace CodeJam.Expressions
 			if (body is UnaryExpression unary)
 				body = unary.Operand;
 
-			switch (body.NodeType)
-			{
-				case ExpressionType.MemberAccess:
-					return ((MemberExpression)body).Member;
-				case ExpressionType.Call:
-					return ((MethodCallExpression)body).Method;
-				default:
-					return ((NewExpression)body).Constructor;
-			}
+			return
+				body.NodeType switch
+				{
+					ExpressionType.MemberAccess => ((MemberExpression)body).Member,
+					ExpressionType.Call => ((MethodCallExpression)body).Method,
+					_ => ((NewExpression)body).Constructor
+				};
 		}
 
 		/// <summary>

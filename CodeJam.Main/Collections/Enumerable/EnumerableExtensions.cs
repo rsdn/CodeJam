@@ -498,7 +498,7 @@ namespace CodeJam.Collections
 		{
 			Code.NotNull(source, nameof(source));
 
-			comparer = comparer ?? EqualityComparer<TSource>.Default;
+			comparer ??= EqualityComparer<TSource>.Default;
 
 			// Fast path
 			// ReSharper disable once CollectionNeverUpdated.Local
@@ -543,7 +543,7 @@ namespace CodeJam.Collections
 		{
 			Code.NotNull(source, nameof(source));
 
-			comparer = comparer ?? EqualityComparer<TSource>.Default;
+			comparer ??= EqualityComparer<TSource>.Default;
 
 			// Fast path
 			// ReSharper disable once CollectionNeverUpdated.Local
@@ -553,18 +553,17 @@ namespace CodeJam.Collections
 				return count != 0 && comparer.Equals(item, list[count - 1]);
 			}
 
-			using (var en = source.GetEnumerator())
-				if (en.MoveNext())
+			using var en = source.GetEnumerator();
+			if (en.MoveNext())
+			{
+				TSource current;
+				do
 				{
-					TSource current;
-					do
-					{
-						current = en.Current;
-					} while (en.MoveNext());
-					return comparer.Equals(item, current);
-				}
-				else
-					return false;
+					current = en.Current;
+				} while (en.MoveNext());
+				return comparer.Equals(item, current);
+			}
+			return false;
 		}
 	}
 }
