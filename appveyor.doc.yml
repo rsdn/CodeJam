@@ -34,4 +34,4 @@ artifacts:
 - path: CodeJamDoc.zip
   name: CodeJamDoc
 on_finish:
-- ps: Push-AppveyorArtifact C:\projects\codejam\LastBuild.log
+- ps: Push-AppveyorArtifact C:\projects\codejam\help\LastBuild.log
