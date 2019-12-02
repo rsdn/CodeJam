@@ -433,10 +433,10 @@ namespace CodeJam.Arithmetic
 			return
 				comparisonType switch
 				{
-					ExpressionType.GreaterThan => (Func<T, T, bool>)((a, b) => comparison(a, b) > 0),
-					ExpressionType.GreaterThanOrEqual => (Func<T, T, bool>)((a, b) => comparison(a, b) >= 0),
-					ExpressionType.LessThan => (Func<T, T, bool>)((a, b) => comparison(a, b) < 0),
-					ExpressionType.LessThanOrEqual => (Func<T, T, bool>)((a, b) => comparison(a, b) <= 0),
+					ExpressionType.GreaterThan => (a, b) => comparison(a, b) > 0,
+					ExpressionType.GreaterThanOrEqual => (a, b) => comparison(a, b) >= 0,
+					ExpressionType.LessThan => (a, b) => comparison(a, b) < 0,
+					ExpressionType.LessThanOrEqual => (a, b) => comparison(a, b) <= 0,
 					_ => throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType)
 				};
 		}

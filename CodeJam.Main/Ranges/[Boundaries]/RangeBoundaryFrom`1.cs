@@ -295,8 +295,8 @@ namespace CodeJam.Ranges
 				{
 					RangeBoundaryFromKind.Inclusive => RangeBoundaryToKind.Exclusive,
 					RangeBoundaryFromKind.Exclusive => RangeBoundaryToKind.Inclusive,
-					_ =>
-					throw CodeExceptions.UnexpectedValue($"Cannot get complementation for the boundary '{this}' as it has no value.")
+					_ => throw CodeExceptions.UnexpectedValue(
+							$"Cannot get complementation for the boundary '{this}' as it has no value.")
 				});
 
 		/// <summary>Checks that the boundary is complementation for specified boundary.</summary>

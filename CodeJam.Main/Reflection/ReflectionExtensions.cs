@@ -56,7 +56,7 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 
-			void WriteAssemblyName(StringBuilder sb, Type t)
+			static void WriteAssemblyName(StringBuilder sb, Type t)
 			{
 				sb.Append(", ");
 
@@ -121,7 +121,7 @@ namespace CodeJam.Reflection
 				}
 			}
 
-			void WriteType(StringBuilder sb, Type t)
+			static void WriteType(StringBuilder sb, Type t)
 			{
 				if (t.DeclaringType != null)
 				{

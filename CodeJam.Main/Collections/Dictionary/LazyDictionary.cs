@@ -119,7 +119,7 @@ namespace CodeJam.Collections
 			return
 				threadSafety switch
 				{
-					LazyThreadSafetyMode.None => (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory),
+					LazyThreadSafetyMode.None => new LazyDictionary<TKey, TValue>(valueFactory),
 					LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory),
 					LazyThreadSafetyMode.ExecutionAndPublication => new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory),
 					_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
@@ -144,7 +144,7 @@ namespace CodeJam.Collections
 			threadSafety switch
 			{
 				LazyThreadSafetyMode.None =>
-					(ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, collection),
+					new LazyDictionary<TKey, TValue>(valueFactory, collection),
 					LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection),
 					LazyThreadSafetyMode.ExecutionAndPublication =>
 						new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection),
@@ -169,7 +169,7 @@ namespace CodeJam.Collections
 			threadSafety switch
 			{
 				LazyThreadSafetyMode.None =>
-					(ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, comparer),
+					new LazyDictionary<TKey, TValue>(valueFactory, comparer),
 				LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer),
 				LazyThreadSafetyMode.ExecutionAndPublication =>
 					new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer),
@@ -195,8 +195,7 @@ namespace CodeJam.Collections
 				LazyThreadSafetyMode threadSafety) =>
 			threadSafety switch
 			{
-				LazyThreadSafetyMode.None =>
-					(ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
+				LazyThreadSafetyMode.None => new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
 				LazyThreadSafetyMode.PublicationOnly =>
 					new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
 				LazyThreadSafetyMode.ExecutionAndPublication =>
