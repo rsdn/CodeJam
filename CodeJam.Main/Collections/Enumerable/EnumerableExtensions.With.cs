@@ -25,22 +25,22 @@ namespace CodeJam.Collections
 		[NotNull, Pure, LinqTunnel]
 		private static IEnumerable<IndexedItem<T>> IndexImpl<T>([NotNull] IEnumerable<T> source)
 		{
-			using (var enumerator = source.GetEnumerator())
-				if (enumerator.MoveNext())
+			using var enumerator = source.GetEnumerator();
+			if (enumerator.MoveNext())
+			{
+				var index = 0;
+				var isFirst = true;
+				var isLast = false;
+
+				while (!isLast)
 				{
-					var index = 0;
-					var isFirst = true;
-					var isLast = false;
+					var item = enumerator.Current;
+					isLast = !enumerator.MoveNext();
 
-					while (!isLast)
-					{
-						var item = enumerator.Current;
-						isLast = !enumerator.MoveNext();
-
-						yield return new IndexedItem<T>(item, index++, isFirst, isLast);
-						isFirst = false;
-					}
+					yield return new IndexedItem<T>(item, index++, isFirst, isLast);
+					isFirst = false;
 				}
+			}
 		}
 
 		/// <summary>Combines item with previous value from the sequence.</summary>

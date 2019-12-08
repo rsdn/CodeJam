@@ -220,19 +220,19 @@ namespace CodeJam.Collections
 			var workArray = new int[source.Count];
 			var indices = new Dictionary<T, int>(equalityComparer);
 			var level = new List<T>();
-			foreach (var item in source.WithIndex())
+			foreach (var (index, item) in source.WithIndex())
 			{
 				var count = 0;
-				foreach (var dep in dependsOnGetter(item.Item))
+				foreach (var dep in dependsOnGetter(item))
 				{
-					dependants[dep].Add(item.Item);
+					dependants[dep].Add(item);
 					count++;
 				}
 				if (count == 0)
-					level.Add(item.Item);
+					level.Add(item);
 				else
-					workArray[item.Index] = count;
-				indices.Add(item.Item, item.Index);
+					workArray[index] = count;
+				indices.Add(item, index);
 			}
 
 			if (level.Count == 0)

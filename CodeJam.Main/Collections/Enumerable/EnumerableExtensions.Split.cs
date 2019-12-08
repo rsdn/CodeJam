@@ -31,9 +31,9 @@ namespace CodeJam.Collections
 		[NotNull, Pure, LinqTunnel]
 		private static IEnumerable<T[]> SplitImpl<T>([NotNull] IEnumerable<T> source, int size)
 		{
-			using (var enumerator = source.GetEnumerator())
-				while (enumerator.MoveNext())
-					yield return SplitSequence(enumerator, size);
+			using var enumerator = source.GetEnumerator();
+			while (enumerator.MoveNext())
+				yield return SplitSequence(enumerator, size);
 		}
 
 		[NotNull]

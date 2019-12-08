@@ -80,7 +80,7 @@ namespace CodeJam
 							writer.Write(fex.GetFusionLog());
 						break;
 
-					case AggregateException aex when aex.InnerExceptions != null:
+					case AggregateException aex :
 						var foundInnerException = false;
 
 						foreach (var e in aex.InnerExceptions)
@@ -160,7 +160,7 @@ namespace CodeJam
 							await writer.WriteAsync(fex.GetFusionLog());
 						break;
 
-					case AggregateException aex when aex.InnerExceptions != null:
+					case AggregateException aex:
 						var foundInnerException = false;
 
 						foreach (var e in aex.InnerExceptions)

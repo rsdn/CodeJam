@@ -834,20 +834,16 @@ namespace CodeJam.Expressions
 
 				case ExpressionType.MemberInit:
 				{
-					Expression Func(MemberBinding b)
-					{
-						switch (b.BindingType)
+					Expression Func(MemberBinding b) =>
+						b.BindingType switch
 						{
-							case MemberBindingType.Assignment:
-								return FindInternal(((MemberAssignment)b).Expression, func);
-							case MemberBindingType.ListBinding:
-								return FindInternal(((MemberListBinding)b).Initializers, p => FindInternal(p.Arguments, func));
-							case MemberBindingType.MemberBinding:
-								return FindInternal(((MemberMemberBinding)b).Bindings, Func);
-						}
-
-						return null;
-					}
+							MemberBindingType.Assignment => FindInternal(((MemberAssignment)b).Expression, func),
+							MemberBindingType.ListBinding => FindInternal(
+								((MemberListBinding)b).Initializers,
+								p => FindInternal(p.Arguments, func)),
+							MemberBindingType.MemberBinding => FindInternal(((MemberMemberBinding)b).Bindings, Func),
+							_ => null
+						};
 
 					var e = (MemberInitExpression)expr;
 

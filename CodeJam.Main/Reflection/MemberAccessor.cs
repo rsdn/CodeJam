@@ -81,7 +81,7 @@ namespace CodeJam.Reflection
 								}
 
 								ex = next;
-								i = i + 1;
+								i += 1;
 							}
 						}
 
@@ -138,11 +138,11 @@ namespace CodeJam.Reflection
 											exprs.Add(Expression.IfThen(Expression.Equal(local, Expression.Constant(null)), Expression.Block(Expression.Assign(local, Expression.New(local.Type)), Expression.Assign(next, local))));
 
 											ex = local;
-											i = i + 1;
+											i += 1;
 											continue;
 										}
 										ex = next;
-										i = i + 1;
+										i += 1;
 										continue;
 									}
 									break;

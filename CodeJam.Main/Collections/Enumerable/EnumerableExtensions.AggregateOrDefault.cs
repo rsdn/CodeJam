@@ -24,18 +24,16 @@ namespace CodeJam.Collections
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(func, nameof(func));
 
-			using (var enumerator = source.GetEnumerator())
-			{
-				if (!enumerator.MoveNext())
-					return defaultValue;
+			using var enumerator = source.GetEnumerator();
+			if (!enumerator.MoveNext())
+				return defaultValue;
 
-				var result = enumerator.Current;
+			var result = enumerator.Current;
 
-				while (enumerator.MoveNext())
-					result = func(result, enumerator.Current);
+			while (enumerator.MoveNext())
+				result = func(result, enumerator.Current);
 
-				return result;
-			}
+			return result;
 		}
 
 		/// <summary>
@@ -58,18 +56,16 @@ namespace CodeJam.Collections
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(func, nameof(func));
 
-			using (var enumerator = source.GetEnumerator())
-			{
-				if (!enumerator.MoveNext())
-					return defaultValue;
+			using var enumerator = source.GetEnumerator();
+			if (!enumerator.MoveNext())
+				return defaultValue;
 
-				var result = func(seed, enumerator.Current);
+			var result = func(seed, enumerator.Current);
 
-				while (enumerator.MoveNext())
-					result = func(result, enumerator.Current);
+			while (enumerator.MoveNext())
+				result = func(result, enumerator.Current);
 
-				return result;
-			}
+			return result;
 		}
 
 		/// <summary>
@@ -96,18 +92,16 @@ namespace CodeJam.Collections
 			Code.NotNull(func, nameof(func));
 			Code.NotNull(resultSelector, nameof(resultSelector));
 
-			using (var enumerator = source.GetEnumerator())
-			{
-				if (!enumerator.MoveNext())
-					return defaultValue;
+			using var enumerator = source.GetEnumerator();
+			if (!enumerator.MoveNext())
+				return defaultValue;
 
-				var result = func(seed, enumerator.Current);
+			var result = func(seed, enumerator.Current);
 
-				while (enumerator.MoveNext())
-					result = func(result, enumerator.Current);
+			while (enumerator.MoveNext())
+				result = func(result, enumerator.Current);
 
-				return resultSelector(result);
-			}
+			return resultSelector(result);
 		}
 
 		/// <summary>
@@ -128,18 +122,16 @@ namespace CodeJam.Collections
 			Code.NotNull(func, nameof(func));
 			Code.NotNull(defaultSelector, nameof(defaultSelector));
 
-			using (var enumerator = source.GetEnumerator())
-			{
-				if (!enumerator.MoveNext())
-					return defaultSelector();
+			using var enumerator = source.GetEnumerator();
+			if (!enumerator.MoveNext())
+				return defaultSelector();
 
-				var result = enumerator.Current;
+			var result = enumerator.Current;
 
-				while (enumerator.MoveNext())
-					result = func(result, enumerator.Current);
+			while (enumerator.MoveNext())
+				result = func(result, enumerator.Current);
 
-				return result;
-			}
+			return result;
 		}
 
 		/// <summary>
@@ -163,18 +155,16 @@ namespace CodeJam.Collections
 			Code.NotNull(func, nameof(func));
 			Code.NotNull(defaultSelector, nameof(defaultSelector));
 
-			using (var enumerator = source.GetEnumerator())
-			{
-				if (!enumerator.MoveNext())
-					return defaultSelector();
+			using var enumerator = source.GetEnumerator();
+			if (!enumerator.MoveNext())
+				return defaultSelector();
 
-				var result = func(seed, enumerator.Current);
+			var result = func(seed, enumerator.Current);
 
-				while (enumerator.MoveNext())
-					result = func(result, enumerator.Current);
+			while (enumerator.MoveNext())
+				result = func(result, enumerator.Current);
 
-				return result;
-			}
+			return result;
 		}
 
 		/// <summary>
@@ -202,18 +192,16 @@ namespace CodeJam.Collections
 			Code.NotNull(resultSelector, nameof(resultSelector));
 			Code.NotNull(defaultSelector, nameof(defaultSelector));
 
-			using (var enumerator = source.GetEnumerator())
-			{
-				if (!enumerator.MoveNext())
-					return defaultSelector();
+			using var enumerator = source.GetEnumerator();
+			if (!enumerator.MoveNext())
+				return defaultSelector();
 
-				var result = func(seed, enumerator.Current);
+			var result = func(seed, enumerator.Current);
 
-				while (enumerator.MoveNext())
-					result = func(result, enumerator.Current);
+			while (enumerator.MoveNext())
+				result = func(result, enumerator.Current);
 
-				return resultSelector(result);
-			}
+			return resultSelector(result);
 		}
 	}
 }

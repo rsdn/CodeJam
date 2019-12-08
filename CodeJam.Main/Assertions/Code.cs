@@ -84,9 +84,9 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void NotEmpty<T>([NotNull] IEnumerable<T> arg, [NotNull, InvokerParameterName] string argName)
 		{
-			using (var en = arg.GetEnumerator())
-				if (!en.MoveNext())
-					throw CodeExceptions.ArgumentEmpty(argName);
+			using var en = arg.GetEnumerator();
+			if (!en.MoveNext())
+				throw CodeExceptions.ArgumentEmpty(argName);
 		}
 
 		/// <summary>

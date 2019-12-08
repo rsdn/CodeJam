@@ -75,45 +75,41 @@ namespace CodeJam.Collections
 			TSource item;
 			if (value == null)
 			{
-				using (var e = source.GetEnumerator())
+				using var e = source.GetEnumerator();
+				do
 				{
-					do
-					{
-						if (!e.MoveNext())
-							throw NoElementsException();
+					if (!e.MoveNext())
+						throw NoElementsException();
 
-						value = selector(e.Current);
+					value = selector(e.Current);
+					item = e.Current;
+				} while (value == null);
+
+				while (e.MoveNext())
+				{
+					var x = selector(e.Current);
+					if (x != null && comparer.Compare(x, value) < 0)
+					{
+						value = x;
 						item = e.Current;
-					} while (value == null);
-
-					while (e.MoveNext())
-					{
-						var x = selector(e.Current);
-						if (x != null && comparer.Compare(x, value) < 0)
-						{
-							value = x;
-							item = e.Current;
-						}
 					}
 				}
 			}
 			else
 			{
-				using (var e = source.GetEnumerator())
-				{
-					if (!e.MoveNext())
-						return default;
+				using var e = source.GetEnumerator();
+				if (!e.MoveNext())
+					return default;
 
-					value = selector(e.Current);
-					item = e.Current;
-					while (e.MoveNext())
+				value = selector(e.Current);
+				item = e.Current;
+				while (e.MoveNext())
+				{
+					var x = selector(e.Current);
+					if (comparer.Compare(x, value) < 0)
 					{
-						var x = selector(e.Current);
-						if (comparer.Compare(x, value) < 0)
-						{
-							value = x;
-							item = e.Current;
-						}
+						value = x;
+						item = e.Current;
 					}
 				}
 			}
@@ -152,45 +148,41 @@ namespace CodeJam.Collections
 			TSource item;
 			if (value == null)
 			{
-				using (var e = source.GetEnumerator())
-				{
-					do
-					{
-						if (!e.MoveNext())
-							return defaultValue;
-
-						value = selector(e.Current);
-						item = e.Current;
-					} while (value == null);
-
-					while (e.MoveNext())
-					{
-						var x = selector(e.Current);
-						if (x != null && comparer.Compare(x, value) < 0)
-						{
-							value = x;
-							item = e.Current;
-						}
-					}
-				}
-			}
-			else
-			{
-				using (var e = source.GetEnumerator())
+				using var e = source.GetEnumerator();
+				do
 				{
 					if (!e.MoveNext())
 						return defaultValue;
 
 					value = selector(e.Current);
 					item = e.Current;
-					while (e.MoveNext())
+				} while (value == null);
+
+				while (e.MoveNext())
+				{
+					var x = selector(e.Current);
+					if (x != null && comparer.Compare(x, value) < 0)
 					{
-						var x = selector(e.Current);
-						if (comparer.Compare(x, value) < 0)
-						{
-							value = x;
-							item = e.Current;
-						}
+						value = x;
+						item = e.Current;
+					}
+				}
+			}
+			else
+			{
+				using var e = source.GetEnumerator();
+				if (!e.MoveNext())
+					return defaultValue;
+
+				value = selector(e.Current);
+				item = e.Current;
+				while (e.MoveNext())
+				{
+					var x = selector(e.Current);
+					if (comparer.Compare(x, value) < 0)
+					{
+						value = x;
+						item = e.Current;
 					}
 				}
 			}
@@ -260,45 +252,41 @@ namespace CodeJam.Collections
 			TSource item;
 			if (value == null)
 			{
-				using (var e = source.GetEnumerator())
+				using var e = source.GetEnumerator();
+				do
 				{
-					do
-					{
-						if (!e.MoveNext())
-							throw NoElementsException();
+					if (!e.MoveNext())
+						throw NoElementsException();
 
-						value = selector(e.Current);
+					value = selector(e.Current);
+					item = e.Current;
+				} while (value == null);
+
+				while (e.MoveNext())
+				{
+					var x = selector(e.Current);
+					if (x != null && comparer.Compare(x, value) > 0)
+					{
+						value = x;
 						item = e.Current;
-					} while (value == null);
-
-					while (e.MoveNext())
-					{
-						var x = selector(e.Current);
-						if (x != null && comparer.Compare(x, value) > 0)
-						{
-							value = x;
-							item = e.Current;
-						}
 					}
 				}
 			}
 			else
 			{
-				using (var e = source.GetEnumerator())
-				{
-					if (!e.MoveNext())
-						return default;
+				using var e = source.GetEnumerator();
+				if (!e.MoveNext())
+					return default;
 
-					value = selector(e.Current);
-					item = e.Current;
-					while (e.MoveNext())
+				value = selector(e.Current);
+				item = e.Current;
+				while (e.MoveNext())
+				{
+					var x = selector(e.Current);
+					if (comparer.Compare(x, value) > 0)
 					{
-						var x = selector(e.Current);
-						if (comparer.Compare(x, value) > 0)
-						{
-							value = x;
-							item = e.Current;
-						}
+						value = x;
+						item = e.Current;
 					}
 				}
 			}
@@ -337,45 +325,41 @@ namespace CodeJam.Collections
 			TSource item;
 			if (value == null)
 			{
-				using (var e = source.GetEnumerator())
-				{
-					do
-					{
-						if (!e.MoveNext())
-							return defaultValue;
-
-						value = selector(e.Current);
-						item = e.Current;
-					} while (value == null);
-
-					while (e.MoveNext())
-					{
-						var x = selector(e.Current);
-						if (x != null && comparer.Compare(x, value) > 0)
-						{
-							value = x;
-							item = e.Current;
-						}
-					}
-				}
-			}
-			else
-			{
-				using (var e = source.GetEnumerator())
+				using var e = source.GetEnumerator();
+				do
 				{
 					if (!e.MoveNext())
 						return defaultValue;
 
 					value = selector(e.Current);
 					item = e.Current;
-					while (e.MoveNext())
+				} while (value == null);
+
+				while (e.MoveNext())
+				{
+					var x = selector(e.Current);
+					if (x != null && comparer.Compare(x, value) > 0)
 					{
-						var x = selector(e.Current);
-						if (comparer.Compare(x, value) > 0)
-						{
-							value = x;
-							item = e.Current;
-						}
+						value = x;
+						item = e.Current;
+					}
+				}
+			}
+			else
+			{
+				using var e = source.GetEnumerator();
+				if (!e.MoveNext())
+					return defaultValue;
+
+				value = selector(e.Current);
+				item = e.Current;
+				while (e.MoveNext())
+				{
+					var x = selector(e.Current);
+					if (comparer.Compare(x, value) > 0)
+					{
+						value = x;
+						item = e.Current;
 					}
 				}
 			}

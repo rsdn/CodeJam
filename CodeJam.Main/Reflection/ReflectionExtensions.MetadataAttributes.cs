@@ -137,14 +137,13 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(attributeProvider, nameof(attributeProvider));
 
-			switch (attributeProvider) {
-				case Type type:
-					return type.GetAttributesForType<TAttribute>(thisLevelOnly);
-				case MemberInfo member:
-					return member.GetAttributesForMember<TAttribute>(thisLevelOnly);
-				default:
-					return GetAttributesFromCandidates<TAttribute>(true, attributeProvider);
-			}
+			return
+				attributeProvider switch
+				{
+					Type type => type.GetAttributesForType<TAttribute>(thisLevelOnly),
+					MemberInfo member => member.GetAttributesForMember<TAttribute>(thisLevelOnly),
+					_ => GetAttributesFromCandidates<TAttribute>(true, attributeProvider)
+				};
 		}
 
 		[NotNull, ItemNotNull]
@@ -230,21 +229,15 @@ namespace CodeJam.Reflection
 		private static MemberInfo[] GetOverrideChain(this MemberInfo member) =>
 			IsOverriden(member) ? _getOverrideChainCache(member) : new[] { member };
 
-		private static bool IsOverriden(MemberInfo member)
-		{
-			switch (member) {
-				case Type _:
-					throw CodeExceptions.Argument(nameof(member), "Member should not be a type.");
-				case MethodInfo method:
-					return IsOverriden(method);
-				case PropertyInfo property:
-					return IsOverriden(property.GetAccessors(true)[0]);
-				case EventInfo eventInfo:
-					return IsOverriden(eventInfo.GetAddMethod(true));
-				default:
-					return false;
-			}
-		}
+		private static bool IsOverriden(MemberInfo member) =>
+			member switch
+			{
+				Type _ => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
+				MethodInfo method => IsOverriden(method),
+				PropertyInfo property => IsOverriden(property.GetAccessors(true)[0]),
+				EventInfo eventInfo => IsOverriden(eventInfo.GetAddMethod(true)),
+				_ => false
+			};
 
 		private static bool IsOverriden([CanBeNull] MethodInfo method) =>
 			method != null &&
@@ -262,20 +255,23 @@ namespace CodeJam.Reflection
 				BindingFlags.DeclaredOnly;
 
 		[NotNull, ItemNotNull]
-		private static MemberInfo[] GetOverrideChainDispatch(MemberInfo member)
-		{
-			// TODO: Use GetParentDefinition after https://github.com/dotnet/coreclr/issues/7135
-			switch (member) {
-				case MethodInfo method:
-					return GetOverrideChainCore(method, m => m, t => t.GetMethods(_thisTypeMembers));
-				case PropertyInfo property:
-					return GetOverrideChainCore(property, p => p.GetAccessors(true)[0], t => t.GetProperties(_thisTypeMembers));
-				case EventInfo eventInfo:
-					return GetOverrideChainCore(eventInfo, e => e.GetAddMethod(true), t => t.GetEvents(_thisTypeMembers));
-				default:
-					return new[] { member };
-			}
-		}
+		private static MemberInfo[] GetOverrideChainDispatch(MemberInfo member) =>
+			member switch
+			{
+				MethodInfo method => GetOverrideChainCore(
+					method,
+					m => m,
+					t => t.GetMethods(_thisTypeMembers)),
+				PropertyInfo property => GetOverrideChainCore(
+					property,
+					p => p.GetAccessors(true)[0],
+					t => t.GetProperties(_thisTypeMembers)),
+				EventInfo eventInfo => GetOverrideChainCore(
+					eventInfo,
+					e => e.GetAddMethod(true),
+					t => t.GetEvents(_thisTypeMembers)),
+				_ => new[] { member }
+			};
 
 		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChainCore<TMember>(

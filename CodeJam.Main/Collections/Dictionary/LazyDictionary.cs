@@ -116,17 +116,14 @@ namespace CodeJam.Collections
 			[NotNull] Func<TKey, TValue> valueFactory,
 			LazyThreadSafetyMode threadSafety)
 		{
-			switch (threadSafety)
-			{
-				case LazyThreadSafetyMode.None:
-					return new LazyDictionary<TKey, TValue>(valueFactory);
-				case LazyThreadSafetyMode.PublicationOnly:
-					return new ConcurrentLazyDictionary<TKey, TValue>(valueFactory);
-				case LazyThreadSafetyMode.ExecutionAndPublication:
-					return new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory);
-				default:
-					throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null);
-			}
+			return
+				threadSafety switch
+				{
+					LazyThreadSafetyMode.None => new LazyDictionary<TKey, TValue>(valueFactory),
+					LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory),
+					LazyThreadSafetyMode.ExecutionAndPublication => new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory),
+					_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
+				};
 		}
 
 		/// <summary>
@@ -141,22 +138,18 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
-			[NotNull] Func<TKey, TValue> valueFactory,
-			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
-			LazyThreadSafetyMode threadSafety)
-		{
-			switch (threadSafety)
+				[NotNull] Func<TKey, TValue> valueFactory,
+				[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
+				LazyThreadSafetyMode threadSafety) =>
+			threadSafety switch
 			{
-				case LazyThreadSafetyMode.None:
-					return new LazyDictionary<TKey, TValue>(valueFactory, collection);
-				case LazyThreadSafetyMode.PublicationOnly:
-					return new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection);
-				case LazyThreadSafetyMode.ExecutionAndPublication:
-					return new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection);
-				default:
-					throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null);
-			}
-		}
+				LazyThreadSafetyMode.None =>
+					new LazyDictionary<TKey, TValue>(valueFactory, collection),
+					LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection),
+					LazyThreadSafetyMode.ExecutionAndPublication =>
+						new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection),
+					_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
+			};
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -172,20 +165,16 @@ namespace CodeJam.Collections
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
 			[CanBeNull] IEqualityComparer<TKey> comparer,
-			LazyThreadSafetyMode threadSafety)
-		{
-			switch (threadSafety)
+			LazyThreadSafetyMode threadSafety) =>
+			threadSafety switch
 			{
-				case LazyThreadSafetyMode.None:
-					return new LazyDictionary<TKey, TValue>(valueFactory, comparer);
-				case LazyThreadSafetyMode.PublicationOnly:
-					return new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer);
-				case LazyThreadSafetyMode.ExecutionAndPublication:
-					return new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer);
-				default:
-					throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null);
-			}
-		}
+				LazyThreadSafetyMode.None =>
+					new LazyDictionary<TKey, TValue>(valueFactory, comparer),
+				LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer),
+				LazyThreadSafetyMode.ExecutionAndPublication =>
+					new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer),
+				_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
+			};
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -200,22 +189,18 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
-			[NotNull] Func<TKey, TValue> valueFactory,
-			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
-			[NotNull] IEqualityComparer<TKey> comparer,
-			LazyThreadSafetyMode threadSafety)
-		{
-			switch (threadSafety)
+				[NotNull] Func<TKey, TValue> valueFactory,
+				[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
+				[NotNull] IEqualityComparer<TKey> comparer,
+				LazyThreadSafetyMode threadSafety) =>
+			threadSafety switch
 			{
-				case LazyThreadSafetyMode.None:
-					return new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer);
-				case LazyThreadSafetyMode.PublicationOnly:
-					return new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer);
-				case LazyThreadSafetyMode.ExecutionAndPublication:
-					return new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer);
-				default:
-					throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null);
-			}
-		}
+				LazyThreadSafetyMode.None => new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
+				LazyThreadSafetyMode.PublicationOnly =>
+					new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
+				LazyThreadSafetyMode.ExecutionAndPublication =>
+					new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
+				_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
+			};
 	}
 }

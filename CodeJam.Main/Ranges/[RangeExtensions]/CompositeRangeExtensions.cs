@@ -96,25 +96,21 @@ namespace CodeJam.Ranges
 			var prevBoundary = RangeBoundaryFrom<T>.Empty;
 			var prevKeys = new List<TKey>();
 			var ranges = new List<Range<T, TKey>>();
-			foreach (var fromWithKey in keyAndFromBoundary)
+			foreach (var (rangeFrom, key) in keyAndFromBoundary)
 			{
-				if (prevBoundary != fromWithKey.From)
+				if (prevBoundary != rangeFrom)
 				{
 					foreach (var prevKey in prevKeys)
-					{
-						ranges.Add(Range.Create(prevBoundary, fromWithKey.From.GetComplementation(), prevKey));
-					}
+						ranges.Add(Range.Create(prevBoundary, rangeFrom.GetComplementation(), prevKey));
 					prevKeys.Clear();
-					prevBoundary = fromWithKey.From;
+					prevBoundary = rangeFrom;
 				}
 
-				prevKeys.Add(fromWithKey.Key);
+				prevKeys.Add(key);
 			}
 
 			foreach (var prevKey in prevKeys)
-			{
 				ranges.Add(Range.Create(prevBoundary, RangeBoundaryTo<T>.PositiveInfinity, prevKey));
-			}
 
 			return ranges.ToCompositeRange();
 		}
@@ -166,20 +162,14 @@ namespace CodeJam.Ranges
 
 			var prevRange = Range<T, TKey>.Empty;
 			var ranges = new List<Range<T, TKey>>();
-			foreach (var toWithKey in keyAndToBoundary)
+			foreach (var (key, to) in keyAndToBoundary)
 			{
 				if (prevRange.IsEmpty)
-				{
-					prevRange = Range.Create(RangeBoundaryFrom<T>.NegativeInfinity, toWithKey.To, toWithKey.Key);
-				}
-				else if (prevRange.To == toWithKey.To)
-				{
-					prevRange = prevRange.WithKey(toWithKey.Key);
-				}
+					prevRange = Range.Create(RangeBoundaryFrom<T>.NegativeInfinity, to, key);
+				else if (prevRange.To == to)
+					prevRange = prevRange.WithKey(key);
 				else
-				{
-					prevRange = Range.Create(prevRange.To.GetComplementation(), toWithKey.To, toWithKey.Key);
-				}
+					prevRange = Range.Create(prevRange.To.GetComplementation(), to, key);
 				ranges.Add(prevRange);
 			}
 

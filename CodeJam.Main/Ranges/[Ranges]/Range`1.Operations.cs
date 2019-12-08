@@ -378,7 +378,7 @@ namespace CodeJam.Ranges
 			if (other.IsEmpty)
 				return this;
 
-#pragma warning disable 618 // Validation not required: From & To extendedd.
+#pragma warning disable 618 // Validation not required: From & To extended.
 			if (IsEmpty)
 				return CreateUnsafe(other.From, other.To);
 
@@ -398,7 +398,7 @@ namespace CodeJam.Ranges
 			if (other.IsEmpty)
 				return this;
 
-#pragma warning disable 618 // Validation not required: From & To extendedd.
+#pragma warning disable 618 // Validation not required: From & To extended.
 			if (IsEmpty)
 				return CreateUnsafe(other.From, other.To);
 

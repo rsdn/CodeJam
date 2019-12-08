@@ -103,7 +103,7 @@ namespace CodeJam.Collections
 		/// <returns>Instance of <see cref="T:System.Collections.Generic.IEqualityComparer`1" />.</returns>
 		[NotNull, Pure]
 		public static IEqualityComparer<T> GetEqualityComparer()
-			=> _equalityComparer ?? (_equalityComparer = new Comparer(GetEqualsFunc(), GetGetHashCodeFunc()));
+			=> _equalityComparer ??= new Comparer(GetEqualsFunc(), GetGetHashCodeFunc());
 
 		/// <summary>
 		/// Returns implementations of the <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> generic interface

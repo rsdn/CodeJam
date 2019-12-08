@@ -288,23 +288,16 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <returns>Complementation for the boundary.</returns>
 		[Pure]
-		public RangeBoundaryTo<T> GetComplementation()
-		{
-			RangeBoundaryToKind newKind;
-			switch (_kind)
-			{
-				case RangeBoundaryFromKind.Inclusive:
-					newKind = RangeBoundaryToKind.Exclusive;
-					break;
-				case RangeBoundaryFromKind.Exclusive:
-					newKind = RangeBoundaryToKind.Inclusive;
-					break;
-				default:
-					throw CodeExceptions.UnexpectedValue($"Cannot get complementation for the boundary '{this}' as it has no value.");
-			}
-
-			return RangeBoundaryTo<T>.AdjustAndCreate(_value, newKind);
-		}
+		public RangeBoundaryTo<T> GetComplementation() =>
+			RangeBoundaryTo<T>.AdjustAndCreate(
+				_value,
+				_kind switch
+				{
+					RangeBoundaryFromKind.Inclusive => RangeBoundaryToKind.Exclusive,
+					RangeBoundaryFromKind.Exclusive => RangeBoundaryToKind.Inclusive,
+					_ => throw CodeExceptions.UnexpectedValue(
+							$"Cannot get complementation for the boundary '{this}' as it has no value.")
+				});
 
 		/// <summary>Checks that the boundary is complementation for specified boundary.</summary>
 		/// <param name="other">Another boundary.</param>
@@ -521,18 +514,13 @@ namespace CodeJam.Ranges
 		/// * Greater than zero This object is greater than <paramref name="obj"/>.
 		/// </returns>
 		[Pure]
-		int IComparable.CompareTo(object obj)
-		{
-			switch (obj)
+		int IComparable.CompareTo(object obj) =>
+			obj switch
 			{
-				case RangeBoundaryFrom<T> rbf:
-					return CompareTo(rbf);
-				case RangeBoundaryTo<T> rbt:
-					return CompareTo(rbt);
-				default:
-					return CompareTo((T)obj);
-			}
-		}
+				RangeBoundaryFrom<T> rbf => CompareTo(rbf),
+				RangeBoundaryTo<T> rbt => CompareTo(rbt),
+				_ => CompareTo((T)obj)
+			};
 		#endregion
 
 		#endregion
@@ -541,32 +529,15 @@ namespace CodeJam.Ranges
 		/// <summary> Returns string representation of the boundary. </summary>
 		/// <returns> The string representation of the boundary. </returns>
 		[Pure]
-		public override string ToString()
-		{
-			// DONTTOUCH: do not convert this into switch with multiple returns.
-			// I've tried and it looks ugly.
-			string result;
-			switch (_kind)
+		public override string ToString() =>
+			_kind switch
 			{
-				case RangeBoundaryFromKind.Empty:
-					result = EmptyString;
-					break;
-				case RangeBoundaryFromKind.Infinite:
-					result = NegativeInfinityBoundaryString;
-					break;
-				case RangeBoundaryFromKind.Inclusive:
-					result = FromInclusiveString + _value;
-					break;
-				case RangeBoundaryFromKind.Exclusive:
-					result = FromExclusiveString + _value;
-					break;
-				default:
-					result = EmptyString;
-					break;
-			}
-
-			return result;
-		}
+				RangeBoundaryFromKind.Empty => EmptyString,
+				RangeBoundaryFromKind.Infinite => NegativeInfinityBoundaryString,
+				RangeBoundaryFromKind.Inclusive => (FromInclusiveString + _value),
+				RangeBoundaryFromKind.Exclusive => (FromExclusiveString + _value),
+				_ => EmptyString
+			};
 
 		/// <summary>
 		/// Returns string representation of the boundary using the specified format string.
@@ -585,31 +556,15 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider</param>
 		/// <returns> The string representation of the boundary. </returns>
 		[Pure]
-		public string ToString(string format, IFormatProvider formatProvider)
-		{
-			// DONTTOUCH: do not convert this into switch with multiple returns.
-			// I've tried and it looks ugly.
-			string result;
-			switch (_kind)
+		public string ToString(string format, IFormatProvider formatProvider) =>
+			_kind switch
 			{
-				case RangeBoundaryFromKind.Empty:
-					result = EmptyString;
-					break;
-				case RangeBoundaryFromKind.Infinite:
-					result = NegativeInfinityBoundaryString;
-					break;
-				case RangeBoundaryFromKind.Inclusive:
-					result = FromInclusiveString + _formattableCallback(_value, format, formatProvider);
-					break;
-				case RangeBoundaryFromKind.Exclusive:
-					result = FromExclusiveString + _formattableCallback(_value, format, formatProvider);
-					break;
-				default:
-					result = EmptyString;
-					break;
-			}
-			return result;
-		}
+				RangeBoundaryFromKind.Empty => EmptyString,
+				RangeBoundaryFromKind.Infinite => NegativeInfinityBoundaryString,
+				RangeBoundaryFromKind.Inclusive => (FromInclusiveString + _formattableCallback(_value, format, formatProvider)),
+				RangeBoundaryFromKind.Exclusive => (FromExclusiveString + _formattableCallback(_value, format, formatProvider)),
+				_ => EmptyString
+			};
 		#endregion
 	}
 }

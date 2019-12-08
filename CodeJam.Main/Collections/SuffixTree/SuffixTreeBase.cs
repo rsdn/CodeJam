@@ -121,7 +121,7 @@ namespace CodeJam.Collections
 				return;
 			}
 			var begin = InternalData.Length;
-			InternalData = InternalData + data;
+			InternalData += data;
 			StringLocations.Add(new StringLocation(begin, InternalData.Length));
 			BuildFor(begin, InternalData.Length);
 		}
