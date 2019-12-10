@@ -1,5 +1,10 @@
-﻿CodeJam.Blocks 2.2.0 Release Notes
-----------------------------------
+﻿CodeJam.Blocks 3.0.0-beta1 Release Notes
+----------------------------------------
+
+What's new in 3.0.0-beta1
+-------------------------
+* Core 3.0 and 3.1 support
+* Platform targeting reworked
 
 What's new in 2.2.0-beta1
 -------------------------

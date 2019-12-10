@@ -35,3 +35,4 @@ _ReSharper*/
 packages/
 Help/
 .idea/
+*.snupkg

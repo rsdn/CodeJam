@@ -1,5 +1,12 @@
-﻿CodeJam 2.2.1 Release Notes
+﻿CodeJam 3.0.0-beta1 Release Notes
 ---------------------------------
+
+What's new in 3.0.0-beta1
+-------------------------
+* Core 3.0 and 3.1 support
+* Move ToHashSet() and GetValueOrDefault() to separate namespece to prevent conflicts
+* Platform targeting reworked
+
 
 What's new in 2.2.1
 -------------------------
