@@ -11,6 +11,7 @@
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net472;net461;net45;net40;net35;net20;netstandard2.1;netstandard2.0;netstandard1.5;netstandard1.3;netcoreapp3.0;netcoreapp2.0;netcoreapp1.0</TargetFrameworks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+		<LangVersion>8.0</LangVersion>
 
 		<PackageId>CodeJam.Blocks</PackageId>
 		<Title>CodeJam.Blocks library</Title>
@@ -21,11 +22,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>mapper services csv</PackageTags>
-		<LangVersion>8.0</LangVersion>
-
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>

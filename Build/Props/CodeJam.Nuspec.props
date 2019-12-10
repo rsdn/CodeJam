@@ -12,6 +12,10 @@
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<PackageIconUrl></PackageIconUrl>
 		<PackageTags></PackageTags>-->
+
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

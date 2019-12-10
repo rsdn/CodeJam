@@ -1,9 +1,9 @@
-configuration: Release
+﻿configuration: Release
 image: Visual Studio 2019
-version: '2.3.{build}'
+version: '3.0.{build}'
 
 #environment:
-#  packageVersion: 2.2.0
+#  packageVersion: 3.0.0
 #  perfTestsPackageVersion: 0.2.2
 
 init:
