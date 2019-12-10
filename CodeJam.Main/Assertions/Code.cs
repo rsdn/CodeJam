@@ -22,6 +22,7 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("arg: null => halt")]
 		public static void NotNull<T>(
 			[CanBeNull, NoEnumeration, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] T arg,
 			[NotNull, InvokerParameterName] string argName) where T : class
@@ -66,6 +67,7 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("arg: null => halt")]
 		public static void NotNull<T>(
 			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] T? arg,
 			[NotNull, InvokerParameterName] string argName) where T : struct
@@ -151,6 +153,7 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("condition: false => halt")]
 		public static void AssertArgument(
 			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
 			[NotNull, InvokerParameterName] string argName,
@@ -167,6 +170,7 @@ namespace CodeJam
 		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
+		[ContractAnnotation("condition: false => halt")]
 		public static void AssertArgument(
 			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
 			[NotNull, InvokerParameterName] string argName,
@@ -345,6 +349,7 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("condition: false => halt")]
 		public static void AssertState(
 			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
 			[NotNull] string message)
@@ -359,6 +364,7 @@ namespace CodeJam
 		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
+		[ContractAnnotation("condition: false => halt")]
 		public static void AssertState(
 			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
 			[NotNull] string messageFormat,
@@ -375,6 +381,7 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("condition: true => halt")]
 		public static void BugIf(
 			[AssertionCondition(AssertionConditionType.IS_FALSE)] bool condition,
 			[NotNull] string message)
@@ -389,6 +396,7 @@ namespace CodeJam
 		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
+		[ContractAnnotation("condition: true => halt")]
 		public static void BugIf(
 			[AssertionCondition(AssertionConditionType.IS_FALSE)] bool condition,
 			[NotNull] string messageFormat,
