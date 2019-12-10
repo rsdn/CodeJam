@@ -36,7 +36,7 @@ namespace CodeJam.Assertions
 
 				var logOutput = logWriter.ToString();
 				Assert.That(logOutput, Does.Contain(ex.Message));
-				Assert.That(logOutput, Does.Contain(nameof(TestNotNull)));
+				Assert.That(logOutput, Does.Contain(nameof(TestLogging)));
 
 				Assert.DoesNotThrow(() => Code.NotNull<object>("Hello!", "arg00"));
 				logOutput = logWriter.ToString();
