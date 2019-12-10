@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
+using static CodeJam.Targeting.MethodImplOptionsEx;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Ranges
 {

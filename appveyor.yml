@@ -1,14 +1,10 @@
 configuration: Release
 image: Visual Studio 2019
-version: '2.2.{build}'
+version: '2.3.{build}'
 
 #environment:
 #  packageVersion: 2.2.0
 #  perfTestsPackageVersion: 0.2.2
-
-# todo: remove after all csproj moved to the new tooling
-cache:
-- packages -> **\packages.config
 
 init:
 - cmd: git config --global core.autocrlf true

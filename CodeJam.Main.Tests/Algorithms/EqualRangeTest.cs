@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using CodeJam.Ranges;
-
 using NUnit.Framework;
+
+using Range = CodeJam.Ranges.Range;
 
 namespace CodeJam
 {

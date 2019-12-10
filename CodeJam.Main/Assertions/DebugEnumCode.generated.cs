@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
+using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {

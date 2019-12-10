@@ -1,4 +1,6 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Runtime.Serialization;
 
@@ -65,8 +67,9 @@ namespace CodeJam.Mapping
 		{
 		}
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+		// Exception(SerializationInfo, StreamingContext) is missing when targeting to these frameworks
+#else
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamMappingException"/> class
 		/// with serialized data.
@@ -80,9 +83,7 @@ namespace CodeJam.Mapping
 			: base(info, context)
 		{
 		}
-
 #endif
-
 	}
 }
 #endif

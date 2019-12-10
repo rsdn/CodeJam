@@ -13,12 +13,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
- using CodeJam.Arithmetic;
- using CodeJam.Strings;
+using CodeJam.Arithmetic;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
+using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
@@ -191,18 +191,6 @@ namespace CodeJam
 			if (!condition)
 				throw CodeExceptions.Argument(argName, messageFormat, args);
 		}
-
-		/// <summary>
-		/// Creates <see cref="ArgumentAssertion{T}"/> for fluent assertions.
-		/// </summary>
-		/// <typeparam name="T">Type of argument</typeparam>
-		/// <param name="arg">Argument value.</param>
-		/// <param name="argName">Argument name.</param>
-		/// <returns><see cref="ArgumentAssertion{T}"/> instance.</returns>
-		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
-		[AssertionMethod]
-		public static ArgumentAssertion<T> Arg<T>(T arg, [InvokerParameterName] string argName) =>
-			new ArgumentAssertion<T>(arg, argName);
 		#endregion
 
 		#region Argument validation - in range

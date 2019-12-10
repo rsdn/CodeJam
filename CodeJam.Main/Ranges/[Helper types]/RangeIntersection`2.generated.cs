@@ -29,7 +29,7 @@ namespace CodeJam.Ranges
 	[PublicAPI]
 	public struct RangeIntersection<T, TKey> : IFormattable
 	{
-		private static readonly IReadOnlyList<Range<T, TKey>> _emptyRanges = Array<Range<T, TKey>>.Empty.AsReadOnly();
+		[NotNull] private static readonly IReadOnlyList<Range<T, TKey>> _emptyRanges = Array<Range<T, TKey>>.Empty.AsReadOnly();
 
 		private readonly IReadOnlyList<Range<T, TKey>> _ranges;
 

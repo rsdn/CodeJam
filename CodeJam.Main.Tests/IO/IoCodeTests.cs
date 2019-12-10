@@ -13,9 +13,9 @@ namespace CodeJam.IO
 		[Test]
 		public void TestIsWellFormedPath()
 		{
-			var ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedPath(@"\\invalid*path", "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedPath(@"a:/b", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
-			Assert.That(ex.Message, Does.Contain(@"\\invalid*path"));
+			Assert.That(ex.Message, Does.Contain(@"a:/b"));
 
 			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedPath("", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
@@ -30,12 +30,12 @@ namespace CodeJam.IO
 		public void TestDebugIsWellFormedPath()
 		{
 #if DEBUG
-			var ex = Assert.Throws<ArgumentException>(() => DebugIoCode.IsWellFormedPath(@"\\invalid*path", "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => DebugIoCode.IsWellFormedPath(@"a:/b", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
-			Assert.That(ex.Message, Does.Contain(@"\\invalid*path"));
+			Assert.That(ex.Message, Does.Contain(@"a:/b"));
 #else
 			// ReSharper disable once InvocationIsSkipped
-			Assert.DoesNotThrow(() =>  DebugIoCode.IsWellFormedPath(@"\\invalid*path", "arg00"));
+			Assert.DoesNotThrow(() =>  DebugIoCode.IsWellFormedPath(@"a:/b", "arg00"));
 #endif
 
 			// ReSharper disable once InvocationIsSkipped
@@ -67,10 +67,6 @@ namespace CodeJam.IO
 			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedAbsolutePath(null, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
-			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedAbsolutePath("http://www.example.com", "arg00"));
-			Assert.That(ex.Message, Does.Contain("http://www.example.com"));
-			Assert.That(ex.Message, Does.Contain("arg00"));
-
 
 			Assert.DoesNotThrow(() => IoCode.IsWellFormedAbsolutePath("c:\\valid\\path", "arg00"));
 		}
@@ -78,11 +74,7 @@ namespace CodeJam.IO
 		[Test]
 		public void TestIsWellFormedRelativePath()
 		{
-			var ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedRelativePath("http://maybe/path", "arg00"));
-			Assert.That(ex.Message, Does.Contain("arg00"));
-			Assert.That(ex.Message, Does.Contain("http://maybe/path"));
-
-			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedRelativePath("d:maybe\\path", "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedRelativePath("d:maybe\\path", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("d:maybe\\path"));
 

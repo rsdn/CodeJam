@@ -4,7 +4,7 @@
 <#
 		Transform(
 			"DateTimeExtensions.cs",
-			new ReplaceInfo
+			new ReplaceInfo // Replace DateTime with DateTimeOffset
 			{
 				Pattern = "DateTime",
 				Replacement = "DateTimeOffset",

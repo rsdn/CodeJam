@@ -10,7 +10,9 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
-#if !LESSTHAN_NET40
+#if LESSTHAN_NET40
+using EnumEx = System.EnumEx;
+#else
 using EnumEx = System.Enum;
 #endif
 

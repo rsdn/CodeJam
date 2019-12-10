@@ -1,5 +1,11 @@
 ﻿using System;
 
+#if LESSTHAN_NET46 || LESSTHAN_NETSTANDARD13 || LESSTHAN_NETCOREAPP10
+using ArrayEx = System.ArrayEx;
+#else
+using ArrayEx = System.Array;
+#endif
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
@@ -16,11 +22,6 @@ namespace CodeJam.Collections
 		/// </summary>
 		[NotNull]
 
-		public static readonly T[] Empty =
-#if LESSTHAN_NET46
-			new T[0];
-#else
-			Array.Empty<T>();
-#endif
+		public static readonly T[] Empty = ArrayEx.Empty<T>();
 	}
 }

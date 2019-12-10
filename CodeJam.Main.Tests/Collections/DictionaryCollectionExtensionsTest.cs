@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using NUnit.Framework;
@@ -10,7 +9,6 @@ namespace CodeJam.Collections
 	public class DictionaryCollectionExtensionsTest
 	{
 		#region List
-
 		[Test]
 		public void AddOrCreateList_ICollection()
 		{
@@ -49,10 +47,16 @@ namespace CodeJam.Collections
 			Assert.AreEqual(2, d["b"].First());
 			Assert.AreEqual(3, d["b"].Last());
 		}
-
 		#endregion
 
 		#region HashSet
+#if LESSTHAN_NET35
+		private static HashSet<T> CreateHashSet<T>(params T[] values) => new HashSetEx<T>(values);
+#elif LESSTHAN_NET40
+		private static HashSetEx<T> CreateHashSet<T>(params T[] values) => new HashSetEx<T>(values);
+#else
+		private static HashSet<T> CreateHashSet<T>(params T[] values) => new HashSet<T>(values);
+#endif
 
 		[Test]
 		public void AddOrCreateHashSet_ICollection()
@@ -61,13 +65,12 @@ namespace CodeJam.Collections
 			d.AddOrCreateHashSet("a", 1);
 			Assert.AreEqual(1, d["a"].First());
 
-			d["b"] = new HashSet<int> { 2 };
+			d["b"] = CreateHashSet(2);
 			d.AddOrCreateHashSet("b", 3);
 			Assert.AreEqual(2, d["b"].First());
 			Assert.AreEqual(3, d["b"].Last());
 		}
 
-#if !LESSTHAN_NET40
 		[Test]
 		public void AddOrCreateHashSet_ISet()
 		{
@@ -75,12 +78,11 @@ namespace CodeJam.Collections
 			d.AddOrCreateHashSet("a", 1);
 			Assert.AreEqual(1, d["a"].First());
 
-			d["b"] = new HashSet<int> { 2 };
+			d["b"] = CreateHashSet(2);
 			d.AddOrCreateHashSet("b", 3);
 			Assert.AreEqual(2, d["b"].First());
 			Assert.AreEqual(3, d["b"].Last());
 		}
-#endif
 
 		[Test]
 		public void AddOrCreateHashSet_HashSet()
@@ -94,11 +96,9 @@ namespace CodeJam.Collections
 			Assert.AreEqual(2, d["b"].First());
 			Assert.AreEqual(3, d["b"].Last());
 		}
-
 		#endregion
 
 		#region Collection
-
 		[Test]
 		public void AddOrCreateCollection_ICollection()
 		{
@@ -125,20 +125,18 @@ namespace CodeJam.Collections
 			Assert.AreEqual(3, d["b"].Last());
 		}
 
-#if !LESSTHAN_NET40
 		[Test]
 		public void AddOrCreateCollection_ISet()
 		{
 			var d = new Dictionary<string, ISet<int>>();
-			d.AddOrCreateCollection("a", 1, () => new HashSet<int>());
+			d.AddOrCreateCollection("a", 1, () => CreateHashSet<int>());
 			Assert.AreEqual(1, d["a"].First());
 
-			d["b"] = new HashSet<int> { 2 };
-			d.AddOrCreateCollection("b", 3, () => new HashSet<int>());
+			d["b"] = CreateHashSet(2);
+			d.AddOrCreateCollection("b", 3, () => CreateHashSet<int>());
 			Assert.AreEqual(2, d["b"].First());
 			Assert.AreEqual(3, d["b"].Last());
 		}
-#endif
 
 		[Test]
 		public void AddOrCreateCollection_List()
@@ -165,7 +163,6 @@ namespace CodeJam.Collections
 			Assert.AreEqual(2, d["b"].First());
 			Assert.AreEqual(3, d["b"].Last());
 		}
-
 		#endregion
 	}
 }

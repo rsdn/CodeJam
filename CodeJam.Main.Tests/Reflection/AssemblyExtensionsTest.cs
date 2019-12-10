@@ -1,10 +1,11 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 
 using CodeJam.Targeting;
+
+using NUnit.Framework;
 
 namespace CodeJam.Reflection
 {
@@ -15,20 +16,14 @@ namespace CodeJam.Reflection
 		[Test]
 		public void TestGetAssemblyPath() =>
 			Assert.True(
-
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
 				string.Equals(
 					"CodeJam.Tests.dll",
 					Path.GetFileName(GetType().GetAssembly().GetAssemblyPath()),
-					StringComparison.InvariantCultureIgnoreCase)
-#else
-				string.Equals(
-					"CodeJam.Tests.dll".ToUpperInvariant(),
-					Path.GetFileName(GetType().GetAssembly().GetAssemblyPath().ToUpperInvariant()))
-#endif
-				);
+					StringComparison.OrdinalIgnoreCase));
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if LESSTHAN_NETCOREAPP20
+		// Assembly.Load(asmBytes) is not supported when targeting to these frameworks
+#else
 		[Test]
 		public void TestGetAssemblyPathLoadedFromByteArray()
 		{

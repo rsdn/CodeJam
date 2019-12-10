@@ -319,7 +319,6 @@ namespace CodeJam.IO
 			}
 		}
 
-#if !LESSTHAN_NET45
 		[Test]
 		public void TestFileStreamContent()
 		{
@@ -327,19 +326,28 @@ namespace CodeJam.IO
 			using (var fileStream = TempData.CreateFileStream())
 			{
 				filePath = fileStream.Name;
-
+#if LESSTHAN_NET45
+				var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096);
+				textWriter.Write("O La La");
+				textWriter.Flush();
+#else
 				using (var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096, true))
 					textWriter.Write("O La La");
+#endif
 
 				string content;
 				fileStream.Position = 0;
+#if LESSTHAN_NET45
+				var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096);
+				content = textReader.ReadToEnd();
+#else
 				using (var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096, true))
 					content = textReader.ReadToEnd();
+#endif
 				Assert.AreEqual(content, "O La La");
 			}
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
 		}
-#endif
 
 		[Test]
 		public void TestFileStreamSpecificPath()

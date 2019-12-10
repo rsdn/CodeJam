@@ -93,7 +93,6 @@ namespace CodeJam.Collections
 			dict.GetOrAdd(key, _ => new HashSet<TValue>()).Add(value);
 		}
 
-#if !LESSTHAN_NET40
 		/// <summary>
 		/// Add value to values list of given <paramref name="key"/>
 		/// </summary>
@@ -110,9 +109,14 @@ namespace CodeJam.Collections
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
 
+#if LESSTHAN_NET35 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
 			dict.GetOrAdd(key, _ => new HashSet<TValue>()).Add(value);
-		}
+#elif LESSTHAN_NET40
+			dict.GetOrAdd(key, _ => new HashSetEx<TValue>()).Add(value);
+#else
+			dict.GetOrAdd(key, _ => new HashSet<TValue>()).Add(value);
 #endif
+		}
 
 		/// <summary>
 		/// Add value to values set of given <paramref name="key"/>
@@ -159,7 +163,6 @@ namespace CodeJam.Collections
 			dict.GetOrAdd(key, _ => createCollection()).Add(value);
 		}
 
-#if !LESSTHAN_NET40
 		/// <summary>
 		/// Add value to values list of given <paramref name="key"/>
 		/// </summary>
@@ -181,7 +184,6 @@ namespace CodeJam.Collections
 
 			dict.GetOrAdd(key, _ => createCollection()).Add(value);
 		}
-#endif
 
 		/// <summary>
 		/// Add value to values list of given <paramref name="key"/>

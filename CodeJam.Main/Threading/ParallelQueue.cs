@@ -1,4 +1,7 @@
-﻿using System;
+﻿#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP10
+// Thread is missing if targeting to these frameworks
+#else
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
@@ -76,3 +79,4 @@ namespace CodeJam.Threading
 		}
 	}
 }
+#endif

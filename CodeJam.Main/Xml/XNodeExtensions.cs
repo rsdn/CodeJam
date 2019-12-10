@@ -1,11 +1,13 @@
-﻿#if !LESSTHAN_NET35
+﻿#if LESSTHAN_NET35 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
+// XDocument is missing if targeting to these frameworks
+#else
 using System;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
-#if LESSTHAN_NET472 || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-using CodeJam.Collections;
+#if (LESSTHAN_NET472 && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD21 && !LESSTHAN_NETSTANDARD16) || LESSTHAN_NETCOREAPP10
+using CodeJam.Collections.Backported;
 #endif
 using CodeJam.Strings;
 

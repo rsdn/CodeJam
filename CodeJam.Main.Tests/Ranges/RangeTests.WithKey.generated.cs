@@ -14,6 +14,8 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
+// ReSharper disable ReturnValueOfPureMethodIsNotUsed
+
 namespace CodeJam.Ranges
 {
 	[TestFixture(Category = "Ranges")]

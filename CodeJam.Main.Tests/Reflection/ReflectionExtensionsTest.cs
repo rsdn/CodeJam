@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 
 using CodeJam.Targeting;
 
@@ -95,7 +93,9 @@ namespace CodeJam.Reflection
 			new object[] {typeof(WithoutNsTestClass), "WithoutNsTestClass, CodeJam.Tests" }
 		};
 
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
+#if LESSTHAN_NETCOREAPP20
+		// IsJITOptimizerDisabled is missing if targeting to these frameworks
+#else
 		[Test]
 		public void IsDebugAssemblyTest()
 		{
@@ -112,7 +112,7 @@ namespace CodeJam.Reflection
 		[TestCaseSource(nameof(_source))]
 		public void GetShortAssemblyQualifiedNameTest([NotNull] Type type, [NotNull] string expected)
 		{
-#if TARGETS_NETCORE
+#if TARGETS_NETCOREAPP
 			expected = expected.Replace("mscorlib", "System.Private.CoreLib");
 #endif
 			var qualifiedName = type.GetShortAssemblyQualifiedName();
@@ -131,7 +131,9 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(IList<>), typeof(IEnumerable<>), ExpectedResult = true)]
 		[TestCase(typeof(IEnumerable<>), typeof(IEnumerable), ExpectedResult = true)]
 		[TestCase(typeof(List<int>), typeof(List<int>), ExpectedResult = false)]
-#if !LESSTHAN_NET40
+#if LESSTHAN_NET40
+// IList<> is not derived from ISet<> if targeting to these frameworks
+#else
 		[TestCase(typeof(IList<>), typeof(ISet<>), ExpectedResult = false)]
 #endif
 		public bool IsSubClassTest([NotNull] Type type, [NotNull] Type check) => type.IsSubClass(check);
@@ -283,8 +285,7 @@ namespace CodeJam.Reflection
 
 		private class TestAnonymousCaseAttribute : TestCaseAttribute
 		{
-			public TestAnonymousCaseAttribute()
-				: base(new { Field = 0 }.GetType())
+			public TestAnonymousCaseAttribute() : base(new { Field = 0 }.GetType())
 			{
 				ExpectedResult = true;
 			}
@@ -307,7 +308,6 @@ namespace CodeJam.Reflection
 			}
 		}
 
-		[SuppressMessage("ReSharper", "UnusedTypeParameter")]
 		private class A<TOuter>
 		{
 			public class B

@@ -8,72 +8,44 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net47;net46;net45;net40;net35;net30;net20;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;netstandard2.0;netstandard1.6;netstandard1.5</TargetFrameworks>
+		<TargetFrameworks>net472;net461;net45;net40;net35;net20;netcoreapp3.0;netcoreapp2.1;netcoreapp1.1</TargetFrameworks>
+		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 	</PropertyGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1' OR '$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netstandard1.0' OR '$(TargetFramework)' == 'netstandard1.1' OR '$(TargetFramework)' == 'netstandard1.2' OR '$(TargetFramework)' == 'netstandard1.3' OR '$(TargetFramework)' == 'netstandard1.4' OR '$(TargetFramework)' == 'netstandard1.5' OR '$(TargetFramework)' == 'netstandard1.6' OR '$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netstandard2.1' OR '$(TargetFramework)' == 'netstandard2.2' ">
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp1.0' AND '$(TargetFramework)' != 'netcoreapp1.1' AND '$(TargetFramework)' != 'netcoreapp2.0' AND '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TargetFramework)' != 'netcoreapp2.2' AND '$(TargetFramework)' != 'netstandard1.0' AND '$(TargetFramework)' != 'netstandard1.1' AND '$(TargetFramework)' != 'netstandard1.2' AND '$(TargetFramework)' != 'netstandard1.3' AND '$(TargetFramework)' != 'netstandard1.4' AND '$(TargetFramework)' != 'netstandard1.5' AND '$(TargetFramework)' != 'netstandard1.6' AND '$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netstandard2.1' AND '$(TargetFramework)' != 'netstandard2.2' AND '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
+	<!-- #region Targeting -->
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'netcoreapp1.1' ">
+		<PackageReference Include="NUnit" Version="3.12.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
-		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
-		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.2' ">
-		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
-		<PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
-	</ItemGroup>
-
-
-	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30' AND '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40'">
-		<!-- Hack for NUnit test runner, see https://github.com/nunit/nunit3-vs-adapter/issues/325 -->
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' != 'net20'">
-		<PackageReference Include="NUnit" Version="3.11.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'netstandard1.0' AND '$(TargetFramework)' != 'netstandard1.1' AND '$(TargetFramework)' != 'netstandard1.2' AND '$(TargetFramework)' != 'netstandard1.3' AND '$(TargetFramework)' != 'netstandard1.4' AND '$(TargetFramework)' != 'netstandard1.5' AND '$(TargetFramework)' != 'netstandard1.6' AND '$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netstandard2.1' AND '$(TargetFramework)' != 'netstandard2.2'">
-		<PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
-	</ItemGroup>
-
-	<!-- NUnit 3.11 is the last NUnit supporting .NET 2.0 -->
-	<!-- See: https://github.com/nunit/nunit/issues/3070 -->
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net20'">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
+		<!-- NUnit v3.11 is the last version supporting .NET 2.0 -->
 		<PackageReference Include="NUnit" Version="[3.11.0]" />
-		<PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
 	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-    	<PackageReference Include="NUnit" Version="[3.8.1]" />
-  	</ItemGroup>
-
-	<ItemGroup Condition="('$(TargetFramework)' == 'netstandard1.0') OR ('$(TargetFramework)' == 'netstandard1.1') OR ('$(TargetFramework)' == 'netstandard1.2')">
-    	<PackageReference Include="NUnit" Version="[3.6.1]" />
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.1'">
+		<!-- NUnit v3.9 is the last version supporting .NET Core 1.0 -->
+		<PackageReference Include="NUnit" Version="[3.9.0]" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
+		<!-- Microsoft.NET.Test.Sdk v16.3 is the last version supporting .NET Core 1.0 -->
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="[16.2.0]" />
 	</ItemGroup>
+	<!-- #endregion -->
 
 	<ItemGroup>
 		<ProjectReference Include="..\CodeJam.Blocks\CodeJam.Blocks.csproj" />
 	</ItemGroup>
 
-	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20' OR '$(TargetFramework)' == 'net30'" >
-   		<ItemGroup>
+	<ItemGroup>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences" Condition="'$(TargetFramework)' == 'net20' OR '$(TargetFramework)' == 'net30'">
+		<ItemGroup>
 			<ReferencePath Condition="'%(FileName)' == 'NUnit.System.Linq'">
 				<Aliases>nunitlinq</Aliases>
 			</ReferencePath>

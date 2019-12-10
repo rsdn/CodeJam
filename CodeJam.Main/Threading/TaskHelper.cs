@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-#if NET40
+#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
 using TaskEx = System.Threading.Tasks.TaskEx;
 #else
 using TaskEx = System.Threading.Tasks.Task;

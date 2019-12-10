@@ -1,13 +1,16 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 
 using CodeJam.Reflection;
 
 using JetBrains.Annotations;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Expressions
 {
@@ -227,8 +230,6 @@ namespace CodeJam.Expressions
 					break;
 				}
 
-#if !LESSTHAN_NETSTANDARD20
-
 				case ExpressionType.Dynamic:
 				{
 					var e = (DynamicExpression)expr;
@@ -237,7 +238,6 @@ namespace CodeJam.Expressions
 
 					break;
 				}
-#endif
 
 				case ExpressionType.Goto:
 				{
@@ -544,8 +544,6 @@ namespace CodeJam.Expressions
 					break;
 				}
 
-#if !LESSTHAN_NETSTANDARD20
-
 				case ExpressionType.Dynamic:
 				{
 					var e = (DynamicExpression)expr;
@@ -554,8 +552,6 @@ namespace CodeJam.Expressions
 
 					break;
 				}
-
-#endif
 
 				case ExpressionType.Goto:
 				{
@@ -869,8 +865,6 @@ namespace CodeJam.Expressions
 							FindInternal(e.Variables, func);
 				}
 
-#if !LESSTHAN_NETSTANDARD20
-
 				case ExpressionType.Dynamic:
 				{
 					var e = (DynamicExpression)expr;
@@ -878,8 +872,6 @@ namespace CodeJam.Expressions
 					return
 						FindInternal(e.Arguments, func);
 				}
-
-#endif
 
 				case ExpressionType.Goto:
 				{
@@ -1282,15 +1274,11 @@ namespace CodeJam.Expressions
 				case ExpressionType.Parameter:
 					return expr;
 
-#if !LESSTHAN_NETSTANDARD20
-
 				case ExpressionType.Dynamic:
 				{
 					var e = (DynamicExpression)expr;
 					return e.Update(TransformInternal(e.Arguments, func));
 				}
-
-#endif
 
 				case ExpressionType.Goto:
 				{

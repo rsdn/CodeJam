@@ -1,10 +1,10 @@
 ﻿using System;
 
-using CodeJam.Ranges;
-
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
+
+using Range = CodeJam.Ranges.Range;
 
 namespace CodeJam.Dates
 {
@@ -82,7 +82,7 @@ namespace CodeJam.Dates
 			AreEqual(kind, d.FirstDayOfYear().Kind, "#3");
 			AreEqual(kind, d.LastDayOfYear().Kind, "#4");
 		}
-		
+
 		[TestCase(0d)]
 		[TestCase(3d)]
 		[TestCase(-2d)]

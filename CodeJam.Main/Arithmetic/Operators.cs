@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Threading;
 
 using JetBrains.Annotations;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Arithmetic
 {
@@ -163,7 +164,7 @@ namespace CodeJam.Arithmetic
 			[NotNull]
 			private static Func<T, T> CreateValue()
 			{
-#if LESSTHAN_NET40
+#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
 				return OperatorsFactory.UnaryOperator<T>(ExpressionType.Not);
 #else
 				return OperatorsFactory.UnaryOperator<T>(ExpressionType.OnesComplement);

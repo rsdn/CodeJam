@@ -1,15 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
 using static CodeJam.Ranges.RangeInternal;
+using static CodeJam.Targeting.MethodImplOptionsEx;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 // The file contains members to be shared between RangeBoundaryFrom<T> and RangeBoundaryTo<T>.
 
@@ -36,6 +37,7 @@ namespace CodeJam.Ranges
 
 		[NotNull]
 		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
+
 		[NotNull]
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
 

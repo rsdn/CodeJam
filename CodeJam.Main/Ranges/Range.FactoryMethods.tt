@@ -1,8 +1,9 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ include file="[Ranges]\RangeWithTKeyReplacer.ttinclude" #>
 <#
-	Run("Range.FactoryMethods.cs",
-		new ReplaceInfo // Add key parameter passing
+	Run(
+		"Range.FactoryMethods.cs",
+		new ReplaceInfo // Add key parameter into method signatures and pass it into factory methods
 		{
 			Pattern = @"(toValue.+?)\);",
 			Replacement = @"$1, key);",

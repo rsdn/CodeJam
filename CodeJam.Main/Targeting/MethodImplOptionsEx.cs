@@ -3,14 +3,13 @@
 namespace CodeJam.Targeting
 {
 	/// <summary>Extended <see cref="MethodImplOptions"/></summary>
-	internal static class MethodImplOptionsExt
+	internal static class MethodImplOptionsEx
 	{
 		/// <summary>MethodImplOptions.AggressiveInlining or explicit value if not supported by target platform to allow inlining when running on higher framework</summary>
-		public const MethodImplOptions AggressiveInlining =
-#if LESSTHAN_NET45
-			(MethodImplOptions)256;
+#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
+		public const MethodImplOptions AggressiveInlining = (MethodImplOptions)256;
 #else
-			MethodImplOptions.AggressiveInlining;
+		public const MethodImplOptions AggressiveInlining = MethodImplOptions.AggressiveInlining;
 #endif
 	}
 }

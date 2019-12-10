@@ -68,7 +68,8 @@ namespace CodeJam
 				if (ex.StackTrace.NotNullNorEmpty())
 					writer.WriteLine(ex.StackTrace);
 
-				switch (ex) {
+				switch (ex)
+				{
 					case FileNotFoundException notFoundException:
 						var fex = notFoundException;
 
@@ -101,7 +102,9 @@ namespace CodeJam
 			}
 		}
 
-#if !LESSTHAN_NET45
+#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+		// WriteAsync is missing if targeting to these frameworks
+#else
 		/// <summary>
 		/// Returns detailed exception text.
 		/// </summary>
@@ -148,7 +151,8 @@ namespace CodeJam
 				if (ex.StackTrace.NotNullNorEmpty())
 					await writer.WriteLineAsync(ex.StackTrace);
 
-				switch (ex) {
+				switch (ex)
+				{
 					case FileNotFoundException notFoundException:
 						var fex = notFoundException;
 
@@ -190,6 +194,6 @@ namespace CodeJam
 		[Pure]
 		[NotNull]
 		public static string ToDiagnosticString([CanBeNull] this Exception exception)
-			=> exception == null ? "" :  exception.ToDiagnosticString(new StringBuilder()).ToString();
+			=> exception == null ? "" : exception.ToDiagnosticString(new StringBuilder()).ToString();
 	}
 }

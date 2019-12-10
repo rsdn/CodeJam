@@ -1,4 +1,6 @@
-﻿#if !LESSTHAN_NET40
+﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
+// Some expression types are missing if targeting to these frameworks
+#else
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,8 +55,8 @@ namespace CodeJam.Reflection
 
 			foreach (var memberInfo in type.GetMembers(BindingFlags.Instance | BindingFlags.Public))
 			{
-				if (memberInfo.MemberType == MemberTypes.Field ||
-					memberInfo.MemberType == MemberTypes.Property && ((PropertyInfo)memberInfo).GetIndexParameters().Length == 0)
+				if (memberInfo is FieldInfo ||
+					memberInfo is PropertyInfo p && p.GetIndexParameters().Length == 0)
 				{
 					_members.Add(memberInfo);
 				}

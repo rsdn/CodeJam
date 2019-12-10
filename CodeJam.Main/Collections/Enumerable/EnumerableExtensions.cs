@@ -72,31 +72,6 @@ namespace CodeJam.Collections
 				yield return element;
 		}
 
-#if TARGETS_NET || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Prepends specified <paramref name="element"/> to the collection start.
-		/// </summary>
-		/// <typeparam name="T">Type of element.</typeparam>
-		/// <param name="source">The source enumerable.</param>
-		/// <param name="element">Element to prepend.</param>
-		/// <returns>Concatenated enumerable</returns>
-		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Prepend<T>([NotNull] this IEnumerable<T> source, T element)
-		{
-			Code.NotNull(source, nameof(source));
-
-			return PrependCore(source, element);
-		}
-
-		[Pure, NotNull, LinqTunnel]
-		private static IEnumerable<T> PrependCore<T>([NotNull] IEnumerable<T> source, T element)
-		{
-			yield return element;
-			foreach (var item in source)
-				yield return item;
-		}
-#endif
-
 		/// <summary>
 		/// Prepends specified <paramref name="elements"/> to the collection start.
 		/// </summary>
@@ -121,34 +96,6 @@ namespace CodeJam.Collections
 				yield return item;
 		}
 
-#if LESSTHAN_NET472 || LESSTHAN_NETCOREAPP20 || TARGETS_NETSTANDARD
-		/// <summary>
-		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
-		/// </summary>
-		/// <typeparam name="T">The type of the elements of source.</typeparam>
-		/// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="HashSet{T}"/> from.</param>
-		/// <returns>
-		/// A <see cref="HashSet{T}"/> that contains elements from the input sequence.
-		/// </returns>
-		[Pure, NotNull]
-		public static HashSet<T> ToHashSet<T>([NotNull, InstantHandle] this IEnumerable<T> source) => new HashSet<T>(source);
-
-		/// <summary>
-		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/> with the specified equality comparer.
-		/// </summary>
-		/// <typeparam name="T">The type of the elements of source.</typeparam>
-		/// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="HashSet{T}"/> from.</param>
-		/// <param name="comparer">The <see cref="IEqualityComparer{T}"/> implementation to use
-		/// to comparing values in the set, or <c>null</c> to use the default implementation for the set type.</param>
-		/// <returns>
-		/// A <see cref="HashSet{T}"/> that contains elements from the input sequence.
-		/// </returns>
-		[Pure, NotNull]
-		public static HashSet<T> ToHashSet<T>(
-				[NotNull, InstantHandle] this IEnumerable<T> source,
-				[NotNull] IEqualityComparer<T> comparer) =>
-			new HashSet<T>(source, comparer);
-#endif
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
 		/// </summary>
@@ -163,7 +110,7 @@ namespace CodeJam.Collections
 		public static HashSet<TKey> ToHashSet<T, TKey>(
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull, InstantHandle] Func<T, TKey> keySelector) =>
-			new HashSet<TKey>(source.Select(keySelector));
+				new HashSet<TKey>(source.Select(keySelector));
 
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/> with the specified equality comparer.
@@ -179,10 +126,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, NotNull]
 		public static HashSet<TKey> ToHashSet<T, TKey>(
-				[NotNull, InstantHandle] this IEnumerable<T> source,
-				[NotNull, InstantHandle] Func<T, TKey> keySelector,
-				[NotNull] IEqualityComparer<TKey> comparer) =>
-			new HashSet<TKey>(source.Select(keySelector), comparer);
+			[NotNull, InstantHandle] this IEnumerable<T> source,
+			[NotNull, InstantHandle] Func<T, TKey> keySelector,
+			[NotNull] IEqualityComparer<TKey> comparer) =>
+				new HashSet<TKey>(source.Select(keySelector), comparer);
 
 		/// <summary>
 		/// Sorts the elements of a sequence in ascending order.
@@ -368,8 +315,8 @@ namespace CodeJam.Collections
 		/// </returns>
 		[NotNull, Pure, LinqTunnel]
 		public static IEnumerable<TSource> SelectMany<TSource>(
-				[NotNull, InstantHandle] this IEnumerable<IEnumerable<TSource>> source) =>
-			source.SelectMany(Fn<IEnumerable<TSource>>.Self);
+			[NotNull, InstantHandle] this IEnumerable<IEnumerable<TSource>> source) =>
+				source.SelectMany(Fn<IEnumerable<TSource>>.Self);
 
 		/// <summary>
 		/// Returns first element, or specified <paramref name="defaultValue"/>, if sequence is empty.

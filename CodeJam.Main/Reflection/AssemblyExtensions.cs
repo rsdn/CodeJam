@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-
-using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -15,10 +12,11 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public static class AssemblyExtensions
 	{
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 // PUBLIC_API_CHANGES
+		// IsJITOptimizerDisabled is missing if targeting to these frameworks
+#else
 		/// <summary>
-		/// Checks that the assembly is build with <see cref="DebuggableAttribute.IsJITOptimizerDisabled"/>
+		/// Checks that the assembly is build with <see cref="System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled"/>
 		/// set to <c>false</c>.
 		/// </summary>
 		/// <param name="assembly">The assembly to check.</param>
@@ -27,7 +25,7 @@ namespace CodeJam.Reflection
 		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));
-			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
+			return assembly.GetCustomAttribute<System.Diagnostics.DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
 		}
 
 #endif
@@ -53,6 +51,9 @@ namespace CodeJam.Reflection
 			return result;
 		}
 
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
+		// CodeBase is missing if targeting to these frameworks
+#else
 		/// <summary>
 		/// Returns path to the <paramref name="assembly"/> file.
 		/// </summary>
@@ -69,7 +70,7 @@ namespace CodeJam.Reflection
 			//   If the assembly was loaded as a byte array, using an overload of the Load method that takes an array of bytes,
 			//   this property returns the location of the caller of the method, not the location of the loaded assembly.
 			// (c) https://msdn.microsoft.com/en-us/library/system.reflection.assembly.codebase(v=vs.110).aspx
-			if (assembly.Location.IsNullOrEmpty())
+			if (string.IsNullOrEmpty(assembly.Location))
 				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 
 			var uri = new Uri(assembly.CodeBase);
@@ -88,5 +89,6 @@ namespace CodeJam.Reflection
 		[Pure]
 		public static string GetAssemblyDirectory([NotNull] this Assembly assembly) =>
 			Path.GetDirectoryName(GetAssemblyPath(assembly));
+#endif
 	}
 }

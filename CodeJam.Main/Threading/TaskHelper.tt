@@ -4,13 +4,13 @@
 <#
 		Transform(
 			"TaskHelper.cs",
-			new ReplaceInfo
+			new ReplaceInfo // IEnumerable<T> to T[]
 			{
 				Pattern = @"IEnumerable\<(Task(?:\<\w+?\>)?)\>",
 				Replacement = "$1[]",
 				ThrowOnFail = true
 			},
-			new ReplaceInfo
+			new ReplaceInfo // Remove '.ToArray()'
 			{
 				Pattern = ".ToArray()",
 				Replacement = "",

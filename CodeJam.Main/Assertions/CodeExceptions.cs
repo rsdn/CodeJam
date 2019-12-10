@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 using CodeJam.Targeting;
-using static CodeJam.Targeting.MethodImplOptionsExt;
 
 using JetBrains.Annotations;
+
+using static CodeJam.Targeting.MethodImplOptionsEx;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam
 {
@@ -57,7 +59,8 @@ namespace CodeJam
 		/// <value>The code trace source.</value>
 		[NotNull] public static TraceSource CodeTraceSource => _codeTraceSource.Value;
 
-		[NotNull][ItemNotNull]
+		[NotNull]
+		[ItemNotNull]
 		private static readonly Lazy<TraceSource> _codeTraceSource = new Lazy<TraceSource>(
 			() => CreateTraceSource(typeof(Code).Namespace + "." + nameof(CodeTraceSource)));
 

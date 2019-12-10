@@ -4,7 +4,7 @@
 <#
 		Transform(
 			"RangeTests.NoKey.cs",
-			new ReplaceInfo // Rename TestRange => TestRange
+			new ReplaceInfo // Rename TestRange => TestKeyedRange
 			{
 				Pattern = "TestRange",
 				Replacement = "TestKeyedRange",

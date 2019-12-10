@@ -1,20 +1,15 @@
 ﻿using System.Runtime.CompilerServices;
 
-using static CodeJam.Targeting.MethodImplOptionsExt;
-
 using JetBrains.Annotations;
 
+using static CodeJam.Targeting.MethodImplOptionsEx;
+
 namespace CodeJam.Targeting
-{	
+{
 	internal static class StackTraceHelper
 	{
 		[NotNull]
 		[MethodImpl(AggressiveInlining)]
-		public static string GetStackTrace() =>
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-			new System.Diagnostics.StackTrace().ToString();
-#else
-			System.Environment.StackTrace;
-#endif
+		public static string GetStackTrace() => System.Environment.StackTrace;
 	}
 }

@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Reflection;
 
-using CodeJam.Collections;
+#if (LESSTHAN_NET472 && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD21 && !LESSTHAN_NETSTANDARD16) || LESSTHAN_NETCOREAPP10
+using CodeJam.Collections.Backported;
+#endif
 
 using JetBrains.Annotations;
 
@@ -10,13 +12,12 @@ namespace CodeJam.Reflection
 {
 	public partial class ReflectionExtensions
 	{
-		private static bool IsOptional([NotNull] this ParameterInfo prm) =>
-#if LESSTHAN_NET45
-			(prm.Attributes & ParameterAttributes.HasDefault) == ParameterAttributes.HasDefault
+		private static bool GetHasDefaultValue([NotNull] this ParameterInfo prm) =>
+#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
+			(prm.Attributes & ParameterAttributes.HasDefault) == ParameterAttributes.HasDefault;
 #else
-			prm.HasDefaultValue
+			prm.HasDefaultValue;
 #endif
-			;
 
 		private static bool IsCtorSuitable([NotNull] ConstructorInfo ctor, [NotNull, ItemNotNull] ParamInfo[] parameters)
 		{
@@ -35,7 +36,7 @@ namespace CodeJam.Reflection
 			var argMap = parameters.Select(p => p.Name).ToHashSet();
 			foreach (var prm in ctorPrms)
 			{
-				if (prm.IsOptional())
+				if (prm.GetHasDefaultValue())
 					continue;
 				if (!argMap.Contains(prm.Name))
 					return false;
@@ -68,7 +69,7 @@ namespace CodeJam.Reflection
 			var values =
 				ctor
 					.GetParameters()
-					.Select(p => prmsMap.GetValueOrDefault(p.Name, k => p.DefaultValue))
+					.Select(p => prmsMap.TryGetValue(p.Name, out var result) ? result : p.DefaultValue)
 					.ToArray();
 			// ReSharper disable once AssignNullToNotNullAttribute
 			return ctor.Invoke(values);
