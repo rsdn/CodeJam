@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
 using static CodeJam.Internal.CodeExceptionsHelpers;
-using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
@@ -17,8 +15,7 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentNullException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentNullException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentNullException ArgumentNull([NotNull, InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
@@ -28,13 +25,13 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentNullException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentItemNull([NotNull, InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				argumentName, $"All items in '{argumentName}' should not be null.")
+				$"All items in '{argumentName}' should not be null.",
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -43,22 +40,20 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/></returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentEmpty([NotNull, InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				argumentName,
-				$"Collection {argumentName} must not be empty.")
+				$"Collection '{argumentName}' must not be empty.",
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <see cref="ArgumentException"/> for empty string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentNullOrEmpty([NotNull, InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
@@ -71,8 +66,7 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for empty (or whitespace) string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentNullOrWhiteSpace([NotNull, InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
@@ -88,8 +82,7 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange(
 			[NotNull, InvokerParameterName] string argumentName,
 			int value, int fromValue, int toValue)
@@ -98,7 +91,7 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ({value.ToInv()}) should be between {fromValue.ToInv()} and {toValue.ToInv()}.")
+				Invariant($"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}."))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -108,8 +101,7 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange(
 			[NotNull, InvokerParameterName] string argumentName,
 			double value, double fromValue, double toValue)
@@ -118,7 +110,7 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ({value.ToInv()}) should be between {fromValue.ToInv()} and {toValue.ToInv()}.")
+				Invariant($"The value of '{argumentName}' ({value}) should be between {fromValue} and {toValue}."))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -129,8 +121,7 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange<T>(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] T value,
@@ -141,7 +132,7 @@ namespace CodeJam
 			return new ArgumentOutOfRangeException(
 				argumentName,
 				value,
-				$"The value of '{argumentName}' ('{value.ToInv()}') should be between '{fromValue.ToInv()}' and '{toValue.ToInv()}'.")
+				Invariant($"The value of '{argumentName}' ('{value}') should be between '{fromValue}' and '{toValue}'."))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -151,15 +142,15 @@ namespace CodeJam
 		/// <param name="startIndex">The start index.</param>
 		/// <param name="length">The length.</param>
 		/// <returns>Initialized instance of <see cref="IndexOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static IndexOutOfRangeException IndexOutOfRange(
 			[NotNull, InvokerParameterName] string argumentName,
 			int value, int startIndex, int length)
 		{
 			BreakIfAttached();
 			return new IndexOutOfRangeException(
-				$"The value of '{argumentName}' ({value.ToInv()}) should be greater than or equal to {startIndex.ToInv()} and less than {length.ToInv()}.")
+				Invariant(
+					$"The value of '{argumentName}' ({value}) should be greater than or equal to {startIndex} and less than {length}."))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
@@ -170,9 +161,8 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static ArgumentException Argument(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string messageFormat,
@@ -180,7 +170,8 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				FormatExceptionMessage(messageFormat, args), argumentName)
+				InvariantFormat(messageFormat, args),
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -188,16 +179,14 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static InvalidOperationException InvalidOperation(
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return new InvalidOperationException(
-				FormatExceptionMessage(messageFormat, args))
+			return new InvalidOperationException(InvariantFormat(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
@@ -211,8 +200,7 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
 			[NotNull, InvokerParameterName] string argumentName,
 			[CanBeNull] T value)
@@ -220,7 +208,9 @@ namespace CodeJam
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
 			return new ArgumentOutOfRangeException(
-				argumentName, value, $"Unexpected value '{value?.ToInv()}' of type '{valueType.FullName}'.")
+				argumentName,
+				value,
+				Invariant($"Unexpected value '{value}' of type '{valueType.FullName}'."))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -234,9 +224,8 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
 			[NotNull, InvokerParameterName] string argumentName,
 			[CanBeNull] T value,
@@ -244,8 +233,9 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
-				argumentName, value,
-				FormatExceptionMessage(messageFormat, args))
+				argumentName,
+				value,
+				InvariantFormat(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -256,16 +246,14 @@ namespace CodeJam
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static InvalidOperationException UnexpectedValue<T>([CanBeNull] T value)
 		{
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
-			return
-				new InvalidOperationException(
-					$"Unexpected value '{value?.ToInv()}' of type '{valueType.FullName}'.")
-					.LogToCodeTraceSourceBeforeThrow();
+			return new InvalidOperationException(
+				Invariant($"Unexpected value '{value}' of type '{valueType.FullName}'."))
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>
@@ -275,28 +263,24 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static InvalidOperationException UnexpectedValue(
 			[NotNull] string messageFormat, [CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return new InvalidOperationException(
-				FormatExceptionMessage(messageFormat, args))
+			return new InvalidOperationException(InvariantFormat(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Throw this if the object is disposed.</summary>
 		/// <param name="typeofDisposedObject">The typeof disposed object.</param>
 		/// <returns>Initialized instance of <see cref="ObjectDisposedException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ObjectDisposedException ObjectDisposed([CanBeNull] Type typeofDisposedObject)
 		{
 			BreakIfAttached();
-			return new ObjectDisposedException(
-				typeofDisposedObject?.FullName)
+			return new ObjectDisposedException(typeofDisposedObject?.FullName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -305,33 +289,30 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ObjectDisposedException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static ObjectDisposedException ObjectDisposed(
 			[CanBeNull] Type typeofDisposedObject,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return
-				new ObjectDisposedException(
-					typeofDisposedObject?.FullName, FormatExceptionMessage(messageFormat, args))
-					.LogToCodeTraceSourceBeforeThrow();
+			return new ObjectDisposedException(
+				typeofDisposedObject?.FullName,
+				InvariantFormat(messageFormat, args))
+				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Used to be thrown in places expected to be unreachable.</summary>
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="NotSupportedException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static NotSupportedException Unreachable([NotNull] string messageFormat, [CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
-			return new NotSupportedException(
-				FormatExceptionMessage(messageFormat, args))
+			return new NotSupportedException(InvariantFormat(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion

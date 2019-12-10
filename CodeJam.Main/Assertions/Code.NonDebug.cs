@@ -12,7 +12,9 @@ namespace CodeJam
 	// Part that excluded from debug assertions generation.
 	partial class Code
 	{
-		#region Argument validation
+		#region Argument validation (DO NOT copy into DebugCode)
+		// NB: Conditional methods cannot have a return type.
+
 		/// <summary>
 		/// Creates <see cref="ArgumentAssertion{T}"/> for fluent assertions.
 		/// </summary>
@@ -21,6 +23,7 @@ namespace CodeJam
 		/// <param name="argName">Argument name.</param>
 		/// <returns><see cref="ArgumentAssertion{T}"/> instance.</returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[MustUseReturnValue]
 		[AssertionMethod]
 		public static ArgumentAssertion<T> Arg<T>(T arg, [InvokerParameterName] string argName) =>
 			new ArgumentAssertion<T>(arg, argName);
@@ -88,8 +91,9 @@ namespace CodeJam
 		/// <param name="thisReference">The this reference.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull] TResource resource,
+			[CanBeNull, NoEnumeration] TResource resource,
 			[NotNull] TDisposable thisReference)
 			where TResource : class
 			where TDisposable : IDisposable
@@ -106,8 +110,9 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull] TResource resource,
+			[CanBeNull, NoEnumeration] TResource resource,
 			[NotNull] TDisposable thisReference,
 			[NotNull] string message)
 			where TResource : class
@@ -126,8 +131,9 @@ namespace CodeJam
 		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
+		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull] TResource resource,
+			[CanBeNull, NoEnumeration] TResource resource,
 			[NotNull] TDisposable thisReference,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)

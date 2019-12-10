@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -31,7 +32,7 @@ namespace CodeJam.Assertions
 				ts.Switch.Level = SourceLevels.All;
 				ts.Listeners.Add(listener);
 
-				var ex = Assert.Throws<ArgumentNullException>(() => Code.NotNull<object>(null, "arg00"));
+				var ex = Assert.Throws<ArgumentNullException>(() => Code.NotNull(default(object), "arg00"));
 				Assert.That(ex.Message, Does.Contain("arg00"));
 
 				var logOutput = logWriter.ToString();
@@ -48,20 +49,33 @@ namespace CodeJam.Assertions
 				ts.Switch.Level = logLevel;
 			}
 		}
+
 		[Test]
 		public void TestNotNull()
 		{
-			var ex = Assert.Throws<ArgumentNullException>(() => Code.NotNull<object>(null, "arg00"));
+			var ex = Assert.Throws<ArgumentNullException>(() => Code.NotNull(default(object), "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
 			Assert.DoesNotThrow(() => Code.NotNull<object>("Hello!", "arg00"));
 		}
 
 		[Test]
+		public void TestGenericNotNull()
+		{
+			var ex = Assert.Throws<ArgumentNullException>(() => Code.GenericNotNull(default(object), "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+
+			Assert.DoesNotThrow(() => Code.GenericNotNull<object>("Hello!", "arg00"));
+
+			// They made me to write this
+			Assert.DoesNotThrow(() => Code.GenericNotNull(default(int), "arg00"));
+		}
+
+		[Test]
 		public void TestDebugNotNull()
 		{
 #if DEBUG
-			var ex = Assert.Throws<ArgumentNullException>(() => DebugCode.NotNull<object>(null, "arg00"));
+			var ex = Assert.Throws<ArgumentNullException>(() => DebugCode.NotNull(default(object), "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 #else
 			// ReSharper disable once InvocationIsSkipped
@@ -73,15 +87,35 @@ namespace CodeJam.Assertions
 		}
 
 		[Test]
-		public void TestNotNullNorEmpty()
+		public void TestStringNotNullNorEmpty()
 		{
-			Assert.Throws<ArgumentException>(() => Code.NotNullNorEmpty(null, "arg00"));
+			Assert.Throws<ArgumentException>(() => Code.NotNullNorEmpty(default, "arg00"));
 			var ex = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmpty("", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("String 'arg00' should be neither null nor empty"));
 
 			Assert.DoesNotThrow(() => Code.NotNullNorEmpty(" ", "arg00"));
 			Assert.DoesNotThrow(() => Code.NotNullNorEmpty("Hello!", "arg00"));
+		}
+
+		[Test]
+		public void TestCollectionNotNullNorEmpty()
+		{
+			var empty = new HashSet<int>();
+#if LESSTHAN_NET45
+			var nonEmpty = (IList<int>)new ListEx<int> { 1 };
+#else
+			var nonEmpty = (IList<int>)new List<int> { 1 };
+#endif
+			var nonEmpty2 = (IReadOnlyCollection<int>)nonEmpty;
+
+			Assert.Throws<ArgumentNullException>(() => Code.NotNullNorEmpty(default(IList<int>), "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmpty(empty, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(ex.Message, Does.Contain("Collection 'arg00' must not be empty"));
+
+			Assert.DoesNotThrow(() => Code.NotNullNorEmpty(nonEmpty, "arg00"));
+			Assert.DoesNotThrow(() => Code.NotNullNorEmpty(nonEmpty2, "arg00"));
 		}
 
 		[Test]

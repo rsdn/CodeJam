@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -56,44 +55,44 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Ensures that supplied enumerable is not empty.
+		/// Ensures that supplied enumerable is not null nor empty.
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">The argument.</param>
 		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static ArgumentAssertion<IEnumerable<T>> NotEmpty<T>(this ArgumentAssertion<IEnumerable<T>> arg)
+		public static ArgumentAssertion<IEnumerable<T>> NotNullNorEmpty<T>(this ArgumentAssertion<IEnumerable<T>> arg)
 		{
-			Code.NotEmpty(arg.Argument, arg.ArgumentName);
+			Code.NotNullNorEmpty(arg.Argument, arg.ArgumentName);
 			return arg;
 		}
 
 		/// <summary>
-		/// Ensures that supplied collection is not empty.
+		/// Ensures that supplied collection is not null nor empty.
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">The argument.</param>
 		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static ArgumentAssertion<ICollection<T>> NotEmpty<T>(this ArgumentAssertion<ICollection<T>> arg)
+		public static ArgumentAssertion<ICollection<T>> NotNullNorEmpty<T>(this ArgumentAssertion<ICollection<T>> arg)
 		{
-			Code.NotEmpty(arg.Argument, arg.ArgumentName);
+			Code.NotNullNorEmpty(arg.Argument, arg.ArgumentName);
 			return arg;
 		}
 
 		/// <summary>
-		/// Ensures that supplied array is not empty.
+		/// Ensures that supplied array is not null nor empty.
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">The argument.</param>
 		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static ArgumentAssertion<T[]> NotEmpty<T>(this ArgumentAssertion<T[]> arg)
+		public static ArgumentAssertion<T[]> NotNullNorEmpty<T>(this ArgumentAssertion<T[]> arg)
 		{
-			Code.NotEmpty(arg.Argument, arg.ArgumentName);
+			Code.NotNullNorEmpty(arg.Argument, arg.ArgumentName);
 			return arg;
 		}
 
@@ -127,9 +126,10 @@ namespace CodeJam
 		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
+		[ContractAnnotation("condition: false => halt")]
 		public static ArgumentAssertion<T> Assert<T>(
 			this ArgumentAssertion<T> arg,
-			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
+			bool condition,
 			[NotNull] string message)
 		{
 			Code.AssertArgument(condition, arg.ArgumentName, message);
@@ -145,9 +145,10 @@ namespace CodeJam
 		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
+		[ContractAnnotation("condition: false => halt")]
 		public static ArgumentAssertion<T> Assert<T>(
 			this ArgumentAssertion<T> arg,
-			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
+			bool condition,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
 		{

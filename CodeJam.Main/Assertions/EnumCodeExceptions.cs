@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
+
 using JetBrains.Annotations;
 
 using static CodeJam.Internal.CodeExceptionsHelpers;
-using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
@@ -18,9 +17,8 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
-		public static ArgumentOutOfRangeException ArgumentNotDefinedException<TEnum>(
+		[DebuggerHidden, NotNull, MustUseReturnValue]
+		public static ArgumentOutOfRangeException ArgumentNotDefined<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value)
 			where TEnum : struct, Enum
@@ -28,8 +26,9 @@ namespace CodeJam
 			BreakIfAttached();
 			var valueType = value.GetType();
 			return new ArgumentOutOfRangeException(
-				argumentName, value,
-				$"Unexpected value '{value}' of type '{valueType.FullName}'.")
+				argumentName,
+				value,
+				Invariant($"Unexpected value '{value}' of type '{valueType.FullName}'."))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
@@ -41,8 +40,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentFlagSet<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flag)
@@ -50,7 +48,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should not include flag '{flag}'.",
+				Invariant($"The value of the {argumentName} argument ('{value}') should not include flag '{flag}'."),
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
@@ -61,8 +59,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentAnyFlagUnset<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flags)
@@ -70,7 +67,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should include flag '{flags}'.",
+				Invariant($"The value of the {argumentName} argument ('{value}') should include flag '{flags}'."),
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
@@ -81,8 +78,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentAnyFlagSet<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flags)
@@ -90,7 +86,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should not include any flag from '{flags}'.",
+				Invariant($"The value of the {argumentName} argument ('{value}') should not include any flag from '{flags}'."),
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
@@ -101,8 +97,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentFlagUnset<TEnum>(
 			[NotNull, InvokerParameterName] string argumentName,
 			TEnum value, TEnum flag)
@@ -110,7 +105,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"The value of the {argumentName} argument ('{value}') should include any flag from '{flag}'.",
+				Invariant($"The value of the {argumentName} argument ('{value}') should include any flag from '{flag}'."),
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}

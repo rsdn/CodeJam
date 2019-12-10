@@ -97,16 +97,16 @@ namespace CodeJam.IO
 		/// <param name="path">The path.</param>
 		/// <returns><c>true</c> if the path ends with separator char; otherwise, <c>false</c>.</returns>
 		[Pure]
-		public static bool IsWellFormedSimpleName([NotNull] string path) =>
-			IsSimpleName(path) && IsWellFormedRelativePath(path);
+		public static bool IsWellFormedFileName([NotNull] string path) =>
+			IsFileName(path) && IsWellFormedRelativePath(path);
 
 		/// <summary>
-		/// Determines whether the path is a simple file or directory name.
+		/// Determines whether the path is a file or directory name.
 		/// </summary>
 		/// <param name="path">The path.</param>
-		/// <returns><c>true</c> if the path isa simple file or directory name; otherwise, <c>false</c>.</returns>
+		/// <returns><c>true</c> if the path is a file or directory name; otherwise, <c>false</c>.</returns>
 		[Pure]
-		public static bool IsSimpleName([NotNull] string path)
+		public static bool IsFileName([NotNull] string path)
 		{
 			Code.NotNullNorEmpty(path, nameof(path));
 

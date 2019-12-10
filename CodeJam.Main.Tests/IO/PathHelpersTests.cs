@@ -17,12 +17,23 @@ namespace CodeJam.IO
 			ValidRelativePath,
 			ValidAbsoluteContainerPath,
 			ValidRelativeContainerPath,
-			ValidSimpleName
+			ValidFileName
 		}
 
 		[TestCase("", PathKind.Throws)]
 		[TestCase(null, PathKind.Throws)]
-		[TestCase(@"a", PathKind.ValidSimpleName)]
+		[TestCase(@"a", PathKind.ValidFileName)]
+		[TestCase(@"a ", PathKind.ValidFileName)]
+		[TestCase(@"a    ", PathKind.ValidFileName)]
+		[TestCase(@"a\t", PathKind.ValidRelativePath)]
+		[TestCase(@"a...", PathKind.ValidFileName)]
+		[TestCase(@"a.", PathKind.ValidFileName)]
+
+		[TestCase(@" a", PathKind.ValidFileName)]
+		[TestCase(@"    a", PathKind.ValidFileName)]
+		[TestCase(@"\ta", PathKind.Invalid)]
+		[TestCase(@"...a", PathKind.ValidFileName)]
+
 		[TestCase(@"a\b", PathKind.ValidRelativePath)]
 		[TestCase(@"a\b\", PathKind.ValidRelativeContainerPath)]
 		[TestCase(@"a/b", PathKind.ValidRelativePath)]
@@ -40,8 +51,8 @@ namespace CodeJam.IO
 		[TestCase(@"\\a\b\", PathKind.ValidAbsoluteContainerPath)]
 		[TestCase(@"\\a\\b\", PathKind.Invalid)]
 		[TestCase(@"\\a\b/", PathKind.Invalid)]
-		[TestCase(@".a", PathKind.ValidSimpleName)]
-		[TestCase(@".a.b", PathKind.ValidSimpleName)]
+		[TestCase(@".a", PathKind.ValidFileName)]
+		[TestCase(@".a.b", PathKind.ValidFileName)]
 		[TestCase(@"..a\", PathKind.ValidRelativeContainerPath)]
 		[TestCase(@"..a.b\", PathKind.ValidRelativeContainerPath)]
 		[TestCase(@"..a..\", PathKind.ValidRelativeContainerPath)]
@@ -67,8 +78,8 @@ namespace CodeJam.IO
 		[TestCase(@"a:\a\..\a..b\", PathKind.Invalid)]
 		[TestCase(@"\", PathKind.Invalid)]
 		[TestCase(@"/", PathKind.Invalid)]
-		[TestCase(@"~", PathKind.ValidSimpleName)]
-		[TestCase(@"a", PathKind.ValidSimpleName)]
+		[TestCase(@"~", PathKind.ValidFileName)]
+		[TestCase(@"a", PathKind.ValidFileName)]
 		[TestCase(@"a:", PathKind.Invalid)]
 		[TestCase(@"a\", PathKind.ValidRelativeContainerPath)]
 		[TestCase(@"a/", PathKind.ValidRelativeContainerPath)]
@@ -112,8 +123,8 @@ namespace CodeJam.IO
 		[TestCase(@"a:\/a", PathKind.Invalid)]
 		[TestCase(@"a\\a", PathKind.ValidRelativePath)]
 		[TestCase(@"a\/a", PathKind.ValidRelativePath)]
-		[TestCase(@"com0", PathKind.ValidSimpleName)]
-		[TestCase(@"aux", PathKind.ValidSimpleName)]
+		[TestCase(@"com0", PathKind.ValidFileName)]
+		[TestCase(@"aux", PathKind.ValidFileName)]
 		public void TestIsWellFormedPath(string path, PathKind pathState)
 		{
 			switch (pathState)
@@ -123,49 +134,49 @@ namespace CodeJam.IO
 					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedAbsolutePath(path));
 					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedRelativePath(path));
 					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedContainerPath(path));
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedSimpleName(path));
+					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedFileName(path));
 					break;
 				case PathKind.Invalid:
 					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), false);
 					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), false);
 					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), false);
 					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedSimpleName(path), false);
+					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidAbsolutePath:
 					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), false);
 					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedSimpleName(path), false);
+					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidAbsoluteContainerPath:
 					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), false);
 					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedSimpleName(path), false);
+					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidRelativePath:
 					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), false);
 					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedSimpleName(path), false);
+					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidRelativeContainerPath:
 					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), false);
 					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedSimpleName(path), false);
+					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
 					break;
-				case PathKind.ValidSimpleName:
+				case PathKind.ValidFileName:
 					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), false);
 					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), true);
 					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedSimpleName(path), true);
+					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), true);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(pathState), pathState, null);
@@ -236,18 +247,18 @@ namespace CodeJam.IO
 		[TestCase(@"a:/", false)]
 		[TestCase(@"a:\a", false)]
 		[TestCase(@"a:/a", false)]
-		public void TestIsSimpleName(string path, bool? state)
+		public void TestIsFileName(string path, bool? state)
 		{
 			switch (state)
 			{
 				case null:
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsSimpleName(path));
+					Assert.Throws<ArgumentException>(() => PathHelpers.IsFileName(path));
 					break;
 				case true:
-					Assert.AreEqual(PathHelpers.IsSimpleName(path), true);
+					Assert.AreEqual(PathHelpers.IsFileName(path), true);
 					break;
 				case false:
-					Assert.AreEqual(PathHelpers.IsSimpleName(path), false);
+					Assert.AreEqual(PathHelpers.IsFileName(path), false);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(state), state, null);
