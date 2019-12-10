@@ -2,10 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
-
 using JetBrains.Annotations;
-
-using static CodeJam.CodeExceptions;
+using static CodeJam.Internal.CodeExceptionsHelpers;
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam.IO
@@ -183,7 +181,7 @@ namespace CodeJam.IO
 		{
 			BreakIfAttached();
 			return new IOException(
-				FormatMessage(messageFormat, args))
+				FormatExceptionMessage(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 

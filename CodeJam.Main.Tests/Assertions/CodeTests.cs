@@ -4,6 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
+using CodeJam.Internal;
+
 using NUnit.Framework;
 
 namespace CodeJam.Assertions
@@ -15,14 +17,14 @@ namespace CodeJam.Assertions
 	public class CodeTests
 	{
 		[Test]
-		public void TestNotNull()
+		public void TestLogging()
 		{
-			var log = new StringWriter();
-			var listener = new TextWriterTraceListener(log)
+			var logWriter = new StringWriter();
+			var listener = new TextWriterTraceListener(logWriter)
 			{
 				TraceOutputOptions = TraceOptions.None
 			};
-			var ts = CodeExceptions.CodeTraceSource;
+			var ts = CodeExceptionsHelpers.CodeTraceSource;
 			var logLevel = ts.Switch.Level;
 			try
 			{
@@ -31,16 +33,28 @@ namespace CodeJam.Assertions
 
 				var ex = Assert.Throws<ArgumentNullException>(() => Code.NotNull<object>(null, "arg00"));
 				Assert.That(ex.Message, Does.Contain("arg00"));
-				Assert.That(log.ToString(), Does.Contain(ex.Message));
+
+				var logOutput = logWriter.ToString();
+				Assert.That(logOutput, Does.Contain(ex.Message));
+				Assert.That(logOutput, Does.Contain(nameof(TestNotNull)));
 
 				Assert.DoesNotThrow(() => Code.NotNull<object>("Hello!", "arg00"));
-				Assert.That(log.ToString(), Does.Not.Contain("Hello!"));
+				logOutput = logWriter.ToString();
+				Assert.That(logOutput, Does.Not.Contain("Hello!"));
 			}
 			finally
 			{
 				ts.Listeners.Remove(listener);
 				ts.Switch.Level = logLevel;
 			}
+		}
+		[Test]
+		public void TestNotNull()
+		{
+			var ex = Assert.Throws<ArgumentNullException>(() => Code.NotNull<object>(null, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+
+			Assert.DoesNotThrow(() => Code.NotNull<object>("Hello!", "arg00"));
 		}
 
 		[Test]

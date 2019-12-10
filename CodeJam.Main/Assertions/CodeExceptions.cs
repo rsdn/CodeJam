@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Text;
-
-using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
+using static CodeJam.Internal.CodeExceptionsHelpers;
 using static CodeJam.Targeting.MethodImplOptionsEx;
-
-using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam
 {
@@ -18,103 +13,6 @@ namespace CodeJam
 	[PublicAPI]
 	public static class CodeExceptions
 	{
-		#region Behavior setup and implementation helpers
-		/// <summary>
-		/// If true, breaks execution if debugger is attached and assertion is failed.
-		/// Enabled by default.
-		/// </summary>
-		/// <value><c>true</c> if the execution will break on exception creation; otherwise, <c>false</c>.</value>
-		public static bool BreakOnException { get; set; } = true;
-
-		/// <summary>BreaksExecution if debugger attached.</summary>
-		[DebuggerHidden, MethodImpl(AggressiveInlining)]
-		public static void BreakIfAttached()
-		{
-			if (BreakOnException && Debugger.IsAttached)
-				Debugger.Break();
-		}
-
-		/// <summary>
-		/// Formats message or returns <paramref name="messageFormat"/> as it is if <paramref name="args"/> are null or empty.
-		/// </summary>
-		/// <param name="messageFormat">The message format.</param>
-		/// <param name="args">The arguments.</param>
-		/// <returns>Formatted string.</returns>
-		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[StringFormatMethod("messageFormat")]
-		internal static string FormatMessage([NotNull] string messageFormat, [CanBeNull] params object[] args) =>
-			(args == null || args.Length == 0)
-				? messageFormat
-				: string.Format(CultureInfo.InvariantCulture, messageFormat, args);
-
-		private static string ToInv<T>([NotNull] this T value)
-		{
-			if (value is IFormattable f)
-				return f.ToString(null, CultureInfo.InvariantCulture);
-			return value.ToString();
-		}
-
-		/// <summary>Returns trace source for code exceptions.</summary>
-		/// <value>The code trace source.</value>
-		[NotNull] public static TraceSource CodeTraceSource => _codeTraceSource.Value;
-
-		[NotNull]
-		[ItemNotNull]
-		private static readonly Lazy<TraceSource> _codeTraceSource = new Lazy<TraceSource>(
-			() => CreateTraceSource(typeof(Code).Namespace + "." + nameof(CodeTraceSource)));
-
-		[NotNull]
-		private static TraceSource CreateTraceSource([NotNull] string sourceName)
-		{
-			// BASEDON: System.Diagnostics.PresentationTraceSources
-			var traceSource = new TraceSource(sourceName);
-			if (traceSource.Switch.Level == SourceLevels.Off && Debugger.IsAttached)
-			{
-				traceSource.Switch.Level = SourceLevels.Warning;
-			}
-			return traceSource;
-		}
-
-		/// <summary>Logs the exception that will be thrown to the <see cref="CodeTraceSource"/>.</summary>
-		/// <typeparam name="TException">The type of the exception.</typeparam>
-		/// <param name="exception">The exception.</param>
-		/// <returns>The original exception.</returns>
-		[NotNull]
-		internal static TException LogToCodeTraceSourceBeforeThrow<TException>([NotNull] this TException exception)
-			where TException : Exception
-		{
-			var sb = new StringBuilder();
-			exception.ToDiagnosticString(sb);
-			if (exception.StackTrace == null)
-			{
-				sb.Append(StackTraceHelper.GetStackTrace());
-			}
-
-			CodeTraceSource.TraceEvent(TraceEventType.Error, 0, sb.ToString());
-			return exception;
-		}
-
-		/// <summary>Logs the caught exception to the <see cref="CodeTraceSource"/>.</summary>
-		/// <typeparam name="TException">The type of the exception.</typeparam>
-		/// <param name="exception">The exception.</param>
-		/// <returns>The original exception.</returns>
-		internal static TException LogToCodeTraceSourceCaught<TException>([NotNull] this TException exception)
-			where TException : Exception
-		{
-			var sb = new StringBuilder();
-			sb.Append("Swallowed: ");
-			exception.ToDiagnosticString(sb);
-			if (exception.StackTrace == null)
-			{
-				sb.Append(StackTraceHelper.GetStackTrace());
-			}
-
-			CodeTraceSource.TraceEvent(TraceEventType.Warning, 0, sb.ToString());
-			return exception;
-		}
-		#endregion
-
 		#region Argument validation
 		/// <summary>Creates <see cref="ArgumentNullException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
@@ -282,7 +180,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				FormatMessage(messageFormat, args), argumentName)
+				FormatExceptionMessage(messageFormat, args), argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -299,7 +197,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new InvalidOperationException(
-				FormatMessage(messageFormat, args))
+				FormatExceptionMessage(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
@@ -347,7 +245,7 @@ namespace CodeJam
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
 				argumentName, value,
-				FormatMessage(messageFormat, args))
+				FormatExceptionMessage(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -385,7 +283,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new InvalidOperationException(
-				FormatMessage(messageFormat, args))
+				FormatExceptionMessage(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -418,7 +316,7 @@ namespace CodeJam
 			BreakIfAttached();
 			return
 				new ObjectDisposedException(
-					typeofDisposedObject?.FullName, FormatMessage(messageFormat, args))
+					typeofDisposedObject?.FullName, FormatExceptionMessage(messageFormat, args))
 					.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -433,7 +331,7 @@ namespace CodeJam
 		{
 			BreakIfAttached();
 			return new NotSupportedException(
-				FormatMessage(messageFormat, args))
+				FormatExceptionMessage(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion

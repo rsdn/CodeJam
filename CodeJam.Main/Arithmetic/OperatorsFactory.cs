@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
-
 using CodeJam.Collections;
+using CodeJam.Internal;
 using CodeJam.Reflection;
 using CodeJam.Targeting;
 
@@ -412,7 +412,7 @@ namespace CodeJam.Arithmetic
 			}
 			catch (NotSupportedException ex)
 			{
-				ex.LogToCodeTraceSourceCaught();
+				ex.LogToCodeTraceSourceOnCatch(true);
 			}
 			return GetComparerComparison<T>(comparisonType);
 		}
@@ -431,15 +431,14 @@ namespace CodeJam.Arithmetic
 			}
 
 			var comparison = Comparison<T>();
-			return
-				comparisonType switch
-				{
-					ExpressionType.GreaterThan => (a, b) => comparison(a, b) > 0,
-					ExpressionType.GreaterThanOrEqual => (a, b) => comparison(a, b) >= 0,
-					ExpressionType.LessThan => (a, b) => comparison(a, b) < 0,
-					ExpressionType.LessThanOrEqual => (a, b) => comparison(a, b) <= 0,
-					_ => throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType)
-				};
+			return comparisonType switch
+			{
+				ExpressionType.GreaterThan => (a, b) => comparison(a, b) > 0,
+				ExpressionType.GreaterThanOrEqual => (a, b) => comparison(a, b) >= 0,
+				ExpressionType.LessThan => (a, b) => comparison(a, b) < 0,
+				ExpressionType.LessThanOrEqual => (a, b) => comparison(a, b) <= 0,
+				_ => throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType)
+			};
 		}
 		#endregion
 

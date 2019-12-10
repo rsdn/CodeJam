@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
+using CodeJam.Internal;
 using JetBrains.Annotations;
 
 namespace CodeJam.IO
@@ -160,13 +161,12 @@ namespace CodeJam.IO
 
 				if (disposing)
 				{
-					caught?.LogToCodeTraceSourceCaught();
+					caught?.LogToCodeTraceSourceOnCatch(false);
 				}
 			}
 		}
 
 		/// <summary>Wraps reference on a temp file meant to be deleted on dispose</summary>
-		/// <seealso cref="CodeJam.IO.TempData.TempBase"/>
 		[PublicAPI]
 		public sealed class TempFile : TempBase
 		{
@@ -223,7 +223,7 @@ namespace CodeJam.IO
 
 				if (disposing)
 				{
-					caught?.LogToCodeTraceSourceCaught();
+					caught?.LogToCodeTraceSourceOnCatch(false);
 				}
 			}
 		}

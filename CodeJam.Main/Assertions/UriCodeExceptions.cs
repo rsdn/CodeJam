@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
-using static CodeJam.CodeExceptions;
+using static CodeJam.Internal.CodeExceptionsHelpers;
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam

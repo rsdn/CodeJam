@@ -536,8 +536,8 @@ namespace CodeJam.Ranges
 			{
 				RangeBoundaryFromKind.Empty => EmptyString,
 				RangeBoundaryFromKind.Infinite => NegativeInfinityBoundaryString,
-				RangeBoundaryFromKind.Inclusive => (FromInclusiveString + _value),
-				RangeBoundaryFromKind.Exclusive => (FromExclusiveString + _value),
+				RangeBoundaryFromKind.Inclusive => FromInclusiveString + _value,
+				RangeBoundaryFromKind.Exclusive => FromExclusiveString + _value,
 				_ => EmptyString
 			};
 
@@ -563,8 +563,8 @@ namespace CodeJam.Ranges
 			{
 				RangeBoundaryFromKind.Empty => EmptyString,
 				RangeBoundaryFromKind.Infinite => NegativeInfinityBoundaryString,
-				RangeBoundaryFromKind.Inclusive => (FromInclusiveString + _formattableCallback(_value, format, formatProvider)),
-				RangeBoundaryFromKind.Exclusive => (FromExclusiveString + _formattableCallback(_value, format, formatProvider)),
+				RangeBoundaryFromKind.Inclusive => FromInclusiveString + _formattableCallback(_value, format, formatProvider),
+				RangeBoundaryFromKind.Exclusive => FromExclusiveString + _formattableCallback(_value, format, formatProvider),
 				_ => EmptyString
 			};
 		#endregion

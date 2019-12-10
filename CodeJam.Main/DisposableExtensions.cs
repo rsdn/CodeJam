@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using CodeJam.Internal;
+
 using JetBrains.Annotations;
 
 namespace CodeJam
@@ -50,7 +52,7 @@ namespace CodeJam
 				}
 				catch (Exception ex) when (exceptionHandler(ex))
 				{
-					ex.LogToCodeTraceSourceCaught();
+					ex.LogToCodeTraceSourceOnCatch(true);
 				}
 			}
 		}

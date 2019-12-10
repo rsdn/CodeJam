@@ -3,6 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 
+using CodeJam.Internal;
+
 using JetBrains.Annotations;
 
 using NUnit.Framework;
@@ -22,9 +24,9 @@ namespace CodeJam.UseCases.EnumHelpersSamples
 		[UsedImplicitly]
 		public void SetUp()
 		{
-			_breakOnException = CodeExceptions.BreakOnException;
+			_breakOnException = CodeExceptionsHelpers.BreakOnException;
 			_previousCulture = Thread.CurrentThread.CurrentUICulture;
-			CodeExceptions.BreakOnException = false;
+			CodeExceptionsHelpers.BreakOnException = false;
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
 		}
 
@@ -34,7 +36,7 @@ namespace CodeJam.UseCases.EnumHelpersSamples
 		{
 			Code.NotNull(_breakOnException, nameof(_breakOnException));
 			Code.NotNull(_previousCulture, nameof(_previousCulture));
-			CodeExceptions.BreakOnException = _breakOnException.GetValueOrDefault();
+			CodeExceptionsHelpers.BreakOnException = _breakOnException.GetValueOrDefault();
 			Thread.CurrentThread.CurrentUICulture = _previousCulture;
 		}
 		#endregion
