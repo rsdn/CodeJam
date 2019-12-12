@@ -6,6 +6,8 @@ What's new in 3.0.0-beta1
 * Core 3.0 and 3.1 support
 * Move ToHashSet() and GetValueOrDefault() to separate namespace to prevent conflicts
 * Platform targeting reworked
+* Assertions revisited
+* DateTime[Offset] related assertions and extensions
 
 
 What's new in 2.2.1
