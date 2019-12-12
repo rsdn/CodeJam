@@ -192,5 +192,59 @@ namespace CodeJam.Strings
 			DateTimeStyles dateStyle = DateTimeStyles.None) =>
 				DateTime.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out var result) ? (DateTime?)result : null;
 		#endregion
+
+		#region DateTimeOffset
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-specific format to its
+		/// <see cref="Byte"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="dateStyle"/>.
+		/// </param>
+		/// <param name="dateStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <param name="provider">
+		/// An object that supplies culture-specific formatting information about <paramref name="str"/>.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="Byte"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant with style, or
+		/// represents a number less than <see cref="DateTimeOffset.MinValue"/> or greater than <see cref="DateTimeOffset.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static DateTimeOffset? ToDateTimeOffset(
+			[CanBeNull] this string str,
+			DateTimeStyles dateStyle = DateTimeStyles.None,
+			[CanBeNull] IFormatProvider provider = null) =>
+				DateTimeOffset.TryParse(str, provider, dateStyle, out var result) ? (DateTimeOffset?)result : null;
+
+		/// <summary>
+		/// Converts the string representation of a number in a specified style and culture-invariant format to its
+		/// <see cref="DateTimeOffset"/> equivalent. A return value indicates whether the conversion succeeded.
+		/// </summary>
+		/// <param name="str">
+		/// A string containing a number to convert. The string is interpreted using the style specified by
+		/// <paramref name="dateStyle"/>.
+		/// </param>
+		/// <param name="dateStyle">
+		/// A bitwise combination of enumeration values that indicates the style elements that can be present in
+		/// <paramref name="str"/>. Default value is Integer.
+		/// </param>
+		/// <returns>
+		/// When this method returns, contains the <see cref="DateTimeOffset"/> value equivalent of the number contained in
+		/// <paramref name="str"/>, if the conversion succeeded, or null if the conversion failed. The conversion fails if
+		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant with style, or
+		/// represents a number less than <see cref="DateTimeOffset.MinValue"/> or greater than <see cref="DateTimeOffset.MaxValue"/>.
+		/// </returns>
+		[Pure]
+		public static DateTimeOffset? ToDateTimeOffsetInvariant(
+			[CanBeNull] this string str,
+			DateTimeStyles dateStyle = DateTimeStyles.None) =>
+				DateTimeOffset.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out var result) ? (DateTimeOffset?)result : null;
+		#endregion
 	}
 }

@@ -121,6 +121,21 @@
 			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
 		</Compile>
+		<Compile Update="Dates\DateTimeCode.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DateTimeCode.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Dates\DebugDateTimeCode.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DebugDateTimeCode.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Dates\DebugDateTimeOffsetCode.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DebugDateTimeOffsetCode.tt</DependentUpon>
+		</Compile>
 		<None Update="Algorithms\Algorithms.EqualRange.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>Algorithms.EqualRange.generated.cs</LastGenOutput>
@@ -160,8 +175,19 @@
 		<Compile Update="Assertions\DebugCode.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DebugCode.tt</DependentUpon>
-			<DesignTime>True</DesignTime>
 		</Compile>
+		<None Update="Dates\DateTimeCode.tt">
+		  <LastGenOutput>DateTimeCode.generated.cs</LastGenOutput>
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+		<None Update="Dates\DebugDateTimeOffsetCode.tt">
+		  <LastGenOutput>DebugDateTimeOffsetCode.generated.cs</LastGenOutput>
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+		<None Update="Dates\DebugDateTimeCode.tt">
+		  <LastGenOutput>DebugDateTimeCode.generated.cs</LastGenOutput>
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		</None>
 		<None Update="Assertions\DebugCode.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>DebugCode.generated.cs</LastGenOutput>
@@ -213,7 +239,6 @@
 		<Compile Update="Dates\DateTimeExtensions.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DateTimeExtensions.tt</DependentUpon>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Dates\DateTimeExtensions.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -222,7 +247,6 @@
 		<Compile Update="Dates\DateTimeRangeExtensions.generated.cs">
 			<DependentUpon>DateTimeRangeExtensions.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Dates\DateTimeRangeExtensions.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -255,7 +279,6 @@
 		<Compile Update="Ranges\[Boundaries]\RangeBoundaryTo`1.generated.cs">
 			<DependentUpon>RangeBoundaryTo`1.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Boundaries]\RangeBoundaryTo`1.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -264,7 +287,6 @@
 		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.generated.cs">
 			<DependentUpon>CompositeRange`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.Operations.generated.cs">
 			<DependentUpon>CompositeRange`2.Operations.tt</DependentUpon>
@@ -297,7 +319,6 @@
 		<Compile Update="Ranges\[Ranges]\Range`2.generated.cs">
 			<DependentUpon>Range`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Ranges\[Ranges]\Range`2.Operations.generated.cs">
 			<DependentUpon>Range`2.Operations.tt</DependentUpon>
@@ -322,7 +343,6 @@
 		<Compile Update="Ranges\Range.FactoryMethods.generated.cs">
 			<DependentUpon>Range.FactoryMethods.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\Range.FactoryMethods.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -387,7 +407,6 @@
 		<Compile Update="Threading\TaskHelper.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>TaskHelper.tt</DependentUpon>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Threading\TaskHelper.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>

@@ -22,7 +22,7 @@ namespace CodeJam
 			return new ArgumentNullException(argumentName).LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <see cref="ArgumentNullException"/>.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for null collection item.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MustUseReturnValue]

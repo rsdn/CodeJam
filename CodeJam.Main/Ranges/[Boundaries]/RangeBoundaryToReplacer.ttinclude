@@ -15,40 +15,36 @@
 				Pattern = "From",
 				Replacement = "To",
 				ThrowOnFail = false,
-				WholeWord = true,
-				Mode = ReplaceMode.Swap
+				Match = MatchMode.WholeWord,
+				Replace = ReplaceMode.Swap
 			},
 			new ReplaceInfo // Swap BoundaryFrom <> BoundaryTo
 			{
 				Pattern = "BoundaryFrom",
 				Replacement = "BoundaryTo",
 				ThrowOnFail = true,
-				WholeWord = false,
-				Mode = ReplaceMode.Swap
+				Replace = ReplaceMode.Swap
 			},
 			new ReplaceInfo // Swap Negative <> Positive
 			{
 				Pattern = "Negative",
 				Replacement = "Positive",
 				ThrowOnFail = false,
-				WholeWord = false,
-				Mode = ReplaceMode.Swap
+				Replace = ReplaceMode.Swap
 			},
 			new ReplaceInfo // Swap negative <> positive
 			{
 				Pattern = "negative",
 				Replacement = "positive",
 				ThrowOnFail = false,
-				WholeWord = false,
-				Mode = ReplaceMode.Swap
+				Replace = ReplaceMode.Swap
 			},
 			new ReplaceInfo // Swap -∞ <> +∞
 			{
 				Pattern = "-∞",
 				Replacement = "+∞",
 				ThrowOnFail = false,
-				WholeWord = false,
-				Mode = ReplaceMode.Swap
+				Replace = ReplaceMode.Swap
 			});
 	}
 #>

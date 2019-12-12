@@ -4,9 +4,6 @@
 
 	private void Run()
 	{
-		WriteLine(@"using static CodeJam.DebugCode;");
-		WriteLine("");
-
 		const string message =
 			"The name of the template should follow the pattern 'Debug' + AssertionFile + '.tt'. " +
 			"The name of the assertion class should be suffixed with 'Code'. " +
@@ -21,8 +18,19 @@
 		}
 
 		var oldClassName = newClassName.Substring("Debug".Length);
-		Transform(
+		Run(
 			oldClassName + ".cs",
+			oldClassName,
+			newClassName);
+	}
+
+	private void Run(string fileName, string oldClassName, string newClassName)
+	{
+		WriteLine(@"using static CodeJam.DebugCode;");
+		WriteLine("");
+
+		Transform(
+			fileName,
 			new ReplaceInfo // Rename the class (add Debug prefix to the name)
 			{
 				Pattern = "class " + oldClassName,

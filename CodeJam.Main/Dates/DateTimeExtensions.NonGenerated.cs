@@ -39,5 +39,33 @@ namespace CodeJam.Dates
 		/// <returns>Count of days in year.</returns>
 		[Pure]
 		public static int DaysInYear(this DateTimeOffset date) => DateTime.IsLeapYear(date.Year) ? 366 : 365;
+
+		/// <summary>
+		/// Determines whether this instance is UTC date time (with zero <see cref="DateTimeOffset.Offset"/>).
+		/// </summary>
+		/// <param name="date">The date.</param>
+		/// <returns>
+		///   <c>true</c> if the specified date is UTC; otherwise, <c>false</c>.
+		/// </returns>
+		[Pure]
+		public static bool IsUtc(this DateTimeOffset date) => date.Offset == TimeSpan.Zero;
+
+		/// <summary>
+		/// Returns value with Date and Offset components.
+		/// </summary>
+		[Pure]
+		public static DateTimeOffset TruncateTime(this DateTimeOffset date) => new DateTimeOffset(date.Date, date.Offset);
+
+		/// <summary>
+		/// Converts value to <see cref="DateTimeOffset"/>.
+		/// </summary>
+		[Pure]
+		public static DateTimeOffset ToOffset(this DateTime date) => new DateTimeOffset(date);
+
+		/// <summary>
+		/// Converts value to <see cref="DateTimeOffset"/>.
+		/// </summary>
+		[Pure]
+		public static DateTimeOffset ToOffset(this DateTime date, TimeSpan offset) => new DateTimeOffset(date, offset);
 	}
 }
