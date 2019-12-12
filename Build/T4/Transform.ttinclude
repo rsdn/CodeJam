@@ -10,17 +10,24 @@
 		Normal, Swap, Ignore
 	}
 
+	internal enum MatchMode
+	{
+		Normal, WholeWord, WholeLine
+	}
+
 	internal class ReplaceInfo
 	{
 		public string Pattern { get; set; }
 		public string Replacement { get; set; }
 		public bool ThrowOnFail { get; set; }
-		public bool WholeWord { get; set; }
 		public bool EscapePattern { get; set; }
-		public ReplaceMode Mode { get; set; }
+		public ReplaceMode Replace { get; set; }
+		public MatchMode Match { get; set; }
 
-		public bool SwapMode => Mode == ReplaceMode.Swap;
-		public bool IgnoreMode => Mode == ReplaceMode.Ignore;
+		public bool SwapMode => Replace == ReplaceMode.Swap;
+		public bool IgnoreMode => Replace == ReplaceMode.Ignore;
+		public bool WholeWordMode => Match == MatchMode.WholeWord;
+		public bool WholeLineMode => Match == MatchMode.WholeLine;
 	}
 
 	// ReSharper disable UnusedMember.Local
@@ -43,15 +50,10 @@
 		var placeholderReplaces = new ConcurrentDictionary<string, string>();
 		Func<string, ReplaceInfo, string> replaceWithPlaceholdersCore = (text, replaceInfo) =>
 		{
-			var pattern = replaceInfo.SwapMode ? replaceInfo.Replacement : replaceInfo.Pattern;
+			var pattern = PreparePattern(
+				replaceInfo.SwapMode ? replaceInfo.Replacement : replaceInfo.Pattern,
+				replaceInfo);
 			var replacement = replaceInfo.SwapMode ? replaceInfo.Pattern : null;
-			if (replaceInfo.SwapMode || replaceInfo.EscapePattern)
-			{
-				pattern = Regex.Escape(pattern);
-			}
-			pattern = replaceInfo.WholeWord
-				? @"(?<=\W|^)" +  pattern + @"(?=\W|$)"
-				: pattern;
 
 			var newText = Regex.Replace(
 				text,
@@ -66,16 +68,11 @@
 
 		Func<string, ReplaceInfo, string> replaceCore = (text, replaceInfo) =>
 		{
-			var pattern = replaceInfo.Pattern;
-			if (replaceInfo.SwapMode || replaceInfo.EscapePattern)
-			{
-				pattern = Regex.Escape(pattern);
-			}
-			pattern = replaceInfo.WholeWord
-				? @"(?<=\W|^)" +  pattern + @"(?=\W|$)"
-				: pattern;
+			var pattern = PreparePattern(replaceInfo.Pattern, replaceInfo);
+			var replacement = replaceInfo.Replacement;
 
-			var newText = Regex.Replace(text, pattern, replaceInfo.Replacement);
+			var newText = Regex.Replace(text, pattern, replacement);
+
 			if (replaceInfo.ThrowOnFail && newText == text)
 				throw new InvalidOperationException("The match for " + pattern + " not found");
 
@@ -103,5 +100,23 @@
 		}
 
 		Write(sourceText);
+	}
+
+	private string PreparePattern(string pattern, ReplaceInfo replaceInfo)
+	{
+		if (replaceInfo.SwapMode || replaceInfo.EscapePattern)
+		{
+			pattern = Regex.Escape(pattern);
+		}
+
+		pattern = replaceInfo.WholeWordMode
+			? @"(?<=\W|^)" + pattern + @"(?=\W|$)"
+			: pattern;
+
+		pattern = replaceInfo.WholeLineMode
+			? @".*" +  pattern + @".*[\r\n]+"
+			: pattern;
+
+		return pattern;
 	}
 #>

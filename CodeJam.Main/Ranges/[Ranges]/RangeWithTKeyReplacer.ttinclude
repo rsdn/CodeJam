@@ -9,7 +9,7 @@
 			new ReplaceInfo // region for non-updateable text
 			{
 				Pattern = @"(?s)\#region T4\-dont\-replace.*?\#endregion",
-				Mode = ReplaceMode.Ignore
+				Replace = ReplaceMode.Ignore
 			},
 			new ReplaceInfo // Fix generic params
 			{
@@ -49,28 +49,28 @@
 			new ReplaceInfo // region for non-updateable text
 			{
 				Pattern = @"(?s)\#region T4\-dont\-replace.*?\#endregion",
-				Mode = ReplaceMode.Ignore
+				Replace = ReplaceMode.Ignore
 			},
 			new ReplaceInfo // Range<T, TKey>
 			{
 				Pattern = "Range<T([^>,]*?)>",
 				Replacement = "Range<T$1, TKey>",
 				ThrowOnFail = true,
-				WholeWord = true
+				Match = MatchMode.WholeWord
 			},
 			new ReplaceInfo // CompositeRange<T, TKey>
 			{
 				Pattern = "CompositeRange<T([^>,]*?)>",
 				Replacement = "CompositeRange<T$1, TKey>",
 				ThrowOnFail = false,
-				WholeWord = true
+				Match = MatchMode.WholeWord
 			},
 			new ReplaceInfo // RangeIntersection<T, TKey>
 			{
 				Pattern = "RangeIntersection<T([^>,]*?)>",
 				Replacement = "RangeIntersection<T$1, TKey>",
 				ThrowOnFail = false,
-				WholeWord = true
+				Match = MatchMode.WholeWord
 			},
 			new ReplaceInfo // SomeMethod<T, TKey2
 			{
@@ -92,28 +92,28 @@
 			new ReplaceInfo // region for non-updateable text
 			{
 				Pattern = @"(?s)\#region T4\-dont\-replace.*?\#endregion",
-				Mode = ReplaceMode.Ignore
+				Replace = ReplaceMode.Ignore
 			},
 			new ReplaceInfo // Range<T, TKey>
 			{
 				Pattern = "Range<T([^>,]*?)>",
 				Replacement = "Range<T$1, TKey>",
 				ThrowOnFail = true,
-				WholeWord = true
+				Match = MatchMode.WholeWord
 			},
 			new ReplaceInfo // CompositeRange<T, TKey>
 			{
 				Pattern = "CompositeRange<T([^>,]*?)>",
 				Replacement = "CompositeRange<T$1, TKey>",
 				ThrowOnFail = false,
-				WholeWord = true
+				Match = MatchMode.WholeWord
 			},
 			new ReplaceInfo // RangeIntersection<T, TKey>
 			{
 				Pattern = "RangeIntersection<T([^>,]*?)>",
 				Replacement = "RangeIntersection<T$1, TKey>",
 				ThrowOnFail = false,
-				WholeWord = true
+				Match = MatchMode.WholeWord
 			},
 			new ReplaceInfo // SomeMethod<T, TKey2
 			{

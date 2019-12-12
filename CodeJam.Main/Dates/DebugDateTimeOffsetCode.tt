@@ -1,0 +1,8 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ include file="$(SolutionDir)Build\T4\DebugCodeGenerator.ttinclude" #>
+<#
+	Run(
+		"DateTimeCode.generated.cs",
+		"DateTimeCode",
+		"DebugDateTimeCode");
+#>

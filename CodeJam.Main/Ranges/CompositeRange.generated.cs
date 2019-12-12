@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Ranges

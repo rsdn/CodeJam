@@ -37,6 +37,25 @@ namespace CodeJam.Dates
 		}
 
 		[Test]
+		public static void TestIsUtc()
+		{
+			var now = DateTimeOffset.Now.ToOffset(TimeSpan.FromHours(1));
+			var utcNow = DateTimeOffset.UtcNow;
+			IsFalse(now.IsUtc());
+			IsTrue(utcNow.IsUtc());
+			IsTrue(now.ToUniversalTime().IsUtc());
+		}
+
+		[Test]
+		public static void TestTruncateTime()
+		{
+			var now = DateTimeOffset.Now.ToOffset(TimeSpan.FromHours(1));
+			var utcNow = DateTimeOffset.UtcNow;
+			AreEqual(now.TruncateTime(), now - now.TimeOfDay);
+			AreEqual(utcNow.TruncateTime(), utcNow - utcNow.TimeOfDay);
+		}
+
+		[Test]
 		public static void TestDateTimeOffsetExtensions()
 		{
 			var d = DateTime.Today.FirstDayOfMonth().AddHours(12);
