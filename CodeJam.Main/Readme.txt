@@ -4,7 +4,7 @@
 What's new in 3.0.0-beta1
 -------------------------
 * Core 3.0 and 3.1 support
-* Move ToHashSet() and GetValueOrDefault() to separate namespece to prevent conflicts
+* Move ToHashSet() and GetValueOrDefault() to separate namespace to prevent conflicts
 * Platform targeting reworked
 
 
