@@ -9,7 +9,6 @@
 
 using static CodeJam.DebugCode;
 
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -52,7 +51,7 @@ namespace CodeJam.IO
 				throw IoCodeExceptions.ArgumentNotWellFormedAbsolutePath(argName, path);
 		}
 
-		/// <summary>Asserts that specified path is well-formed full path.</summary>
+		/// <summary>Asserts that specified path is well-formed relative path.</summary>
 		/// <param name="path">The path.</param>
 		/// <param name="argName">Name of the argument.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
@@ -80,18 +79,18 @@ namespace CodeJam.IO
 				throw IoCodeExceptions.ArgumentNotVolumeOrDirectoryPath(argName, path);
 		}
 
-		/// <summary>Asserts that specified path is well-formed simple name.</summary>
+		/// <summary>Asserts that specified path is well-formed file name.</summary>
 		/// <param name="path">The path.</param>
 		/// <param name="argName">Name of the argument.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void IsWellFormedSimpleName(
+		public static void IsFileName(
 			[NotNull] string path,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
-			if (!PathHelpers.IsWellFormedSimpleName(path))
-				throw IoCodeExceptions.ArgumentNotSimpleName(argName, path);
+			if (!PathHelpers.IsFileName(path))
+				throw IoCodeExceptions.ArgumentNotFileName(argName, path);
 		}
 
 		#region IO path

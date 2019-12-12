@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.CompilerServices;
+
 using JetBrains.Annotations;
+
 using static CodeJam.Internal.CodeExceptionsHelpers;
-using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam.IO
 {
@@ -17,17 +17,16 @@ namespace CodeJam.IO
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static ArgumentException ArgumentNotWellFormedPath(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string path)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				argumentName,
-				$"The path '{path}' is not a valid absolute or not-rooted relative path.")
+				$"The path '{path}' is not a valid absolute or not-rooted relative path.",
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -35,17 +34,16 @@ namespace CodeJam.IO
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static ArgumentException ArgumentNotWellFormedAbsolutePath(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string path)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				argumentName,
-				$"The path '{path}' is not a valid full path.")
+				$"The path '{path}' is not a valid full path.",
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -53,35 +51,33 @@ namespace CodeJam.IO
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static ArgumentException ArgumentRootedOrNotRelativePath(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string path)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				argumentName,
-				$"The path '{path}' is not a valid not-rooted relative path.")
+				$"The path '{path}' is not a valid not-rooted relative path.",
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
-		/// <summary>Creates <see cref="ArgumentException"/> for invalid simple name.</summary>
+		/// <summary>Creates <see cref="ArgumentException"/> for invalid file name.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
-		public static ArgumentException ArgumentNotSimpleName(
+		public static ArgumentException ArgumentNotFileName(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string path)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				argumentName,
-				$"The path '{path}' is not a valid name of the file or a directory.")
+				$"The path '{path}' is not a valid name of the file or a directory.",
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
@@ -89,17 +85,16 @@ namespace CodeJam.IO
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="path">The path being checked.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		public static ArgumentException ArgumentNotVolumeOrDirectoryPath(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string path)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				argumentName,
-				$"The path '{path}' should end with volume or directory separator chars.")
+				$"The path '{path}' should end with volume or directory separator chars.",
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 		#endregion
@@ -109,8 +104,7 @@ namespace CodeJam.IO
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="filePath">The file being checked.</param>
 		/// <returns>Initialized instance of <see cref="FileNotFoundException" />.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static FileNotFoundException ArgumentDirectoryExistsFileExpected(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string filePath)
@@ -125,8 +119,7 @@ namespace CodeJam.IO
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="directoryPath">The directory being checked.</param>
 		/// <returns>Initialized instance of <see cref="DirectoryNotFoundException" />.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static DirectoryNotFoundException ArgumentFileExistsDirectoryExpected(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string directoryPath)
@@ -141,8 +134,7 @@ namespace CodeJam.IO
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="filePath">The file being checked.</param>
 		/// <returns>Initialized instance of <see cref="FileNotFoundException" />.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static FileNotFoundException ArgumentFileNotFound(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string filePath)
@@ -156,8 +148,7 @@ namespace CodeJam.IO
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="directoryPath">The directory being checked.</param>
 		/// <returns>Initialized instance of <see cref="DirectoryNotFoundException" />.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static DirectoryNotFoundException ArgumentDirectoryNotFound(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string directoryPath)
@@ -171,9 +162,8 @@ namespace CodeJam.IO
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="IOException"/>.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		[MustUseReturnValue]
 		// ReSharper disable once InconsistentNaming
 		public static IOException IOException(
 			[NotNull] string messageFormat,
@@ -181,15 +171,14 @@ namespace CodeJam.IO
 		{
 			BreakIfAttached();
 			return new IOException(
-				FormatExceptionMessage(messageFormat, args))
+				InvariantFormat(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
 		/// <summary>Creates <see cref="IOException" /> for file that should not exist.</summary>
 		/// <param name="filePath">The file being checked.</param>
 		/// <returns>Initialized instance of <see cref="IOException" />.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static IOException FileExists([NotNull] string filePath)
 		{
 			BreakIfAttached();
@@ -200,8 +189,7 @@ namespace CodeJam.IO
 		/// <summary>Creates <see cref="IOException" /> for directory that should not exist.</summary>
 		/// <param name="directoryPath">The directory being checked.</param>
 		/// <returns>Initialized instance of <see cref="IOException" />.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static IOException DirectoryExists([NotNull] string directoryPath)
 		{
 			BreakIfAttached();

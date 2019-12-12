@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
@@ -24,41 +26,31 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNull<T>(
-			[CanBeNull, NoEnumeration, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] T arg,
+			[CanBeNull, NoEnumeration] T arg,
 			[NotNull, InvokerParameterName] string argName) where T : class
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
 		}
 
-		/// <summary>Ensures that all items in <paramref name="arg"/> != <c>null</c></summary>
+		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
 		/// <param name="argName">Name of the argument.</param>
+		/// <remarks>
+		/// This version enables not-null assertions for generic methods without
+		/// <code>where T : class</code> constraint.
+		/// </remarks>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void ItemNotNull<T>(
-			[NotNull] IEnumerable<T> arg,
-			[NotNull, InvokerParameterName] string argName) where T : class
-		{
-			foreach (var item in arg)
-				if (item == null)
-					throw CodeExceptions.ArgumentItemNull(argName);
-		}
-
-		/// <summary>Ensures that <paramref name="arg"/> and its all items != <c>null</c></summary>
-		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
-		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
-		[DebuggerHidden, MethodImpl(AggressiveInlining)]
-		[AssertionMethod]
-		public static void NotNullAndItemNotNull<T>(
-			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] IEnumerable<T> arg,
-			[NotNull, InvokerParameterName] string argName) where T : class
+		[ContractAnnotation("arg: null => halt")]
+		public static void GenericNotNull<T>(
+			[CanBeNull, NoEnumeration] T arg,
+			[NotNull, InvokerParameterName] string argName)
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
-			ItemNotNull(arg, argName);
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
@@ -69,7 +61,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNull<T>(
-			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] T? arg,
+			[CanBeNull] T? arg,
 			[NotNull, InvokerParameterName] string argName) where T : struct
 		{
 			if (arg == null)
@@ -77,44 +69,58 @@ namespace CodeJam
 		}
 
 		/// <summary>
-		/// Ensures that supplied enumerable is not empty.
+		/// Ensures that supplied enumerable is not null nor empty.
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Enumerable.</param>
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void NotEmpty<T>([NotNull] IEnumerable<T> arg, [NotNull, InvokerParameterName] string argName)
+		[ContractAnnotation("arg: null => halt")]
+		public static void NotNullNorEmpty<T>(
+			[CanBeNull, InstantHandle] IEnumerable<T> arg,
+			[NotNull, InvokerParameterName] string argName)
 		{
-			using var en = arg.GetEnumerator();
-			if (!en.MoveNext())
+			if (arg == null)
+				throw CodeExceptions.ArgumentNull(argName);
+			if (!arg.Any())
 				throw CodeExceptions.ArgumentEmpty(argName);
 		}
 
 		/// <summary>
-		/// Ensures that supplied collection is not empty.
+		/// Ensures that supplied collection is not null nor empty.
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Collection.</param>
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void NotEmpty<T>([NotNull] ICollection<T> arg, [NotNull, InvokerParameterName] string argName)
+		[ContractAnnotation("arg: null => halt")]
+		public static void NotNullNorEmpty<T>(
+			[CanBeNull] ICollection<T> arg,
+			[NotNull, InvokerParameterName] string argName)
 		{
+			if (arg == null)
+				throw CodeExceptions.ArgumentNull(argName);
 			if (arg.Count == 0)
 				throw CodeExceptions.ArgumentEmpty(argName);
 		}
 
 		/// <summary>
-		/// Ensures that supplied array is not empty.
+		/// Ensures that supplied array is not null nor empty.
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Array.</param>
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void NotEmpty<T>([NotNull] T[] arg, [NotNull, InvokerParameterName] string argName)
+		[ContractAnnotation("arg: null => halt")]
+		public static void NotNullNorEmpty<T>(
+			[CanBeNull] T[] arg,
+			[NotNull, InvokerParameterName] string argName)
 		{
+			if (arg == null)
+				throw CodeExceptions.ArgumentNull(argName);
 			if (arg.Length == 0)
 				throw CodeExceptions.ArgumentEmpty(argName);
 		}
@@ -124,9 +130,9 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg:null => stop")]
+		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty(
-			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] string arg,
+			[CanBeNull] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (string.IsNullOrEmpty(arg))
@@ -138,13 +144,44 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg:null => stop")]
+		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorWhiteSpace(
-			[CanBeNull, AssertionCondition(AssertionConditionType.IS_NOT_NULL)] string arg,
+			[CanBeNull] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrWhiteSpace())
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
+		}
+
+		/// <summary>Ensures that <paramref name="arg"/> and its all items != <c>null</c></summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		[ContractAnnotation("arg: null => halt")]
+		public static void NotNullAndItemNotNull<T>(
+			[CanBeNull, InstantHandle] IEnumerable<T> arg,
+			[NotNull, InvokerParameterName] string argName) where T : class
+		{
+			if (arg == null)
+				throw CodeExceptions.ArgumentNull(argName);
+			ItemNotNull(arg, argName);
+		}
+
+		/// <summary>Ensures that all items in <paramref name="arg"/> != <c>null</c></summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void ItemNotNull<T>(
+			[NotNull, InstantHandle] IEnumerable<T> arg,
+			[NotNull, InvokerParameterName] string argName) where T : class
+		{
+			foreach (var item in arg)
+				if (item == null)
+					throw CodeExceptions.ArgumentItemNull(argName);
 		}
 
 		/// <summary>Assertion for the argument value</summary>
@@ -155,7 +192,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("condition: false => halt")]
 		public static void AssertArgument(
-			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
+			bool condition,
 			[NotNull, InvokerParameterName] string argName,
 			[NotNull] string message)
 		{
@@ -172,7 +209,7 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		[ContractAnnotation("condition: false => halt")]
 		public static void AssertArgument(
-			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
+			bool condition,
 			[NotNull, InvokerParameterName] string argName,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
@@ -245,8 +282,8 @@ namespace CodeJam
 		/// <param name="argName">The name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void ValidCount(int count, [NotNull, InvokerParameterName] string argName)
-			=> InRange(count, argName, 0, int.MaxValue);
+		public static void ValidCount(int count, [NotNull, InvokerParameterName] string argName) =>
+			InRange(count, argName, 0, int.MaxValue);
 
 		/// <summary>Asserts if the passed value is not a valid count.</summary>
 		/// <param name="count">The count value.</param>
@@ -254,10 +291,11 @@ namespace CodeJam
 		/// <param name="length">The length.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void ValidCount(int count,
+		public static void ValidCount(
+			int count,
 			[NotNull, InvokerParameterName] string argName,
-			int length)
-				=> InRange(count, argName, 0, length);
+			int length) =>
+			InRange(count, argName, 0, length);
 		#endregion
 
 		#region Argument validation - valid index
@@ -339,7 +377,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("condition: false => halt")]
 		public static void AssertState(
-			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
+			bool condition,
 			[NotNull] string message)
 		{
 			if (!condition)
@@ -354,7 +392,7 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		[ContractAnnotation("condition: false => halt")]
 		public static void AssertState(
-			[AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition,
+			bool condition,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
 		{
@@ -371,7 +409,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("condition: true => halt")]
 		public static void BugIf(
-			[AssertionCondition(AssertionConditionType.IS_FALSE)] bool condition,
+			bool condition,
 			[NotNull] string message)
 		{
 			if (condition)
@@ -386,7 +424,7 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		[ContractAnnotation("condition: true => halt")]
 		public static void BugIf(
-			[AssertionCondition(AssertionConditionType.IS_FALSE)] bool condition,
+			bool condition,
 			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
 		{

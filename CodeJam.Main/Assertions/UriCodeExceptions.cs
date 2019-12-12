@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
 using static CodeJam.Internal.CodeExceptionsHelpers;
-using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
@@ -18,14 +16,16 @@ namespace CodeJam
 		/// <param name="uri">The URI being checked.</param>
 		/// <param name="uriKind">Expected kind of the URI.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException" />.</returns>
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentException ArgumentNotWellFormedUri(
 			[NotNull, InvokerParameterName] string argumentName,
-			string uri, UriKind uriKind)
+			string uri,
+			UriKind uriKind)
 		{
 			BreakIfAttached();
-			return new ArgumentException(argumentName, $"Invalid {uriKind} URI '{uri}'.")
+			return new ArgumentException(
+				Invariant($"Invalid {uriKind}. URI '{uri}'."),
+				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 	}

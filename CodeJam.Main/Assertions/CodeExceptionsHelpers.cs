@@ -9,6 +9,7 @@ using static CodeJam.Targeting.MethodImplOptionsEx;
 
 using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
+// ReSharper disable once CheckNamespace
 namespace CodeJam.Internal
 {
 	/// <summary>Helper class for custom code exception factory classes</summary>
@@ -40,23 +41,24 @@ namespace CodeJam.Internal
 		/// <param name="args">The arguments.</param>
 		/// <returns>Formatted string.</returns>
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-		[DebuggerHidden, NotNull, MethodImpl(AggressiveInlining)]
-		[MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		public static string FormatExceptionMessage([NotNull] string messageFormat, [CanBeNull] params object[] args) =>
+		public static string InvariantFormat([NotNull] string messageFormat, [CanBeNull] params object[] args) =>
 			(args == null || args.Length == 0)
 				? messageFormat
 				: string.Format(CultureInfo.InvariantCulture, messageFormat, args);
 
 		/// <summary>
-		/// Returns culture-invariant representation of passed value.
+		/// Formats message.
 		/// </summary>
-		public static string ToInv<T>([NotNull] this T value)
-		{
-			if (value is IFormattable f)
-				return f.ToString(null, CultureInfo.InvariantCulture);
-			return value.ToString();
-		}
+		/// <param name="messageFormat">The message format.</param>
+		/// <returns>Formatted string.</returns>
+		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[StringFormatMethod("messageFormat")]
+		internal static string Invariant([NotNull] FormattableString messageFormat) =>
+			messageFormat.ToString(CultureInfo.InvariantCulture);
+
 		#endregion
 
 		#region Logging
@@ -65,8 +67,7 @@ namespace CodeJam.Internal
 		[NotNull]
 		public static TraceSource CodeTraceSource => _codeTraceSource.Value;
 
-		[NotNull]
-		[ItemNotNull]
+		[NotNull, ItemNotNull]
 		private static readonly Lazy<TraceSource> _codeTraceSource = new Lazy<TraceSource>(
 			() => CreateTraceSource(typeof(Code).Namespace + "." + nameof(CodeTraceSource)));
 
@@ -84,8 +85,7 @@ namespace CodeJam.Internal
 		/// <typeparam name="TException">The type of the exception.</typeparam>
 		/// <param name="exception">The exception.</param>
 		/// <returns>The original exception.</returns>
-		[NotNull]
-		[MustUseReturnValue]
+		[NotNull, MustUseReturnValue]
 		public static TException LogToCodeTraceSourceBeforeThrow<TException>([NotNull] this TException exception)
 			where TException : Exception
 		{

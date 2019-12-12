@@ -36,7 +36,7 @@ namespace CodeJam
 			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.IsDefined(value))
-				throw EnumCodeExceptions.ArgumentNotDefinedException(argName, value);
+				throw EnumCodeExceptions.ArgumentNotDefined(argName, value);
 		}
 
 		/// <summary>Asserts that all bits of the flags combination are defined.</summary>
@@ -51,7 +51,7 @@ namespace CodeJam
 			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.AreFlagsDefined(argFlags))
-				throw EnumCodeExceptions.ArgumentNotDefinedException(argName, argFlags);
+				throw EnumCodeExceptions.ArgumentNotDefined(argName, argFlags);
 		}
 		#endregion
 

@@ -29,7 +29,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedUri(
-			string uri,
+			[NotNull] string uri,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(uri, argName);
@@ -43,7 +43,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedAbsoluteUri(
-			string uri,
+			[NotNull] string uri,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(uri, argName);
@@ -57,7 +57,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedRelativeUri(
-			string uri,
+			[NotNull] string uri,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(uri, argName);
