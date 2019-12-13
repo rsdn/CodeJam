@@ -1,10 +1,13 @@
 ﻿CodeJam.Blocks 3.0.0-beta1 Release Notes
 ----------------------------------------
 
-What's new in 3.0.0-beta1
+What's new in 3.0.1-beta1
 -------------------------
 * Core 3.0 and 3.1 support
 * Platform targeting reworked
+* Symbols package added
+
+3.0.0 has invalid package version number
 
 What's new in 2.2.0-beta1
 -------------------------

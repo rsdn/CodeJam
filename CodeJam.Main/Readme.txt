@@ -1,14 +1,16 @@
 ﻿CodeJam 3.0.0-beta1 Release Notes
 ---------------------------------
 
-What's new in 3.0.0-beta1
+What's new in 3.0.1-beta1
 -------------------------
 * Core 3.0 and 3.1 support
 * Move ToHashSet() and GetValueOrDefault() to separate namespace to prevent conflicts
 * Platform targeting reworked
 * Assertions revisited
 * DateTime[Offset] related assertions and extensions
+* Symbols package added
 
+3.0.0 has invalid package version number
 
 What's new in 2.2.1
 -------------------------
