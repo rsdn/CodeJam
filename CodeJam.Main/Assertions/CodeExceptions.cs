@@ -189,6 +189,21 @@ namespace CodeJam
 			return new InvalidOperationException(InvariantFormat(messageFormat, args))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
+
+		/// <summary>Creates <see cref="OverflowException"/>.</summary>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Initialized instance of <see cref="OverflowException"/>.</returns>
+		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[StringFormatMethod("messageFormat")]
+		public static OverflowException Overflow(
+			[NotNull] string messageFormat,
+			[CanBeNull] params object[] args)
+		{
+			BreakIfAttached();
+			return new OverflowException(InvariantFormat(messageFormat, args))
+				.LogToCodeTraceSourceBeforeThrow();
+		}
 		#endregion
 
 		#region Exceptions for specific scenarios
