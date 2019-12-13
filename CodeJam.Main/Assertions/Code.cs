@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
-using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -149,7 +148,7 @@ namespace CodeJam
 			[CanBeNull] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
-			if (arg.IsNullOrWhiteSpace())
+			if (string.IsNullOrWhiteSpace(arg))
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
 		}
 
