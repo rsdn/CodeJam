@@ -8,6 +8,12 @@ using CodeJam.Arithmetic;
 
 using JetBrains.Annotations;
 
+#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
+using StringEx = System.StringEx;
+#else
+using StringEx = System.String;
+#endif
+
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
@@ -148,7 +154,7 @@ namespace CodeJam
 			[CanBeNull] string arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
-			if (string.IsNullOrWhiteSpace(arg))
+			if (StringEx.IsNullOrWhiteSpace(arg))
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
 		}
 
