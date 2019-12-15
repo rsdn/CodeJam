@@ -9,7 +9,7 @@ conditional compilation directives that throw checks in the Release configuratio
 
 Some methods have overloads for different types. This is done to improve performance.
 
-```
+```C#
 public void Foo(string str, int i, int? ni, string[] collection)
 {
     // Simple argument
@@ -55,7 +55,7 @@ The factory of exceptions thrown by checks is available in the CodeExceptions cl
 
 Placed in the EnumCode/DebugEnumCode.
 
-```
+```C#
 public enum SimpleEnum { A = 1, B = 2, C = 4 }
   
 [Flags]
@@ -113,7 +113,7 @@ public void Foo(SimpleEnum simple, FlagsEnum flags)
 
 Placed in the IOCode/DebugIOCode.
 
-```
+```C#
 public void Foo(string path)
 {
     IoCode.IsWellFormedPath(path, nameof (path));
@@ -128,7 +128,7 @@ public void Foo(string path)
 
 Placed in the UriCode/DebugUriCode.
 
-```
+```C#
 public void Foo(Uri uri)
 {
     UriCode.IsWellFormedUri(uri, nameof (uri));
@@ -141,7 +141,7 @@ public void Foo(Uri uri)
 
 Placed in the DateTimeCode/DebugDateTimeCode. All checks available for both DateTime and DateTimeOffset.
 
-```
+```C#
 public void Foo(DateTime dt)
 {
 	Code.DateOnly(dt, nameof (dt));
