@@ -4,4 +4,4 @@ The main library with general-purpose functionality without specific dependencie
 
 # Main parts
 
-- [Assertions](Assertions/Readme.md.md)
+- [Assertions](Assertions/Readme.md)
