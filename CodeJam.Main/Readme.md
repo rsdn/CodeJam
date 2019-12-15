@@ -5,3 +5,4 @@ The main library with general-purpose functionality without specific dependencie
 # Main parts
 
 - [Assertions](Assertions/Readme.md)
+- [String helpers](Strings/Readme.md)
