@@ -16,6 +16,8 @@ The CodeJam project includes three parts:
 
 ### Main
 
+[Main doc](CodeJam.Main/Readme.md)
+
 CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam main package is a place for
 collaboration and sharing, where developers community can work together on code to be shared by the CodeJam.
 
