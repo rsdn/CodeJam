@@ -30,34 +30,35 @@ namespace CodeJam.Collections
 		#region <#= type #>
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "<#= info.Method #> <#= type #> Array",  ExpectedResult = <#= info.Result #>)]
 		[TestCase(new[] {1},             TestName = "<#= info.Method #> <#= type #> Single", ExpectedResult = 1)]
-		public <#= type #>? <#= info.Method #><#= type #>(int[] source)
-			=> source.Select(v => new Item<<#= type #>>((<#= type #>)v)).<#= info.Method #>(i => i.Value)?.Value;
+		public <#= type #>? <#= info.Method #><#= type #>(int[] source) =>
+			source.Select(v => new Item<<#= type #>>((<#= type #>)v)).<#= info.Method #>(i => i.Value)?.Value;
 
 		[TestCase(arg: new int[0])]
-		public void <#= info.Method #><#= type #>NoElements(int[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<<#= type #>>((<#= type #>)v)).<#= info.Method #>(i => i.Value));
+		public void <#= info.Method #><#= type #>NoElements(int[] source) =>
+			Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<<#= type #>>((<#= type #>)v)).<#= info.Method #>(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "<#= info.Method #> <#= type #> Array",  ExpectedResult = <#= info.Result #>)]
 		[TestCase(new[] {1},             TestName = "<#= info.Method #> <#= type #> Single", ExpectedResult = 1)]
 		[TestCase(new int[0],            TestName = "<#= info.Method #> <#= type #> Empty", ExpectedResult = null)]
-		public <#= type #>? <#= info.Method #>OrDefault<#= type #>(int[] source)
-			=> source.Select(v => new Item<<#= type #>>((<#= type #>)v)).<#= info.Method #>OrDefault(i => i.Value)?.Value;
+		public <#= type #>? <#= info.Method #>OrDefault<#= type #>(int[] source) =>
+			source.Select(v => new Item<<#= type #>>((<#= type #>)v)).<#= info.Method #>OrDefault(i => i.Value)?.Value;
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "<#= info.Method #> <#= type #> Nullable Array",  ExpectedResult = <#= info.Result #>)]
 		[TestCase(new[] {1},             TestName = "<#= info.Method #> <#= type #> Nullable Single", ExpectedResult = 1)]
-		public <#= type #>?  <#= info.Method #><#= type #>Nullable(int[] source)
-			=> source.Select(v => new Item<<#= type #>?>((<#= type #>)v)).<#= info.Method #>(i => i.Value)?.Value;
+		public <#= type #>?  <#= info.Method #><#= type #>Nullable(int[] source) =>
+			source.Select(v => new Item<<#= type #>?>((<#= type #>)v)).<#= info.Method #>(i => i.Value)?.Value;
 
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string[] {null, null})]
-		public void <#= info.Method #><#= type #>NullableNoElements(string[] source)
-			=> Assert.Throws<InvalidOperationException>(() => source.Select(v => new Item<<#= type #>?>((<#= type #>?)(v.To<#= type #>()))).<#= info.Method #>(i => i.Value));
+		public void <#= info.Method #><#= type #>NullableNoElements(string[] source) =>
+			Assert.Throws<InvalidOperationException>(
+				() => source.Select(v => new Item<<#= type #>?>((<#= type #>?)(v.To<#= type #>()))).<#= info.Method #>(i => i.Value));
 
 		[TestCase(new[] {3, 1, 0, 4, 6}, TestName = "<#= info.Method #> <#= type #> Nullable Array",  ExpectedResult = <#= info.Result #>)]
 		[TestCase(new[] {1},             TestName = "<#= info.Method #> <#= type #> Nullable Single", ExpectedResult = 1)]
 		[TestCase(new int[0],            TestName = "<#= info.Method #> <#= type #> Nullable Empty",  ExpectedResult = null)]
-		public <#= type #>?  <#= info.Method #>OrDefault<#= type #>Nullable(int[] source)
-			=> source.Select(v => new Item<<#= type #>?>((<#= type #>)v)).<#= info.Method #>OrDefault(i => i.Value)?.Value;
+		public <#= type #>?  <#= info.Method #>OrDefault<#= type #>Nullable(int[] source) =>
+			source.Select(v => new Item<<#= type #>?>((<#= type #>)v)).<#= info.Method #>OrDefault(i => i.Value)?.Value;
 		#endregion
 
 <#

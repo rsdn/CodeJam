@@ -32,7 +32,7 @@ namespace CodeJam.Metadata
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MetadataException"/> class 
+		/// Initializes a new instance of the <see cref="MetadataException"/> class
 		/// with the specified error message.
 		/// </summary>
 		/// <param name="message">The message to display to the client when the
@@ -44,7 +44,7 @@ namespace CodeJam.Metadata
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MetadataException"/> class 
+		/// Initializes a new instance of the <see cref="MetadataException"/> class
 		/// with the specified error message and InnerException property.
 		/// </summary>
 		/// <param name="message">The message to display to the client when the
@@ -59,7 +59,7 @@ namespace CodeJam.Metadata
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MetadataException"/> class 
+		/// Initializes a new instance of the <see cref="MetadataException"/> class
 		/// with the specified InnerException property.
 		/// </summary>
 		/// <param name="innerException">The InnerException, if any, that threw

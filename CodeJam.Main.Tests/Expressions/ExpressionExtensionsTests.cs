@@ -30,8 +30,8 @@ namespace CodeJam.Expressions
 			return e;
 		}
 
-		private static Func<int,int> Transform(Expression<Func<int,int>> expr)
-			=> expr.Transform(Transform).Compile();
+		private static Func<int, int> Transform(Expression<Func<int, int>> expr) =>
+			expr.Transform(Transform).Compile();
 
 		[Test]
 		public void LambdaTest()
