@@ -143,7 +143,6 @@ namespace CodeJam.Targeting
 #endif
 
 #if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-		[NotNull]
 		[MethodImpl(AggressiveInlining)]
 		public static InterfaceMapping GetInterfaceMap([NotNull] this Type type, Type interfaceType) =>
 			type.GetTypeInfo().GetRuntimeInterfaceMap(interfaceType);
@@ -183,7 +182,7 @@ namespace CodeJam.Targeting
 			return type.GetMethods(bindingAttr).Where(m => m.Name == name).TryFindParametersTypesMatch(types);
 		}
 
-		[NotNull]
+		[CanBeNull]
 		[MethodImpl(AggressiveInlining)]
 		public static ConstructorInfo GetConstructor(
 			[NotNull] this Type type,
@@ -206,48 +205,48 @@ namespace CodeJam.Targeting
 		private static T TryFindParametersTypesMatch<T>(
 			[NotNull, ItemNotNull] this IEnumerable<T> methods,
 			[NotNull, ItemNotNull] Type[] types)
-			where T : MethodBase
-			=> methods.Where(
-				m =>
-				{
-					var parameters = m.GetParameters();
-					if (parameters.Length != types.Length) return false;
-
-					for (var i = 0; i < parameters.Length; i++)
+			where T : MethodBase =>
+				methods.Where(
+					m =>
 					{
-						if (!parameters[i].ParameterType.Equals(types[i])) return false;
-					}
+						var parameters = m.GetParameters();
+						if (parameters.Length != types.Length) return false;
 
-					return true;
-				})
-				.FirstOrDefault();
+						for (var i = 0; i < parameters.Length; i++)
+						{
+							if (!parameters[i].ParameterType.Equals(types[i])) return false;
+						}
+
+						return true;
+					})
+					.FirstOrDefault();
 
 		private const BindingFlags DefaultLookup = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsAssignableFrom([NotNull] this Type type, [NotNull] Type otherType)
-			=> type.GetTypeInfo().IsAssignableFrom(otherType.GetTypeInfo());
+		public static bool GetIsAssignableFrom([NotNull] this Type type, [NotNull] Type otherType) =>
+			type.GetTypeInfo().IsAssignableFrom(otherType.GetTypeInfo());
 
 		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsSubclassOf([NotNull] this Type type, [NotNull] Type c) => type.GetTypeInfo().IsSubclassOf(c);
 
 		[MethodImpl(AggressiveInlining)]
-		public static T GetCustomAttribute<T>([NotNull] this Type type) where T : Attribute
-			=> type.GetTypeInfo().GetCustomAttribute<T>();
+		public static T GetCustomAttribute<T>([NotNull] this Type type) where T : Attribute =>
+			type.GetTypeInfo().GetCustomAttribute<T>();
 
 		[MethodImpl(AggressiveInlining)]
-		public static T GetCustomAttribute<T>([NotNull] this Type type, bool inherit) where T : Attribute
-			=> type.GetTypeInfo().GetCustomAttribute<T>(inherit);
-
-		[NotNull, ItemNotNull]
-		[MethodImpl(AggressiveInlining)]
-		public static Attribute[] GetCustomAttributes([NotNull] this Type type)
-			=> type.GetTypeInfo().GetCustomAttributes().ToArray();
+		public static T GetCustomAttribute<T>([NotNull] this Type type, bool inherit) where T : Attribute =>
+			type.GetTypeInfo().GetCustomAttribute<T>(inherit);
 
 		[NotNull, ItemNotNull]
 		[MethodImpl(AggressiveInlining)]
-		public static Attribute[] GetCustomAttributes([NotNull] this Type type, Type attributeType, bool inherit)
-			=> type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).ToArray();
+		public static Attribute[] GetCustomAttributes([NotNull] this Type type) =>
+			type.GetTypeInfo().GetCustomAttributes().ToArray();
+
+		[NotNull, ItemNotNull]
+		[MethodImpl(AggressiveInlining)]
+		public static Attribute[] GetCustomAttributes([NotNull] this Type type, Type attributeType, bool inherit) =>
+			type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).ToArray();
 #endif
 
 		[MethodImpl(AggressiveInlining)]
@@ -280,7 +279,7 @@ namespace CodeJam.Targeting
 		[MethodImpl(AggressiveInlining)]
 		public static T GetCustomAttributeWithInterfaceSupport<T>([NotNull] this Type type, bool inherit)
 			where T : class =>
-			(T)GetCustomAttributeWithInterfaceSupport(type, typeof(T), inherit);
+				(T)GetCustomAttributeWithInterfaceSupport(type, typeof(T), inherit);
 
 		[MethodImpl(AggressiveInlining)]
 		public static IEnumerable<Attribute> GetCustomAttributesWithInterfaceSupport(
@@ -307,8 +306,8 @@ namespace CodeJam.Targeting
 		[MethodImpl(AggressiveInlining)]
 		public static IEnumerable<T> GetCustomAttributesWithInterfaceSupport<T>([NotNull] this Type type, bool inherit)
 			where T : class =>
-			type.GetCustomAttributesWithInterfaceSupport(typeof(T), inherit)
-				.Cast<T>();
+				type.GetCustomAttributesWithInterfaceSupport(typeof(T), inherit)
+					.Cast<T>();
 
 #if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
 // ICustomAttributeProvider & .GetMetadataToken() are missing if targeting to these frameworks
@@ -331,7 +330,8 @@ namespace CodeJam.Targeting
 		}
 
 		[MethodImpl(AggressiveInlining)]
-		public static T[] GetCustomAttributesWithInterfaceSupport<T>([NotNull] this ICustomAttributeProvider attributeProvider, bool inherit)
+		public static T[] GetCustomAttributesWithInterfaceSupport<T>(
+			[NotNull] this ICustomAttributeProvider attributeProvider, bool inherit)
 			where T : class
 		{
 #if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20

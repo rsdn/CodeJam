@@ -26,8 +26,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<float> list, float value)
-			=> list.UpperBound(value, 0);
+		public static int UpperBound([NotNull, InstantHandle] this IList<float> list, float value) =>
+			list.UpperBound(value, 0);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] > value
@@ -38,8 +38,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<float> list, float value, int startIndex)
-			=> list.UpperBound(value, startIndex, list.Count);
+		public static int UpperBound([NotNull, InstantHandle] this IList<float> list, float value, int startIndex) =>
+			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] > value
@@ -94,8 +94,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<double> list, double value)
-			=> list.UpperBound(value, 0);
+		public static int UpperBound([NotNull, InstantHandle] this IList<double> list, double value) =>
+			list.UpperBound(value, 0);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] > value
@@ -106,8 +106,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<double> list, double value, int startIndex)
-			=> list.UpperBound(value, startIndex, list.Count);
+		public static int UpperBound([NotNull, InstantHandle] this IList<double> list, double value, int startIndex) =>
+			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] > value
@@ -162,8 +162,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value)
-			=> list.UpperBound(value, 0);
+		public static int UpperBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value) =>
+			list.UpperBound(value, 0);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] > value
@@ -174,8 +174,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex)
-			=> list.UpperBound(value, startIndex, list.Count);
+		public static int UpperBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex) =>
+			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] > value
@@ -230,8 +230,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value)
-			=> list.UpperBound(value, 0);
+		public static int UpperBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value) =>
+			list.UpperBound(value, 0);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] > value
@@ -242,8 +242,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex)
-			=> list.UpperBound(value, startIndex, list.Count);
+		public static int UpperBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex) =>
+			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] > value
@@ -298,8 +298,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value)
-			=> list.UpperBound(value, 0);
+		public static int UpperBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value) =>
+			list.UpperBound(value, 0);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] > value
@@ -310,8 +310,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex)
-			=> list.UpperBound(value, startIndex, list.Count);
+		public static int UpperBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex) =>
+			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] > value

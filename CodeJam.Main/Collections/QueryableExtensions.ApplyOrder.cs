@@ -62,8 +62,8 @@ namespace CodeJam.Collections
 		[NotNull, Pure]
 		public static IOrderedQueryable<T> ThenByDescending<T>(
 			[NotNull] this IOrderedQueryable<T> source,
-			[NotNull] string property)
-			=> ApplyOrder(source, property, nameof(ThenByDescending));
+			[NotNull] string property) =>
+			ApplyOrder(source, property, nameof(ThenByDescending));
 
 		[NotNull, Pure]
 		private static IOrderedQueryable<T> ApplyOrder<T>([NotNull] this IQueryable<T> source, [NotNull] string property, [NotNull] string method)

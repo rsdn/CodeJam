@@ -66,7 +66,7 @@ namespace CodeJam.Threading
 		/// <param name="continueOnCapturedContext">Whether to attempt to marshal the continuation back to the captured context.</param>
 		/// <returns>A configured task awaiter for the underlying task.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public ConfiguredTaskAwaitable<T> ConfigureAwait(bool continueOnCapturedContext)
-			=> _task.ConfigureAwait(continueOnCapturedContext);
+		public ConfiguredTaskAwaitable<T> ConfigureAwait(bool continueOnCapturedContext) =>
+			_task.ConfigureAwait(continueOnCapturedContext);
 	}
 }

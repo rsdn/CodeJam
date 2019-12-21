@@ -122,19 +122,16 @@
 			<AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Update="Dates\DateTimeCode.generated.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>DateTimeCode.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DateTimeCode.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Dates\DebugDateTimeCode.generated.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>DebugDateTimeCode.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DebugDateTimeCode.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Dates\DebugDateTimeOffsetCode.generated.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>DebugDateTimeOffsetCode.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DebugDateTimeOffsetCode.tt</DependentUpon>
 		</Compile>
 		<None Update="Algorithms\Algorithms.EqualRange.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -177,16 +174,16 @@
 			<DependentUpon>DebugCode.tt</DependentUpon>
 		</Compile>
 		<None Update="Dates\DateTimeCode.tt">
-		  <LastGenOutput>DateTimeCode.generated.cs</LastGenOutput>
-		  <Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DateTimeCode.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
 		</None>
 		<None Update="Dates\DebugDateTimeOffsetCode.tt">
-		  <LastGenOutput>DebugDateTimeOffsetCode.generated.cs</LastGenOutput>
-		  <Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DebugDateTimeOffsetCode.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
 		</None>
 		<None Update="Dates\DebugDateTimeCode.tt">
-		  <LastGenOutput>DebugDateTimeCode.generated.cs</LastGenOutput>
-		  <Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>DebugDateTimeCode.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
 		</None>
 		<None Update="Assertions\DebugCode.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -431,6 +428,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 </Project>

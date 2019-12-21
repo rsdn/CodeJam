@@ -30,8 +30,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value)
-			=> list.EqualRange(value, 0);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value) =>
+			list.EqualRange(value, 0);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -43,8 +43,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, int startIndex)
-			=> list.EqualRange(value, startIndex, list.Count);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, int startIndex) =>
+			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -102,8 +102,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value)
-			=> list.EqualRange(value, 0);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value) =>
+			list.EqualRange(value, 0);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -115,8 +115,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, int startIndex)
-			=> list.EqualRange(value, startIndex, list.Count);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, int startIndex) =>
+			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -174,8 +174,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value)
-			=> list.EqualRange(value, 0);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value) =>
+			list.EqualRange(value, 0);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -187,8 +187,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex)
-			=> list.EqualRange(value, startIndex, list.Count);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex) =>
+			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -246,8 +246,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value)
-			=> list.EqualRange(value, 0);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value) =>
+			list.EqualRange(value, 0);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -259,8 +259,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex)
-			=> list.EqualRange(value, startIndex, list.Count);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex) =>
+			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -318,8 +318,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value)
-			=> list.EqualRange(value, 0);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value) =>
+			list.EqualRange(value, 0);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -331,8 +331,8 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex)
-			=> list.EqualRange(value, startIndex, list.Count);
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex) =>
+			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where

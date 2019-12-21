@@ -346,24 +346,21 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Member name.
 		/// </summary>
-		public string Name
-			=> MemberInfo.Name;
+		public string Name => MemberInfo.Name;
 
 		/// <summary>
 		/// Gets member value for provided object.
 		/// </summary>
 		/// <param name="o">Object to access.</param>
 		/// <returns>Member value.</returns>
-		public object GetValue(object o)
-			=> Getter(o);
+		public object GetValue(object o) => Getter(o);
 
 		/// <summary>
 		/// Sets member value for provided object.
 		/// </summary>
 		/// <param name="o">Object to access.</param>
 		/// <param name="value">Value to set.</param>
-		public void SetValue(object o, object value)
-			=> Setter(o, value);
+		public void SetValue(object o, object value) => Setter(o, value);
 
 		#endregion
 	}

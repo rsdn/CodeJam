@@ -135,8 +135,7 @@ namespace CodeJam.Reflection
 		/// Creates an instance of <see cref="TypeAccessor{T}"/>.
 		/// </summary>
 		/// <returns>Instance of <see cref="TypeAccessor{T}"/>.</returns>
-		public static TypeAccessor<T> GetAccessor()
-			=> GetAccessor<T>();
+		public static TypeAccessor<T> GetAccessor() => GetAccessor<T>();
 	}
 }
 #endif

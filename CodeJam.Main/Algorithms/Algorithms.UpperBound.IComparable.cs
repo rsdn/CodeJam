@@ -66,7 +66,7 @@ namespace CodeJam
 				TValue value,
 				int startIndex,
 				int endIndex)
-			 where TElement : IComparable<TValue>
+			where TElement : IComparable<TValue>
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);

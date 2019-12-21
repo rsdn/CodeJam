@@ -79,16 +79,16 @@ private void BackportedHeader1(string type) {#>
 		/// </returns>
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this <#=type#><TKey, TValue> dictionary, [NotNull] TKey key)
+		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this <#=type#><TKey, TValue> dictionary, [NotNull] TKey key) =>
 <#+}
 
 private void BackportedBody1() {#>
-			=> GetValueOrDefault(dictionary, key, default(TValue));
+			GetValueOrDefault(dictionary, key, default(TValue));
 
 <#+}
 
 private void BackportedConflictBody1() {#>
-			=> GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key);
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key);
 
 <#+}#>
 
@@ -129,8 +129,9 @@ private void BackportedBody2() {#>
 <#+}
 
 private void BackportedConflictBody2() {#>
-			=> GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
-
+		{
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
+		}
 <#+}#>
 
 <#+
@@ -154,16 +155,16 @@ private void Header1(string type) {#>
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this <#=type#><TKey, TValue> dictionary,
 				[NotNull] TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector)
+				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
 <#+}
 
 private void Body1() {#>
-			=> GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
+			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
 
 <#+}
 
 private void ConflictBody1() {#>
-			=> GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, default(TResult));
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, default(TResult));
 
 <#+}#>
 
@@ -208,7 +209,9 @@ private void Body2() {#>
 <#+}
 
 private void ConflictBody2() {#>
-			=> GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValue);
+		{
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValue);
+		}
 
 <#+}#>
 
@@ -250,7 +253,9 @@ private void Header3(string type) {#>
 <#+}
 
 		private void ConflictBody3() {#>
-			=> GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValueFactory);
+		{
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValueFactory);
+		}
 
 <#+}#>
 
@@ -295,5 +300,7 @@ private void Header3(string type) {#>
 <#+}
 
 		private void ConflictBody4() {#>
-			=> GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValueFactory);
+		{
+			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValueFactory);
+		}
 <#+}#>

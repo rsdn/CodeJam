@@ -193,7 +193,7 @@ namespace CodeJam
 		/// <returns>Detailed exception text.</returns>
 		[Pure]
 		[NotNull]
-		public static string ToDiagnosticString([CanBeNull] this Exception exception)
-			=> exception == null ? "" : exception.ToDiagnosticString(new StringBuilder()).ToString();
+		public static string ToDiagnosticString([CanBeNull] this Exception exception) =>
+			exception == null ? "" : exception.ToDiagnosticString(new StringBuilder()).ToString();
 	}
 }

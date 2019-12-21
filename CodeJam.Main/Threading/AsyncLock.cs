@@ -121,8 +121,8 @@ namespace CodeJam.Threading
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(TimeSpan timeout, CancellationToken cancellation)
-			=> new AwaitableNonDisposable<AsyncLockScope>(AcquireAsyncImpl(timeout, cancellation));
+		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(TimeSpan timeout, CancellationToken cancellation) =>
+			new AwaitableNonDisposable<AsyncLockScope>(AcquireAsyncImpl(timeout, cancellation));
 
 		[NotNull]
 		[MustUseReturnValue("Lock should be disposed")]
