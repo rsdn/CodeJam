@@ -4,7 +4,7 @@ using System.IO;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Internal.CodeExceptionsHelpers;
+using static CodeJam.Internal.CodeExceptionsHelper;
 
 namespace CodeJam.IO
 {

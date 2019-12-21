@@ -11,7 +11,7 @@ namespace CodeJam.UseCases.TempDataSamples
 	[SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
 	public class TempDataUseCases
 	{
-		public void CaseA_NoHelpers()
+		public void CaseA_NoHelper()
 		{
 			// weird one.
 

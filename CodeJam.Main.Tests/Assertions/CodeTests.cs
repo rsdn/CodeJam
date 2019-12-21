@@ -25,7 +25,7 @@ namespace CodeJam.Assertions
 			{
 				TraceOutputOptions = TraceOptions.None
 			};
-			var ts = CodeExceptionsHelpers.CodeTraceSource;
+			var ts = CodeExceptionsHelper.CodeTraceSource;
 			var logLevel = ts.Switch.Level;
 			try
 			{

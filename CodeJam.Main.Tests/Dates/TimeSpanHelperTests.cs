@@ -22,13 +22,13 @@ namespace CodeJam.Dates
 
 			// Too small for timespan resolution
 			Assert.AreEqual(
-				TimeSpanHelpers.FromNanoseconds(time * 10000).Multiply(scale),
-				TimeSpanHelpers.FromNanoseconds(time * 10000 * scale));
+				TimeSpanHelper.FromNanoseconds(time * 10000).Multiply(scale),
+				TimeSpanHelper.FromNanoseconds(time * 10000 * scale));
 
 			// Too small for timespan resolution
 			Assert.AreEqual(
-				TimeSpanHelpers.FromMicroseconds(time * 10000).Multiply(scale),
-				TimeSpanHelpers.FromMicroseconds(time * 10000 * scale));
+				TimeSpanHelper.FromMicroseconds(time * 10000).Multiply(scale),
+				TimeSpanHelper.FromMicroseconds(time * 10000 * scale));
 
 			// HACK: see https://stackoverflow.com/a/5450495 for explanation
 			Assert.AreEqual(
@@ -67,13 +67,13 @@ namespace CodeJam.Dates
 
 			// Too small for timespan resolution
 			Assert.AreEqual(
-				TimeSpanHelpers.FromNanoseconds(time * 10000).Divide(divisor),
-				TimeSpanHelpers.FromNanoseconds(time * 10000 / divisor));
+				TimeSpanHelper.FromNanoseconds(time * 10000).Divide(divisor),
+				TimeSpanHelper.FromNanoseconds(time * 10000 / divisor));
 
 			// Too small for timespan resolution
 			Assert.AreEqual(
-				TimeSpanHelpers.FromMicroseconds(time * 10000).Divide(divisor),
-				TimeSpanHelpers.FromMicroseconds(time * 10000 / divisor));
+				TimeSpanHelper.FromMicroseconds(time * 10000).Divide(divisor),
+				TimeSpanHelper.FromMicroseconds(time * 10000 / divisor));
 
 			// HACK: see https://stackoverflow.com/a/5450495 for explanation
 			Assert.AreEqual(
@@ -122,7 +122,7 @@ namespace CodeJam.Dates
 		{
 			var accurateMs = TimeSpan.FromTicks((long)(timeMs * TimeSpan.TicksPerMillisecond));
 			Assert.AreEqual(
-				TimeSpanHelpers.FromMicroseconds(timeMs * 1000),
+				TimeSpanHelper.FromMicroseconds(timeMs * 1000),
 				accurateMs);
 
 			Assert.AreEqual(
@@ -139,7 +139,7 @@ namespace CodeJam.Dates
 		{
 			var accurateMs = TimeSpan.FromTicks((long)(timeMs * TimeSpan.TicksPerMillisecond));
 			Assert.AreEqual(
-				TimeSpanHelpers.FromNanoseconds(timeMs * 1000 * 1000),
+				TimeSpanHelper.FromNanoseconds(timeMs * 1000 * 1000),
 				accurateMs);
 
 			Assert.AreEqual(

@@ -7,7 +7,7 @@ namespace CodeJam.IO
 {
 	[TestFixture(Category = "IO")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
-	public class PathHelpersTests
+	public class PathHelperTests
 	{
 		public enum PathKind
 		{
@@ -130,53 +130,53 @@ namespace CodeJam.IO
 			switch (pathState)
 			{
 				case PathKind.Throws:
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedPath(path));
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedAbsolutePath(path));
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedRelativePath(path));
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedContainerPath(path));
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsWellFormedFileName(path));
+					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedPath(path));
+					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedAbsolutePath(path));
+					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedRelativePath(path));
+					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedContainerPath(path));
+					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedFileName(path));
 					break;
 				case PathKind.Invalid:
-					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedPath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedAbsolutePath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedRelativePath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedContainerPath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidAbsolutePath:
-					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedPath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedAbsolutePath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedRelativePath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedContainerPath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidAbsoluteContainerPath:
-					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedPath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedAbsolutePath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedRelativePath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedContainerPath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidRelativePath:
-					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedPath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedAbsolutePath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedRelativePath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedContainerPath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidRelativeContainerPath:
-					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedPath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedAbsolutePath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedRelativePath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedContainerPath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedFileName(path), false);
 					break;
 				case PathKind.ValidFileName:
-					Assert.AreEqual(PathHelpers.IsWellFormedPath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedAbsolutePath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedRelativePath(path), true);
-					Assert.AreEqual(PathHelpers.IsWellFormedContainerPath(path), false);
-					Assert.AreEqual(PathHelpers.IsWellFormedFileName(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedPath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedAbsolutePath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedRelativePath(path), true);
+					Assert.AreEqual(PathHelper.IsWellFormedContainerPath(path), false);
+					Assert.AreEqual(PathHelper.IsWellFormedFileName(path), true);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(pathState), pathState, null);
@@ -199,13 +199,13 @@ namespace CodeJam.IO
 			switch (state)
 			{
 				case null:
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsContainerPath(path));
+					Assert.Throws<ArgumentException>(() => PathHelper.IsContainerPath(path));
 					break;
 				case true:
-					Assert.AreEqual(PathHelpers.IsContainerPath(path), true);
+					Assert.AreEqual(PathHelper.IsContainerPath(path), true);
 					break;
 				case false:
-					Assert.AreEqual(PathHelpers.IsContainerPath(path), false);
+					Assert.AreEqual(PathHelper.IsContainerPath(path), false);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(state), state, null);
@@ -226,9 +226,9 @@ namespace CodeJam.IO
 		public void TestEnsureContainerPath(string path, string result)
 		{
 			if (result == null)
-				Assert.Throws<ArgumentException>(() => PathHelpers.IsContainerPath(path));
+				Assert.Throws<ArgumentException>(() => PathHelper.IsContainerPath(path));
 			else
-				Assert.AreEqual(PathHelpers.EnsureContainerPath(path), result);
+				Assert.AreEqual(PathHelper.EnsureContainerPath(path), result);
 		}
 
 		[TestCase(null, null)]
@@ -252,13 +252,13 @@ namespace CodeJam.IO
 			switch (state)
 			{
 				case null:
-					Assert.Throws<ArgumentException>(() => PathHelpers.IsFileName(path));
+					Assert.Throws<ArgumentException>(() => PathHelper.IsFileName(path));
 					break;
 				case true:
-					Assert.AreEqual(PathHelpers.IsFileName(path), true);
+					Assert.AreEqual(PathHelper.IsFileName(path), true);
 					break;
 				case false:
-					Assert.AreEqual(PathHelpers.IsFileName(path), false);
+					Assert.AreEqual(PathHelper.IsFileName(path), false);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(state), state, null);

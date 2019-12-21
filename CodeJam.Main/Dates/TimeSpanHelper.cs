@@ -5,7 +5,7 @@ namespace CodeJam.Dates
 	/// <summary>
 	/// Helper methods for timespan manipulations
 	/// </summary>
-	public static class TimeSpanHelpers
+	public static class TimeSpanHelper
 	{
 		private const long _ticksPerMicrosecond = TimeSpan.TicksPerMillisecond / 1000;
 		private const double _microsecondsPerTick = 1d / _ticksPerMicrosecond;

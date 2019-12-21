@@ -10,7 +10,7 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 
 // ReSharper disable once CheckNamespace
-namespace CodeJam.UseCases.EnumHelpersSamples
+namespace CodeJam.UseCases.EnumHelperSamples
 {
 	[TestFixture(Category = "Assertions")]
 	[SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
@@ -24,9 +24,9 @@ namespace CodeJam.UseCases.EnumHelpersSamples
 		[UsedImplicitly]
 		public void SetUp()
 		{
-			_breakOnException = CodeExceptionsHelpers.BreakOnException;
+			_breakOnException = CodeExceptionsHelper.BreakOnException;
 			_previousCulture = Thread.CurrentThread.CurrentUICulture;
-			CodeExceptionsHelpers.BreakOnException = false;
+			CodeExceptionsHelper.BreakOnException = false;
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
 		}
 
@@ -36,7 +36,7 @@ namespace CodeJam.UseCases.EnumHelpersSamples
 		{
 			Code.NotNull(_breakOnException, nameof(_breakOnException));
 			Code.NotNull(_previousCulture, nameof(_previousCulture));
-			CodeExceptionsHelpers.BreakOnException = _breakOnException.GetValueOrDefault();
+			CodeExceptionsHelper.BreakOnException = _breakOnException.GetValueOrDefault();
 			Thread.CurrentThread.CurrentUICulture = _previousCulture;
 		}
 		#endregion

@@ -17,7 +17,7 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public abstract class TypeAccessor
 	{
-		#region Protected Emit Helpers
+		#region Protected emit helpers
 
 		/// <summary>
 		/// Adds <see cref="MemberAccessor"/>.

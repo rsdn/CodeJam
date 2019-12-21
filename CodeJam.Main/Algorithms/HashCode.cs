@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using CodeJam.Collections;
 
@@ -7,11 +6,11 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
+	// TODO: conflict with System.HashCode.
 	/// <summary>
 	/// Hash code helper methods.
 	/// </summary>
-	// BASEDON https://github.com/dotnet/corefx/blob/master/src/Common/src/System/Numerics/Hashing/HashHelpers.cs
-	// BASEDON https://github.com/dotnet/corefx/blob/master/src/System.ValueTuple/src/System/ValueTuple/ValueTuple.cs
+	// BASEDON https://github.com/dotnet/runtime/blob/master/src/libraries/System.Private.CoreLib/src/System/Numerics/Hashing/HashHelpers.cs#L7
 	[PublicAPI]
 	public static class HashCode
 	{

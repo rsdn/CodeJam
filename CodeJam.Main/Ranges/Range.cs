@@ -1,13 +1,13 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
 
-using static CodeJam.Targeting.MethodImplOptionsEx;
 using static CodeJam.Ranges.RangeInternal;
+using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam.Ranges
 {
+	// TODO: Conflict with System.Range
 	/// <summary>Helper methods for the <seealso cref="Range{T}"/>.</summary>
 	[PublicAPI]
 	public static partial class Range

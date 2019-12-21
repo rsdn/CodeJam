@@ -33,7 +33,7 @@ namespace CodeJam.IO
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
-			if (!PathHelpers.IsWellFormedPath(path))
+			if (!PathHelper.IsWellFormedPath(path))
 				throw IoCodeExceptions.ArgumentNotWellFormedPath(argName, path);
 		}
 
@@ -47,7 +47,7 @@ namespace CodeJam.IO
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
-			if (!PathHelpers.IsWellFormedAbsolutePath(path))
+			if (!PathHelper.IsWellFormedAbsolutePath(path))
 				throw IoCodeExceptions.ArgumentNotWellFormedAbsolutePath(argName, path);
 		}
 
@@ -61,7 +61,7 @@ namespace CodeJam.IO
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
-			if (!PathHelpers.IsWellFormedRelativePath(path))
+			if (!PathHelper.IsWellFormedRelativePath(path))
 				throw IoCodeExceptions.ArgumentRootedOrNotRelativePath(argName, path);
 		}
 
@@ -75,7 +75,7 @@ namespace CodeJam.IO
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
-			if (!PathHelpers.IsWellFormedContainerPath(path))
+			if (!PathHelper.IsWellFormedContainerPath(path))
 				throw IoCodeExceptions.ArgumentNotVolumeOrDirectoryPath(argName, path);
 		}
 
@@ -89,7 +89,7 @@ namespace CodeJam.IO
 			[NotNull, InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
-			if (!PathHelpers.IsFileName(path))
+			if (!PathHelper.IsFileName(path))
 				throw IoCodeExceptions.ArgumentNotFileName(argName, path);
 		}
 

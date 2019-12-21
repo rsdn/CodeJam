@@ -14,7 +14,7 @@ namespace CodeJam.Internal
 {
 	/// <summary>Helper class for custom code exception factory classes</summary>
 	[PublicAPI]
-	public static class CodeExceptionsHelpers
+	public static class CodeExceptionsHelper
 	{
 		#region Setup
 		/// <summary>

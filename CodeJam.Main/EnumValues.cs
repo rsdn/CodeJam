@@ -25,8 +25,7 @@ namespace CodeJam
 			var result = new List<EnumValue>();
 			var actualType = enumType.ToNullableUnderlying();
 
-			var fields = actualType
-				.GetFields(BindingFlags.Public | BindingFlags.Static)
+			var fields = ReflectionEnumHelper.GetFields(actualType)
 				.ToDictionary(m => m.Name, StringComparer.Ordinal);
 			var enumNames = Enum.GetNames(enumType);
 			var enumValues = Enum.GetValues(enumType).Cast<object>();
@@ -49,7 +48,8 @@ namespace CodeJam
 		}
 
 		#region Fields & .ctor
-		[NotNull][ItemNotNull]
+		[NotNull]
+		[ItemNotNull]
 		private readonly EnumValue[] _values;
 
 		[NotNull] private readonly IDictionary<string, EnumValue> _valuesByName;

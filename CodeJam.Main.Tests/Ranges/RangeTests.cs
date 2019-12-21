@@ -5,7 +5,7 @@ using System.Globalization;
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
-using static CodeJam.Ranges.RangeTestHelpers;
+using static CodeJam.Ranges.RangeTestHelper;
 
 namespace CodeJam.Ranges
 {

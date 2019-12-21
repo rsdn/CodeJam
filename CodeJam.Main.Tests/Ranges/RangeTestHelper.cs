@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Ranges
 {
-	public static class RangeTestHelpers
+	public static class RangeTestHelper
 	{
 		#region Parse helpers
 		private static RangeBoundaryFrom<T> ParseBoundaryFromCore<T>([NotNull] string value, [NotNull] Func<string, T> parseValueCallback)

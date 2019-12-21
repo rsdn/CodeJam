@@ -11,7 +11,7 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-using static CodeJam.Ranges.RangeTestHelpers;
+using static CodeJam.Ranges.RangeTestHelper;
 using static NUnit.Framework.Assert;
 
 using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;

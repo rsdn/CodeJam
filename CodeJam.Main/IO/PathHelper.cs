@@ -10,7 +10,7 @@ namespace CodeJam.IO
 	/// Helpers for <see cref="Path"/>.
 	/// </summary>
 	[PublicAPI]
-	public static class PathHelpers
+	public static class PathHelper
 	{
 		[NotNull]
 		private static readonly char[] _invalidFileNameChars = Path.GetInvalidFileNameChars();
