@@ -1,8 +1,8 @@
 ﻿// BASEDON: https://github.com/StephenCleary/AsyncEx AwaitableDisposable class.
 
 using System;
-using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 using JetBrains.Annotations;
 
@@ -40,7 +40,8 @@ namespace CodeJam.Threading
 		/// Returns the underlying task.
 		/// </summary>
 		/// <returns>Underlying task.</returns>
-		[NotNull][MethodImpl(AggressiveInlining)]
+		[NotNull]
+		[MethodImpl(AggressiveInlining)]
 		public Task<T> AsTask() => _task;
 
 		/// <summary>
@@ -48,7 +49,8 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="source">The awaitable wrapper.</param>
 		/// <returns>Underlying task</returns>
-		[NotNull][MethodImpl(AggressiveInlining)]
+		[NotNull]
+		[MethodImpl(AggressiveInlining)]
 		public static implicit operator Task<T>(AwaitableNonDisposable<T> source) => source.AsTask();
 
 		/// <summary>

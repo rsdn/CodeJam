@@ -33,6 +33,7 @@ namespace CodeJam.Threading
 		{
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));
+
 			asyncOp.Post(state => runner(), null);
 		}
 
@@ -45,6 +46,7 @@ namespace CodeJam.Threading
 		{
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));
+
 			asyncOp.PostOperationCompleted(state => runner(), null);
 		}
 

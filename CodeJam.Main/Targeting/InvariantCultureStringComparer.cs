@@ -1,5 +1,5 @@
 ﻿using System;
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 //SAFE
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 using System.Globalization;
 #endif
 
@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace CodeJam.Targeting
 {
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 //SAFE
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 	internal sealed class InvariantCultureStringComparer : StringComparer
 	{
 		public static readonly StringComparer CompareCase = new InvariantCultureStringComparer(false);

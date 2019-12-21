@@ -14,7 +14,6 @@ namespace CodeJam.Threading
 	[PublicAPI]
 	public static class ParallelExtensions
 	{
-
 		/// <summary>
 		/// Implements Provider-Consumer pattern.
 		/// </summary>
@@ -26,10 +25,10 @@ namespace CodeJam.Threading
 		/// <param name="consumerCount">Number of consumer threads.</param>
 		/// <param name="consumerAction">Consumer action.</param>
 		/// <param name="processName">Process name pattern.</param>
-		public static void RunInParallel<TSource,TTarget>(
+		public static void RunInParallel<TSource, TTarget>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			int providerCount,
-			[NotNull, InstantHandle] Func<TSource,TTarget> providerFunc,
+			[NotNull, InstantHandle] Func<TSource, TTarget> providerFunc,
 			int consumerCount,
 			[NotNull, InstantHandle] Action<TTarget> consumerAction,
 			string processName = "ParallelProcess")
@@ -67,13 +66,13 @@ namespace CodeJam.Threading
 		/// <param name="consumerCount">Number of consumer threads.</param>
 		/// <param name="consumerAction">Consumer action.</param>
 		/// <param name="processName">Process name pattern.</param>
-		public static void RunInParallel<TSource,TTarget>(
+		public static void RunInParallel<TSource, TTarget>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource,TTarget> providerFunc,
+			[NotNull, InstantHandle] Func<TSource, TTarget> providerFunc,
 			int consumerCount,
 			[NotNull, InstantHandle] Action<TTarget> consumerAction,
-			string processName = "ParallelProcess")
-			=> RunInParallel(source, Environment.ProcessorCount, providerFunc, consumerCount, consumerAction, processName);
+			string processName = "ParallelProcess") =>
+			RunInParallel(source, Environment.ProcessorCount, providerFunc, consumerCount, consumerAction, processName);
 
 		/// <summary>
 		/// Implements Provider-Consumer pattern.
@@ -85,13 +84,13 @@ namespace CodeJam.Threading
 		/// <param name="providerFunc">Provider function</param>
 		/// <param name="consumerAction">Consumer action.</param>
 		/// <param name="processName">Process name pattern.</param>
-		public static void RunInParallel<TSource,TTarget>(
+		public static void RunInParallel<TSource, TTarget>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			int providerCount,
-			[NotNull, InstantHandle] Func<TSource,TTarget> providerFunc,
+			[NotNull, InstantHandle] Func<TSource, TTarget> providerFunc,
 			[NotNull, InstantHandle] Action<TTarget> consumerAction,
-			string processName = "ParallelProcess")
-			=> RunInParallel(source, providerCount, providerFunc, Environment.ProcessorCount, consumerAction, processName);
+			string processName = "ParallelProcess") =>
+			RunInParallel(source, providerCount, providerFunc, Environment.ProcessorCount, consumerAction, processName);
 
 		/// <summary>
 		/// Implements Provider-Consumer pattern.
@@ -102,12 +101,12 @@ namespace CodeJam.Threading
 		/// <param name="providerFunc">Provider function</param>
 		/// <param name="consumerAction">Consumer action.</param>
 		/// <param name="processName">Process name pattern.</param>
-		public static void RunInParallel<TSource,TTarget>(
+		public static void RunInParallel<TSource, TTarget>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource,TTarget> providerFunc,
+			[NotNull, InstantHandle] Func<TSource, TTarget> providerFunc,
 			[NotNull, InstantHandle] Action<TTarget> consumerAction,
-			string processName = "ParallelProcess")
-			=> RunInParallel(source, Environment.ProcessorCount / 2, providerFunc, Environment.ProcessorCount / 2, consumerAction, processName);
+			string processName = "ParallelProcess") =>
+			RunInParallel(source, Environment.ProcessorCount / 2, providerFunc, Environment.ProcessorCount / 2, consumerAction, processName);
 
 		/// <summary>
 		/// Runs in parallel provided source of actions.
@@ -135,8 +134,8 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="source">Actions to run.</param>
 		/// <param name="processName">Process name pattern.</param>
-		public static void RunInParallel([NotNull, InstantHandle] this IEnumerable<Action> source, string processName = "ParallelProcess")
-			=> RunInParallel(source, Environment.ProcessorCount, processName);
+		public static void RunInParallel([NotNull, InstantHandle] this IEnumerable<Action> source, string processName = "ParallelProcess") =>
+			RunInParallel(source, Environment.ProcessorCount, processName);
 
 		/// <summary>
 		/// Runs in parallel actions for provided data source.
@@ -173,8 +172,8 @@ namespace CodeJam.Threading
 		public static void RunInParallel<T>(
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull, InstantHandle] Action<T> action,
-			string processName = "ParallelProcess")
-			=> RunInParallel(source, Environment.ProcessorCount, action, processName);
+			string processName = "ParallelProcess") =>
+			RunInParallel(source, Environment.ProcessorCount, action, processName);
 	}
 }
 #endif

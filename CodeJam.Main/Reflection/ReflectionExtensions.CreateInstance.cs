@@ -19,26 +19,26 @@ namespace CodeJam.Reflection
 			prm.HasDefaultValue;
 #endif
 
-		private static bool IsCtorSuitable([NotNull] ConstructorInfo ctor, [NotNull, ItemNotNull] ParamInfo[] parameters)
+		private static bool IsConstructorSuitable([NotNull] ConstructorInfo ctor, [NotNull, ItemNotNull] ParamInfo[] parameters)
 		{
-			var ctorPrms = ctor.GetParameters();
-			var ctorMap = ctorPrms.ToDictionary(p => p.Name);
-			foreach (var prm in parameters)
+			var ctorParameters = ctor.GetParameters();
+			var ctorMap = ctorParameters.ToDictionary(p => p.Name);
+			foreach (var parameter in parameters)
 			{
-				if (!prm.Required)
+				if (!parameter.Required)
 					continue;
-				if (!ctorMap.ContainsKey(prm.Name))
+				if (!ctorMap.ContainsKey(parameter.Name))
 					return false;
-				if (prm.Value != null && !ctorMap[prm.Name].ParameterType.IsInstanceOfType(prm.Value))
+				if (parameter.Value != null && !ctorMap[parameter.Name].ParameterType.IsInstanceOfType(parameter.Value))
 					return false;
 			}
 
-			var argMap = parameters.Select(p => p.Name).ToHashSet();
-			foreach (var prm in ctorPrms)
+			var argsMap = parameters.Select(p => p.Name).ToHashSet();
+			foreach (var parameter in ctorParameters)
 			{
-				if (prm.GetHasDefaultValue())
+				if (parameter.GetHasDefaultValue())
 					continue;
-				if (!argMap.Contains(prm.Name))
+				if (!argsMap.Contains(parameter.Name))
 					return false;
 			}
 
@@ -60,16 +60,16 @@ namespace CodeJam.Reflection
 			Code.NotNull(type, nameof(type));
 
 			var constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-			var ctor = constructors.FirstOrDefault(c => IsCtorSuitable(c, parameters));
+			var ctor = constructors.FirstOrDefault(c => IsConstructorSuitable(c, parameters));
 
 			if (ctor == null)
 				throw new ArgumentException("No suitable constructors found", nameof(type));
 
-			var prmsMap = parameters.ToDictionary(p => p.Name, p => p.Value);
+			var parametersMap = parameters.ToDictionary(p => p.Name, p => p.Value);
 			var values =
 				ctor
 					.GetParameters()
-					.Select(p => prmsMap.TryGetValue(p.Name, out var result) ? result : p.DefaultValue)
+					.Select(p => parametersMap.TryGetValue(p.Name, out var result) ? result : p.DefaultValue)
 					.ToArray();
 			// ReSharper disable once AssignNullToNotNullAttribute
 			return ctor.Invoke(values);
