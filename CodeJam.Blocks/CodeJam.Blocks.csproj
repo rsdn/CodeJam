@@ -22,10 +22,11 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>mapper services csv</PackageTags>
+		<Configurations>Debug;Release;Debug (Core)</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 	</ItemGroup>
 
 	<!-- #region Targeting -->

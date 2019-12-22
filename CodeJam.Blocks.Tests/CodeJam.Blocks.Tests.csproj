@@ -10,6 +10,7 @@
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net472;net461;net45;net40;net35;net20;netcoreapp3.0;netcoreapp2.1;netcoreapp1.1</TargetFrameworks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+		<Configurations>Debug;Release;Debug (Core)</Configurations>
 	</PropertyGroup>
 
 	<!-- #region Targeting -->

@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net47</TargetFramework>
+		<Configurations>Debug;Release;Debug (Core)</Configurations>
 	</PropertyGroup>
 </Project>
