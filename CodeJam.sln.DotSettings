@@ -2,6 +2,20 @@
 	<s:Boolean x:Key="/Default/CodeEditing/GenerateMemberBody/CopyXmlDocumentation/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeEditing/GenerateMemberBody/DebuggerStepThroughAccessors/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeEditing/GenerateMemberBody/WrapIntoRegions/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/CodeEditing/NullCheckPatterns/CustomStatementPatternText/@EntryValue">// Use the following placeholders:&#xD;
+// $EXPR$    -- source expression&#xD;
+// $NAME$    -- source name (string literal or 'nameof' expression)&#xD;
+// $MESSAGE$ -- string literal in the form of "$NAME$ != null"&#xD;
+Code.NotNull($EXPR$, $NAME$);</s:String>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EContractRequiresPattern/@EntryIndexedValue">199</s:Int64>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002ECustomStatementBasedPattern/@EntryIndexedValue">5000</s:Int64>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EDebugAssertPattern/@EntryIndexedValue">99</s:Int64>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EGenericContractRequiresPattern/@EntryIndexedValue">100</s:Int64>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EIfReferenceEqualsThenThrowPattern/@EntryIndexedValue">200</s:Int64>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EIfThenThrowPattern/@EntryIndexedValue">1000</s:Int64>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EPatternMatchingIfThenThrowPattern/@EntryIndexedValue">500</s:Int64>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EThrowExpressionNullCheckPattern/@EntryIndexedValue">3000</s:Int64>
+	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002ETraceAssertPattern/@EntryIndexedValue">50</s:Int64>
 	<s:Boolean x:Key="/Default/CodeInspection/ExcludedFiles/FileMasksToSkip/=Jetbrains_002EAnnotations_002Ecs/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/ExcludedFiles/FileMasksToSkip/=_002A_002Ett/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/ExcludedFiles/FileMasksToSkip/=_002A_002Ettinclude/@EntryIndexedValue">True</s:Boolean>
