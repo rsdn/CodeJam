@@ -61,8 +61,7 @@ namespace CodeJam
 			}
 		}
 
-#if TARGETS_NET || LESSTHAN_NETSTANDARD21 || LESSTHAN_NETCOREAPP30
-#else
+#if NOLESSTHAN_NETCORE30 || NOLESSTHAN_NETSTD21
 		/// <summary>
 		/// Calls DisposeAsync if <paramref name="disposable"/> implements <see cref="IAsyncDisposable"/>, otherwise
 		/// calls <see cref="IDisposable.Dispose"/>
