@@ -83,7 +83,6 @@ namespace CodeJam.Dates
 			return AddYears(date, yearOffset, useLastDay);
 		}
 
-
 		/// <summary>Returns the date resulting from adding the given number of years to this date.</summary>
 		/// <param name="date">The date.</param>
 		/// <param name="yearOffset">The year offset.</param>
@@ -213,6 +212,102 @@ namespace CodeJam.Dates
 		/// <returns>The last day of year.</returns>
 		[Pure]
 		public static DateTime LastDayOfYear(this DateTime date) => Create(date, date.Year, 12, 31);
+		#endregion
+
+		#region Rounding
+		// THANKSTO: aj.toulan, https://stackoverflow.com/a/18796370
+		[Pure]
+		private static DateTime FloorCore(DateTime dateTime, long ticksModule)
+		{
+			Code.InRange(ticksModule, nameof(ticksModule), 1, long.MaxValue);
+
+			var overflow = dateTime.Ticks % ticksModule;
+			return dateTime.AddTicks(-overflow);
+		}
+
+		// THANKSTO: aj.toulan, https://stackoverflow.com/a/18796370
+		[Pure]
+		private static DateTime CeilingCore(DateTime dateTime, long ticksModule)
+		{
+			Code.InRange(ticksModule, nameof(ticksModule), 1, long.MaxValue);
+
+			var overflow = dateTime.Ticks % ticksModule;
+			return overflow == 0 ? dateTime : dateTime.AddTicks(ticksModule - overflow);
+		}
+
+		// THANKSTO: aj.toulan, https://stackoverflow.com/a/18796370
+		[Pure]
+		private static DateTime RoundAwayFromZeroCore(DateTime dateTime, long ticksModule)
+		{
+			Code.InRange(ticksModule, nameof(ticksModule), 1, long.MaxValue);
+
+			var halfIntervalTicks = (ticksModule + 1) >> 1;
+			var halfIntervalOverflow = (dateTime.Ticks + halfIntervalTicks) % ticksModule;
+			return dateTime.AddTicks(halfIntervalTicks - halfIntervalOverflow);
+		}
+
+		[Pure]
+		private static DateTime RoundToEvenCore(DateTime dateTime, long ticksModule)
+		{
+			Code.InRange(ticksModule, nameof(ticksModule), 1, long.MaxValue);
+
+			var round = DivideRoundToEvenNaive(dateTime.Ticks, ticksModule);
+			return Create(dateTime, round * ticksModule);
+		}
+
+		[Pure]
+		private static DateTime RoundCore(DateTime dateTime, long ticksModule, MidpointRounding mode)
+		{
+			return mode switch
+			{
+				MidpointRounding.ToEven => RoundToEvenCore(dateTime, ticksModule),
+				MidpointRounding.AwayFromZero => RoundAwayFromZeroCore(dateTime, ticksModule),
+#if TARGETS_NET || TARGETS_NETSTANDARD || LESSTHAN_NETCOREAPP30
+				// Some MidpointRounding values are missing if targeting to these frameworks
+#else
+				MidpointRounding.ToZero => FloorCore(dateTime, ticksModule),
+				MidpointRounding.ToNegativeInfinity => FloorCore(dateTime, ticksModule),
+				MidpointRounding.ToPositiveInfinity => CeilingCore(dateTime, ticksModule),
+#endif
+				_ => throw CodeExceptions.UnexpectedArgumentValue(nameof(mode), mode)
+			};
+		}
+
+		/// <summary>Returns the datetime rounded down to specified interval.</summary>
+		[Pure]
+		public static DateTime Truncate(this DateTime dateTime, TimeSpan interval) => FloorCore(dateTime, interval.Ticks);
+
+		/// <summary>Returns the datetime rounded down to nearest second.</summary>
+		[Pure]
+		public static DateTime TruncateMilliseconds(this DateTime dateTime) => FloorCore(dateTime, TimeSpan.TicksPerSecond);
+
+		/// <summary>Returns the datetime rounded up to specified interval.</summary>
+		[Pure]
+		public static DateTime Ceiling(this DateTime dateTime, TimeSpan interval) => CeilingCore(dateTime, interval.Ticks);
+
+		/// <summary>Returns the datetime rounded up to nearest second.</summary>
+		[Pure]
+		public static DateTime CeilingMilliseconds(this DateTime dateTime) => CeilingCore(dateTime, TimeSpan.TicksPerSecond);
+
+		/// <summary>Returns the datetime rounded by specified interval. Uses <see cref="MidpointRounding.ToEven"/> rounding.</summary>
+		[Pure]
+		public static DateTime Round(this DateTime dateTime, TimeSpan interval) =>
+			RoundCore(dateTime, interval.Ticks, MidpointRounding.ToEven);
+
+		/// <summary>Returns the datetime rounded by specified interval.</summary>
+		[Pure]
+		public static DateTime Round(this DateTime dateTime, TimeSpan interval, MidpointRounding mode) =>
+			RoundCore(dateTime, interval.Ticks, mode);
+
+		/// <summary>Returns the datetime rounded to nearest second. Uses <see cref="MidpointRounding.ToEven"/> rounding.</summary>
+		[Pure]
+		public static DateTime RoundMilliseconds(this DateTime dateTime) =>
+			RoundCore(dateTime, TimeSpan.TicksPerSecond, MidpointRounding.ToEven);
+
+		/// <summary>Returns the datetime rounded to nearest second.</summary>
+		[Pure]
+		public static DateTime RoundMilliseconds(this DateTime dateTime, MidpointRounding mode) =>
+			RoundCore(dateTime, TimeSpan.TicksPerSecond, mode);
 		#endregion
 	}
 }

@@ -10,11 +10,48 @@ namespace CodeJam.Dates
 	[PublicAPI]
 	public static partial class DateTimeExtensions
 	{
+		// DONTTOUCH: benchmark first.
+		// This implementation is fast enough, ~1.5x compared to long division.
+		// internal as covered by test.
+		internal static long DivideRoundToEvenNaive(long ticks, long ticksModule)
+		{
+			DebugCode.BugIf(ticks < 0, "value < 0");
+			DebugCode.BugIf(ticksModule <= 0, "div <= 0");
+
+#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+			var truncate = ticks / ticksModule;
+			var offset = ticks % ticksModule;
+#else
+			var truncate = Math.DivRem(ticks, ticksModule, out var offset);
+#endif
+
+			if (offset == 0)
+				return truncate;
+
+			var doubleOffset = offset << 1;
+			if (doubleOffset < ticksModule) // below midpoint
+				return truncate;
+			if (doubleOffset > ticksModule) // above midpoint
+				return truncate + 1;
+
+			// Tie breaker part, round to nearest even
+			if (truncate % 2 == 0)
+				return truncate;
+
+			return truncate + 1;
+		}
+
 		private static DateTime Create(DateTime origin, int year, int month, int day) =>
 			new DateTime(year, month, day, 0, 0, 0, origin.Kind);
 
 		private static DateTimeOffset Create(DateTimeOffset origin, int year, int month, int day) =>
 			new DateTimeOffset(year, month, day, 0, 0, 0, origin.Offset);
+
+		private static DateTime Create(DateTime origin, long ticks) =>
+			new DateTime(ticks, origin.Kind);
+
+		private static DateTimeOffset Create(DateTimeOffset origin, long ticks) =>
+			new DateTimeOffset(ticks, origin.Offset);
 
 		/// <summary>Returns count of days in month.</summary>
 		/// <param name="date">The date.</param>
