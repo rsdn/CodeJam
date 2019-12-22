@@ -22,7 +22,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>mapper services csv</PackageTags>
-		<Configurations>Debug;Release;Debug (Core)</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>

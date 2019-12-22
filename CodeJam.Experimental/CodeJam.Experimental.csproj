@@ -22,7 +22,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>extension experimental</PackageTags>
-		<Configurations>Debug;Release;Debug (Core)</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -23,15 +23,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
-		<Configurations>Debug;Release;Debug (Core)</Configurations>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug(Net)|net472|AnyCPU'">
-	  <DefineConstants>TRACE;TARGETS_NET;LESSTHAN_NET48</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug (Core)|netcoreapp3.0|AnyCPU'">
-	  <DefineConstants>TRACE;TARGETS_NETCOREAPP;LESSTHAN_NETCOREAPP31</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
