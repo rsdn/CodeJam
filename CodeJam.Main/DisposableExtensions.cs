@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-#if (TARGETS_NETSTANDARD && !LESSTHAN_NETSTANDARD21) || (TARGETS_NETCOREAPP && !LESSTHAN_NETCOREAPP30)
+#if TARGETS_NET || LESSTHAN_NETSTANDARD21 || LESSTHAN_NETCOREAPP30
+#else
 using System.Threading.Tasks;
 #endif
 
@@ -60,7 +61,8 @@ namespace CodeJam
 			}
 		}
 
-		#if (TARGETS_NETSTANDARD && !LESSTHAN_NETSTANDARD21) || (TARGETS_NETCOREAPP && !LESSTHAN_NETCOREAPP30)
+#if TARGETS_NET || LESSTHAN_NETSTANDARD21 || LESSTHAN_NETCOREAPP30
+#else
 		/// <summary>
 		/// Calls DisposeAsync if <paramref name="disposable"/> implements <see cref="IAsyncDisposable"/>, otherwise
 		/// calls <see cref="IDisposable.Dispose"/>
@@ -73,6 +75,6 @@ namespace CodeJam
 			else
 				disposable.Dispose();
 		}
-		#endif
+#endif
 	}
 }
