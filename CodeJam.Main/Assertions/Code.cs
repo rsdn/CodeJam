@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -56,6 +57,35 @@ namespace CodeJam
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
+		}
+
+		/// <summary>Ensures that <paramref name="arg" /> != <see cref="Guid.Empty" />.</summary>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">The name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotDefault(Guid arg, [NotNull, InvokerParameterName] string argName)
+		{
+			if (arg == Guid.Empty)
+				throw CodeExceptions.ArgumentDefault(argName, typeof(Guid));
+		}
+
+		/// <summary>Ensures that <paramref name="arg"/> != default(<typeparamref name="T"/>)</summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
+		/// <remarks>
+		/// This version enables not-default assertions for generic methods
+		/// </remarks>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void GenericNotDefault<T>(
+			[CanBeNull, NoEnumeration] T arg,
+			[NotNull, InvokerParameterName] string argName)
+		{
+			if (Operators<T>.AreEqual(arg, default))
+				throw CodeExceptions.ArgumentDefault(argName, typeof(T));
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>

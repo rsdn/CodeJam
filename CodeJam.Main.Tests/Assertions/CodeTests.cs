@@ -87,6 +87,31 @@ namespace CodeJam.Assertions
 		}
 
 		[Test]
+		public void TestNotDefault()
+		{
+			var ex = Assert.Throws<ArgumentException>(() => Code.NotDefault(new Guid(), "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(
+				ex.Message,
+				Does.Contain("The value of 'arg00' should be not equal to default(Guid)"));
+
+			Assert.DoesNotThrow(() => Code.NotDefault(Guid.NewGuid(), "arg00"));
+		}
+
+		[Test]
+		public void TestGenericNotDefault()
+		{
+			var ex = Assert.Throws<ArgumentException>(() => Code.GenericNotDefault(TimeSpan.Zero, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(
+				ex.Message,
+				Does.Contain("The value of 'arg00' should be not equal to default(TimeSpan)"));
+
+			Assert.DoesNotThrow(() => Code.GenericNotDefault(1234, "arg00"));
+			Assert.DoesNotThrow(() => Code.GenericNotDefault((int?)0, "arg00"));
+		}
+
+		[Test]
 		public void TestStringNotNullNorEmpty()
 		{
 			Assert.Throws<ArgumentException>(() => Code.NotNullNorEmpty(default, "arg00"));
