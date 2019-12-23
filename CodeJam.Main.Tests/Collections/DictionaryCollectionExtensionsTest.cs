@@ -50,9 +50,9 @@ namespace CodeJam.Collections
 		#endregion
 
 		#region HashSet
-#if LESSTHAN_NET35
-		private static HashSet<T> CreateHashSet<T>(params T[] values) => new HashSetEx<T>(values);
-#elif LESSTHAN_NET40
+#if NET40_OR_GREATER || TARGETS_NETCOREAPP
+		private static HashSet<T> CreateHashSet<T>(params T[] values) => new HashSet<T>(values);
+#elif NET35_OR_GREATER
 		private static HashSetEx<T> CreateHashSet<T>(params T[] values) => new HashSetEx<T>(values);
 #else
 		private static HashSet<T> CreateHashSet<T>(params T[] values) => new HashSet<T>(values);

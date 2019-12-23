@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET40 || LESSTHAN_NETCOREAPP20 // TODO: update after fixes in Theraot.Core
-// XmlAttributeReader is missing if targeting to these frameworks
-#else
+﻿#if NET40_OR_GREATER || NETCOREAPP20_OR_GREATER // TODO: update after fixes in Theraot.Core
 using System;
 using System.Globalization;
 using System.IO;

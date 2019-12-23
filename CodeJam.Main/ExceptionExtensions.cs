@@ -102,9 +102,7 @@ namespace CodeJam
 			}
 		}
 
-#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
-		// WriteAsync is missing if targeting to these frameworks
-#else
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 		/// <summary>
 		/// Returns detailed exception text.
 		/// </summary>

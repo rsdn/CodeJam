@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
+﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Runtime.Serialization;
 
@@ -70,9 +68,7 @@ namespace CodeJam.Metadata
 		{
 		}
 
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-		// Exception(SerializationInfo, StreamingContext) is missing when targeting to these frameworks
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MetadataException"/> class
 		/// with serialized data.

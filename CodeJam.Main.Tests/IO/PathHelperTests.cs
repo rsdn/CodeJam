@@ -66,7 +66,7 @@ namespace CodeJam.IO
 		[TestCase(@"a:\a\..a\", PathKind.ValidAbsoluteContainerPath)]
 		[TestCase(@"a:\a\..a.b\", PathKind.ValidAbsoluteContainerPath)]
 		// SEE https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/retargeting/4.6.1-4.6.2#changes-in-path-normalization
-#if (TARGETS_NET && !LESSTHAN_NET462) || TARGETS_NETCOREAPP
+#if NET462_OR_GREATER || TARGETS_NETCOREAPP
 		[TestCase(@"a:\a\..a..\", PathKind.ValidAbsoluteContainerPath)]
 #else
 		[TestCase(@"a:\a\..a..\", PathKind.Invalid)]
@@ -92,20 +92,7 @@ namespace CodeJam.IO
 		[TestCase(@"a:\a", PathKind.ValidAbsolutePath)]
 		[TestCase(@"a:|a", PathKind.Invalid)]
 		[TestCase(@"a:/a", PathKind.Invalid)]
-#if TARGETS_NET || LESSTHAN_NETCOREAPP21
-		[TestCase(@"\\a\", PathKind.Invalid)]
-		[TestCase(@"\\a", PathKind.Invalid)]
-		[TestCase(@":", PathKind.Invalid)]
-		[TestCase(@"|", PathKind.Invalid)]
-		[TestCase(@"|a", PathKind.Invalid)]
-		[TestCase(@"a|", PathKind.Invalid)]
-		[TestCase(@"a|a", PathKind.Invalid)]
-		[TestCase(@":a", PathKind.Invalid)]
-		[TestCase(@"a:\:a", PathKind.Invalid)]
-		[TestCase(@"a:\|a", PathKind.Invalid)]
-		[TestCase(@"a\:a", PathKind.Invalid)]
-		[TestCase(@"a\|a", PathKind.Invalid)]
-#else
+#if NETCOREAPP21_OR_GREATER
 		[TestCase(@"\\a\", PathKind.ValidAbsoluteContainerPath)]
 		[TestCase(@"\\a", PathKind.ValidAbsolutePath)]
 		[TestCase(@":", PathKind.ValidRelativeContainerPath)]
@@ -118,6 +105,19 @@ namespace CodeJam.IO
 		[TestCase(@"a:\|a", PathKind.ValidAbsolutePath)]
 		[TestCase(@"a\:a", PathKind.ValidRelativePath)]
 		[TestCase(@"a\|a", PathKind.ValidRelativePath)]
+#else
+		[TestCase(@"\\a\", PathKind.Invalid)]
+		[TestCase(@"\\a", PathKind.Invalid)]
+		[TestCase(@":", PathKind.Invalid)]
+		[TestCase(@"|", PathKind.Invalid)]
+		[TestCase(@"|a", PathKind.Invalid)]
+		[TestCase(@"a|", PathKind.Invalid)]
+		[TestCase(@"a|a", PathKind.Invalid)]
+		[TestCase(@":a", PathKind.Invalid)]
+		[TestCase(@"a:\:a", PathKind.Invalid)]
+		[TestCase(@"a:\|a", PathKind.Invalid)]
+		[TestCase(@"a\:a", PathKind.Invalid)]
+		[TestCase(@"a\|a", PathKind.Invalid)]
 #endif
 		[TestCase(@"a:\\a", PathKind.Invalid)]
 		[TestCase(@"a:\/a", PathKind.Invalid)]

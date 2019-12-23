@@ -271,9 +271,7 @@ namespace CodeJam.Dates
 			{
 				MidpointRounding.ToEven => RoundToEvenCore(dateTime, ticksModule),
 				MidpointRounding.AwayFromZero => RoundAwayFromZeroCore(dateTime, ticksModule),
-#if TARGETS_NET || TARGETS_NETSTANDARD || LESSTHAN_NETCOREAPP30
-				// Some MidpointRounding values are missing if targeting to these frameworks
-#else
+#if NETCOREAPP30_OR_GREATER
 				MidpointRounding.ToZero => FloorCore(dateTime, ticksModule),
 				MidpointRounding.ToNegativeInfinity => FloorCore(dateTime, ticksModule),
 				MidpointRounding.ToPositiveInfinity => CeilingCore(dateTime, ticksModule),

@@ -222,9 +222,7 @@ namespace CodeJam.Expressions
 							if (expr.NodeType != ExpressionType.MemberAccess)
 								goto default;
 
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-							// ReflectedType is missing if targeting to these frameworks
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 							var member = ((MemberExpression)expr).Member;
 							var memberType = member.GetMemberType();
 

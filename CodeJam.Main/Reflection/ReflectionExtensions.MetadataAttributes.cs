@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
-// ICustomAttributeProvider & .GetMetadataToken() are missing if targeting to these frameworks
-#else
+﻿#if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,24 +37,22 @@ namespace CodeJam.Reflection
 				if (x is null) return y is null;
 				if (y == null) return false;
 
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
+				return x.MethodHandle.Equals(y.MethodHandle);
+#else
 				return TypeHandleComparer.Default.Equals(x.DeclaringType, y.DeclaringType)
 					&& x.GetMetadataToken() == y.GetMetadataToken();
-#else
-				return x.MethodHandle.Equals(y.MethodHandle);
 #endif
 			}
 
-			public int GetHashCode(MethodInfo obj)
-			{
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-				return HashCode.Combine(
+			public int GetHashCode(MethodInfo obj) =>
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
+				obj.MethodHandle.GetHashCode();
+#else
+				HashCode.Combine(
 					TypeHandleComparer.Default.GetHashCode(obj.DeclaringType),
 					obj.GetMetadataToken());
-#else
-				return obj.MethodHandle.GetHashCode();
 #endif
-			}
 		}
 
 		// DONTTOUCH: Direct compare may result in false negative.
@@ -265,9 +261,10 @@ namespace CodeJam.Reflection
 		{
 			return member switch
 			{
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 				TypeInfo _ => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
-#else
+#endif
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 				Type _ => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
 #endif
 				MethodInfo method => IsOverriden(method),

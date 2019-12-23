@@ -127,10 +127,10 @@ namespace CodeJam.Assertions
 		public void TestCollectionNotNullNorEmpty()
 		{
 			var empty = new HashSet<int>();
-#if LESSTHAN_NET45
-			var nonEmpty = (IList<int>)new ListEx<int> { 1 };
-#else
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
 			var nonEmpty = (IList<int>)new List<int> { 1 };
+#else
+			var nonEmpty = (IList<int>)new ListEx<int> { 1 };
 #endif
 			var nonEmpty2 = (IReadOnlyCollection<int>)nonEmpty;
 

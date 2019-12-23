@@ -8,7 +8,9 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-#if NET40
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
+using TaskEx = System.Threading.Tasks.Task;
+#elif NET40_OR_GREATER
 using TaskEx = System.Threading.Tasks.TaskEx;
 #else
 using TaskEx = System.Threading.Tasks.Task;

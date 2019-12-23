@@ -1,6 +1,5 @@
-﻿#if LESSTHAN_NET45
+﻿#if NET45_OR_GREATER || TARGETS_NETCOREAPP
 // NET 4.0 uses binary array sorting instead of introspection sort, most of tests belongs on order of elements to be preserved
-#else
 using System;
 using System.Globalization;
 using System.Linq;

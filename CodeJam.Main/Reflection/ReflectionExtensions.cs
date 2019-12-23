@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-using System.Linq;
-#endif
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,9 +17,7 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public static partial class ReflectionExtensions
 	{
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
-		// CodeBase is missing if targeting to these frameworks
-#else
+#if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 		/// <summary>
 		/// Returns path to the <paramref name="module"/> file.
 		/// </summary>
@@ -224,28 +219,7 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 			while (true) // tail recursion expanded
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10
-				switch (type)
-				{
-					case Type t when t == typeof(SByte):
-					case Type t2 when t2 == typeof(Byte):
-					case Type t3 when t3 == typeof(Int16):
-					case Type t4 when t4 == typeof(UInt16):
-					case Type t5 when t5 == typeof(Int32):
-					case Type t6 when t6 == typeof(UInt32):
-					case Type t7 when t7 == typeof(Int64):
-					case Type t8 when t8 == typeof(UInt64):
-					case Type t9 when t9 == typeof(Decimal):
-					case Type t10 when t10 == typeof(Single):
-					case Type t11 when t11 == typeof(Double):
-						return true;
-					case Type t12 when Nullable.GetUnderlyingType(t12) is Type nullableType:
-						type = nullableType;
-						continue;
-					default:
-						return false;
-				}
-#else
+#if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
 				switch (Type.GetTypeCode(type))
 				{
 					case TypeCode.SByte:
@@ -268,6 +242,27 @@ namespace CodeJam.Reflection
 					default:
 						return false;
 				}
+#else
+				switch (type)
+				{
+					case Type t when t == typeof(SByte):
+					case Type t2 when t2 == typeof(Byte):
+					case Type t3 when t3 == typeof(Int16):
+					case Type t4 when t4 == typeof(UInt16):
+					case Type t5 when t5 == typeof(Int32):
+					case Type t6 when t6 == typeof(UInt32):
+					case Type t7 when t7 == typeof(Int64):
+					case Type t8 when t8 == typeof(UInt64):
+					case Type t9 when t9 == typeof(Decimal):
+					case Type t10 when t10 == typeof(Single):
+					case Type t11 when t11 == typeof(Double):
+						return true;
+					case Type t12 when Nullable.GetUnderlyingType(t12) is Type nullableType:
+						type = nullableType;
+						continue;
+					default:
+						return false;
+				}
 #endif
 		}
 
@@ -281,25 +276,7 @@ namespace CodeJam.Reflection
 		{
 			Code.NotNull(type, nameof(type));
 			while (true) // tail recursion expanded
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10
-				switch (type)
-				{
-					case Type t when t == typeof(SByte):
-					case Type t2 when t2 == typeof(Byte):
-					case Type t3 when t3 == typeof(Int16):
-					case Type t4 when t4 == typeof(UInt16):
-					case Type t5 when t5 == typeof(Int32):
-					case Type t6 when t6 == typeof(UInt32):
-					case Type t7 when t7 == typeof(Int64):
-					case Type t8 when t8 == typeof(UInt64):
-						return true;
-					case Type t12 when Nullable.GetUnderlyingType(t12) is Type nullableType:
-						type = nullableType;
-						continue;
-					default:
-						return false;
-				}
-#else
+#if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
 				switch (Type.GetTypeCode(type))
 				{
 					case TypeCode.SByte:
@@ -316,6 +293,24 @@ namespace CodeJam.Reflection
 						if (type != null)
 							continue;
 						return false;
+					default:
+						return false;
+				}
+#else
+				switch (type)
+				{
+					case Type t when t == typeof(SByte):
+					case Type t2 when t2 == typeof(Byte):
+					case Type t3 when t3 == typeof(Int16):
+					case Type t4 when t4 == typeof(UInt16):
+					case Type t5 when t5 == typeof(Int32):
+					case Type t6 when t6 == typeof(UInt32):
+					case Type t7 when t7 == typeof(Int64):
+					case Type t8 when t8 == typeof(UInt64):
+						return true;
+					case Type t12 when Nullable.GetUnderlyingType(t12) is Type nullableType:
+						type = nullableType;
+						continue;
 					default:
 						return false;
 				}
@@ -537,17 +532,11 @@ namespace CodeJam.Reflection
 		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type, bool exceptionIfNotExists = false)
 		{
 			Code.NotNull(type, nameof(type));
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			var info = type
-				.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-				.FirstOrDefault(c => c.GetParameters().Length == 0);
-#else
 			var info = type.GetConstructor(
 				BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
 				null,
 				Type.EmptyTypes,
 				null);
-#endif
 
 			if (info == null && exceptionIfNotExists)
 			{

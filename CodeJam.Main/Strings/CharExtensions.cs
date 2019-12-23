@@ -2,10 +2,10 @@
 
 using JetBrains.Annotations;
 
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-using CharEx = System.CharEx;
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 using CharEx = System.Char;
+#else
+using CharEx = System.CharEx;
 #endif
 
 namespace CodeJam.Strings

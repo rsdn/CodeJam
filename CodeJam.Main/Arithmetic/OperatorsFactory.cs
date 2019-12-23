@@ -87,10 +87,10 @@ namespace CodeJam.Arithmetic
 			}
 
 			body = PrepareResult(body, args[0].Type, resultType);
-#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-			var result = Lambda<TDelegate>(body, args);
-#else
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			var result = Lambda<TDelegate>(body, methodName, args);
+#else
+			var result = Lambda<TDelegate>(body, args);
 #endif
 			try
 			{
@@ -313,11 +313,11 @@ namespace CodeJam.Arithmetic
 				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
 			}
 
-#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-			var result = Lambda<Func<T, T, int>>(body, new[] { argA, argB });
-#else
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			const string compareToName = nameof(int.CompareTo);
 			var result = Lambda<Func<T, T, int>>(body, compareToName, new[] { argA, argB });
+#else
+			var result = Lambda<Func<T, T, int>>(body, new[] { argA, argB });
 #endif
 			try
 			{

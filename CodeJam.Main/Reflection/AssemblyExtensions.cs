@@ -12,9 +12,7 @@ namespace CodeJam.Reflection
 	[PublicAPI]
 	public static class AssemblyExtensions
 	{
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 // PUBLIC_API_CHANGES
-		// IsJITOptimizerDisabled is missing if targeting to these frameworks
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES
 		/// <summary>
 		/// Checks that the assembly is build with <see cref="System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled"/>
 		/// set to <c>false</c>.
@@ -27,7 +25,6 @@ namespace CodeJam.Reflection
 			Code.NotNull(assembly, nameof(assembly));
 			return assembly.GetCustomAttribute<System.Diagnostics.DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
 		}
-
 #endif
 
 		/// <summary>
@@ -51,9 +48,7 @@ namespace CodeJam.Reflection
 			return result;
 		}
 
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD15 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
-		// CodeBase is missing if targeting to these frameworks
-#else
+#if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 		/// <summary>
 		/// Returns path to the <paramref name="assembly"/> file.
 		/// </summary>

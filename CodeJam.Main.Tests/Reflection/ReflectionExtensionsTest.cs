@@ -93,9 +93,7 @@ namespace CodeJam.Reflection
 			new object[] {typeof(WithoutNsTestClass), "WithoutNsTestClass, CodeJam.Tests" }
 		};
 
-#if LESSTHAN_NETCOREAPP20
-		// IsJITOptimizerDisabled is missing if targeting to these frameworks
-#else
+#if TARGETS_NET || NETCOREAPP20_OR_GREATER
 		[Test]
 		public void IsDebugAssemblyTest()
 		{
@@ -131,9 +129,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(IList<>), typeof(IEnumerable<>), ExpectedResult = true)]
 		[TestCase(typeof(IEnumerable<>), typeof(IEnumerable), ExpectedResult = true)]
 		[TestCase(typeof(List<int>), typeof(List<int>), ExpectedResult = false)]
-#if LESSTHAN_NET40
-// IList<> is not derived from ISet<> if targeting to these frameworks
-#else
+#if NET40_OR_GREATER || TARGETS_NETCOREAPP
 		[TestCase(typeof(IList<>), typeof(ISet<>), ExpectedResult = false)]
 #endif
 		public bool IsSubClassTest([NotNull] Type type, [NotNull] Type check) => type.IsSubClass(check);

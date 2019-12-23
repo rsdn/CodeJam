@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
+﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +26,13 @@ namespace CodeJam.Metadata
 		private readonly AttributeInfo[] _attributes;
 
 		[NotNull, ItemNotNull]
-		public AttributeInfo[] GetAttribute([NotNull] Type type)
-			=>
-				_attributes.Where(a => a.Name == type.FullName).Concat(
-				_attributes.Where(a => a.Name == type.Name).    Concat(
-					type.Name.EndsWith("Attribute") ?
-						_attributes.Where(a => a.Name == type.Name.Substring(0, type.Name.Length - "Attribute".Length)) :
-						Enumerable.Empty<AttributeInfo>())
-				).ToArray();
+		public AttributeInfo[] GetAttribute([NotNull] Type type) =>
+			_attributes.Where(a => a.Name == type.FullName).Concat(
+			_attributes.Where(a => a.Name == type.Name).    Concat(
+				type.Name.EndsWith("Attribute") ?
+					_attributes.Where(a => a.Name == type.Name.Substring(0, type.Name.Length - "Attribute".Length)) :
+					Enumerable.Empty<AttributeInfo>())
+			).ToArray();
 	}
 }
 #endif

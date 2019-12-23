@@ -8,7 +8,9 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
-#if NET40
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
+using TaskEx = System.Threading.Tasks.Task;
+#elif NET40_OR_GREATER
 using TaskEx = System.Threading.Tasks.TaskEx;
 #else
 using TaskEx = System.Threading.Tasks.Task;
@@ -124,19 +126,29 @@ namespace CodeJam
 
 			Console.WriteLine();
 			Console.WriteLine($"	<!-- Monikers for {description} -->");
-			string template =
-				@"	<PropertyGroup Condition=""'$(TargetFramework)' == '{0}' "">
-		<DefineConstants>$(DefineConstants);{1}{2}</DefineConstants>
-	</PropertyGroup>";
+
+			string templateBegin = @"	<PropertyGroup Condition=""'$(TargetFramework)' == '{0}' "">";
+			string template = @"		<DefineConstants>$(DefineConstants){0}</DefineConstants>";
+			string templateEnd = @"	</PropertyGroup>";
 			for (int monikerIndex = 0; monikerIndex < monikers.Length; monikerIndex++)
 			{
 				var target = monikers[monikerIndex];
-				var targetConstants = monikers
+				var lessThanConstants = monikers
 					.Skip(1 + monikerIndex)
 					.Select(m => ";LESSTHAN_" + m.Replace(".", "").ToUpperInvariant())
 					.Join();
 
-				Console.WriteLine(template, target, platform, targetConstants);
+				var notLessThanConstants = monikers
+					.Take(monikerIndex + 1)
+					.Select(m => ";" + m.Replace(".", "").ToUpperInvariant() + "_OR_GREATER")
+					.Join();
+
+				Console.WriteLine(templateBegin, target);
+				Console.WriteLine(template, ";" + platform);
+				if (lessThanConstants.NotNullNorEmpty())
+					Console.WriteLine(template, lessThanConstants);
+				Console.WriteLine(template, notLessThanConstants);
+				Console.WriteLine(templateEnd, target);
 			}
 		}
 

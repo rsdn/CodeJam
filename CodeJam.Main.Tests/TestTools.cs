@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
+using CodeJam.Strings;
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
@@ -16,22 +19,18 @@ namespace CodeJam
 			GetTestRandom(new Random().Next());
 
 		[NotNull]
-		public static Random GetTestRandom(int seed)
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static Random GetTestRandom(int seed, [CallerMemberName] string memberName = "")
 		{
-			var currentMethod =
-#if !LESSTHAN_NETSTANDARD20 && !LESSTHAN_NETCOREAPP20
-				MethodBase.GetCurrentMethod().Name;
-#else
-				GetCurrentMethodName();
+#if TARGETS_NET || NETCOREAPP20_OR_GREATER
+			if (memberName.IsNullOrEmpty())
+				memberName = new StackTrace(1).GetFrame(0).GetMethod().Name;
 #endif
 			Console.WriteLine(
-				$"{currentMethod}: Rnd seed: {seed} (use the seed to reproduce test results).");
+				$"{memberName}: Rnd seed: {seed} (use the seed to reproduce test results).");
+
 			return new Random(seed);
 		}
-
-#if LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-		private static string GetCurrentMethodName([System.Runtime.CompilerServices.CallerMemberName] string memberName = "") => memberName;
-#endif
 
 		[NotNull, LinqTunnel]
 		public static IEnumerable<T> Shuffle<T>([NotNull] this IEnumerable<T> source, [NotNull] Random rnd) =>

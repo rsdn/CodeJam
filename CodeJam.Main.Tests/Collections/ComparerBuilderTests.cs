@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET40 // TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
+﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,9 +93,7 @@ namespace CodeJam.Collections
 			Assert.That(comparer.Equals(o1, o2), Is.EqualTo(expected));
 		}
 
-#if LESSTHAN_NETCOREAPP20
-		// MethodHandle is missing if targeting to these frameworks
-#else
+#if TARGETS_NET || NETCOREAPP20_OR_GREATER
 		[Test]
 		public void MethodHandleTest()
 		{

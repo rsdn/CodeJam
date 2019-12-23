@@ -14,10 +14,10 @@ using JetBrains.Annotations;
 
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
-#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-using EnumEx = System.EnumEx;
-#else
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using EnumEx = System.Enum;
+#else
+using EnumEx = System.EnumEx;
 #endif
 
 namespace CodeJam
@@ -347,10 +347,10 @@ namespace CodeJam
 			[NotNull]
 			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(bool ignoreCase)
 			{
-#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-				var result = new DictionaryEx<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
-#else
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 				var result = new Dictionary<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
+#else
+				var result = new DictionaryEx<string, TEnum>(ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
 #endif
 
 				var names = Enum.GetNames(typeof(TEnum));

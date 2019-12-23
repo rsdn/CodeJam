@@ -1,14 +1,10 @@
-﻿#if LESSTHAN_NET35 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES
-// XDocument is missing if targeting to these frameworks
-#else
+﻿#if NET35_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
-#if (LESSTHAN_NET472 && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD21 && !LESSTHAN_NETSTANDARD16) || LESSTHAN_NETCOREAPP10
-using CodeJam.Collections.Backported;
-#endif
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -98,7 +94,7 @@ namespace CodeJam.Xml
 			Code.NotNull(parent, nameof(parent));
 			Code.NotNull(names, nameof(names));
 
-			var namesSet = names.ToHashSet();
+			var namesSet = new HashSet<XName>(names);
 			foreach (var element in parent.Elements())
 				if (namesSet.Contains(element.Name))
 					return element;

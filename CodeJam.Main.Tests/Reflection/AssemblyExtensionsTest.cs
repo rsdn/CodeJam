@@ -21,9 +21,7 @@ namespace CodeJam.Reflection
 					Path.GetFileName(GetType().GetAssembly().GetAssemblyPath()),
 					StringComparison.OrdinalIgnoreCase));
 
-#if LESSTHAN_NETCOREAPP20
-		// Assembly.Load(asmBytes) is not supported when targeting to these frameworks
-#else
+#if TARGETS_NET || NETCOREAPP20_OR_GREATER
 		[Test]
 		public void TestGetAssemblyPathLoadedFromByteArray()
 		{
