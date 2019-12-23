@@ -1,10 +1,9 @@
-﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
-using JetBrains.Annotations;
+﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.Mapping
 {

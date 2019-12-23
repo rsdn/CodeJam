@@ -12,10 +12,10 @@ namespace CodeJam.Targeting
 		[NotNull]
 		[MethodImpl(AggressiveInlining)]
 		public static string GetFusionLog([NotNull] this FileNotFoundException ex) =>
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			"";
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			ex.FusionLog;
+#else
+			"";
 #endif
 
 	}

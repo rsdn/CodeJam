@@ -115,17 +115,17 @@ namespace CodeJam.Strings
 		[TestCase("1.3e3", ExpectedResult = 1300.0)]
 		[TestCase("NaN", ExpectedResult = double.NaN)]
 		[TestCase("-Infinity", ExpectedResult = double.NegativeInfinity)]
-#if LESSTHAN_NETCOREAPP20
+#if TARGETS_NET || NETCOREAPP21_OR_GREATER
 		[TestCase("-∞", ExpectedResult = null)]
-#elif LESSTHAN_NETCOREAPP21
+#elif NETCOREAPP20_OR_GREATER
 		[TestCase("-∞", ExpectedResult = double.NegativeInfinity)]
 #else
 		[TestCase("-∞", ExpectedResult = null)]
 #endif
-#if TARGETS_NET || LESSTHAN_NETCOREAPP30
-		[TestCase("-infinity", ExpectedResult = null)]
-#else
+#if NETCOREAPP30_OR_GREATER
 		[TestCase("-infinity", ExpectedResult = double.NegativeInfinity)]
+#else
+		[TestCase("-infinity", ExpectedResult = null)]
 #endif
 		[TestCase("- 1.0 ", ExpectedResult = null)]
 		[TestCase("1,0", ExpectedResult = null)]

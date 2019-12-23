@@ -18,11 +18,11 @@ namespace CodeJam.Dates
 			DebugCode.BugIf(ticks < 0, "value < 0");
 			DebugCode.BugIf(ticksModule <= 0, "div <= 0");
 
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
+			var truncate = Math.DivRem(ticks, ticksModule, out var offset);
+#else
 			var truncate = ticks / ticksModule;
 			var offset = ticks % ticksModule;
-#else
-			var truncate = Math.DivRem(ticks, ticksModule, out var offset);
 #endif
 
 			if (offset == 0)

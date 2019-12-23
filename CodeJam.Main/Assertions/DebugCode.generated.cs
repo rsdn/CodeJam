@@ -20,10 +20,10 @@ using CodeJam.Arithmetic;
 
 using JetBrains.Annotations;
 
-#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-using StringEx = System.StringEx;
-#else
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using StringEx = System.String;
+#else
+using StringEx = System.StringEx;
 #endif
 
 using static CodeJam.Targeting.MethodImplOptionsEx;

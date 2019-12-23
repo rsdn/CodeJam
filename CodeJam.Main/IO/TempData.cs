@@ -19,10 +19,10 @@ namespace CodeJam.IO
 		/// </summary>
 		[PublicAPI]
 		public abstract class TempBase :
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			IDisposable
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			System.Runtime.ConstrainedExecution.CriticalFinalizerObject, IDisposable
+#else
+			IDisposable
 #endif
 		{
 			/// <summary>Checks that the path is valid.</summary>

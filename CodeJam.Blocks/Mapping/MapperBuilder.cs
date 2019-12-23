@@ -1,11 +1,10 @@
-﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
-using JetBrains.Annotations;
+﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.Mapping
 {
@@ -60,7 +59,8 @@ namespace CodeJam.Mapping
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure][NotNull]
+		[Pure]
+		[NotNull]
 		public Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> GetMapperExpression()
 			=> (Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>>)GetExpressionMapper().GetExpression();
 
@@ -72,7 +72,8 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure][NotNull]
+		[Pure]
+		[NotNull]
 		public Mapper<TFrom, TTo> GetMapper()
 			=> new Mapper<TFrom, TTo>(this);
 

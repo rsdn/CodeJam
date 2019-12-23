@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET40 // TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
+﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
 using System.Linq;
 using System.Linq.Expressions;

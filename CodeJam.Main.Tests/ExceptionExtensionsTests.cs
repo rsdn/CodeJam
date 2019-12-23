@@ -49,7 +49,7 @@ namespace CodeJam
 			Assert.That(text, Contains.Substring("000").And.Contains("123").And.Contains("456"));
 		}
 
-#if !LESSTHAN_NET45
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
 		private static async Task<string> GetTextAsync(Exception ex)
 		{
 			var writer = new StringWriter();

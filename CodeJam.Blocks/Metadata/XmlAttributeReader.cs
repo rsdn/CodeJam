@@ -1,7 +1,4 @@
-﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 // PUBLIC_API_CHANGES.
-// Some expression types are missing if targeting to these frameworks
-// AppDomain is missing if targeting to these frameworks
-#else
+﻿#if NET40_OR_GREATER || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES.
 using System;
 using System.Collections.Generic;
 using System.IO;

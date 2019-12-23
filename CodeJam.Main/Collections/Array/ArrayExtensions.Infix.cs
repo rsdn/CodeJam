@@ -5,10 +5,10 @@ using System.Collections.ObjectModel;
 // ReSharper disable once RedundantUsingDirective
 using JetBrains.Annotations;
 
-#if LESSTHAN_NET46 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-using ArrayEx = System.ArrayEx;
-#else
+#if NET46_OR_GREATER || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 using ArrayEx = System.Array;
+#else
+using ArrayEx = System.ArrayEx;
 #endif
 
 namespace CodeJam.Collections
@@ -22,10 +22,10 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
 		[NotNull, Pure]
-#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-		public static ReadOnlyCollectionEx<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionEx<T>(array);
-#else
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 		public static ReadOnlyCollection<T> AsReadOnly<T>([NotNull] this T[] array) => ArrayEx.AsReadOnly(array);
+#else
+		public static ReadOnlyCollectionEx<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionEx<T>(array);
 #endif
 
 		#region BinarySearch

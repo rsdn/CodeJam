@@ -1,13 +1,17 @@
 ﻿using System;
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
 using System.Globalization;
-#endif
 
 // ReSharper disable once CheckNamespace
 
 namespace CodeJam.Targeting
 {
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
+	internal static class InvariantCultureStringComparer
+	{
+		public static readonly StringComparer CompareCase = StringComparer.InvariantCulture;
+		public static readonly StringComparer IgnoreCase = StringComparer.InvariantCultureIgnoreCase;
+	}
+#else
 	internal sealed class InvariantCultureStringComparer : StringComparer
 	{
 		public static readonly StringComparer CompareCase = new InvariantCultureStringComparer(false);
@@ -40,12 +44,6 @@ namespace CodeJam.Targeting
 
 		public override int GetHashCode(string obj) => _invariantCulture.GetHashCode(obj, _compareOptions);
 		#endregion
-	}
-#else
-	internal static class InvariantCultureStringComparer
-	{
-		public static readonly StringComparer CompareCase = StringComparer.InvariantCulture;
-		public static readonly StringComparer IgnoreCase = StringComparer.InvariantCultureIgnoreCase;
 	}
 #endif
 }

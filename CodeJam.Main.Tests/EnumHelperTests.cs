@@ -10,10 +10,10 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
-#if LESSTHAN_NET40
-using EnumEx = System.EnumEx;
-#else
+#if NET40_OR_GREATER || TARGETS_NETCOREAPP
 using EnumEx = System.Enum;
+#else
+using EnumEx = System.EnumEx;
 #endif
 
 namespace CodeJam

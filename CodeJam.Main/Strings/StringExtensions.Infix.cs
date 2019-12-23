@@ -4,10 +4,10 @@ using System.Text;
 
 using JetBrains.Annotations;
 
-#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-using StringEx = System.StringEx;
-#else
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using StringEx = System.String;
+#else
+using StringEx = System.StringEx;
 #endif
 
 namespace CodeJam.Strings
@@ -239,10 +239,7 @@ namespace CodeJam.Strings
 		[Pure]
 		public static byte[] FromBase64([NotNull] this string str) => Convert.FromBase64String(str);
 
-
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 // PUBLIC_API_CHANGES
-		// Base64FormattingOptions is missing if targeting to these frameworks
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES
 		/// <summary>
 		/// Converts an array of bytes to its equivalent string representation that is encoded with base-64 digits.
 		/// A parameter specifies whether to insert line breaks in the return value.

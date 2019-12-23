@@ -12,10 +12,10 @@ namespace CodeJam.Targeting
 	{
 		[MethodImpl(AggressiveInlining)]
 		public static T CreateDelegate<T>([NotNull] this MethodInfo method) where T : Delegate =>
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20
-			(T)method.CreateDelegate(typeof(T));
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			(T)Delegate.CreateDelegate(typeof(T), method, true);
+#else
+			(T)method.CreateDelegate(typeof(T));
 #endif
 	}
 }

@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET40 // TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
+﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -281,10 +279,10 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.ToMapping      ("Field3", "Field2")
 				.ToMapping<Dest>("Field6", "Field7")
-#if LESSTHAN_NET45
-				.FromMapping(new DictionaryEx<string,string> { ["Field5"] = "Field4" }));
-#else
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
 				.FromMapping(new Dictionary<string,string> { ["Field5"] = "Field4" }));
+#else
+				.FromMapping(new DictionaryEx<string,string> { ["Field5"] = "Field4" }));
 #endif
 			Assert.That(map.To.Field1,             Is.EqualTo(1));
 			Assert.That(map.To.Field3,             Is.EqualTo(2));

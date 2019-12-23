@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 using NUnit.Framework;
 
-#if NET40
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
+using TaskEx = System.Threading.Tasks.Task;
+#elif NET40_OR_GREATER
 using TaskEx = System.Threading.Tasks.TaskEx;
 #else
 using TaskEx = System.Threading.Tasks.Task;
@@ -45,9 +47,7 @@ namespace CodeJam.Threading
 			cts.Cancel();
 			completedTask = await whenAny;
 			Assert.AreEqual(completedTask, whenCanceledTask);
-#if LESSTHAN_NET40
-			// Assert.ThrowsAsync is missing when targeting to these frameworks
-#else
+#if NET40_OR_GREATER || TARGETS_NETCOREAPP
 			Assert.ThrowsAsync<TaskCanceledException>(async () => await whenCanceledTask);
 			Assert.ThrowsAsync<TaskCanceledException>(() => whenCanceledTask);
 #endif
@@ -84,9 +84,7 @@ namespace CodeJam.Threading
 			cts.Cancel();
 			completedTask = await whenAny;
 			Assert.AreEqual(completedTask, whenCanceledTask);
-#if LESSTHAN_NET40
-			// Assert.ThrowsAsync is missing when targeting to these frameworks
-#else
+#if NET40_OR_GREATER || TARGETS_NETCOREAPP
 			Assert.ThrowsAsync<TaskCanceledException>(async () => await whenCanceledTask);
 			Assert.ThrowsAsync<TaskCanceledException>(() => whenCanceledTask);
 #endif
@@ -100,9 +98,7 @@ namespace CodeJam.Threading
 				whenCanceledTask,
 				delayTask);
 			Assert.AreEqual(completedTask, whenCanceledTask);
-#if LESSTHAN_NET40
-			// Assert.ThrowsAsync is missing when targeting to these frameworks
-#else
+#if NET40_OR_GREATER || TARGETS_NETCOREAPP
 			Assert.ThrowsAsync<TimeoutException>(async () => await whenCanceledTask);
 			Assert.ThrowsAsync<TimeoutException>(() => whenCanceledTask);
 #endif

@@ -243,9 +243,7 @@ namespace CodeJam.Dates
 		[TestCase(MidpointRounding.AwayFromZero, 2)]
 		[TestCase(MidpointRounding.AwayFromZero, 10)]
 		[TestCase(MidpointRounding.AwayFromZero, 5)]
-#if TARGETS_NET || LESSTHAN_NETCOREAPP30
-		// Some MidpointRounding values are missing if targeting to these frameworks
-#else
+#if NETCOREAPP30_OR_GREATER
 		[TestCase(MidpointRounding.ToZero, 1)]
 		[TestCase(MidpointRounding.ToZero, 2)]
 		[TestCase(MidpointRounding.ToZero, 10)]
@@ -296,9 +294,7 @@ namespace CodeJam.Dates
 		[TestCase(MidpointRounding.AwayFromZero, 2)]
 		[TestCase(MidpointRounding.AwayFromZero, 10)]
 		[TestCase(MidpointRounding.AwayFromZero, 5)]
-#if TARGETS_NET || LESSTHAN_NETCOREAPP30
-		// Some MidpointRounding values are missing if targeting to these frameworks
-#else
+#if NETCOREAPP30_OR_GREATER
 		[TestCase(MidpointRounding.ToZero, 1)]
 		[TestCase(MidpointRounding.ToZero, 2)]
 		[TestCase(MidpointRounding.ToZero, 10)]

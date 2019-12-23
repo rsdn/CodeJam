@@ -13,10 +13,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-using TaskEx = System.Threading.Tasks.TaskEx;
-#else
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using TaskEx = System.Threading.Tasks.Task;
+#else
+using TaskEx = System.Threading.Tasks.TaskEx;
 #endif
 
 using JetBrains.Annotations;

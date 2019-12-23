@@ -109,9 +109,9 @@ namespace CodeJam.Collections
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
 
-#if LESSTHAN_NET35 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			dict.GetOrAdd(key, _ => new HashSet<TValue>()).Add(value);
-#elif LESSTHAN_NET40
+#elif NET35_OR_GREATER
 			dict.GetOrAdd(key, _ => new HashSetEx<TValue>()).Add(value);
 #else
 			dict.GetOrAdd(key, _ => new HashSet<TValue>()).Add(value);

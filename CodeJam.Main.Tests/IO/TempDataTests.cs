@@ -326,23 +326,23 @@ namespace CodeJam.IO
 			using (var fileStream = TempData.CreateFileStream())
 			{
 				filePath = fileStream.Name;
-#if LESSTHAN_NET45
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
+				using (var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096, true))
+					textWriter.Write("O La La");
+#else
 				var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096);
 				textWriter.Write("O La La");
 				textWriter.Flush();
-#else
-				using (var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096, true))
-					textWriter.Write("O La La");
 #endif
 
 				string content;
 				fileStream.Position = 0;
-#if LESSTHAN_NET45
-				var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096);
-				content = textReader.ReadToEnd();
-#else
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
 				using (var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096, true))
 					content = textReader.ReadToEnd();
+#else
+				var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096);
+				content = textReader.ReadToEnd();
 #endif
 				Assert.AreEqual(content, "O La La");
 			}

@@ -164,10 +164,10 @@ namespace CodeJam.Arithmetic
 			[NotNull]
 			private static Func<T, T> CreateValue()
 			{
-#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-				return OperatorsFactory.UnaryOperator<T>(ExpressionType.Not);
-#else
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 				return OperatorsFactory.UnaryOperator<T>(ExpressionType.OnesComplement);
+#else
+				return OperatorsFactory.UnaryOperator<T>(ExpressionType.Not);
 #endif
 			}
 		}

@@ -1,8 +1,7 @@
-﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
-using JetBrains.Annotations;
+﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.Mapping
 {
@@ -33,7 +32,8 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TTo">Type to map to.</typeparam>
 		/// <param name="setter">MapperBuilder parameter setter.</param>
 		/// <returns>Mapping expression.</returns>
-		[Pure][NotNull]
+		[Pure]
+		[NotNull]
 		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>(
 			[NotNull] Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>> setter)
 		{

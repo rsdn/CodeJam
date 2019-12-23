@@ -1,9 +1,9 @@
 ﻿using System;
 
-#if LESSTHAN_NET46 || LESSTHAN_NETSTANDARD13 || LESSTHAN_NETCOREAPP10
-using ArrayEx = System.ArrayEx;
-#else
+#if NET46_OR_GREATER || NETSTANDARD13_OR_GREATER || TARGETS_NETCOREAPP
 using ArrayEx = System.Array;
+#else
+using ArrayEx = System.ArrayEx;
 #endif
 
 using JetBrains.Annotations;

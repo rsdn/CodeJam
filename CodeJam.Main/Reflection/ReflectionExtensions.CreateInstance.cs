@@ -1,10 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-
-#if (LESSTHAN_NET472 && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD21 && !LESSTHAN_NETSTANDARD16) || LESSTHAN_NETCOREAPP10
-using CodeJam.Collections.Backported;
-#endif
 
 using JetBrains.Annotations;
 
@@ -13,10 +10,10 @@ namespace CodeJam.Reflection
 	public partial class ReflectionExtensions
 	{
 		private static bool GetHasDefaultValue([NotNull] this ParameterInfo prm) =>
-#if LESSTHAN_NET45 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10
-			(prm.Attributes & ParameterAttributes.HasDefault) == ParameterAttributes.HasDefault;
-#else
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			prm.HasDefaultValue;
+#else
+			(prm.Attributes & ParameterAttributes.HasDefault) == ParameterAttributes.HasDefault;
 #endif
 
 		private static bool IsConstructorSuitable([NotNull] ConstructorInfo ctor, [NotNull, ItemNotNull] ParamInfo[] parameters)
@@ -33,7 +30,7 @@ namespace CodeJam.Reflection
 					return false;
 			}
 
-			var argsMap = parameters.Select(p => p.Name).ToHashSet();
+			var argsMap = new HashSet<string>(parameters.Select(p => p.Name));
 			foreach (var parameter in ctorParameters)
 			{
 				if (parameter.GetHasDefaultValue())

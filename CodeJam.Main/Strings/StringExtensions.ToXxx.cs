@@ -28,9 +28,7 @@ namespace CodeJam.Strings
 		public static string ToInvariantString<T>([NotNull] this T s, string format) where T : IFormattable =>
 			s.ToString(format, CultureInfo.InvariantCulture);
 
-#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP20 // PUBLIC_API_CHANGES
-		// StringComparison.InvariantCulture is missing in these frameworks
-#else
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES
 		/// <summary>
 		/// Determines whether the beginning of this string instance matches the specified string when compared using the
 		/// invariant culture.

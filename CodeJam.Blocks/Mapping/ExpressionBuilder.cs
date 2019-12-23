@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET40 || LESSTHAN_NETSTANDARD10 || LESSTHAN_NETCOREAPP10 // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
-// Some expression types are missing if targeting to these frameworks
-#else
+﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +6,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 using CodeJam.Collections;
-#if (LESSTHAN_NET472 && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD21 && !LESSTHAN_NETSTANDARD16) || LESSTHAN_NETCOREAPP10
+#if (NET46_OR_GREATER && !NET472_OR_GREATER) || (NETSTANDARD16_OR_GREATER && !NETSTANDARD21_OR_GREATER)
 using CodeJam.Collections.Backported;
 #endif
 using CodeJam.Targeting;

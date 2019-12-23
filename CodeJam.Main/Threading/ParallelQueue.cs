@@ -1,6 +1,4 @@
-﻿#if LESSTHAN_NET20 || LESSTHAN_NETSTANDARD20 || LESSTHAN_NETCOREAPP10
-// Thread is missing if targeting to these frameworks
-#else
+﻿#if TARGETS_NET || NETSTANDARD20_OR_GREATER || TARGETS_NETCOREAPP
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
