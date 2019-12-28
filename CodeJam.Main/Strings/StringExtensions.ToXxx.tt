@@ -84,7 +84,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.<#=type.Style#>)
 		{
 			<#=type.Lang#> result;
-			return <#=type.Lang#>.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (<#=type.Lang#>?)result : null;
+			return <#=type.Lang#>.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (<#=type.Lang#>?)result : null;
 		}
 <#
 }
