@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Targeting;
@@ -274,7 +275,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(string), ExpectedResult = typeof(string))]
 		public Type ToUnderlying([NotNull] Type type) => type.ToUnderlying();
 
-		[CompilerGenerated]
+		[CompilerGenerated, Browsable(false)]
 		private class NotAnonymousType<T> : List<T>
 		{
 		}
@@ -283,15 +284,38 @@ namespace CodeJam.Reflection
 		{
 			public TestAnonymousCaseAttribute() : base(new { Field = 0 }.GetType())
 			{
-				ExpectedResult = true;
 			}
 		}
 
-		[TestAnonymousCase]
+		private class TestCompilerGeneratedCaseAttribute : TestCaseAttribute
+		{
+			private static Func<int> GetCompilerGeneratedClosure(int arg) => () => arg;
+
+			public TestCompilerGeneratedCaseAttribute() : base(GetCompilerGeneratedClosure(0).Target.GetType())
+			{
+			}
+		}
+
+		[TestAnonymousCase(ExpectedResult = true)]
+		[TestCompilerGeneratedCase(ExpectedResult = false)]
 		[TestCase(typeof(NotAnonymousType<int>), ExpectedResult = false)]
 		[TestCase(typeof(DateTime?), ExpectedResult = false)]
 		[TestCase(typeof(DateTime), ExpectedResult = false)]
 		public bool IsAnonymous([NotNull] Type type) => type.IsAnonymous();
+
+		[TestAnonymousCase(ExpectedResult = true)]
+		[TestCompilerGeneratedCase(ExpectedResult = true)]
+		[TestCase(typeof(NotAnonymousType<int>), ExpectedResult = true)]
+		[TestCase(typeof(DateTime?), ExpectedResult = false)]
+		[TestCase(typeof(DateTime), ExpectedResult = false)]
+		public bool IsCompilerGenerated([NotNull] Type type) => type.IsCompilerGenerated();
+
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER
+		[TestCase(typeof(NotAnonymousType<int>), ExpectedResult = false)]
+		[TestCase(typeof(DateTime?), ExpectedResult = true)]
+		[TestCase(typeof(DateTime), ExpectedResult = true)]
+		public bool IsBrowsable([NotNull] Type type) => type.IsBrowsable();
+#endif
 
 		#region Inner types
 		private class A
