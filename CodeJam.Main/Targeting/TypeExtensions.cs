@@ -234,6 +234,14 @@ namespace CodeJam.Targeting
 		public static bool GetIsSubclassOf([NotNull] this Type type, [NotNull] Type c) => type.GetTypeInfo().IsSubclassOf(c);
 
 		[MethodImpl(AggressiveInlining)]
+		public static bool IsDefined([NotNull] this Type type, Type attributeType) =>
+			type.GetTypeInfo().IsDefined(attributeType);
+
+		[MethodImpl(AggressiveInlining)]
+		public static bool IsDefined([NotNull] this Type type, Type attributeType, bool inherit) =>
+			type.GetTypeInfo().IsDefined(attributeType, inherit);
+
+		[MethodImpl(AggressiveInlining)]
 		public static T GetCustomAttribute<T>([NotNull] this Type type) where T : Attribute =>
 			type.GetTypeInfo().GetCustomAttribute<T>();
 
