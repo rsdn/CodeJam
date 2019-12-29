@@ -71,7 +71,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			byte result;
-			return byte.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (byte?)result : null;
+			return byte.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (byte?)result : null;
 		}
 		#endregion
 
@@ -131,7 +131,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			sbyte result;
-			return sbyte.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (sbyte?)result : null;
+			return sbyte.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (sbyte?)result : null;
 		}
 		#endregion
 
@@ -191,7 +191,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Number)
 		{
 			short result;
-			return short.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (short?)result : null;
+			return short.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (short?)result : null;
 		}
 		#endregion
 
@@ -251,7 +251,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			ushort result;
-			return ushort.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (ushort?)result : null;
+			return ushort.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (ushort?)result : null;
 		}
 		#endregion
 
@@ -311,7 +311,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			int result;
-			return int.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (int?)result : null;
+			return int.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (int?)result : null;
 		}
 		#endregion
 
@@ -371,7 +371,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			uint result;
-			return uint.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (uint?)result : null;
+			return uint.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (uint?)result : null;
 		}
 		#endregion
 
@@ -431,7 +431,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			long result;
-			return long.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (long?)result : null;
+			return long.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (long?)result : null;
 		}
 		#endregion
 
@@ -491,7 +491,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			ulong result;
-			return ulong.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (ulong?)result : null;
+			return ulong.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (ulong?)result : null;
 		}
 		#endregion
 
@@ -551,7 +551,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Float)
 		{
 			float result;
-			return float.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (float?)result : null;
+			return float.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (float?)result : null;
 		}
 		#endregion
 
@@ -611,7 +611,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Float)
 		{
 			double result;
-			return double.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (double?)result : null;
+			return double.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (double?)result : null;
 		}
 		#endregion
 
@@ -671,7 +671,7 @@ namespace CodeJam.Strings
 			NumberStyles numberStyle = NumberStyles.Number)
 		{
 			decimal result;
-			return decimal.TryParse(str, numberStyle,  CultureInfo.InvariantCulture, out result) ? (decimal?)result : null;
+			return decimal.TryParse(str, numberStyle, CultureInfo.InvariantCulture, out result) ? (decimal?)result : null;
 		}
 		#endregion
 	}

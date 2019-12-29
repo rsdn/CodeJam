@@ -13,7 +13,7 @@
 	</PropertyGroup>
 
 	<!-- #region Targeting -->
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' OR '$(TargetFramework)' == 'net35' ">
 		<Reference Include="System.ComponentModel.DataAnnotations" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'netcoreapp1.1' ">

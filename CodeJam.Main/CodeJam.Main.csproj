@@ -68,6 +68,7 @@
 		<PackageReference Include="Theraot.Core" Version="3.1.2" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+		<Reference Include="System.ComponentModel.DataAnnotations" />
 		<PackageReference Include="Theraot.Core" Version="3.1.2" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
@@ -82,6 +83,8 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
+		<PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
+		<PackageReference Include="System.Data.Common" Version="4.3.0" />
 		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
 		<PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
 		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
@@ -93,6 +96,8 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
+		<PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
+		<PackageReference Include="System.Data.Common" Version="4.3.0" />
 		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
 		<PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
 		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
@@ -110,6 +115,8 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 		<PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
+		<PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
+		<PackageReference Include="System.Data.Common" Version="4.3.0" />
 		<PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
 		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
 		<PackageReference Include="Theraot.Core" Version="3.1.2" />
