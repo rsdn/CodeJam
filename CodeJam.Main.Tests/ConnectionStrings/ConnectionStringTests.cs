@@ -2,6 +2,9 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+
+using JetBrains.Annotations;
 
 using NUnit.Framework;
 
@@ -12,7 +15,9 @@ namespace CodeJam.ConnectionStrings
 	[SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
 	public class ConnectionStringTests
 	{
-		private static readonly DateTimeOffset _defaultDateTimeOffset = new DateTimeOffset(2010, 11, 12, 0, 0, 0, TimeSpan.Zero);
+		private static readonly DateTimeOffset _defaultDateTimeOffset = new DateTimeOffset(
+			new DateTime(2010, 11, 12),
+			TimeSpan.Zero);
 
 		public class BaseConnectionString : ConnectionStringBase
 		{
@@ -48,6 +53,14 @@ namespace CodeJam.ConnectionStrings
 			{
 				get => TryGetValue(nameof(RequiredValue));
 				set => SetValue(nameof(RequiredValue), value);
+			}
+
+			// Never filled. Used to test roundtrip scenario
+			[UsedImplicitly]
+			public string OptionalValue
+			{
+				get => TryGetValue(nameof(OptionalValue));
+				set => SetValue(nameof(OptionalValue), value);
 			}
 
 			public DateTimeOffset? DateTimeOffsetValue
@@ -144,6 +157,7 @@ BooleanValue=true;
 		{
 			var x = new DerivedConnectionString("IgnoredValue=aaa");
 			AreEqual(x.RequiredValue, null);
+			AreEqual(x.OptionalValue, null);
 			AreEqual(x.BooleanValue, false);
 			AreEqual(x.Int32Value, null);
 			AreEqual(x.DateTimeOffsetValue, null);
@@ -164,14 +178,19 @@ BooleanValue=true;
 			};
 
 			var s = x.ToString();
-			AreEqual(s, @"RequiredValue=""A; B=C'"""""";DateTimeOffsetValue=""11/12/2010 00:00:00 +00:00"";BooleanValue=True;Int32Value=-1024");
+			AreEqual(
+				s,
+				@"RequiredValue=""A; B=C'"""""";BooleanValue=True;Int32Value=-1024;DateTimeOffsetValue=""11/12/2010 00:00:00 +00:00""");
 
 			var x2 = new DerivedConnectionString(s);
 			AreEqual(x2.RequiredValue, x.RequiredValue);
 			AreEqual(x2.BooleanValue, x.BooleanValue);
 			AreEqual(x2.Int32Value, x.Int32Value);
 			AreEqual(x2.DateTimeOffsetValue, x.DateTimeOffsetValue);
+
 			AreEqual(s, x2.ToString());
+			IsTrue(x.EquivalentTo(x2));
+			AreEqual(x.OrderBy(p => p.Key), x2.OrderBy(p => p.Key));
 		}
 
 		[Test]
@@ -193,6 +212,15 @@ BooleanValue=true;
 		}
 
 		[Test]
+		public void TestInvalidProperties()
+		{
+			var x = new DerivedConnectionString(@"BooleanValue=aaa;Int32Value=bbb;DateTimeOffsetValue=ccc");
+			Throws<FormatException>(() => x.BooleanValue.ToString());
+			Throws<FormatException>(() => x.Int32Value?.ToString());
+			Throws<FormatException>(() => x.DateTimeOffsetValue?.ToString());
+		}
+
+		[Test]
 		public void TestNonBrowsableProperties()
 		{
 			var x = new NonBrowsableConnectionString("")
@@ -210,6 +238,8 @@ BooleanValue=true;
 			AreEqual(x2.BooleanValue, x.BooleanValue);
 			AreEqual(x2.Int32Value, x.Int32Value);
 			AreEqual(s, x2.ToString());
+			IsFalse(x.EquivalentTo(x2));
+			AreNotEqual(x.ToArray(), x2.ToArray());
 
 			s = x.GetBrowsableConnectionString(false);
 			AreEqual(s, @"BooleanValue=True;Int32Value=-1024");
@@ -219,6 +249,8 @@ BooleanValue=true;
 			AreEqual(x2.BooleanValue, x.BooleanValue);
 			AreEqual(x2.Int32Value, x.Int32Value);
 			AreEqual(s, x2.ToString());
+			IsFalse(x.EquivalentTo(x2));
+			AreNotEqual(x.ToArray(), x2.ToArray());
 		}
 	}
 }
