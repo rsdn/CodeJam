@@ -1,6 +1,17 @@
 ﻿CodeJam 3.0.0-beta1 Release Notes
 ---------------------------------
 
+What's new in 3.0.1-beta2
+-------------------------
+* Connection string parser/formatter class
+* IsBrowsable/IsCompilerGenerated reflection helpers
+* Code.NotDefault assertion
+* DateTime[Offset].Round method
+* Disposable.DisposeAsync method
+* TimeSpanHelpers class
+* CancellationToken.WhenCancelled method
+* Fixes, refactoring and code cleanup
+
 What's new in 3.0.1-beta1
 -------------------------
 * Core 3.0 and 3.1 support

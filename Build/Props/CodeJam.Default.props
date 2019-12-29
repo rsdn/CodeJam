@@ -9,8 +9,8 @@
 		<DelaySign>False</DelaySign>
 		<AssemblyOriginatorKeyFile>..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 
-		<Version>3.0.0.0</Version>
-		<PackageVersion>3.0.1-beta1</PackageVersion>
+		<Version>3.0.1.0</Version>
+		<PackageVersion>3.0.1-beta2</PackageVersion>
 		<PackageOutputPath>..\_Results</PackageOutputPath>
 
 		<Company>RSDN</Company>
