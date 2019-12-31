@@ -662,5 +662,42 @@ namespace CodeJam.Reflection
 		[Pure]
 		public static bool IsBrowsable([NotNull] this MemberInfo member) =>
 			member.GetCustomAttribute<BrowsableAttribute>()?.Browsable ?? true;
+
+		/// <summary>
+		/// Determines whether instance of <typeparamref name="T"/> can be assigned to instance of current type.
+		/// </summary>
+		/// <typeparam name="T">Type to check</typeparam>
+		/// <param name="type">Target type.</param>
+		/// <returns>
+		///   <c>true</c> if instance of <typeparamref name="T"/> can be assigned to instance of current type; otherwise, <c>false</c>.
+		/// </returns>
+		[Pure]
+		public static bool IsAssignableFrom<T>([NotNull] this Type type) => type.IsAssignableFrom(typeof(T));
+
+		/// <summary>
+		/// Determines whether instance of current type can be assigned to instance of <typeparamref name="T"/>.
+		/// </summary>
+		/// <typeparam name="T">Target type</typeparam>
+		/// <param name="type">The type to check.</param>
+		/// <returns>
+		///   <c>true</c> if instance of current type can be assigned to instance of <typeparamref name="T"/>; otherwise, <c>false</c>.
+		/// </returns>
+		[Pure]
+		public static bool IsAssignableTo<T>([NotNull] this Type type) => typeof(T).IsAssignableFrom(type);
+
+		/// <summary>
+		/// Determines whether instance of current type can be assigned to instance of <paramref name="targetType"/>.
+		/// </summary>
+		/// <param name="type">The type to check.</param>
+		/// <param name="targetType">Target type.</param>
+		/// <returns>
+		///   <c>true</c> if instance of current type can be assigned to instance of <paramref name="targetType"/>; otherwise, <c>false</c>.
+		/// </returns>
+		[Pure]
+		public static bool IsAssignableTo([NotNull] this Type type, Type targetType)
+		{
+			Code.NotNull(targetType, nameof(targetType));
+			return targetType.IsAssignableFrom(type);
+		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Targeting;
@@ -316,6 +317,14 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(DateTime), ExpectedResult = true)]
 		public bool IsBrowsable([NotNull] Type type) => type.IsBrowsable();
 #endif
+
+		[TestCase(typeof(int), typeof(object), ExpectedResult = true)]
+		[TestCase(typeof(FileStream), typeof(Stream), ExpectedResult = true)]
+		[TestCase(typeof(int[]), typeof(IList), ExpectedResult = true)]
+		[TestCase(typeof(int), typeof(int?), ExpectedResult = true)]
+		[TestCase(typeof(int), typeof(long), ExpectedResult = false)]
+		[TestCase(typeof(Stream), typeof(FileStream), ExpectedResult = false)]
+		public bool CanBeAssignedTo([NotNull] Type type, [NotNull] Type targetType) => type.IsAssignableTo(targetType);
 
 		#region Inner types
 		private class A
