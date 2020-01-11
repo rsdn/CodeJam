@@ -128,6 +128,11 @@
 			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
 		</Compile>
+		<Compile Update="Collections\Enumerable\EnumerableExtensions.Deconstruct.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EnumerableExtensions.Deconstruct.tt</DependentUpon>
+		</Compile>
 		<Compile Update="Dates\DateTimeCode.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DateTimeCode.tt</DependentUpon>
@@ -180,6 +185,10 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DebugCode.tt</DependentUpon>
 		</Compile>
+		<None Update="Collections\Enumerable\EnumerableExtensions.Deconstruct.tt">
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		  <LastGenOutput>EnumerableExtensions.Deconstruct.generated.cs</LastGenOutput>
+		</None>
 		<None Update="Dates\DateTimeCode.tt">
 			<LastGenOutput>DateTimeCode.generated.cs</LastGenOutput>
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -215,6 +224,7 @@
 		<Compile Update="Collections\Array\ArrayExtensions.generated.cs">
 			<DependentUpon>ArrayExtensions.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Collections\Array\ArrayExtensions.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
