@@ -137,6 +137,12 @@ namespace CodeJam.Collections
 			Assert.IsFalse(array is (1, _, 5, _, _));
 			Assert.IsTrue(array is (1, 2, 3, 4, 5));
 			Assert.IsFalse(array is (1, 2, 3, 6, 5));
+
+			Assert.Throws<ArgumentException>(
+				() =>
+				{
+					var b = array is (1, _, _, _, _, _);
+				});
 		}
 
 		[Test]
@@ -151,6 +157,12 @@ namespace CodeJam.Collections
 			Assert.IsFalse(array is (1, _, 5, _, _));
 			Assert.IsTrue(array is (1, 2, 3, 4, 5));
 			Assert.IsFalse(array is (1, 2, 3, 6, 5));
+
+			Assert.Throws<ArgumentException>(
+				() =>
+				{
+					var b = array is (1, _, _, _, _, _);
+				});
 		}
 
 		[Test]

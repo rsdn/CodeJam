@@ -15,6 +15,8 @@ namespace CodeJam.Collections
 {
 	partial class EnumerableExtensions
 	{
+		private const string _arrayTooShortMsg = "The array is too short.";
+		private const string _listTooShortMsg = "The list is too short.";
 		private const string _enumTooShortMsg = "The enumerable is too short.";
 
 		/// <summary>
@@ -27,6 +29,7 @@ namespace CodeJam.Collections
 			out T item2)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 2, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -42,6 +45,7 @@ namespace CodeJam.Collections
 			out T item2)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 2, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];
@@ -76,6 +80,7 @@ namespace CodeJam.Collections
 			out T item3)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 3, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -93,6 +98,7 @@ namespace CodeJam.Collections
 			out T item3)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 3, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];
@@ -132,6 +138,7 @@ namespace CodeJam.Collections
 			out T item4)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 4, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -151,6 +158,7 @@ namespace CodeJam.Collections
 			out T item4)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 4, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];
@@ -195,6 +203,7 @@ namespace CodeJam.Collections
 			out T item5)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 5, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -216,6 +225,7 @@ namespace CodeJam.Collections
 			out T item5)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 5, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];
@@ -265,6 +275,7 @@ namespace CodeJam.Collections
 			out T item6)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 6, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -288,6 +299,7 @@ namespace CodeJam.Collections
 			out T item6)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 6, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];
@@ -342,6 +354,7 @@ namespace CodeJam.Collections
 			out T item7)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 7, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -367,6 +380,7 @@ namespace CodeJam.Collections
 			out T item7)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 7, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];
@@ -426,6 +440,7 @@ namespace CodeJam.Collections
 			out T item8)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 8, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -453,6 +468,7 @@ namespace CodeJam.Collections
 			out T item8)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 8, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];
@@ -517,6 +533,7 @@ namespace CodeJam.Collections
 			out T item9)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 9, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -546,6 +563,7 @@ namespace CodeJam.Collections
 			out T item9)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 9, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];
@@ -615,6 +633,7 @@ namespace CodeJam.Collections
 			out T item10)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 10, nameof (array), _arrayTooShortMsg);
 
 			item1 = array[0];
 			item2 = array[1];
@@ -646,6 +665,7 @@ namespace CodeJam.Collections
 			out T item10)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 10, nameof (list), _listTooShortMsg);
 
 			item1 = list[0];
 			item2 = list[1];

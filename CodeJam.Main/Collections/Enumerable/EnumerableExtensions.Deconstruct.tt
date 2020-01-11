@@ -8,6 +8,8 @@ namespace CodeJam.Collections
 {
 	partial class EnumerableExtensions
 	{
+		private const string _arrayTooShortMsg = "The array is too short.";
+		private const string _listTooShortMsg = "The list is too short.";
 		private const string _enumTooShortMsg = "The enumerable is too short.";
 
 <#
@@ -27,6 +29,7 @@ namespace CodeJam.Collections
 			out T item<#=i#><#+ } #>)
 		{
 			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= <#=numOfParams#>, nameof (array), _arrayTooShortMsg);
 
 <#+for (var i = 1; i <= numOfParams; i++) {#>
 			item<#=i#> = array[<#=i-1#>];
@@ -42,6 +45,7 @@ namespace CodeJam.Collections
 			out T item<#=i#><#+ } #>)
 		{
 			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= <#=numOfParams#>, nameof (list), _listTooShortMsg);
 
 <#+for (var i = 1; i <= numOfParams; i++) {#>
 			item<#=i#> = list[<#=i-1#>];
