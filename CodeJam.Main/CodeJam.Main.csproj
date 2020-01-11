@@ -442,11 +442,6 @@
 			<Pack>true</Pack>
 			<PackagePath>icon.png</PackagePath>
 		</None>
-		<None Include="Collections\Enumerable\ArrayExtensions.Deconstruct.generated.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>ArrayExtensions.Deconstruct.tt</DependentUpon>
-		</None>
 	</ItemGroup>
 
 	<ItemGroup>
