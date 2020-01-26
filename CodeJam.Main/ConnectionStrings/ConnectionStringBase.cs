@@ -17,6 +17,7 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>
 		/// Descriptor for connection string keyword
 		/// </summary>
+		[PublicAPI]
 		protected class KeywordDescriptor
 		{
 			/// <summary>
@@ -55,10 +56,8 @@ namespace CodeJam.ConnectionStrings
 
 		/// <summary>Initializes a new instance of the <see cref="ConnectionStringBase" /> class.</summary>
 		/// <param name="connectionString">The connection string.</param>
-		protected ConnectionStringBase([CanBeNull] string connectionString)
-		{
+		protected ConnectionStringBase([CanBeNull] string connectionString) =>
 			_wrapper = new StringBuilderWrapper(connectionString, GetType());
-		}
 
 		/// <summary>
 		/// Gets all supported keywords for current connection.

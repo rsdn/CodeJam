@@ -1,5 +1,11 @@
-﻿CodeJam 3.0.0-beta1 Release Notes
+﻿CodeJam 3.0.0-beta3 Release Notes
 ---------------------------------
+
+What's new in 3.0.1-beta3
+-------------------------
+* IsAssignableTo() reflection helper.
+* Deconstruct methods for arrays, lists and enumerables (to support positional pattern).
+* Code cleanup
 
 What's new in 3.0.1-beta2
 -------------------------

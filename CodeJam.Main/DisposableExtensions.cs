@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+#if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
 using System.Threading.Tasks;
+#endif
 
 using CodeJam.Internal;
 

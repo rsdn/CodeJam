@@ -5,8 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-// ReSharper disable once RedundantUsingDirective
-
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
@@ -150,6 +148,7 @@ namespace CodeJam.Collections
 				var mi = eq.GetMethods().Single(m => m.IsPublic && m.Name == "Equals" && m.GetParameters().Length == 2);
 
 				DebugCode.BugIf(pi is null, "pi != null");
+				// ReSharper disable once AssignNullToNotNullAttribute
 				return (Expression)Expression.Call(Expression.Property(null, pi), mi, arg0, arg1);
 			});
 
@@ -180,6 +179,7 @@ namespace CodeJam.Collections
 					DebugCode.BugIf(pi is null, "pi != null");
 					return Expression.Add(
 						Expression.Multiply(e, Expression.Constant(-1521134295)),
+						// ReSharper disable once AssignNullToNotNullAttribute
 						Expression.Call(Expression.Property(null, pi), mi, ma));
 				});
 

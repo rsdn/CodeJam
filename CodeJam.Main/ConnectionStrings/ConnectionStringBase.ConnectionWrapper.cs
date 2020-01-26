@@ -24,7 +24,7 @@ namespace CodeJam.ConnectionStrings
 
 			private static IReadOnlyDictionary<string, KeywordDescriptor> GetDescriptorsCore(Type type)
 			{
-				KeywordDescriptor GetDescriptor(PropertyInfo property) =>
+				static KeywordDescriptor GetDescriptor(PropertyInfo property) =>
 					new KeywordDescriptor(
 						property.Name,
 						property.PropertyType,

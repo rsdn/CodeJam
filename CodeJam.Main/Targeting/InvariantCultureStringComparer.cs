@@ -1,5 +1,8 @@
 ﻿using System;
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
+#else
 using System.Globalization;
+#endif
 
 // ReSharper disable once CheckNamespace
 

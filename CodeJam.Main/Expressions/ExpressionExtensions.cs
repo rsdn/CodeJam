@@ -323,6 +323,9 @@ namespace CodeJam.Expressions
 						VisitInternal(expr.Reduce(), func);
 					break;
 				}
+
+				default:
+					break;
 			}
 
 			func(expr);

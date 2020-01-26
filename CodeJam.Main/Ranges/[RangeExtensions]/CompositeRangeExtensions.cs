@@ -100,8 +100,8 @@ namespace CodeJam.Ranges
 			{
 				if (prevBoundary != rangeFrom)
 				{
-					foreach (var prevKey in prevKeys)
-						ranges.Add(Range.Create(prevBoundary, rangeFrom.GetComplementation(), prevKey));
+					ranges.AddRange(
+						prevKeys.Select(prevKey => Range.Create(prevBoundary, rangeFrom.GetComplementation(), prevKey)));
 					prevKeys.Clear();
 					prevBoundary = rangeFrom;
 				}
@@ -109,8 +109,8 @@ namespace CodeJam.Ranges
 				prevKeys.Add(key);
 			}
 
-			foreach (var prevKey in prevKeys)
-				ranges.Add(Range.Create(prevBoundary, RangeBoundaryTo<T>.PositiveInfinity, prevKey));
+			ranges.AddRange(
+				prevKeys.Select(prevKey => Range.Create(prevBoundary, RangeBoundaryTo<T>.PositiveInfinity, prevKey)));
 
 			return ranges.ToCompositeRange();
 		}

@@ -2,6 +2,7 @@
 
 using JetBrains.Annotations;
 
+// ReSharper disable once CheckNamespace
 namespace CodeJam.Collections.Backported
 {
 	/// <summary>
