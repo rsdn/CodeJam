@@ -300,13 +300,13 @@ namespace CodeJam
 		[Test]
 		public static void TestGetDefinedFlags()
 		{
-			AreEqual(Abcd.GetDefinedFlags(), new[] { Flags.A, Flags.B, Flags.C, Flags.D, Flags.CD });
-			AreEqual(Zero.GetDefinedFlags(), new Flags[] { });
-			AreEqual(Undef.GetDefinedFlags(), new Flags[] { });
-			AreEqual(Flags.Dx.GetDefinedFlags(), new[] { D, Flags.Dx });
+			AreEqual(EnumHelper.GetDefinedFlags(Abcd), new[] { Flags.A, Flags.B, Flags.C, Flags.D, Flags.CD });
+			AreEqual(EnumHelper.GetDefinedFlags(Zero), new Flags[] { });
+			AreEqual(EnumHelper.GetDefinedFlags(Undef), new Flags[] { });
+			AreEqual(EnumHelper.GetDefinedFlags(Flags.Dx), new[] { D, Flags.Dx });
 
-			AreEqual(NoFlags.E.GetDefinedFlags(), new[] { NoFlags.E });
-			AreEqual(Efg.GetDefinedFlags(), new NoFlags[] { });
+			AreEqual(EnumHelper.GetDefinedFlags(NoFlags.E), new[] { NoFlags.E });
+			AreEqual(EnumHelper.GetDefinedFlags(Efg), new NoFlags[] { });
 		}
 
 		[Test]

@@ -259,7 +259,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <returns>All declared values that match specified flag mask.</returns>
 		[Pure, NotNull]
-		public static TEnum[] GetDefinedFlags<TEnum>(this TEnum value)
+		public static TEnum[] GetDefinedFlags<TEnum>(TEnum value)
 			where TEnum : struct, Enum
 		{
 			var equals = OpHolder<TEnum>.AreEqualCallback;
