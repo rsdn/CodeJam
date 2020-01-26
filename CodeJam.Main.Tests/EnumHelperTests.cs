@@ -143,6 +143,9 @@ namespace CodeJam
 
 			AreEqual(EnumHelper.GetValuesMask<Flags>(), Abcdx);
 			AreEqual(EnumHelper.GetValuesMask<NoFlags>(), Efgh);
+
+			IsTrue(EnumHelper.AreFlagsDefined(Abc));
+			IsFalse(EnumHelper.AreFlagsDefined(Efg));
 		}
 
 		[Test]
