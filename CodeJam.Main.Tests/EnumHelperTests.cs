@@ -6,6 +6,8 @@ using System.Linq;
 using CodeJam.Arithmetic;
 using CodeJam.Strings;
 
+using JetBrains.Annotations;
+
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
@@ -31,16 +33,20 @@ namespace CodeJam
 		{
 			Zero = 0x0,
 			A = 0x1,
+			[UsedImplicitly]
+			ACopy = 0x1,
 			B = 0x2,
 			C = 0x4,
 			D = 0x8,
 			// ReSharper disable once InconsistentNaming
-			CD = C | D
+			CD = C | D,
+			Dx = D | 0x20
 		}
 
 		private const Flags Ab = Flags.A | Flags.B;
 		private const Flags Abc = Flags.A | Flags.B | Flags.C;
 		private const Flags Abcd = Flags.A | Flags.B | Flags.C | Flags.D;
+		private const Flags Abcdx = Flags.A | Flags.B | Flags.C | Flags.D | Flags.Dx;
 		private const Flags Bc = Flags.B | Flags.C;
 		private const Flags Bd = Flags.B | Flags.D;
 		private const Flags D = Flags.D;
@@ -64,6 +70,7 @@ namespace CodeJam
 		// ReSharper disable BitwiseOperatorOnEnumWithoutFlags
 		private const NoFlags Ef = NoFlags.E | NoFlags.F;
 		private const NoFlags Efg = NoFlags.E | NoFlags.F | NoFlags.G;
+		private const NoFlags Efgh = NoFlags.E | NoFlags.F | NoFlags.G | NoFlags.H;
 
 		private const NoFlags NoFlagsUndef = (NoFlags)0x10;
 
@@ -83,7 +90,7 @@ namespace CodeJam
 		#endregion
 
 		[Test]
-		public void Test0001IsDefined()
+		public void TestIsDefined()
 		{
 			Throws<ArgumentException>(() => Enum.IsDefined(typeof(int), 2));
 
@@ -126,20 +133,20 @@ namespace CodeJam
 		[TestCase("C", ExpectedResult = true)]
 		[TestCase("CD", ExpectedResult = true)]
 		[TestCase("Undef", ExpectedResult = false)]
-		public bool IsDefinedStr(string value) => EnumHelper.IsDefined<Flags>(value);
+		public bool TestIsDefinedStr(string value) => EnumHelper.IsDefined<Flags>(value);
 
 		[Test]
-		public void Test0002FlagsVsNoFlags()
+		public void TestFlagsVsNoFlags()
 		{
 			IsTrue(EnumHelper.IsFlagsEnum<Flags>());
 			IsFalse(EnumHelper.IsFlagsEnum<NoFlags>());
 
-			AreEqual(EnumHelper.GetFlagsMask<Flags>(), Abcd);
-			AreEqual(EnumHelper.GetFlagsMask<NoFlags>(), NoFlags.Zero);
+			AreEqual(EnumHelper.GetValuesMask<Flags>(), Abcdx);
+			AreEqual(EnumHelper.GetValuesMask<NoFlags>(), Efgh);
 		}
 
 		[Test]
-		public void Test01Parse()
+		public void TestParse()
 		{
 			Flags result1;
 			Flags result2;
@@ -182,31 +189,31 @@ namespace CodeJam
 		}
 
 		[Test]
-		public void Test02GetName() => AreEqual("ReturnValue", EnumHelper.GetName(AttributeTargets.ReturnValue));
+		public void TestGetName() => AreEqual("ReturnValue", EnumHelper.GetName(AttributeTargets.ReturnValue));
 
 		[Test]
-		public void Test03GetNames() =>
+		public void TestGetNames() =>
 			AreEqual(
 				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
 					"Delegate, ReturnValue, GenericParameter, All",
 				EnumHelper.GetNames<AttributeTargets>().Join(", "));
 
 		[Test]
-		public void Test04GetValues() =>
+		public void TestGetValues() =>
 			AreEqual(
 				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
 					"Delegate, ReturnValue, GenericParameter, All",
 				EnumHelper.GetValues<AttributeTargets>().Join(", "));
 
 		[Test]
-		public void Test05GetNameValues() =>
+		public void TestGetNameValues() =>
 			AreEqual(
 				"Assembly, Module, Class, Struct, Enum, Constructor, Method, Property, Field, Event, Interface, Parameter, " +
 					"Delegate, ReturnValue, GenericParameter, All",
 				EnumHelper.GetNameValues<AttributeTargets>().Select(kvp => kvp.Key).Join(", "));
 
 		[Test]
-		public static void Test0601IsFlagSet()
+		public static void TestIsFlagSet()
 		{
 			IsTrue(Abc.HasFlag(Zero));
 			IsTrue(Abc.HasFlag(Bc));
@@ -245,9 +252,67 @@ namespace CodeJam
 		}
 
 		[Test]
+		public static void TestIsFlagSetNoFlags()
+		{
+			IsTrue(Efg.HasFlag(NoFlags.Zero));
+			IsTrue(Efg.HasFlag(Ef));
+			IsTrue(Efg.HasFlag(NoFlags.E));
+			IsFalse(Efg.HasFlag(NoFlags.H));
+			IsFalse(Efg.HasFlag(NoFlagsUndef));
+
+			IsTrue(Efg.IsFlagSet(NoFlags.Zero));
+			IsTrue(Efg.IsFlagSet(Ef));
+			IsTrue(Efg.IsFlagSet(NoFlags.E));
+			IsFalse(Efg.IsFlagSet(NoFlags.H));
+			IsFalse(Efg.IsFlagSet(NoFlagsUndef));
+
+			IsFalse(Efg.IsAnyFlagUnset(NoFlags.Zero));
+			IsFalse(Efg.IsAnyFlagUnset(Ef));
+			IsFalse(Efg.IsAnyFlagUnset(NoFlags.E));
+			IsTrue(Efg.IsAnyFlagUnset(NoFlags.H));
+			IsTrue(Efg.IsAnyFlagUnset(NoFlagsUndef));
+
+			IsTrue(Efg.IsAnyFlagSet(NoFlags.Zero));
+			IsTrue(Efg.IsAnyFlagSet(Ef));
+			IsTrue(Efg.IsAnyFlagSet(NoFlags.E));
+			IsFalse(Efg.IsAnyFlagSet(NoFlags.H));
+			IsFalse(Efg.IsAnyFlagSet(NoFlagsUndef));
+
+			IsFalse(Efg.IsFlagUnset(NoFlags.Zero));
+			IsFalse(Efg.IsFlagUnset(Ef));
+			IsFalse(Efg.IsFlagUnset(NoFlags.E));
+			IsTrue(Efg.IsFlagUnset(NoFlags.H));
+			IsTrue(Efg.IsFlagUnset(NoFlagsUndef));
+		}
+
+		[Test]
+		public static void TestToFlags()
+		{
+			AreEqual(Abcd.ToFlags(), new[] { Flags.A, Flags.B, Flags.C, Flags.D });
+			AreEqual(Zero.ToFlags(), new Flags[] { });
+			AreEqual(Undef.ToFlags(), new Flags[] { });
+			AreEqual(Flags.Dx.ToFlags(), new[] { D, Flags.Dx });
+
+			AreEqual(NoFlags.E.ToFlags(), new[] { NoFlags.E });
+			AreEqual(Efg.ToFlags(), new NoFlags[] { });
+		}
+
+		[Test]
+		public static void TestGetDefinedFlags()
+		{
+			AreEqual(Abcd.GetDefinedFlags(), new[] { Flags.A, Flags.B, Flags.C, Flags.D, Flags.CD });
+			AreEqual(Zero.GetDefinedFlags(), new Flags[] { });
+			AreEqual(Undef.GetDefinedFlags(), new Flags[] { });
+			AreEqual(Flags.Dx.GetDefinedFlags(), new[] { D, Flags.Dx });
+
+			AreEqual(NoFlags.E.GetDefinedFlags(), new[] { NoFlags.E });
+			AreEqual(Efg.GetDefinedFlags(), new NoFlags[] { });
+		}
+
+		[Test]
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-		public static void Test0602IsFlagSetOperators()
+		public static void TestIsFlagSetOperators()
 		{
 			var isFlagSet = OperatorsFactory.IsFlagSetOperator<int>();
 			var isAnyFlagSet = OperatorsFactory.IsAnyFlagSetOperator<int>();
@@ -276,7 +341,7 @@ namespace CodeJam
 		[Test]
 		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-		public static void Test0603IsFlagSetInt()
+		public static void TestIsFlagSetInt()
 		{
 			bool IsFlagSet(int value, int flag) => (value & flag) == flag;
 			bool IsAnyFlagSet(int value, int flag) => (flag == 0) || ((value & flag) != 0);
@@ -304,7 +369,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void Test07SetFlag()
+		public static void TestSetFlag()
 		{
 			AreEqual(Abc.SetFlag(Zero), Abc);
 			AreEqual(Abc.SetFlag(Bc), Abc);
@@ -315,7 +380,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void Test08ClearFlag()
+		public static void TestClearFlag()
 		{
 			AreEqual(Abc.ClearFlag(Zero), Abc);
 			AreEqual(Abc.ClearFlag(Bc), Flags.A);
@@ -326,7 +391,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void Test09SetOrClearFlag()
+		public static void TestSetOrClearFlag()
 		{
 			AreEqual(Abc.SetFlag(Zero, true), Abc);
 			AreEqual(Abc.SetFlag(Bc, true), Abc);
@@ -346,16 +411,16 @@ namespace CodeJam
 		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1")]
 		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
-		public string GetDisplayName(NameDescEnum value) => EnumHelper.GetDisplayName(value);
+		public string TestGetDisplayName(NameDescEnum value) => EnumHelper.GetDisplayName(value);
 
 		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1 Desc")]
 		[TestCase(NameDescEnum.Field2, ExpectedResult = null)]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = null)]
-		public string GetDescription(NameDescEnum value) => EnumHelper.GetDescription(value);
+		public string TestGetDescription(NameDescEnum value) => EnumHelper.GetDescription(value);
 
 		[TestCase(NameDescEnum.Field1, ExpectedResult = "Field 1 (Field 1 Desc)")]
 		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
-		public string GetDisplay(NameDescEnum value) => EnumHelper.GetEnumValue(value).ToString();
+		public string TestGetDisplay(NameDescEnum value) => EnumHelper.GetEnumValue(value).ToString();
 	}
 }
