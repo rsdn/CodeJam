@@ -129,9 +129,8 @@
 			<AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Update="Collections\Enumerable\EnumerableExtensions.Deconstruct.generated.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>EnumerableExtensions.Deconstruct.tt</DependentUpon>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>EnumerableExtensions.Deconstruct.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Dates\DateTimeCode.generated.cs">
 			<AutoGen>True</AutoGen>
@@ -144,6 +143,15 @@
 		<Compile Update="Dates\DebugDateTimeOffsetCode.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DebugDateTimeOffsetCode.tt</DependentUpon>
+		</Compile>
+		<None Update="Algorithms\Algorithms.MinMax.tt">
+			<LastGenOutput>Algorithms.MinMax.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+		<Compile Update="Algorithms\Algorithms.MinMax.generated.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Algorithms.MinMax.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Algorithms\Algorithms.EqualRange.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -186,8 +194,8 @@
 			<DependentUpon>DebugCode.tt</DependentUpon>
 		</Compile>
 		<None Update="Collections\Enumerable\EnumerableExtensions.Deconstruct.tt">
-		  <Generator>TextTemplatingFileGenerator</Generator>
-		  <LastGenOutput>EnumerableExtensions.Deconstruct.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>EnumerableExtensions.Deconstruct.generated.cs</LastGenOutput>
 		</None>
 		<None Update="Dates\DateTimeCode.tt">
 			<LastGenOutput>DateTimeCode.generated.cs</LastGenOutput>
@@ -224,7 +232,6 @@
 		<Compile Update="Collections\Array\ArrayExtensions.generated.cs">
 			<DependentUpon>ArrayExtensions.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Collections\Array\ArrayExtensions.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>

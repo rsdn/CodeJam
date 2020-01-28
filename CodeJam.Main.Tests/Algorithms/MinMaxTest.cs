@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using NUnit.Framework;
 
@@ -54,6 +55,7 @@ namespace CodeJam
 		public static void TestMinMaxOverNullable()
 		{
 			Comparable? c1 = new Comparable(1);
+			Comparable? cMinus1 = new Comparable(-1);
 			Comparable? c2 = new Comparable(2);
 
 			Assert.AreEqual(c1, Algorithms.Min(c1, c2));
@@ -65,12 +67,18 @@ namespace CodeJam
 			Assert.AreEqual(null, Algorithms.Min(null, c1));
 			Assert.AreEqual(c1, Algorithms.Max(null, c1));
 			Assert.AreEqual(c1, Algorithms.Max(c1, null));
+
+			Assert.AreEqual(null, Algorithms.Min(cMinus1, null));
+			Assert.AreEqual(null, Algorithms.Min(null, cMinus1));
+			Assert.AreEqual(cMinus1, Algorithms.Max(null, cMinus1));
+			Assert.AreEqual(cMinus1, Algorithms.Max(cMinus1, null));
 		}
 
 		[Test]
 		public static void TestMinMaxOverNullableEnum()
 		{
 			ConsoleColor? c1 = (ConsoleColor)1;
+			ConsoleColor? cMinus1 = (ConsoleColor)(-1);
 			ConsoleColor? c2 = (ConsoleColor)2;
 
 			Assert.AreEqual(c1, Algorithms.Min(c1, c2));
@@ -82,6 +90,11 @@ namespace CodeJam
 			Assert.AreEqual(null, Algorithms.Min(null, c1));
 			Assert.AreEqual(c1, Algorithms.Max(null, c1));
 			Assert.AreEqual(c1, Algorithms.Max(c1, null));
+
+			Assert.AreEqual(null, Algorithms.Min(cMinus1, null));
+			Assert.AreEqual(null, Algorithms.Min(null, cMinus1));
+			Assert.AreEqual(cMinus1, Algorithms.Max(null, cMinus1));
+			Assert.AreEqual(cMinus1, Algorithms.Max(cMinus1, null));
 		}
 	}
 }
