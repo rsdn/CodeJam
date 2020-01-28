@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 using CodeJam.Strings;
 using CodeJam.Targeting;
@@ -69,6 +70,12 @@ namespace CodeJam
 				Console.WriteLine($"\t * {prop.Name}: {prop.GetValue(null, null)}");
 			}
 		}
+
+		public static void GetAwaiterResult([NotNull] this Task source) =>
+			source.GetAwaiter().GetResult();
+
+		public static T GetAwaiterResult<T>([NotNull] this Task<T> source) =>
+			source.GetAwaiter().GetResult();
 	}
 
 	public class Holder<T>

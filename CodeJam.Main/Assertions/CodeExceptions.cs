@@ -167,6 +167,20 @@ namespace CodeJam
 					$"The value of '{argumentName}' ({value}) should be greater than or equal to {startIndex} and less than {length}."))
 				.LogToCodeTraceSourceBeforeThrow();
 		}
+
+		/// <summary>Creates <see cref="ArgumentException"/> for non-cancellable tokens.</summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
+		[DebuggerHidden, NotNull, MustUseReturnValue]
+		public static ArgumentException ArgumentDoesNotSupportCancellation(
+			[NotNull, InvokerParameterName] string argumentName)
+		{
+			BreakIfAttached();
+			return new ArgumentException(
+				Invariant($"The value of '{argumentName}' should support cancellation."),
+				argumentName)
+				.LogToCodeTraceSourceBeforeThrow();
+		}
 		#endregion
 
 		#region General purpose exceptions
@@ -221,6 +235,33 @@ namespace CodeJam
 		#endregion
 
 		#region Exceptions for specific scenarios
+		/// <summary>Creates <see cref="TimeoutException"/>.</summary>
+		/// <param name="messageFormat">The message format.</param>
+		/// <param name="args">The arguments.</param>
+		/// <returns>Initialized instance of <see cref="TimeoutException"/>.</returns>
+		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[StringFormatMethod("messageFormat")]
+		public static TimeoutException Timeout(
+			[NotNull] string messageFormat,
+			[CanBeNull] params object[] args)
+		{
+			BreakIfAttached();
+			return new TimeoutException(InvariantFormat(messageFormat, args))
+				.LogToCodeTraceSourceBeforeThrow();
+		}
+
+		/// <summary>Creates <see cref="TimeoutException" />.</summary>
+		/// <param name="timeout">The timeout.</param>
+		/// <returns>Initialized instance of <see cref="TimeoutException" />.</returns>
+		[DebuggerHidden, NotNull, MustUseReturnValue]
+		public static TimeoutException Timeout(TimeSpan timeout)
+		{
+			BreakIfAttached();
+			return new TimeoutException(
+				Invariant($"Operation timed out in {timeout}."))
+				.LogToCodeTraceSourceBeforeThrow();
+		}
+
 		/// <summary>
 		/// Creates <see cref="ArgumentOutOfRangeException"/>.
 		/// Used to be thrown from the default: switch clause
