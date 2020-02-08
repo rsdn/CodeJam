@@ -71,11 +71,39 @@ namespace CodeJam
 			}
 		}
 
-		public static void GetAwaiterResult([NotNull] this Task source) =>
+		public static void WaitForResult([NotNull] this Task source)
+		{
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
 			source.GetAwaiter().GetResult();
+#else
+			// Workaround for Theraot cancellation logic
+			try
+			{
+				source.GetAwaiter().GetResult();
+			}
+			catch (TaskCanceledException ex)
+			{
+				throw new OperationCanceledException(ex.Message, ex);
+			}
+#endif
+		}
 
-		public static T GetAwaiterResult<T>([NotNull] this Task<T> source) =>
-			source.GetAwaiter().GetResult();
+		public static T WaitForResult<T>([NotNull] this Task<T> source)
+		{
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
+			return source.GetAwaiter().GetResult();
+#else
+			// Workaround for Theraot cancellation logic
+			try
+			{
+				return source.GetAwaiter().GetResult();
+			}
+			catch (TaskCanceledException ex)
+			{
+				throw new OperationCanceledException(ex.Message, ex);
+			}
+#endif
+		}
 	}
 
 	public class Holder<T>

@@ -135,7 +135,7 @@ namespace CodeJam.Threading
 			var task = TaskEx.Delay(_timeout10);
 			var taskWithTimeout = task.WithTimeout(_timeout1, CancellationToken.None);
 
-			Assert.Throws<TimeoutException>(() => taskWithTimeout.GetAwaiterResult());
+			Assert.Throws<TimeoutException>(() => taskWithTimeout.WaitForResult());
 			Assert.IsFalse(task.IsCompleted);
 		}
 
@@ -150,7 +150,7 @@ namespace CodeJam.Threading
 				CancellationToken.None);
 
 			task.Wait();
-			var events = sample.WaitForCallbackCompletion().GetAwaiterResult();
+			var events = sample.WaitForCallbackCompletion().WaitForResult();
 			Assert.AreEqual(task.Result, SampleResult.FromCallback);
 			Assert.AreEqual(
 				events,
@@ -167,7 +167,7 @@ namespace CodeJam.Threading
 			var task = TaskEx.Run(() => throw new ArgumentNullException(nameof(_timeout1)));
 			var taskWithTimeout = task.WithTimeout(_timeout1, CancellationToken.None);
 
-			Assert.Throws<ArgumentNullException>(() => taskWithTimeout.GetAwaiterResult());
+			Assert.Throws<ArgumentNullException>(() => taskWithTimeout.WaitForResult());
 		}
 
 		[Test]
@@ -184,7 +184,7 @@ namespace CodeJam.Threading
 				CancellationToken.None);
 
 			task.Wait();
-			var events = sample.WaitForCancellationCompletion().GetAwaiterResult();
+			var events = sample.WaitForCancellationCompletion().WaitForResult();
 			Assert.AreEqual(task.Result, SampleResult.FromCancellation);
 			Assert.AreEqual(
 				events,
@@ -197,6 +197,9 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
+#if LESSTHAN_NET45
+		[Ignore("https://github.com/theraot/Theraot/issues/120")]
+#endif
 		public void TestWithTimeoutCallbackCancellation()
 		{
 			var sample = new TimedOutSample
@@ -212,8 +215,8 @@ namespace CodeJam.Threading
 				cts.Token);
 			cts.CancelAfter(_timeout1);
 
-			Assert.Throws<OperationCanceledException>(() => task.GetAwaiterResult());
-			var events = sample.WaitForCallbackCompletion().GetAwaiterResult();
+			Assert.Throws<OperationCanceledException>(() => task.WaitForResult());
+			var events = sample.WaitForCallbackCompletion().WaitForResult();
 			Assert.AreEqual(
 				events,
 				new[]
@@ -224,6 +227,9 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
+#if LESSTHAN_NET45
+		[Ignore("https://github.com/theraot/Theraot/issues/120")]
+#endif
 		public void TestWithTimeoutCallbackTimeoutCancellation()
 		{
 			var sample = new TimedOutSample
@@ -240,7 +246,7 @@ namespace CodeJam.Threading
 			cts.CancelAfter(_timeout2);
 
 			task.Wait(CancellationToken.None);
-			var events = sample.WaitForCallbackCompletion().GetAwaiterResult();
+			var events = sample.WaitForCallbackCompletion().WaitForResult();
 			events.Sort();
 			Assert.AreEqual(
 				events,
@@ -261,7 +267,7 @@ namespace CodeJam.Threading
 				_timeout1,
 				CancellationToken.None);
 
-			Assert.AreEqual(taskWithTimeout.GetAwaiterResult(), SampleResult.FromCallback);
+			Assert.AreEqual(taskWithTimeout.WaitForResult(), SampleResult.FromCallback);
 		}
 
 		[Test]
@@ -272,7 +278,7 @@ namespace CodeJam.Threading
 				_timeout1,
 				CancellationToken.None);
 
-			Assert.Throws<TimeoutException>(() => taskWithTimeout.GetAwaiterResult());
+			Assert.Throws<TimeoutException>(() => taskWithTimeout.WaitForResult());
 		}
 
 		[Test]
@@ -287,7 +293,7 @@ namespace CodeJam.Threading
 				CancellationToken.None);
 
 			task.Wait();
-			var events = sample.WaitForCallbackCompletion().GetAwaiterResult();
+			var events = sample.WaitForCallbackCompletion().WaitForResult();
 			Assert.AreEqual(task.Result, SampleResult.FromCallback);
 			Assert.AreEqual(
 				events,
@@ -306,7 +312,7 @@ namespace CodeJam.Threading
 				_timeout1,
 				CancellationToken.None);
 
-			Assert.Throws<ArgumentNullException>(() => taskWithTimeout.GetAwaiterResult());
+			Assert.Throws<ArgumentNullException>(() => taskWithTimeout.WaitForResult());
 		}
 
 		[Test]
@@ -324,7 +330,7 @@ namespace CodeJam.Threading
 				CancellationToken.None);
 
 			task.Wait();
-			var events = sample.WaitForCancellationCompletion().GetAwaiterResult();
+			var events = sample.WaitForCancellationCompletion().WaitForResult();
 			events.Sort();
 			Assert.AreEqual(task.Result, SampleResult.FromCancellation);
 			Assert.AreEqual(
@@ -339,6 +345,9 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
+#if LESSTHAN_NET45
+		[Ignore("https://github.com/theraot/Theraot/issues/120")]
+#endif
 		public void TestRunWithTimeoutCallbackCancellation()
 		{
 			var sample = new TimedOutSample
@@ -355,8 +364,8 @@ namespace CodeJam.Threading
 				cts.Token);
 			cts.CancelAfter(_timeout1);
 
-			Assert.Throws<OperationCanceledException>(() => task.GetAwaiterResult());
-			var events = sample.WaitForCallbackCompletion().GetAwaiterResult();
+			Assert.Throws<OperationCanceledException>(() => task.WaitForResult());
+			var events = sample.WaitForCallbackCompletion().WaitForResult();
 			events.Sort();
 			Assert.AreEqual(
 				events,
@@ -368,6 +377,9 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
+#if LESSTHAN_NET45
+		[Ignore("https://github.com/theraot/Theraot/issues/120")]
+#endif
 		public void TestRunWithTimeoutCallbackTimeoutCancellation()
 		{
 			var sample = new TimedOutSample
@@ -385,7 +397,7 @@ namespace CodeJam.Threading
 			cts.CancelAfter(_timeout2);
 
 			task.Wait(CancellationToken.None);
-			var events = sample.WaitForFullCompletion().GetAwaiterResult();
+			var events = sample.WaitForFullCompletion().WaitForResult();
 			events.Sort();
 			Assert.AreEqual(
 				events,

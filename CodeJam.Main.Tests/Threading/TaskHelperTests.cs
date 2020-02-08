@@ -32,7 +32,7 @@ namespace CodeJam.Threading
 			Assert.Throws<ArgumentException>(
 				() => CancellationToken.None
 					.WaitForCancellationAsync()
-					.GetAwaiterResult());
+					.WaitForResult());
 
 			// No cancellation case
 			var cts = new CancellationTokenSource();
@@ -68,7 +68,7 @@ namespace CodeJam.Threading
 			Assert.Throws<ArgumentException>(
 				() => CancellationToken.None
 					.WaitForCancellationAsync(TimeoutHelper.InfiniteTimeSpan)
-					.GetAwaiterResult());
+					.WaitForResult());
 
 			// No cancellation case
 			var neverTimeout = TimeSpan.FromDays(1);
@@ -97,7 +97,7 @@ namespace CodeJam.Threading
 				waitForCancellationTask,
 				delayTask);
 			Assert.AreEqual(completedTask, waitForCancellationTask);
-			Assert.Throws<TimeoutException>(() => waitForCancellationTask.GetAwaiterResult());
+			Assert.Throws<TimeoutException>(() => waitForCancellationTask.WaitForResult());
 		}
 	}
 }
