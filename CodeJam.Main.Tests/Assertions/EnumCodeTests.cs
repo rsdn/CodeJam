@@ -42,7 +42,7 @@ namespace CodeJam.Assertions
 		[Test]
 		public void TestFlagsDefined()
 		{
-			var allDefinedFlags = EnumHelper.GetFlagsMask<BindingFlags>();
+			var allDefinedFlags = EnumHelper.GetValuesMask<BindingFlags>();
 			// ReSharper disable once RedundantCast
 			var allFlags = (BindingFlags)(int)-1;
 			var ex = Assert.Throws<ArgumentOutOfRangeException>(() => EnumCode.FlagsDefined(allFlags, "arg00"));
