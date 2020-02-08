@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using TaskEx = System.Threading.Tasks.Task;
-
 #else
 using TaskEx = System.Threading.Tasks.TaskEx;
 #endif
@@ -18,68 +17,6 @@ namespace CodeJam.Threading
 	/// </summary>
 	partial class TaskHelper
 	{
-		/// <summary>
-		/// Creates derived cancellation.
-		/// </summary>
-		/// <param name="token1">Parent token1.</param>
-		/// <param name="token2">Parent token2.</param>
-		[Pure]
-		public static CancellationTokenSource CreateCancellation(CancellationToken token1, CancellationToken token2) =>
-			CancellationTokenSource.CreateLinkedTokenSource(token1, token2);
-
-		/// <summary>
-		/// Creates derived cancellation.
-		/// </summary>
-		/// <param name="cancellations">Parent cancellations.</param>
-		[Pure]
-		public static CancellationTokenSource CreateCancellation(params CancellationToken[] cancellations) =>
-			CancellationTokenSource.CreateLinkedTokenSource(cancellations);
-
-		/// <summary>
-		/// Creates derived cancellation with specified timeout.
-		/// </summary>
-		/// <param name="timeout">The timeout.</param>
-		/// <param name="token1">Parent token1.</param>
-		/// <param name="token2">Parent token2.</param>
-		[Pure]
-		public static CancellationTokenSource CreateCancellation(
-			TimeSpan timeout,
-			CancellationToken token1,
-			CancellationToken token2)
-		{
-			var cancellation = CancellationTokenSource.CreateLinkedTokenSource(token1, token2);
-			if (timeout != TimeoutHelper.InfiniteTimeSpan)
-				cancellation.CancelAfter(timeout);
-			return cancellation;
-		}
-
-		/// <summary>
-		/// Creates derived cancellation with specified timeout.
-		/// </summary>
-		/// <param name="timeout">The timeout.</param>
-		/// <param name="cancellations">Parent cancellations.</param>
-		[Pure]
-		public static CancellationTokenSource CreateCancellation(
-			TimeSpan timeout,
-			params CancellationToken[] cancellations)
-		{
-			var cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellations);
-			if (timeout != TimeoutHelper.InfiniteTimeSpan)
-				cancellation.CancelAfter(timeout);
-			return cancellation;
-		}
-
-		/// <summary>
-		/// Creates cancellation scope.
-		/// The <paramref name="cancellationTokenSource"/> will be canceled on scope exit
-		/// </summary>
-		/// <param name="cancellationTokenSource">The cancellation token source.</param>
-		/// <returns></returns>
-		[Pure]
-		public static IDisposable CancellationScope(
-			this CancellationTokenSource cancellationTokenSource) =>
-				Disposable.Create(cancellationTokenSource.Cancel);
-
 		/// <summary>
 		/// Awaits passed task or throws <see cref="TimeoutException"/> on timeout.
 		/// </summary>
