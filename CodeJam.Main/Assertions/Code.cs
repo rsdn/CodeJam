@@ -16,6 +16,7 @@ using StringEx = System.StringEx;
 #endif
 
 using static CodeJam.Targeting.MethodImplOptionsEx;
+// ReSharper disable BuiltInTypeReferenceStyleForMemberAccess
 
 namespace CodeJam
 {

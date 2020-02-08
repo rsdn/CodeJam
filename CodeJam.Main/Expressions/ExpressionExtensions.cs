@@ -45,6 +45,7 @@ namespace CodeJam.Expressions
 			if (expr == null)
 				return;
 
+			// ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
 			switch (expr.NodeType)
 			{
 				case ExpressionType.Add:
@@ -323,9 +324,6 @@ namespace CodeJam.Expressions
 						VisitInternal(expr.Reduce(), func);
 					break;
 				}
-
-				default:
-					break;
 			}
 
 			func(expr);
@@ -362,6 +360,7 @@ namespace CodeJam.Expressions
 			if (expr == null || !func(expr))
 				return;
 
+			// ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
 			switch (expr.NodeType)
 			{
 				case ExpressionType.Add:
@@ -708,6 +707,7 @@ namespace CodeJam.Expressions
 			if (expr == null || func(expr))
 				return expr;
 
+			// ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
 			switch (expr.NodeType)
 			{
 				case ExpressionType.Add:

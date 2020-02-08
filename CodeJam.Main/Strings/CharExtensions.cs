@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 using CharEx = System.Char;
+// ReSharper disable BuiltInTypeReferenceStyleForMemberAccess
 #else
 using CharEx = System.CharEx;
 #endif

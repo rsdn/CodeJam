@@ -420,6 +420,7 @@ namespace CodeJam.Arithmetic
 		[NotNull]
 		private static Func<T, T, bool> GetComparerComparison<T>(ExpressionType comparisonType)
 		{
+			// ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
 			switch (comparisonType)
 			{
 				case ExpressionType.Equal:

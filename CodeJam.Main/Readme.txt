@@ -5,7 +5,15 @@ What's new in 3.0.1-beta3
 -------------------------
 * IsAssignableTo() reflection helper.
 * Deconstruct methods for arrays, lists and enumerables (to support positional pattern).
-* Code cleanup
+* !Breaking change!: EnumHelper.GetFlagsMask() replaced with EnumHelper.GetValuesMask() method.
+* Algorithms.MinMax(). Math.Min/Max() for any comparable type.
+* EnumHelper.GetDefinedFlags(value).
+* EnumHelper.ToFlags(value) extension method.
+* Code cleanup.
+* WaitForCancellationAsync() extension method.
+* TimeoutHelper class.
+* WithTimeout() methods.
+* Refactoring and code cleanup
 
 What's new in 3.0.1-beta2
 -------------------------

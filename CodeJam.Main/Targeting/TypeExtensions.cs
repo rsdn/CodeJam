@@ -261,7 +261,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static object GetCustomAttributeWithInterfaceSupport(
+		private static object GetCustomAttributeWithInterfaceSupport(
 			[NotNull] this Type type, Type attributeType, bool inherit)
 		{
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
@@ -293,7 +293,7 @@ namespace CodeJam.Targeting
 				(T)GetCustomAttributeWithInterfaceSupport(type, typeof(T), inherit);
 
 		[MethodImpl(AggressiveInlining)]
-		public static IEnumerable<Attribute> GetCustomAttributesWithInterfaceSupport(
+		private static IEnumerable<Attribute> GetCustomAttributesWithInterfaceSupport(
 			[NotNull] this Type type, Type attributeType, bool inherit)
 		{
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
