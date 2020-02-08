@@ -15,7 +15,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading;
 
 using CodeJam.Arithmetic;
 
@@ -263,21 +262,6 @@ namespace CodeJam
 		{
 			if (!condition)
 				throw CodeExceptions.Argument(argName, messageFormat, args);
-		}
-		#endregion
-
-		#region Argument validation - cancellation
-		/// <summary>Assertion cancellation support.</summary>
-		/// <param name="cancellation">The cancellation token.</param>
-		/// <param name="argName">Name of the argument.</param>
-		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
-		[AssertionMethod]
-		public static void CanBeCanceled(
-			CancellationToken cancellation,
-			[NotNull, InvokerParameterName] string argName)
-		{
-			if (!cancellation.CanBeCanceled)
-				throw CodeExceptions.ArgumentDoesNotSupportCancellation(argName);
 		}
 		#endregion
 

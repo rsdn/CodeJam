@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Threading;
 
 using CodeJam.Internal;
 
@@ -159,21 +158,6 @@ namespace CodeJam.Assertions
 
 			Assert.DoesNotThrow(() => Code.NotNullNorWhiteSpace("\b", "arg00"));
 			Assert.DoesNotThrow(() => Code.NotNullNorWhiteSpace("Hello!", "arg00"));
-		}
-
-		[Test]
-		public void TestCanBeCanceled()
-		{
-			var ex = Assert.Throws<ArgumentException>(() => Code.CanBeCanceled(CancellationToken.None, "arg00"));
-			Assert.That(ex.Message, Does.Contain("arg00"));
-			Assert.That(
-				ex.Message,
-				Does.Contain("The value of 'arg00' should support cancellation"));
-
-			Assert.Throws<ArgumentException>(() => Code.CanBeCanceled(new CancellationToken(false), "arg00"));
-
-			Assert.DoesNotThrow(() => Code.CanBeCanceled(new CancellationToken(true), "arg00"));
-			Assert.DoesNotThrow(() => Code.CanBeCanceled(new CancellationTokenSource().Token, "arg00"));
 		}
 
 		[Test]

@@ -126,6 +126,9 @@ namespace CodeJam.Threading
 				return;
 			}
 
+			// Await will rethrow exception from the task, if any.
+			// There's no additional cost as FW has optimization for await over completed task:
+			// continuation will run synchronously
 			await task;
 		}
 
@@ -171,6 +174,9 @@ namespace CodeJam.Threading
 			if (taskOrTimeout == timeoutTask)
 				return await timeoutCallback(cancellation);
 
+			// Await will rethrow exception from the task, if any.
+			// There's no additional cost as FW has optimization for await over completed task:
+			// continuation will run synchronously
 			return await task;
 		}
 

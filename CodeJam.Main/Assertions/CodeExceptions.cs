@@ -172,12 +172,12 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
 		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentDoesNotSupportCancellation(
+		public static ArgumentException ArgumentWaitCancellationRequired(
 			[NotNull, InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				Invariant($"The value of '{argumentName}' should support cancellation."),
+				Invariant($"This method requires '{argumentName}' to be cancellable; otherwise method may wait indefinitely."),
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
