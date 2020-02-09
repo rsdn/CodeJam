@@ -197,9 +197,6 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
-#if LESSTHAN_NET45
-		[Ignore("https://github.com/theraot/Theraot/issues/120")]
-#endif
 		public void TestWithTimeoutCallbackCancellation()
 		{
 			var sample = new TimedOutSample
@@ -227,9 +224,6 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
-#if LESSTHAN_NET45
-		[Ignore("https://github.com/theraot/Theraot/issues/120")]
-#endif
 		public void TestWithTimeoutCallbackTimeoutCancellation()
 		{
 			var sample = new TimedOutSample
@@ -345,9 +339,6 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
-#if LESSTHAN_NET45
-		[Ignore("https://github.com/theraot/Theraot/issues/120")]
-#endif
 		public void TestRunWithTimeoutCallbackCancellation()
 		{
 			var sample = new TimedOutSample
@@ -377,9 +368,6 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
-#if LESSTHAN_NET45
-		[Ignore("https://github.com/theraot/Theraot/issues/120")]
-#endif
 		public void TestRunWithTimeoutCallbackTimeoutCancellation()
 		{
 			var sample = new TimedOutSample
