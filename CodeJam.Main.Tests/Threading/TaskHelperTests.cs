@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,98 +11,93 @@ using TaskEx = System.Threading.Tasks.TaskEx;
 #else
 using TaskEx = System.Threading.Tasks.Task;
 #endif
-
 using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 namespace CodeJam.Threading
 {
 	[TestFixture]
-	public class TaskHelperTests
+	[Parallelizable(ParallelScope.All)]
+	public partial class TaskHelperTests
 	{
 		[Test]
-		public void TestWhenCanceled()
+		public void TestWaitForCancellation()
 		{
-			TaskEx.Run(() => TestWhenCanceledCore()).Wait();
+			TaskEx.Run(() => TesWaitForCancellationCore()).Wait();
 			Assert.IsTrue(true);
 		}
 
-		[SuppressMessage("ReSharper", "MethodSupportsCancellation")]
-		public async Task TestWhenCanceledCore()
+		public async Task TesWaitForCancellationCore()
 		{
+			// Empty cancellation case
+			Assert.Throws<ArgumentException>(
+				() => CancellationToken.None
+					.WaitForCancellationAsync()
+					.WaitForResult());
+
 			// No cancellation case
 			var cts = new CancellationTokenSource();
-			var delayTask = TaskEx.Delay(TimeSpan.FromMilliseconds(500));
-			var whenCanceledTask = cts.Token.WhenCanceled();
+			var delayTask = TaskEx.Delay(TimeSpan.FromMilliseconds(500), CancellationToken.None);
+			var waitForCancellationTask = cts.Token.WaitForCancellationAsync();
 			var completedTask = await TaskEx.WhenAny(
 				delayTask,
-				whenCanceledTask);
+				waitForCancellationTask);
 			Assert.AreEqual(completedTask, delayTask);
 
 			// Token canceled case
-			delayTask = TaskEx.Delay(TimeSpan.FromMinutes(1));
+			delayTask = TaskEx.Delay(TimeSpan.FromMinutes(1), CancellationToken.None);
 			var whenAny = TaskEx.WhenAny(
 				delayTask,
-				whenCanceledTask);
+				waitForCancellationTask);
 			cts.Cancel();
 			completedTask = await whenAny;
-			Assert.AreEqual(completedTask, whenCanceledTask);
-#if NET40_OR_GREATER || TARGETS_NETCOREAPP
-			Assert.ThrowsAsync<TaskCanceledException>(async () => await whenCanceledTask);
-			Assert.ThrowsAsync<TaskCanceledException>(() => whenCanceledTask);
-#endif
-			var ex = Assert.Throws<AggregateException>(() => whenCanceledTask.Wait());
-			Assert.AreEqual(ex.InnerExceptions.Single().GetType(), typeof(TaskCanceledException));
+			Assert.AreEqual(completedTask, waitForCancellationTask);
+			await waitForCancellationTask;
 		}
 
 		[Test]
-		public void TestWhenCanceledTimeout()
+		public void TestWaitForCancellationTimeout()
 		{
-			TaskEx.Run(() => TestWhenCanceledTimeoutCore()).Wait();
+			TaskEx.Run(() => TestWaitForCancellationTimeoutCore()).Wait();
 			Assert.IsTrue(true);
 		}
 
 		[SuppressMessage("ReSharper", "AccessToModifiedClosure")]
-		[SuppressMessage("ReSharper", "MethodSupportsCancellation")]
-		public async Task TestWhenCanceledTimeoutCore()
+		public async Task TestWaitForCancellationTimeoutCore()
 		{
+			// Empty cancellation case
+			Assert.Throws<ArgumentException>(
+				() => CancellationToken.None
+					.WaitForCancellationAsync(TimeoutHelper.InfiniteTimeSpan)
+					.WaitForResult());
+
 			// No cancellation case
 			var neverTimeout = TimeSpan.FromDays(1);
 			var cts = new CancellationTokenSource();
-			var whenCanceledTask = cts.Token.WhenCanceled(neverTimeout);
-			var delayTask = TaskEx.Delay(TimeSpan.FromMilliseconds(500));
+			var waitForCancellationTask = cts.Token.WaitForCancellationAsync(neverTimeout);
+			var delayTask = TaskEx.Delay(TimeSpan.FromMilliseconds(500), CancellationToken.None);
 			var completedTask = await TaskEx.WhenAny(
-				whenCanceledTask,
+				waitForCancellationTask,
 				delayTask);
 			Assert.AreEqual(completedTask, delayTask);
 
 			// Token canceled case
-			delayTask = TaskEx.Delay(TimeSpan.FromMinutes(1));
+			delayTask = TaskEx.Delay(TimeSpan.FromMinutes(1), CancellationToken.None);
 			var whenAny = TaskEx.WhenAny(
-				whenCanceledTask,
+				waitForCancellationTask,
 				delayTask);
 			cts.Cancel();
 			completedTask = await whenAny;
-			Assert.AreEqual(completedTask, whenCanceledTask);
-#if NET40_OR_GREATER || TARGETS_NETCOREAPP
-			Assert.ThrowsAsync<TaskCanceledException>(async () => await whenCanceledTask);
-			Assert.ThrowsAsync<TaskCanceledException>(() => whenCanceledTask);
-#endif
-			var ex = Assert.Throws<AggregateException>(() => whenCanceledTask.Wait());
-			Assert.AreEqual(ex.InnerExceptions.Single().GetType(), typeof(TaskCanceledException));
+			Assert.AreEqual(completedTask, waitForCancellationTask);
+			await waitForCancellationTask;
 
 			// Token cancellation timeout case
-			whenCanceledTask = new CancellationToken().WhenCanceled(TimeSpan.FromMilliseconds(500));
-			delayTask = TaskEx.Delay(TimeSpan.FromMinutes(1));
+			waitForCancellationTask = new CancellationToken().WaitForCancellationAsync(TimeSpan.FromMilliseconds(500));
+			delayTask = TaskEx.Delay(TimeSpan.FromMinutes(1), CancellationToken.None);
 			completedTask = await TaskEx.WhenAny(
-				whenCanceledTask,
+				waitForCancellationTask,
 				delayTask);
-			Assert.AreEqual(completedTask, whenCanceledTask);
-#if NET40_OR_GREATER || TARGETS_NETCOREAPP
-			Assert.ThrowsAsync<TimeoutException>(async () => await whenCanceledTask);
-			Assert.ThrowsAsync<TimeoutException>(() => whenCanceledTask);
-#endif
-			ex = Assert.Throws<AggregateException>(() => whenCanceledTask.Wait());
-			Assert.AreEqual(ex.InnerExceptions.Single().GetType(), typeof(TimeoutException));
+			Assert.AreEqual(completedTask, waitForCancellationTask);
+			Assert.Throws<TimeoutException>(() => waitForCancellationTask.WaitForResult());
 		}
 	}
 }

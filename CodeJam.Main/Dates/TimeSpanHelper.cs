@@ -64,36 +64,6 @@ namespace CodeJam.Dates
 			FromTicksChecked(nanoseconds * _ticksPerNanosecond);
 
 		/// <summary>
-		/// Returns a TimeSpan that represents value multiplied to specified multiplier.
-		/// </summary>
-		/// <param name="timeSpan">The time span.</param>
-		/// <param name="multiplier">The multiplier.</param>
-		/// <returns>A System.TimeSpan that represents value multiplied to specified multiplier.</returns>
-		/// <exception cref="OverflowException">value is less than <see cref="TimeSpan.MinValue" /> or greater than <see cref="TimeSpan.MaxValue" />.
-		/// -or-
-		/// value is<see cref="double.PositiveInfinity" />.
-		/// -or-
-		/// value is <see cref="double.NegativeInfinity" />.</exception>
-		/// <exception cref="ArgumentException">value is equal to <see cref="double.NaN" />.</exception>
-		public static TimeSpan Multiply(this TimeSpan timeSpan, double multiplier) =>
-			FromTicksChecked(timeSpan.Ticks * multiplier);
-
-		/// <summary>
-		/// Returns a TimeSpan that represents value divided to specified divisor.
-		/// </summary>
-		/// <param name="timeSpan">The time span.</param>
-		/// <param name="divisor">The divisor.</param>
-		/// <returns>A System.TimeSpan that represents value divided to specified divisor.</returns>
-		/// <exception cref="OverflowException">value is less than <see cref="TimeSpan.MinValue" /> or greater than <see cref="TimeSpan.MaxValue" />.
-		/// -or-
-		/// value is<see cref="double.PositiveInfinity" />.
-		/// -or-
-		/// value is <see cref="double.NegativeInfinity" />.</exception>
-		/// <exception cref="ArgumentException">value is equal to <see cref="double.NaN" />.</exception>
-		public static TimeSpan Divide(this TimeSpan timeSpan, double divisor) =>
-			FromTicksChecked(timeSpan.Ticks / divisor);
-
-		/// <summary>
 		/// Gets the value of the current TimeSpan structure expressed in whole
 		/// and fractional microseconds.
 		/// </summary>
@@ -130,5 +100,35 @@ namespace CodeJam.Dates
 
 			return temp;
 		}
+
+		/// <summary>
+		/// Returns a TimeSpan that represents value multiplied to specified multiplier.
+		/// </summary>
+		/// <param name="timeSpan">The time span.</param>
+		/// <param name="multiplier">The multiplier.</param>
+		/// <returns>A System.TimeSpan that represents value multiplied to specified multiplier.</returns>
+		/// <exception cref="OverflowException">value is less than <see cref="TimeSpan.MinValue" /> or greater than <see cref="TimeSpan.MaxValue" />.
+		/// -or-
+		/// value is<see cref="double.PositiveInfinity" />.
+		/// -or-
+		/// value is <see cref="double.NegativeInfinity" />.</exception>
+		/// <exception cref="ArgumentException">value is equal to <see cref="double.NaN" />.</exception>
+		public static TimeSpan Multiply(this TimeSpan timeSpan, double multiplier) =>
+			FromTicksChecked(timeSpan.Ticks * multiplier);
+
+		/// <summary>
+		/// Returns a TimeSpan that represents value divided to specified divisor.
+		/// </summary>
+		/// <param name="timeSpan">The time span.</param>
+		/// <param name="divisor">The divisor.</param>
+		/// <returns>A System.TimeSpan that represents value divided to specified divisor.</returns>
+		/// <exception cref="OverflowException">value is less than <see cref="TimeSpan.MinValue" /> or greater than <see cref="TimeSpan.MaxValue" />.
+		/// -or-
+		/// value is<see cref="double.PositiveInfinity" />.
+		/// -or-
+		/// value is <see cref="double.NegativeInfinity" />.</exception>
+		/// <exception cref="ArgumentException">value is equal to <see cref="double.NaN" />.</exception>
+		public static TimeSpan Divide(this TimeSpan timeSpan, double divisor) =>
+			FromTicksChecked(timeSpan.Ticks / divisor);
 	}
 }

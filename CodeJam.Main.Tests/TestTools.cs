@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 using CodeJam.Strings;
 using CodeJam.Targeting;
@@ -68,6 +69,40 @@ namespace CodeJam
 			{
 				Console.WriteLine($"\t * {prop.Name}: {prop.GetValue(null, null)}");
 			}
+		}
+
+		public static void WaitForResult([NotNull] this Task source)
+		{
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
+			source.GetAwaiter().GetResult();
+#else
+			// Workaround for Theraot cancellation logic
+			try
+			{
+				source.GetAwaiter().GetResult();
+			}
+			catch (TaskCanceledException ex)
+			{
+				throw new OperationCanceledException(ex.Message, ex);
+			}
+#endif
+		}
+
+		public static T WaitForResult<T>([NotNull] this Task<T> source)
+		{
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
+			return source.GetAwaiter().GetResult();
+#else
+			// Workaround for Theraot cancellation logic
+			try
+			{
+				return source.GetAwaiter().GetResult();
+			}
+			catch (TaskCanceledException ex)
+			{
+				throw new OperationCanceledException(ex.Message, ex);
+			}
+#endif
 		}
 	}
 
