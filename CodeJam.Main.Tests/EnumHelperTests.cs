@@ -40,7 +40,7 @@ namespace CodeJam
 			D = 0x8,
 			// ReSharper disable once InconsistentNaming
 			CD = C | D,
-			Dx = D | 0x20
+			Dx = D | 0x20,
 		}
 
 		private const Flags Ab = Flags.A | Flags.B;
@@ -77,15 +77,15 @@ namespace CodeJam
 		private const NoFlags EfU = NoFlags.E | NoFlags.F | NoFlagsUndef;
 		// ReSharper restore BitwiseOperatorOnEnumWithoutFlags
 
-		public enum NameDescEnum
+		public enum NameDescEnum : long
 		{
 			[Display(Name = "Field 1", Description = "Field 1 Desc")]
-			Field1,
+			Field1 = long.MinValue,
 
 			[Display]
-			Field2,
+			Field2 = 0,
 
-			Field3
+			Field3 = long.MaxValue
 		}
 		#endregion
 
@@ -425,5 +425,21 @@ namespace CodeJam
 		[TestCase(NameDescEnum.Field2, ExpectedResult = "Field2")]
 		[TestCase(NameDescEnum.Field3, ExpectedResult = "Field3")]
 		public string TestGetDisplay(NameDescEnum value) => EnumHelper.GetEnumValue(value).ToString();
+
+		[Test]
+		public void TestNegativeValues()
+		{
+			IsTrue(EnumHelper.IsDefined(NameDescEnum.Field1));
+			IsFalse(EnumHelper.IsFlagsEnum<NameDescEnum>());
+			AreEqual(
+				NameDescEnum.Field1,
+				EnumHelper.TryParse<NameDescEnum>(nameof(NameDescEnum.Field1)));
+			AreEqual(
+				NameDescEnum.Field1,
+				EnumHelper.TryParse<NameDescEnum>(long.MinValue.ToString()));
+			AreEqual(
+				"Field2, Field3, Field1",
+				EnumHelper.GetNameValues<NameDescEnum>().Select(kvp => kvp.Key).Join(", "));
+		}
 	}
 }

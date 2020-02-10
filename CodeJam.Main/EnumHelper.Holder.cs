@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -93,6 +94,27 @@ namespace CodeJam
 					.Distinct()
 					.ToArray();
 
+			private static ulong ToUInt64(object value)
+			{
+				switch (Convert.GetTypeCode(value))
+				{
+					case TypeCode.Boolean:
+					case TypeCode.Char:
+					case TypeCode.Byte:
+					case TypeCode.UInt16:
+					case TypeCode.UInt32:
+					case TypeCode.UInt64:
+						return Convert.ToUInt64(value, CultureInfo.InvariantCulture);
+					case TypeCode.SByte:
+					case TypeCode.Int16:
+					case TypeCode.Int32:
+					case TypeCode.Int64:
+						return unchecked((ulong)Convert.ToInt64(value, CultureInfo.InvariantCulture));
+					default:
+						throw CodeExceptions.UnexpectedArgumentValue(nameof(value), value);
+				}
+			}
+
 			// NB: simple implementation here
 			// as result of method call is cached.
 			private static TEnum[] GetNonDefaultUniqueFlagsCore()
@@ -100,7 +122,7 @@ namespace CodeJam
 				// THANKSTO: Maciej Hehl, https://stackoverflow.com/a/2709523
 				static int GetNumberOfSetBits(TEnum value)
 				{
-					var i = Convert.ToUInt64(value);
+					var i = ToUInt64(value);
 					i -= (i >> 1) & 0x5555555555555555UL;
 					i = (i & 0x3333333333333333UL) + ((i >> 2) & 0x3333333333333333UL);
 					return (int)(unchecked(((i + (i >> 4)) & 0xF0F0F0F0F0F0F0FUL) * 0x101010101010101UL) >> 56);
