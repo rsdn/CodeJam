@@ -13,7 +13,7 @@ What's new in 3.0.1-beta3
 * WaitForCancellationAsync() extension method.
 * TimeoutHelper class.
 * WithTimeout() methods.
-* Refactoring and code cleanup
+* Refactoring, fixes and and code cleanup
 
 What's new in 3.0.1-beta2
 -------------------------
