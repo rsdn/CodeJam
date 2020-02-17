@@ -104,7 +104,9 @@ namespace CodeJam.Collections
 		/// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
 		/// </returns>
 		/// <param name="other">An object to compare with this object.</param>
-		public bool Equals(IndexedItem<T> other) => EqualityComparer<T>.Default.Equals(Item, other.Item);
+		public bool Equals(IndexedItem<T> other) =>
+			EqualityComparer<T>.Default.Equals(Item, other.Item) &&
+			Index == other.Index;
 
 		/// <summary>Indicates whether this instance and a specified object are equal.</summary>
 		/// <returns>
@@ -115,7 +117,10 @@ namespace CodeJam.Collections
 
 		/// <summary>Returns the hash code for this instance.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-		public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Item);
+		public override int GetHashCode() =>
+			HashCode.Combine(
+				EqualityComparer<T>.Default.GetHashCode(Item),
+				Index.GetHashCode());
 
 		/// <summary>
 		/// Operator ==

@@ -473,17 +473,19 @@ namespace CodeJam.Collections
 
 		/// <summary>Reverses the sequence of the elements in the entire one-dimensional <see cref="Array" />.</summary>
 		/// <param name="array">The one-dimensional <see cref="Array" /> to reverse.</param>
+		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null. </exception>
 		/// <exception cref="RankException">
 		/// <paramref name="array" /> is multidimensional. </exception>
 		/// <filterpriority>1</filterpriority>
-		public static void Reverse([NotNull] this Array array) => Array.Reverse(array);
+		public static void Reverse<T>([NotNull] this T[] array) => Array.Reverse(array);
 
 		/// <summary>Reverses the sequence of the elements in a range of elements in the one-dimensional <see cref="Array" />.</summary>
 		/// <param name="array">The one-dimensional <see cref="Array" /> to reverse.</param>
 		/// <param name="index">The starting index of the section to reverse.</param>
 		/// <param name="length">The number of elements in the section to reverse.</param>
+		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
 		/// <exception cref="RankException">
@@ -493,7 +495,7 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentException">
 		/// <paramref name="index" /> and <paramref name="length" /> do not specify a valid range in <paramref name="array" />.</exception>
 		/// <filterpriority>1</filterpriority>
-		public static void Reverse([NotNull] this Array array, int index, int length) => Array.Reverse(array, index, length);
+		public static void Reverse<T>([NotNull] this T[] array, int index, int length) => Array.Reverse(array, index, length);
 
 		#region Sort
 		/// <summary>Sorts the elements in an entire <see cref="Array" /> using the <see cref="IComparable{T}" /> generic interface implementation of each element of the <see cref="Array" />.</summary>
