@@ -10,12 +10,12 @@
 		<AssemblyOriginatorKeyFile>..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 
 		<Version>3.0.1.0</Version>
-		<PackageVersion>3.0.1-beta3</PackageVersion>
+		<PackageVersion>3.0.1-rc1</PackageVersion>
 		<PackageOutputPath>..\_Results</PackageOutputPath>
 
 		<Company>RSDN</Company>
 
-		<Copyright>RSDN, 2019</Copyright>
+		<Copyright>RSDN, 2020</Copyright>
 		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>

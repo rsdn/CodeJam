@@ -1,5 +1,9 @@
-﻿CodeJam 3.0.0-beta3 Release Notes
----------------------------------
+﻿CodeJam 3.0.0-rc1 Release Notes
+-------------------------------
+
+What's new in 3.0.1-rc1
+-----------------------
+* Fixes and and code cleanup
 
 What's new in 3.0.1-beta3
 -------------------------
