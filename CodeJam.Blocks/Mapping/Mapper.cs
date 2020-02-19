@@ -29,12 +29,12 @@ namespace CodeJam.Mapping
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
-		/// Returned expression is compatible to IQueriable.
+		/// Returned expression is compatible to IQueryable.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure, NotNull]
 		public Expression<Func<TFrom, TTo>> GetMapperExpressionEx()
-			=> _mapperExpressionEx ?? (_mapperExpressionEx = _mapperBuilder.GetMapperExpressionEx());
+			=> _mapperExpressionEx ??= _mapperBuilder.GetMapperExpressionEx();
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
@@ -42,7 +42,7 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure, NotNull]
 		public Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> GetMapperExpression()
-			=> _mapperExpression ?? (_mapperExpression = _mapperBuilder.GetMapperExpression());
+			=> _mapperExpression ??= _mapperBuilder.GetMapperExpression();
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
@@ -50,7 +50,7 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure, NotNull]
 		public Func<TFrom, TTo> GetMapperEx()
-			=> _mapperEx ?? (_mapperEx = GetMapperExpressionEx().Compile());
+			=> _mapperEx ??= GetMapperExpressionEx().Compile();
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
@@ -58,7 +58,7 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure, NotNull]
 		public Func<TFrom, TTo, IDictionary<object, object>, TTo> GetMapper()
-			=> _mapper ?? (_mapper = GetMapperExpression().Compile());
+			=> _mapper ??= GetMapperExpression().Compile();
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.

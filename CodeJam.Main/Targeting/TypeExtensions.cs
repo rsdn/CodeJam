@@ -180,7 +180,7 @@ namespace CodeJam.Targeting
 			if (types.Any(t => t == null)) throw new ArgumentNullException(nameof(types));
 			if (modifiers != null) throw new NotImplementedException(nameof(modifiers));
 
-			if (bindingAttr == default) bindingAttr = DefaultLookup;
+			if (bindingAttr == default) bindingAttr = _defaultLookup;
 
 			return type.GetMethods(bindingAttr).Where(m => m.Name == name).TryFindParametersTypesMatch(types);
 		}
@@ -199,7 +199,7 @@ namespace CodeJam.Targeting
 			if (types.Any(t => t == null)) throw new ArgumentNullException(nameof(types));
 			if (modifiers != null) throw new NotImplementedException(nameof(modifiers));
 
-			if (bindingAttr == default) bindingAttr = DefaultLookup;
+			if (bindingAttr == default) bindingAttr = _defaultLookup;
 
 			return type.GetConstructors(bindingAttr).TryFindParametersTypesMatch(types);
 		}
@@ -224,7 +224,7 @@ namespace CodeJam.Targeting
 					})
 					.FirstOrDefault();
 
-		private const BindingFlags DefaultLookup = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
+		private const BindingFlags _defaultLookup = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
 
 		[MethodImpl(AggressiveInlining)]
 		public static bool GetIsAssignableFrom([NotNull] this Type type, [NotNull] Type otherType) =>

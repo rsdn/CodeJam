@@ -363,7 +363,7 @@ namespace CodeJam.Mapping
 			if (MemberMappers == null)
 				MemberMappers = new List<MemberMapper>();
 
-			MemberMappers.Add(new MemberMapper((LambdaExpression)toMember, (LambdaExpression)setter));
+			MemberMappers.Add(new MemberMapper(toMember, setter));
 
 			return this;
 		}
