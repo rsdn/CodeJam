@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 
 using JetBrains.Annotations;
+
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
+using TaskEx = System.Threading.Tasks.Task;
+#else
+using TaskEx = System.Threading.Tasks.TaskEx;
+#endif
 
 namespace CodeJam.Threading
 {
@@ -28,7 +33,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <remarks>
 		/// Use case scenario: methods that accept timeout often accept only <see cref="InfiniteTimeSpan"/>
-		/// but not other negative values. Check <see cref="Task.Delay(int)"/> as example.
+		/// but not other negative values. Check <see cref="TaskEx.Delay(int)"/> as example.
 		/// Motivation for <paramref name="infiniteIfDefault"/>:
 		/// default timeout in configs often means 'infinite timeout', not 'do not wait and return immediately'.
 		/// </remarks>
@@ -51,7 +56,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <remarks>
 		/// Use case scenario: methods that accept timeout often accept only <see cref="InfiniteTimeSpan"/>
-		/// but not other negative values. Check <see cref="Task.Delay(int)"/> as example.
+		/// but not other negative values. Check <see cref="TaskEx.Delay(int)"/> as example.
 		/// Motivation for <paramref name="infiniteIfDefault"/>:
 		/// default timeout in configs often means 'infinite timeout', not 'do not wait and return immediately'.
 		/// </remarks>

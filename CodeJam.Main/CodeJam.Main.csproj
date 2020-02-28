@@ -46,10 +46,6 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
-	</ItemGroup>
-
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
@@ -124,6 +120,7 @@
 	<!-- #endregion -->
 
 	<ItemGroup>
+		<Compile Include="..\Build\JetBrains.Annotations.cs" Link="Properties\JetBrains.Annotations.cs" />
 		<Compile Update="Algorithms\Algorithms.EqualRange.generated.cs">
 			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
 			<AutoGen>True</AutoGen>

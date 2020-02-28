@@ -29,6 +29,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="..\Build\JetBrains.Annotations.cs" Link="Properties\JetBrains.Annotations.cs" />
 		<Content Include="Readme.txt">
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>

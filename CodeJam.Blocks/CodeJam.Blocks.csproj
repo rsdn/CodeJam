@@ -75,7 +75,7 @@
 		<Compile Include="..\CodeJam.Main\Targeting\**\*.cs">
 			<Link>Targeting\%(Compile.Filename)</Link>
 		</Compile>
-
+		<Compile Include="..\Build\JetBrains.Annotations.cs" Link="Properties\JetBrains.Annotations.cs" />
 		<Content Include="Readme.txt">
 			<Pack>true</Pack>
 			<PackagePath>Readme.txt</PackagePath>
