@@ -20,6 +20,49 @@ namespace CodeJam.Collections
 		private const string _enumTooShortMsg = "The enumerable is too short.";
 
 		/// <summary>
+		/// Deconstructs 1 item of the <paramref name="array"/>.
+		/// </summary>
+		[Pure]
+		public static void Deconstruct<T>(
+			[NotNull] this T[] array,
+			out T item1)
+		{
+			Code.NotNull(array, nameof (array));
+			Code.AssertArgument(array.Length >= 1, nameof (array), _arrayTooShortMsg);
+
+			item1 = array[0];
+		}
+
+		/// <summary>
+		/// Deconstructs 1 items of the <paramref name="list"/>.
+		/// </summary>
+		[Pure]
+		public static void Deconstruct<T>(
+			[NotNull] this IList<T> list,
+			out T item1)
+		{
+			Code.NotNull(list, nameof (list));
+			Code.AssertArgument(list.Count >= 1, nameof (list), _listTooShortMsg);
+
+			item1 = list[0];
+		}
+
+		/// <summary>
+		/// Deconstructs 1 items of the <paramref name="enumerable"/>.
+		/// </summary>
+		[Pure]
+		public static void Deconstruct<T>(
+			[NotNull] this IEnumerable<T> enumerable,
+			out T item1)
+		{
+			Code.NotNull(enumerable, nameof (enumerable));
+
+			using var enumerator = enumerable.GetEnumerator();
+			Code.AssertArgument(enumerator.MoveNext(), nameof (enumerable), _enumTooShortMsg);
+			item1 = enumerator.Current;
+		}
+
+		/// <summary>
 		/// Deconstructs 2 items of the <paramref name="array"/>.
 		/// </summary>
 		[Pure]

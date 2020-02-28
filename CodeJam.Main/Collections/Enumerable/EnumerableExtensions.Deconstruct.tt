@@ -13,7 +13,7 @@ namespace CodeJam.Collections
 		private const string _enumTooShortMsg = "The enumerable is too short.";
 
 <#
-	for (var i = 2; i <= 10; i++)
+	for (var i = 1; i <= 10; i++)
 		WriteDeconstructMethod(i);
 #>
 	}
@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 
 <#+ private void WriteDeconstructMethod(int numOfParams) {#>
 		/// <summary>
-		/// Deconstructs <#=numOfParams#> items of the <paramref name="array"/>.
+		/// Deconstructs <#=numOfParams#> item<#=numOfParams > 1 ? "s" : ""#> of the <paramref name="array"/>.
 		/// </summary>
 		[Pure]
 		public static void Deconstruct<T>(
