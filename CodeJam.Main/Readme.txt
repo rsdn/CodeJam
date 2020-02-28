@@ -1,8 +1,13 @@
-﻿CodeJam 3.0.1 Release Notes
+﻿CodeJam 3.1.0 Release Notes
 -------------------------------
 
+What's new in 3.1.0
+-------------------
+* Return missing Jetbrains annotations
+* One argument enumerable deconstruct
+
 What's new in 3.0.1
------------------------
+-------------------
 * IsAssignableTo() reflection helper.
 * Deconstruct methods for arrays, lists and enumerables (to support positional pattern).
 * !Breaking change!: EnumHelper.GetFlagsMask() replaced with EnumHelper.GetValuesMask() method.
