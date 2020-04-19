@@ -23,6 +23,14 @@ namespace CodeJam.Reflection
 
 #if TARGETS_NET || NETCOREAPP20_OR_GREATER
 		[Test]
+		public void TestGetAssemblyVersionInfo()
+		{
+			var fileVersionInfo = typeof(Code).GetAssembly().GetAssemblyFileVersionInfo();
+
+			Assert.AreEqual(fileVersionInfo.ProductName, "CodeJam");
+		}
+
+		[Test]
 		public void TestGetAssemblyPathLoadedFromByteArray()
 		{
 			var asmBytes = File.ReadAllBytes(typeof(Code).GetAssembly().GetAssemblyPath());
