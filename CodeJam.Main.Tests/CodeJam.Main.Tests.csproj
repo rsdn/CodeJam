@@ -8,7 +8,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{DD65E3F2-9658-4242-A8AA-056028473CB1}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net48;net472;net471;net47;net461;net45;net40;net35;net20;netcoreapp3.0;netcoreapp2.1;netcoreapp1.1</TargetFrameworks>
+		<TargetFrameworks>netcoreapp3.0;net48;net472;net471;net47;net461;net45;net40;net35;net20;netcoreapp2.1;netcoreapp1.1</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 	</PropertyGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 using JetBrains.Annotations;
 
@@ -20,44 +21,6 @@ namespace CodeJam
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 			/// </summary>
 			public void Dispose() { }
-		}
-
-		/// <summary>
-		/// The <see cref="IDisposable"/> implementation that calls supplied action on <see cref="Dispose"/>.
-		/// </summary>
-		/// DONTTOUCH: DO NOT make it a struct, passing the structure by value will result in multiple Dispose() calls.
-		/// SEEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
-		private sealed class AnonymousDisposable : IDisposable
-		{
-			private Action _disposeAction;
-
-			/// <summary>Initialize instance.</summary>
-			/// <param name="disposeAction">The dispose action.</param>
-			public AnonymousDisposable(Action disposeAction) => _disposeAction = disposeAction;
-
-			/// <summary>
-			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-			/// </summary>
-			public void Dispose()
-			{
-				var disposeAction = Interlocked.Exchange(ref _disposeAction, null);
-				if (disposeAction != null)
-				{
-					try
-					{
-						disposeAction.Invoke();
-					}
-					catch when (OnException(disposeAction))
-					{
-					}
-				}
-			}
-
-			private bool OnException(Action disposeAction)
-			{
-				Interlocked.Exchange(ref _disposeAction, disposeAction);
-				return false;
-			}
 		}
 
 		/// <summary>

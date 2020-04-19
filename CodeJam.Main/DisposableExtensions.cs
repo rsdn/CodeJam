@@ -29,9 +29,7 @@ namespace CodeJam
 				}
 				catch (Exception ex)
 				{
-					if (exceptions == null)
-						exceptions = new List<Exception>();
-
+					exceptions ??= new List<Exception>();
 					exceptions.Add(ex);
 				}
 			}
@@ -73,6 +71,47 @@ namespace CodeJam
 
 			disposable.Dispose();
 			return new ValueTask();
+		}
+
+		/// <summary>Invokes the dispose for each item in the <paramref name="disposables"/>.</summary>
+		/// <param name="disposables">The multiple <see cref="IDisposable"/> instances.</param>
+		/// <exception cref="AggregateException"></exception>
+		public static async ValueTask DisposeAllAsync(
+		[NotNull, ItemNotNull, InstantHandle] this IEnumerable<IAsyncDisposable> disposables)
+		{
+			List<Exception> exceptions = null;
+
+			foreach (var item in disposables)
+				try
+				{
+					await item.DisposeAsync();
+				}
+				catch (Exception ex)
+				{
+					exceptions ??= new List<Exception>();
+					exceptions.Add(ex);
+				}
+
+			if (exceptions != null)
+				throw new AggregateException(exceptions);
+		}
+
+		/// <summary>Invokes the dispose for each item in the <paramref name="disposables"/>.</summary>
+		/// <param name="disposables">The multiple <see cref="IDisposable"/> instances.</param>
+		/// <param name="exceptionHandler">The exception handler.</param>
+		public static async ValueTask DisposeAllAsync(
+			[NotNull, ItemNotNull, InstantHandle] this IEnumerable<IAsyncDisposable> disposables,
+			[NotNull, InstantHandle] Func<Exception, bool> exceptionHandler)
+		{
+			foreach (var item in disposables)
+				try
+				{
+					await item.DisposeAsync();
+				}
+				catch (Exception ex) when (exceptionHandler(ex))
+				{
+					ex.LogToCodeTraceSourceOnCatch(true);
+				}
 		}
 #endif
 	}
