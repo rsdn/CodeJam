@@ -24,13 +24,13 @@ namespace CodeJam
 
 			Assert.That(value, Is.EqualTo(0));
 
-			disposable.Dispose();
+			Assert.DoesNotThrow(() => disposable.Dispose());
 			Assert.That(value, Is.EqualTo(1));
 
-			disposable.Dispose();
+			Assert.DoesNotThrow(() => disposable.Dispose());
 			Assert.That(value, Is.EqualTo(1));
 
-			disposable2.Dispose();
+			Assert.DoesNotThrow(() => disposable2.Dispose());
 			Assert.That(value, Is.EqualTo(1));
 		}
 
@@ -118,9 +118,12 @@ namespace CodeJam
 			var state = "";
 			var disposed = false;
 
-			using (Disposable.Create(s => {disposed = true; state = s;}, "state"))
-			{
-			}
+			using (Disposable.Create(
+				s =>
+				{
+					disposed = true;
+					state = s;
+				}, "state")) { }
 
 			Assert.IsTrue(disposed);
 			Assert.AreEqual("state", state);
@@ -183,7 +186,7 @@ namespace CodeJam
 				s =>
 				{
 					Assert.That(++i, Is.EqualTo(3));
-					Assert.That(s,   Is.EqualTo("123"));
+					Assert.That(s, Is.EqualTo("123"));
 				}))
 			{
 				Assert.That(++i, Is.EqualTo(2));

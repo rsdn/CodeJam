@@ -128,6 +128,16 @@
 			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
 		</Compile>
+		<Compile Update="AsyncDisposable.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>AsyncDisposable.tt</DependentUpon>
+		</Compile>
+		<Compile Update="AsyncInitDispose.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>AsyncInitDispose.tt</DependentUpon>
+		</Compile>
 		<Compile Update="Collections\Enumerable\EnumerableExtensions.Deconstruct.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>EnumerableExtensions.Deconstruct.tt</DependentUpon>
@@ -194,6 +204,14 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DebugCode.tt</DependentUpon>
 		</Compile>
+		<None Update="AsyncDisposable.tt">
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		  <LastGenOutput>AsyncDisposable.generated.cs</LastGenOutput>
+		</None>
+		<None Update="AsyncInitDispose.tt">
+		  <LastGenOutput>AsyncInitDispose.generated.cs</LastGenOutput>
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		</None>
 		<None Update="Collections\Enumerable\EnumerableExtensions.Deconstruct.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>EnumerableExtensions.Deconstruct.generated.cs</LastGenOutput>
