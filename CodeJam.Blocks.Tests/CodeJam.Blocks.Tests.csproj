@@ -25,7 +25,7 @@
 		<!-- NUnit v3.11 is the last version supporting .NET 2.0 -->
 		<PackageReference Include="NUnit" Version="[3.11.0]" />
 		<PackageReference Include="NUnit3TestAdapter" Version="[3.15.1]" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="[16.2.0]" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.1'">
 		<!-- NUnit v3.9 is the last version supporting .NET Core 1.0 -->
