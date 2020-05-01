@@ -142,9 +142,9 @@ namespace CodeJam.IO
 					Assert.AreEqual(disposeCallCount, 2);
 
 				}
+				Assert.AreEqual(disposeCallCount, 2);
 				Assert.IsFalse(Directory.Exists(dirPath), "Directory should NOT exist");
 				Assert.IsFalse(File.Exists(nestedFile), "File should NOT exist");
-				Assert.AreEqual(disposeCallCount, 2);
 			}
 			finally
 			{
