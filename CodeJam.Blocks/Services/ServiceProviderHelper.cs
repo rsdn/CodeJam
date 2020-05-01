@@ -91,10 +91,15 @@ namespace CodeJam.Services
 		{
 			Code.NotNull(publisher, nameof(publisher));
 			Code.NotNull(instanceFactory, nameof(instanceFactory));
-			// DONTTOUCH: for valid overload resolution (fails on net35).
 
+			// DONTTOUCH: for valid overload resolution (fails on net35).
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			// ReSharper disable once RedundantCast
-			return publisher.Publish(typeof(T), instanceFactory);
+			return publisher.Publish(typeof(T), (Func<IServicePublisher, object>)instanceFactory);
+#else
+			// Hack for CS0030 Cannot convert type 'System.Func<CodeJam.Services.IServicePublisher, T>' to 'System.Func<CodeJam.Services.IServicePublisher, object>'
+			return publisher.Publish(typeof(T), new Func<IServicePublisher, object>(sp => instanceFactory(sp)));
+#endif
 		}
 	}
 }
