@@ -2,8 +2,6 @@
 
 using NUnit.Framework;
 
-using Range = CodeJam.Ranges.Range;
-
 namespace CodeJam.Threading
 {
 	[TestFixture]
@@ -89,9 +87,8 @@ namespace CodeJam.Threading
 			var delay = TimeSpan.FromSeconds(1);
 			var max = TimeSpan.FromMinutes(1);
 			var timeoutSeconds = TimeoutHelper.ExponentialBackoffTimeout(retry, delay, max).TotalSeconds;
-			var range = Range.Create(resultSeconds * 0.8, resultSeconds * 1.2);
 
-			Assert.IsTrue(range.Contains(timeoutSeconds), $"{range} does not contain {timeoutSeconds}");
+			Assert.That(timeoutSeconds, Is.InRange(resultSeconds * 0.8, resultSeconds * 1.2));
 		}
 	}
 }
