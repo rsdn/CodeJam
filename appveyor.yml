@@ -8,6 +8,8 @@ version: '3.0.{build}'
 
 init:
 - cmd: git config --global core.autocrlf true
+  # install NUnit 3.9 (see https://github.com/appveyor/ci/issues/3412 for explanation)
+- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/build-images/21d2405c7a91118b53484d9605061329b88d81c5/scripts/Windows/install_nunit3.ps1'))
 #- ps: $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
 #- ps: $env:nugetVersion = "$env:packageVersion-alpha$env:appveyor_build_number"
 #- ps: $env:perfTestsBuildVersion = "$env:perfTestsPackageVersion.$env:appveyor_build_number"
@@ -32,10 +34,6 @@ dotnet_csproj:
 nuget:
   account_feed: false
   project_feed: false
-
-#before_build:
-#- ps: .\Build\CodeJam.AppVeyor.FixVersionProps.ps1 -path Build\CodeJam.Default.props -buildVersion $env:buildVersion -nugetVersion $env:nugetVersion
-#- ps: .\Build\CodeJam.AppVeyor.FixVersionProps.ps1 -path Build\CodeJam.PerfTests.Default.props -buildVersion $env:perfTestsBuildVersion -nugetVersion $env:perfTestsNugetVersion
 
 #build:
 #  project: CodeJam.sln
