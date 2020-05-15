@@ -23,7 +23,7 @@ namespace CodeJam.Ranges
 	[SuppressMessage("ReSharper", "StringLiteralTypo")]
 	public static class CompositeRangeTests
 	{
-#region Parse helpers
+		#region Parse helpers
 		private static CompositeRange<T> ParseCompositeRange<T>(
 			[NotNull] string value,
 			Func<string, T> parseValueCallback)
@@ -76,7 +76,7 @@ namespace CodeJam.Ranges
 
 		public static CompositeRange<int?, string> ParseCompositeKeyedRangeInt32([NotNull] string value) =>
 			ParseCompositeRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture), s => s.IsNullOrEmpty() ? null : s);
-#endregion
+		#endregion
 
 		[Test]
 		public static void TestCompositeRangeUseCase()
