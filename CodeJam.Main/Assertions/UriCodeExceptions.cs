@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 
+using CodeJam.Internal;
+
 using JetBrains.Annotations;
 
 using static CodeJam.Internal.CodeExceptionsHelper;

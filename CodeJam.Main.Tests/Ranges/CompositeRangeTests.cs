@@ -589,6 +589,129 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
+		public static void TestCompositeRangeExclusiveWithOrWithoutKeys()
+		{
+			var compositeRange = Enumerable
+				.Range(1, 2)
+				.ToCompositeRangeExclusive(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(), "(0..3): { '1':(0..2); '2':(1..3) }");
+
+			var compositeRange2 = compositeRange.WithKeys(i => "A" + i);
+			AreEqual(compositeRange2.ToString(), "(0..3): { 'A1':(0..2); 'A2':(1..3) }");
+
+			var compositeRange3 = compositeRange2.WithoutKeys();
+			AreEqual(compositeRange3.ToString(), "(0..3): { (0..2); (1..3) }");
+
+			var compositeRange4 = compositeRange3.WithKeys("A");
+			AreEqual(compositeRange4.ToString(), "(0..3): { 'A':(0..2); 'A':(1..3) }");
+
+			var compositeRange5 = compositeRange4.WithKeys("B");
+			AreEqual(compositeRange5.ToString(), "(0..3): { 'B':(0..2); 'B':(1..3) }");
+		}
+
+		[Test]
+		public static void TestCompositeRangeExclusiveWithValues()
+		{
+			var compositeRange = Enumerable
+				.Range(1, 2)
+				.ToCompositeRangeExclusive(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(), "(0..3): { '1':(0..2); '2':(1..3) }");
+
+			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
+			AreEqual(compositeRange2.ToString(), "(A0..A3): { '1':(A0..A2); '2':(A1..A3) }");
+
+			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
+			AreEqual(compositeRange3.ToString(), "(A0..B3): { '1':(A0..B2); '2':(A1..B3) }");
+
+			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1)));
+			AreEqual(compositeRange4.ToString(), "(0..3): { (0..2); (1..3) }");
+
+			AreEqual(compositeRange4, compositeRange.WithoutKeys());
+		}
+
+		[Test]
+		public static void TestCompositeRangeExclusiveFromWithOrWithoutKeys()
+		{
+			var compositeRange = Enumerable
+				.Range(1, 2)
+				.ToCompositeRangeExclusiveFrom(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(), "(0..3]: { '1':(0..2]; '2':(1..3] }");
+
+			var compositeRange2 = compositeRange.WithKeys(i => "A" + i);
+			AreEqual(compositeRange2.ToString(), "(0..3]: { 'A1':(0..2]; 'A2':(1..3] }");
+
+			var compositeRange3 = compositeRange2.WithoutKeys();
+			AreEqual(compositeRange3.ToString(), "(0..3]: { (0..2]; (1..3] }");
+
+			var compositeRange4 = compositeRange3.WithKeys("A");
+			AreEqual(compositeRange4.ToString(), "(0..3]: { 'A':(0..2]; 'A':(1..3] }");
+
+			var compositeRange5 = compositeRange4.WithKeys("B");
+			AreEqual(compositeRange5.ToString(), "(0..3]: { 'B':(0..2]; 'B':(1..3] }");
+		}
+
+		[Test]
+		public static void TestCompositeRangeExclusiveFromWithValues()
+		{
+			var compositeRange = Enumerable
+				.Range(1, 2)
+				.ToCompositeRangeExclusiveFrom(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(), "(0..3]: { '1':(0..2]; '2':(1..3] }");
+
+			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
+			AreEqual(compositeRange2.ToString(), "(A0..A3]: { '1':(A0..A2]; '2':(A1..A3] }");
+
+			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
+			AreEqual(compositeRange3.ToString(), "(A0..B3]: { '1':(A0..B2]; '2':(A1..B3] }");
+
+			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1)));
+			AreEqual(compositeRange4.ToString(), "(0..3]: { (0..2]; (1..3] }");
+
+			AreEqual(compositeRange4, compositeRange.WithoutKeys());
+		}
+
+		[Test]
+		public static void TestCompositeRangeExclusiveToWithOrWithoutKeys()
+		{
+			var compositeRange = Enumerable
+				.Range(1, 2)
+				.ToCompositeRangeExclusiveTo(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(), "[0..3): { '1':[0..2); '2':[1..3) }");
+
+			var compositeRange2 = compositeRange.WithKeys(i => "A" + i);
+			AreEqual(compositeRange2.ToString(), "[0..3): { 'A1':[0..2); 'A2':[1..3) }");
+
+			var compositeRange3 = compositeRange2.WithoutKeys();
+			AreEqual(compositeRange3.ToString(), "[0..3): { [0..2); [1..3) }");
+
+			var compositeRange4 = compositeRange3.WithKeys("A");
+			AreEqual(compositeRange4.ToString(), "[0..3): { 'A':[0..2); 'A':[1..3) }");
+
+			var compositeRange5 = compositeRange4.WithKeys("B");
+			AreEqual(compositeRange5.ToString(), "[0..3): { 'B':[0..2); 'B':[1..3) }");
+		}
+
+		[Test]
+		public static void TestCompositeRangeExclusiveToWithValues()
+		{
+			var compositeRange = Enumerable
+				.Range(1, 2)
+				.ToCompositeRangeExclusiveTo(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(), "[0..3): { '1':[0..2); '2':[1..3) }");
+
+			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
+			AreEqual(compositeRange2.ToString(), "[A0..A3): { '1':[A0..A2); '2':[A1..A3) }");
+
+			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
+			AreEqual(compositeRange3.ToString(), "[A0..B3): { '1':[A0..B2); '2':[A1..B3) }");
+
+			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1)));
+			AreEqual(compositeRange4.ToString(), "[0..3): { [0..2); [1..3) }");
+
+			AreEqual(compositeRange4, compositeRange.WithoutKeys());
+		}
+
+		[Test]
 		[TestCase(
 			"∅",
 			"(-∞..+∞): { (-∞..+∞) }")]

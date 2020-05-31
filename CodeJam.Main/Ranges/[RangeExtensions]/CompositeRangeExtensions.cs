@@ -47,6 +47,113 @@ namespace CodeJam.Ranges
 					.ToCompositeRange();
 		#endregion
 
+		#region ToCompositeRangeExclusive
+		/// <summary>Converts sequence of elements to the composite range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="source">Original collection.</param>
+		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
+		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
+		/// <returns>A new composite range with keys filled from the original collection.</returns>
+		[Pure]
+		public static CompositeRange<T, TKey> ToCompositeRangeExclusive<T, TKey>(
+			[NotNull] this IEnumerable<TKey> source,
+			[NotNull, InstantHandle] Func<TKey, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<TKey, T> toValueSelector) =>
+				source
+					.Select(s => Range.CreateExclusive(fromValueSelector(s), toValueSelector(s), s))
+					.ToCompositeRange();
+
+		/// <summary>Converts sequence of elements to the composite range.</summary>
+		/// <typeparam name="TSource">The type of the values in original collection.</typeparam>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="source">Original collection.</param>
+		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
+		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
+		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
+		/// <returns>A new composite range with keys filled from the original collection.</returns>
+		[Pure]
+		public static CompositeRange<T, TKey> ToCompositeRangeExclusive<TSource, T, TKey>(
+			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<TSource, T> toValueSelector,
+			[NotNull, InstantHandle] Func<TSource, TKey> keySelector) =>
+				source
+					.Select(s => Range.CreateExclusive(fromValueSelector(s), toValueSelector(s), keySelector(s)))
+					.ToCompositeRange();
+
+		/// <summary>Converts sequence of elements to the composite range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="source">Original collection.</param>
+		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
+		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
+		/// <returns>A new composite range with keys filled from the original collection.</returns>
+		[Pure]
+		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveFrom<T, TKey>(
+			[NotNull] this IEnumerable<TKey> source,
+			[NotNull, InstantHandle] Func<TKey, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<TKey, T> toValueSelector) =>
+				source
+					.Select(s => Range.CreateExclusiveFrom(fromValueSelector(s), toValueSelector(s), s))
+					.ToCompositeRange();
+
+		/// <summary>Converts sequence of elements to the composite range.</summary>
+		/// <typeparam name="TSource">The type of the values in original collection.</typeparam>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="source">Original collection.</param>
+		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
+		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
+		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
+		/// <returns>A new composite range with keys filled from the original collection.</returns>
+		[Pure]
+		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveFrom<TSource, T, TKey>(
+			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<TSource, T> toValueSelector,
+			[NotNull, InstantHandle] Func<TSource, TKey> keySelector) =>
+				source
+					.Select(s => Range.CreateExclusiveFrom(fromValueSelector(s), toValueSelector(s), keySelector(s)))
+					.ToCompositeRange();
+
+		/// <summary>Converts sequence of elements to the composite range.</summary>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="source">Original collection.</param>
+		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
+		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
+		/// <returns>A new composite range with keys filled from the original collection.</returns>
+		[Pure]
+		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveTo<T, TKey>(
+			[NotNull] this IEnumerable<TKey> source,
+			[NotNull, InstantHandle] Func<TKey, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<TKey, T> toValueSelector) =>
+				source
+					.Select(s => Range.CreateExclusiveTo(fromValueSelector(s), toValueSelector(s), s))
+					.ToCompositeRange();
+
+		/// <summary>Converts sequence of elements to the composite range.</summary>
+		/// <typeparam name="TSource">The type of the values in original collection.</typeparam>
+		/// <typeparam name="T">The type of the range values.</typeparam>
+		/// <typeparam name="TKey">The type of the range key</typeparam>
+		/// <param name="source">Original collection.</param>
+		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
+		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
+		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
+		/// <returns>A new composite range with keys filled from the original collection.</returns>
+		[Pure]
+		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveTo<TSource, T, TKey>(
+			[NotNull] this IEnumerable<TSource> source,
+			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<TSource, T> toValueSelector,
+			[NotNull, InstantHandle] Func<TSource, TKey> keySelector) =>
+				source
+					.Select(s => Range.CreateExclusiveTo(fromValueSelector(s), toValueSelector(s), keySelector(s)))
+					.ToCompositeRange();
+		#endregion
+
 		#region ToCompositeRangeFrom & ToCompositeRangeTo
 		/// <summary>
 		/// Converts sequence of elements to the composite range using only From boundary.

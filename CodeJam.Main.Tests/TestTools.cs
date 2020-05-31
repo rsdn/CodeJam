@@ -16,8 +16,8 @@ namespace CodeJam
 	public static class TestTools
 	{
 		[NotNull]
-		public static Random GetTestRandom() =>
-			GetTestRandom(new Random().Next());
+		public static Random GetTestRandom([CallerMemberName] string memberName = "") =>
+			GetTestRandom(new Random().Next(), memberName);
 
 		[NotNull]
 		[MethodImpl(MethodImplOptions.NoInlining)]
