@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using JetBrains.Annotations;
 
@@ -47,7 +48,22 @@ namespace CodeJam
 		/// </returns>
 		[NotNull, Pure]
 		public static IDisposable Create<T>([NotNull] Action<T> disposeAction, [CanBeNull] T state) =>
-		 new AnonymousDisposable(() => disposeAction?.Invoke(state));
+			new AnonymousDisposable(() => disposeAction.Invoke(state));
+
+		/// <summary>
+		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposables"/> on disposing in reverse order.
+		/// </summary>
+		/// <param name="disposables">The dispose action.</param>
+		/// <returns>
+		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposables"/> on disposing in reverse order.
+		/// </returns>
+		[NotNull, Pure]
+		public static IDisposable CreateNested([NotNull, ItemNotNull] params IDisposable[] disposables)
+		{
+			var copy = disposables.ToArray();
+			Array.Reverse(copy);
+			return Merge(copy);
+		}
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>

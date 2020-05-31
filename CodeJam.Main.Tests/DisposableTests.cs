@@ -3,6 +3,7 @@ extern alias nunitlinq;
 #endif
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -32,6 +33,21 @@ namespace CodeJam
 
 			disposable2.Dispose();
 			Assert.That(value, Is.EqualTo(1));
+		}
+
+		[Test]
+		public static void TestDisposableArray()
+		{
+			var result = new List<int>();
+
+			Disposable
+				.CreateNested(
+					Disposable.Create(() => result.Add(1)),
+					Disposable.Create(() => result.Add(2)),
+					Disposable.Create(() => result.Add(3)))
+				.Dispose();
+
+			Assert.AreEqual(result, new List<int> { 3, 2, 1 });
 		}
 
 		[Test]
@@ -118,9 +134,12 @@ namespace CodeJam
 			var state = "";
 			var disposed = false;
 
-			using (Disposable.Create(s => {disposed = true; state = s;}, "state"))
-			{
-			}
+			using (Disposable.Create(
+				s =>
+				{
+					disposed = true;
+					state = s;
+				}, "state")) { }
 
 			Assert.IsTrue(disposed);
 			Assert.AreEqual("state", state);
@@ -183,7 +202,7 @@ namespace CodeJam
 				s =>
 				{
 					Assert.That(++i, Is.EqualTo(3));
-					Assert.That(s,   Is.EqualTo("123"));
+					Assert.That(s, Is.EqualTo("123"));
 				}))
 			{
 				Assert.That(++i, Is.EqualTo(2));

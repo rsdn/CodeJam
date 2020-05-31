@@ -20,7 +20,7 @@ namespace CodeJam
 		[NotNull, Pure]
 		public static IDisposable Create([NotNull] Action initAction, [NotNull] Action disposeAction)
 		{
-			Code.NotNull(initAction,    nameof(initAction));
+			Code.NotNull(initAction, nameof(initAction));
 			Code.NotNull(disposeAction, nameof(disposeAction));
 
 			initAction();
@@ -40,7 +40,7 @@ namespace CodeJam
 		[NotNull, Pure]
 		public static IDisposable Create<T>([NotNull] Func<T> initAction, [NotNull] Action<T> disposeAction)
 		{
-			Code.NotNull(initAction,    nameof(initAction));
+			Code.NotNull(initAction, nameof(initAction));
 			Code.NotNull(disposeAction, nameof(disposeAction));
 
 			var initState = initAction();
@@ -56,6 +56,7 @@ namespace CodeJam
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="initDisposeAction"/> on disposing.
 		/// </returns>
 		[NotNull, Pure]
+		[Obsolete("Please use overload with Action<bool> argument")]
 		public static IDisposable Create([NotNull] Action initDisposeAction)
 		{
 			Code.NotNull(initDisposeAction, nameof(initDisposeAction));
