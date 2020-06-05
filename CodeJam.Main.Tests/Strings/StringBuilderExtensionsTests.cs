@@ -8,7 +8,7 @@ namespace CodeJam.Strings
 	public class StringBuilderExtensionsTests
 	{
 		[Test]
-		public void IsNullOrEmptyConstructor(string source)
+		public void IsNullOrEmptyConstructor()
 		{
 			Assert.IsTrue(new StringBuilder().IsNullOrEmpty());
 		}
@@ -19,7 +19,7 @@ namespace CodeJam.Strings
 		public bool IsNullOrEmpty(string source) => new StringBuilder(source).IsNullOrEmpty();
 
 		[Test]
-		public void NotNullNorEmptyConstructor(string source)
+		public void NotNullNorEmptyConstructor()
 		{
 			Assert.IsFalse(new StringBuilder().NotNullNorEmpty());
 		}
