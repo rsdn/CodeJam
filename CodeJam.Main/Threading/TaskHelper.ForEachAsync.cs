@@ -12,6 +12,7 @@ using JetBrains.Annotations;
 using TaskEx = System.Threading.Tasks.Task;
 #else
 using TaskEx = System.Threading.Tasks.TaskEx;
+
 #endif
 
 namespace CodeJam.Threading
@@ -48,6 +49,8 @@ namespace CodeJam.Threading
 		/// </summary>
 		public static int GetMaxDegreeOfParallelism([NotNull] this TaskScheduler scheduler, int value)
 		{
+			Code.NotNull(scheduler, nameof(scheduler));
+
 			var concurrencyLimit = scheduler.MaximumConcurrencyLevel;
 
 			if (concurrencyLimit > 0 && concurrencyLimit != int.MaxValue)
@@ -74,17 +77,20 @@ namespace CodeJam.Threading
 			int maxDegreeOfParallelism = 0,
 			CancellationToken cancellation = default)
 		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(callback, nameof(callback));
+
 			maxDegreeOfParallelism = TaskScheduler.Current.GetMaxDegreeOfParallelism(maxDegreeOfParallelism);
 
-			using (var failureCancellation = new CancellationTokenSource())
-			using (var combinedCancellation = CreateCancellation(cancellation, failureCancellation.Token))
+			using (var customCancellation = CreateCancellation(cancellation))
+			using (customCancellation.CancellationScope())
 			{
-				var combinedToken = combinedCancellation.Token;
+				var combinedToken = customCancellation.Token;
 
-				await TaskEx
-					.WhenAll(
-						from partition in Partitioner.Create(source).GetPartitions(maxDegreeOfParallelism)
-						select TaskEx.Run(
+				await Partitioner.Create(source)
+					.GetPartitions(maxDegreeOfParallelism)
+					.Select(
+						partition => TaskEx.Run(
 							async () =>
 							{
 								try
@@ -101,15 +107,16 @@ namespace CodeJam.Threading
 								catch (Exception)
 								{
 									// ReSharper disable once AccessToDisposedClosure
-									failureCancellation.Cancel();
+									customCancellation.Cancel();
 									throw;
 								}
 							},
 							combinedToken))
+					.WhenAll()
 					.WithAggregateException()
 					.ConfigureAwait(false);
 
-				combinedCancellation.Token.ThrowIfCancellationRequested();
+				customCancellation.Token.ThrowIfCancellationRequested();
 			}
 		}
 
@@ -130,6 +137,9 @@ namespace CodeJam.Threading
 			int maxDegreeOfParallelism,
 			CancellationToken cancellation = default)
 		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(callback, nameof(callback));
+
 			var queue = new ConcurrentQueue<TResult>();
 
 			await source
@@ -155,6 +165,7 @@ namespace CodeJam.Threading
 		// BASEDON https://stackoverflow.com/a/18315625
 		public static async Task WithAggregateException([NotNull] this Task source)
 		{
+			Code.NotNull(source, nameof(source));
 			try
 			{
 				await source.ConfigureAwait(false);
@@ -176,6 +187,7 @@ namespace CodeJam.Threading
 		// BASEDON https://stackoverflow.com/a/18315625
 		public static async Task<T> WithAggregateException<T>([NotNull] this Task<T> source)
 		{
+			Code.NotNull(source, nameof(source));
 			try
 			{
 				return await source.ConfigureAwait(false);

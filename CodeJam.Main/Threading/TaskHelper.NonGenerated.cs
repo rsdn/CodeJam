@@ -119,5 +119,19 @@ namespace CodeJam.Threading
 			{
 			}
 		}
+
+		/// <summary>
+		/// Creates safe for await <see cref="TaskCompletionSource{TResult}"/> with <see cref="TaskCreationOptions.RunContinuationsAsynchronously"/> mode.
+		/// See https://devblogs.microsoft.com/premier-developer/the-danger-of-taskcompletionsourcet-class/ for explanation.
+		/// </summary>
+		public static TaskCompletionSource<T> CreateAsyncTaskSource<T>() =>
+			new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+		/// <summary>
+		/// Creates safe for await <see cref="TaskCompletionSource{TResult}"/> with <see cref="TaskCreationOptions.RunContinuationsAsynchronously"/> mode.
+		/// See https://devblogs.microsoft.com/premier-developer/the-danger-of-taskcompletionsourcet-class/ for explanation.
+		/// </summary>
+		public static TaskCompletionSource<T> CreateAsyncTaskSource<T>(TaskCreationOptions creationOptions) =>
+			new TaskCompletionSource<T>(creationOptions | TaskCreationOptions.RunContinuationsAsynchronously);
 	}
 }
