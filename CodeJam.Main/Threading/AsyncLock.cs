@@ -122,7 +122,7 @@ namespace CodeJam.Threading
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
 		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(TimeSpan timeout, CancellationToken cancellation) =>
-			new AwaitableNonDisposable<AsyncLockScope>(AcquireAsyncImpl(timeout, cancellation));
+			AcquireAsyncImpl(timeout, cancellation);
 
 		[NotNull]
 		[MustUseReturnValue("Lock should be disposed")]
