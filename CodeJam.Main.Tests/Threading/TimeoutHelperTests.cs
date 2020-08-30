@@ -74,5 +74,21 @@ namespace CodeJam.Threading
 			Assert.AreEqual(dMinus1.AdjustTimeout(d1, infiniteIfDefault), d1);
 			Assert.AreEqual(dMinus1.AdjustTimeout(dMinus1, infiniteIfDefault), TimeoutHelper.InfiniteTimeSpan);
 		}
+
+		[TestCase(0, 1)]
+		[TestCase(1, 1)]
+		[TestCase(4, 8)]
+		[TestCase(6, 32)]
+		[TestCase(8, 60)]
+		[TestCase(10, 60)]
+		[TestCase(100, 60)]
+		public void TestBackoff(int retry, int resultSeconds)
+		{
+			var delay = TimeSpan.FromSeconds(1);
+			var max = TimeSpan.FromMinutes(1);
+			var timeoutSeconds = TimeoutHelper.ExponentialBackoffTimeout(retry, delay, max).TotalSeconds;
+
+			Assert.That(timeoutSeconds, Is.InRange(resultSeconds * 0.8, resultSeconds * 1.2));
+		}
 	}
 }

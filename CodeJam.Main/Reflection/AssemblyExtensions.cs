@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -49,6 +50,18 @@ namespace CodeJam.Reflection
 		}
 
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
+		/// <summary>
+		/// Gets the assembly file version information.
+		/// </summary>
+		/// <param name="assembly">The assembly.</param>
+		/// <returns><see cref="FileVersionInfo"/> descriptor for the assembly file.</returns>
+		public static FileVersionInfo GetAssemblyFileVersionInfo(this Assembly assembly)
+		{
+			Code.NotNull(assembly, nameof(assembly));
+
+			return FileVersionInfo.GetVersionInfo(assembly.GetAssemblyPath());
+		}
+
 		/// <summary>
 		/// Returns path to the <paramref name="assembly"/> file.
 		/// </summary>

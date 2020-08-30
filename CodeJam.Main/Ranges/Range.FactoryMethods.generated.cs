@@ -126,8 +126,8 @@ namespace CodeJam.Ranges
 		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T, TKey> TryCreateExclusiveTo<T, TKey>(T fromValue, T toValue, TKey key) =>
 			TryCreateCore(
-				fromValue, RangeBoundaryFromKind.Exclusive,
-				toValue, RangeBoundaryToKind.Inclusive, key);
+				fromValue, RangeBoundaryFromKind.Inclusive,
+				toValue, RangeBoundaryToKind.Exclusive, key);
 		#endregion
 	}
 }

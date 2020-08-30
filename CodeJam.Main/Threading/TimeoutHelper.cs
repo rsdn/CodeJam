@@ -3,6 +3,8 @@ using System.Threading;
 
 using JetBrains.Annotations;
 
+using CodeJam.Dates;
+
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using TaskEx = System.Threading.Tasks.Task;
 #else
@@ -74,6 +76,40 @@ namespace CodeJam.Threading
 				return upperLimit;
 
 			return timeout;
+		}
+
+		/// <summary>
+		/// Calculates exponential backoff timeout for specific retry attempt.
+		/// Returns timeout equal to (2^(<paramref name="retryAttempt"/>-1)) limited to <paramref name="maxRetryInterval"/>
+		/// Method applies ±20% jitter to the return value to provide even distribution of the timeouts.
+		/// </summary>
+		/// <remarks>
+		/// SEE https://brooker.co.za/blog/2015/03/21/backoff.html
+		/// https://aws.amazon.com/ru/blogs/architecture/exponential-backoff-and-jitter/
+		/// for explanation
+		/// </remarks>
+		public static TimeSpan ExponentialBackoffTimeout(int retryAttempt, TimeSpan retryInterval, TimeSpan maxRetryInterval)
+		{
+			if (retryInterval <= TimeSpan.Zero)
+				return retryInterval;
+
+			if (retryAttempt <= 0)
+				retryAttempt = 1;
+
+			// 0.8..1.2
+			var jitter = 0.8 + Objects.Random.NextDouble() * 0.4;
+
+			// (2^retryCount - 1) * jitter
+			var scale = Math.Pow(2.0, retryAttempt - 1.0);
+
+			// limit before multiply to ensure we are in valid values range.
+			var maxScale = maxRetryInterval.TotalMilliseconds / retryInterval.TotalMilliseconds;
+
+			// Apply scale coefficient and jitter
+			var resultScale = Math.Min(scale, maxScale) * jitter;
+
+			// Truncate by max retry interval
+			return retryInterval.Multiply(resultScale);
 		}
 	}
 }

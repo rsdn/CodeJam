@@ -69,10 +69,16 @@ namespace CodeJam.Strings
 		/// <returns>The string or <c>null</c> if the string is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static string NullIfEmpty([CanBeNull] this string str) =>
-			str.IsNullOrEmpty()
-				? null
-				: str;
+		public static string NullIfEmpty([CanBeNull] this string str) => str.IsNullOrEmpty() ? null : str;
+
+		/// <summary>
+		/// Returns <c>null</c> for empty or whitespace strings.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <returns>The string or <c>null</c> if the string is empty.</returns>
+		[Pure]
+		[CanBeNull]
+		public static string NullIfWhiteSpace(this string str) => str.IsNullOrWhiteSpace() ? null : str;
 
 		/// <summary>
 		/// Returns true if argument is not null nor whitespace.

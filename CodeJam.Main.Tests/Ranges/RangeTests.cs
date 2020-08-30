@@ -160,6 +160,7 @@ namespace CodeJam.Ranges
 		{
 			int? value1 = 1;
 			int? value2 = 2;
+			int? value3 = 3;
 			int? empty = null;
 			var key = "Hello!";
 			var key2 = "Hello2!";
@@ -188,6 +189,24 @@ namespace CodeJam.Ranges
 			IsTrue(Range.Create(value1, value2, key) == Range.Create<int?, string>(1, 2, key));
 			IsTrue(Range.Create(value1, value2, key) != Range.Create<int?, string>(1, 2, key2));
 			IsTrue(Range.Create(value1, value2, key) != Range.Create<int?, string>(1, 1, key));
+
+			IsTrue(Range.TryCreate(value1, value2) == Range.Create<int?>(1, 2));
+			IsTrue(Range.TryCreate(value1, value2) != Range.Create(value1, 1));
+			IsTrue(Range.TryCreate(value1, value2, key) == Range.Create<int?, string>(1, 2, key));
+			IsTrue(Range.TryCreate(value1, value2, key) != Range.Create<int?, string>(1, 2, key2));
+			IsTrue(Range.TryCreate(value1, value2, key) != Range.Create<int?, string>(1, 1, key));
+
+			IsTrue(Range.TryCreateExclusiveFrom(value1, value2) == Range.CreateExclusiveFrom<int?>(1, 2));
+			IsTrue(Range.TryCreateExclusiveFrom(value1, value3) == Range.CreateExclusiveFrom(value1, 3));
+			IsTrue(Range.TryCreateExclusiveFrom(value1, value3) != Range.CreateExclusiveFrom(value1, 4));
+			IsTrue(Range.TryCreateExclusiveFrom(value1, value2, key) == Range.CreateExclusiveFrom<int?, string>(1, 2, key));
+			IsTrue(Range.TryCreateExclusiveFrom(value1, value2, key) != Range.CreateExclusiveFrom<int?, string>(1, 2, key2));
+
+			IsTrue(Range.TryCreateExclusiveTo(value1, value2) == Range.CreateExclusiveTo<int?>(1, 2));
+			IsTrue(Range.TryCreateExclusiveTo(value1, value3) == Range.CreateExclusiveTo(value1, 3));
+			IsTrue(Range.TryCreateExclusiveTo(value1, value3) != Range.CreateExclusiveTo(value1, 4));
+			IsTrue(Range.TryCreateExclusiveTo(value1, value2, key) == Range.CreateExclusiveTo<int?, string>(1, 2, key));
+			IsTrue(Range.TryCreateExclusiveTo(value1, value2, key) != Range.CreateExclusiveTo<int?, string>(1, 2, key2));
 		}
 
 		/// <summary>Tests the range to string.</summary>
@@ -201,28 +220,48 @@ namespace CodeJam.Ranges
 			AreEqual(Range<int>.Empty.ToString(), "∅");
 			AreEqual(Range<int>.Infinite.ToString(), "(-∞..+∞)");
 			AreEqual(Range.Create(1, 1).ToString(), "[1..1]");
+			AreEqual(Range.TryCreate(1, 1).ToString(), "[1..1]");
 			AreEqual(Range.Create(1, 2).ToString(), "[1..2]");
+			AreEqual(Range.TryCreate(1, 2).ToString(), "[1..2]");
 			AreEqual(Range.CreateExclusive(1, 2).ToString(), "(1..2)");
+			AreEqual(Range.TryCreateExclusive(1, 2).ToString(), "(1..2)");
 			AreEqual(Range.CreateExclusiveFrom(1, 2).ToString(), "(1..2]");
+			AreEqual(Range.TryCreateExclusiveFrom(1, 2).ToString(), "(1..2]");
 			AreEqual(Range.CreateExclusiveTo(1, 2).ToString(), "[1..2)");
+			AreEqual(Range.TryCreateExclusiveTo(1, 2).ToString(), "[1..2)");
 			AreEqual(Range.CreateExclusive(value1, empty).ToString("000"), "(001..+∞)");
+			AreEqual(Range.TryCreateExclusive(value1, empty).ToString("000"), "(001..+∞)");
 
 			AreEqual(Range.Create(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty, key).ToString(), "'Hello!':∅");
+			AreEqual(Range.TryCreate(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty, key).ToString(), "'Hello!':∅");
 			AreEqual(Range.Create(empty, empty, key).ToString(), "'Hello!':(-∞..+∞)");
+			AreEqual(Range.TryCreate(empty, empty, key).ToString(), "'Hello!':(-∞..+∞)");
 			AreEqual(Range.Create(empty, empty, (string)null).ToString(), "'':(-∞..+∞)");
+			AreEqual(Range.TryCreate(empty, empty, (string)null).ToString(), "'':(-∞..+∞)");
 			AreEqual(Range.Create(1, 1, key).ToString(), "'Hello!':[1..1]");
+			AreEqual(Range.TryCreate(1, 1, key).ToString(), "'Hello!':[1..1]");
 			AreEqual(Range.Create(1, 2, key).ToString(), "'Hello!':[1..2]");
+			AreEqual(Range.TryCreate(1, 2, key).ToString(), "'Hello!':[1..2]");
 			AreEqual(Range.CreateExclusive(1, 2, key).ToString(), "'Hello!':(1..2)");
+			AreEqual(Range.TryCreateExclusive(1, 2, key).ToString(), "'Hello!':(1..2)");
 			AreEqual(Range.CreateExclusiveFrom(1, 2, key).ToString(), "'Hello!':(1..2]");
+			AreEqual(Range.TryCreateExclusiveFrom(1, 2, key).ToString(), "'Hello!':(1..2]");
 			AreEqual(Range.CreateExclusiveTo(1, 2, key).ToString(), "'Hello!':[1..2)");
+			AreEqual(Range.TryCreateExclusiveTo(1, 2, key).ToString(), "'Hello!':[1..2)");
 			AreEqual(Range.CreateExclusive(value1, empty, 3).ToString("000"), "'3':(001..+∞)");
+			AreEqual(Range.TryCreateExclusive(value1, empty, 3).ToString("000"), "'3':(001..+∞)");
 			AreEqual(Range.Create((int?)1, null, key).ToString(), "'Hello!':[1..+∞)");
+			AreEqual(Range.TryCreate((int?)1, null, key).ToString(), "'Hello!':[1..+∞)");
 			var cultureRu = new CultureInfo("ru-RU");
 			var cultureEn = new CultureInfo("en-US");
 			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureRu), "'1,1':[001,500..002,500]");
+			AreEqual(Range.TryCreate(1.5, 2.5, 1.1).ToString("000.000", cultureRu), "'1,1':[001,500..002,500]");
 			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureEn), "'1.1':[001.500..002.500]");
+			AreEqual(Range.TryCreate(1.5, 2.5, 1.1).ToString("000.000", cultureEn), "'1.1':[001.500..002.500]");
 			AreEqual(Range.Create(1.5, 2.5, (string)null).ToString(null, cultureRu), "'':[1,5..2,5]");
+			AreEqual(Range.TryCreate(1.5, 2.5, (string)null).ToString(null, cultureRu), "'':[1,5..2,5]");
 			AreEqual(Range.Create(1.5, 2.5, (string)null).ToString(null, cultureEn), "'':[1.5..2.5]");
+			AreEqual(Range.TryCreate(1.5, 2.5, (string)null).ToString(null, cultureEn), "'':[1.5..2.5]");
 		}
 
 		[Test]

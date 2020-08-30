@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 
 using CodeJam.Internal;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.IO
@@ -93,7 +94,17 @@ namespace CodeJam.IO
 				if (path == null || _keepOnDispose)
 					return;
 
-				DisposePath(path, disposing);
+				var ok = false;
+				try
+				{
+					DisposePath(path, disposing);
+					ok = true;
+				}
+				finally
+				{
+					if (!ok)
+						Interlocked.Exchange(ref _path, path);
+				}
 			}
 
 			/// <summary>Temp path disposal</summary>
@@ -136,33 +147,8 @@ namespace CodeJam.IO
 			/// </param>
 			protected override void DisposePath([NotNull] string path, bool disposing)
 			{
+				Configuration.TempDataRetryCallback(() => Directory.Delete(path, true));
 				_info = null;
-				Exception caught = null;
-				try
-				{
-					Directory.Delete(path, true);
-				}
-				catch (ArgumentException ex)
-				{
-					caught = ex;
-				}
-				catch (IOException ex)
-				{
-					caught = ex;
-				}
-				catch (UnauthorizedAccessException ex)
-				{
-					caught = ex;
-				}
-				catch (NotSupportedException ex)
-				{
-					caught = ex;
-				}
-
-				if (disposing)
-				{
-					caught?.LogToCodeTraceSourceOnCatch(false);
-				}
 			}
 		}
 
@@ -198,33 +184,8 @@ namespace CodeJam.IO
 			/// </param>
 			protected override void DisposePath([NotNull] string path, bool disposing)
 			{
+				Configuration.TempDataRetryCallback(() => File.Delete(path));
 				_info = null;
-				Exception caught = null;
-				try
-				{
-					File.Delete(path);
-				}
-				catch (ArgumentException ex)
-				{
-					caught = ex;
-				}
-				catch (IOException ex)
-				{
-					caught = ex;
-				}
-				catch (UnauthorizedAccessException ex)
-				{
-					caught = ex;
-				}
-				catch (NotSupportedException ex)
-				{
-					caught = ex;
-				}
-
-				if (disposing)
-				{
-					caught?.LogToCodeTraceSourceOnCatch(false);
-				}
 			}
 		}
 		#endregion

@@ -174,7 +174,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		public static IEnumerable<T> CreateSingle<T>(T element)
 		{
-			yield return element;
+			return new[] { element };
 		}
 
 		/// <summary>

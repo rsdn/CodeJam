@@ -2,18 +2,31 @@
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
+
+using CodeJam.Internal;
 
 using NUnit.Framework;
 
 namespace CodeJam.IO
 {
 	[TestFixture(Category = "IO")]
+	[NonParallelizable]
 	public class TempDataTests
 	{
 		#region Test helpers
 		private static void AssertDisposed<T>(Func<T> memberCallback) =>
 			Assert.Throws<ObjectDisposedException>(() => memberCallback());
-		#endregion
+
+		// DONTTOUCH: DO NOT use [OneTimeSetUp] here as some tests may override the retry policy
+		[SetUp]
+		public static void SetupDisableTempDataRetry() =>
+			Configuration.SetTempDataRetryCallback(a => a());
+
+		// DONTTOUCH: DO NOT use [OneTimeTearDown] here as some tests may override the retry policy
+		[TearDown]
+		public static void TearDownRestoreTempDataRetry() =>
+			Configuration.SetTempDataRetryCallback(null);
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static string CreateAndLeakTempDir(string s)
@@ -26,6 +39,7 @@ namespace CodeJam.IO
 			GC.KeepAlive(dir2);
 			return dir2Path;
 		}
+		#endregion
 
 		[Test]
 		public void TestDirectory()
@@ -96,6 +110,46 @@ namespace CodeJam.IO
 			Assert.IsFalse(Directory.Exists(dirPath), "Directory should NOT exist");
 			Assert.IsFalse(Directory.Exists(nestedDir), "Directory should NOT exist");
 			Assert.IsFalse(File.Exists(nestedFile), "File should NOT exist");
+		}
+
+		[Test]
+		public void TestRetryPolicy()
+		{
+			int disposeCallCount = 0;
+			try
+			{
+				Configuration.SetTempDataRetryCallback(
+					a =>
+					{
+						Interlocked.Increment(ref disposeCallCount);
+						a();
+					});
+
+				string dirPath;
+				string nestedFile;
+				using (var dir = TempData.CreateDirectory())
+				{
+					dirPath = dir.Path;
+					nestedFile = Path.Combine(dirPath, "test.tmp");
+
+					using (File.Create(nestedFile))
+					{
+						Assert.Throws<IOException>(() => dir.Dispose());
+						Assert.AreEqual(disposeCallCount, 1);
+					}
+
+					Assert.DoesNotThrow(() => dir.Dispose());
+					Assert.AreEqual(disposeCallCount, 2);
+
+				}
+				Assert.AreEqual(disposeCallCount, 2);
+				Assert.IsFalse(Directory.Exists(dirPath), "Directory should NOT exist");
+				Assert.IsFalse(File.Exists(nestedFile), "File should NOT exist");
+			}
+			finally
+			{
+				Configuration.SetTempDataRetryCallback(null);
+			}
 		}
 
 		[Test]

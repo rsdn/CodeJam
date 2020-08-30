@@ -12,6 +12,8 @@ foreach ($target in $targetsDotNet) {
 		where { $_.fullname -match "\\bin\\Release\\$($target)" } | `
 		select -ExpandProperty FullName)
 
+	echo ""
+	echo "=== $target ==="
 	echo "nunit3-console $testAssemblies --result=$logFileName"
 	&"nunit3-console" $testAssemblies "--result=$logFileName"
 	if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
@@ -32,6 +34,8 @@ foreach ($target in $targetsDotNetCore) {
 		where { $_.fullname -match "\\bin\\Release\\$($target)" } | `
 		select -ExpandProperty FullName)
 
+	echo ""
+	echo "=== $target ==="
 	echo "dotnet vstest $testAssemblies --logger:'trx;LogFileName=$logFileName'"
 	dotnet vstest $testAssemblies --logger:"trx;LogFileName=$logFileName"
 	if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
