@@ -41,12 +41,20 @@ namespace CodeJam.Threading
 			}
 		}
 
+#if NETSTANDARD20_OR_GREATER || NET45_OR_GREATER || TARGETS_NETCOREAPP
 		/// <summary>
 		/// Gets the maximum degree of parallelism for the scheduler.
 		/// Matches to the <see cref="Parallel.ForEach{TSource}(IEnumerable{TSource}, Action{TSource})"/> behavior.
 		/// Limits <paramref name="value"/> by <see cref="TaskScheduler.MaximumConcurrencyLevel"/> value (if non-zero positiver value).
 		/// Otherwise, uses <see cref="Environment.ProcessorCount"/> as fallback value.
 		/// </summary>
+#else
+		/// <summary>
+		/// Gets the maximum degree of parallelism for the scheduler.
+		/// Limits <paramref name="value"/> by <see cref="TaskScheduler.MaximumConcurrencyLevel"/> value (if non-zero positiver value).
+		/// Otherwise, uses <see cref="Environment.ProcessorCount"/> as fallback value.
+		/// </summary>
+#endif
 		public static int GetMaxDegreeOfParallelism([NotNull] this TaskScheduler scheduler, int value)
 		{
 			Code.NotNull(scheduler, nameof(scheduler));
