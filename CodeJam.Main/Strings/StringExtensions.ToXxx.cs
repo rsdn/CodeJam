@@ -171,7 +171,7 @@ namespace CodeJam.Strings
 		public static DateTime? ToDateTime(
 			[CanBeNull] this string str,
 			DateTimeStyles dateStyle = DateTimeStyles.None,
-			[CanBeNull] IFormatProvider provider = null) =>
+			IFormatProvider? provider = null) =>
 				DateTime.TryParse(str, provider, dateStyle, out var result) ? (DateTime?)result : null;
 
 		/// <summary>
@@ -223,7 +223,7 @@ namespace CodeJam.Strings
 		public static DateTimeOffset? ToDateTimeOffset(
 			[CanBeNull] this string str,
 			DateTimeStyles dateStyle = DateTimeStyles.None,
-			[CanBeNull] IFormatProvider provider = null) =>
+			IFormatProvider? provider = null) =>
 				DateTimeOffset.TryParse(str, provider, dateStyle, out var result) ? (DateTimeOffset?)result : null;
 
 		/// <summary>
@@ -259,8 +259,8 @@ namespace CodeJam.Strings
 		/// <param name="str">The <see cref="T:System.String" /> representing the <see cref="T:System.Uri" />.</param>
 		/// <param name="uriKind">The type of the Uri. DefaultValue is <see cref="UriKind.RelativeOrAbsolute"/>.</param>
 		/// <returns>Constructed <see cref="T:System.Uri" />.</returns>
-		[Pure, CanBeNull]
-		public static Uri ToUri([CanBeNull] this string str, UriKind uriKind = UriKind.RelativeOrAbsolute) =>
+		[Pure]
+		public static Uri? ToUri([CanBeNull] this string str, UriKind uriKind = UriKind.RelativeOrAbsolute) =>
 			Uri.TryCreate(str, uriKind, out var result) ? result : null;
 
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES

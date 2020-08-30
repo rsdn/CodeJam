@@ -44,7 +44,6 @@ namespace CodeJam.Arithmetic
 
 		#region Comparison
 		/// <summary>Gets an equality comparison function, such as (a == b) in C#.</summary>
-		[NotNull]
 		public static Func<T, T, bool> AreEqual => AreEqualHelper.LazyValue.Value;
 
 		/// <summary>

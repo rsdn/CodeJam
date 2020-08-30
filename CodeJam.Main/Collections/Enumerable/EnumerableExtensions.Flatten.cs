@@ -42,7 +42,7 @@ namespace CodeJam.Collections
 
 					yield return currentNode.Item;
 
-					Node<T> tmpList = null;
+					Node<T>? tmpList = null;
 					foreach (var childItem in childrenSelector(currentNode.Item))
 						tmpList = new Node<T>(childItem, tmpList);
 
@@ -58,9 +58,9 @@ namespace CodeJam.Collections
 		private sealed class Node<T>
 		{
 			public readonly T Item;
-			public readonly Node<T> Next;
+			public readonly Node<T>? Next;
 
-			public Node(T item, Node<T> next)
+			public Node(T item, Node<T>? next)
 			{
 				Item = item;
 				Next = next;

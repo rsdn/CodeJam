@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+// ReSharper disable once RedundantUsingDirective
 using System.Reflection;
 
 using JetBrains.Annotations;
@@ -93,7 +94,7 @@ namespace CodeJam.Collections
 				obj == null ? 0 : _getHashCode(obj);
 		}
 
-		private static Comparer _equalityComparer;
+		private static Comparer? _equalityComparer;
 
 		/// <summary>
 		/// Returns implementations of the <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> generic interface

@@ -18,7 +18,7 @@ namespace CodeJam.Threading
 		[NotNull, ItemNotNull]
 		private readonly Thread[] _workers;
 
-		public ParallelQueue(int workerCount, string name = null)
+		public ParallelQueue(int workerCount, string? name = null)
 		{
 			_workers = new Thread[Math.Max(1, workerCount)];
 

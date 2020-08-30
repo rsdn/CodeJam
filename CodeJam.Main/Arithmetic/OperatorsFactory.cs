@@ -103,19 +103,18 @@ namespace CodeJam.Arithmetic
 		}
 
 		[NotNull]
-		private static NotSupportedException FieldNotSupported([NotNull]Type type, string fieldName, Exception ex) =>
+		private static NotSupportedException FieldNotSupported([NotNull]Type type, string fieldName, Exception? ex) =>
 			new NotSupportedException($"The type {type.Name} has no field {fieldName} defined.", ex);
 
 		[NotNull]
-		private static NotSupportedException MethodNotSupported([NotNull] Type type, string methodName, Exception ex) =>
+		private static NotSupportedException MethodNotSupported([NotNull] Type type, string methodName, Exception? ex) =>
 			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
 
 		[NotNull]
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
 			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
-		[CanBeNull]
-		private static FieldInfo TryGetOpField<T>([NotNull] string fieldName)
+		private static FieldInfo? TryGetOpField<T>([NotNull] string fieldName)
 		{
 			var t = typeof(T).ToNullableUnderlying();
 

@@ -132,8 +132,8 @@ namespace CodeJam
 		/// Returns description of enum value specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
 		/// specified.
 		/// </remarks>
-		[Pure, CanBeNull]
-		public static string GetDescription<TEnum>(TEnum value)
+		[Pure]
+		public static string? GetDescription<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
 				GetEnumValue(value).Description;
 		#endregion

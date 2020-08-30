@@ -168,7 +168,7 @@ namespace CodeJam.Collections
 			if (edge.IsLeaf) // a terminal edge?
 				return true;
 			DebugCode.BugIf(edge.Children == null, "edge.Children == null");
-			return GetNode(edge.Children[0]).Length == 0; // has a child terminal edge of zero length
+			return GetNode(edge.Children![0]).Length == 0; // has a child terminal edge of zero length
 		}
 
 		/// <summary>Enumerates all suffixes starting with the given prefix</summary>
@@ -220,7 +220,7 @@ namespace CodeJam.Collections
 			for (; ; )
 			{
 				DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
-				var edge = GetNode(branchPoint.Node.Children[branchPoint.EdgeIndex]);
+				var edge = GetNode(branchPoint.Node.Children![branchPoint.EdgeIndex]);
 				var edgeLength = edge.Length;
 				length += edgeLength;
 				if (!edge.IsTerminal)
@@ -240,7 +240,7 @@ namespace CodeJam.Collections
 					length -= edgeLength;
 					var nextEdgeIndex = branchPoint.EdgeIndex + 1;
 					DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
-					if (nextEdgeIndex < branchPoint.Node.Children.Count)
+					if (nextEdgeIndex < branchPoint.Node.Children!.Count)
 					{
 						branchPoint.EdgeIndex = nextEdgeIndex;
 						break;
@@ -313,8 +313,8 @@ namespace CodeJam.Collections
 				return -1;
 			}
 			DebugCode.BugIf(node.Children == null, "node.Children == null");
-			var edgeIndex = node.Children.LowerBound(c, EdgeComparer);
-			if (edgeIndex == node.Children.Count)
+			var edgeIndex = node.Children!.LowerBound(c, EdgeComparer);
+			if (edgeIndex == node.Children!.Count)
 			{
 				return -1;
 			}
@@ -369,7 +369,7 @@ namespace CodeJam.Collections
 					if (nextChild >= 0)
 					{
 						DebugCode.BugIf(node.Children == null, "node.Children == null");
-						currentIndex = node.Children[nextChild];
+						currentIndex = node.Children![nextChild];
 						stack.Add(new StringLocation(t.Start, nextChild - 1));
 						break;
 					}
@@ -429,7 +429,7 @@ namespace CodeJam.Collections
 			/// <param name="end">An edge end offset</param>
 			/// <param name="terminal">Is the edge terminates the string or not</param>
 			/// <param name="children">A list of child nodes (edges)</param>
-			public Node(int begin, int end, bool terminal, List<int> children = null)
+			public Node(int begin, int end, bool terminal, List<int>? children = null)
 			{
 				DebugCode.AssertArgument(end >= 0, nameof(end), "end should be nonnegative");
 				Begin = begin;
@@ -441,8 +441,7 @@ namespace CodeJam.Collections
 			/// A list of child nodes
 			/// <remarks>null for leaf nodes</remarks>
 			/// </summary>
-			[CanBeNull]
-			public List<int> Children { get; }
+			public List<int>? Children { get; }
 			/// <summary>Shows whether it is a leaf or an internal node</summary>
 			public bool IsLeaf => Children == null;
 			/// <summary>Shows whether it is a terminal (ending at a string end) node or not</summary>

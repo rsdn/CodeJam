@@ -133,8 +133,8 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">The value for the keyword.</param>
 		/// <returns>Value for the keyword.</returns>
-		[CanBeNull, MustUseReturnValue]
-		protected Uri TryGetUriValue(string keyword) =>
+		[MustUseReturnValue]
+		protected Uri? TryGetUriValue(string keyword) =>
 			_wrapper.TryGetStringValue(keyword, out var item) ? new Uri(item) : null;
 
 		/// <summary>

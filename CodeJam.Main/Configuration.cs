@@ -36,8 +36,7 @@ namespace CodeJam.Internal
 		private static TraceSource CreateTraceSource([NotNull] string sourceName) =>
 			new TraceSource(sourceName) { Switch = { Level = SourceLevels.Information } };
 
-		[CanBeNull]
-		private static TraceSource _customCodeTraceSource;
+		private static TraceSource? _customCodeTraceSource;
 
 		/// <summary>
 		/// Sets custom trace source for code exceptions.
@@ -114,7 +113,7 @@ namespace CodeJam.Internal
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			List<Exception> exceptions = null;
+			List<Exception>? exceptions = null;
 			var throttleDelay = TimeSpan.FromMilliseconds(100);
 			var maxThrottleDelay = TimeSpan.FromSeconds(10);
 
@@ -151,8 +150,7 @@ namespace CodeJam.Internal
 		[NotNull]
 		private static readonly Action<Action> _tempDataRetryCallback = TempDataRetry;
 
-		[CanBeNull]
-		private static Action<Action> _customTempDataRetryCallback;
+		private static Action<Action>? _customTempDataRetryCallback;
 
 		/// <summary>
 		/// Sets the custom retry callback for <see cref="CodeJam.IO.TempData"/> disposal.
