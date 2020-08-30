@@ -1,5 +1,15 @@
 ﻿CodeJam 3.1.0 Release Notes
--------------------------------
+---------------------------
+
+What's new in 3.2.0
+-------------------
+* CreateSingle performance improvements
+* Additional Stream helper methods
+* Configuration API and retry policy for temporary data helpers
+* ToCompositeRangeExclusive method
+* StringBuilder IsNullOrEmpty/NotNullNorEmpty methods
+* ForEachAsync method
+* Refactoring, fixes and and code cleanup
 
 What's new in 3.1.0
 -------------------

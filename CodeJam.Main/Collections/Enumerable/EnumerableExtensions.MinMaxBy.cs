@@ -68,8 +68,7 @@ namespace CodeJam.Collections
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
 
-			if (comparer == null)
-				comparer = Comparer<TValue>.Default;
+			comparer ??= Comparer<TValue>.Default;
 
 			var value = default(TValue);
 			TSource item;
@@ -141,8 +140,7 @@ namespace CodeJam.Collections
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
 
-			if (comparer == null)
-				comparer = Comparer<TValue>.Default;
+			comparer ??= Comparer<TValue>.Default;
 
 			var value = default(TValue);
 			TSource item;
@@ -245,8 +243,7 @@ namespace CodeJam.Collections
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
 
-			if (comparer == null)
-				comparer = Comparer<TValue>.Default;
+			comparer ??= Comparer<TValue>.Default;
 
 			var value = default(TValue);
 			TSource item;
@@ -318,8 +315,7 @@ namespace CodeJam.Collections
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
 
-			if (comparer == null)
-				comparer = Comparer<TValue>.Default;
+			comparer ??= Comparer<TValue>.Default;
 
 			var value = default(TValue);
 			TSource item;

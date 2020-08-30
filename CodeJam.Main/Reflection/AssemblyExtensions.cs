@@ -24,7 +24,7 @@ namespace CodeJam.Reflection
 		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));
-			return assembly.GetCustomAttribute<System.Diagnostics.DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
+			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
 		}
 #endif
 

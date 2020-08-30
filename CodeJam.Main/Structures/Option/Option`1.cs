@@ -93,10 +93,9 @@ namespace CodeJam
 			if (other == null)
 				return false;
 
-			var thisSome  = this as Some;
 			var otherSome = other as Some;
 
-			if (ReferenceEquals(thisSome, null))
+			if (!(this is Some))
 				return ReferenceEquals(otherSome, null);
 
 			if (ReferenceEquals(otherSome, null))

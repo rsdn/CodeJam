@@ -218,11 +218,9 @@ namespace CodeJam.IO
 		[NotNull]
 		public static TempDirectory CreateDirectory([CanBeNull] string dirPath, [CanBeNull] string directoryName)
 		{
-			if (dirPath == null)
-				dirPath = Path.GetTempPath();
+			dirPath ??= Path.GetTempPath();
 
-			if (directoryName == null)
-				directoryName = GetTempName();
+			directoryName ??= GetTempName();
 
 			var directoryPath = Path.Combine(dirPath, directoryName);
 			var result = new TempDirectory(directoryPath);
@@ -247,11 +245,9 @@ namespace CodeJam.IO
 		[NotNull]
 		public static TempFile CreateFile([CanBeNull] string dirPath, [CanBeNull] string fileName)
 		{
-			if (dirPath == null)
-				dirPath = Path.GetTempPath();
+			dirPath ??= Path.GetTempPath();
 
-			if (fileName == null)
-				fileName = GetTempName();
+			fileName ??= GetTempName();
 
 			var filePath = Path.Combine(dirPath, fileName);
 			var result = new TempFile(filePath);
@@ -288,11 +284,9 @@ namespace CodeJam.IO
 		{
 			const int bufferSize = 4096;
 
-			if (dirPath == null)
-				dirPath = Path.GetTempPath();
+			dirPath ??= Path.GetTempPath();
 
-			if (fileName == null)
-				fileName = GetTempName();
+			fileName ??= GetTempName();
 
 			var filePath = Path.Combine(dirPath, fileName);
 
