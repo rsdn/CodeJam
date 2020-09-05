@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 
+using CodeJam.Targeting;
+
 using JetBrains.Annotations;
 
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
@@ -119,5 +121,19 @@ namespace CodeJam.Threading
 			{
 			}
 		}
+
+		/// <summary>
+		/// Creates safe for await <see cref="TaskCompletionSource{TResult}"/> with <see cref="TaskCreationOptionsEx.RunContinuationsAsynchronously"/> mode.
+		/// See https://devblogs.microsoft.com/premier-developer/the-danger-of-taskcompletionsourcet-class/ for explanation.
+		/// </summary>
+		public static TaskCompletionSource<T> CreateAsyncTaskSource<T>() =>
+			new TaskCompletionSource<T>(TaskCreationOptionsEx.RunContinuationsAsynchronously);
+
+		/// <summary>
+		/// Creates safe for await <see cref="TaskCompletionSource{TResult}"/> with <see cref="TaskCreationOptionsEx.RunContinuationsAsynchronously"/> mode.
+		/// See https://devblogs.microsoft.com/premier-developer/the-danger-of-taskcompletionsourcet-class/ for explanation.
+		/// </summary>
+		public static TaskCompletionSource<T> CreateAsyncTaskSource<T>(TaskCreationOptions creationOptions) =>
+			new TaskCompletionSource<T>(creationOptions | TaskCreationOptionsEx.RunContinuationsAsynchronously);
 	}
 }

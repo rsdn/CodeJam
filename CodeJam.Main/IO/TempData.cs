@@ -245,11 +245,9 @@ namespace CodeJam.IO
 		[NotNull]
 		public static TempFile CreateFile(string? dirPath, string? fileName)
 		{
-			if (dirPath == null)
-				dirPath = Path.GetTempPath();
+			dirPath ??= Path.GetTempPath();
 
-			if (fileName == null)
-				fileName = GetTempName();
+			fileName ??= GetTempName();
 
 			var filePath = Path.Combine(dirPath, fileName);
 			var result = new TempFile(filePath);
