@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 
 using CodeJam.Internal;
 
@@ -18,8 +17,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentNullException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentNullException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
-		public static ArgumentNullException ArgumentNull([JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentNullException ArgumentNull([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentNullException(argumentName).LogToCodeTraceSourceBeforeThrow();
@@ -29,8 +28,8 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="type">Type of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException" />.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentDefault([JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName, [JetBrains.Annotations.NotNull] Type type)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentDefault([InvokerParameterName] string argumentName, Type type)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -42,8 +41,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for null collection item.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentItemNull([JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentItemNull([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -57,8 +56,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/></returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentEmpty([JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentEmpty([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -70,8 +69,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for empty string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNullOrEmpty([JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNullOrEmpty([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -83,8 +82,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for empty (or whitespace) string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNullOrWhiteSpace([JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNullOrWhiteSpace([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -99,9 +98,9 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange(
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			int value, int fromValue, int toValue)
 		{
 			BreakIfAttached();
@@ -118,9 +117,9 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange(
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			double value, double fromValue, double toValue)
 		{
 			BreakIfAttached();
@@ -138,12 +137,12 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange<T>(
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName,
-			[JetBrains.Annotations.NotNull] T value,
-			[JetBrains.Annotations.NotNull] T fromValue,
-			[JetBrains.Annotations.NotNull] T toValue)
+			[InvokerParameterName] string argumentName,
+			T value,
+			T fromValue,
+			T toValue)
 		{
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
@@ -159,9 +158,9 @@ namespace CodeJam
 		/// <param name="startIndex">The start index.</param>
 		/// <param name="length">The length.</param>
 		/// <returns>Initialized instance of <see cref="IndexOutOfRangeException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static IndexOutOfRangeException IndexOutOfRange(
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			int value, int startIndex, int length)
 		{
 			BreakIfAttached();
@@ -174,9 +173,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for non-cancellable tokens.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentWaitCancellationRequired(
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentWaitCancellationRequired([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -192,12 +190,12 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static ArgumentException Argument(
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName,
-			[JetBrains.Annotations.NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[InvokerParameterName] string argumentName,
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -210,10 +208,10 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static InvalidOperationException InvalidOperation(
-			[JetBrains.Annotations.NotNull] string messageFormat,
+			[NotNull] string messageFormat,
 			params object[]? args)
 		{
 			BreakIfAttached();
@@ -225,10 +223,10 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="OverflowException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static OverflowException Overflow(
-			[JetBrains.Annotations.NotNull] string messageFormat,
+			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
@@ -242,10 +240,10 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="TimeoutException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static TimeoutException Timeout(
-			[JetBrains.Annotations.NotNull] string messageFormat,
+			[NotNull] string messageFormat,
 			[CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
@@ -256,7 +254,7 @@ namespace CodeJam
 		/// <summary>Creates <see cref="TimeoutException" />.</summary>
 		/// <param name="timeout">The timeout.</param>
 		/// <returns>Initialized instance of <see cref="TimeoutException" />.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static TimeoutException Timeout(TimeSpan timeout)
 		{
 			BreakIfAttached();
@@ -273,9 +271,9 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName,
+			[NotNull, InvokerParameterName] string argumentName,
 			[CanBeNull] T value)
 		{
 			BreakIfAttached();
@@ -297,12 +295,12 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argumentName,
+			[NotNull, InvokerParameterName] string argumentName,
 			[CanBeNull] T value,
-			[JetBrains.Annotations.NotNull] string messageFormat, [CanBeNull] params object[] args)
+			[NotNull] string messageFormat, [CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
@@ -319,7 +317,7 @@ namespace CodeJam
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static InvalidOperationException UnexpectedValue<T>([CanBeNull] T value)
 		{
 			BreakIfAttached();
@@ -336,10 +334,10 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static InvalidOperationException UnexpectedValue(
-			[JetBrains.Annotations.NotNull] string messageFormat, [CanBeNull] params object[] args)
+			[NotNull] string messageFormat, [CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
 			return new InvalidOperationException(InvariantFormat(messageFormat, args))
@@ -349,8 +347,8 @@ namespace CodeJam
 		/// <summary>Throw this if the object is disposed.</summary>
 		/// <param name="typeofDisposedObject">The typeof disposed object.</param>
 		/// <returns>Initialized instance of <see cref="ObjectDisposedException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
-		public static ObjectDisposedException ObjectDisposed([CanBeNull] Type typeofDisposedObject)
+		[DebuggerHidden, NotNull, MustUseReturnValue]
+		public static ObjectDisposedException ObjectDisposed(Type? typeofDisposedObject)
 		{
 			BreakIfAttached();
 			return new ObjectDisposedException(typeofDisposedObject?.FullName)
@@ -362,12 +360,12 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ObjectDisposedException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static ObjectDisposedException ObjectDisposed(
-			[CanBeNull] Type typeofDisposedObject,
-			[JetBrains.Annotations.NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			Type? typeofDisposedObject,
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new ObjectDisposedException(
@@ -380,9 +378,9 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="NotSupportedException"/>.</returns>
-		[DebuggerHidden, JetBrains.Annotations.NotNull, MustUseReturnValue]
+		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		public static NotSupportedException Unreachable([JetBrains.Annotations.NotNull] string messageFormat, [CanBeNull] params object[] args)
+		public static NotSupportedException Unreachable([NotNull] string messageFormat, [CanBeNull] params object[] args)
 		{
 			BreakIfAttached();
 			return new NotSupportedException(InvariantFormat(messageFormat, args))

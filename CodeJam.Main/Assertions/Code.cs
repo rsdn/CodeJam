@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -167,9 +168,9 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void NotNullNorEmpty(
 			[AllowNull, WasNotNull] string arg,
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
-			if (string.IsNullOrEmpty(arg))
+			if (arg.IsNullOrEmpty())
 				throw CodeExceptions.ArgumentNullOrEmpty(argName);
 		}
 
@@ -182,7 +183,7 @@ namespace CodeJam
 			[AllowNull, WasNotNull] string arg,
 			[InvokerParameterName] string argName)
 		{
-			if (StringEx.IsNullOrWhiteSpace(arg))
+			if (arg.NotNullNorWhiteSpace())
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
 		}
 

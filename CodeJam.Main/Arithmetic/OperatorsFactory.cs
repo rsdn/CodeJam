@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 using CodeJam.Collections;
@@ -107,7 +106,7 @@ namespace CodeJam.Arithmetic
 			new NotSupportedException($"The type {type.Name} has no field {fieldName} defined.", ex);
 
 		[NotNull]
-		private static NotSupportedException MethodNotSupported([NotNull] Type type, string methodName, Exception? ex) =>
+		private static NotSupportedException MethodNotSupported(Type type, string methodName, Exception? ex) =>
 			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
 
 		[NotNull]
@@ -308,8 +307,9 @@ namespace CodeJam.Arithmetic
 			}
 			catch (Exception ex)
 			{
-				Debug.Assert(compareMethod.DeclaringType != null, "compareMethod.DeclaringType");
-				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
+				var declType = compareMethod.DeclaringType;
+				DebugCode.AssertState(declType != null, "compareMethod.DeclaringType");
+				throw MethodNotSupported(declType, compareMethod.Name, ex);
 			}
 
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
@@ -324,8 +324,9 @@ namespace CodeJam.Arithmetic
 			}
 			catch (Exception ex)
 			{
-				Debug.Assert(compareMethod.DeclaringType != null, "compareMethod.DeclaringType");
-				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
+				var declType = compareMethod.DeclaringType;
+				DebugCode.AssertState(declType != null, "compareMethod.DeclaringType");
+				throw MethodNotSupported(declType, compareMethod.Name, ex);
 			}
 		}
 
