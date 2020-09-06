@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 using JetBrains.Annotations;
@@ -20,8 +21,7 @@ namespace CodeJam.Strings
 		/// <param name="str">The string.</param>
 		/// <returns><c>true</c> if <paramref name="str"/> is null or empty; otherwise, <c>false</c>.</returns>
 		[Pure]
-		[ContractAnnotation("str:null => true")]
-		public static bool IsNullOrEmpty(this string? str)
+		public static bool IsNullOrEmpty([NotNullWhen(false)] this string? str)
 		{
 			// DONTTOUCH: Do not remove return statements
 			// https://github.com/dotnet/coreclr/issues/914
@@ -39,7 +39,7 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is not null nor empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
-		public static bool NotNullNorEmpty([CanBeNull] this string str) => !str.IsNullOrEmpty();
+		public static bool NotNullNorEmpty([NotNullWhen(true)]this string? str) => !str.IsNullOrEmpty();
 
 		/// <summary>
 		/// Infix form of string.IsNullOrWhiteSpace.
@@ -51,7 +51,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => true")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool IsNullOrWhiteSpace([CanBeNull] this string str) => StringEx.IsNullOrWhiteSpace(str);
+		public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? str) => StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Returns an empty string for null value.
@@ -67,7 +67,7 @@ namespace CodeJam.Strings
 		/// <param name="str">The string.</param>
 		/// <returns>The string or <c>null</c> if the string is empty.</returns>
 		[Pure]
-		public static string? NullIfEmpty([CanBeNull] this string str) => str.IsNullOrEmpty() ? null : str;
+		public static string? NullIfEmpty(this string? str) => str.IsNullOrEmpty() ? null : str;
 
 		/// <summary>
 		/// Returns <c>null</c> for empty or whitespace strings.
@@ -75,7 +75,8 @@ namespace CodeJam.Strings
 		/// <param name="str">The string.</param>
 		/// <returns>The string or <c>null</c> if the string is empty.</returns>
 		[Pure]
-		public static string? NullIfWhiteSpace(this string str) => str.IsNullOrWhiteSpace() ? null : str;
+		[return:NotNullIfNotNull("str")]
+		public static string? NullIfWhiteSpace(this string? str) => str.IsNullOrWhiteSpace() ? null : str;
 
 		/// <summary>
 		/// Returns true if argument is not null nor whitespace.
@@ -86,9 +87,8 @@ namespace CodeJam.Strings
 		/// otherwise <c>false</c>.
 		/// </returns>
 		[Pure]
-		[ContractAnnotation("str:null => false")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool NotNullNorWhiteSpace(this string? str) => !StringEx.IsNullOrWhiteSpace(str);
+		public static bool NotNullNorWhiteSpace([NotNullWhen(true)] this string? str) => !StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Replaces one or more format items in a specified string with the string representation of a specified object.
@@ -101,7 +101,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[StringFormatMethod("format")]
-		public static string FormatWith([NotNull] this string format, object arg) => string.Format(format, arg);
+		public static string FormatWith(this string format, object? arg) => string.Format(format, arg);
 
 		/// <summary>
 		/// Replaces the format items in a specified string with the string representation of two specified objects.
@@ -115,7 +115,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[StringFormatMethod("format")]
-		public static string FormatWith([NotNull] this string format, object arg0, object arg1) =>
+		public static string FormatWith(this string format, object? arg0, object? arg1) =>
 			string.Format(format, arg0, arg1);
 
 		/// <summary>
@@ -131,7 +131,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[StringFormatMethod("format")]
-		public static string FormatWith([NotNull] this string format, object arg0, object arg1, object arg2) =>
+		public static string FormatWith(this string format, object? arg0, object? arg1, object? arg2) =>
 			string.Format(format, arg0, arg1, arg2);
 
 		/// <summary>
@@ -146,7 +146,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[StringFormatMethod("format")]
-		public static string FormatWith([NotNull] this string format, [NotNull] params object[] args) =>
+		public static string FormatWith(this string format, params object[] args) =>
 			string.Format(format, args);
 
 		/// <summary>
@@ -166,7 +166,7 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[Pure]
-		public static string Join([NotNull] this string[] values, [CanBeNull] string separator) =>
+		public static string Join(this string[] values, string? separator) =>
 			string.Join(separator, values);
 
 		/// <summary>
@@ -187,7 +187,7 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[Pure]
-		public static string Join([NotNull, InstantHandle] this IEnumerable<string> values, [CanBeNull] string separator) =>
+		public static string Join([InstantHandle] this IEnumerable<string> values, string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join(separator, values);
 
@@ -206,7 +206,7 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[Pure]
-		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values, [CanBeNull] string separator) =>
+		public static string Join<T>([InstantHandle] this IEnumerable<T> values, string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join(separator, values);
 
@@ -220,7 +220,7 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[Pure]
-		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values) =>
+		public static string Join<T>([InstantHandle] this IEnumerable<T> values) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join("", values);
 
@@ -238,7 +238,7 @@ namespace CodeJam.Strings
 		/// <param name="str">The string to convert.</param>
 		/// <returns>An array of bytes that is equivalent to <paramref name="str"/>.</returns>
 		[Pure]
-		public static byte[] FromBase64([NotNull] this string str) => Convert.FromBase64String(str);
+		public static byte[] FromBase64(this string str) => Convert.FromBase64String(str);
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES
 		/// <summary>
@@ -252,7 +252,7 @@ namespace CodeJam.Strings
 		/// </param>
 		/// <returns>The string representation in base 64 of the elements in <paramref name="data"/>.</returns>
 		[Pure]
-		public static string ToBase64([NotNull] this byte[] data, Base64FormattingOptions options) =>
+		public static string ToBase64(this byte[] data, Base64FormattingOptions options) =>
 			Convert.ToBase64String(data, options);
 #endif
 
@@ -263,7 +263,7 @@ namespace CodeJam.Strings
 		/// <param name="data">an array of bytes.</param>
 		/// <returns>The string representation in base 64 of the elements in <paramref name="data"/>.</returns>
 		[Pure]
-		public static string ToBase64([NotNull] this byte[] data) =>
+		public static string ToBase64(this byte[] data) =>
 			Convert.ToBase64String(data);
 
 		/// <summary>
@@ -273,7 +273,7 @@ namespace CodeJam.Strings
 		/// <param name="encoding">Encoding to convert.</param>
 		/// <returns>A byte array containing the results of encoding the specified set of characters.</returns>
 		[Pure]
-		public static byte[] ToBytes([NotNull] this string str, [NotNull] Encoding encoding)
+		public static byte[] ToBytes(this string str, Encoding encoding)
 		{
 			Code.NotNull(str, nameof(str));
 			Code.NotNull(encoding, nameof(encoding));
@@ -287,6 +287,6 @@ namespace CodeJam.Strings
 		/// <param name="str">The string containing the characters to encode.</param>
 		/// <returns>A byte array containing the results of encoding the specified set of characters.</returns>
 		[Pure]
-		public static byte[] ToBytes([NotNull] this string str) => ToBytes(str, Encoding.UTF8);
+		public static byte[] ToBytes(this string str) => ToBytes(str, Encoding.UTF8);
 	}
 }

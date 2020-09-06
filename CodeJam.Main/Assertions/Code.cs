@@ -183,7 +183,7 @@ namespace CodeJam
 			[AllowNull, WasNotNull] string arg,
 			[InvokerParameterName] string argName)
 		{
-			if (arg.NotNullNorWhiteSpace())
+			if (arg.IsNullOrWhiteSpace())
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
 		}
 
