@@ -20,7 +20,7 @@ namespace CodeJam.Ranges
 		#region Static members
 		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
 
-		private static readonly Func<TKey, string, IFormatProvider, string> _formattableCallback =
+		private static readonly Func<TKey, string?, IFormatProvider?, string?> _formattableCallback =
 			CreateFormattableCallback<TKey>();
 
 		#region Predefined values
@@ -134,7 +134,7 @@ namespace CodeJam.Ranges
 		/// <returns>The string representation of the range.</returns>
 		[Pure]
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-		public string ToString(string format, IFormatProvider formatProvider) =>
+		public string ToString(string? format, IFormatProvider? formatProvider) =>
 			KeyPrefixString + _formattableCallback(_key, null, formatProvider) + KeySeparatorString +
 				(IsEmpty
 					? EmptyString

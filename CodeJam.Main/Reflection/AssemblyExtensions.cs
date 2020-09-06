@@ -21,7 +21,7 @@ namespace CodeJam.Reflection
 		/// <param name="assembly">The assembly to check.</param>
 		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
 		[Pure]
-		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
+		public static bool IsDebugAssembly(this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));
 			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
@@ -36,8 +36,8 @@ namespace CodeJam.Reflection
 		/// <returns>The manifest resource.</returns>
 		/// <exception cref="ArgumentNullException">The name parameter is null.</exception>
 		/// <exception cref="ArgumentException">Resource with specified name not found</exception>
-		[NotNull, Pure]
-		public static Stream GetRequiredResourceStream([NotNull] this Assembly assembly, [NotNull] string name)
+		[Pure]
+		public static Stream GetRequiredResourceStream(this Assembly assembly, string name)
 		{
 			Code.NotNull(assembly, nameof(assembly));
 			Code.NotNullNorWhiteSpace(name, nameof(name));
@@ -67,9 +67,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="assembly">Assembly.</param>
 		/// <returns>Path to <paramref name="assembly"/>.</returns>
-		[NotNull]
 		[Pure]
-		public static string GetAssemblyPath([NotNull] this Assembly assembly)
+		public static string GetAssemblyPath(this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));
 
@@ -93,9 +92,7 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="assembly">Assembly.</param>
 		/// <returns>Folder part of path to <paramref name="assembly"/>.</returns>
-		[CanBeNull]
-		[Pure]
-		public static string GetAssemblyDirectory([NotNull] this Assembly assembly) =>
+		public static string? GetAssemblyDirectory(this Assembly assembly) =>
 			Path.GetDirectoryName(GetAssemblyPath(assembly));
 #endif
 	}

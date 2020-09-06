@@ -26,8 +26,8 @@ namespace CodeJam.Reflection
 
 			if (type.GetIsValueType())
 			{
-				CreateInstanceExpression = () => default;
-				_createInstance          = () => default;
+				CreateInstanceExpression = () => default!;
+				_createInstance          = () => default!;
 			}
 			else
 			{
@@ -122,7 +122,6 @@ namespace CodeJam.Reflection
 		/// Creates an instance of <see cref="TypeAccessor"/>.
 		/// </summary>
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
-		[NotNull]
 		public T Create() => _createInstance();
 
 		/// <summary>

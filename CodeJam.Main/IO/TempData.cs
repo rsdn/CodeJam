@@ -33,7 +33,7 @@ namespace CodeJam.IO
 				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 				System.IO.Path.GetFullPath(path);
 
-			private volatile string _path;
+			private volatile string? _path;
 			private volatile bool _keepOnDispose;
 
 			/// <summary>Assertion on object dispose</summary>
@@ -57,7 +57,7 @@ namespace CodeJam.IO
 				get
 				{
 					AssertNotDisposed();
-					return _path;
+					return _path!;
 				}
 			}
 
@@ -88,9 +88,7 @@ namespace CodeJam.IO
 			/// </param>
 			protected void Dispose(bool disposing)
 			{
-#pragma warning disable 420 // Interlocked is safe to call on volatile fields.
 				var path = Interlocked.Exchange(ref _path, null);
-#pragma warning restore 420
 				if (path == null || _keepOnDispose)
 					return;
 

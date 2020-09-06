@@ -45,8 +45,8 @@ namespace CodeJam.Collections
 		[Pure]
 		[NotNull]
 		private static IEnumerable<IGrouping<TKey, T>> GroupWhileCore<T, TKey>(
-			[NotNull] IEnumerable<T> source,
-			[NotNull] Func<T, TKey> keySelector,
+			IEnumerable<T> source,
+			Func<T, TKey> keySelector,
 			IEqualityComparer<TKey>? comparer)
 		{
 			comparer ??= EqualityComparer<TKey>.Default;

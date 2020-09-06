@@ -21,7 +21,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void Defined<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.IsDefined(value))
@@ -36,7 +36,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void FlagsDefined<TEnum>(
 			TEnum argFlags,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.AreFlagsDefined(argFlags))
@@ -54,7 +54,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void FlagSet<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			TEnum flag)
 			where TEnum : struct, Enum
 		{
@@ -71,7 +71,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void AnyFlagUnset<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			TEnum flags)
 			where TEnum : struct, Enum
 		{
@@ -88,7 +88,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void AnyFlagSet<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			TEnum flags)
 			where TEnum : struct, Enum
 		{
@@ -105,7 +105,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void FlagUnset<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			TEnum flag)
 			where TEnum : struct, Enum
 		{

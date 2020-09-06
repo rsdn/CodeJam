@@ -31,10 +31,10 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">A function to extract a key from each element.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
-		[Pure, NotNull]
+		[Pure]
 		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector,
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, TKey> keySelector,
 			DictionaryDuplicate duplicateHandling) =>
 				ToDictionary(source, keySelector, Fn<T>.Self, null, duplicateHandling);
 
@@ -49,11 +49,11 @@ namespace CodeJam.Collections
 		/// <param name="comparer">An <see cref="IEqualityComparer{T}"/> to compare keys.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
-		[Pure, NotNull]
+		[Pure]
 		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer,
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, TKey> keySelector,
+			IEqualityComparer<TKey>? comparer,
 			DictionaryDuplicate duplicateHandling) =>
 				ToDictionary(source, keySelector, Fn<T>.Self, comparer, duplicateHandling);
 
@@ -69,11 +69,11 @@ namespace CodeJam.Collections
 		/// <param name="elementSelector">A transform function to produce a result element value from each element.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
-		[Pure, NotNull]
+		[Pure]
 		public static Dictionary<TKey, TElement> ToDictionary<T, TKey, TElement>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector,
-			[NotNull, InstantHandle] Func<T, TElement> elementSelector,
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, TKey> keySelector,
+			[InstantHandle] Func<T, TElement> elementSelector,
 			DictionaryDuplicate duplicateHandling) =>
 				ToDictionary(source, keySelector, elementSelector, null, duplicateHandling);
 
@@ -91,12 +91,12 @@ namespace CodeJam.Collections
 		/// <param name="comparer">An equality comparer to compare keys.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
-		[Pure, NotNull]
+		[Pure]
 		public static Dictionary<TKey, TElement> ToDictionary<T, TKey, TElement>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector,
-			[NotNull, InstantHandle] Func<T, TElement> elementSelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer,
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, TKey> keySelector,
+			[InstantHandle] Func<T, TElement> elementSelector,
+			IEqualityComparer<TKey>? comparer,
 			DictionaryDuplicate duplicateHandling)
 		{
 			Code.InRange((int)duplicateHandling, nameof(duplicateHandling), (int)DictionaryDuplicate.Throw, (int)DictionaryDuplicate.LastWins);

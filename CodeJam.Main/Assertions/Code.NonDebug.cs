@@ -93,8 +93,8 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull, NoEnumeration] TResource resource,
-			[NotNull] TDisposable thisReference)
+			[System.Diagnostics.CodeAnalysis.NotNull, NoEnumeration] TResource? resource,
+			TDisposable thisReference)
 			where TResource : class
 			where TDisposable : IDisposable
 		{

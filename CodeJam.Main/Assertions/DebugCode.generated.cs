@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
 
 using static CodeJam.DebugCode;
 
@@ -19,6 +21,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
@@ -179,9 +182,9 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void NotNullNorEmpty(
 			[AllowNull, WasNotNull] string arg,
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
-			if (string.IsNullOrEmpty(arg))
+			if (arg.IsNullOrEmpty())
 				throw CodeExceptions.ArgumentNullOrEmpty(argName);
 		}
 
@@ -194,7 +197,7 @@ namespace CodeJam
 			[AllowNull, WasNotNull] string arg,
 			[InvokerParameterName] string argName)
 		{
-			if (StringEx.IsNullOrWhiteSpace(arg))
+			if (arg.IsNullOrWhiteSpace())
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
 		}
 
@@ -463,7 +466,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void BugIf(
-			[DoesNotReturnIf(true)]bool condition,
+			[DoesNotReturnIf(true)] bool condition,
 			string messageFormat,
 			params object[]? args)
 		{

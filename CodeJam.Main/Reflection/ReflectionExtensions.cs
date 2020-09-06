@@ -519,7 +519,9 @@ namespace CodeJam.Reflection
 		/// <returns>Returns <see cref="ConstructorInfo"/> or null.</returns>
 		[Pure]
 		[ContractAnnotation("exceptionIfNotExists:true => notnull; exceptionIfNotExists:false => canbenull")]
-		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type, bool exceptionIfNotExists = false)
+		public static ConstructorInfo? GetDefaultConstructor(
+			this Type type,
+			bool exceptionIfNotExists = false)
 		{
 			Code.NotNull(type, nameof(type));
 			var info = type.GetConstructor(
@@ -542,10 +544,9 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to get item type.</param>
 		/// <returns>Returns item type or null.</returns>
-		[CanBeNull]
 		[Pure]
 		[ContractAnnotation("type:null => null")]
-		public static Type GetItemType([CanBeNull] this Type type)
+		public static Type? GetItemType([CanBeNull] this Type type)
 		{
 			while (true)
 			{
@@ -700,7 +701,7 @@ namespace CodeJam.Reflection
 		///   <c>true</c> if instance of current type can be assigned to instance of <paramref name="targetType"/>; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsAssignableTo([NotNull] this Type type, Type targetType)
+		public static bool IsAssignableTo(this Type type, Type targetType)
 		{
 			Code.NotNull(targetType, nameof(targetType));
 			return targetType.IsAssignableFrom(type);

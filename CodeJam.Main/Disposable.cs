@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 
 using JetBrains.Annotations;
@@ -29,7 +30,7 @@ namespace CodeJam
 		/// SEEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private sealed class AnonymousDisposable : IDisposable
 		{
-			private Action _disposeAction;
+			private Action? _disposeAction;
 
 			/// <summary>Initialize instance.</summary>
 			/// <param name="disposeAction">The dispose action.</param>
@@ -68,7 +69,9 @@ namespace CodeJam
 		/// SEEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private sealed class AnonymousDisposable<T> : IDisposable
 		{
-			private Action<T> _disposeAction;
+			private Action<T>? _disposeAction;
+
+			[AllowNull]
 			private T _state;
 
 			/// <summary>Initialize instance.</summary>
@@ -117,8 +120,8 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure]
-		public static IDisposable Create([NotNull] Action disposeAction) => new AnonymousDisposable(disposeAction);
+		[JetBrains.Annotations.NotNull, Pure]
+		public static IDisposable Create([JetBrains.Annotations.NotNull] Action disposeAction) => new AnonymousDisposable(disposeAction);
 
 		/// <summary>
 		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
@@ -129,20 +132,20 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure]
-		public static IDisposable Create<T>([NotNull] Action<T> disposeAction, [CanBeNull] T state) => new AnonymousDisposable<T>(disposeAction, state);
+		[JetBrains.Annotations.NotNull, Pure]
+		public static IDisposable Create<T>([JetBrains.Annotations.NotNull] Action<T> disposeAction, [CanBeNull] T state) => new AnonymousDisposable<T>(disposeAction, state);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
 		/// <returns>Instance of <see cref="IDisposable"/> that will dispose the specified disposables.</returns>
-		[NotNull, Pure]
-		public static IDisposable Merge([NotNull, ItemNotNull] params IDisposable[] disposables) => Merge((IEnumerable<IDisposable>)disposables);
+		[JetBrains.Annotations.NotNull, Pure]
+		public static IDisposable Merge([JetBrains.Annotations.NotNull, ItemNotNull] params IDisposable[] disposables) => Merge((IEnumerable<IDisposable>)disposables);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
 		/// <returns>Instance of <see cref="IDisposable"/> that will dispose the specified disposables.</returns>
-		[NotNull, Pure]
-		public static IDisposable Merge([NotNull] this IEnumerable<IDisposable> disposables) =>
+		[JetBrains.Annotations.NotNull, Pure]
+		public static IDisposable Merge([JetBrains.Annotations.NotNull] this IEnumerable<IDisposable> disposables) =>
 			Create(disposables.DisposeAll);
 	}
 }

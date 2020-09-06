@@ -64,7 +64,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		/// <param name="key">The value of the range key.</param>
-		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key)
+		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, [AllowNull] TKey key)
 		{
 			bool fromEmpty = from.IsEmpty;
 			bool toEmpty = to.IsEmpty;

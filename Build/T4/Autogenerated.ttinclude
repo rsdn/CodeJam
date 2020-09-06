@@ -12,6 +12,8 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+#nullable enable
 <#+
 	private string EscapeXmlDocString(string xmlDocText) =>
 		new System.Xml.Linq.XText(xmlDocText).ToString();
