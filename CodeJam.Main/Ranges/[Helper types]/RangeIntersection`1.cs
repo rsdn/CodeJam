@@ -21,7 +21,7 @@ namespace CodeJam.Ranges
 	{
 		[NotNull] private static readonly IReadOnlyList<Range<T>> _emptyRanges = Array<Range<T>>.Empty.AsReadOnly();
 
-		private readonly IReadOnlyList<Range<T>> _ranges;
+		private readonly IReadOnlyList<Range<T>>? _ranges;
 
 		#region Fields & .ctor()
 		/// <summary>Initializes a new instance of the <see cref="RangeIntersection{T}"/> struct.</summary>
@@ -96,8 +96,8 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[NotNull, Pure]
-		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
+		[Pure]
+		public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.
@@ -107,7 +107,7 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
 		[Pure]
-		public string ToString(string format, IFormatProvider formatProvider)
+		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
 			var intersectionRangePart = IntersectionRange.ToString(format, formatProvider);
 			var rangesPart = IsEmpty

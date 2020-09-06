@@ -160,11 +160,11 @@ namespace CodeJam.Expressions
 		public static string GetMethodName([NotNull] this LambdaExpression expression) =>
 			GetMethod(expression).Name;
 
-		[NotNull]
-		private static string GetFullPropertyNameImpl([NotNull] MemberExpression expression)
+		private static string GetFullPropertyNameImpl(MemberExpression expression)
 		{
 			var name = expression.Member.Name;
-			while ((expression = expression.Expression as MemberExpression) != null)
+			var curExpr = expression;
+			while ((curExpr = curExpr.Expression as MemberExpression) != null)
 				name = expression.Member.Name + "." + name;
 
 			return name;
@@ -192,7 +192,7 @@ namespace CodeJam.Expressions
 		[NotNull, ItemNotNull]
 		private static IEnumerable<MemberInfo> GetMembers([NotNull] Expression expression, bool passIndexer = true)
 		{
-			MemberInfo lastMember = null;
+			MemberInfo? lastMember = null;
 
 			for (; ; )
 			{

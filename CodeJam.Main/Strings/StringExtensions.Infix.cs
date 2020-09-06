@@ -38,7 +38,6 @@ namespace CodeJam.Strings
 		/// <param name="str">The string.</param>
 		/// <returns><c>true</c> if <paramref name="str"/> is not null nor empty; otherwise, <c>false</c>.</returns>
 		[Pure]
-		[ContractAnnotation("str:null => false")]
 		public static bool NotNullNorEmpty([NotNullWhen(true)]this string? str) => !str.IsNullOrEmpty();
 
 		/// <summary>
@@ -49,7 +48,6 @@ namespace CodeJam.Strings
 		/// <c>true</c> if <paramref name="str"/> is null, empty or contains only whitespaces; otherwise <c>false</c>.
 		/// </returns>
 		[Pure]
-		[ContractAnnotation("str:null => true")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
 		public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? str) => StringEx.IsNullOrWhiteSpace(str);
 

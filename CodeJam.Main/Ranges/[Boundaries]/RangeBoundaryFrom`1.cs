@@ -36,22 +36,22 @@ namespace CodeJam.Ranges
 		#region Static members
 		private const int _equalResult = 0;
 
-		[JetBrains.Annotations.NotNull]
 		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
 
-		[JetBrains.Annotations.NotNull]
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
 
 		private static readonly bool _hasNaN = Operators<T>.HasNaN;
 
 		private static readonly bool _hasNegativeInfinity = Operators<T>.HasNegativeInfinity;
 
+		[AllowNull]
 		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
 			? Operators<T>.NegativeInfinity
 			: default;
 
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
 
+		[AllowNull]
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
 			: default;
@@ -132,6 +132,7 @@ namespace CodeJam.Ranges
 
 		#region Fields & .ctor
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
+		[AllowNull]
 		private T _value;
 		private RangeBoundaryFromKind _kind;
 
@@ -192,7 +193,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		/// <param name="skipsArgValidation">Stub argument to mark unsafe (no validation) constructor overload.</param>
 		[Obsolete(SkipsArgValidationObsolete)]
-		internal RangeBoundaryFrom(T value, RangeBoundaryFromKind boundaryKind, UnsafeOverload skipsArgValidation)
+		internal RangeBoundaryFrom([AllowNull] T value, RangeBoundaryFromKind boundaryKind, UnsafeOverload skipsArgValidation)
 #if DEBUG
 			: this(value, boundaryKind) { }
 #else
@@ -394,15 +395,8 @@ namespace CodeJam.Ranges
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		[Pure]
 		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
-		public override int GetHashCode()
-		{
-			if (HasValue)
-			{
-				return HashCode.Combine(_value.GetHashCode(), (int)_kind);
-			}
-
-			return (int)_kind;
-		}
+		public override int GetHashCode() =>
+			HasValue ? HashCode.Combine(_value!.GetHashCode(), (int)_kind) : (int)_kind;
 		#endregion
 
 		#region IComparable<RangeBoundaryFrom<T>>

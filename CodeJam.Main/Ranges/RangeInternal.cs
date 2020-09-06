@@ -75,7 +75,7 @@ namespace CodeJam.Ranges
 					.MakeGenericMethod(typeof(T));
 
 				// no boxing for IFormatProvider
-				var res = method.CreateDelegate<Func<T, string?, IFormatProvider?, string>>();
+				var res = method.CreateDelegate<Func<T, string?, IFormatProvider?, string?>>();
 
 				DebugCode.BugIf(res == null, "res == null");
 				return res;
@@ -88,7 +88,7 @@ namespace CodeJam.Ranges
 					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
 
 				// no boxing for IFormatProvider
-				var res = method.CreateDelegate<Func<T, string?, IFormatProvider?, string>>();
+				var res = method.CreateDelegate<Func<T, string?, IFormatProvider?, string?>>();
 
 				DebugCode.BugIf(res == null, "res == null");
 				return res;

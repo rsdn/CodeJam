@@ -23,9 +23,10 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
 		[Pure]
+		[return:MaybeNull]
 		public static TSource MinBy<TSource, TValue>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector) =>
+			[InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] Func<TSource, TValue> selector) =>
 				MinBy(source, selector, Comparer<TValue>.Default);
 
 		/// <summary>

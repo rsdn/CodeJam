@@ -20,7 +20,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if <paramref name="ch"/> matches the beginning of the <paramref name="value"/>; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool StartsWith([NotNull] this string value, char ch)
+		public static bool StartsWith(this string value, char ch)
 		{
 			Code.NotNull(value, nameof(value));
 
@@ -86,9 +86,8 @@ namespace CodeJam.Strings
 		/// <paramref name="origin"/> in  <paramref name="str"/>, or Empty if length of <paramref name="str"/>
 		/// or <paramref name="length"/> is zero.
 		/// </returns>
-		[NotNull]
 		[Pure]
-		public static string Substring([NotNull] this string str, StringOrigin origin, int length)
+		public static string Substring(this string str, StringOrigin origin, int length)
 		{
 			Code.NotNull(str, nameof(str));
 
@@ -115,9 +114,8 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Prefix of specified length, or <paramref name="str"/> itself, if total length less than required.
 		/// </returns>
-		[NotNull]
 		[Pure]
-		public static string Prefix([NotNull] this string str, int length) => str.Substring(StringOrigin.Begin, length);
+		public static string Prefix(this string str, int length) => str.Substring(StringOrigin.Begin, length);
 
 		/// <summary>
 		/// Retrieves prefix of length <paramref name="length"/>.
@@ -127,9 +125,8 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Suffix of specified length, or <paramref name="str"/> itself, if total length less than required.
 		/// </returns>
-		[NotNull]
 		[Pure]
-		public static string Suffix([NotNull] this string str, int length) => str.Substring(StringOrigin.End, length);
+		public static string Suffix(this string str, int length) => str.Substring(StringOrigin.End, length);
 
 		/// <summary>
 		/// Trims <paramref name="str"/> prefix if it equals to <paramref name="prefix"/>.
@@ -137,9 +134,8 @@ namespace CodeJam.Strings
 		/// <param name="str">String to trim.</param>
 		/// <param name="prefix">Prefix to trim.</param>
 		/// <returns>Trimmed <paramref name="str"/>, or original <paramref name="str"/> if prefix not exists.</returns>
-		[NotNull]
 		[Pure]
-		public static string TrimPrefix([NotNull] this string str, [CanBeNull] string prefix) =>
+		public static string TrimPrefix(this string str, string? prefix) =>
 			TrimPrefix(str, prefix, StringComparer.CurrentCulture);
 
 		/// <summary>
@@ -149,15 +145,14 @@ namespace CodeJam.Strings
 		/// <param name="prefix">Prefix to trim.</param>
 		/// <param name="comparer">Comparer to compare value of prefix.</param>
 		/// <returns>Trimmed <paramref name="str"/>, or original <paramref name="str"/> if prefix not exists.</returns>
-		[NotNull]
 		[Pure]
 		public static string TrimPrefix(
-			[NotNull] this string str,
-			[CanBeNull] string prefix,
-			[NotNull] IEqualityComparer<string> comparer)
+			this string str,
+			string? prefix,
+			IEqualityComparer<string>? comparer)
 		{
 			Code.NotNull(str, nameof(str));
-			Code.NotNull(comparer, nameof(comparer));
+			comparer ??= EqualityComparer<string>.Default;
 
 			// FastPath
 			if (prefix == null)
@@ -179,15 +174,15 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.
 		/// </returns>
-		[NotNull]
 		[Pure]
 		public static string TrimSuffix(
-			[NotNull] this string str,
-			[CanBeNull] string suffix,
-			[NotNull] IEqualityComparer<string> comparer)
+			this string str,
+			string? suffix,
+			IEqualityComparer<string>? comparer)
 		{
 			Code.NotNull(str, nameof(str));
-			Code.NotNull(comparer, nameof(comparer));
+
+			comparer ??= EqualityComparer<string>.Default;
 
 			// FastPath
 			if (suffix == null)
@@ -209,12 +204,11 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.
 		/// </returns>
-		[NotNull]
 		[Pure]
-		public static string TrimSuffix([NotNull] this string str, [CanBeNull] string suffix) =>
+		public static string TrimSuffix(this string str, string? suffix) =>
 			TrimSuffix(str, suffix, StringComparer.CurrentCulture);
 
-		[NotNull, ItemNotNull]
+		[ItemNotNull]
 		private static readonly string[] _sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB" };
 
 		/// <summary>
@@ -222,7 +216,6 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="value">Value to represent.</param>
 		/// <returns>Value as size in bytes</returns>
-		[NotNull]
 		[Pure]
 		public static string ToByteSizeString(this long value) => ToByteSizeString(value, null);
 
@@ -231,7 +224,6 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="value">Value to represent.</param>
 		/// <returns>Value as size in bytes</returns>
-		[NotNull]
 		[Pure]
 		public static string ToByteSizeString(this int value) => ToByteSizeString(value, null);
 
@@ -241,9 +233,8 @@ namespace CodeJam.Strings
 		/// <param name="value">Value to represent.</param>
 		/// <param name="provider">Format provider for number part of value</param>
 		/// <returns>Value as size in bytes</returns>
-		[NotNull]
 		[Pure]
-		public static string ToByteSizeString(this long value, [CanBeNull] IFormatProvider provider)
+		public static string ToByteSizeString(this long value, IFormatProvider? provider)
 		{
 			if (value < 0)
 				return "-" + (-value).ToByteSizeString(provider);
@@ -268,9 +259,8 @@ namespace CodeJam.Strings
 		/// <param name="value">Value to represent.</param>
 		/// <param name="provider">Format provider for number part of value</param>
 		/// <returns>Value as size in bytes</returns>
-		[NotNull]
 		[Pure]
-		public static string ToByteSizeString(this int value, [CanBeNull] IFormatProvider provider) =>
+		public static string ToByteSizeString(this int value, IFormatProvider? provider) =>
 			ToByteSizeString((long)value, provider);
 
 		/// <summary>
@@ -279,9 +269,8 @@ namespace CodeJam.Strings
 		/// <param name="source">Source string.</param>
 		/// <param name="separators">Separator chars</param>
 		/// <returns>Enumeration of parts.</returns>
-		[NotNull]
 		[Pure]
-		public static IEnumerable<string> SplitWithTrim([NotNull] this string source, params char[] separators)
+		public static IEnumerable<string> SplitWithTrim(this string source, params char[] separators)
 		{
 			Code.NotNull(source, nameof(source));
 
@@ -300,9 +289,8 @@ namespace CodeJam.Strings
 		/// <paramref name="data"/> represented as a series of hexadecimal representations.
 		/// </returns>
 		/// <exception cref="ArgumentNullException"><paramref name="data"/> is null.</exception>
-		[NotNull]
 		[Pure]
-		public static unsafe string ToHexString([NotNull] this byte[] data)
+		public static unsafe string ToHexString(this byte[] data)
 		{
 			Code.NotNull(data, nameof(data));
 
@@ -340,9 +328,8 @@ namespace CodeJam.Strings
 		/// <paramref name="data"/> represented as a series of hexadecimal representations divided by separator.
 		/// </returns>
 		/// <exception cref="ArgumentNullException"><paramref name="data"/> is null.</exception>
-		[NotNull]
 		[Pure]
-		public static unsafe string ToHexString([NotNull] this byte[] data, [CanBeNull] string byteSeparator)
+		public static unsafe string ToHexString(this byte[] data, string? byteSeparator)
 		{
 			Code.NotNull(data, nameof(data));
 
@@ -352,7 +339,7 @@ namespace CodeJam.Strings
 			var hasSeparator = byteSeparator.NotNullNorEmpty();
 			var length = data.Length * 2;
 			if (hasSeparator)
-				length += (data.Length - 1) * byteSeparator.Length;
+				length += (data.Length - 1) * byteSeparator!.Length;
 
 			var result = new string('\0', length);
 
@@ -364,7 +351,7 @@ namespace CodeJam.Strings
 				for (var i = 0; i < data.Length; pres += 2, i++)
 				{
 					if (hasSeparator & (i != 0))
-						for (var j = 0; j < byteSeparator.Length; pres++, j++)
+						for (var j = 0; j < byteSeparator!.Length; pres++, j++)
 							pres[0] = sep[j];
 
 					var b = buf[i];
@@ -386,9 +373,8 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
-		[NotNull]
 		[Pure]
-		public static string Unquote([NotNull] this string arg) => Unquote(arg, out _);
+		public static string Unquote(this string arg) => Unquote(arg, out _);
 
 		/// <summary>
 		/// Removes one set of leading and trailing double quote characters, if both are present.
@@ -398,9 +384,8 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
-		[NotNull]
 		[Pure]
-		public static string Unquote([NotNull] this string arg, out bool quoted) => Unquote(arg, '"', out quoted);
+		public static string Unquote(this string arg, out bool quoted) => Unquote(arg, '"', out quoted);
 
 		/// <summary>
 		/// Removes one set of leading and trailing <paramref name="quotationChar"/>, if both are present.
@@ -412,8 +397,7 @@ namespace CodeJam.Strings
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
 		[Pure]
-		[NotNull]
-		public static string Unquote([NotNull] this string arg, char quotationChar, out bool quoted)
+		public static string Unquote(this string arg, char quotationChar, out bool quoted)
 		{
 			Code.NotNull(arg, nameof(arg));
 
@@ -432,8 +416,8 @@ namespace CodeJam.Strings
 		/// <param name="str">String to remove.</param>
 		/// <param name="toRemoveStrings">Substrings to remove.</param>
 		/// <returns>New string without provided substrings.</returns>
-		[NotNull, Pure]
-		public static string Remove([NotNull] this string str, [NotNull] params string[] toRemoveStrings)
+		[Pure]
+		public static string Remove(this string str, params string[] toRemoveStrings)
 		{
 			Code.NotNull(str,             nameof(str));
 			Code.NotNull(toRemoveStrings, nameof(toRemoveStrings));

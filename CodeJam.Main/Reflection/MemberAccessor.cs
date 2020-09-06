@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -22,7 +23,7 @@ namespace CodeJam.Reflection
 	public class MemberAccessor
 	{
 		// ReSharper disable once NotNullMemberIsNotInitialized
-		internal MemberAccessor([NotNull] TypeAccessor typeAccessor, [NotNull] string memberName)
+		internal MemberAccessor(TypeAccessor typeAccessor, string memberName)
 		{
 			TypeAccessor = typeAccessor;
 
@@ -180,7 +181,7 @@ namespace CodeJam.Reflection
 		}
 
 		// ReSharper disable once NotNullMemberIsNotInitialized
-		internal MemberAccessor([NotNull] TypeAccessor typeAccessor, [NotNull] MemberInfo memberInfo)
+		internal MemberAccessor(TypeAccessor typeAccessor, MemberInfo memberInfo)
 		{
 			TypeAccessor = typeAccessor;
 
@@ -188,7 +189,7 @@ namespace CodeJam.Reflection
 			SetExpressions();
 		}
 
-		private void SetSimple([NotNull] MemberInfo memberInfo)
+		private void SetSimple([JetBrains.Annotations.NotNull] MemberInfo memberInfo)
 		{
 			MemberInfo = memberInfo;
 			var propertyInfo = MemberInfo as PropertyInfo;
@@ -252,10 +253,10 @@ namespace CodeJam.Reflection
 		private const FieldAttributes _enumField =
 			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
-		[NotNull]
-		private static readonly ConcurrentDictionary<Type, object> _defaultValues = new ConcurrentDictionary<Type, object>();
+		[JetBrains.Annotations.NotNull]
+		private static readonly ConcurrentDictionary<Type, object?> _defaultValues = new ConcurrentDictionary<Type, object?>();
 
-		private object GetDefaultValue([NotNull] Type type)
+		private object? GetDefaultValue([JetBrains.Annotations.NotNull] Type type)
 		{
 			if (_defaultValues.TryGetValue(type, out var value))
 				return value;
@@ -277,10 +278,11 @@ namespace CodeJam.Reflection
 			return value;
 		}
 
+		[return:MaybeNull]
 		private static T GetDefaultValue<T>()
 		{
 			if (_defaultValues.TryGetValue(typeof(T), out var value))
-				return (T)value;
+				return value == null ? default : (T)value;
 
 			_defaultValues[typeof(T)] = default(T);
 
@@ -292,13 +294,11 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Member <see cref="MemberInfo"/>.
 		/// </summary>
-		[NotNull]
-		public MemberInfo MemberInfo { get; private set; }
+		public MemberInfo MemberInfo { get; private set; } = null!;
 
 		/// <summary>
 		/// Parent <see cref="TypeAccessor"/>.
 		/// </summary>
-		[NotNull]
 		public TypeAccessor TypeAccessor { get; private set; }
 
 		/// <summary>
@@ -314,7 +314,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Member <see cref="Type"/>.
 		/// </summary>
-		[NotNull] public Type Type { get; private set; }
+		public Type Type { get; private set; } = null!;
 
 		/// <summary>
 		/// True, if the member is complex.
@@ -324,22 +324,22 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Getter expression of the member.
 		/// </summary>
-		[NotNull] public LambdaExpression GetterExpression { get; private set; }
+		public LambdaExpression GetterExpression { get; private set; } = null!;
 
 		/// <summary>
 		/// Setter expression of the member.
 		/// </summary>
-		[NotNull] public LambdaExpression SetterExpression { get; private set; }
+		public LambdaExpression SetterExpression { get; private set; } = null!;
 
 		/// <summary>
 		/// Member getter function.
 		/// </summary>
-		[NotNull] public Func<object, object> Getter { get; private set; }
+		public Func<object, object> Getter { get; private set; } = null!;
 
 		/// <summary>
 		/// Member setter action.
 		/// </summary>
-		[NotNull] public Action<object, object> Setter { get; private set; }
+		public Action<object, object> Setter { get; private set; } = null!;
 
 		/// <summary>
 		/// Member name.
