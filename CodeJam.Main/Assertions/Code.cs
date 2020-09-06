@@ -452,7 +452,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void BugIf(
-			[DoesNotReturnIf(true)]bool condition,
+			[DoesNotReturnIf(true)] bool condition,
 			string messageFormat,
 			params object[]? args)
 		{
