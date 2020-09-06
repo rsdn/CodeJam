@@ -35,7 +35,7 @@ namespace CodeJam
 		/// <summary>
 		/// Value
 		/// </summary>
-		public T Value => (T)Marshal.PtrToStructure(Data, typeof(T));
+		public T Value => (T)Marshal.PtrToStructure(Data, typeof(T))!;
 
 		/// <summary>
 		/// Size of the of the generic parameter <typeparamref name="T"/>.

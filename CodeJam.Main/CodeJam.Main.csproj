@@ -13,6 +13,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 		<LangVersion>8.0</LangVersion>
+		<Nullable>enable</Nullable>
 
 		<PackageId>CodeJam</PackageId>
 		<Title>CodeJam library</Title>
@@ -23,7 +24,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
-		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

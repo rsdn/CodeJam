@@ -6,16 +6,13 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 using CodeJam.Collections;
-#if (NET46_OR_GREATER && !NET472_OR_GREATER) || (NETSTANDARD16_OR_GREATER && !NETSTANDARD21_OR_GREATER)
-using CodeJam.Collections.Backported;
-#endif
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
-using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
-
 using static System.Linq.Expressions.Expression;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 // ReSharper disable TailRecursiveCall
 

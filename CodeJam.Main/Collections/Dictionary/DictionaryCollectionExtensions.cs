@@ -25,6 +25,7 @@ namespace CodeJam.Collections
 			[NotNull] this IDictionary<TKey, ICollection<TValue>> dict,
 			[NotNull] TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -44,6 +45,7 @@ namespace CodeJam.Collections
 			[NotNull] this IDictionary<TKey, IList<TValue>> dict,
 			[NotNull] TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -63,6 +65,7 @@ namespace CodeJam.Collections
 			[NotNull] this IDictionary<TKey, List<TValue>> dict,
 			[NotNull] TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -86,6 +89,7 @@ namespace CodeJam.Collections
 			[NotNull] this IDictionary<TKey, ICollection<TValue>> dict,
 			[NotNull] TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -105,6 +109,7 @@ namespace CodeJam.Collections
 			[NotNull] this IDictionary<TKey, ISet<TValue>> dict,
 			[NotNull] TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -130,6 +135,7 @@ namespace CodeJam.Collections
 			[NotNull] this IDictionary<TKey, HashSet<TValue>> dict,
 			[NotNull] TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -155,6 +161,7 @@ namespace CodeJam.Collections
 			[NotNull] TKey key,
 			TValue value,
 			[NotNull] Func<ICollection<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -177,6 +184,7 @@ namespace CodeJam.Collections
 			[NotNull] TKey key,
 			TValue value,
 			[NotNull] Func<ISet<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -199,6 +207,7 @@ namespace CodeJam.Collections
 			[NotNull] TKey key,
 			TValue value,
 			[NotNull] Func<IList<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -221,6 +230,7 @@ namespace CodeJam.Collections
 			[NotNull] TKey key,
 			TValue value,
 			[NotNull] Func<List<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -243,6 +253,7 @@ namespace CodeJam.Collections
 			[NotNull] TKey key,
 			TValue value,
 			[NotNull] Func<HashSet<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
