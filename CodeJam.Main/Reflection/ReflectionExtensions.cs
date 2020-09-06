@@ -237,9 +237,12 @@ namespace CodeJam.Reflection
 					case TypeCode.Double:
 						return true;
 					case TypeCode.Object:
-						type = Nullable.GetUnderlyingType(type);
-						if (type != null)
+						var underlyingType = Nullable.GetUnderlyingType(type);
+						if (underlyingType != null)
+						{
+							type = underlyingType;
 							continue;
+						}
 						return false;
 					default:
 						return false;
@@ -291,9 +294,12 @@ namespace CodeJam.Reflection
 					case TypeCode.UInt64:
 						return true;
 					case TypeCode.Object:
-						type = Nullable.GetUnderlyingType(type);
-						if (type != null)
+						var underlyingType = Nullable.GetUnderlyingType(type);
+						if (underlyingType != null)
+						{
+							type = underlyingType;
 							continue;
+						}
 						return false;
 					default:
 						return false;

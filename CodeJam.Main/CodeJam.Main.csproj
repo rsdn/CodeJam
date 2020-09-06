@@ -49,10 +49,12 @@
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.4" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
 		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.4" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
 		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
@@ -76,6 +78,7 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.4" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
@@ -110,6 +113,7 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="Theraot.Core" Version="3.1.4" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
