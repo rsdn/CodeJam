@@ -446,7 +446,7 @@ namespace CodeJam.Strings
 		}
 
 		/// <summary>
-		/// Culture invariant version of <see cref="string.Format"/>
+		/// Culture invariant version of <see cref="string.Format(string, object)"/>
 		/// </summary>
 		/// <param name="format">A composite format string. </param>
 		/// <param name="arg0">The object to format. </param>
@@ -456,7 +456,7 @@ namespace CodeJam.Strings
 			string.Format(CultureInfo.InvariantCulture, format, arg0);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="string.Format"/>
+		/// Culture invariant version of <see cref="string.Format(string, object, object)"/>
 		/// </summary>
 		/// <param name="format">A composite format string. </param>
 		/// <param name="arg0">The first object to format. </param>
@@ -467,7 +467,7 @@ namespace CodeJam.Strings
 			string.Format(CultureInfo.InvariantCulture, format, arg0, arg1);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="string.Format"/>
+		/// Culture invariant version of <see cref="string.Format(string, object, object, object)"/>
 		/// </summary>
 		/// <param name="format">A composite format string. </param>
 		/// <param name="arg0">The first object to format. </param>
@@ -479,7 +479,7 @@ namespace CodeJam.Strings
 			string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2);
 
 		/// <summary>
-		/// Culture invariant version of <see cref="string.Format"/>
+		/// Culture invariant version of <see cref="string.Format(string, object[])"/>
 		/// </summary>
 		/// <param name="format">A composite format string. </param>
 		/// <param name="args">An object array that contains zero or more objects to format. </param>
