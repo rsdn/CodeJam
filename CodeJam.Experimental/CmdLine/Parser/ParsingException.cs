@@ -30,7 +30,7 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		/// <param name="message">A message that describes the error.</param>
 		/// <param name="position">position, where error occurs</param>
-		public ParsingException(string message, int position) : base($"Error at ({position}): {message}.")
+		public ParsingException(string message, [NonNegativeValue] int position) : base($"Error at ({position}): {message}.")
 		{}
 
 		/// <summary>

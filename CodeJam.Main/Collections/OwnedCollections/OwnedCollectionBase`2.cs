@@ -64,7 +64,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
 		/// <param name="item">The object to insert. The value can be null for reference types.</param>
-		protected override void InsertItem(int index, TItem item)
+		protected override void InsertItem([NonNegativeValue] int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
@@ -78,7 +78,7 @@ namespace CodeJam.Collections
 		/// Clears owner for the item being removed.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to remove.</param>
-		protected override void RemoveItem(int index)
+		protected override void RemoveItem([NonNegativeValue] int index)
 		{
 			var item = this[index];
 			Code.BugIf(item == null, "One of items in collection is null.");
@@ -96,7 +96,7 @@ namespace CodeJam.Collections
 		/// <param name="item">
 		/// The new value for the element at the specified index. The value can be null for reference types.
 		/// </param>
-		protected override void SetItem(int index, TItem item)
+		protected override void SetItem([NonNegativeValue] int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
@@ -187,7 +187,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
 		/// <param name="item">The object to insert. The value can be null for reference types.</param>
-		protected override void InsertItem(int index, TItem item)
+		protected override void InsertItem([NonNegativeValue] int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
@@ -201,7 +201,7 @@ namespace CodeJam.Collections
 		/// Clears owner for the item being removed.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to remove.</param>
-		protected override void RemoveItem(int index)
+		protected override void RemoveItem([NonNegativeValue] int index)
 		{
 			var item = this[index];
 			Code.BugIf(item == null, "One of items in collection is null.");
@@ -219,7 +219,7 @@ namespace CodeJam.Collections
 		/// <param name="item">
 		/// The new value for the element at the specified index. The value can be null for reference types.
 		/// </param>
-		protected override void SetItem(int index, TItem item)
+		protected override void SetItem([NonNegativeValue] int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");

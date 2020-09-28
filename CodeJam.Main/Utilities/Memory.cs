@@ -23,7 +23,7 @@ namespace CodeJam
 		/// true if all count bytes of the <paramref name="p1"/> and <paramref name="p2"/> are equal; otherwise, false.
 		/// </returns>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		public static bool Compare(byte* p1, byte* p2, int count) =>
+		public static bool Compare(byte* p1, byte* p2, [NonNegativeValue] int count) =>
 			CompareInline(p1, p2, count);
 
 		/// <summary>
@@ -40,7 +40,7 @@ namespace CodeJam
 		/// </returns>
 		[MethodImpl(AggressiveInlining)]
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		public static bool CompareInline(byte* p1, byte* p2, int count)
+		public static bool CompareInline(byte* p1, byte* p2, [NonNegativeValue] int count)
 		{
 			var bp1 = p1;
 			var bp2 = p2;

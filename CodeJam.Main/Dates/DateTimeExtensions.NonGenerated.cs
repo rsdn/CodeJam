@@ -13,7 +13,7 @@ namespace CodeJam.Dates
 		// DONTTOUCH: benchmark first.
 		// This implementation is fast enough, ~1.5x compared to long division.
 		// internal as covered by test.
-		internal static long DivideRoundToEvenNaive(long ticks, long ticksModule)
+		internal static long DivideRoundToEvenNaive([NonNegativeValue] long ticks, [NonNegativeValue] long ticksModule)
 		{
 			DebugCode.BugIf(ticks < 0, "value < 0");
 			DebugCode.BugIf(ticksModule <= 0, "div <= 0");
@@ -41,16 +41,16 @@ namespace CodeJam.Dates
 			return truncate + 1;
 		}
 
-		private static DateTime Create(DateTime origin, int year, int month, int day) =>
+		private static DateTime Create(DateTime origin, [NonNegativeValue] int year, [NonNegativeValue] int month, int day) =>
 			new DateTime(year, month, day, 0, 0, 0, origin.Kind);
 
-		private static DateTimeOffset Create(DateTimeOffset origin, int year, int month, int day) =>
+		private static DateTimeOffset Create(DateTimeOffset origin, [NonNegativeValue] int year, [NonNegativeValue] int month, int day) =>
 			new DateTimeOffset(year, month, day, 0, 0, 0, origin.Offset);
 
-		private static DateTime Create(DateTime origin, long ticks) =>
+		private static DateTime Create(DateTime origin, [NonNegativeValue] long ticks) =>
 			new DateTime(ticks, origin.Kind);
 
-		private static DateTimeOffset Create(DateTimeOffset origin, long ticks) =>
+		private static DateTimeOffset Create(DateTimeOffset origin, [NonNegativeValue] long ticks) =>
 			new DateTimeOffset(ticks, origin.Offset);
 
 		/// <summary>Returns count of days in month.</summary>

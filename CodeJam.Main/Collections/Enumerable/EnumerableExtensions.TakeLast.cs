@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 		/// An <see cref="IEnumerable{T}"/> that contains the specified number of elements from the end of the input sequence.
 		/// </returns>
 		[NotNull, Pure, LinqTunnel]
-		public static IEnumerable<T> TakeLast<T>([NotNull] this IEnumerable<T> source, int count)
+		public static IEnumerable<T> TakeLast<T>([NotNull] this IEnumerable<T> source, [NonNegativeValue] int count)
 		{
 			Code.NotNull(source, nameof (source));
 
@@ -37,7 +37,7 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull, Pure]
-		private static IEnumerable<T> TakeLastImpl<T>([NotNull] IList<T> source, int count)
+		private static IEnumerable<T> TakeLastImpl<T>([NotNull] IList<T> source, [NonNegativeValue] int count)
 		{
 			var total = source.Count;
 			count = Math.Min(total, count);
@@ -47,7 +47,7 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull]
-		private static IEnumerable<T> TakeLastImpl<T>([NotNull] IEnumerable<T> source, int count)
+		private static IEnumerable<T> TakeLastImpl<T>([NotNull] IEnumerable<T> source, [NonNegativeValue] int count)
 		{
 			var queue = new Queue<T>(count);
 			foreach (var item in source)

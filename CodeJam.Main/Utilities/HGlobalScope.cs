@@ -29,7 +29,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		internal HGlobalScope(int cb)
+		internal HGlobalScope([NonNegativeValue] int cb)
 		{
 			_ptr = Marshal.AllocHGlobal(cb);
 

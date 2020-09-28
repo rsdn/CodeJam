@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Collections
 {
 	/// <summary>Naive implementation of the suffix tree</summary>
@@ -8,7 +10,7 @@ namespace CodeJam.Collections
 	[DebuggerDisplay("{Print()}")]
 	public class SuffixTreeNaive : SuffixTreeBase
 	{
-		protected override void BuildFor(int start, int end)
+		protected override void BuildFor([NonNegativeValue] int start, [NonNegativeValue] int end)
 		{
 			for (var i = end - 1; i >= start; --i)
 			{

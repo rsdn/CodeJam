@@ -27,7 +27,7 @@ namespace CodeJam.Collections
 		/// A new sequence containing any elements sliced out from the source sequence.
 		/// </returns>
 		[NotNull, Pure, LinqTunnel]
-		public static IQueryable<T> Slice<T>([NotNull] this IQueryable<T> source, int startIndex, int count)
+		public static IQueryable<T> Slice<T>([NotNull] this IQueryable<T> source, [NonNegativeValue] int startIndex, [NonNegativeValue] int count)
 		{
 			if (startIndex > 0)
 				source = source.Skip(startIndex);

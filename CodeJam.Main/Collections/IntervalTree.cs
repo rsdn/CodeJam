@@ -42,7 +42,7 @@ namespace CodeJam.Collections
 			DebugCode.BugIf(_treeIndexes.Min() < 0, "treeIndexes.Min() < 0");
 		}
 
-		private void SetIndexes(int startIndex, int middleIndex, int endIndex)
+		private void SetIndexes([NonNegativeValue] int startIndex, int middleIndex, [NonNegativeValue] int endIndex)
 		{
 			DebugCode.BugIf(startIndex > middleIndex, "startIndex > middleIndex");
 			DebugCode.BugIf(middleIndex > endIndex, "middleIndex > endIndex");
@@ -78,7 +78,7 @@ namespace CodeJam.Collections
 			}
 		}
 
-		private int MaxToIndex(int indexA, int indexB) => _sortedRanges[indexA].To >= _sortedRanges[indexB].To
+		private int MaxToIndex([NonNegativeValue] int indexA, [NonNegativeValue] int indexB) => _sortedRanges[indexA].To >= _sortedRanges[indexB].To
 			? indexA
 			: indexB;
 
@@ -95,7 +95,7 @@ namespace CodeJam.Collections
 			return result;
 		}
 
-		private void Intersect(int startIndex, int middleIndex, int endIndex, Range<T> intersection, [NotNull] List<Range<T, TKey>> result)
+		private void Intersect([NonNegativeValue] int startIndex, int middleIndex, [NonNegativeValue] int endIndex, Range<T> intersection, [NotNull] List<Range<T, TKey>> result)
 		{
 			while (true)
 			{

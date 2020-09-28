@@ -48,7 +48,7 @@ private void GenerateMethods(string type)
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, int startIndex) =>
+		public static int UpperBound([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, [NonNegativeValue] int startIndex) =>
 			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
@@ -61,7 +61,7 @@ private void GenerateMethods(string type)
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, int startIndex, int endIndex)
+		public static int UpperBound([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);
@@ -76,7 +76,7 @@ private void GenerateMethods(string type)
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		private static int UpperBoundCore(IList<<#= type #>> list, <#= type #> value, int startIndex, int endIndex)
+		private static int UpperBoundCore(IList<<#= type #>> list, <#= type #> value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			while (startIndex < endIndex)

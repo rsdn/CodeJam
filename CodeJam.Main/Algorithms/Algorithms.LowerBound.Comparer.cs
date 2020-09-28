@@ -39,7 +39,7 @@ namespace CodeJam
 		public static int LowerBound<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int startIndex,
+				[NonNegativeValue] int startIndex,
 				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
 			list.LowerBound(value, startIndex, list.Count, comparer);
 
@@ -59,8 +59,8 @@ namespace CodeJam
 		public static int LowerBound<TElement, TValue>(
 			[NotNull, InstantHandle] this IList<TElement> list,
 			TValue value,
-			int startIndex,
-			int endIndex,
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex,
 			[NotNull, InstantHandle] Func<TElement, TValue, int> comparer)
 		{
 			Code.NotNull(list, nameof(list));
@@ -87,7 +87,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound of the index (not included)</param>
 		/// <param name="count">The number of elements in the list</param>
-		private static void ValidateIndicesRange(int startIndex, int endIndex, int count)
+		private static void ValidateIndicesRange([NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex, [NonNegativeValue] int count)
 		{
 			Code.InRange(startIndex, nameof(startIndex), 0, endIndex);
 			Code.InRange(endIndex, nameof(endIndex), startIndex, count);

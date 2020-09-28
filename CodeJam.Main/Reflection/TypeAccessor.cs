@@ -85,7 +85,7 @@ namespace CodeJam.Reflection
 		/// <param name="index">Member index.</param>
 		/// <returns>Instance of <see cref="MemberAccessor"/>.</returns>
 		[NotNull]
-		public MemberAccessor this[int index] => Members[index];
+		public MemberAccessor this[[NonNegativeValue] int index] => Members[index];
 
 		#endregion
 

@@ -328,7 +328,7 @@ namespace CodeJam
 		/// <param name="argName">The name of the argument.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void ValidCount(int count, [NotNull, InvokerParameterName] string argName) =>
+		public static void ValidCount([NonNegativeValue] int count, [NotNull, InvokerParameterName] string argName) =>
 			InRange(count, argName, 0, int.MaxValue);
 
 		/// <summary>Asserts if the passed value is not a valid count.</summary>
@@ -338,9 +338,9 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidCount(
-			int count,
+			[NonNegativeValue] int count,
 			[NotNull, InvokerParameterName] string argName,
-			int length) =>
+			[NonNegativeValue] int length) =>
 			InRange(count, argName, 0, length);
 		#endregion
 
@@ -351,7 +351,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndex(
-			int index,
+			[NonNegativeValue] int index,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (index < 0)
@@ -365,9 +365,9 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndex(
-			int index,
+			[NonNegativeValue] int index,
 			[NotNull, InvokerParameterName] string argName,
-			int length)
+			[NonNegativeValue] int length)
 		{
 			if (index < 0 || index >= length)
 				throw CodeExceptions.IndexOutOfRange(argName, index, 0, length);
@@ -384,9 +384,9 @@ namespace CodeJam
 		public static void ValidIndexPair(
 			int fromIndex,
 			[NotNull, InvokerParameterName] string fromIndexName,
-			int toIndex,
+			[NonNegativeValue] int toIndex,
 			[NotNull, InvokerParameterName] string toIndexName,
-			int length)
+			[NonNegativeValue] int length)
 		{
 			ValidIndex(fromIndex, fromIndexName, length);
 
@@ -403,11 +403,11 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndexAndCount(
-			int startIndex,
+			[NonNegativeValue] int startIndex,
 			[NotNull, InvokerParameterName] string startIndexName,
-			int count,
+			[NonNegativeValue] int count,
 			[NotNull, InvokerParameterName] string countName,
-			int length)
+			[NonNegativeValue] int length)
 		{
 			ValidIndex(startIndex, startIndexName, length);
 
