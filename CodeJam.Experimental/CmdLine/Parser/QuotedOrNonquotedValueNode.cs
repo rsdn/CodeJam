@@ -12,8 +12,8 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		public QuotedOrNonquotedValueNode(
 			[NotNull] string text,
-			int position,
-			int length,
+			[NonNegativeValue] int position,
+			[NonNegativeValue] int length,
 			bool quoted) : base(text, position, length)
 		{
 			Quoted = quoted;

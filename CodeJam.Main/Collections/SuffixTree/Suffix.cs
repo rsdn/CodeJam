@@ -17,7 +17,7 @@ namespace CodeJam.Collections
 		/// <param name="sourceOffset">Offset of the source string inside the buffer</param>
 		/// <param name="offset">Offset of the suffix from the sourceOffset</param>
 		/// <param name="length">Length of the suffix</param>
-		internal Suffix([NotNull] string buffer, int sourceIndex, int sourceOffset, int offset, int length)
+		internal Suffix([NotNull] string buffer, [NonNegativeValue] int sourceIndex, int sourceOffset, int offset, [NonNegativeValue] int length)
 		{
 			DebugCode.NotNull(buffer, nameof(buffer));
 			DebugCode.ValidIndex(sourceIndex, nameof(sourceIndex));

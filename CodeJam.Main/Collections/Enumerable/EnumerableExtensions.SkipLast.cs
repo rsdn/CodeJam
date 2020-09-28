@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 		/// An <see cref="IEnumerable{T}"/> that does not contains the specified number of elements from the end of the input sequence.
 		/// </returns>
 		[NotNull, Pure, LinqTunnel]
-		public static IEnumerable<T> SkipLast<T>([NotNull] this IEnumerable<T> source, int count = 1)
+		public static IEnumerable<T> SkipLast<T>([NotNull] this IEnumerable<T> source, [NonNegativeValue] int count = 1)
 		{
 			Code.NotNull(source, nameof (source));
 
@@ -37,7 +37,7 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull]
-		private static IEnumerable<T> SkipLastImpl<T>([NotNull] IEnumerable<T> source, int count)
+		private static IEnumerable<T> SkipLastImpl<T>([NotNull] IEnumerable<T> source, [NonNegativeValue] int count)
 		{
 			var queue = new Queue<T>(count);
 

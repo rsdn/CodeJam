@@ -22,7 +22,7 @@ namespace CodeJam.CmdLine
 		public CharInput([NotNull] string source) : this(source, 0)
 		{}
 
-		private CharInput([NotNull] string source, int position)
+		private CharInput([NotNull] string source, [NonNegativeValue] int position)
 		{
 			_source = source;
 			Position = position;

@@ -43,7 +43,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, int startIndex) =>
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -60,8 +60,8 @@ namespace CodeJam
 		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<float> list,
 			float value,
-			int startIndex,
-			int endIndex)
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
@@ -115,7 +115,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, int startIndex) =>
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -132,8 +132,8 @@ namespace CodeJam
 		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<double> list,
 			double value,
-			int startIndex,
-			int endIndex)
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
@@ -187,7 +187,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex) =>
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -204,8 +204,8 @@ namespace CodeJam
 		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<TimeSpan> list,
 			TimeSpan value,
-			int startIndex,
-			int endIndex)
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
@@ -259,7 +259,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex) =>
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -276,8 +276,8 @@ namespace CodeJam
 		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<DateTime> list,
 			DateTime value,
-			int startIndex,
-			int endIndex)
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
@@ -331,7 +331,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
 		[Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex) =>
+		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -348,8 +348,8 @@ namespace CodeJam
 		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<DateTimeOffset> list,
 			DateTimeOffset value,
-			int startIndex,
-			int endIndex)
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			ValidateIndicesRange(startIndex, endIndex, list.Count);

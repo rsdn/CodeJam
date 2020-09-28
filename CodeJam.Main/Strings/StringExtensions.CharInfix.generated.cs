@@ -23,7 +23,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsControl([NotNull] this string str, int index) => char.IsControl(str, index);
+		public static bool IsControl([NotNull] this string str, [NonNegativeValue] int index) => char.IsControl(str, index);
 
 		/// <summary>
 		/// Indicates whether the character at the specified position in a specified string is categorized as a highsurrogate.
@@ -35,7 +35,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsHighSurrogate([NotNull] this string str, int index) => char.IsHighSurrogate(str, index);
+		public static bool IsHighSurrogate([NotNull] this string str, [NonNegativeValue] int index) => char.IsHighSurrogate(str, index);
 
 		/// <summary>
 		/// Indicates whether the character at the specified position in a specified string is categorized as a lowsurrogate.
@@ -47,7 +47,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsLowSurrogate([NotNull] this string str, int index) => char.IsLowSurrogate(str, index);
+		public static bool IsLowSurrogate([NotNull] this string str, [NonNegativeValue] int index) => char.IsLowSurrogate(str, index);
 
 		/// <summary>
 		/// Indicates whether the character at the specified position in a specified string is categorized as a digit.
@@ -59,7 +59,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsDigit([NotNull] this string str, int index) => char.IsDigit(str, index);
+		public static bool IsDigit([NotNull] this string str, [NonNegativeValue] int index) => char.IsDigit(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a digit.
@@ -90,7 +90,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsLetter([NotNull] this string str, int index) => char.IsLetter(str, index);
+		public static bool IsLetter([NotNull] this string str, [NonNegativeValue] int index) => char.IsLetter(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a letter.
@@ -121,7 +121,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsLetterOrDigit([NotNull] this string str, int index) => char.IsLetterOrDigit(str, index);
+		public static bool IsLetterOrDigit([NotNull] this string str, [NonNegativeValue] int index) => char.IsLetterOrDigit(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a letterordigit.
@@ -152,7 +152,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsLower([NotNull] this string str, int index) => char.IsLower(str, index);
+		public static bool IsLower([NotNull] this string str, [NonNegativeValue] int index) => char.IsLower(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a lower.
@@ -183,7 +183,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsUpper([NotNull] this string str, int index) => char.IsUpper(str, index);
+		public static bool IsUpper([NotNull] this string str, [NonNegativeValue] int index) => char.IsUpper(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a upper.
@@ -214,7 +214,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsNumber([NotNull] this string str, int index) => char.IsNumber(str, index);
+		public static bool IsNumber([NotNull] this string str, [NonNegativeValue] int index) => char.IsNumber(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a number.
@@ -245,7 +245,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsPunctuation([NotNull] this string str, int index) => char.IsPunctuation(str, index);
+		public static bool IsPunctuation([NotNull] this string str, [NonNegativeValue] int index) => char.IsPunctuation(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a punctuation.
@@ -276,7 +276,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsSeparator([NotNull] this string str, int index) => char.IsSeparator(str, index);
+		public static bool IsSeparator([NotNull] this string str, [NonNegativeValue] int index) => char.IsSeparator(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a separator.
@@ -307,7 +307,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsSurrogate([NotNull] this string str, int index) => char.IsSurrogate(str, index);
+		public static bool IsSurrogate([NotNull] this string str, [NonNegativeValue] int index) => char.IsSurrogate(str, index);
 
 		/// <summary>
 		/// Indicates whether the character at the specified position in a specified string is categorized as a surrogatepair.
@@ -319,7 +319,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsSurrogatePair([NotNull] this string str, int index) => char.IsSurrogatePair(str, index);
+		public static bool IsSurrogatePair([NotNull] this string str, [NonNegativeValue] int index) => char.IsSurrogatePair(str, index);
 
 		/// <summary>
 		/// Indicates whether the character at the specified position in a specified string is categorized as a symbol.
@@ -331,7 +331,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsSymbol([NotNull] this string str, int index) => char.IsSymbol(str, index);
+		public static bool IsSymbol([NotNull] this string str, [NonNegativeValue] int index) => char.IsSymbol(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a symbol.
@@ -362,7 +362,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsWhiteSpace([NotNull] this string str, int index) => char.IsWhiteSpace(str, index);
+		public static bool IsWhiteSpace([NotNull] this string str, [NonNegativeValue] int index) => char.IsWhiteSpace(str, index);
 
 		/// <summary>
 		/// Indicates whether all characters in a specified string is categorized as a whitespace.

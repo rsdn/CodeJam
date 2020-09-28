@@ -67,7 +67,7 @@ namespace CodeJam.Strings
 		[TestCase("abc", StringOrigin.End, 2, ExpectedResult = "bc")]
 		[TestCase("abc", StringOrigin.Begin, 4, ExpectedResult = "abc")]
 		[TestCase("abc", StringOrigin.End, 4, ExpectedResult = "abc")]
-		public string SubstringOrigin([NotNull] string str, StringOrigin origin, int length) => str.Substring(origin, length);
+		public string SubstringOrigin([NotNull] string str, StringOrigin origin, [NonNegativeValue] int length) => str.Substring(origin, length);
 
 		[TestCase("abc", null, ExpectedResult = "abc")]
 		[TestCase("abc", "", ExpectedResult = "abc")]

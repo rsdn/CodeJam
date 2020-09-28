@@ -161,7 +161,7 @@ namespace CodeJam
 		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static IndexOutOfRangeException IndexOutOfRange(
 			[NotNull, InvokerParameterName] string argumentName,
-			int value, int startIndex, int length)
+			int value, [NonNegativeValue] int startIndex, [NonNegativeValue] int length)
 		{
 			BreakIfAttached();
 			return new IndexOutOfRangeException(

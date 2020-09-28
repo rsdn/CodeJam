@@ -38,7 +38,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<float> list, float value, int startIndex) =>
+		public static int UpperBound([NotNull, InstantHandle] this IList<float> list, float value, [NonNegativeValue] int startIndex) =>
 			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
@@ -51,7 +51,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<float> list, float value, int startIndex, int endIndex)
+		public static int UpperBound([NotNull, InstantHandle] this IList<float> list, float value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);
@@ -66,7 +66,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		private static int UpperBoundCore(IList<float> list, float value, int startIndex, int endIndex)
+		private static int UpperBoundCore(IList<float> list, float value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			while (startIndex < endIndex)
@@ -106,7 +106,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<double> list, double value, int startIndex) =>
+		public static int UpperBound([NotNull, InstantHandle] this IList<double> list, double value, [NonNegativeValue] int startIndex) =>
 			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
@@ -119,7 +119,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<double> list, double value, int startIndex, int endIndex)
+		public static int UpperBound([NotNull, InstantHandle] this IList<double> list, double value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);
@@ -134,7 +134,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		private static int UpperBoundCore(IList<double> list, double value, int startIndex, int endIndex)
+		private static int UpperBoundCore(IList<double> list, double value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			while (startIndex < endIndex)
@@ -174,7 +174,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex) =>
+		public static int UpperBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, [NonNegativeValue] int startIndex) =>
 			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
@@ -187,7 +187,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, int startIndex, int endIndex)
+		public static int UpperBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);
@@ -202,7 +202,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		private static int UpperBoundCore(IList<TimeSpan> list, TimeSpan value, int startIndex, int endIndex)
+		private static int UpperBoundCore(IList<TimeSpan> list, TimeSpan value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			while (startIndex < endIndex)
@@ -242,7 +242,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex) =>
+		public static int UpperBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, [NonNegativeValue] int startIndex) =>
 			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
@@ -255,7 +255,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, int startIndex, int endIndex)
+		public static int UpperBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);
@@ -270,7 +270,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		private static int UpperBoundCore(IList<DateTime> list, DateTime value, int startIndex, int endIndex)
+		private static int UpperBoundCore(IList<DateTime> list, DateTime value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			while (startIndex < endIndex)
@@ -310,7 +310,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex) =>
+		public static int UpperBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, [NonNegativeValue] int startIndex) =>
 			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
@@ -323,7 +323,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
 		[Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, int startIndex, int endIndex)
+		public static int UpperBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);
@@ -338,7 +338,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		private static int UpperBoundCore(IList<DateTimeOffset> list, DateTimeOffset value, int startIndex, int endIndex)
+		private static int UpperBoundCore(IList<DateTimeOffset> list, DateTimeOffset value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			Code.NotNull(list, nameof(list));
 			while (startIndex < endIndex)

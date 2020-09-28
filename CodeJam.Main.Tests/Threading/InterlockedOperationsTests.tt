@@ -66,7 +66,7 @@ namespace CodeJam.Threading
 		[Test]
 		public static void Test<#=tName#>Update()
 		{
-			const int count = 1000;
+			const [NonNegativeValue] int count = 1000;
 			var field = default(<#=t#>);
 			var a = <#=valueA#>;
 			var b = <#=valueB#>;

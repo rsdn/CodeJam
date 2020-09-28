@@ -31,7 +31,7 @@ namespace CodeJam.Collections
 		/// The Union operation may lead to a choice of a different representative for a set.
 		/// In this case IndexToSetId(oldSetId) may be called to get the new set id.
 		/// </remarks>
-		public int IndexToSetId(int index)
+		public int IndexToSetId([NonNegativeValue] int index)
 		{
 			// First, find a root element of a tree containing the passed element
 			var rootIndex = index;
@@ -56,10 +56,10 @@ namespace CodeJam.Collections
 			return rootIndex;
 		}
 
-		/// <summary>Combines to distjoint sets into a single set</summary>
+		/// <summary>Combines to disjoint sets into a single set</summary>
 		/// <param name="elementOfSet1Index">Index of an element of the first set</param>
 		/// <param name="elementOfSet2Index">Index of an element of the second set</param>
-		public void Union(int elementOfSet1Index, int elementOfSet2Index)
+		public void Union([NonNegativeValue] int elementOfSet1Index, [NonNegativeValue] int elementOfSet2Index)
 		{
 			elementOfSet1Index = IndexToSetId(elementOfSet1Index);
 			elementOfSet2Index = IndexToSetId(elementOfSet2Index);

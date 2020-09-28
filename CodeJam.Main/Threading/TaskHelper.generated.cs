@@ -41,7 +41,7 @@ namespace CodeJam.Threading
 		/// <c>true</c> if all of the <see cref="Task"/> instances completed execution within the allotted time; otherwise,
 		/// <c>false</c>.
 		/// </returns>
-		public static bool WaitAll([NotNull] this Task[] tasks, int timeout, CancellationToken cancellation) =>
+		public static bool WaitAll([NotNull] this Task[] tasks, [NonNegativeValue] int timeout, CancellationToken cancellation) =>
 			Task.WaitAll(tasks, timeout, cancellation);
 
 		/// <summary>
@@ -89,7 +89,7 @@ namespace CodeJam.Threading
 		/// <c>true</c> if all of the <see cref="Task"/> instances completed execution within the allotted time; otherwise,
 		/// <c>false</c>.
 		/// </returns>
-		public static bool WaitAll([NotNull] this Task[] tasks, int timeout) =>
+		public static bool WaitAll([NotNull] this Task[] tasks, [NonNegativeValue] int timeout) =>
 			Task.WaitAll(tasks, timeout);
 
 		/// <summary>

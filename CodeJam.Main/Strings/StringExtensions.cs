@@ -89,7 +89,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull]
 		[Pure]
-		public static string Substring([NotNull] this string str, StringOrigin origin, int length)
+		public static string Substring([NotNull] this string str, StringOrigin origin, [NonNegativeValue] int length)
 		{
 			Code.NotNull(str, nameof(str));
 
@@ -118,7 +118,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull]
 		[Pure]
-		public static string Prefix([NotNull] this string str, int length) => str.Substring(StringOrigin.Begin, length);
+		public static string Prefix([NotNull] this string str, [NonNegativeValue] int length) => str.Substring(StringOrigin.Begin, length);
 
 		/// <summary>
 		/// Retrieves prefix of length <paramref name="length"/>.
@@ -130,7 +130,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull]
 		[Pure]
-		public static string Suffix([NotNull] this string str, int length) => str.Substring(StringOrigin.End, length);
+		public static string Suffix([NotNull] this string str, [NonNegativeValue] int length) => str.Substring(StringOrigin.End, length);
 
 		/// <summary>
 		/// Trims <paramref name="str"/> prefix if it equals to <paramref name="prefix"/>.
@@ -573,7 +573,7 @@ namespace CodeJam.Strings
 		/// the return value is 0
 		/// </returns>
 		[Pure]
-		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, int startIndex) =>
+		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
 			str.IndexOf(value, startIndex, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -588,7 +588,7 @@ namespace CodeJam.Strings
 		/// the return value is 0
 		/// </returns>
 		[Pure]
-		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value, int startIndex) =>
+		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
 			str.IndexOf(value, startIndex, StringComparison.Ordinal);
 
 		/// <summary>
@@ -605,7 +605,7 @@ namespace CodeJam.Strings
 		/// the return value is 0
 		/// </returns>
 		[Pure]
-		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, int startIndex, int count) =>
+		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count) =>
 			str.IndexOf(value, startIndex, count, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -622,7 +622,7 @@ namespace CodeJam.Strings
 		/// the return value is 0
 		/// </returns>
 		[Pure]
-		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value, int startIndex, int count) =>
+		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count) =>
 			str.IndexOf(value, startIndex, count, StringComparison.Ordinal);
 
 		/// <summary>
@@ -665,7 +665,7 @@ namespace CodeJam.Strings
 		/// the return value is 0
 		/// </returns>
 		[Pure]
-		public static int LastIndexOfInvariant([NotNull] this string str, [NotNull] string value, int startIndex) =>
+		public static int LastIndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
 			str.LastIndexOf(value, startIndex, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -680,7 +680,7 @@ namespace CodeJam.Strings
 		/// the return value is 0
 		/// </returns>
 		[Pure]
-		public static int LastIndexOfOrdinal([NotNull] this string str, [NotNull] string value, int startIndex) =>
+		public static int LastIndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
 			str.LastIndexOf(value, startIndex, StringComparison.Ordinal);
 
 		/// <summary>
@@ -700,8 +700,8 @@ namespace CodeJam.Strings
 		public static int LastIndexOfInvariant(
 			[NotNull] this string str,
 			[NotNull] string value,
-			int startIndex,
-			int count) =>
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int count) =>
 				str.LastIndexOf(value, startIndex, count, StringComparison.InvariantCulture);
 
 		/// <summary>
@@ -721,8 +721,8 @@ namespace CodeJam.Strings
 		public static int LastIndexOfOrdinal(
 			[NotNull] this string str,
 			[NotNull] string value,
-			int startIndex,
-			int count) =>
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int count) =>
 				str.LastIndexOf(value, startIndex, count, StringComparison.Ordinal);
 
 #endif

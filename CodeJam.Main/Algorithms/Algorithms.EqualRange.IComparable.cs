@@ -49,7 +49,7 @@ namespace CodeJam
 		public static Range<int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int startIndex)
+				[NonNegativeValue] int startIndex)
 			where TElement : IComparable<TValue> =>
 			list.EqualRange(value, startIndex, list.Count);
 
@@ -72,8 +72,8 @@ namespace CodeJam
 		public static Range<int> EqualRange<TElement, TValue>(
 				[NotNull, ItemNotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int startIndex,
-				int endIndex)
+				[NonNegativeValue] int startIndex,
+				[NonNegativeValue] int endIndex)
 			where TElement : IComparable<TValue>
 		{
 			Code.NotNull(list, nameof(list));

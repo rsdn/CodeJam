@@ -51,7 +51,7 @@ namespace CodeJam.Collections
 		/// <param name="index">The index of the element in a sequence.</param>
 		/// <param name="isFirst">A value indicating whether this instance is first.</param>
 		/// <param name="isLast">A value indicating whether this instance is last.</param>
-		public IndexedItem(T item, int index, bool isFirst, bool isLast) : this()
+		public IndexedItem(T item, [NonNegativeValue] int index, bool isFirst, bool isLast) : this()
 		{
 			Index = index;
 			Item = item;

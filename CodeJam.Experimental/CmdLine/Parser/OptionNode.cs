@@ -11,7 +11,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		private OptionNode([NotNull] string text, int position, int length, OptionType type)
+		private OptionNode([NotNull] string text, [NonNegativeValue] int position, [NonNegativeValue] int length, OptionType type)
 			: base(text, position, length)
 		{
 			Type = type;
@@ -22,8 +22,8 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		public OptionNode(
 			[NotNull] string text,
-			int position,
-			int length)
+			[NonNegativeValue] int position,
+			[NonNegativeValue] int length)
 			: this(text, position, length, OptionType.Valueless)
 		{}
 
@@ -32,8 +32,8 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		public OptionNode(
 			[NotNull] string text,
-			int position,
-			int length,
+			[NonNegativeValue] int position,
+			[NonNegativeValue] int length,
 			bool boolValue)
 			: this(text, position, length, OptionType.Bool)
 		{
@@ -45,8 +45,8 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		public OptionNode(
 			[NotNull] string text,
-			int position,
-			int length,
+			[NonNegativeValue] int position,
+			[NonNegativeValue] int length,
 			[NotNull] QuotedOrNonquotedValueNode value)
 			: this(text, position, length, OptionType.Value)
 		{
