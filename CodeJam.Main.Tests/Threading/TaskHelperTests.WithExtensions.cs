@@ -130,6 +130,42 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
+		public void TestWithTimeoutInfiniteCancelled()
+		{
+			var task = TaskEx.FromResult(SampleResult.FromCallback);
+			var token = new CancellationToken(true);
+			var taskWithTimeout = task.WithTimeout(TimeoutHelper.InfiniteTimeSpan, token);
+
+			Assert.That(
+				() => taskWithTimeout.Wait(),
+				Throws.InstanceOf<AggregateException>().With.InnerException.TypeOf<TaskCanceledException>());
+		}
+
+		[Test]
+		public void TestWaitTaskAsyncCancelled()
+		{
+			var task = TaskEx.FromResult(SampleResult.FromCallback);
+			var token = new CancellationToken(true);
+			var taskWithTimeout = task.WaitTaskAsync(token);
+
+			Assert.That(
+				() => taskWithTimeout.Wait(),
+				Throws.InstanceOf<AggregateException>().With.InnerException.TypeOf<TaskCanceledException>());
+		}
+
+		[Test]
+		public void TestWaitTaskAsyncSuccess()
+		{
+			var task = TaskEx.FromResult(SampleResult.FromCallback);
+			var cts = new CancellationTokenSource();
+			cts.CancelAfter(_timeout10);
+			var taskWithTimeout = task.WaitTaskAsync(cts.Token);
+
+			taskWithTimeout.Wait();
+			Assert.AreEqual(taskWithTimeout.Result, SampleResult.FromCallback);
+		}
+
+		[Test]
 		public void TestWithTimeoutFailure()
 		{
 			var task = TaskEx.Delay(_timeout10);
@@ -265,6 +301,30 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
+		public void TestRunWithTimeoutInfiniteCancelled()
+		{
+			var taskWithTimeout = TaskHelper.RunWithTimeout(
+				ct => TaskEx.FromResult(SampleResult.FromCallback),
+				TimeoutHelper.InfiniteTimeSpan,
+				new CancellationToken(true));
+
+			Assert.That(() => taskWithTimeout.WaitForResult(), Throws.InstanceOf<OperationCanceledException>());
+		}
+
+		[Test]
+		public void TestRunWithTimeoutInfiniteSuccess()
+		{
+			var cts = new CancellationTokenSource();
+			cts.CancelAfter(_timeout10);
+			var taskWithTimeout = TaskHelper.RunWithTimeout(
+				ct => TaskEx.FromResult(SampleResult.FromCallback),
+				TimeoutHelper.InfiniteTimeSpan,
+				cts.Token);
+
+			Assert.AreEqual(taskWithTimeout.WaitForResult(), SampleResult.FromCallback);
+		}
+
+		[Test]
 		public void TestRunWithTimeoutFailure()
 		{
 			var taskWithTimeout = TaskHelper.RunWithTimeout(
@@ -276,34 +336,11 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
-		public void TestRunWithTimeoutCallbackSuccess()
-		{
-			var sample = new TimedOutSample();
-
-			var task = TaskHelper.RunWithTimeout(
-				sample.OnCallback,
-				_timeout1,
-				sample.OnCancellation,
-				CancellationToken.None);
-
-			task.Wait();
-			var events = sample.WaitForCallbackCompletion().WaitForResult();
-			Assert.AreEqual(task.Result, SampleResult.FromCallback);
-			Assert.AreEqual(
-				events,
-				new[]
-				{
-					SampleEvent.CallbackStarted,
-					SampleEvent.CallbackCompleted
-				});
-		}
-
-		[Test]
 		public void TestRunWithTimeoutCallbackThrows()
 		{
 			var taskWithTimeout = TaskHelper.RunWithTimeout(
 				ct => throw new ArgumentNullException(nameof(_timeout1)),
-				_timeout1,
+				TimeoutHelper.InfiniteTimeSpan,
 				CancellationToken.None);
 
 			Assert.Throws<ArgumentNullException>(() => taskWithTimeout.WaitForResult());
@@ -368,6 +405,35 @@ namespace CodeJam.Threading
 		}
 
 		[Test]
+		public void TestRunWithTimeoutInfiniteCallbackCancellation()
+		{
+			var sample = new TimedOutSample
+			{
+				CallbackDelay = _timeout10,
+				CancellationDelay = _timeout10
+			};
+
+			var cts = new CancellationTokenSource();
+			var task = TaskHelper.RunWithTimeout(
+				sample.OnCallback,
+				TimeoutHelper.InfiniteTimeSpan,
+				sample.OnCancellation,
+				cts.Token);
+			cts.CancelAfter(_timeout1);
+
+			Assert.That(() => task.WaitForResult(), Throws.InstanceOf<OperationCanceledException>());
+			var events = sample.WaitForCallbackCompletion().WaitForResult();
+			events.Sort();
+			Assert.AreEqual(
+				events,
+				new[]
+				{
+					SampleEvent.CallbackStarted,
+					SampleEvent.CallbackCanceled
+				});
+		}
+
+		[Test]
 		public void TestRunWithTimeoutCallbackTimeoutCancellation()
 		{
 			var sample = new TimedOutSample
@@ -397,5 +463,32 @@ namespace CodeJam.Threading
 					SampleEvent.CancellationCanceled
 				});
 		}
+
+// Theraot.Core 3.1.5 test behavior is not consistent with .NET
+#if !LESSTHAN_NET35
+
+		[Test]
+		public void TestRunWithTimeoutCallbackTimeoutInfiniteCancellation()
+		{
+			var sample = new TimedOutSample
+			{
+				CallbackDelay = _timeout10,
+				CancellationDelay = _timeout10
+			};
+
+			var cts = new CancellationTokenSource();
+			var task = TaskHelper.RunWithTimeout(
+				sample.OnCallback,
+				TimeoutHelper.InfiniteTimeSpan,
+				sample.OnCancellation,
+				cts.Token);
+			cts.CancelAfter(_timeout1);
+
+			Assert.That(
+				() => task.Wait(CancellationToken.None),
+				Throws.InstanceOf<AggregateException>().With.InnerException.TypeOf<TaskCanceledException>());
+		}
 	}
+
+#endif
 }
