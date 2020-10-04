@@ -48,7 +48,7 @@ namespace CodeJam.Threading
 			CancellationToken cancellation)
 		{
 			Code.NotNull(task, nameof(task));
-			return DoWaitTaskAsync(task, cancellation);
+			return WaitTaskAsyncCore(task, cancellation);
 		}
 
 		/// <summary>
@@ -67,8 +67,8 @@ namespace CodeJam.Threading
 			Code.NotNull(task, nameof(task));
 			Code.NotNull(timeoutCallback, nameof(timeoutCallback));
 			return timeout != TimeoutHelper.InfiniteTimeSpan
-				? DoWithTimeout(task, timeout, timeoutCallback, cancellation)
-				: DoWaitTaskAsync(task, cancellation);
+				? WithTimeoutCore(task, timeout, timeoutCallback, cancellation)
+				: WaitTaskAsyncCore(task, cancellation);
 		}
 
 		/// <summary>
@@ -98,7 +98,7 @@ namespace CodeJam.Threading
 			CancellationToken cancellation)
 		{
 			Code.NotNull(task, nameof(task));
-			return DoWaitTaskAsync(task, cancellation);
+			return WaitTaskAsyncCore(task, cancellation);
 		}
 
 		/// <summary>
@@ -118,8 +118,8 @@ namespace CodeJam.Threading
 			Code.NotNull(task, nameof(task));
 			Code.NotNull(timeoutCallback, nameof(timeoutCallback));
 			return timeout != TimeoutHelper.InfiniteTimeSpan
-				? DoWithTimeout(task, timeout, timeoutCallback, cancellation)
-				: DoWaitTaskAsync(task, cancellation);
+				? WithTimeoutCore(task, timeout, timeoutCallback, cancellation)
+				: WaitTaskAsyncCore(task, cancellation);
 		}
 
 		/// <summary>
@@ -269,14 +269,8 @@ namespace CodeJam.Threading
 		}
 
 		#region Internal implementation
-		/// <summary>
-		/// Internal implementation of <see cref="WithTimeout(Task,System.TimeSpan,Func{CancellationToken, Task},CancellationToken)"/> when timeout is not infinite.
-		/// </summary>
-		/// <param name="task">The task.</param>
-		/// <param name="timeout">The timeout.</param>
-		/// <param name="timeoutCallback">Callback that will be called on timeout.</param>
-		/// <param name="cancellation">The cancellation.</param>
-		private static async Task DoWithTimeout(
+
+		private static async Task WithTimeoutCore(
 			[NotNull] Task task,
 			TimeSpan timeout,
 			[NotNull, InstantHandle] Func<CancellationToken, Task> timeoutCallback,
@@ -298,15 +292,7 @@ namespace CodeJam.Threading
 			await task;
 		}
 
-		/// <summary>
-		/// Internal implementation of <see cref="WithTimeout{TResult}(Task{TResult},System.TimeSpan,Func{CancellationToken, Task{TResult}},CancellationToken)"/> when timeout is not infinite.
-		/// </summary>
-		/// ///
-		/// <param name="task">The task.</param>
-		/// <param name="timeout">The timeout.</param>
-		/// <param name="timeoutCallback">Callback that will be called on timeout.</param>
-		/// <param name="cancellation">The cancellation.</param>
-		private static async Task<TResult> DoWithTimeout<TResult>(
+		private static async Task<TResult> WithTimeoutCore<TResult>(
 			[NotNull] Task<TResult> task,
 			TimeSpan timeout,
 			[NotNull, InstantHandle] Func<CancellationToken, Task<TResult>> timeoutCallback,
@@ -325,12 +311,7 @@ namespace CodeJam.Threading
 			return await task;
 		}
 
-		/// <summary>
-		/// Wait for task or throw <see cref="OperationCanceledException"/> when cancellation is cancelled.
-		/// </summary>
-		/// <param name="task">The task.</param>
-		/// <param name="cancellation">The cancellation</param>
-		private static Task DoWaitTaskAsync([NotNull] Task task, CancellationToken cancellation)
+		private static Task WaitTaskAsyncCore([NotNull] Task task, CancellationToken cancellation)
 		{
 			if (!cancellation.CanBeCanceled)
 				return task;
@@ -338,15 +319,10 @@ namespace CodeJam.Threading
 			if (cancellation.IsCancellationRequested)
 				return TaskExEx.FromCanceled(cancellation);
 
-			return DoWaitTaskAsyncImpl(task, cancellation);
+			return WaitTaskAsyncImplCore(task, cancellation);
 		}
 
-		/// <summary>
-		/// Wait for task or throw <see cref="OperationCanceledException"/> when cancellation is cancelled.
-		/// </summary>
-		/// <param name="task">The task.</param>
-		/// <param name="cancellation">The cancellation</param>
-		private static Task<TResult> DoWaitTaskAsync<TResult>([NotNull] Task<TResult> task, CancellationToken cancellation)
+		private static Task<TResult> WaitTaskAsyncCore<TResult>([NotNull] Task<TResult> task, CancellationToken cancellation)
 		{
 			if (!cancellation.CanBeCanceled)
 				return task;
@@ -354,15 +330,10 @@ namespace CodeJam.Threading
 			if (cancellation.IsCancellationRequested)
 				return TaskExEx.FromCanceled<TResult>(cancellation);
 
-			return DoWaitTaskAsyncImpl(task, cancellation);
+			return WaitTaskAsyncImplCore(task, cancellation);
 		}
 
-		/// <summary>
-		/// Internal implementation of <see cref="DoWithCancellation{TResult}"/>
-		/// </summary>
-		/// <param name="task">The task.</param>
-		/// <param name="cancellation">The cancellation</param>
-		private static async Task DoWaitTaskAsyncImpl([NotNull] Task task, CancellationToken cancellation)
+		private static async Task WaitTaskAsyncImplCore([NotNull] Task task, CancellationToken cancellation)
 		{
 			var tcs = new TaskCompletionSource<object>();
 			using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
@@ -371,12 +342,7 @@ namespace CodeJam.Threading
 			}
 		}
 
-		/// <summary>
-		/// Internal implementation of <see cref="DoWithCancellation"/>
-		/// </summary>
-		/// <param name="task">The task.</param>
-		/// <param name="cancellation">The cancellation</param>
-		private static async Task<TResult> DoWaitTaskAsyncImpl<TResult>(
+		private static async Task<TResult> WaitTaskAsyncImplCore<TResult>(
 			[NotNull] Task<TResult> task, CancellationToken cancellation)
 		{
 			var tcs = new TaskCompletionSource<TResult>();
@@ -386,17 +352,9 @@ namespace CodeJam.Threading
 			}
 		}
 
-		/// <summary>
-		/// Helper callback for WithCancellation.
-		/// </summary>
-		/// <exception cref="TimeoutException">Always throws an exception</exception>
 		private static Task NoTimeoutCallback(CancellationToken cancellation)
 			=> throw CodeExceptions.Timeout(TimeoutHelper.InfiniteTimeSpan);
 
-		/// <summary>
-		/// Helper callback for WithCancellation.
-		/// </summary>
-		/// <exception cref="TimeoutException">Always throws an exception</exception>
 		private static Task<TResult> NoTimeoutCallback<TResult>(CancellationToken cancellation)
 			=> throw CodeExceptions.Timeout(TimeoutHelper.InfiniteTimeSpan);
 

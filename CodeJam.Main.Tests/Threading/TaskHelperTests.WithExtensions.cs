@@ -464,14 +464,14 @@ namespace CodeJam.Threading
 				});
 		}
 
-// Theraot.Core 3.1.5 test behavior is not consistent with .NET
-#if !LESSTHAN_NET35
+// Theraot.Core 3.1.5 Task.Wait behavior is not consistent with .NET
+#if !LESSTHAN_NET40
 
 		[Test]
 		public void TestRunWithTimeoutCallbackTimeoutInfiniteCancellation()
 		{
 			var sample = new TimedOutSample
-			{W
+			{
 				CallbackDelay = _timeout10,
 				CancellationDelay = _timeout10
 			};
@@ -488,7 +488,7 @@ namespace CodeJam.Threading
 				() => task.Wait(CancellationToken.None),
 				Throws.InstanceOf<AggregateException>().With.InnerException.TypeOf<TaskCanceledException>());
 		}
-	}
-
 #endif
+
+	}
 }
