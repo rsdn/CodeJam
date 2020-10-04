@@ -471,7 +471,7 @@ namespace CodeJam.Threading
 		public void TestRunWithTimeoutCallbackTimeoutInfiniteCancellation()
 		{
 			var sample = new TimedOutSample
-			{
+			{W
 				CallbackDelay = _timeout10,
 				CancellationDelay = _timeout10
 			};
