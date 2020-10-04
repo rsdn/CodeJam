@@ -466,7 +466,6 @@ namespace CodeJam.Threading
 
 // Theraot.Core 3.1.5 Task.Wait behavior is not consistent with .NET
 #if !LESSTHAN_NET40
-
 		[Test]
 		public void TestRunWithTimeoutCallbackTimeoutInfiniteCancellation()
 		{
