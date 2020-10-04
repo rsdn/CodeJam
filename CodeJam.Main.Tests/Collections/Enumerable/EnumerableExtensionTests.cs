@@ -184,5 +184,60 @@ namespace CodeJam.Collections
 					var b = array is (1, _, _, _, _, _);
 				});
 		}
+
+		[Test]
+		public void Flatten()
+		{
+			var tree = new[]
+			{
+				new FlattenNode(
+					"root1",
+					new FlattenNode(
+						"root1/1",
+						new FlattenNode("root1/1/1"),
+						new FlattenNode("root1/1/2")),
+					new FlattenNode("root1/2")),
+				new FlattenNode(
+					"root2",
+					new FlattenNode(
+						"root2/1",
+						new FlattenNode("root2/1/1"),
+						new FlattenNode("root2/1/2")),
+					new FlattenNode("root2/2"))
+			};
+
+			var expected = new[]
+			{
+				"root1",
+				"root1/1",
+				"root1/1/1",
+				"root1/1/2",
+				"root1/2",
+				"root2",
+				"root2/1",
+				"root2/1/1",
+				"root2/1/2",
+				"root2/2"
+			};
+
+			var nodeNames = tree
+				.Flatten(i => i.ChildNodes)
+				.Select(i => i.Name)
+				.ToArray();
+
+			Assert.AreEqual(nodeNames, expected);
+		}
+
+		private sealed class FlattenNode
+		{
+			public FlattenNode(string name, params FlattenNode[] childNodes)
+			{
+				Name = name;
+				ChildNodes = childNodes;
+			}
+
+			public string Name { get; }
+			public FlattenNode[] ChildNodes { get; }
+		}
 	}
 }

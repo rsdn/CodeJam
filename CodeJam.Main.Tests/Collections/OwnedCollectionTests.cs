@@ -29,13 +29,13 @@ namespace CodeJam.Collections
 		public class MyCollection : OwnedCollection<Owner, Item>
 		{
 			public MyCollection(Owner owner)
-				: base(owner, i => i.Owner, (i, o) => i.Owner = o) { }
+				: base(owner, i => i.Owner, (i, _, o) => i.Owner = o) { }
 		}
 
 		public class MyKeyedCollection : OwnedCollection<Owner, Guid, Item>
 		{
 			public MyKeyedCollection(Owner owner)
-				: base(owner, i => i.Owner, (i, o) => i.Owner = o, i => i.Key) { }
+				: base(owner, i => i.Owner, (i, _, o) => i.Owner = o, i => i.Key) { }
 		}
 
 		[Test]
