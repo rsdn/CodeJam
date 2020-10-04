@@ -128,7 +128,7 @@ namespace CodeJam.Threading
 		[MustUseReturnValue("Lock should be disposed")]
 		private async Task<AsyncLockScope> AcquireAsyncImpl(TimeSpan timeout, CancellationToken cancellation)
 		{
-			var succeeded = await _semaphore.WaitAsync(timeout, cancellation);
+			var succeeded = await _semaphore.WaitAsync(timeout, cancellation).ConfigureAwait(false);
 			if (!succeeded)
 			{
 				cancellation.ThrowIfCancellationRequested();

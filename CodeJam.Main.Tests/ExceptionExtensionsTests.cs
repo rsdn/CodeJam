@@ -53,8 +53,8 @@ namespace CodeJam
 		private static async Task<string> GetTextAsync(Exception ex)
 		{
 			var writer = new StringWriter();
-			await ex.ToDiagnosticStringAsync(writer);
-			await writer.FlushAsync();
+			await ex.ToDiagnosticStringAsync(writer).ConfigureAwait(false);
+			await writer.FlushAsync().ConfigureAwait(false);
 
 			var text = writer.ToString();
 			return text;
@@ -64,7 +64,7 @@ namespace CodeJam
 		public async Task InternalExceptionTestAsync()
 		{
 			var ex = new Exception("123", new ApplicationException());
-			var text = await GetTextAsync(ex);
+			var text = await GetTextAsync(ex).ConfigureAwait(false);
 
 			Assert.That(
 				text,
@@ -83,7 +83,7 @@ namespace CodeJam
 			}
 			catch (Exception ex)
 			{
-				var text = await GetTextAsync(ex);
+				var text = await GetTextAsync(ex).ConfigureAwait(false);
 				Assert.That(
 					text,
 					Contains.Substring("CodeJamJamJam"));

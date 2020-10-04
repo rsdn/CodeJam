@@ -94,7 +94,7 @@ namespace CodeJam.Threading
 
 			try
 			{
-				await TaskEx.Delay(TimeoutHelper.InfiniteTimeSpan, cancellationToken);
+				await TaskEx.Delay(TimeoutHelper.InfiniteTimeSpan, cancellationToken).ConfigureAwait(false);
 			}
 			catch (OperationCanceledException)
 			{
@@ -114,7 +114,7 @@ namespace CodeJam.Threading
 
 			try
 			{
-				await TaskEx.Delay(timeout, cancellationToken);
+				await TaskEx.Delay(timeout, cancellationToken).ConfigureAwait(false);
 				throw new TimeoutException($"Wait for cancellation timed out in {timeout}");
 			}
 			catch (OperationCanceledException)

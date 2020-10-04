@@ -51,19 +51,19 @@ namespace CodeJam.Threading
 
 			public async Task<SampleEvent[]> WaitForCallbackCompletion()
 			{
-				await _callbackCompletion.Task;
+				await _callbackCompletion.Task.ConfigureAwait(false);
 				return _events.ToArray();
 			}
 
 			public async Task<SampleEvent[]> WaitForCancellationCompletion()
 			{
-				await _cancellationCompletion.Task;
+				await _cancellationCompletion.Task.ConfigureAwait(false);
 				return _events.ToArray();
 			}
 
 			public async Task<SampleEvent[]> WaitForFullCompletion()
 			{
-				await TaskEx.WhenAll(_callbackCompletion.Task, _cancellationCompletion.Task);
+				await TaskEx.WhenAll(_callbackCompletion.Task, _cancellationCompletion.Task).ConfigureAwait(false);
 				return _events.ToArray();
 			}
 
@@ -78,7 +78,7 @@ namespace CodeJam.Threading
 					_events.Add(SampleEvent.CallbackStarted);
 					try
 					{
-						await TaskEx.Delay(CallbackDelay, cancellation);
+						await TaskEx.Delay(CallbackDelay, cancellation).ConfigureAwait(false);
 						_events.Add(SampleEvent.CallbackCompleted);
 					}
 					catch (OperationCanceledException)
@@ -101,7 +101,7 @@ namespace CodeJam.Threading
 					_events.Add(SampleEvent.CancellationStarted);
 					try
 					{
-						await TaskEx.Delay(CancellationDelay, cancellation);
+						await TaskEx.Delay(CancellationDelay, cancellation).ConfigureAwait(false);
 						_events.Add(SampleEvent.CancellationCompleted);
 					}
 					catch (Exception)

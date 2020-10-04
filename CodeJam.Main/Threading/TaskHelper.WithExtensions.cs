@@ -188,7 +188,7 @@ namespace CodeJam.Threading
 									timeoutOrCancellation.Cancel();
 									return timeoutCallback(ct);
 								},
-								cancellation);
+								cancellation).ConfigureAwait(false);
 					}
 				},
 				cancellation);
@@ -262,7 +262,7 @@ namespace CodeJam.Threading
 									timeoutOrCancellation.Cancel();
 									return timeoutCallback(ct);
 								},
-								cancellation);
+								cancellation).ConfigureAwait(false);
 					}
 				},
 				cancellation);
@@ -277,19 +277,19 @@ namespace CodeJam.Threading
 			CancellationToken cancellation)
 		{
 			var timeoutTask = TaskEx.Delay(timeout, cancellation);
-			var taskOrTimeout = await TaskEx.WhenAny(task, timeoutTask);
+			var taskOrTimeout = await TaskEx.WhenAny(task, timeoutTask).ConfigureAwait(false);
 			cancellation.ThrowIfCancellationRequested();
 
 			if (taskOrTimeout == timeoutTask)
 			{
-				await timeoutCallback(cancellation);
+				await timeoutCallback(cancellation).ConfigureAwait(false);
 				return;
 			}
 
 			// Await will rethrow exception from the task, if any.
 			// There's no additional cost as FW has optimization for await over completed task:
 			// continuation will run synchronously
-			await task;
+			await task.ConfigureAwait(false);
 		}
 
 		private static async Task<TResult> WithTimeoutCore<TResult>(
@@ -299,16 +299,16 @@ namespace CodeJam.Threading
 			CancellationToken cancellation)
 		{
 			var timeoutTask = TaskEx.Delay(timeout, cancellation);
-			var taskOrTimeout = await TaskEx.WhenAny(task, timeoutTask);
+			var taskOrTimeout = await TaskEx.WhenAny(task, timeoutTask).ConfigureAwait(false);
 			cancellation.ThrowIfCancellationRequested();
 
 			if (taskOrTimeout == timeoutTask)
-				return await timeoutCallback(cancellation);
+				return await timeoutCallback(cancellation).ConfigureAwait(false);
 
 			// Await will rethrow exception from the task, if any.
 			// There's no additional cost as FW has optimization for await over completed task:
 			// continuation will run synchronously
-			return await task;
+			return await task.ConfigureAwait(false);
 		}
 
 		private static Task WaitTaskAsyncCore([NotNull] Task task, CancellationToken cancellation)
@@ -338,7 +338,7 @@ namespace CodeJam.Threading
 			var tcs = new TaskCompletionSource<object>();
 			using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
 			{
-				await await TaskEx.WhenAny(task, tcs.Task).ConfigureAwait(false);
+				await (await TaskEx.WhenAny(task, tcs.Task).ConfigureAwait(false)).ConfigureAwait(false);
 			}
 		}
 
@@ -348,7 +348,7 @@ namespace CodeJam.Threading
 			var tcs = new TaskCompletionSource<TResult>();
 			using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
 			{
-				return await await TaskEx.WhenAny(task, tcs.Task).ConfigureAwait(false);
+				return await (await TaskEx.WhenAny(task, tcs.Task).ConfigureAwait(false)).ConfigureAwait(false);
 			}
 		}
 
