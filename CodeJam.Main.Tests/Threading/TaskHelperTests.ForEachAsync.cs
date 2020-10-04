@@ -73,7 +73,7 @@ namespace CodeJam.Threading
 		{
 			var tasks = Enumerable.Range(0, 20).ToArray();
 
-			var result = await tasks.ForEachAsync((i, ct) => TaskEx.FromResult(i.ToString()), 4);
+			var result = await tasks.ForEachAsync((i, ct) => TaskEx.FromResult(i.ToString()), 4).ConfigureAwait(false);
 
 			CollectionAssert.AreEquivalent(result, tasks.Select(t => t.ToString()));
 		}

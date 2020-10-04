@@ -95,7 +95,7 @@ namespace CodeJam.IO
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))
 			{
-				return await reader.ReadToEndAsync();
+				return await reader.ReadToEndAsync().ConfigureAwait(false);
 			}
 		}
 		/// <summary>
