@@ -142,7 +142,7 @@ namespace CodeJam.Threading
 		public static async Task<TResult[]> ForEachAsync<T, TResult>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, CancellationToken, Task<TResult>> callback,
-			int maxDegreeOfParallelism,
+			int maxDegreeOfParallelism = 0,
 			CancellationToken cancellation = default)
 		{
 			Code.NotNull(source, nameof(source));
