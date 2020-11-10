@@ -1,5 +1,12 @@
-﻿CodeJam 3.1.0 Release Notes
+﻿CodeJam 3.3.0 Release Notes
 ---------------------------
+
+What's new in 3.3.0
+-------------------
+* Add more string Invariant and Ordinal methods.
+* Add value annotations.
+* Add WaitTaskAsync extension method
+* Upgrade to Theraot.Core 3.2.0 which fixes many issues in old .NET Frameworks.
 
 What's new in 3.2.0
 -------------------
