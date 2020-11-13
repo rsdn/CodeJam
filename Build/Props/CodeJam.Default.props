@@ -18,5 +18,7 @@
 		<Copyright>RSDN, 2020</Copyright>
 		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+
+		<NoWarn>$(NoWarn);NETSDK1138</NoWarn>
 	</PropertyGroup>
 </Project>
