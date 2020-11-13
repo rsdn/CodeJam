@@ -1,6 +1,6 @@
 ﻿configuration: Release
 image: Visual Studio 2019
-version: '3.0.{build}'
+version: '3.3.0.{build}'
 
 #environment:
 #  packageVersion: 3.0.0
