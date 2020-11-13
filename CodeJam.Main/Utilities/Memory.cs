@@ -1,5 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
+
+#if LESSTHAN_NET50
 using System.Runtime.ConstrainedExecution;
+#endif
 
 using JetBrains.Annotations;
 

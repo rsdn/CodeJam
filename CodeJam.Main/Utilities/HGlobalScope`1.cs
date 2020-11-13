@@ -1,7 +1,10 @@
 ﻿using System;
-using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Security;
+
+#if LESSTHAN_NET50
+using System.Runtime.ConstrainedExecution;
+#endif
 
 using JetBrains.Annotations;
 
@@ -34,7 +37,9 @@ namespace CodeJam
 		{
 		}
 
-#pragma warning disable 618 // 'Marshal.SizeOf(Type)', 'Marshal.PtrToStructure(IntPtr, Type)' are obsolete
+#if LESSTHAN_NETCOREAPP11 || LESSTHAN_NETSTANDARD20
+#pragma warning disable CS0618 // 'Marshal.SizeOf(Type)', 'Marshal.PtrToStructure(IntPtr, Type)' are obsolete
+#endif
 
 		/// <summary>
 		/// Value
@@ -46,7 +51,9 @@ namespace CodeJam
 		/// </summary>
 		private static readonly int _size = Marshal.SizeOf(typeof(T));
 
-#pragma warning restore 618
+#if LESSTHAN_NETCOREAPP11 || LESSTHAN_NETSTANDARD20
+#pragma warning restore CS0618
+#endif
 
 		/// <summary>
 		/// Validate <paramref name="cb" /> is at least as the size of <typeparamref name="T"/>.
