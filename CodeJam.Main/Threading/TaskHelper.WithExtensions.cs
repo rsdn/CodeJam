@@ -352,12 +352,6 @@ namespace CodeJam.Threading
 			}
 		}
 
-		private static Task NoTimeoutCallback(CancellationToken cancellation)
-			=> throw CodeExceptions.Timeout(TimeoutHelper.InfiniteTimeSpan);
-
-		private static Task<TResult> NoTimeoutCallback<TResult>(CancellationToken cancellation)
-			=> throw CodeExceptions.Timeout(TimeoutHelper.InfiniteTimeSpan);
-
 		#endregion
 	}
 }
