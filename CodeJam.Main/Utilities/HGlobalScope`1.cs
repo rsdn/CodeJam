@@ -18,14 +18,18 @@ namespace CodeJam
 		/// <summary>
 		/// Default constructor, allocates memory with the size of <typeparamref name="T"/>
 		/// </summary>
+#if LESSTHAN_NET50
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
+#endif
 		public HGlobalScope() : this(_size) { }
 
 		/// <summary>
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
+#if LESSTHAN_NET50
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
+#endif
 		public HGlobalScope([NonNegativeValue] int cb) : base(CheckSize(cb))
 		{
 		}
