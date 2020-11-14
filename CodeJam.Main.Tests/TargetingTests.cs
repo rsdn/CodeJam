@@ -2,11 +2,10 @@
 using System.Linq;
 
 using CodeJam.Strings;
+using CodeJam.Targeting;
 
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
-using PlatformHelper = CodeJam.Targeting.PlatformHelper;
 #if NET45_OR_GREATER || TARGETS_NETCOREAPP
 using TaskEx = System.Threading.Tasks.Task;
 #elif NET40_OR_GREATER
