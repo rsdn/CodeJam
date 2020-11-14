@@ -23,6 +23,9 @@ namespace CodeJam
 	[TestFixture]
 	public class TargetingTests
 	{
+		/// <summary>
+		/// The expected is the same or lower than the current target depending on our build.
+		/// </summary>
 		public const string ExpectedCodeJamTarget =
 #if NET20
 			".NETFramework,Version=v2.0";
@@ -51,7 +54,7 @@ namespace CodeJam
 #elif NET472
 			".NETFramework,Version=v4.7.2";
 #elif NET48
-			".NETFramework,Version=v4.8";
+			".NETFramework,Version=v4.7.2";
 #elif NETCOREAPP1_0
 			".NETCoreApp,Version=v1.0";
 #elif NETCOREAPP1_1
