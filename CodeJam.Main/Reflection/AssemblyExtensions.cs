@@ -81,16 +81,17 @@ namespace CodeJam.Reflection
 			if (string.IsNullOrEmpty(assembly.Location))
 				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 
-#pragma warning disable SYSLIB0012 // 'Assembly.CodeBase' is obsolete: 'Assembly.CodeBase and Assembly.EscapedCodeBase are only included for .NET Framework compatibility. Use Assembly.Location instead.
+#if LESSTHAN_NET50
 
 			var uri = new Uri(assembly.CodeBase);
-
-#pragma warning restore SYSLIB0012
 
 			if (uri.IsFile)
 				return uri.LocalPath;
 
 			throw CodeExceptions.Argument(nameof(assembly), $"Assembly '{assembly}' has no local path.");
+#else
+			return assembly.Location;
+#endif
 		}
 
 		/// <summary>

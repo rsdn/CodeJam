@@ -1,0 +1,8 @@
+<Project>
+	<PropertyGroup>
+		<!-- Compile Include="x.cs" doesn't use LangVersion defined in the PropertyGroup -->
+		<LangVersion>9.0</LangVersion>
+
+		<NoWarn Condition=" '(TargetFramework)' != 'netcoreapp1.0' and '(TargetFramework)' != 'netcoreapp1.1' ">$(NoWarn);NETSDK1138</NoWarn>
+	</PropertyGroup>
+</Project>

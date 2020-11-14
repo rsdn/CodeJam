@@ -9,9 +9,8 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{0DFF0859-2400-4487-83AD-0ED10203D6D9}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net472;net461;net45;net40;net35;net20;netstandard2.1;netstandard2.0;netstandard1.5;netstandard1.3;netcoreapp3.0;netcoreapp2.0;netcoreapp1.0</TargetFrameworks>
+		<TargetFrameworks>net5.0;net472;net461;net45;net40;net35;net20;netstandard2.1;netstandard2.0;netstandard1.5;netstandard1.3;netcoreapp3.0;netcoreapp2.0;netcoreapp1.0</TargetFrameworks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
-		<LangVersion>8.0</LangVersion>
 
 		<PackageId>CodeJam.Blocks</PackageId>
 		<Title>CodeJam.Blocks library</Title>
