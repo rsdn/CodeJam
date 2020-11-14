@@ -51,7 +51,7 @@ namespace CodeJam
 #elif NET472
 			".NETFramework,Version=v4.7.2";
 #elif NET48
-			".NETFramework,Version=v4.7.2";
+			".NETFramework,Version=v4.8";
 #elif NETCOREAPP1_0
 			".NETCoreApp,Version=v1.0";
 #elif NETCOREAPP1_1
@@ -60,6 +60,8 @@ namespace CodeJam
 			".NETCoreApp,Version=v2.0";
 #elif NETCOREAPP3_0
 			".NETCoreApp,Version=v3.0";
+#elif NETCOREAPP3_1
+			".NETCoreApp,Version=v3.1";
 #elif NET5_0
 			".NETCoreApp,Version=v5.0";
 #else

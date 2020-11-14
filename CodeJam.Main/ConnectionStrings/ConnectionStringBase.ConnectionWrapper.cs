@@ -31,7 +31,7 @@ namespace CodeJam.ConnectionStrings
 #if NET35_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 						property.IsRequired(),
 #else
-					false,
+						false,
 #endif
 						property.IsBrowsable());
 
