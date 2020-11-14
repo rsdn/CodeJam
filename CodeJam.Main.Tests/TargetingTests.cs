@@ -156,7 +156,7 @@ namespace CodeJam
 			netcoreapp2.1
 			net461";
 
-		/// <summary>This test generates conditional build constants for various FW monikers.</summary>
+		/// <summary>This test generates content of /Build/Props/CodeJam.Targeting.props.</summary>
 		[Test]
 		[Ignore("Manual run only")]
 		public void GenerateTargetingProps()
@@ -182,6 +182,8 @@ namespace CodeJam
 		{
 			WriteLine();
 			WriteLine("	<!-- Templates for <TargetFrameworks/> project property -->");
+			WriteLine($@"	<!-- VS does select the first moniker in list as default target
+	     therefore we place our default platform ({_defaultFrameworkMoniker}) at start of the list -->");
 			WriteLine("	<PropertyGroup>");
 			GenerateTargetFrameworks("CopyMeTargetFrameworks", _packageFrameworkMonikers);
 			GenerateTargetFrameworks("CopyMeTestTargetFrameworks", _testFrameworkMonikers);

@@ -18,6 +18,8 @@
 	</PropertyGroup>
 
 	<!-- Templates for <TargetFrameworks/> project property -->
+	<!-- VS does select the first moniker in list as default target
+	     therefore we place our default platform (netcoreapp3.0) at start of the list -->
 	<PropertyGroup>
 		<CopyMeTargetFrameworks>netcoreapp3.0;net5.0;netcoreapp2.0;netcoreapp1.0;netstandard2.1;netstandard2.0;netstandard1.5;netstandard1.3;net472;net461;net45;net40;net35;net20</CopyMeTargetFrameworks>
 		<CopyMeTestTargetFrameworks>netcoreapp3.0;net5.0;netcoreapp2.1;netcoreapp1.1;net472;net461;net45;net40;net35;net20</CopyMeTestTargetFrameworks>
@@ -187,5 +189,4 @@
 		<DefineConstants>$(DefineConstants);TARGETS_NETCOREAPP</DefineConstants>
 		<DefineConstants>$(DefineConstants);NETCOREAPP10_OR_GREATER;NETCOREAPP11_OR_GREATER;NETCOREAPP20_OR_GREATER;NETCOREAPP21_OR_GREATER;NETCOREAPP22_OR_GREATER;NETCOREAPP30_OR_GREATER;NETCOREAPP31_OR_GREATER;NET50_OR_GREATER</DefineConstants>
 	</PropertyGroup>
-
 </Project>
