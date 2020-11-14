@@ -1,4 +1,5 @@
 ﻿#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
+using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace CodeJam.IO
 			[NotNull] this Stream stream,
 			[CanBeNull] Encoding encoding = null,
 			bool leaveOpen = false) =>
-			new StreamReader(stream, encoding ?? Encoding.UTF8, true, _defaultBufferSize, leaveOpen);
+				new StreamReader(stream, encoding ?? Encoding.UTF8, true, _defaultBufferSize, leaveOpen);
 
 		/// <summary>
 		/// Wraps <paramref name="stream"/> with <see cref="BinaryReader"/>.
@@ -39,10 +40,10 @@ namespace CodeJam.IO
 			[NotNull] this Stream stream,
 			[CanBeNull] Encoding encoding = null,
 			bool leaveOpen = false) =>
-			new BinaryReader(stream, encoding ?? Encoding.UTF8, leaveOpen);
+				new BinaryReader(stream, encoding ?? Encoding.UTF8, leaveOpen);
 
 		/// <summary>
-		/// Wraps <paramrefref name="stream"/> with <see cref="StreamWriter"/>.
+		/// Wraps <paramref name="stream"/> with <see cref="StreamWriter"/>.
 		/// </summary>
 		/// <param name="stream">The stream to write.</param>
 		/// <param name="encoding">The character encoding to use.</param>
@@ -52,7 +53,7 @@ namespace CodeJam.IO
 			[NotNull] this Stream stream,
 			[CanBeNull] Encoding encoding = null,
 			bool leaveOpen = false) =>
-			new StreamWriter(stream, encoding ?? Encoding.UTF8, _defaultBufferSize, leaveOpen);
+				new StreamWriter(stream, encoding ?? Encoding.UTF8, _defaultBufferSize, leaveOpen);
 
 		/// <summary>
 		/// Wraps <paramref name="stream"/> with <see cref="BinaryWriter"/>.
@@ -98,6 +99,7 @@ namespace CodeJam.IO
 				return await reader.ReadToEndAsync().ConfigureAwait(false);
 			}
 		}
+
 		/// <summary>
 		/// Returns content of the stream as a byte array.
 		/// </summary>
