@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{7BD77DA2-A731-400C-A88E-215FC592E6E3}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net5.0;net461;netstandard2.0</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 

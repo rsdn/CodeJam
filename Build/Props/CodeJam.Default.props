@@ -1,8 +1,6 @@
 ﻿<Project>
 	<PropertyGroup>
 		<Configurations>Debug;Release</Configurations>
-		<LangVersion>latest</LangVersion>
-
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<SignAssembly>True</SignAssembly>
@@ -18,7 +16,5 @@
 		<Copyright>RSDN, 2020</Copyright>
 		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-
-		<NoWarn>$(NoWarn);NETSDK1138</NoWarn>
 	</PropertyGroup>
 </Project>
