@@ -10,8 +10,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
+
+using JBNotNull = JetBrains.Annotations.NotNullAttribute;
 
 namespace CodeJam.Collections
 {
@@ -30,8 +33,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, byte> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, byte> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -72,10 +75,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, byte> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, byte> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -112,8 +116,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, byte?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, byte?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -168,10 +172,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, byte?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, byte?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -225,8 +230,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, sbyte> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, sbyte> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -267,10 +272,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, sbyte> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, sbyte> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -307,8 +313,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, sbyte?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, sbyte?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -363,10 +369,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, sbyte?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, sbyte?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -420,8 +427,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, short> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, short> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -462,10 +469,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, short> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, short> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -502,8 +510,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, short?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, short?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -558,10 +566,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, short?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, short?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -615,8 +624,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ushort> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ushort> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -657,10 +666,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ushort> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ushort> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -697,8 +707,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ushort?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ushort?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -753,10 +763,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ushort?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ushort?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -810,8 +821,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, int> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, int> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -852,10 +863,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, int> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, int> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -892,8 +904,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, int?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, int?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -948,10 +960,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, int?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, int?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1005,8 +1018,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, uint> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, uint> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1047,10 +1060,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, uint> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, uint> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1087,8 +1101,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, uint?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, uint?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1143,10 +1157,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, uint?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, uint?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1200,8 +1215,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, long> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, long> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1242,10 +1257,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, long> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, long> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1282,8 +1298,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, long?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, long?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1338,10 +1354,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, long?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, long?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1395,8 +1412,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ulong> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ulong> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1437,10 +1454,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ulong> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ulong> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1477,8 +1495,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ulong?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ulong?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1533,10 +1551,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ulong?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ulong?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1590,8 +1609,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, float> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, float> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1637,10 +1656,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, float> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, float> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1682,8 +1702,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, float?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, float?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1738,10 +1758,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, float?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, float?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1795,8 +1816,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, double> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, double> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1842,10 +1863,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, double> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, double> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1887,8 +1909,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, double?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, double?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -1943,10 +1965,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, double?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, double?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2000,8 +2023,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, decimal> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, decimal> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2042,10 +2065,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, decimal> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, decimal> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2082,8 +2106,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		[Pure]
 		public static TSource MinBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, decimal?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, decimal?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2138,10 +2162,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, decimal?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, decimal?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2199,8 +2224,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, byte> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, byte> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2241,10 +2266,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, byte> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, byte> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2281,8 +2307,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, byte?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, byte?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2337,10 +2363,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, byte?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, byte?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2394,8 +2421,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, sbyte> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, sbyte> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2436,10 +2463,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, sbyte> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, sbyte> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2476,8 +2504,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, sbyte?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, sbyte?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2532,10 +2560,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, sbyte?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, sbyte?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2589,8 +2618,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, short> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, short> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2631,10 +2660,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, short> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, short> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2671,8 +2701,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, short?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, short?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2727,10 +2757,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, short?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, short?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2784,8 +2815,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ushort> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ushort> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2826,10 +2857,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ushort> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ushort> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2866,8 +2898,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ushort?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ushort?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2922,10 +2954,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ushort?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ushort?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -2979,8 +3012,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, int> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, int> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3021,10 +3054,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, int> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, int> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3061,8 +3095,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, int?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, int?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3117,10 +3151,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, int?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, int?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3174,8 +3209,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, uint> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, uint> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3216,10 +3251,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, uint> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, uint> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3256,8 +3292,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, uint?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, uint?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3312,10 +3348,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, uint?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, uint?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3369,8 +3406,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, long> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, long> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3411,10 +3448,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, long> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, long> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3451,8 +3489,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, long?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, long?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3507,10 +3545,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, long?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, long?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3564,8 +3603,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ulong> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ulong> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3606,10 +3645,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ulong> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ulong> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3646,8 +3686,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ulong?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ulong?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3702,10 +3742,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, ulong?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, ulong?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3759,8 +3800,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, float> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, float> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3806,10 +3847,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, float> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, float> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3851,8 +3893,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, float?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, float?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3907,10 +3949,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, float?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, float?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -3964,8 +4007,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, double> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, double> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -4011,10 +4054,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, double> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, double> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -4056,8 +4100,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, double?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, double?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -4112,10 +4156,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, double?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, double?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -4169,8 +4214,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, decimal> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, decimal> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -4211,10 +4256,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, decimal> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, decimal> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -4251,8 +4297,8 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure]
 		public static TSource MaxBy<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, decimal?> selector)
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, decimal?> selector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -4307,10 +4353,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, decimal?> selector,
-			TSource defaultValue = default(TSource))
+			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JBNotNull, InstantHandle] Func<TSource, decimal?> selector,
+			[MaybeNull] TSource defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));

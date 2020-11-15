@@ -23,7 +23,7 @@ namespace CodeJam.Threading
 		public struct AsyncLockScope : IDisposable
 		{
 			[CanBeNull]
-			private SemaphoreSlim _semaphore;
+			private SemaphoreSlim? _semaphore;
 
 			/// <summary>
 			/// Initializes a new instance of the <see cref="AsyncLockScope"/> class.

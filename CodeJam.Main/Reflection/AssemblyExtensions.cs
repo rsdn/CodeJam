@@ -101,7 +101,7 @@ namespace CodeJam.Reflection
 		/// <returns>Folder part of path to <paramref name="assembly"/>.</returns>
 		[CanBeNull]
 		[Pure]
-		public static string GetAssemblyDirectory([NotNull] this Assembly assembly) =>
+		public static string? GetAssemblyDirectory([NotNull] this Assembly assembly) =>
 			Path.GetDirectoryName(GetAssemblyPath(assembly));
 #endif
 	}

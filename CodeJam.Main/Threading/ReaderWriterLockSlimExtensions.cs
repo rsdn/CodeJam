@@ -66,7 +66,7 @@ namespace CodeJam.Threading
 		public struct ReadLockScope : IDisposable
 		{
 			[CanBeNull]
-			private ReaderWriterLockSlim _readerWriterLock;
+			private ReaderWriterLockSlim? _readerWriterLock;
 
 			/// <summary>
 			/// Initializes a new instance of the <see cref="ReadLockScope"/> class.
@@ -99,7 +99,7 @@ namespace CodeJam.Threading
 		public struct WriteLockScope : IDisposable
 		{
 			[CanBeNull]
-			private ReaderWriterLockSlim _readerWriterLock;
+			private ReaderWriterLockSlim? _readerWriterLock;
 
 			/// <summary>
 			/// Initializes a new instance of the <see cref="WriteLockScope"/> class.
@@ -132,7 +132,7 @@ namespace CodeJam.Threading
 		public struct UpgradeableReadLockScope : IDisposable
 		{
 			[CanBeNull]
-			private ReaderWriterLockSlim _readerWriterLock;
+			private ReaderWriterLockSlim? _readerWriterLock;
 
 			/// <summary>
 			/// Initializes a new instance of the <see cref="UpgradeableReadLockScope"/> class.

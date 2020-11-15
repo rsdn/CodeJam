@@ -118,7 +118,7 @@ namespace CodeJam
 		/// specified.
 		/// </remarks>
 		[Pure, CanBeNull]
-		public static string GetDisplayName<TEnum>(TEnum value)
+		public static string? GetDisplayName<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
 				GetEnumValue(value).GetDisplayName();
 
@@ -133,7 +133,7 @@ namespace CodeJam
 		/// specified.
 		/// </remarks>
 		[Pure, CanBeNull]
-		public static string GetDescription<TEnum>(TEnum value)
+		public static string? GetDescription<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
 				GetEnumValue(value).Description;
 		#endregion

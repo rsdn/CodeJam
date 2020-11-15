@@ -10,7 +10,7 @@ using StringEx = System.String;
 using StringEx = System.StringEx;
 #endif
 
-using FWNotNullWhenAttribute = System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
+using FwNotNullWhenAttribute = System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
 
 namespace CodeJam.Strings
 {
@@ -23,7 +23,7 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is null or empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => true")]
-		public static bool IsNullOrEmpty([CanBeNull][FWNotNullWhen(false)] this string? str)
+		public static bool IsNullOrEmpty([CanBeNull][FwNotNullWhenAttribute(false)] this string? str)
 		{
 			// DONTTOUCH: Do not remove return statements
 			// https://github.com/dotnet/coreclr/issues/914
@@ -41,7 +41,7 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is not null nor empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
-		public static bool NotNullNorEmpty([CanBeNull][FWNotNullWhen(true)] this string? str) => !str.IsNullOrEmpty();
+		public static bool NotNullNorEmpty([CanBeNull][FwNotNullWhenAttribute(true)] this string? str) => !str.IsNullOrEmpty();
 
 		/// <summary>
 		/// Infix form of string.IsNullOrWhiteSpace.
@@ -53,7 +53,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => true")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool IsNullOrWhiteSpace([CanBeNull][FWNotNullWhen(false)] this string? str) => StringEx.IsNullOrWhiteSpace(str);
+		public static bool IsNullOrWhiteSpace([CanBeNull][FwNotNullWhenAttribute(false)] this string? str) => StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Returns an empty string for null value.
@@ -71,7 +71,7 @@ namespace CodeJam.Strings
 		/// <returns>The string or <c>null</c> if the string is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static string NullIfEmpty([CanBeNull] this string? str) => str.IsNullOrEmpty() ? null : str;
+		public static string? NullIfEmpty([CanBeNull] this string? str) => str.IsNullOrEmpty() ? null : str;
 
 		/// <summary>
 		/// Returns <c>null</c> for empty or whitespace strings.
@@ -80,7 +80,7 @@ namespace CodeJam.Strings
 		/// <returns>The string or <c>null</c> if the string is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static string NullIfWhiteSpace(this string str) => str.IsNullOrWhiteSpace() ? null : str;
+		public static string? NullIfWhiteSpace(this string str) => str.IsNullOrWhiteSpace() ? null : str;
 
 		/// <summary>
 		/// Returns true if argument is not null nor whitespace.
@@ -93,7 +93,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => false")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool NotNullNorWhiteSpace([CanBeNull][FWNotNullWhen(true)] this string? str) => !StringEx.IsNullOrWhiteSpace(str);
+		public static bool NotNullNorWhiteSpace([CanBeNull][FwNotNullWhenAttribute(true)] this string? str) => !StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Replaces one or more format items in a specified string with the string representation of a specified object.

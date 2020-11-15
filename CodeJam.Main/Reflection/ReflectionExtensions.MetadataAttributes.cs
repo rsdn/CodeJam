@@ -83,7 +83,7 @@ namespace CodeJam.Reflection
 		/// <param name="attributeProvider">Metadata attribute source.</param>
 		/// <returns>First attribute found.</returns>
 		[CanBeNull]
-		public static TAttribute TryGetMetadataAttribute<TAttribute>(
+		public static TAttribute? TryGetMetadataAttribute<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class =>
 				TryGetMetadataAttribute<TAttribute>(attributeProvider, false);
@@ -107,7 +107,7 @@ namespace CodeJam.Reflection
 		/// <param name="thisLevelOnly">Do not check containers for the attributes.</param>
 		/// <returns>First attribute found.</returns>
 		[CanBeNull]
-		public static TAttribute TryGetMetadataAttribute<TAttribute>(
+		public static TAttribute? TryGetMetadataAttribute<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider,
 			bool thisLevelOnly)
 			where TAttribute : class =>

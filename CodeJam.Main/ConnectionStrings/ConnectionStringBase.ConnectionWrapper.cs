@@ -68,7 +68,7 @@ namespace CodeJam.ConnectionStrings
 
 			private readonly Type _descriptorType;
 
-			public StringBuilderWrapper(string connectionString, Type descriptorType)
+			public StringBuilderWrapper(string? connectionString, Type descriptorType)
 			{
 				_descriptorType = descriptorType;
 				if (connectionString != null)

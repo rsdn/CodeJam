@@ -442,7 +442,7 @@ namespace CodeJam.Collections
 			/// <remarks>null for leaf nodes</remarks>
 			/// </summary>
 			[CanBeNull]
-			public List<int> Children { get; }
+			public List<int>? Children { get; }
 			/// <summary>Shows whether it is a leaf or an internal node</summary>
 			public bool IsLeaf => Children == null;
 			/// <summary>Shows whether it is a terminal (ending at a string end) node or not</summary>

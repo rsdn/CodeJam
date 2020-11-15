@@ -22,7 +22,7 @@ namespace CodeJam.Reflection
 		/// otherwise, null.
 		/// </returns>
 		[CanBeNull]
-		public static FieldInfo GetField<TEnum>(TEnum value) where TEnum : struct, Enum
+		public static FieldInfo? GetField<TEnum>(TEnum value) where TEnum : struct, Enum
 		{
 			var type = typeof(TEnum);
 			var name = Enum.GetName(type, value);

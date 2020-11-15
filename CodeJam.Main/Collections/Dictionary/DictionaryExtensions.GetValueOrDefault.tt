@@ -4,8 +4,11 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
+
+using JBNotNull = JetBrains.Annotations.NotNullAttribute;
 
 namespace CodeJam.Collections
 {
@@ -79,7 +82,8 @@ private void BackportedHeader1(string type) {#>
 		/// </returns>
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this <#=type#><TKey, TValue> dictionary, [NotNull] TKey key) =>
+		[return: MaybeNull]
+		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this <#=type#><TKey, TValue> dictionary, [JBNotNull] TKey key) =>
 <#+}
 
 private void BackportedBody1() {#>
@@ -109,10 +113,11 @@ private void BackportedHeader2(string type) {#>
 		/// </returns>
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
+		[return: MaybeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			TValue defaultValue)
+			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
+			[JBNotNull] TKey key,
+			[MaybeNull] TValue defaultValue)
 <#+}
 
 private void BackportedBody2() {#>
@@ -152,10 +157,11 @@ private void Header1(string type) {#>
 		/// </returns>
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
+		[return: MaybeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-				[NotNull] this <#=type#><TKey, TValue> dictionary,
-				[NotNull] TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				[JBNotNull] this <#=type#><TKey, TValue> dictionary,
+				[JBNotNull] TKey key,
+				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
 <#+}
 
 private void Body1() {#>
@@ -187,11 +193,12 @@ private void Header2(string type) {#>
 		/// </returns>
 		[Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
+		[return: MaybeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
-			TResult defaultValue)
+			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
+			[JBNotNull] TKey key,
+			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			[MaybeNull] TResult defaultValue)
 <#+}
 
 private void Body2() {#>
@@ -232,10 +239,11 @@ private void Header3(string type) {#>
 		/// </returns>
 		[Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
+		[return: MaybeNull]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
+			[JBNotNull] TKey key,
+			[JBNotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
 <#+}
 
 		private void Body3() {#>
@@ -278,11 +286,12 @@ private void Header3(string type) {#>
 		/// </returns>
 		[Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
+		[return: MaybeNull]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
-			[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
+			[JBNotNull] TKey key,
+			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			[JBNotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
 <#+}
 
 		private void Body4() {#>

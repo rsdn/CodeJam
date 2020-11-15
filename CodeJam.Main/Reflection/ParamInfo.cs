@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using JetBrains.Annotations;
 
 namespace CodeJam.Reflection
@@ -43,7 +42,7 @@ namespace CodeJam.Reflection
 		/// Parameter value.
 		/// </summary>
 		[CanBeNull]
-		public object Value { get; set; }
+		public object? Value { get; set; }
 
 		/// <summary>
 		/// True, if parameter required.

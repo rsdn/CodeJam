@@ -138,7 +138,7 @@ namespace CodeJam
 		/// Combined hash code.
 		/// </returns>
 		[Pure]
-		public static int CombineValues<T>([CanBeNull, InstantHandle] IEnumerable<T> values)
+		public static int CombineValues<T>([CanBeNull, InstantHandle] IEnumerable<T>? values)
 		{
 			if (values == null)
 				return 0;

@@ -151,7 +151,7 @@ namespace CodeJam.Strings
 		/// <param name="uriKind">The type of the Uri. DefaultValue is <see cref="UriKind.RelativeOrAbsolute"/>.</param>
 		/// <returns>Constructed <see cref="T:System.Uri" />.</returns>
 		[Pure, CanBeNull]
-		public static Uri ToUri([CanBeNull] this string? str, UriKind uriKind = UriKind.RelativeOrAbsolute) =>
+		public static Uri? ToUri([CanBeNull] this string? str, UriKind uriKind = UriKind.RelativeOrAbsolute) =>
 			Uri.TryCreate(str, uriKind, out var result) ? result : null;
 
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES

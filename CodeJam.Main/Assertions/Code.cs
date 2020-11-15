@@ -9,7 +9,8 @@ using System.Runtime.CompilerServices;
 using CodeJam.Arithmetic;
 
 using JetBrains.Annotations;
-using FWNotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
+
+using FwNotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 using JBNotNullAttribute = JetBrains.Annotations.NotNullAttribute;
 
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
@@ -36,7 +37,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNull<T>(
-			[FWNotNull, NoEnumeration] T? arg,
+			[FwNotNullAttribute, NoEnumeration] T? arg,
 			[JBNotNull, InvokerParameterName] string argName) where T : class
 		{
 			if (arg == null)
@@ -56,7 +57,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void GenericNotNull<T>(
-			[FWNotNull, NoEnumeration] T? arg,
+			[FwNotNullAttribute, NoEnumeration] T? arg,
 			[JBNotNull, InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -100,7 +101,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNull<T>(
-			[FWNotNull] T? arg,
+			[FwNotNullAttribute] T? arg,
 			[JBNotNull, InvokerParameterName] string argName) where T : struct
 		{
 			if (arg == null)
@@ -117,7 +118,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty<T>(
-			[FWNotNull, InstantHandle] IEnumerable<T>? arg,
+			[FwNotNullAttribute, InstantHandle] IEnumerable<T>? arg,
 			[JBNotNull, InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -136,7 +137,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty<T>(
-			[FWNotNull] ICollection<T>? arg,
+			[FwNotNullAttribute] ICollection<T>? arg,
 			[JBNotNull, InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -155,7 +156,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty<T>(
-			[FWNotNull] T[]? arg,
+			[FwNotNullAttribute] T[]? arg,
 			[JBNotNull, InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -171,7 +172,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty(
-			[FWNotNull] string? arg,
+			[FwNotNullAttribute] string? arg,
 			[JBNotNull, InvokerParameterName] string argName)
 		{
 			if (string.IsNullOrEmpty(arg))
@@ -185,7 +186,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorWhiteSpace(
-			[FWNotNull] string? arg,
+			[FwNotNullAttribute] string? arg,
 			[JBNotNull, InvokerParameterName] string argName)
 		{
 			if (StringEx.IsNullOrWhiteSpace(arg))
@@ -200,7 +201,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullAndItemNotNull<T>(
-			[FWNotNull, InstantHandle] IEnumerable<T>? arg,
+			[FwNotNullAttribute, InstantHandle] IEnumerable<T>? arg,
 			[JBNotNull, InvokerParameterName] string argName) where T : class
 		{
 			if (arg == null)

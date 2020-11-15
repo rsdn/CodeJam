@@ -106,7 +106,7 @@ namespace CodeJam.Targeting
 
 		[CanBeNull]
 		[MethodImpl(AggressiveInlining)]
-		public static Type GetBaseType([NotNull] this Type type) =>
+		public static Type? GetBaseType([NotNull] this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.BaseType;
 #else
@@ -187,7 +187,7 @@ namespace CodeJam.Targeting
 
 		[CanBeNull]
 		[MethodImpl(AggressiveInlining)]
-		public static ConstructorInfo GetConstructor(
+		public static ConstructorInfo? GetConstructor(
 			[NotNull] this Type type,
 			BindingFlags bindingAttr,
 			[CanBeNull] object? binder,
@@ -205,7 +205,7 @@ namespace CodeJam.Targeting
 		}
 
 		[CanBeNull]
-		private static T TryFindParametersTypesMatch<T>(
+		private static T? TryFindParametersTypesMatch<T>(
 			[NotNull, ItemNotNull] this IEnumerable<T> methods,
 			[NotNull, ItemNotNull] Type[] types)
 			where T : MethodBase =>

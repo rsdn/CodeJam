@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -16,9 +17,10 @@ namespace CodeJam.Collections
 		/// <param name="defaultValue">Default value returned if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TSource AggregateOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
+			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
 			TSource defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
@@ -47,10 +49,11 @@ namespace CodeJam.Collections
 		/// <param name="defaultValue">Default value returned if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
 		[Pure, CanBeNull]
+		[return: MaybeNull]
 		public static TAccumulate AggregateOrDefault<TSource, TAccumulate>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
-			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
 			TAccumulate defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
@@ -82,10 +85,10 @@ namespace CodeJam.Collections
 		/// <returns>The final accumulator value.</returns>
 		[Pure]
 		public static TResult? AggregateOrDefault<TSource, TAccumulate, TResult>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
-			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
-			[NotNull, InstantHandle] Func<TAccumulate, TResult> resultSelector,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TResult> resultSelector,
 			TResult defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
@@ -114,9 +117,9 @@ namespace CodeJam.Collections
 		/// <returns>The final accumulator value.</returns>
 		[Pure]
 		public static TSource AggregateOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
-			[NotNull, InstantHandle] Func<TSource> defaultSelector)
+			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource> defaultSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(func, nameof(func));
@@ -146,10 +149,10 @@ namespace CodeJam.Collections
 		/// <returns>The final accumulator value.</returns>
 		[Pure]
 		public static TAccumulate AggregateOrDefault<TSource, TAccumulate>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
-			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
-			[NotNull, InstantHandle] Func<TAccumulate> defaultSelector)
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate> defaultSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(func, nameof(func));
@@ -181,11 +184,11 @@ namespace CodeJam.Collections
 		/// <returns>The final accumulator value.</returns>
 		[Pure]
 		public static TResult AggregateOrDefault<TSource, TAccumulate, TResult>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
-			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
-			[NotNull, InstantHandle] Func<TAccumulate, TResult> resultSelector,
-			[NotNull, InstantHandle] Func<TResult> defaultSelector)
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TResult> resultSelector,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TResult> defaultSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(func, nameof(func));

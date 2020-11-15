@@ -22,7 +22,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("collection:null => true")]
-		public static bool IsNullOrEmpty<T>(this ICollection<T> collection) =>
+		public static bool IsNullOrEmpty<T>(this ICollection<T>? collection) =>
 			collection == null || collection.Count == 0;
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("array:null => true")]
-		public static bool IsNullOrEmpty<T>(this T?[]? array)
+		public static bool IsNullOrEmpty<T>(this T[]? array)
 		{
 			// DONTTOUCH: Do not remove return statements
 			// https://github.com/dotnet/coreclr/issues/914
@@ -57,7 +57,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("collection:null => false")]
-		public static bool NotNullNorEmpty<T>(this ICollection<T> collection) =>
+		public static bool NotNullNorEmpty<T>(this ICollection<T>? collection) =>
 			collection != null && collection.Count != 0;
 
 		/// <summary>
@@ -138,7 +138,7 @@ namespace CodeJam.Collections
 		/// <returns><c>null</c> if the array is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static T[] NullIfEmpty<T>([CanBeNull] this T[]? array) => array.IsNullOrEmpty() ? null : array;
+		public static T[]? NullIfEmpty<T>([CanBeNull] this T[]? array) => array.IsNullOrEmpty() ? null : array;
 
 		/// <summary>
 		/// Returns <c>null</c> if the collection is empty.
@@ -148,7 +148,7 @@ namespace CodeJam.Collections
 		/// <returns><c>null</c> if the collection is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static List<T> NullIfEmpty<T>([CanBeNull] this List<T>? collection) =>
+		public static List<T>? NullIfEmpty<T>([CanBeNull] this List<T>? collection) =>
 			collection.IsNullOrEmpty() ? null : collection;
 
 		/// <summary>
@@ -160,7 +160,7 @@ namespace CodeJam.Collections
 		/// <returns><c>null</c> if the dictionary is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static Dictionary<TKey, TValue> NullIfEmpty<TKey, TValue>(
+		public static Dictionary<TKey, TValue>? NullIfEmpty<TKey, TValue>(
 			[CanBeNull] this Dictionary<TKey, TValue>? dictionary) where TKey : notnull =>
 				dictionary.IsNullOrEmpty() ? null : dictionary;
 

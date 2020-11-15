@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
@@ -35,10 +36,10 @@ namespace CodeJam.Ranges
 		#region Static members
 		private const int _equalResult = 0;
 
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
 
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
 
 		private static readonly bool _hasNaN = Operators<T>.HasNaN;
@@ -123,7 +124,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Formattable logic
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
 		#endregion
 
@@ -266,6 +267,7 @@ namespace CodeJam.Ranges
 		/// <returns>he value of the boundary or default(T).</returns>
 		[Pure, CanBeNull]
 		[MethodImpl(AggressiveInlining)]
+		[return: MaybeNull]
 		public T GetValueOrDefault() => _value;
 
 		/// <summary>
@@ -275,6 +277,7 @@ namespace CodeJam.Ranges
 		/// <returns>Value of the boundary or <paramref name="defaultValue"/>.</returns>
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
+		[return: MaybeNull]
 		public T GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
 		#endregion
 
@@ -314,7 +317,7 @@ namespace CodeJam.Ranges
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
 		[Pure]
-		public RangeBoundaryFrom<T> WithValue([NotNull, InstantHandle] Func<T, T> newValueSelector)
+		public RangeBoundaryFrom<T> WithValue([JetBrains.Annotations.NotNull, InstantHandle] Func<T, T> newValueSelector)
 		{
 			if (HasValue)
 			{
@@ -334,7 +337,7 @@ namespace CodeJam.Ranges
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
 		[Pure]
-		public RangeBoundaryFrom<T2> WithValue<T2>([NotNull, InstantHandle] Func<T, T2> newValueSelector)
+		public RangeBoundaryFrom<T2> WithValue<T2>([JetBrains.Annotations.NotNull, InstantHandle] Func<T, T2> newValueSelector)
 		{
 			if (HasValue)
 			{
@@ -547,7 +550,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="format">The format string</param>
 		/// <returns> The string representation of the boundary. </returns>
-		[Pure, NotNull]
+		[Pure, JetBrains.Annotations.NotNull]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
