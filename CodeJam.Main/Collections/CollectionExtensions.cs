@@ -36,7 +36,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("array:null => true")]
-		public static bool IsNullOrEmpty<T>(this T[] array)
+		public static bool IsNullOrEmpty<T>(this T?[]? array)
 		{
 			// DONTTOUCH: Do not remove return statements
 			// https://github.com/dotnet/coreclr/issues/914
@@ -112,8 +112,9 @@ namespace CodeJam.Collections
 		/// <returns>The dictionary or <c>null</c> if the dictionary is <c>null</c>.</returns>
 		[Pure]
 		[NotNull]
-		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>([CanBeNull] this Dictionary<TKey, TValue>? dictionary) =>
-			dictionary ?? new Dictionary<TKey, TValue>();
+		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>(
+			[CanBeNull] this Dictionary<TKey, TValue>? dictionary) where TKey : notnull =>
+				dictionary ?? new Dictionary<TKey, TValue>();
 
 		/// <summary>
 		/// Returns an empty instance of the dictionary for null values.
@@ -127,7 +128,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>(
 			[CanBeNull] this Dictionary<TKey, TValue>? dictionary,
-			IEqualityComparer<TKey> comparer) => dictionary ?? new Dictionary<TKey, TValue>(comparer);
+			IEqualityComparer<TKey> comparer) where TKey : notnull => dictionary ?? new Dictionary<TKey, TValue>(comparer);
 
 		/// <summary>
 		/// Returns <c>null</c> if the collection is array.
@@ -160,7 +161,7 @@ namespace CodeJam.Collections
 		[Pure]
 		[CanBeNull]
 		public static Dictionary<TKey, TValue> NullIfEmpty<TKey, TValue>(
-			[CanBeNull] this Dictionary<TKey, TValue>? dictionary) =>
+			[CanBeNull] this Dictionary<TKey, TValue>? dictionary) where TKey : notnull =>
 				dictionary.IsNullOrEmpty() ? null : dictionary;
 
 		/// <summary>
@@ -213,7 +214,7 @@ namespace CodeJam.Collections
 		public static Dictionary<TKey, TValue> DefaultIfEmpty<TKey, TValue>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
 			TKey defaultKey,
-			TValue defaultValue)
+			TValue defaultValue) where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			return dictionary.Count == 0
@@ -239,7 +240,7 @@ namespace CodeJam.Collections
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
 			TKey defaultKey,
 			TValue defaultValue,
-			IEqualityComparer<TKey> comparer)
+			IEqualityComparer<TKey> comparer) where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			return dictionary.Count == 0

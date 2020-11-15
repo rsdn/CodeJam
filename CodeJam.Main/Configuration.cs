@@ -37,8 +37,7 @@ namespace CodeJam.Internal
 		private static TraceSource CreateTraceSource([NotNull] string sourceName) =>
 			new TraceSource(sourceName) { Switch = { Level = SourceLevels.Information } };
 
-		[CanBeNull]
-		private static TraceSource _customCodeTraceSource;
+		private static TraceSource? _customCodeTraceSource;
 
 		/// <summary>
 		/// Sets custom trace source for code exceptions.

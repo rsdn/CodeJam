@@ -40,7 +40,7 @@
 		public ExpressionType Type { get; }
 		public string Comment { get; }
 
-		public OpInfo(string name, string sign, ExpressionType type, string comment = null)
+		public OpInfo(string name, string sign, ExpressionType type, string? comment = null)
 		{
 			Name = name;
 			Type = type;

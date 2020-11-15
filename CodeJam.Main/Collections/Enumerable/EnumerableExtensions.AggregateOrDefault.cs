@@ -80,8 +80,8 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
 		/// <param name="defaultValue">Default value returned if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure, CanBeNull]
-		public static TResult AggregateOrDefault<TSource, TAccumulate, TResult>(
+		[Pure]
+		public static TResult? AggregateOrDefault<TSource, TAccumulate, TResult>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
 			[NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,

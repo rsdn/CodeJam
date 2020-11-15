@@ -392,7 +392,7 @@ namespace CodeJam.Collections
 		public static TValue AddOrUpdate<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
-			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
+			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory) where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));

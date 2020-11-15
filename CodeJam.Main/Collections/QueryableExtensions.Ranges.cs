@@ -93,8 +93,8 @@ namespace CodeJam.Collections
 			if (range.IsEmpty)
 				return source.Where(Lambda<Func<T, bool>>(FalseExpression(), Parameter(typeof(T))));
 
-			Expression<Func<T, bool>> fromIsInfinite = null;
-			Expression<Func<T, bool>> toIsInfinite = null;
+			Expression<Func<T, bool>>? fromIsInfinite = null;
+			Expression<Func<T, bool>>? toIsInfinite = null;
 			if (rangeBoundaries != QueryRangeBoundaries.FiniteBoth)
 			{
 				var eParam = fromValueSelector.Parameters.FirstOrDefault()
@@ -132,8 +132,8 @@ namespace CodeJam.Collections
 			[NotNull] this IQueryable<T> source,
 			[NotNull] Expression<Func<T, object>> fromValueSelector,
 			[NotNull] Expression<Func<T, object>> toValueSelector,
-			[CanBeNull] Expression<Func<T, bool>?> fromInfinityPredicate,
-			[CanBeNull] Expression<Func<T, bool>?> toInfinityPredicate,
+			[CanBeNull] Expression<Func<T, bool>>? fromInfinityPredicate,
+			[CanBeNull] Expression<Func<T, bool>>? toInfinityPredicate,
 			Range<TValue> range)
 		{
 			Code.NotNull(source, nameof(source));

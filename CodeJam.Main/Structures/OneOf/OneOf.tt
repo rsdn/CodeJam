@@ -78,7 +78,7 @@ namespace CodeJam
 
 			public override void Do(<#=List(i, j => $"Action<T{j}> case{j}Action")#>) => case<#=k#>Action(_value);
 
-			public override bool Equals(OneOf<<#=types#>> other) => Equals(other as Case<#=k#>);
+			public override bool Equals(OneOf<<#=types#>>? other) => Equals(other as Case<#=k#>);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}

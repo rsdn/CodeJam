@@ -22,7 +22,7 @@ namespace CodeJam.Reflection
 		{
 			public static TypeHandleComparer Default { get; } = new TypeHandleComparer();
 
-			public bool Equals(Type x, Type y) =>
+			public bool Equals(Type? x, Type? y) =>
 				x is null ? y is null : y != null && x.TypeHandle.Equals(y.TypeHandle);
 
 			public int GetHashCode(Type obj) => obj.TypeHandle.GetHashCode();
@@ -32,7 +32,7 @@ namespace CodeJam.Reflection
 		{
 			public static MethodMethodHandleComparer Default { get; } = new MethodMethodHandleComparer();
 
-			public bool Equals(MethodInfo x, MethodInfo y)
+			public bool Equals(MethodInfo? x, MethodInfo? y)
 			{
 				if (x is null) return y is null;
 				if (y == null) return false;

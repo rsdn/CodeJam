@@ -68,13 +68,13 @@ namespace CodeJam
 		/// SEEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private sealed class AnonymousDisposable<T> : IDisposable
 		{
-			private Action<T> _disposeAction;
-			private T _state;
+			[NotNull] private Action<T> _disposeAction;
+			[CanBeNull] private T? _state;
 
 			/// <summary>Initialize instance.</summary>
 			/// <param name="disposeAction">The dispose action.</param>
 			/// <param name="state">A value that contains data for the disposal action.</param>
-			public AnonymousDisposable(Action<T> disposeAction, T state)
+			public AnonymousDisposable([NotNull] Action<T> disposeAction, [CanBeNull] T? state)
 			{
 				_disposeAction = disposeAction;
 				_state = state;

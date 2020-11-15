@@ -429,7 +429,7 @@ namespace CodeJam.Collections
 			/// <param name="end">An edge end offset</param>
 			/// <param name="terminal">Is the edge terminates the string or not</param>
 			/// <param name="children">A list of child nodes (edges)</param>
-			public Node([NonNegativeValue] int begin, [NonNegativeValue] int end, bool terminal, List<int> children = null)
+			public Node([NonNegativeValue] int begin, [NonNegativeValue] int end, bool terminal, List<int>? children = null)
 			{
 				DebugCode.AssertArgument(end >= 0, nameof(end), "end should be nonnegative");
 				Begin = begin;

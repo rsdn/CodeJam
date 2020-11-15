@@ -10,6 +10,8 @@ using StringEx = System.String;
 using StringEx = System.StringEx;
 #endif
 
+using FWNotNullWhenAttribute = System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
+
 namespace CodeJam.Strings
 {
 	static partial class StringExtensions
@@ -21,7 +23,7 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is null or empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => true")]
-		public static bool IsNullOrEmpty([CanBeNull] this string? str)
+		public static bool IsNullOrEmpty([CanBeNull][FWNotNullWhen(false)] this string? str)
 		{
 			// DONTTOUCH: Do not remove return statements
 			// https://github.com/dotnet/coreclr/issues/914
@@ -39,7 +41,7 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is not null nor empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
-		public static bool NotNullNorEmpty([CanBeNull] this string? str) => !str.IsNullOrEmpty();
+		public static bool NotNullNorEmpty([CanBeNull][FWNotNullWhen(true)] this string? str) => !str.IsNullOrEmpty();
 
 		/// <summary>
 		/// Infix form of string.IsNullOrWhiteSpace.
@@ -51,7 +53,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => true")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool IsNullOrWhiteSpace([CanBeNull] this string? str) => StringEx.IsNullOrWhiteSpace(str);
+		public static bool IsNullOrWhiteSpace([CanBeNull][FWNotNullWhen(false)] this string? str) => StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Returns an empty string for null value.
@@ -91,7 +93,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => false")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool NotNullNorWhiteSpace([CanBeNull] this string? str) => !StringEx.IsNullOrWhiteSpace(str);
+		public static bool NotNullNorWhiteSpace([CanBeNull][FWNotNullWhen(true)] this string? str) => !StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Replaces one or more format items in a specified string with the string representation of a specified object.

@@ -12,7 +12,7 @@ namespace CodeJam.Collections
 	/// <typeparam name="TKey">Type of key.</typeparam>
 	/// <typeparam name="TValue">Type of value.</typeparam>
 	[PublicAPI]
-	public class LazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue>
+	public class LazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue> where TKey : notnull
 	{
 		[NotNull] private readonly Func<TKey, TValue> _valueFactory;
 		[NotNull] private readonly Dictionary<TKey, TValue> _map;
