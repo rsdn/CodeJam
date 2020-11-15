@@ -63,13 +63,13 @@ namespace CodeJam.Mapping
 		/// Active configuration.
 		/// </summary>
 		[CanBeNull]
-		public string Configuration { get; set; }
+		public string? Configuration { get; set; }
 
 		/// <summary>
 		/// Mapping value.
 		/// </summary>
 		[CanBeNull]
-		public object Value { get; set; }
+		public object? Value { get; set; }
 
 		/// <summary>
 		/// <i>true</i> if default.

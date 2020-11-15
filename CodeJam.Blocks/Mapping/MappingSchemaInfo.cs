@@ -101,7 +101,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		public ConvertInfo.LambdaInfo GetConvertInfo([NotNull] Type from, [NotNull] Type to)
+		public ConvertInfo.LambdaInfo? GetConvertInfo([NotNull] Type from, [NotNull] Type to)
 			=> _convertInfo?.Get(from, to);
 
 		private ConcurrentDictionary<object,Func<object,object>> _converters;

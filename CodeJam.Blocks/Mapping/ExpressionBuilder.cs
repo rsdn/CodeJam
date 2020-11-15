@@ -22,6 +22,7 @@ using static System.Linq.Expressions.Expression;
 namespace CodeJam.Mapping
 {
 	using Expressions;
+
 	using Reflection;
 
 	internal class ExpressionBuilder
@@ -74,7 +75,7 @@ namespace CodeJam.Mapping
 		#region GetExpressionEx
 
 		[CanBeNull]
-		public LambdaExpression GetExpressionEx()
+		public LambdaExpression? GetExpressionEx()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 				return _mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType);
@@ -116,7 +117,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private LambdaExpression GetExpressionExInner()
+		private LambdaExpression? GetExpressionExInner()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 				return _mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType);
@@ -133,7 +134,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private Expression GetExpressionExImpl([NotNull] Expression fromExpression, [NotNull] Type toType)
+		private Expression? GetExpressionExImpl([NotNull] Expression fromExpression, [NotNull] Type toType)
 		{
 			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
 			var toAccessor   = TypeAccessor.GetAccessor(toType);
@@ -262,11 +263,11 @@ namespace CodeJam.Mapping
 
 		[CanBeNull]
 		[ContractAnnotation("expr:null => null; expr:notnull => notnull")]
-		private static Expression Convert([CanBeNull] Expression expr, [NotNull] Type toType) =>
+		private static Expression? Convert([CanBeNull] Expression? expr, [NotNull] Type toType) =>
 			expr == null ? null : expr.Type == toType ? expr : Expression.Convert(expr, toType);
 
 		[CanBeNull]
-		private Expression BuildCollectionMapper([NotNull] Expression fromExpression, [NotNull] Type toType)
+		private Expression? BuildCollectionMapper([NotNull] Expression fromExpression, [NotNull] Type toType)
 		{
 			var fromType = fromExpression.Type;
 
@@ -277,7 +278,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private Expression ConvertCollection([NotNull] Expression fromExpression, [NotNull] Type toType)
+		private Expression? ConvertCollection([NotNull] Expression fromExpression, [NotNull] Type toType)
 		{
 			var fromType     = fromExpression.Type;
 			var fromItemType = fromType.GetItemType();
@@ -678,7 +679,7 @@ namespace CodeJam.Mapping
 			};
 
 		[CanBeNull]
-		private static Expression ToList(
+		private static Expression? ToList(
 			[NotNull] ExpressionBuilder builder,
 			Expression fromExpression,
 			[NotNull] Type fromItemType,
@@ -694,7 +695,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression ToHashSet(
+		private static Expression? ToHashSet(
 			[NotNull] ExpressionBuilder builder,
 			Expression fromExpression,
 			[NotNull] Type fromItemType,
@@ -710,7 +711,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression ToArray(
+		private static Expression? ToArray(
 			[NotNull] ExpressionBuilder builder,
 			Expression fromExpression,
 			[NotNull] Type fromItemType,
@@ -726,7 +727,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression Select(
+		private static Expression? Select(
 			[NotNull] ExpressionBuilder builder,
 			Expression getValue,
 			[NotNull] Type fromItemType,

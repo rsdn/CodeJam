@@ -211,7 +211,7 @@ namespace CodeJam.Mapping
 		/// <returns>Convert expression.</returns>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
 		[CanBeNull]
-		protected internal virtual LambdaExpression TryGetConvertExpression([NotNull] Type from, [NotNull]Type to)
+		protected internal virtual LambdaExpression? TryGetConvertExpression([NotNull] Type from, [NotNull]Type to)
 		{
 			var li = GetConverter(from, to, false);
 			return li == null ? null : (LambdaExpression)ReduceDefaultValue(li.CheckNullLambda);
@@ -242,7 +242,7 @@ namespace CodeJam.Mapping
 		/// <param name="createDefault">If <i>true</i>, new expression is created.</param>
 		/// <returns>Convert expression.</returns>
 		[CanBeNull]
-		public LambdaExpression GetConvertExpression(
+		public LambdaExpression? GetConvertExpression(
 			[NotNull] Type from,
 			[NotNull] Type to,
 			bool checkNull = true,
@@ -381,7 +381,7 @@ namespace CodeJam.Mapping
 
 		[CanBeNull]
 		[ContractAnnotation("create:true => notnull")]
-		private ConvertInfo.LambdaInfo GetConverter([NotNull] Type from, [NotNull] Type to, bool create)
+		private ConvertInfo.LambdaInfo? GetConverter([NotNull] Type from, [NotNull] Type to, bool create)
 		{
 			for (var i = 0; i < Schemas.Length; i++)
 			{
@@ -671,7 +671,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
 		[CanBeNull]
-		public T GetAttribute<T>([NotNull] Type type, bool inherit = true)
+		public T? GetAttribute<T>([NotNull] Type type, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes<T>(type, inherit);
@@ -686,7 +686,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
 		[CanBeNull]
-		public T GetAttribute<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
+		public T? GetAttribute<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes<T>(memberInfo, inherit);
@@ -748,7 +748,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
 		[CanBeNull]
-		public T GetAttribute<T>([NotNull] Type type, [NotNull] Func<T,string> configGetter, bool inherit = true)
+		public T? GetAttribute<T>([NotNull] Type type, [NotNull] Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes(type, configGetter, inherit);
@@ -764,7 +764,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
 		[CanBeNull]
-		public T GetAttribute<T>([NotNull] MemberInfo memberInfo, [NotNull] Func<T,string> configGetter, bool inherit = true)
+		public T? GetAttribute<T>([NotNull] MemberInfo memberInfo, [NotNull] Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes(memberInfo, configGetter, inherit);

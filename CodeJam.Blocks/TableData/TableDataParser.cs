@@ -68,5 +68,5 @@ namespace CodeJam.TableData
 	/// Null, if end of file reached, string[0] if line contains no valued, or array of values.
 	/// </returns>
 	[CanBeNull]
-	public delegate string[] Parser([NotNull] TextReader reader, ref int lineNum);
+	public delegate string[]? Parser([NotNull] TextReader reader, ref int lineNum);
 }

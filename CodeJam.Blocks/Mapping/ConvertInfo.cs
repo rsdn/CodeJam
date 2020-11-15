@@ -52,7 +52,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		public LambdaInfo Get([NotNull] Type from, [NotNull] Type to) =>
+		public LambdaInfo? Get([NotNull] Type from, [NotNull] Type to) =>
 			_expressions.TryGetValue(from, out var dic) && dic.TryGetValue(to, out var li) ? li : null;
 
 		[NotNull]

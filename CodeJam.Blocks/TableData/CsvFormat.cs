@@ -70,7 +70,7 @@ namespace CodeJam.TableData
 			CreateParser(allowEscaping, columnSeparator).Parse(reader);
 
 		[CanBeNull]
-		private static string[] ParseCsv([NotNull] TextReader reader, ref int lineNum, char separator)
+		private static string[]? ParseCsv([NotNull] TextReader reader, ref int lineNum, char separator)
 		{
 			var curChar = CharReader.Create(reader);
 			if (curChar.IsEof)
@@ -193,7 +193,7 @@ namespace CodeJam.TableData
 		}
 
 		[CanBeNull]
-		private static string[] ParseCsvNoEscape([NotNull] TextReader reader, ref int lineNum, char separator)
+		private static string[]? ParseCsvNoEscape([NotNull] TextReader reader, ref int lineNum, char separator)
 		{
 			var line = reader.ReadLine();
 			if (line == null)

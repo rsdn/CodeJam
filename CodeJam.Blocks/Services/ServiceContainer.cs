@@ -15,7 +15,7 @@ namespace CodeJam.Services
 	public class ServiceContainer : IServicePublisher, IDisposable
 	{
 		[CanBeNull]
-		private readonly IServiceProvider _parentProvider;
+		private readonly IServiceProvider? _parentProvider;
 
 		[NotNull]
 		private readonly ConcurrentDictionary<Type, IServiceBag> _services =
@@ -52,7 +52,7 @@ namespace CodeJam.Services
 		/// <returns>A service object of type <paramref name="serviceType" />.-or- null if there is no service object of type <paramref name="serviceType" />.</returns>
 		/// <param name="serviceType">An object that specifies the type of service object to get. </param>
 		[CanBeNull]
-		public object GetService([NotNull] Type serviceType)
+		public object? GetService([NotNull] Type serviceType)
 		{
 			Code.NotNull(serviceType, nameof(serviceType));
 

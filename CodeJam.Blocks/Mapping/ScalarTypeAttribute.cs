@@ -48,7 +48,7 @@ namespace CodeJam.Mapping
 		/// Configuration name.
 		/// </summary>
 		[CanBeNull]
-		public string Configuration { get; set; }
+		public string? Configuration { get; set; }
 
 		/// <summary>
 		/// <i>true</i> if target type is a scalar type.

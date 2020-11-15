@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -18,11 +19,11 @@ namespace CodeJam.Services
 		/// <returns>
 		/// A service object of type <paramref name="serviceType"/>.
 		/// </returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[Pure]
 		public static object GetRequiredService(
-			[NotNull] this IServiceProvider provider,
-			[NotNull] Type serviceType)
+			[JetBrains.Annotations.NotNull] this IServiceProvider provider,
+			[JetBrains.Annotations.NotNull] Type serviceType)
 		{
 			Code.NotNull(provider, nameof(provider));
 			Code.NotNull(serviceType, nameof(serviceType));
@@ -41,7 +42,8 @@ namespace CodeJam.Services
 		/// <returns>A service object of type serviceType.</returns>
 		[CanBeNull]
 		[Pure]
-		public static T GetService<T>([NotNull] this IServiceProvider provider)
+		[return: MaybeNull]
+		public static T GetService<T>([JetBrains.Annotations.NotNull] this IServiceProvider provider)
 		{
 			Code.NotNull(provider, nameof(provider));
 			return (T)provider.GetService(typeof(T));
@@ -55,9 +57,9 @@ namespace CodeJam.Services
 		/// <returns>
 		/// A service object of type <typeparamref name="T"/>.
 		/// </returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[Pure]
-		public static T GetRequiredService<T>([NotNull] this IServiceProvider provider) =>
+		public static T GetRequiredService<T>([JetBrains.Annotations.NotNull] this IServiceProvider provider) =>
 			(T)provider.GetRequiredService(typeof(T));
 
 		/// <summary>
@@ -67,10 +69,10 @@ namespace CodeJam.Services
 		/// <param name="publisher">Service publisher.</param>
 		/// <param name="serviceInstance">Instance of service of type <typeparamref name="T"/></param>
 		/// <returns>Disposable cookie to conceal published service</returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public static IDisposable Publish<T>(
-			[NotNull] this IServicePublisher publisher,
-			[NotNull] T serviceInstance) where T : class
+			[JetBrains.Annotations.NotNull] this IServicePublisher publisher,
+			[JetBrains.Annotations.NotNull] T serviceInstance) where T : class
 		{
 			Code.NotNull(publisher, nameof(publisher));
 			Code.NotNull(serviceInstance, nameof(serviceInstance));
@@ -84,10 +86,10 @@ namespace CodeJam.Services
 		/// <param name="publisher">Service publisher.</param>
 		/// <param name="instanceFactory">Factory to create service instance</param>
 		/// <returns>Disposable cookie to conceal published service</returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public static IDisposable Publish<T>(
-			[NotNull] this IServicePublisher publisher,
-			[NotNull] Func<IServicePublisher, T> instanceFactory) where T : class
+			[JetBrains.Annotations.NotNull] this IServicePublisher publisher,
+			[JetBrains.Annotations.NotNull] Func<IServicePublisher, T> instanceFactory) where T : class
 		{
 			Code.NotNull(publisher, nameof(publisher));
 			Code.NotNull(instanceFactory, nameof(instanceFactory));

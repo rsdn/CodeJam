@@ -98,7 +98,7 @@ namespace CodeJam.CmdLine
 		private static bool IsOptionPrefix(char prefixChar) => prefixChar == '/' || prefixChar == '-';
 
 		[CanBeNull]
-		private static ParseResult<CommandOrOption> ParseCommandOrOption([NotNull] ICharInput input)
+		private static ParseResult<CommandOrOption>? ParseCommandOrOption([NotNull] ICharInput input)
 		{
 			input = input.ConsumeSpaces();
 			if (IsOptionPrefix(input.Current))
@@ -114,7 +114,7 @@ namespace CodeJam.CmdLine
 		}
 
 		[CanBeNull]
-		private static ParseResult<CommandNode> ParseCommand([NotNull] ICharInput input)
+		private static ParseResult<CommandNode>? ParseCommand([NotNull] ICharInput input)
 		{
 			var res = input.ConsumeWhileNonSpace();
 			if (input.IsEof())

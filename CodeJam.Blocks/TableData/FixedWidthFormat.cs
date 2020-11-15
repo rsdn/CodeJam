@@ -45,7 +45,7 @@ namespace CodeJam.TableData
 			CreateParser(widths).Parse(reader);
 
 		[CanBeNull]
-		private static string[] Parse([NotNull] TextReader reader, ref int lineNum, [NotNull] int[] widths)
+		private static string[]? Parse([NotNull] TextReader reader, ref int lineNum, [NotNull] int[] widths)
 		{
 			var line = reader.ReadLine();
 			if (line == null)

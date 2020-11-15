@@ -20,7 +20,7 @@ namespace CodeJam.Mapping
 	public class Mapper<TFrom, TTo>
 	{
 		[NotNull] private MapperBuilder<TFrom, TTo> _mapperBuilder;
-		[CanBeNull] private Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> _mapperExpression;
+		[CanBeNull] private Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>>? _mapperExpression;
 		private Expression<Func<TFrom, TTo>> _mapperExpressionEx;
 		private Func<TFrom, TTo, IDictionary<object, object>, TTo> _mapper;
 		private Func<TFrom, TTo> _mapperEx;

@@ -81,7 +81,7 @@ namespace CodeJam.Mapping
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
 
 		[CanBeNull]
-		internal static LambdaExpression GetConverter([NotNull] Type from, [NotNull] Type to)
+		internal static LambdaExpression? GetConverter([NotNull] Type from, [NotNull] Type to)
 		{
 			_expressions.TryGetValue(new { from, to }, out var l);
 			return l;
