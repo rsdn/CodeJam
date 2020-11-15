@@ -645,7 +645,7 @@ namespace CodeJam.Expressions
 
 		#region Find
 		[CanBeNull]
-		private static Expression FindInternal<T>(IEnumerable<T> source, Func<T, Expression> func)
+		private static Expression? FindInternal<T>(IEnumerable<T> source, Func<T, Expression> func)
 		{
 			foreach (var item in source)
 			{
@@ -658,7 +658,7 @@ namespace CodeJam.Expressions
 		}
 
 		[CanBeNull]
-		private static Expression FindInternal<T>(IEnumerable<T> source, Func<Expression, bool> func)
+		private static Expression? FindInternal<T>(IEnumerable<T> source, Func<Expression, bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -702,7 +702,7 @@ namespace CodeJam.Expressions
 		[SuppressMessage("ReSharper", "TailRecursiveCall")]
 		[ContractAnnotation("expr:null => null")]
 		[CanBeNull]
-		private static Expression FindInternal(this Expression expr, Func<Expression, bool> func)
+		private static Expression? FindInternal(this Expression expr, Func<Expression, bool> func)
 		{
 			if (expr == null || func(expr))
 				return expr;
@@ -1038,7 +1038,7 @@ namespace CodeJam.Expressions
 		/// <returns>Modified expression.</returns>
 		[Pure, CanBeNull]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		public static T Transform<T>([CanBeNull] this T? expr, [NotNull] Func<Expression, Expression>? func)
+		public static T? Transform<T>([CanBeNull] this T? expr, [NotNull] Func<Expression, Expression>? func)
 			where T : LambdaExpression
 		{
 			Code.NotNull(func, nameof(func));
@@ -1054,7 +1054,7 @@ namespace CodeJam.Expressions
 		/// <returns>Modified expression.</returns>
 		[Pure, CanBeNull]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		public static Expression Transform([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Func<Expression, Expression>? func)
+		public static Expression? Transform([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Func<Expression, Expression>? func)
 		{
 			Code.NotNull(func, nameof(func));
 
@@ -1063,7 +1063,7 @@ namespace CodeJam.Expressions
 
 		[CanBeNull]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		private static Expression TransformInternal([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Func<Expression, Expression>? func)
+		private static Expression? TransformInternal([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Func<Expression, Expression>? func)
 		{
 			if (expr == null)
 				return null;
