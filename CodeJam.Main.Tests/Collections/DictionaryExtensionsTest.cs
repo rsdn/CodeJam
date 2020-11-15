@@ -35,7 +35,7 @@ namespace CodeJam.Collections
 
 			private int Value { get; }
 
-			public override bool Equals(object obj) => Value.Equals((obj as A)?.Value);
+			public override bool Equals(object? obj) => Value.Equals((obj as A)?.Value);
 
 			public override int GetHashCode() => Value.GetHashCode();
 		}

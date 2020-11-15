@@ -110,7 +110,7 @@ namespace CodeJam
 		/// otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current instance. </param>
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			var a = obj as Option<T>;

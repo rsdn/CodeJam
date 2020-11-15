@@ -86,7 +86,7 @@ namespace CodeJam.Ranges
 		/// and represent the same value; otherwise, false.
 		/// </returns>
 		[Pure]
-		public override bool Equals(object obj) => obj is Range<T, TKey> other && Equals(other);
+		public override bool Equals(object? obj) => obj is Range<T, TKey> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

@@ -51,7 +51,7 @@ namespace CodeJam.Threading
 		[Test]
 		public static void TestDoubleUpdate()
 		{
-			const [NonNegativeValue] int count = 1000;
+			const int count = 1000;
 			var field = default(double);
 			var a = 1.0;
 			var b = 2.0;
@@ -108,7 +108,7 @@ namespace CodeJam.Threading
 		[Test]
 		public static void TestFloatUpdate()
 		{
-			const [NonNegativeValue] int count = 1000;
+			const int count = 1000;
 			var field = default(float);
 			var a = 1.0f;
 			var b = 2.0f;
@@ -165,7 +165,7 @@ namespace CodeJam.Threading
 		[Test]
 		public static void TestIntUpdate()
 		{
-			const [NonNegativeValue] int count = 1000;
+			const int count = 1000;
 			var field = default(int);
 			var a = 1;
 			var b = 2;
@@ -222,7 +222,7 @@ namespace CodeJam.Threading
 		[Test]
 		public static void TestLongUpdate()
 		{
-			const [NonNegativeValue] int count = 1000;
+			const int count = 1000;
 			var field = default(long);
 			var a = 1L;
 			var b = 2L;
@@ -279,7 +279,7 @@ namespace CodeJam.Threading
 		[Test]
 		public static void TestStringUpdate()
 		{
-			const [NonNegativeValue] int count = 1000;
+			const int count = 1000;
 			var field = default(string);
 			var a = "A";
 			var b = "B";

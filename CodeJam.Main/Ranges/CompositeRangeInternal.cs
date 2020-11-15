@@ -87,7 +87,6 @@ namespace CodeJam.Ranges
 			[CanBeNull] T? value,
 			[CanBeNull] IComparer<T>? comparer,
 			bool skipDuplicates)
-			where T : class
 		{
 			var insertIndex = sortedList.BinarySearch(value, comparer);
 

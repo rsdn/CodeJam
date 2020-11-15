@@ -387,7 +387,7 @@ namespace CodeJam.Ranges
 		/// and represent the same value; otherwise, false.
 		/// </returns>
 		[Pure]
-		public override bool Equals(object obj) => obj is RangeBoundaryFrom<T> other && Equals(other);
+		public override bool Equals(object? obj) => obj is RangeBoundaryFrom<T> other && Equals(other);
 
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

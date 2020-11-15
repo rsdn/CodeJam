@@ -34,10 +34,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2> other);
+		public abstract bool Equals(OneOf<T1, T2>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -172,10 +172,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3> other);
+		public abstract bool Equals(OneOf<T1, T2, T3>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -357,10 +357,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -591,10 +591,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -876,10 +876,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -1214,10 +1214,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -1607,10 +1607,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;

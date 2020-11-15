@@ -29,7 +29,7 @@ namespace CodeJam.Mapping
 
 			[NotNull] public readonly LambdaExpression Lambda;
 			[NotNull] public readonly LambdaExpression CheckNullLambda;
-			[CanBeNull] public? readonly?? Delegate Delegate;
+			[CanBeNull] public readonly Delegate? Delegate;
 			public readonly bool IsSchemaSpecific;
 		}
 
