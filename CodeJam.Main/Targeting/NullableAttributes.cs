@@ -4,7 +4,7 @@
 
 namespace System.Diagnostics.CodeAnalysis
 {
-#if LESSTHAN_NET46 || LESSTHAN_NETSTANDARD16 || LESSTHAN_NETCOREAPP30
+#if TARGETS_NET || LESSTHAN_NETSTANDARD21 || LESSTHAN_NETCOREAPP31
 
     /// <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property, Inherited = false)]
