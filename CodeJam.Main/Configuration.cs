@@ -152,7 +152,7 @@ namespace CodeJam.Internal
 		private static readonly Action<Action> _tempDataRetryCallback = TempDataRetry;
 
 		[CanBeNull]
-		private static Action<Action> _customTempDataRetryCallback;
+		private static Action<Action>? _customTempDataRetryCallback;
 
 		/// <summary>
 		/// Sets the custom retry callback for <see cref="CodeJam.IO.TempData"/> disposal.

@@ -627,8 +627,9 @@ namespace CodeJam.Collections.Backported
 		/// </returns>
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this Dictionary<TKey, TValue> dictionary, [NotNull] TKey key) =>
-			GetValueOrDefault(dictionary, key, default(TValue));
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this Dictionary<TKey, TValue> dictionary, [NotNull] TKey key) where TKey : notnull =>
+				GetValueOrDefault(dictionary, key, default(TValue));
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -648,7 +649,7 @@ namespace CodeJam.Collections.Backported
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
-			TValue defaultValue)
+			TValue defaultValue) where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
@@ -676,8 +677,9 @@ namespace CodeJam.Collections.Backported
 		/// </returns>
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
-		public static TValue GetValueOrDefault<TKey, TValue>([NotNull] this ConcurrentDictionary<TKey, TValue> dictionary, [NotNull] TKey key) =>
-			GetValueOrDefault(dictionary, key, default(TValue));
+		public static TValue GetValueOrDefault<TKey, TValue>(
+			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary, [NotNull] TKey key) where TKey : notnull =>
+				GetValueOrDefault(dictionary, key, default(TValue));
 
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
@@ -697,7 +699,7 @@ namespace CodeJam.Collections.Backported
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
-			TValue defaultValue)
+			TValue defaultValue) where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 

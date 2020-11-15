@@ -82,7 +82,7 @@ namespace CodeJam.TableData
 			}
 
 			var result = new List<string>();
-			StringBuilder curField = null;
+			StringBuilder? curField = null;
 			var state = ParserState.ExpectField;
 			var column = 1;
 			while (true)

@@ -564,8 +564,8 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To.Arr[0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
-		private class Class20 { public Source Class1 = new Source(); public Source Class2; }
-		private class Class21 { public Dest   Class1 = null;         public Dest   Class2 = null; }
+		private class Class20 { public Source? Class1 = new Source(); public Source Class2; }
+		private class Class21 { public Dest?   Class1 = null;         public Dest   Class2 = null; }
 
 		[Test]
 		public void NoCrossRef([Values(true,false)] bool useAction)

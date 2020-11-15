@@ -65,7 +65,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// true if the specified objects are equal; otherwise, false.
 		/// </returns>
-		public bool Equals(T x, T y) =>
+		public bool Equals([CanBeNull] T? x, [CanBeNull] T? y) =>
 			Comparer.Equals(KeySelector(x), KeySelector(y));
 
 		/// <summary>

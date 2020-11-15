@@ -57,7 +57,7 @@ namespace CodeJam
 		/// Gets enum element display name.
 		/// </summary>
 		[CanBeNull]
-		public string DisplayName { get; }
+		public string? DisplayName { get; }
 
 
 		/// <summary>Gets enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</summary>
@@ -69,7 +69,7 @@ namespace CodeJam
 		/// Enum element description.
 		/// </summary>
 		[CanBeNull]
-		public string Description { get; }
+		public string? Description { get; }
 
 		/// <inheritdoc/>
 		public override string ToString()

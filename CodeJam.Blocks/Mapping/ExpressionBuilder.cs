@@ -529,7 +529,7 @@ namespace CodeJam.Mapping
 				var pTo   = Parameter(toMember.Type, "pTo");
 				var toObj = toMember.GetterExpression.ReplaceParameters(_localObject);
 
-				ParameterExpression nullPrm = null;
+				ParameterExpression? nullPrm = null;
 
 				if (_cacheMapper)
 				{
@@ -658,7 +658,7 @@ namespace CodeJam.Mapping
 		private static object GetValue(IDictionary<object,object> dic, object key) =>
 			dic != null && dic.TryGetValue(key, out var result) ? result : null;
 
-		private static void Add(IDictionary<object,object> dic, object key, object value)
+		private static void Add([CanBeNull] IDictionary<object,object>? dic, [CanBeNull] object? key, [CanBeNull] object? value)
 		{
 			if (key != null && dic != null)
 				dic[key] = value;

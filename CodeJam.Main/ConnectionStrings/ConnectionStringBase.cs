@@ -221,7 +221,7 @@ namespace CodeJam.ConnectionStrings
 		public bool Remove(string key) => _wrapper.Remove(key);
 
 		/// <inheritdoc />
-		public bool TryGetValue(string key, out object value) => _wrapper.TryGetValue(key, out value);
+		public bool TryGetValue(string key, out object? value) => _wrapper.TryGetValue(key, out value);
 
 		/// <inheritdoc />
 		public object this[string key]

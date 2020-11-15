@@ -604,7 +604,7 @@ namespace CodeJam.Mapping
 			MetadataReader = MetadataReader == null ? reader : new MetadataReader(reader, MetadataReader);
 		}
 
-		private IMetadataReader[] _metadataReaders;
+		private IMetadataReader[]? _metadataReaders;
 		private IMetadataReader[] MetadataReaders
 		{
 			get

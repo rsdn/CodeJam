@@ -18,7 +18,7 @@ namespace CodeJam.Threading
 	/// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
 	/// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
 	[PublicAPI]
-	public class ConcurrentLazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue>
+	public class ConcurrentLazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue> where TKey : notnull
 	{
 		[NotNull]
 		private readonly Func<TKey, TValue> _valueFactory;

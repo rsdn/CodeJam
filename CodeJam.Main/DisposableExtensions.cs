@@ -19,7 +19,7 @@ namespace CodeJam
 		/// <exception cref="AggregateException"></exception>
 		public static void DisposeAll([NotNull, ItemNotNull, InstantHandle] this IEnumerable<IDisposable> disposables)
 		{
-			List<Exception> exceptions = null;
+			List<Exception>? exceptions = null;
 
 			foreach (var item in disposables)
 			{

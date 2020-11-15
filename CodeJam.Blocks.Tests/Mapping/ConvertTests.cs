@@ -127,7 +127,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual("10",                  ConvertTo<string>.From(10));
 			Assert.AreEqual("01/20/2012 16:20:30", ConvertTo<string>.From(new DateTime(2012, 1, 20, 16, 20, 30, 40, DateTimeKind.Utc)));
 
-			Convert<DateTime,string>.Expression = null;
+			Convert<DateTime,string>.Expression? = null;
 		}
 
 #if TARGETS_NET || NETCOREAPP20_OR_GREATER

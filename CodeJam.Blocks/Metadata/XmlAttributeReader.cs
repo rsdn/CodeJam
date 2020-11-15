@@ -195,7 +195,7 @@ namespace CodeJam.Metadata
 		/// <returns>Array of custom attributes.</returns>
 		[NotNull, ItemNotNull]
 		public T[] GetAttributes<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
-			where T : Attribute
+			where T : notnull, Attribute
 		{
 			var type = memberInfo.DeclaringType;
 

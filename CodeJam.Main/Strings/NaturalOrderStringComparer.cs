@@ -255,7 +255,7 @@ namespace CodeJam.Strings
 		/// Zero <paramref name="x"/> equals <paramref name="y"/>.
 		/// Greater than zero <paramref name="x"/> is greater than <paramref name="y"/>.
 		/// </returns>
-		int IComparer<string>.Compare(string x, string y) => Compare(x, y, _ignoreCase);
+		int IComparer<string>.Compare([CanBeNull] string? x, [CanBeNull] string? y) => Compare(x, y, _ignoreCase);
 		#endregion
 	}
 }

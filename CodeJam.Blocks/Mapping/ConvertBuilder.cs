@@ -23,7 +23,7 @@ namespace CodeJam.Mapping
 		[NotNull]
 		private static readonly MethodInfo _defaultConverter = InfoOf.Method(() => ConvertDefault(null, typeof(int)));
 
-		private static object ConvertDefault(object value, [NotNull] Type conversionType)
+		private static object ConvertDefault([CanBeNull] object? value, [NotNull] Type conversionType)
 		{
 			try
 			{
@@ -36,7 +36,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression GetCtor([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		private static Expression? GetCtor([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			var ctor = to.GetConstructor(new[] { from });
 
@@ -52,7 +52,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression GetValue([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		private static Expression? GetValue([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			var pi = from.GetProperty("Value");
 
@@ -126,7 +126,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression GetConvertion([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		private static Expression? GetConvertion([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (IsConvertible(from) && IsConvertible(to) && to != typeof(bool) ||
 				from.IsAssignableFrom(to) && to.IsAssignableFrom(from))
@@ -136,7 +136,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression GetParse([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		private static Expression? GetParse([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (from == typeof(string))
 			{
@@ -162,7 +162,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression GetToString([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		private static Expression? GetToString([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (to == typeof(string) && !from.IsNullable())
 			{
@@ -180,7 +180,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression GetParseEnum([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		private static Expression? GetParseEnum([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
 		{
 			if (from == typeof(string) && to.GetIsEnum())
 			{
@@ -243,7 +243,7 @@ namespace CodeJam.Mapping
 		private static readonly MethodInfo _throwLinqToDBConvertException = InfoOf.Method(() => ThrowLinqToDBException(null));
 
 		[CanBeNull]
-		private static Expression GetToEnum(
+		private static Expression? GetToEnum(
 			[NotNull] Type from,
 			[NotNull] Type to,
 			[NotNull] Expression expression,
@@ -334,7 +334,7 @@ namespace CodeJam.Mapping
 		}
 
 		[CanBeNull]
-		private static Expression GetFromEnum(
+		private static Expression? GetFromEnum(
 			[NotNull] Type from,
 			[NotNull] Type to,
 			[NotNull] Expression expression,
@@ -633,7 +633,7 @@ namespace CodeJam.Mapping
 		#region Default Enum Mapping Type
 
 		[CanBeNull]
-		public static Type GetDefaultMappingFromEnumType([NotNull] MappingSchema mappingSchema, [NotNull] Type enumType)
+		public static Type? GetDefaultMappingFromEnumType([NotNull] MappingSchema mappingSchema, [NotNull] Type enumType)
 		{
 			var type = enumType.ToNullableUnderlying();
 

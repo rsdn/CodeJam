@@ -87,7 +87,7 @@ namespace CodeJam.Collections
 			[NotNull] private readonly Func<T, T, bool> _equals;
 			[NotNull] private readonly Func<T, int> _getHashCode;
 
-			public override bool Equals(T x, T y) =>
+			public override bool Equals([CanBeNull] T? x, [CanBeNull] T? y) =>
 				x != null ? y != null && _equals(x, y) : y == null;
 
 			public override int GetHashCode(T obj) =>
