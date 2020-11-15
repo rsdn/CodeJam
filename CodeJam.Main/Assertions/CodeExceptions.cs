@@ -301,7 +301,8 @@ namespace CodeJam
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
 			[NotNull, InvokerParameterName] string argumentName,
 			[CanBeNull] T? value,
-			[NotNull] string messageFormat, [CanBeNull] params object[]? args)
+			[NotNull] string messageFormat,
+			[CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
