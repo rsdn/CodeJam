@@ -34,7 +34,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<IGrouping<TKey, T>> GroupWhileEquals<T, TKey>(
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer)
+			[CanBeNull] IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(keySelector, nameof(keySelector));
@@ -47,7 +47,7 @@ namespace CodeJam.Collections
 		private static IEnumerable<IGrouping<TKey, T>> GroupWhileCore<T, TKey>(
 			[NotNull] IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer)
+			[CanBeNull] IEqualityComparer<TKey>? comparer)
 		{
 			comparer ??= EqualityComparer<TKey>.Default;
 			var key = default(TKey);
@@ -103,7 +103,7 @@ namespace CodeJam.Collections
 			[NotNull] this IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
 			[NotNull] Func<T, TItem> itemSelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer)
+			[CanBeNull] IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(keySelector, nameof(keySelector));
@@ -117,7 +117,7 @@ namespace CodeJam.Collections
 			[NotNull] IEnumerable<T> source,
 			[NotNull] Func<T, TKey> keySelector,
 			[NotNull] Func<T, TItem> itemSelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer)
+			[CanBeNull] IEqualityComparer<TKey>? comparer)
 		{
 			comparer ??= EqualityComparer<TKey>.Default;
 			var key = default(TKey);

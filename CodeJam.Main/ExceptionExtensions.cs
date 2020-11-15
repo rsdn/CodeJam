@@ -40,7 +40,7 @@ namespace CodeJam
 		/// <param name="fromNewLine">If <c>true</c> - do not inject separator line from start.</param>
 		/// <returns>Detailed exception text.</returns>
 		public static void ToDiagnosticString(
-			[CanBeNull] this Exception exception,
+			[CanBeNull] this Exception? exception,
 			[NotNull] TextWriter writer,
 			bool fromNewLine = true)
 		{
@@ -112,7 +112,7 @@ namespace CodeJam
 		/// <returns>Detailed exception text.</returns>
 		[NotNull]
 		public static Task ToDiagnosticStringAsync(
-			[CanBeNull] this Exception exception,
+			[CanBeNull] this Exception? exception,
 			[NotNull] TextWriter writer,
 			bool fromNewLine = true)
 		{
@@ -123,7 +123,7 @@ namespace CodeJam
 
 		[NotNull]
 		private static async Task ToDiagnosticStringImplAsync(
-			[CanBeNull] this Exception exception,
+			[CanBeNull] this Exception? exception,
 			[NotNull] TextWriter writer,
 			bool fromNewLine = true)
 		{
@@ -191,7 +191,7 @@ namespace CodeJam
 		/// <returns>Detailed exception text.</returns>
 		[Pure]
 		[NotNull]
-		public static string ToDiagnosticString([CanBeNull] this Exception exception) =>
+		public static string ToDiagnosticString(this Exception? exception) =>
 			exception == null ? "" : exception.ToDiagnosticString(new StringBuilder()).ToString();
 	}
 }

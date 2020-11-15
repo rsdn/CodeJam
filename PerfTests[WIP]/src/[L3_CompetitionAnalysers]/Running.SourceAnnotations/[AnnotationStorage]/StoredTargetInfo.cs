@@ -19,8 +19,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 		/// <summary>Initializes a new instance of the <see cref="StoredTargetInfo"/> class.</summary>
 		/// <param name="metricValues">The stored metric values.</param>
 		/// <param name="baseline">
-		/// <c>true</c> if the target is baseline; 
-		/// <c>null</c> if baseline info is not persisted; 
+		/// <c>true</c> if the target is baseline;
+		/// <c>null</c> if baseline info is not persisted;
 		/// otherwise, <c>false</c>.
 		/// </param>
 		public StoredTargetInfo(
@@ -38,8 +38,8 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		/// <summary>Gets a value indicating whether the target is a baseline.</summary>
 		/// <value>
-		/// <c>true</c> if the target is baseline; 
-		/// <c>null</c> if baseline info is not persisted; 
+		/// <c>true</c> if the target is baseline;
+		/// <c>null</c> if baseline info is not persisted;
 		/// otherwise, <c>false</c>.
 		/// </value>
 		public bool? Baseline { get; }

@@ -140,7 +140,7 @@ namespace CodeJam.Strings
 		/// <returns>Trimmed <paramref name="str"/>, or original <paramref name="str"/> if prefix not exists.</returns>
 		[NotNull]
 		[Pure]
-		public static string TrimPrefix([NotNull] this string str, [CanBeNull] string prefix) =>
+		public static string TrimPrefix([NotNull] this string str, [CanBeNull] string? prefix) =>
 			TrimPrefix(str, prefix, StringComparer.CurrentCulture);
 
 		/// <summary>
@@ -154,7 +154,7 @@ namespace CodeJam.Strings
 		[Pure]
 		public static string TrimPrefix(
 			[NotNull] this string str,
-			[CanBeNull] string prefix,
+			[CanBeNull] string? prefix,
 			[NotNull] IEqualityComparer<string> comparer)
 		{
 			Code.NotNull(str, nameof(str));
@@ -184,7 +184,7 @@ namespace CodeJam.Strings
 		[Pure]
 		public static string TrimSuffix(
 			[NotNull] this string str,
-			[CanBeNull] string suffix,
+			[CanBeNull] string? suffix,
 			[NotNull] IEqualityComparer<string> comparer)
 		{
 			Code.NotNull(str, nameof(str));
@@ -212,7 +212,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[NotNull]
 		[Pure]
-		public static string TrimSuffix([NotNull] this string str, [CanBeNull] string suffix) =>
+		public static string TrimSuffix([NotNull] this string str, [CanBeNull] string? suffix) =>
 			TrimSuffix(str, suffix, StringComparer.CurrentCulture);
 
 		[NotNull, ItemNotNull]
@@ -244,7 +244,7 @@ namespace CodeJam.Strings
 		/// <returns>Value as size in bytes</returns>
 		[NotNull]
 		[Pure]
-		public static string ToByteSizeString(this long value, [CanBeNull] IFormatProvider provider)
+		public static string ToByteSizeString(this long value, [CanBeNull] IFormatProvider? provider)
 		{
 			if (value < 0)
 				return "-" + (-value).ToByteSizeString(provider);
@@ -271,7 +271,7 @@ namespace CodeJam.Strings
 		/// <returns>Value as size in bytes</returns>
 		[NotNull]
 		[Pure]
-		public static string ToByteSizeString(this int value, [CanBeNull] IFormatProvider provider) =>
+		public static string ToByteSizeString(this int value, [CanBeNull] IFormatProvider? provider) =>
 			ToByteSizeString((long)value, provider);
 
 		/// <summary>
@@ -343,7 +343,7 @@ namespace CodeJam.Strings
 		/// <exception cref="ArgumentNullException"><paramref name="data"/> is null.</exception>
 		[NotNull]
 		[Pure]
-		public static unsafe string ToHexString([NotNull] this byte[] data, [CanBeNull] string byteSeparator)
+		public static unsafe string ToHexString([NotNull] this byte[] data, [CanBeNull] string? byteSeparator)
 		{
 			Code.NotNull(data, nameof(data));
 

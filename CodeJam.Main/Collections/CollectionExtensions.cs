@@ -81,7 +81,7 @@ namespace CodeJam.Collections
 		[Pure]
 		[NotNull]
 		[LinqTunnel]
-		public static IEnumerable<T> EmptyIfNull<T>([CanBeNull] this IEnumerable<T> source) => source ?? Enumerable.Empty<T>();
+		public static IEnumerable<T> EmptyIfNull<T>([CanBeNull] this IEnumerable<T>? source) => source ?? Enumerable.Empty<T>();
 
 		/// <summary>
 		/// Returns an empty instance of the array for null values.
@@ -91,7 +91,7 @@ namespace CodeJam.Collections
 		/// <returns>The array or empty instance if the array is <c>null</c>.</returns>
 		[Pure]
 		[NotNull]
-		public static T[] EmptyIfNull<T>([CanBeNull] this T[] array) => array ?? Array<T>.Empty;
+		public static T[] EmptyIfNull<T>([CanBeNull] this T[]? array) => array ?? Array<T>.Empty;
 
 		/// <summary>
 		/// Returns an empty instance of the collection for null values.
@@ -101,7 +101,7 @@ namespace CodeJam.Collections
 		/// <returns>The collection or empty instance if the collection is <c>null</c>.</returns>
 		[Pure]
 		[NotNull]
-		public static List<T> EmptyIfNull<T>([CanBeNull] this List<T> collection) => collection ?? new List<T>();
+		public static List<T> EmptyIfNull<T>([CanBeNull] this List<T>? collection) => collection ?? new List<T>();
 
 		/// <summary>
 		/// Returns an empty instance of the dictionary for null values.
@@ -112,7 +112,7 @@ namespace CodeJam.Collections
 		/// <returns>The dictionary or <c>null</c> if the dictionary is <c>null</c>.</returns>
 		[Pure]
 		[NotNull]
-		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>([CanBeNull] this Dictionary<TKey, TValue> dictionary) =>
+		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>([CanBeNull] this Dictionary<TKey, TValue>? dictionary) =>
 			dictionary ?? new Dictionary<TKey, TValue>();
 
 		/// <summary>
@@ -126,7 +126,7 @@ namespace CodeJam.Collections
 		[Pure]
 		[NotNull]
 		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>(
-			[CanBeNull] this Dictionary<TKey, TValue> dictionary,
+			[CanBeNull] this Dictionary<TKey, TValue>? dictionary,
 			IEqualityComparer<TKey> comparer) => dictionary ?? new Dictionary<TKey, TValue>(comparer);
 
 		/// <summary>
@@ -137,7 +137,7 @@ namespace CodeJam.Collections
 		/// <returns><c>null</c> if the array is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static T[] NullIfEmpty<T>([CanBeNull] this T[] array) => array.IsNullOrEmpty() ? null : array;
+		public static T[] NullIfEmpty<T>([CanBeNull] this T[]? array) => array.IsNullOrEmpty() ? null : array;
 
 		/// <summary>
 		/// Returns <c>null</c> if the collection is empty.
@@ -147,7 +147,7 @@ namespace CodeJam.Collections
 		/// <returns><c>null</c> if the collection is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static List<T> NullIfEmpty<T>([CanBeNull] this List<T> collection) =>
+		public static List<T> NullIfEmpty<T>([CanBeNull] this List<T>? collection) =>
 			collection.IsNullOrEmpty() ? null : collection;
 
 		/// <summary>
@@ -160,7 +160,7 @@ namespace CodeJam.Collections
 		[Pure]
 		[CanBeNull]
 		public static Dictionary<TKey, TValue> NullIfEmpty<TKey, TValue>(
-			[CanBeNull] this Dictionary<TKey, TValue> dictionary) =>
+			[CanBeNull] this Dictionary<TKey, TValue>? dictionary) =>
 				dictionary.IsNullOrEmpty() ? null : dictionary;
 
 		/// <summary>

@@ -36,7 +36,7 @@ namespace CodeJam.Internal
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		public static string InvariantFormat([NotNull] string messageFormat, [CanBeNull] params object[] args) =>
+		public static string InvariantFormat([NotNull] string messageFormat, [CanBeNull] params object[]? args) =>
 			(args == null || args.Length == 0)
 				? messageFormat
 				: string.Format(CultureInfo.InvariantCulture, messageFormat, args);

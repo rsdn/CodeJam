@@ -105,7 +105,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 
 		private readonly DocumentsCache _documentsCache;
 
-		private readonly object _lockKey = new object(); 
+		private readonly object _lockKey = new object();
 		#endregion
 
 		/// <summary>Initializes a new instance of the <see cref="AnnotationContext"/> class.</summary>
@@ -208,7 +208,7 @@ namespace CodeJam.PerfTests.Running.SourceAnnotations
 			{
 				sourceDocument.Save();
 			}
-		} 
+		}
 		#endregion
 
 		/// <summary>

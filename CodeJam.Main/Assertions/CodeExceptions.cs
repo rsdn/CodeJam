@@ -196,7 +196,7 @@ namespace CodeJam
 		public static ArgumentException Argument(
 			[NotNull, InvokerParameterName] string argumentName,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -213,7 +213,7 @@ namespace CodeJam
 		[StringFormatMethod("messageFormat")]
 		public static InvalidOperationException InvalidOperation(
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new InvalidOperationException(InvariantFormat(messageFormat, args))
@@ -228,7 +228,7 @@ namespace CodeJam
 		[StringFormatMethod("messageFormat")]
 		public static OverflowException Overflow(
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new OverflowException(InvariantFormat(messageFormat, args))
@@ -245,7 +245,7 @@ namespace CodeJam
 		[StringFormatMethod("messageFormat")]
 		public static TimeoutException Timeout(
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new TimeoutException(InvariantFormat(messageFormat, args))
@@ -275,7 +275,7 @@ namespace CodeJam
 		[DebuggerHidden, NotNull, MustUseReturnValue]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
 			[NotNull, InvokerParameterName] string argumentName,
-			[CanBeNull] T value)
+			[CanBeNull] T? value)
 		{
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
@@ -300,8 +300,8 @@ namespace CodeJam
 		[StringFormatMethod("messageFormat")]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
 			[NotNull, InvokerParameterName] string argumentName,
-			[CanBeNull] T value,
-			[NotNull] string messageFormat, [CanBeNull] params object[] args)
+			[CanBeNull] T? value,
+			[NotNull] string messageFormat, [CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
@@ -319,7 +319,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
 		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static InvalidOperationException UnexpectedValue<T>([CanBeNull] T value)
+		public static InvalidOperationException UnexpectedValue<T>([CanBeNull] T? value)
 		{
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
@@ -338,7 +338,7 @@ namespace CodeJam
 		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static InvalidOperationException UnexpectedValue(
-			[NotNull] string messageFormat, [CanBeNull] params object[] args)
+			[NotNull] string messageFormat, [CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new InvalidOperationException(InvariantFormat(messageFormat, args))
@@ -349,7 +349,7 @@ namespace CodeJam
 		/// <param name="typeofDisposedObject">The typeof disposed object.</param>
 		/// <returns>Initialized instance of <see cref="ObjectDisposedException"/>.</returns>
 		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ObjectDisposedException ObjectDisposed([CanBeNull] Type typeofDisposedObject)
+		public static ObjectDisposedException ObjectDisposed([CanBeNull] Type? typeofDisposedObject)
 		{
 			BreakIfAttached();
 			return new ObjectDisposedException(typeofDisposedObject?.FullName)
@@ -364,9 +364,9 @@ namespace CodeJam
 		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static ObjectDisposedException ObjectDisposed(
-			[CanBeNull] Type typeofDisposedObject,
+			[CanBeNull] Type? typeofDisposedObject,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new ObjectDisposedException(
@@ -381,7 +381,7 @@ namespace CodeJam
 		/// <returns>Initialized instance of <see cref="NotSupportedException"/>.</returns>
 		[DebuggerHidden, NotNull, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		public static NotSupportedException Unreachable([NotNull] string messageFormat, [CanBeNull] params object[] args)
+		public static NotSupportedException Unreachable([NotNull] string messageFormat, [CanBeNull] params object[]? args)
 		{
 			BreakIfAttached();
 			return new NotSupportedException(InvariantFormat(messageFormat, args))

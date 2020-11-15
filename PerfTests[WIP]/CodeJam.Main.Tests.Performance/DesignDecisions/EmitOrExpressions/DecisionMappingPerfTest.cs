@@ -21,11 +21,11 @@ namespace CodeJam.DesignDecisions.EmitOrExpressions
 	/// Proofs that Expression.Compile() is inefficient for member access operations.
 	/// See http://stackoverflow.com/questions/4211418/why-is-func-created-from-expressionfunc-slower-than-func-declared-direct
 	/// See http://stackoverflow.com/questions/5053032/performance-of-compiled-to-delegate-expression
-	/// 
+	///
 	/// IMPORTANT: Compiled expressions have overhead if your code perform member access.
 	/// RECOMMENDED: Triple check ALL of the following before using Reflection.Emit instead of compiled expressions:
 	/// * The body of emitted method is a simple statement that performs member access only.
-	/// * The emitted method is on performance-critical hotpath and there's a perftest that proofs that total boost from 
+	/// * The emitted method is on performance-critical hotpath and there's a perftest that proofs that total boost from
 	///   swtching to il-emit is at least 10%.
 	/// * You're not targeting .net Native (.net Native does not include JIT, either way emitted code will be interpreted)
 	/// </summary>

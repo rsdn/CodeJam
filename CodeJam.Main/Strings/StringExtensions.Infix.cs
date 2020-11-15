@@ -21,7 +21,7 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is null or empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => true")]
-		public static bool IsNullOrEmpty([CanBeNull] this string str)
+		public static bool IsNullOrEmpty([CanBeNull] this string? str)
 		{
 			// DONTTOUCH: Do not remove return statements
 			// https://github.com/dotnet/coreclr/issues/914
@@ -39,7 +39,7 @@ namespace CodeJam.Strings
 		/// <returns><c>true</c> if <paramref name="str"/> is not null nor empty; otherwise, <c>false</c>.</returns>
 		[Pure]
 		[ContractAnnotation("str:null => false")]
-		public static bool NotNullNorEmpty([CanBeNull] this string str) => !str.IsNullOrEmpty();
+		public static bool NotNullNorEmpty([CanBeNull] this string? str) => !str.IsNullOrEmpty();
 
 		/// <summary>
 		/// Infix form of string.IsNullOrWhiteSpace.
@@ -51,7 +51,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => true")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool IsNullOrWhiteSpace([CanBeNull] this string str) => StringEx.IsNullOrWhiteSpace(str);
+		public static bool IsNullOrWhiteSpace([CanBeNull] this string? str) => StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Returns an empty string for null value.
@@ -60,7 +60,7 @@ namespace CodeJam.Strings
 		/// <returns>The string or <see cref="string.Empty"/> if the string is <c>null</c>.</returns>
 		[Pure]
 		[NotNull]
-		public static string EmptyIfNull([CanBeNull] this string str) => str ?? string.Empty;
+		public static string EmptyIfNull([CanBeNull] this string? str) => str ?? string.Empty;
 
 		/// <summary>
 		/// Returns <c>null</c> for empty strings.
@@ -69,7 +69,7 @@ namespace CodeJam.Strings
 		/// <returns>The string or <c>null</c> if the string is empty.</returns>
 		[Pure]
 		[CanBeNull]
-		public static string NullIfEmpty([CanBeNull] this string str) => str.IsNullOrEmpty() ? null : str;
+		public static string NullIfEmpty([CanBeNull] this string? str) => str.IsNullOrEmpty() ? null : str;
 
 		/// <summary>
 		/// Returns <c>null</c> for empty or whitespace strings.
@@ -91,7 +91,7 @@ namespace CodeJam.Strings
 		[Pure]
 		[ContractAnnotation("str:null => false")]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool NotNullNorWhiteSpace([CanBeNull] this string str) => !StringEx.IsNullOrWhiteSpace(str);
+		public static bool NotNullNorWhiteSpace([CanBeNull] this string? str) => !StringEx.IsNullOrWhiteSpace(str);
 
 		/// <summary>
 		/// Replaces one or more format items in a specified string with the string representation of a specified object.
@@ -170,7 +170,7 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[NotNull, Pure]
-		public static string Join([NotNull] this string[] values, [CanBeNull] string separator) =>
+		public static string Join([NotNull] this string[] values, [CanBeNull] string? separator) =>
 			string.Join(separator, values);
 
 		/// <summary>
@@ -191,7 +191,7 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[NotNull, Pure]
-		public static string Join([NotNull, InstantHandle] this IEnumerable<string> values, [CanBeNull] string separator) =>
+		public static string Join([NotNull, InstantHandle] this IEnumerable<string> values, [CanBeNull] string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join(separator, values);
 
@@ -210,7 +210,7 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[NotNull, Pure]
-		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values, [CanBeNull] string separator) =>
+		public static string Join<T>([NotNull, InstantHandle] this IEnumerable<T> values, [CanBeNull] string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join(separator, values);
 
@@ -234,7 +234,7 @@ namespace CodeJam.Strings
 		/// <param name="str">The string.</param>
 		/// <returns>Length of the <paramref name="str"/> or 0, if <paramref name="str"/> is null.</returns>
 		[Pure]
-		public static int Length([CanBeNull] this string str) => str?.Length ?? 0;
+		public static int Length([CanBeNull] this string? str) => str?.Length ?? 0;
 
 		/// <summary>
 		/// Converts the specified string, which encodes binary data as base-64 digits, to an equivalent byte array.

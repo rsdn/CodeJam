@@ -56,7 +56,7 @@ namespace CodeJam.ConnectionStrings
 
 		/// <summary>Initializes a new instance of the <see cref="ConnectionStringBase" /> class.</summary>
 		/// <param name="connectionString">The connection string.</param>
-		protected ConnectionStringBase([CanBeNull] string connectionString) =>
+		protected ConnectionStringBase([CanBeNull] string? connectionString) =>
 			_wrapper = new StringBuilderWrapper(connectionString, GetType());
 
 		/// <summary>
@@ -98,14 +98,14 @@ namespace CodeJam.ConnectionStrings
 		/// <returns>Value for the keyword</returns>
 		[CanBeNull, MustUseReturnValue]
 		protected int? TryGetInt32Value(string keyword) =>
-			_wrapper.TryGetValue(keyword, out var item) ? Convert.ToInt32(item) : default(int?);
+			_wrapper.TryGetValue(keyword, out var item) ? Convert.ToInt32(item) : default(int);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
 		/// <returns>Value for the keyword</returns>
 		[CanBeNull, MustUseReturnValue]
 		protected long? TryGetInt64Value(string keyword) =>
-			_wrapper.TryGetValue(keyword, out var item) ? Convert.ToInt64(item) : default(long?);
+			_wrapper.TryGetValue(keyword, out var item) ? Convert.ToInt64(item) : default(long);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
@@ -114,21 +114,21 @@ namespace CodeJam.ConnectionStrings
 		protected DateTimeOffset? TryGetDateTimeOffsetValue(string keyword) =>
 			_wrapper.TryGetStringValue(keyword, out var item)
 				? DateTimeOffset.Parse(item, CultureInfo.InvariantCulture, DateTimeStyles.None)
-				: default(DateTimeOffset?);
+				: default(DateTimeOffset);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">The value for the keyword.</param>
 		/// <returns>Value for the keyword</returns>
 		[CanBeNull, MustUseReturnValue]
 		protected Guid? TryGetGuidValue(string keyword) =>
-			_wrapper.TryGetStringValue(keyword, out var item) ? new Guid(item) : default(Guid?);
+			_wrapper.TryGetStringValue(keyword, out var item) ? new Guid(item) : default(Guid);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">The value for the keyword.</param>
 		/// <returns>Value for the keyword</returns>
 		[CanBeNull, MustUseReturnValue]
 		protected TimeSpan? TryGetTimeSpanValue(string keyword) =>
-			_wrapper.TryGetStringValue(keyword, out var item) ? TimeSpan.Parse(item) : default(TimeSpan?);
+			_wrapper.TryGetStringValue(keyword, out var item) ? TimeSpan.Parse(item) : default(TimeSpan);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">The value for the keyword.</param>

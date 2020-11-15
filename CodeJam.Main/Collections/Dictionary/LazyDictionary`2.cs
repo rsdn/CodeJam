@@ -26,7 +26,7 @@ namespace CodeJam.Collections
 		public LazyDictionary(
 			[NotNull] Func<TKey, TValue> valueFactory,
 			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
-			[CanBeNull] IEqualityComparer<TKey> comparer)
+			[CanBeNull] IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(valueFactory,nameof(valueFactory));
 
@@ -40,7 +40,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		/// <param name="comparer">Key comparer.</param>
-		public LazyDictionary([NotNull] Func<TKey, TValue> valueFactory, [CanBeNull] IEqualityComparer<TKey> comparer)
+		public LazyDictionary([NotNull] Func<TKey, TValue> valueFactory, [CanBeNull] IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(valueFactory,nameof(valueFactory));
 

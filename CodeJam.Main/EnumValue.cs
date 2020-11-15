@@ -21,8 +21,8 @@ namespace CodeJam
 			[NotNull] string name,
 			[NotNull] Enum value,
 			[NotNull] FieldInfo underlyingField,
-			[CanBeNull] string displayName,
-			[CanBeNull] string description)
+			[CanBeNull] string? displayName,
+			[CanBeNull] string? description)
 		{
 			Code.NotNullNorEmpty(name, nameof(name));
 			Code.NotNull(value, nameof(value));

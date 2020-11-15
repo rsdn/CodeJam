@@ -132,8 +132,8 @@ namespace CodeJam.Collections
 			[NotNull] this IQueryable<T> source,
 			[NotNull] Expression<Func<T, object>> fromValueSelector,
 			[NotNull] Expression<Func<T, object>> toValueSelector,
-			[CanBeNull] Expression<Func<T, bool>> fromInfinityPredicate,
-			[CanBeNull] Expression<Func<T, bool>> toInfinityPredicate,
+			[CanBeNull] Expression<Func<T, bool>?> fromInfinityPredicate,
+			[CanBeNull] Expression<Func<T, bool>?> toInfinityPredicate,
 			Range<TValue> range)
 		{
 			Code.NotNull(source, nameof(source));

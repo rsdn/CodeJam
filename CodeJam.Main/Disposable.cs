@@ -130,7 +130,7 @@ namespace CodeJam
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
 		[NotNull, Pure]
-		public static IDisposable Create<T>([NotNull] Action<T> disposeAction, [CanBeNull] T state) => new AnonymousDisposable<T>(disposeAction, state);
+		public static IDisposable Create<T>([NotNull] Action<T> disposeAction, [CanBeNull] T? state) => new AnonymousDisposable<T>(disposeAction, state);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>

@@ -6,6 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+#nullable enable
 
 using static CodeJam.DebugCode;
 
@@ -150,7 +151,7 @@ namespace CodeJam
 		public static void StateFlagSet<TEnum>(
 			TEnum value, TEnum flag,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagSet(flag))
@@ -182,7 +183,7 @@ namespace CodeJam
 		public static void AnyStateFlagUnset<TEnum>(
 			TEnum value, TEnum flags,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagUnset(flags))
@@ -214,7 +215,7 @@ namespace CodeJam
 		public static void AnyStateFlagSet<TEnum>(
 			TEnum value, TEnum flags,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagSet(flags))
@@ -246,7 +247,7 @@ namespace CodeJam
 		public static void StateFlagUnset<TEnum>(
 			TEnum value, TEnum flag,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagUnset(flag))

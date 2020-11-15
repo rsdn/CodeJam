@@ -14,7 +14,7 @@ namespace CodeJam.Reflection
 		/// <param name="name">Name of the parameter.</param>
 		/// <param name="value">Value of the parameter.</param>
 		/// <param name="required"><c>True</c> if parameter required.</param>
-		public ParamInfo([NotNull] string name, [CanBeNull] object value, bool required = true)
+		public ParamInfo([NotNull] string name, [CanBeNull] object? value, bool required = true)
 		{
 			Code.NotNullNorWhiteSpace(name, nameof(name));
 
@@ -30,7 +30,7 @@ namespace CodeJam.Reflection
 		/// <returns>Instance of <see cref="ParamInfo"/>.</returns>
 		[Pure]
 		[NotNull]
-		public static ParamInfo Param([NotNull] string name, [CanBeNull] object value, bool required = true) =>
+		public static ParamInfo Param([NotNull] string name, [CanBeNull] object? value, bool required = true) =>
 			new ParamInfo(name, value, required);
 
 		/// <summary>

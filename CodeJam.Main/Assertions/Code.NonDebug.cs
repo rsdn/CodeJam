@@ -77,7 +77,7 @@ namespace CodeJam
 			bool disposed,
 			[NotNull] TDisposable thisReference,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 			where TDisposable : IDisposable
 		{
 			if (disposed)
@@ -136,7 +136,7 @@ namespace CodeJam
 			[CanBeNull, NoEnumeration] TResource resource,
 			[NotNull] TDisposable thisReference,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 			where TResource : class
 			where TDisposable : IDisposable
 		{

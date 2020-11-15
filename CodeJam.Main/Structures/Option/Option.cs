@@ -32,7 +32,7 @@ namespace CodeJam
 		/// or instance without value.
 		/// </returns>
 		[Pure, NotNull]
-		public static Option<T> SomeHasValue<T>([CanBeNull] T value) where T : class =>
+		public static Option<T> SomeHasValue<T>([CanBeNull] T? value) where T : class =>
 			value != null ? Some(value) : None<T>();
 
 		/// <summary>

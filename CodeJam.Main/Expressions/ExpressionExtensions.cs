@@ -33,14 +33,14 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expr"><see cref="Expression"/> to visit.</param>
 		/// <param name="func">Visit action.</param>
-		public static void Visit([CanBeNull] this Expression expr, [NotNull, InstantHandle] Action<Expression> func)
+		public static void Visit([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Action<Expression>? func)
 		{
 			Code.NotNull(func, nameof(func));
 
 			VisitInternal(expr, func);
 		}
 
-		private static void VisitInternal([CanBeNull] this Expression expr, [NotNull, InstantHandle] Action<Expression> func)
+		private static void VisitInternal([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Action<Expression>? func)
 		{
 			if (expr == null)
 				return;
@@ -347,7 +347,7 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expr"><see cref="Expression"/> to visit.</param>
 		/// <param name="func">Visit function. Return true to stop.</param>
-		public static void Visit([CanBeNull] this Expression expr, [NotNull] Func<Expression, bool> func)
+		public static void Visit([CanBeNull] this Expression? expr, [NotNull] Func<Expression, bool>? func)
 		{
 			Code.NotNull(func, nameof(func));
 
@@ -355,7 +355,7 @@ namespace CodeJam.Expressions
 		}
 
 		[SuppressMessage("ReSharper", "TailRecursiveCall")]
-		private static void VisitInternal([CanBeNull] this Expression expr, [NotNull, InstantHandle] Func<Expression, bool> func)
+		private static void VisitInternal([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Func<Expression, bool>? func)
 		{
 			if (expr == null || !func(expr))
 				return;
@@ -678,7 +678,7 @@ namespace CodeJam.Expressions
 		/// <param name="exprToFind">Expression to find.</param>
 		/// <returns>Found expression or null.</returns>
 		[Pure]
-		public static Expression Find([CanBeNull] this Expression expr, [NotNull] Expression exprToFind)
+		public static Expression Find([CanBeNull] this Expression? expr, [NotNull] Expression exprToFind)
 		{
 			Code.NotNull(exprToFind, nameof(exprToFind));
 
@@ -692,7 +692,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Find function. Return true if expression is found.</param>
 		/// <returns>Found expression or null.</returns>
 		[Pure]
-		public static Expression Find([CanBeNull] this Expression expr, [NotNull] Func<Expression, bool> func)
+		public static Expression Find([CanBeNull] this Expression? expr, [NotNull] Func<Expression, bool>? func)
 		{
 			Code.NotNull(func, nameof(func));
 
@@ -1038,7 +1038,7 @@ namespace CodeJam.Expressions
 		/// <returns>Modified expression.</returns>
 		[Pure, CanBeNull]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		public static T Transform<T>([CanBeNull] this T expr, [NotNull] Func<Expression, Expression> func)
+		public static T Transform<T>([CanBeNull] this T? expr, [NotNull] Func<Expression, Expression>? func)
 			where T : LambdaExpression
 		{
 			Code.NotNull(func, nameof(func));
@@ -1054,7 +1054,7 @@ namespace CodeJam.Expressions
 		/// <returns>Modified expression.</returns>
 		[Pure, CanBeNull]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		public static Expression Transform([CanBeNull] this Expression expr, [NotNull, InstantHandle] Func<Expression, Expression> func)
+		public static Expression Transform([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Func<Expression, Expression>? func)
 		{
 			Code.NotNull(func, nameof(func));
 
@@ -1063,7 +1063,7 @@ namespace CodeJam.Expressions
 
 		[CanBeNull]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		private static Expression TransformInternal([CanBeNull] this Expression expr, [NotNull, InstantHandle] Func<Expression, Expression> func)
+		private static Expression TransformInternal([CanBeNull] this Expression? expr, [NotNull, InstantHandle] Func<Expression, Expression>? func)
 		{
 			if (expr == null)
 				return null;

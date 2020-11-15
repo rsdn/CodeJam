@@ -441,7 +441,7 @@ namespace CodeJam.Collections
 		public static bool IsFirst<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TSource item,
-			[CanBeNull] IEqualityComparer<TSource> comparer)
+			[CanBeNull] IEqualityComparer<TSource>? comparer)
 		{
 			Code.NotNull(source, nameof(source));
 
@@ -486,7 +486,7 @@ namespace CodeJam.Collections
 		public static bool IsLast<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TSource item,
-			[CanBeNull] IEqualityComparer<TSource> comparer)
+			[CanBeNull] IEqualityComparer<TSource>? comparer)
 		{
 			Code.NotNull(source, nameof(source));
 

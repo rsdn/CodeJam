@@ -274,7 +274,7 @@ namespace CodeJam.Reflection
 			};
 		}
 
-		private static bool IsOverriden([CanBeNull] MethodInfo method) =>
+		private static bool IsOverriden([CanBeNull] MethodInfo? method) =>
 			method != null &&
 				!method.IsStatic &&
 				method.IsVirtual &&

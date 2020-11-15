@@ -539,7 +539,7 @@ namespace CodeJam.Reflection
 		[CanBeNull]
 		[Pure]
 		[ContractAnnotation("type:null => null")]
-		public static Type GetItemType([CanBeNull] this Type type)
+		public static Type GetItemType([CanBeNull] this Type? type)
 		{
 			while (true)
 			{

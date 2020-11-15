@@ -45,7 +45,7 @@ namespace CodeJam.Collections
 		/// <param name="item">The item.</param>
 		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected abstract void SetOwner([NotNull] TItem item, int index, [CanBeNull] TOwner owner);
+		protected abstract void SetOwner([NotNull] TItem item, int index, [CanBeNull] TOwner? owner);
 
 		/// <summary>
 		/// Validates item to be inserted.
@@ -213,7 +213,7 @@ namespace CodeJam.Collections
 		/// <param name="item">The item.</param>
 		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected abstract void SetOwner([NotNull] TItem item, int index, [CanBeNull] TOwner owner);
+		protected abstract void SetOwner([NotNull] TItem item, int index, [CanBeNull] TOwner? owner);
 
 		/// <summary>
 		/// Validates item to be inserted.

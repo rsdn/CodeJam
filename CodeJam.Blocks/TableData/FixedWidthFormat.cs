@@ -81,7 +81,7 @@ namespace CodeJam.TableData
 			[NotNull] TextWriter writer,
 			[NotNull, ItemNotNull] IEnumerable<string[]> data,
 			[NotNull] int[] widths,
-			[CanBeNull] string indent = null)
+			[CanBeNull] string? indent = null)
 		{
 			Code.NotNull(writer, nameof (writer));
 			Code.NotNull(data, nameof (writer));

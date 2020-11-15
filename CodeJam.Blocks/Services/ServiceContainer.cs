@@ -28,7 +28,7 @@ namespace CodeJam.Services
 		/// <param name="publishSelf">
 		/// if set to <c>true</c> container publish itself as <see cref="IServicePublisher"/> service.
 		/// </param>
-		public ServiceContainer([CanBeNull] IServiceProvider parentProvider, bool publishSelf = true)
+		public ServiceContainer([CanBeNull] IServiceProvider? parentProvider, bool publishSelf = true)
 		{
 			_parentProvider = parentProvider;
 			if (publishSelf)

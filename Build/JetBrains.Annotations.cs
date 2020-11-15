@@ -38,7 +38,7 @@ namespace JetBrains.Annotations
   /// so checking for <c>null</c> is required before its usage.
   /// </summary>
   /// <example><code>
-  /// [CanBeNull] object Test() => null;
+  /// [CanBeNull] object? Test?() => null;
   ///
   /// void UseTest() {
   ///   var p = Test();
@@ -293,7 +293,7 @@ internal sealed class NotifyPropertyChangedInvocatorAttribute : Attribute
       ParameterName = parameterName;
     }
 
-    [CanBeNull] public string ParameterName { get; }
+    [CanBeNull] public string? ParameterName { get; }
   }
 
   /// <summary>
@@ -534,7 +534,7 @@ internal sealed class PublicAPIAttribute : Attribute
       Comment = comment;
     }
 
-    [CanBeNull] public string Comment { get; }
+    [CanBeNull] public string? Comment { get; }
   }
 
   /// <summary>
@@ -580,7 +580,7 @@ internal sealed class MustUseReturnValueAttribute : Attribute
       Justification = justification;
     }
 
-    [CanBeNull] public string Justification { get; }
+    [CanBeNull] public string? Justification { get; }
   }
 
   /// <summary>
@@ -617,7 +617,7 @@ internal sealed class PathReferenceAttribute : Attribute
       BasePath = basePath;
     }
 
-    [CanBeNull] public string BasePath { get; }
+    [CanBeNull] public string? BasePath { get; }
   }
 
   /// <summary>
@@ -681,7 +681,7 @@ internal sealed class MacroAttribute : Attribute
     /// Allows specifying a macro that will be executed for a <see cref="SourceTemplateAttribute">source template</see>
     /// parameter when the template is expanded.
     /// </summary>
-    [CanBeNull] public string Expression { get; set; }
+    [CanBeNull] public string? Expression { get; set; }
 
     /// <summary>
     /// Allows specifying which occurrence of the target parameter becomes editable when the template is deployed.
@@ -697,7 +697,7 @@ internal sealed class MacroAttribute : Attribute
     /// Identifies the target parameter of a <see cref="SourceTemplateAttribute">source template</see> if the
     /// <see cref="MacroAttribute"/> is applied on a template method.
     /// </summary>
-    [CanBeNull] public string Target { get; set; }
+    [CanBeNull] public string? Target { get; set; }
   }
 
   [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -782,7 +782,7 @@ internal sealed class AspMvcActionAttribute : Attribute
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -800,7 +800,7 @@ internal sealed class AspMvcAreaAttribute : Attribute
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -819,7 +819,7 @@ internal sealed class AspMvcControllerAttribute : Attribute
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -922,7 +922,7 @@ internal sealed class HtmlElementAttributesAttribute : Attribute
       Name = name;
     }
 
-    [CanBeNull] public string Name { get; }
+    [CanBeNull] public string? Name { get; }
   }
 
   [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
@@ -1216,7 +1216,7 @@ internal sealed class RazorPageBaseTypeAttribute : Attribute
       }
 
       [NotNull] public string BaseType { get; }
-      [CanBeNull] public string PageName { get; }
+      [CanBeNull] public string? PageName { get; }
   }
 
   [AttributeUsage(AttributeTargets.Method)]

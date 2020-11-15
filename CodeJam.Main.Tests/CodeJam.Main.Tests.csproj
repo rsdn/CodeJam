@@ -11,6 +11,8 @@
 		<TargetFrameworks>net5.0;net48;net472;net471;net47;net461;net45;net40;net35;net20;netcoreapp3.1;netcoreapp3.0;netcoreapp2.1;netcoreapp1.1</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<!-- #region Targeting -->
@@ -47,6 +49,7 @@
 		<Compile Update="Arithmetic\OperatorsTests.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>OperatorsTests.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Arithmetic\OperatorsTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -55,6 +58,7 @@
 		<Compile Update="Collections\Enumerable\MinMaxByTests.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>MinMaxByTests.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Collections\Enumerable\MinMaxByTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -63,6 +67,7 @@
 		<Compile Update="Ranges\RangeBoundaryToTests.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>RangeBoundaryToTests.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\RangeBoundaryToTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -80,6 +85,7 @@
 		<Compile Update="Structures\OneOfTests.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>OneOfTests.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Structures\OneOfTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -88,6 +94,7 @@
 		<Compile Update="Threading\InterlockedOperationsTests.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>InterlockedOperationsTests.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Threading\InterlockedOperationsTests.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>

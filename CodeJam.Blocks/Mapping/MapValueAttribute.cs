@@ -29,7 +29,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="configuration">Active configuration.</param>
 		/// <param name="value">Mapping value.</param>
-		public MapValueAttribute([CanBeNull] string configuration, [CanBeNull] object value)
+		public MapValueAttribute([CanBeNull] string? configuration, [CanBeNull] object? value)
 		{
 			Configuration = configuration;
 			Value         = value;
@@ -40,7 +40,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="value">Mapping value.</param>
 		/// <param name="isDefault"><i>true</i> if default.</param>
-		public MapValueAttribute([CanBeNull] object value, bool isDefault)
+		public MapValueAttribute([CanBeNull] object? value, bool isDefault)
 		{
 			Value     = value;
 			IsDefault = isDefault;
@@ -52,7 +52,7 @@ namespace CodeJam.Mapping
 		/// <param name="configuration">Active configuration.</param>
 		/// <param name="value">Mapping value.</param>
 		/// <param name="isDefault"><i>true</i> if default.</param>
-		public MapValueAttribute([CanBeNull] string configuration, [CanBeNull] object value, bool isDefault)
+		public MapValueAttribute([CanBeNull] string? configuration, [CanBeNull] object? value, bool isDefault)
 		{
 			Configuration = configuration;
 			Value         = value;

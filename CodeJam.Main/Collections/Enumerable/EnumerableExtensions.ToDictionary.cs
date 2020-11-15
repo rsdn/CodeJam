@@ -53,7 +53,7 @@ namespace CodeJam.Collections
 		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull, InstantHandle] Func<T, TKey> keySelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer,
+			[CanBeNull] IEqualityComparer<TKey>? comparer,
 			DictionaryDuplicate duplicateHandling) =>
 				ToDictionary(source, keySelector, Fn<T>.Self, comparer, duplicateHandling);
 
@@ -96,7 +96,7 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull, InstantHandle] Func<T, TKey> keySelector,
 			[NotNull, InstantHandle] Func<T, TElement> elementSelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer,
+			[CanBeNull] IEqualityComparer<TKey>? comparer,
 			DictionaryDuplicate duplicateHandling)
 		{
 			Code.InRange((int)duplicateHandling, nameof(duplicateHandling), (int)DictionaryDuplicate.Throw, (int)DictionaryDuplicate.LastWins);

@@ -20,7 +20,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
  		[ContractAnnotation("value:null => true")]
-		public static bool IsNullOrEmpty([CanBeNull] this StringBuilder value) =>
+		public static bool IsNullOrEmpty([CanBeNull] this StringBuilder? value) =>
 			value == null || value.Length == 0;
 
 		/// <summary>
@@ -32,7 +32,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("value:null => false")]
-		public static bool NotNullNorEmpty([CanBeNull] this StringBuilder value) =>
+		public static bool NotNullNorEmpty([CanBeNull] this StringBuilder? value) =>
 			!IsNullOrEmpty(value);
 	}
 }

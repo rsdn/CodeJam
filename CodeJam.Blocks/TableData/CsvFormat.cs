@@ -275,7 +275,7 @@ namespace CodeJam.TableData
 		public static void Print(
 			[NotNull] TextWriter writer,
 			[NotNull] IEnumerable<string[]> data,
-			[CanBeNull] string indent = null,
+			[CanBeNull] string? indent = null,
 			bool allowEscaping = true)
 		{
 			Code.NotNull(writer, nameof(writer));
@@ -314,7 +314,7 @@ namespace CodeJam.TableData
 		/// </summary>
 		private interface ITableDataFormatter
 		{
-			int GetValueLength([CanBeNull] string value);
+			int GetValueLength([CanBeNull] string? value);
 
 			/// <summary>
 			/// Prints line of table data.

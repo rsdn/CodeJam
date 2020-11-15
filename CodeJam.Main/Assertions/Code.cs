@@ -133,7 +133,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty<T>(
-			[CanBeNull] ICollection<T> arg,
+			[CanBeNull] ICollection<T>? arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -152,7 +152,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty<T>(
-			[CanBeNull] T[] arg,
+			[CanBeNull] T[]? arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -168,7 +168,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty(
-			[CanBeNull] string arg,
+			[CanBeNull] string? arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (string.IsNullOrEmpty(arg))
@@ -182,7 +182,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorWhiteSpace(
-			[CanBeNull] string arg,
+			[CanBeNull] string? arg,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (StringEx.IsNullOrWhiteSpace(arg))
@@ -248,7 +248,7 @@ namespace CodeJam
 			bool condition,
 			[NotNull, InvokerParameterName] string argName,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 		{
 			if (!condition)
 				throw CodeExceptions.Argument(argName, messageFormat, args);
@@ -430,7 +430,7 @@ namespace CodeJam
 		public static void AssertState(
 			bool condition,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 		{
 			if (!condition)
 				throw CodeExceptions.InvalidOperation(messageFormat, args);
@@ -462,7 +462,7 @@ namespace CodeJam
 		public static void BugIf(
 			bool condition,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[CanBeNull] params object[]? args)
 		{
 			if (condition)
 				throw CodeExceptions.InvalidOperation(messageFormat, args);

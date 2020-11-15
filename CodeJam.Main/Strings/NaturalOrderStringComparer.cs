@@ -99,7 +99,7 @@ namespace CodeJam.Strings
 		/// Greater than zero <paramref name="a"/> is greater than <paramref name="b"/>.
 		/// </returns>
 		[Pure]
-		public static int Compare([CanBeNull] string a, [CanBeNull] string b) => Compare(a, b, false);
+		public static int Compare([CanBeNull] string? a, [CanBeNull] string? b) => Compare(a, b, false);
 
 		/// <summary>
 		/// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
@@ -115,7 +115,7 @@ namespace CodeJam.Strings
 		/// Greater than zero <paramref name="a"/> is greater than <paramref name="b"/>.
 		/// </returns>
 		[Pure]
-		public static int Compare([CanBeNull] string a, [CanBeNull] string b, bool ignoreCase)
+		public static int Compare([CanBeNull] string? a, [CanBeNull] string? b, bool ignoreCase)
 		{
 			if (a == b)
 				return 0;

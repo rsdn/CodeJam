@@ -40,7 +40,7 @@ namespace CodeJam
 		[Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 			[NotNull] this Func<TArg, TResult> func,
-			[CanBeNull] IEqualityComparer<TArg> comparer,
+			[CanBeNull] IEqualityComparer<TArg>? comparer,
 			LazyThreadSafetyMode threadSafety)
 		{
 			var map = LazyDictionary.Create(func, comparer, threadSafety);

@@ -124,7 +124,7 @@ namespace CodeJam.Collections
 		[Pure]
 		[NotNull]
 		public static IEnumerable<T> CreateWhileNotNull<T>(T start, [NotNull] Func<T, T> next)
-			where T: class
+			where T : class
 		{
 			Code.NotNull(next, nameof(next));
 

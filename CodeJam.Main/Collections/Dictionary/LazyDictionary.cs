@@ -30,7 +30,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 				[NotNull] Func<TKey, TValue> valueFactory,
-				[NotNull] IEqualityComparer<TKey> comparer,
+				[CanBeNull] IEqualityComparer<TKey>? comparer,
 				bool threadSafe) =>
 			threadSafe
 				? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer)
@@ -164,7 +164,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
-			[CanBeNull] IEqualityComparer<TKey> comparer,
+			[CanBeNull] IEqualityComparer<TKey>? comparer,
 			LazyThreadSafetyMode threadSafety) =>
 			threadSafety switch
 			{

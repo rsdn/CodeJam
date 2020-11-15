@@ -126,6 +126,7 @@
 		<Compile Update="Algorithms\Algorithms.EqualRange.generated.cs">
 			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Collections\Enumerable\EnumerableExtensions.Deconstruct.generated.cs">
 			<AutoGen>True</AutoGen>
@@ -160,6 +161,7 @@
 		<Compile Update="Algorithms\Algorithms.LowerBound.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Algorithms.LowerBound.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Algorithms\Algorithms.LowerBound.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -168,6 +170,7 @@
 		<Compile Update="Algorithms\Algorithms.Memoize.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Algorithms.Memoize.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Algorithms\Algorithms.Memoize.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -176,6 +179,7 @@
 		<Compile Update="Algorithms\Algorithms.UpperBound.generated.cs">
 			<DependentUpon>Algorithms.UpperBound.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Algorithms\Algorithms.UpperBound.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -184,6 +188,7 @@
 		<Compile Update="Arithmetic\Operators.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Operators.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Arithmetic\Operators.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -224,6 +229,7 @@
 		<Compile Update="Assertions\DebugUriCode.generated.cs">
 			<DependentUpon>DebugUriCode.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Assertions\DebugUriCode.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -232,6 +238,7 @@
 		<Compile Update="Collections\Array\ArrayExtensions.generated.cs">
 			<DependentUpon>ArrayExtensions.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Collections\Array\ArrayExtensions.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -244,6 +251,7 @@
 		<Compile Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.generated.cs">
 			<DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -252,6 +260,7 @@
 		<Compile Update="Collections\Enumerable\EnumerableExtensions.MinMaxBy.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>EnumerableExtensions.MinMaxBy.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Collections\Enumerable\EnumerableExtensions.MinMaxBy.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -276,6 +285,7 @@
 		<Compile Update="Expressions\Expr.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Expr.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Expressions\Expr.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -284,6 +294,7 @@
 		<Compile Update="IO\DebugIoCode.generated.cs">
 			<DependentUpon>DebugIoCode.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="IO\DebugIoCode.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -292,6 +303,7 @@
 		<Compile Update="Ranges\[Boundaries]\RangeBoundary.Operators.generated.cs">
 			<DependentUpon>RangeBoundary.Operators.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Boundaries]\RangeBoundary.Operators.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -300,6 +312,7 @@
 		<Compile Update="Ranges\[Boundaries]\RangeBoundaryTo`1.generated.cs">
 			<DependentUpon>RangeBoundaryTo`1.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Boundaries]\RangeBoundaryTo`1.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -324,6 +337,7 @@
 		<Compile Update="Ranges\[Helper types]\RangeIntersection`2.generated.cs">
 			<DependentUpon>RangeIntersection`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Helper types]\RangeIntersection`2.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -340,10 +354,12 @@
 		<Compile Update="Ranges\[Ranges]\Range`2.generated.cs">
 			<DependentUpon>Range`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Ranges\[Ranges]\Range`2.Operations.generated.cs">
 			<DependentUpon>Range`2.Operations.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Ranges]\Range`2.Operations.tt">
 			<LastGenOutput>Range`2.Operations.generated.cs</LastGenOutput>
@@ -364,6 +380,7 @@
 		<Compile Update="Ranges\Range.FactoryMethods.generated.cs">
 			<DependentUpon>Range.FactoryMethods.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\Range.FactoryMethods.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -372,6 +389,7 @@
 		<Compile Update="Strings\CharExtensions.Infix.generated.cs">
 			<DependentUpon>CharExtensions.Infix.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Strings\CharExtensions.Infix.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -380,6 +398,7 @@
 		<Compile Update="Strings\StringExtensions.CharInfix.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>StringExtensions.CharInfix.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Strings\StringExtensions.CharInfix.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -388,6 +407,7 @@
 		<Compile Update="Strings\StringExtensions.ToXxx.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>StringExtensions.ToXxx.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Strings\StringExtensions.ToXxx.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -396,6 +416,7 @@
 		<Compile Update="Structures\OneOf\IOneOf.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>IOneOf.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Structures\OneOf\IOneOf.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -404,6 +425,7 @@
 		<Compile Update="Structures\OneOf\OneOf.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>OneOf.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Structures\OneOf\OneOf.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -412,6 +434,7 @@
 		<Compile Update="Structures\OneOf\ValueOneOf.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>ValueOneOf.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Structures\OneOf\ValueOneOf.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -420,6 +443,7 @@
 		<Compile Update="Threading\InterlockedOperations.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>InterlockedOperations.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Threading\InterlockedOperations.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -428,6 +452,7 @@
 		<Compile Update="Threading\TaskHelper.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>TaskHelper.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Threading\TaskHelper.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -436,6 +461,7 @@
 		<Compile Update="Fn.generated.cs">
 			<DependentUpon>Fn.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Fn.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>

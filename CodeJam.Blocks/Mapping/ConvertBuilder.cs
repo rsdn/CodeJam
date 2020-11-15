@@ -485,7 +485,7 @@ namespace CodeJam.Mapping
 		}
 
 		private static ValueTuple<Expression, bool>? GetConverter(
-			[CanBeNull] MappingSchema mappingSchema,
+			[CanBeNull] MappingSchema? mappingSchema,
 			[NotNull] Expression expr,
 			[NotNull] Type from,
 			[NotNull] Type to)
@@ -524,7 +524,7 @@ namespace CodeJam.Mapping
 
 		[CanBeNull]
 		private static ValueTuple<Expression, bool>? ConvertUnderlying(
-			[CanBeNull] MappingSchema mappingSchema,
+			[CanBeNull] MappingSchema? mappingSchema,
 			[NotNull] Expression expr,
 			[NotNull] Type from,
 			[NotNull] Type ufrom,
@@ -561,7 +561,7 @@ namespace CodeJam.Mapping
 
 		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 		public static ValueTuple<LambdaExpression, LambdaExpression, bool> GetConverter(
-			[CanBeNull] MappingSchema mappingSchema,
+			[CanBeNull] MappingSchema? mappingSchema,
 			[NotNull] Type from,
 			[NotNull] Type to)
 		{

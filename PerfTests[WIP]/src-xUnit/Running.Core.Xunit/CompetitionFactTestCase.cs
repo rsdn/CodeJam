@@ -53,7 +53,7 @@ namespace CodeJam.PerfTests.Running.Core.Xunit
 			var skipMessageBus = new SkipTestMessageBus(messageBus);
 
 			AssertNoOutput();
-			
+
 			var result = await new HackTestCaseRunner(
 				this, DisplayName, SkipReason,
 				constructorArguments, TestMethodArguments,

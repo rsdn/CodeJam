@@ -37,7 +37,7 @@ namespace CodeJam.Collections
 		[NotNull]
 		public static KeyEqualityComparer<T, TKey> Create<T, TKey>(
 			[NotNull] Func<T, TKey> keySelector,
-			[CanBeNull] IEqualityComparer<TKey> comparer) =>
+			[CanBeNull] IEqualityComparer<TKey>? comparer) =>
 				new KeyEqualityComparer<T, TKey>(keySelector, comparer);
 	}
 }

@@ -168,8 +168,8 @@ namespace CodeJam.Collections
 			public static T MinOrDefault<TSource>(
 				[NotNull] IEnumerable<TSource> source,
 				[NotNull] Func<TSource, T> selector,
-				[CanBeNull] IComparer<T> comparer,
-				[CanBeNull] T defaultValue)
+				[CanBeNull] IComparer<T>? comparer,
+				[CanBeNull] T? defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
 				comparer ??= _comparer;
@@ -191,8 +191,8 @@ namespace CodeJam.Collections
 			[MethodImpl(AggressiveInlining)]
 			public static T MaxOrDefault(
 				[NotNull] IEnumerable<T> source,
-				[CanBeNull] IComparer<T> comparer,
-				[CanBeNull] T defaultValue)
+				[CanBeNull] IComparer<T>? comparer,
+				[CanBeNull] T? defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
 				comparer ??= _comparer;
@@ -215,8 +215,8 @@ namespace CodeJam.Collections
 			public static T MaxOrDefault<TSource>(
 				[NotNull] IEnumerable<TSource> source,
 				[NotNull] Func<TSource, T> selector,
-				[CanBeNull] IComparer<T> comparer,
-				[CanBeNull] T defaultValue)
+				[CanBeNull] IComparer<T>? comparer,
+				[CanBeNull] T? defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
 				comparer ??= _comparer;
@@ -264,7 +264,7 @@ namespace CodeJam.Collections
 		/// <returns>Minimum item from the sequence or default value</returns>
 		[Pure]
 		public static TSource MinOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source, [CanBeNull] IComparer<TSource> comparer) =>
+			[NotNull, InstantHandle] this IEnumerable<TSource> source, [CanBeNull] IComparer<TSource>? comparer) =>
 				MinOrDefault(source, comparer, default);
 
 		/// <summary>Returns minimum item from the sequence or default value.</summary>
@@ -276,7 +276,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static TSource MinOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[CanBeNull] IComparer<TSource> comparer,
+			[CanBeNull] IComparer<TSource>? comparer,
 			TSource defaultValue) =>
 				MinMaxOperators<TSource>.MinOrDefault(source, comparer, defaultValue);
 		#endregion
@@ -318,7 +318,7 @@ namespace CodeJam.Collections
 		public static T MinOrDefault<TSource, T>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> selector,
-			[CanBeNull] IComparer<T> comparer) =>
+			[CanBeNull] IComparer<T>? comparer) =>
 				MinOrDefault(source, selector, comparer, default);
 
 		/// <summary>Returns minimum item from the sequence or default value.</summary>
@@ -333,7 +333,7 @@ namespace CodeJam.Collections
 		public static T MinOrDefault<TSource, T>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> selector,
-			[CanBeNull] IComparer<T> comparer, T defaultValue) =>
+			[CanBeNull] IComparer<T>? comparer, T defaultValue) =>
 				MinMaxOperators<T>.MinOrDefault(source, selector, comparer, defaultValue);
 		#endregion
 
@@ -364,7 +364,7 @@ namespace CodeJam.Collections
 		/// <returns>Maximum item from the sequence or default value</returns>
 		[Pure, CanBeNull]
 		public static TSource MaxOrDefault<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source, [CanBeNull] IComparer<TSource> comparer) =>
+			[NotNull, InstantHandle] this IEnumerable<TSource> source, [CanBeNull] IComparer<TSource>? comparer) =>
 				MaxOrDefault(source, comparer, default);
 
 		/// <summary>Returns maximum item from the sequence or default value.</summary>
@@ -376,7 +376,7 @@ namespace CodeJam.Collections
 		[Pure, CanBeNull]
 		public static TSource MaxOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[CanBeNull] IComparer<TSource> comparer,
+			[CanBeNull] IComparer<TSource>? comparer,
 			TSource defaultValue) =>
 				MinMaxOperators<TSource>.MaxOrDefault(source, comparer, defaultValue);
 		#endregion
@@ -418,7 +418,7 @@ namespace CodeJam.Collections
 		public static T MaxOrDefault<TSource, T>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> selector,
-			[CanBeNull] IComparer<T> comparer) =>
+			[CanBeNull] IComparer<T>? comparer) =>
 				MaxOrDefault(source, selector, comparer, default);
 
 		/// <summary>Returns maximum item from the sequence or default value.</summary>
@@ -433,7 +433,7 @@ namespace CodeJam.Collections
 		public static T MaxOrDefault<TSource, T>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> selector,
-			[CanBeNull] IComparer<T> comparer, T defaultValue) =>
+			[CanBeNull] IComparer<T>? comparer, T defaultValue) =>
 				MinMaxOperators<T>.MaxOrDefault(source, selector, comparer, defaultValue);
 		#endregion
 	}

@@ -45,7 +45,7 @@ namespace CodeJam.Internal
 		/// Pass <c>null</c> to restore default behaviour.
 		/// </summary>
 		/// <param name="codeTraceSource">The custom trace source.</param>
-		public static void SetCodeTraceSource([CanBeNull]TraceSource codeTraceSource) =>
+		public static void SetCodeTraceSource([CanBeNull] TraceSource? codeTraceSource) =>
 			_customCodeTraceSource = codeTraceSource;
 
 		/// <summary>Returns trace source for code exceptions.</summary>
@@ -160,7 +160,7 @@ namespace CodeJam.Internal
 		/// Pass <c>null</c> to restore default behaviour.
 		/// </summary>
 		/// <param name="tempDataRetryCallback">The retry callback.</param>
-		public static void SetTempDataRetryCallback([CanBeNull]Action<Action> tempDataRetryCallback) =>
+		public static void SetTempDataRetryCallback([CanBeNull] Action<Action> tempDataRetryCallback) =>
 			_customTempDataRetryCallback = tempDataRetryCallback;
 
 		/// <summary>Returns retry callback for <see cref="CodeJam.IO.TempData"/> disposal.</summary>

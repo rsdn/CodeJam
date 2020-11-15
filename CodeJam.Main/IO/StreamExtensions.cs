@@ -25,7 +25,7 @@ namespace CodeJam.IO
 		[NotNull]
 		public static StreamReader ToStreamReader(
 			[NotNull] this Stream stream,
-			[CanBeNull] Encoding encoding = null,
+			[CanBeNull] Encoding? encoding = null,
 			bool leaveOpen = false) =>
 				new StreamReader(stream, encoding ?? Encoding.UTF8, true, _defaultBufferSize, leaveOpen);
 
@@ -38,7 +38,7 @@ namespace CodeJam.IO
 		[NotNull]
 		public static BinaryReader ToBinaryReader(
 			[NotNull] this Stream stream,
-			[CanBeNull] Encoding encoding = null,
+			[CanBeNull] Encoding? encoding = null,
 			bool leaveOpen = false) =>
 				new BinaryReader(stream, encoding ?? Encoding.UTF8, leaveOpen);
 
@@ -51,7 +51,7 @@ namespace CodeJam.IO
 		[NotNull]
 		public static StreamWriter ToStreamWriter(
 			[NotNull] this Stream stream,
-			[CanBeNull] Encoding encoding = null,
+			[CanBeNull] Encoding? encoding = null,
 			bool leaveOpen = false) =>
 				new StreamWriter(stream, encoding ?? Encoding.UTF8, _defaultBufferSize, leaveOpen);
 
@@ -64,7 +64,7 @@ namespace CodeJam.IO
 		[NotNull]
 		public static BinaryWriter ToBinaryWriter(
 			[NotNull] this Stream stream,
-			[CanBeNull] Encoding encoding = null,
+			[CanBeNull] Encoding? encoding = null,
 			bool leaveOpen = false) =>
 				new BinaryWriter(stream, encoding ?? Encoding.UTF8, leaveOpen);
 
@@ -74,7 +74,7 @@ namespace CodeJam.IO
 		/// <param name="stream">The stream to read.</param>
 		/// <param name="encoding">The character encoding to use.</param>
 		[NotNull]
-		public static string ReadAsString([NotNull] this Stream stream, [CanBeNull] Encoding encoding = null)
+		public static string ReadAsString([NotNull] this Stream stream, [CanBeNull] Encoding? encoding = null)
 		{
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))
@@ -91,7 +91,7 @@ namespace CodeJam.IO
 		[NotNull]
 		public static async Task<string> ReadAsStringAsync(
 			[NotNull] this Stream stream,
-			[CanBeNull] Encoding encoding = null)
+			[CanBeNull] Encoding? encoding = null)
 		{
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))

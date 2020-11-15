@@ -84,9 +84,10 @@ namespace CodeJam.Ranges
 		// ReSharper disable once UnusedMethodReturnValue.Global
 		internal static int InsertInSortedList<T>(
 			[NotNull] List<T> sortedList,
-			[CanBeNull] T value,
-			[CanBeNull] IComparer<T> comparer,
+			[CanBeNull] T? value,
+			[CanBeNull] IComparer<T>? comparer,
 			bool skipDuplicates)
+			where T : class
 		{
 			var insertIndex = sortedList.BinarySearch(value, comparer);
 

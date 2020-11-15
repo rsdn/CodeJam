@@ -30,7 +30,7 @@ namespace CodeJam.PerfTests
 			FiveThousands = 5000,
 
 			[MetricUnit("M", AppliesFrom = 1000 * 1000, ScaleCoefficient = 1000 * 1000, RoundingDigits = -1)]
-			Millions = 5001 // BAD IDEA. DONT DO so in a real code. Used only to proof that 
+			Millions = 5001 // BAD IDEA. DONT DO so in a real code. Used only to proof that
 		}
 		private enum MetricEnumZero
 		{

@@ -155,7 +155,7 @@ namespace CodeJam.Targeting
 			[NotNull] this Type type,
 			[NotNull] string name,
 			BindingFlags bindingAttr,
-			[CanBeNull] object binder,
+			[CanBeNull] object? binder,
 			[NotNull, ItemNotNull] Type[] types)
 		{
 			if (name == null) throw new ArgumentNullException(name, nameof(name));
@@ -170,9 +170,9 @@ namespace CodeJam.Targeting
 			[NotNull] this Type type,
 			[NotNull] string name,
 			BindingFlags bindingAttr,
-			[CanBeNull] object binder,
+			[CanBeNull] object? binder,
 			[NotNull, ItemNotNull] Type[] types,
-			[CanBeNull] ParameterModifierEx[] modifiers)
+			[CanBeNull] ParameterModifierEx[]? modifiers)
 		{
 			if (name == null) throw new ArgumentNullException(nameof(name));
 			if (binder != null) throw new NotImplementedException(nameof(binder));
@@ -190,9 +190,9 @@ namespace CodeJam.Targeting
 		public static ConstructorInfo GetConstructor(
 			[NotNull] this Type type,
 			BindingFlags bindingAttr,
-			[CanBeNull] object binder,
+			[CanBeNull] object? binder,
 			[NotNull, ItemNotNull] Type[] types,
-			[CanBeNull] ParameterModifierEx[] modifiers)
+			[CanBeNull] ParameterModifierEx[]? modifiers)
 		{
 			if (binder != null) throw new NotImplementedException(nameof(binder));
 			if (types == null) throw new ArgumentNullException(nameof(types));

@@ -56,7 +56,7 @@ namespace CodeJam.Threading
 		/// <param name="comparer">Key comparer.</param>
 		public ExecSyncConcurrentLazyDictionary(
 			[NotNull] Func<TKey, TValue> valueFactory,
-			[CanBeNull] IEqualityComparer<TKey> comparer)
+			[CanBeNull] IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(valueFactory, nameof(valueFactory));
 

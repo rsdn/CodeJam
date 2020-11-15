@@ -6,6 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+#nullable enable
 using System;
 using System.Globalization;
 
@@ -39,9 +40,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static byte? ToByte(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			byte result;
 			return byte.TryParse(str, numberStyle, provider, out result) ? (byte?)result : null;
@@ -67,7 +68,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static byte? ToByteInvariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			byte result;
@@ -99,9 +100,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static sbyte? ToSByte(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			sbyte result;
 			return sbyte.TryParse(str, numberStyle, provider, out result) ? (sbyte?)result : null;
@@ -127,7 +128,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static sbyte? ToSByteInvariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			sbyte result;
@@ -159,9 +160,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static short? ToInt16(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Number,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			short result;
 			return short.TryParse(str, numberStyle, provider, out result) ? (short?)result : null;
@@ -187,7 +188,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static short? ToInt16Invariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Number)
 		{
 			short result;
@@ -219,9 +220,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static ushort? ToUInt16(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			ushort result;
 			return ushort.TryParse(str, numberStyle, provider, out result) ? (ushort?)result : null;
@@ -247,7 +248,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static ushort? ToUInt16Invariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			ushort result;
@@ -279,9 +280,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static int? ToInt32(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			int result;
 			return int.TryParse(str, numberStyle, provider, out result) ? (int?)result : null;
@@ -307,7 +308,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static int? ToInt32Invariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			int result;
@@ -339,9 +340,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static uint? ToUInt32(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			uint result;
 			return uint.TryParse(str, numberStyle, provider, out result) ? (uint?)result : null;
@@ -367,7 +368,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static uint? ToUInt32Invariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			uint result;
@@ -399,9 +400,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static long? ToInt64(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			long result;
 			return long.TryParse(str, numberStyle, provider, out result) ? (long?)result : null;
@@ -427,7 +428,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static long? ToInt64Invariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			long result;
@@ -459,9 +460,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static ulong? ToUInt64(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			ulong result;
 			return ulong.TryParse(str, numberStyle, provider, out result) ? (ulong?)result : null;
@@ -487,7 +488,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static ulong? ToUInt64Invariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
 		{
 			ulong result;
@@ -519,9 +520,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static float? ToSingle(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Float,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			float result;
 			return float.TryParse(str, numberStyle, provider, out result) ? (float?)result : null;
@@ -547,7 +548,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static float? ToSingleInvariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Float)
 		{
 			float result;
@@ -579,9 +580,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static double? ToDouble(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Float,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			double result;
 			return double.TryParse(str, numberStyle, provider, out result) ? (double?)result : null;
@@ -607,7 +608,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static double? ToDoubleInvariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Float)
 		{
 			double result;
@@ -639,9 +640,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static decimal? ToDecimal(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Number,
-			[CanBeNull] IFormatProvider provider = null)
+			[CanBeNull] IFormatProvider? provider = null)
 		{
 			decimal result;
 			return decimal.TryParse(str, numberStyle, provider, out result) ? (decimal?)result : null;
@@ -667,7 +668,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static decimal? ToDecimalInvariant(
-			[CanBeNull] this string str,
+			[CanBeNull] this string? str,
 			NumberStyles numberStyle = NumberStyles.Number)
 		{
 			decimal result;
