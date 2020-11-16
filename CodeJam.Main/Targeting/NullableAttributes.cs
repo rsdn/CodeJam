@@ -4,7 +4,7 @@
 
 namespace System.Diagnostics.CodeAnalysis
 {
-#if TARGETS_NET || LESSTHAN_NETSTANDARD21 || LESSTHAN_NETCOREAPP31
+#if (TARGETS_NET && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD21 && !LESSTHAN_NETSTANDARD16) || (LESSTHAN_NETCOREAPP30 && !LESSTHAN_NETCOREAPP11)
 
     /// <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property, Inherited = false)]
@@ -129,9 +129,9 @@ namespace System.Diagnostics.CodeAnalysis
     }
 
 
-#endif // TARGETS_NET || LESSTHAN_NETSTANDARD21 || LESSTHAN_NETCOREAPP31
+#endif // (TARGETS_NET && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD21 && !LESSTHAN_NETSTANDARD16) || (LESSTHAN_NETCOREAPP30 && !LESSTHAN_NETCOREAPP11)
 
-#if TARGETS_NET || LESSTHAN_NETSTANDARD23 || LESSTHAN_NET50
+#if (TARGETS_NET && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD23 && !LESSTHAN_NETSTANDARD16) || (LESSTHAN_NET50 && !LESSTHAN_NETCOREAPP11)
 
     /// <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values.</summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
@@ -200,6 +200,6 @@ namespace System.Diagnostics.CodeAnalysis
         public string[] Members { get; }
     }
 
-#endif // TARGETS_NET || LESSTHAN_NETSTANDARD23 || LESSTHAN_NET50
+#endif // (TARGETS_NET && !LESSTHAN_NET46) || (LESSTHAN_NETSTANDARD23 && !LESSTHAN_NETSTANDARD16) || (LESSTHAN_NET50 && !LESSTHAN_NETCOREAPP11)
 
 }

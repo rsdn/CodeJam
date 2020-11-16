@@ -16,14 +16,14 @@ namespace CodeJam.Collections
 		/// A sequence of elements paired with their index in the sequence.
 		/// </returns>
 		[NotNull, Pure, LinqTunnel]
-		public static IEnumerable<IndexedItem<T>> WithIndex<T>([NotNull] this IEnumerable<T> source)
+		public static IEnumerable<IndexedItem<T?>> WithIndex<T>([NotNull] this IEnumerable<T?> source)
 		{
 			Code.NotNull(source, nameof(source));
 			return IndexImpl(source);
 		}
 
 		[NotNull, Pure, LinqTunnel]
-		private static IEnumerable<IndexedItem<T>> IndexImpl<T>([NotNull] IEnumerable<T> source)
+		private static IEnumerable<IndexedItem<T?>> IndexImpl<T>([NotNull] IEnumerable<T?> source)
 		{
 			using var enumerator = source.GetEnumerator();
 			if (enumerator.MoveNext())
@@ -50,9 +50,9 @@ namespace CodeJam.Collections
 		/// <param name="prevNextSelector">The previous next selector.</param>
 		/// <returns>Sequence of items combined with previous values from the sequence.</returns>
 		[NotNull, Pure]
-		public static IEnumerable<TResult> CombineWithPrevious<T, TResult>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T,T,TResult> prevNextSelector)
+		public static IEnumerable<TResult?> CombineWithPrevious<T, TResult>(
+			[NotNull] this IEnumerable<T?> source,
+			[NotNull] Func<T?, T?, TResult?> prevNextSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(prevNextSelector, nameof(prevNextSelector));
@@ -61,9 +61,9 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull, Pure]
-		private static IEnumerable<TResult> CombineWithPreviousImpl<T, TResult>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, T, TResult> prevNextSelector)
+		private static IEnumerable<TResult?> CombineWithPreviousImpl<T, TResult>(
+			[NotNull] this IEnumerable<T?> source,
+			[NotNull] Func<T?, T?, TResult?> prevNextSelector)
 		{
 			var previous = default(T);
 			var hasPrevious = false;
@@ -85,10 +85,10 @@ namespace CodeJam.Collections
 		/// <param name="prevNextSelector">The previous next selector.</param>
 		/// <returns>Sequence of items combined with previous values from the sequence.</returns>
 		[NotNull, Pure]
-		public static IEnumerable<TResult> CombineWithPrevious<T, TResult>(
-			[NotNull] this IEnumerable<T> source,
-			T seed,
-			[NotNull] Func<T, T, TResult> prevNextSelector)
+		public static IEnumerable<TResult?> CombineWithPrevious<T, TResult>(
+			[NotNull] this IEnumerable<T?> source,
+			T? seed,
+			[NotNull] Func<T?, T?, TResult?> prevNextSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(prevNextSelector, nameof(prevNextSelector));
@@ -97,10 +97,10 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull, Pure]
-		private static IEnumerable<TResult> CombineWithPreviousImpl<T, TResult>(
-			[NotNull] this IEnumerable<T> source,
-			T seed,
-			[NotNull] Func<T, T, TResult> prevNextSelector)
+		private static IEnumerable<TResult?> CombineWithPreviousImpl<T, TResult>(
+			[NotNull] this IEnumerable<T?> source,
+			T? seed,
+			[NotNull] Func<T?, T?, TResult?> prevNextSelector)
 		{
 			var previous = seed;
 			foreach (var item in source)
@@ -118,10 +118,10 @@ namespace CodeJam.Collections
 		/// <param name="prevNextSelector">The previous next selector.</param>
 		/// <returns>Sequence of items combined with previous values from the sequence.</returns>
 		[NotNull, Pure]
-		public static IEnumerable<TResult> CombineWithNext<T, TResult>(
-			[NotNull] this IEnumerable<T> source,
-			T combineLast,
-			[NotNull] Func<T, T, TResult> prevNextSelector)
+		public static IEnumerable<TResult?> CombineWithNext<T, TResult>(
+			[NotNull] this IEnumerable<T?> source,
+			T? combineLast,
+			[NotNull] Func<T?, T?, TResult> prevNextSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(prevNextSelector, nameof(prevNextSelector));
@@ -130,9 +130,9 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull, Pure]
-		private static IEnumerable<TResult> CombineWithNextImpl<T, TResult>(
-			[NotNull] this IEnumerable<T> source, T combineLast,
-			[NotNull] Func<T, T, TResult> prevNextSelector)
+		private static IEnumerable<TResult?> CombineWithNextImpl<T, TResult>(
+			[NotNull] this IEnumerable<T?> source, T? combineLast,
+			[NotNull] Func<T?, T?, TResult?> prevNextSelector)
 		{
 			var previous = default(T);
 			var hasPrevious = false;
