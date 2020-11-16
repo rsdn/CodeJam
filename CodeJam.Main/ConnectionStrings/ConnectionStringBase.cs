@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
 using JetBrains.Annotations;
+using JBNotNullAttribute = JetBrains.Annotations.NotNullAttribute;
 
 namespace CodeJam.ConnectionStrings
 {
@@ -62,13 +64,13 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>
 		/// Gets all supported keywords for current connection.
 		/// </summary>
-		[NotNull]
+		[JBNotNull]
 		protected IReadOnlyDictionary<string, KeywordDescriptor> Keywords => _wrapper.Keywords;
 
 		/// <summary>
 		/// Gets or sets the connection string associated with the <see cref="T:System.Data.Common.DbConnectionStringBuilder" />.
 		/// </summary>
-		[NotNull]
+		[JBNotNull]
 		public string ConnectionString
 		{
 			get => _wrapper.ConnectionString;
@@ -149,7 +151,7 @@ namespace CodeJam.ConnectionStrings
 		/// </summary>
 		/// <param name="includeNonBrowsable">If set to <c>true</c>, non browsable values will be .</param>
 		/// <returns>Browsable connection string</returns>
-		[NotNull, MustUseReturnValue]
+		[JBNotNull, MustUseReturnValue]
 		public string GetBrowsableConnectionString(bool includeNonBrowsable = false) =>
 			_wrapper.GetBrowsableConnectionString(includeNonBrowsable);
 
@@ -221,7 +223,7 @@ namespace CodeJam.ConnectionStrings
 		public bool Remove(string key) => _wrapper.Remove(key);
 
 		/// <inheritdoc />
-		public bool TryGetValue(string key, out object? value) => _wrapper.TryGetValue(key, out value);
+		public bool TryGetValue(string key, [NotNullWhen(true)] out object? value) => _wrapper.TryGetValue(key, out value);
 
 		/// <inheritdoc />
 		public object this[string key]

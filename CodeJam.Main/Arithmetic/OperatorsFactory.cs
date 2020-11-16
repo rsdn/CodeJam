@@ -103,15 +103,15 @@ namespace CodeJam.Arithmetic
 		}
 
 		[NotNull]
-		private static NotSupportedException FieldNotSupported([NotNull]Type type, string fieldName, Exception ex) =>
+		private static NotSupportedException FieldNotSupported([NotNull]Type type, string fieldName, [CanBeNull] Exception? ex) =>
 			new NotSupportedException($"The type {type.Name} has no field {fieldName} defined.", ex);
 
 		[NotNull]
-		private static NotSupportedException MethodNotSupported([NotNull] Type type, string methodName, Exception ex) =>
+		private static NotSupportedException MethodNotSupported([NotNull] Type type, string methodName, [CanBeNull] Exception? ex) =>
 			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
 
 		[NotNull]
-		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
+		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, [CanBeNull] Exception? ex) =>
 			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
 		private static FieldInfo? TryGetOpField<T>([NotNull] string fieldName)
@@ -309,7 +309,7 @@ namespace CodeJam.Arithmetic
 			catch (Exception ex)
 			{
 				Debug.Assert(compareMethod.DeclaringType != null, "compareMethod.DeclaringType");
-				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
+				throw MethodNotSupported(compareMethod.DeclaringType!, compareMethod.Name, ex);
 			}
 
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
@@ -325,7 +325,7 @@ namespace CodeJam.Arithmetic
 			catch (Exception ex)
 			{
 				Debug.Assert(compareMethod.DeclaringType != null, "compareMethod.DeclaringType");
-				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
+				throw MethodNotSupported(compareMethod.DeclaringType!, compareMethod.Name, ex);
 			}
 		}
 

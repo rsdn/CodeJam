@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using JetBrains.Annotations;
+using NotNullWhenAttribute = System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
 
 namespace CodeJam.Collections
 {
@@ -95,7 +96,7 @@ namespace CodeJam.Collections
 		/// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
 		/// <exception cref="T:System.ArgumentNullException">
 		/// <paramref name="key" /> is null.</exception>
-		public bool TryGetValue(TKey key, out TValue value) => _map.TryGetValue(key, out value);
+		public bool TryGetValue(TKey key, [NotNullWhen(true)] out TValue? value) => _map.TryGetValue(key, out value);
 
 		/// <summary>Gets the element that has the specified key in the read-only dictionary.</summary>
 		/// <returns>The element that has the specified key in the read-only dictionary.</returns>

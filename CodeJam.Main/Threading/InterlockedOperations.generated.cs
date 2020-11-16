@@ -13,6 +13,8 @@ using System.Threading;
 
 using JetBrains.Annotations;
 
+using NotNullIfNotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute;
+
 namespace CodeJam.Threading
 {
 	/// <summary>
@@ -34,7 +36,8 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange(ref double, double, double)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static double Initialize(ref double target, double value) =>
+        [return: NotNullIfNotNull("target")]
+        public static double Initialize(ref double target, double value) =>
 			Initialize(ref target, value, default(double));
 
 		/// <summary>
@@ -51,6 +54,7 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange(ref double, double, double)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
+        [return: NotNullIfNotNull("target")]
 		public static double Initialize(ref double target, double initializedValue, double uninitializedValue)
 		{
 			DebugCode.AssertArgument(
@@ -72,7 +76,8 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static double Update(ref double value, Func<double, double> updateCallback)
+		[return: NotNullIfNotNull("value")]
+        public static double Update(ref double value, Func<double, double> updateCallback)
 		{
 			double oldState, newState;
 			do
@@ -97,7 +102,8 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static double Update(ref double value, double newValue, Func<double, double, double> updateCallback)
+        [return: NotNullIfNotNull("value")]
+        public static double Update(ref double value, double newValue, Func<double, double, double> updateCallback)
 		{
 			double oldState, newState;
 			do
@@ -125,7 +131,8 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange(ref float, float, float)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static float Initialize(ref float target, float value) =>
+        [return: NotNullIfNotNull("target")]
+        public static float Initialize(ref float target, float value) =>
 			Initialize(ref target, value, default(float));
 
 		/// <summary>
@@ -142,6 +149,7 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange(ref float, float, float)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
+        [return: NotNullIfNotNull("target")]
 		public static float Initialize(ref float target, float initializedValue, float uninitializedValue)
 		{
 			DebugCode.AssertArgument(
@@ -163,7 +171,8 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static float Update(ref float value, Func<float, float> updateCallback)
+		[return: NotNullIfNotNull("value")]
+        public static float Update(ref float value, Func<float, float> updateCallback)
 		{
 			float oldState, newState;
 			do
@@ -188,7 +197,8 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static float Update(ref float value, float newValue, Func<float, float, float> updateCallback)
+        [return: NotNullIfNotNull("value")]
+        public static float Update(ref float value, float newValue, Func<float, float, float> updateCallback)
 		{
 			float oldState, newState;
 			do
@@ -216,7 +226,8 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange(ref int, int, int)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static int Initialize(ref int target, int value) =>
+        [return: NotNullIfNotNull("target")]
+        public static int Initialize(ref int target, int value) =>
 			Initialize(ref target, value, default(int));
 
 		/// <summary>
@@ -233,6 +244,7 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange(ref int, int, int)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
+        [return: NotNullIfNotNull("target")]
 		public static int Initialize(ref int target, int initializedValue, int uninitializedValue)
 		{
 			DebugCode.AssertArgument(
@@ -254,7 +266,8 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static int Update(ref int value, Func<int, int> updateCallback)
+		[return: NotNullIfNotNull("value")]
+        public static int Update(ref int value, Func<int, int> updateCallback)
 		{
 			int oldState, newState;
 			do
@@ -279,7 +292,8 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static int Update(ref int value, int newValue, Func<int, int, int> updateCallback)
+        [return: NotNullIfNotNull("value")]
+        public static int Update(ref int value, int newValue, Func<int, int, int> updateCallback)
 		{
 			int oldState, newState;
 			do
@@ -307,7 +321,8 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange(ref long, long, long)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static long Initialize(ref long target, long value) =>
+        [return: NotNullIfNotNull("target")]
+        public static long Initialize(ref long target, long value) =>
 			Initialize(ref target, value, default(long));
 
 		/// <summary>
@@ -324,6 +339,7 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange(ref long, long, long)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
+        [return: NotNullIfNotNull("target")]
 		public static long Initialize(ref long target, long initializedValue, long uninitializedValue)
 		{
 			DebugCode.AssertArgument(
@@ -345,7 +361,8 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static long Update(ref long value, Func<long, long> updateCallback)
+		[return: NotNullIfNotNull("value")]
+        public static long Update(ref long value, Func<long, long> updateCallback)
 		{
 			long oldState, newState;
 			do
@@ -370,7 +387,8 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static long Update(ref long value, long newValue, Func<long, long, long> updateCallback)
+        [return: NotNullIfNotNull("value")]
+        public static long Update(ref long value, long newValue, Func<long, long, long> updateCallback)
 		{
 			long oldState, newState;
 			do
@@ -399,8 +417,9 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange{T}(ref T, T, T)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static T Initialize<T>(ref T target, [NotNull] T value)
-			where T : class =>
+        [return: NotNullIfNotNull("target")]
+        public static T Initialize<T>(ref T target, [NotNull] T value)
+			where T : class? =>
 			Initialize(ref target, value, default(T));
 
 		/// <summary>
@@ -418,8 +437,9 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange{T}(ref T, T, T)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
+        [return: NotNullIfNotNull("target")]
 		public static T Initialize<T>(ref T target, T initializedValue, T uninitializedValue)
-			where T : class
+			where T : class?
 		{
 			DebugCode.AssertArgument(
 				initializedValue != uninitializedValue,
@@ -441,8 +461,9 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static T Update<T>(ref T value, Func<T, T> updateCallback)
-			where T : class
+		[return: NotNullIfNotNull("value")]
+        public static T Update<T>(ref T value, Func<T, T> updateCallback)
+			where T : class?
 		{
 			T oldState, newState;
 			do
@@ -468,8 +489,9 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static T Update<T>(ref T value, T newValue, Func<T, T, T> updateCallback)
-			where T : class
+        [return: NotNullIfNotNull("value")]
+        public static T Update<T>(ref T value, T newValue, Func<T, T, T> updateCallback)
+			where T : class?
 		{
 			T oldState, newState;
 			do

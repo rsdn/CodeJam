@@ -114,7 +114,7 @@ namespace CodeJam.Internal
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			List<Exception> exceptions = null;
+			List<Exception>? exceptions = null;
 			var throttleDelay = TimeSpan.FromMilliseconds(100);
 			var maxThrottleDelay = TimeSpan.FromSeconds(10);
 

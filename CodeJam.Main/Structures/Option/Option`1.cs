@@ -88,7 +88,7 @@ namespace CodeJam
 		/// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
 		/// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
 		/// <param name="other">An object to compare with this object.</param>
-		public bool Equals(Option<T> other)
+		public bool Equals([CanBeNull] Option<T>? other)
 		{
 			if (other == null)
 				return false;
@@ -110,7 +110,7 @@ namespace CodeJam
 		/// otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current instance. </param>
-		public override bool Equals(object? obj)
+		public override bool Equals([CanBeNull] object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			var a = obj as Option<T>;

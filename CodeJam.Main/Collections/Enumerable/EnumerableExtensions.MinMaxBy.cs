@@ -48,7 +48,7 @@ namespace CodeJam.Collections
 		public static TSource? MinByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
-			TSource defaultValue = default) =>
+			TSource? defaultValue = default) =>
 				MinByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
 		/// <summary>
@@ -140,7 +140,7 @@ namespace CodeJam.Collections
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
 			[CanBeNull] IComparer<TValue>? comparer,
-			TSource defaultValue = default)
+			TSource? defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -228,7 +228,7 @@ namespace CodeJam.Collections
 		public static TSource? MaxByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
-			TSource defaultValue = default) =>
+			TSource? defaultValue = default) =>
 				MaxByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
 		/// <summary>
@@ -319,7 +319,7 @@ namespace CodeJam.Collections
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
 			[CanBeNull] IComparer<TValue>? comparer,
-			TSource defaultValue = default)
+			TSource? defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
