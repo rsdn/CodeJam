@@ -42,7 +42,8 @@ namespace CodeJam.Collections
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[JBNotNull] this IDictionary<TKey, TValue> dictionary,
 				[JBNotNull] TKey key,
-				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector)
+            where TKey : notnull =>
 			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
 
 		/// <summary>
@@ -68,6 +69,7 @@ namespace CodeJam.Collections
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[MaybeNull] TResult defaultValue)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -99,6 +101,7 @@ namespace CodeJam.Collections
 			[JBNotNull] this IDictionary<TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
@@ -133,6 +136,7 @@ namespace CodeJam.Collections
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[JBNotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -167,7 +171,8 @@ namespace CodeJam.Collections
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[JBNotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 				[JBNotNull] TKey key,
-				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector)
+            where TKey : notnull =>
 			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
 
 		/// <summary>
@@ -193,6 +198,7 @@ namespace CodeJam.Collections
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[MaybeNull] TResult defaultValue)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -224,6 +230,7 @@ namespace CodeJam.Collections
 			[JBNotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
@@ -258,6 +265,7 @@ namespace CodeJam.Collections
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[JBNotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -292,7 +300,8 @@ namespace CodeJam.Collections
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[JBNotNull] this Dictionary<TKey, TValue> dictionary,
 				[JBNotNull] TKey key,
-				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector)
+            where TKey : notnull =>
 			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
 
 		/// <summary>
@@ -318,6 +327,7 @@ namespace CodeJam.Collections
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[MaybeNull] TResult defaultValue)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -349,6 +359,7 @@ namespace CodeJam.Collections
 			[JBNotNull] this Dictionary<TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
@@ -383,6 +394,7 @@ namespace CodeJam.Collections
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[JBNotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -417,7 +429,8 @@ namespace CodeJam.Collections
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[JBNotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 				[JBNotNull] TKey key,
-				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector)
+            where TKey : notnull =>
 			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
 
 		/// <summary>
@@ -443,6 +456,7 @@ namespace CodeJam.Collections
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[MaybeNull] TResult defaultValue)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -474,6 +488,7 @@ namespace CodeJam.Collections
 			[JBNotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
@@ -508,6 +523,7 @@ namespace CodeJam.Collections
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[JBNotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -548,7 +564,8 @@ namespace CodeJam.Collections.Backported
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
 		[return: MaybeNull]
-		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this IDictionary<TKey, TValue> dictionary, [JBNotNull] TKey key) =>
+		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this IDictionary<TKey, TValue> dictionary, [JBNotNull] TKey key)
+            where TKey : notnull =>
 			GetValueOrDefault(dictionary, key, default(TValue));
 
 		/// <summary>
@@ -571,6 +588,7 @@ namespace CodeJam.Collections.Backported
 			[JBNotNull] this IDictionary<TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[MaybeNull] TValue defaultValue)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
@@ -599,7 +617,8 @@ namespace CodeJam.Collections.Backported
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
 		[return: MaybeNull]
-		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [JBNotNull] TKey key) =>
+		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [JBNotNull] TKey key)
+            where TKey : notnull =>
 			GetValueOrDefault(dictionary, key, default(TValue));
 
 		/// <summary>
@@ -622,6 +641,7 @@ namespace CodeJam.Collections.Backported
 			[JBNotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[MaybeNull] TValue defaultValue)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
@@ -650,7 +670,8 @@ namespace CodeJam.Collections.Backported
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
 		[return: MaybeNull]
-		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this Dictionary<TKey, TValue> dictionary, [JBNotNull] TKey key) =>
+		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this Dictionary<TKey, TValue> dictionary, [JBNotNull] TKey key)
+            where TKey : notnull =>
 			GetValueOrDefault(dictionary, key, default(TValue));
 
 		/// <summary>
@@ -673,6 +694,7 @@ namespace CodeJam.Collections.Backported
 			[JBNotNull] this Dictionary<TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[MaybeNull] TValue defaultValue)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
@@ -701,7 +723,8 @@ namespace CodeJam.Collections.Backported
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
 		[return: MaybeNull]
-		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this ConcurrentDictionary<TKey, TValue> dictionary, [JBNotNull] TKey key) =>
+		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this ConcurrentDictionary<TKey, TValue> dictionary, [JBNotNull] TKey key)
+            where TKey : notnull =>
 			GetValueOrDefault(dictionary, key, default(TValue));
 
 		/// <summary>
@@ -724,6 +747,7 @@ namespace CodeJam.Collections.Backported
 			[JBNotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[MaybeNull] TValue defaultValue)
+            where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 

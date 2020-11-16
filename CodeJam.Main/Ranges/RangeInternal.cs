@@ -66,7 +66,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">Type of the formattable object.</typeparam>
 		/// <returns>The format callback. Returns <c>null</c> if the first arg is <c>null</c>.</returns>
 		[NotNull]
-		internal static Func<T, string, IFormatProvider, string> CreateFormattableCallback<T>()
+		internal static Func<T, string?, IFormatProvider, string> CreateFormattableCallback<T>()
 		{
 			const BindingFlags bf = BindingFlags.Static | BindingFlags.NonPublic;
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T)))
@@ -99,10 +99,10 @@ namespace CodeJam.Ranges
 			return (value, format, formatProvider) => value?.ToString();
 		}
 
-		private static string Format<T>(T value, string format, IFormatProvider formatProvider) where T : IFormattable =>
+		private static string Format<T>(T value, string? format, IFormatProvider formatProvider) where T : IFormattable =>
 			value?.ToString(format, formatProvider);
 
-		private static string FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
+		private static string FormatNullable<T>(T? value, string? format, IFormatProvider formatProvider)
 			where T : struct, IFormattable =>
 				value?.ToString(format, formatProvider);
 	}

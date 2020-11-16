@@ -152,7 +152,8 @@ namespace CodeJam.Collections
 	/// <typeparam name="TItem">The type of the item.</typeparam>
 	/// <seealso cref="KeyedCollection{TKey, TItem}"/>
 	[PublicAPI]
-	public abstract class OwnedCollectionBase<TOwner, TKey, TItem> : KeyedCollection<TKey, TItem> where TKey : notnull
+	public abstract class OwnedCollectionBase<TOwner, TKey, TItem> : KeyedCollection<TKey, TItem>
+		where TKey : notnull
 		where TOwner : class
 		where TItem : class
 	{

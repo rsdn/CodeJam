@@ -94,10 +94,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		[return: MaybeNull]
-		public static TSource <#= info.Method #>OrDefault<TSource>(
+		public static TSource? <#= info.Method #>OrDefault<TSource>(
 			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JBNotNull, InstantHandle] Func<TSource, <#= type #>> selector,
-			[MaybeNull] TSource defaultValue = default(TSource))
+			[MaybeNull] TSource? defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -208,10 +208,10 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, CanBeNull]
 		[return: MaybeNull]
-		public static TSource <#= info.Method #>OrDefault<TSource>(
+		public static TSource? <#= info.Method #>OrDefault<TSource>(
 			[JBNotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JBNotNull, InstantHandle] Func<TSource, <#= type #>?> selector,
-			[MaybeNull] TSource defaultValue = default(TSource))
+			[MaybeNull] TSource? defaultValue = default(TSource))
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));

@@ -134,7 +134,7 @@ namespace CodeJam.Ranges
 		/// <returns>The string representation of the range.</returns>
 		[Pure]
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-		public string ToString(string format, IFormatProvider formatProvider) =>
+		public string ToString(string? format, IFormatProvider formatProvider) =>
 			KeyPrefixString + _formattableCallback(_key, null, formatProvider) + KeySeparatorString +
 				(IsEmpty
 					? EmptyString

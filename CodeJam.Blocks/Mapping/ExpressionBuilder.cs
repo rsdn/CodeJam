@@ -656,7 +656,8 @@ namespace CodeJam.Mapping
 
 		#endregion
 
-		private static object GetValue(IDictionary<object,object> dic, object key) =>
+		[CanBeNull]
+		private static object? GetValue([CanBeNull] IDictionary<object,object>? dic, object key) =>
 			dic != null && dic.TryGetValue(key, out var result) ? result : null;
 
 		private static void Add([CanBeNull] IDictionary<object,object>? dic, [CanBeNull] object? key, [CanBeNull] object? value)

@@ -33,7 +33,7 @@ namespace CodeJam.IO
 				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 				System.IO.Path.GetFullPath(path);
 
-			private volatile string _path;
+			private volatile string? _path;
 			private volatile bool _keepOnDispose;
 
 			/// <summary>Assertion on object dispose</summary>
@@ -119,7 +119,7 @@ namespace CodeJam.IO
 		[PublicAPI]
 		public sealed class TempDirectory : TempBase
 		{
-			private DirectoryInfo _info;
+			private DirectoryInfo? _info;
 
 			/// <summary>Create an instance using an automatically constructed temp directory path.</summary>
 			internal TempDirectory() : base(System.IO.Path.Combine(System.IO.Path.GetTempPath(), GetTempName())) { }

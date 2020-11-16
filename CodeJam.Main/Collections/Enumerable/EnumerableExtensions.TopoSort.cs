@@ -140,7 +140,8 @@ namespace CodeJam.Collections
 		public static IEnumerable<T> TopoSort<T>(
 				[NotNull] this ICollection<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-				[NotNull] IEqualityComparer<T> equalityComparer) =>
+				[NotNull] IEqualityComparer<T> equalityComparer)
+				where T : notnull =>
 			GroupTopoSort(source, dependsOnGetter, equalityComparer)
 				.Select(g => g.AsEnumerable())
 				.SelectMany();
@@ -172,7 +173,8 @@ namespace CodeJam.Collections
 		[Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
 				[NotNull] this ICollection<T> source,
-				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter) =>
+				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
+				where T : notnull =>
 			GroupTopoSort(source, dependsOnGetter, EqualityComparer<T>.Default);
 
 		/// <summary>
@@ -188,7 +190,8 @@ namespace CodeJam.Collections
 		public static IEnumerable<T[]> GroupTopoSort<T>(
 				[NotNull, InstantHandle] this IEnumerable<T> source,
 				[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-				[NotNull] IEqualityComparer<T> equalityComparer) =>
+				[NotNull] IEqualityComparer<T> equalityComparer)
+				where T : notnull =>
 			GroupTopoSort(source.ToArray(), dependsOnGetter, equalityComparer);
 
 		/// <summary>
@@ -207,6 +210,7 @@ namespace CodeJam.Collections
 			[NotNull] this ICollection<T> source,
 			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
 			[NotNull] IEqualityComparer<T> equalityComparer)
+			where T : notnull
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(dependsOnGetter, nameof(dependsOnGetter));

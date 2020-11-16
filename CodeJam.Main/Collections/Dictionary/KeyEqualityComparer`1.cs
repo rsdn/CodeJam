@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 		/// The function to extract the key for each element.
 		/// </returns>
 		[NotNull]
-		public Func<T, TKey> KeySelector { get; }
+		public Func<T?, TKey> KeySelector { get; }
 
 		/// <summary>
 		/// Gets the equality comparer to use to compare the keys.
@@ -75,7 +75,7 @@ namespace CodeJam.Collections
 		/// A hash code for the specified object.
 		/// </returns>
 		/// <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param>
-		public int GetHashCode(T obj) =>
+		public int GetHashCode([NotNull] T obj) =>
 			Comparer.GetHashCode(KeySelector(obj));
 	}
 }

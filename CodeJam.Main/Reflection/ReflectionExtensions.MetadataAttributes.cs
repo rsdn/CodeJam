@@ -22,17 +22,17 @@ namespace CodeJam.Reflection
 		{
 			public static TypeHandleComparer Default { get; } = new TypeHandleComparer();
 
-			public bool Equals(Type? x, Type? y) =>
+			public bool Equals([CanBeNull] Type? x, [CanBeNull] Type? y) =>
 				x is null ? y is null : y != null && x.TypeHandle.Equals(y.TypeHandle);
 
-			public int GetHashCode(Type obj) => obj.TypeHandle.GetHashCode();
+			public int GetHashCode([NotNull] Type obj) => obj.TypeHandle.GetHashCode();
 		}
 
 		private sealed class MethodMethodHandleComparer : IEqualityComparer<MethodInfo>
 		{
 			public static MethodMethodHandleComparer Default { get; } = new MethodMethodHandleComparer();
 
-			public bool Equals(MethodInfo? x, MethodInfo? y)
+			public bool Equals([CanBeNull] MethodInfo? x, [CanBeNull] MethodInfo? y)
 			{
 				if (x is null) return y is null;
 				if (y == null) return false;
@@ -45,7 +45,7 @@ namespace CodeJam.Reflection
 #endif
 			}
 
-			public int GetHashCode(MethodInfo obj) =>
+			public int GetHashCode([NotNull] MethodInfo obj) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 				obj.MethodHandle.GetHashCode();
 #else

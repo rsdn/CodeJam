@@ -83,7 +83,8 @@ private void BackportedHeader1(string type) {#>
 		[Pure, CanBeNull]
 		[CollectionAccess(CollectionAccessType.Read)]
 		[return: MaybeNull]
-		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this <#=type#><TKey, TValue> dictionary, [JBNotNull] TKey key) =>
+		public static TValue GetValueOrDefault<TKey, TValue>([JBNotNull] this <#=type#><TKey, TValue> dictionary, [JBNotNull] TKey key)
+            where TKey : notnull =>
 <#+}
 
 private void BackportedBody1() {#>
@@ -118,6 +119,7 @@ private void BackportedHeader2(string type) {#>
 			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[MaybeNull] TValue defaultValue)
+            where TKey : notnull
 <#+}
 
 private void BackportedBody2() {#>
@@ -161,7 +163,8 @@ private void Header1(string type) {#>
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 				[JBNotNull] this <#=type#><TKey, TValue> dictionary,
 				[JBNotNull] TKey key,
-				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector) =>
+				[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector)
+            where TKey : notnull =>
 <#+}
 
 private void Body1() {#>
@@ -199,6 +202,7 @@ private void Header2(string type) {#>
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[MaybeNull] TResult defaultValue)
+            where TKey : notnull
 <#+}
 
 private void Body2() {#>
@@ -244,6 +248,7 @@ private void Header3(string type) {#>
 			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+            where TKey : notnull
 <#+}
 
 		private void Body3() {#>
@@ -292,6 +297,7 @@ private void Header3(string type) {#>
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[JBNotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+            where TKey : notnull
 <#+}
 
 		private void Body4() {#>

@@ -125,7 +125,7 @@ namespace CodeJam.Ranges
 
 		#region Formattable logic
 		[JetBrains.Annotations.NotNull]
-		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
+		private static readonly Func<T, string?, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
 		#endregion
 
 		#endregion
@@ -561,7 +561,7 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider</param>
 		/// <returns> The string representation of the boundary. </returns>
 		[Pure]
-		public string ToString(string format, IFormatProvider formatProvider) =>
+		public string ToString(string? format, IFormatProvider formatProvider) =>
 			_kind switch
 			{
 				RangeBoundaryFromKind.Empty => EmptyString,

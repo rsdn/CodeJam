@@ -18,7 +18,7 @@ namespace CodeJam.Collections
 		/// <returns>The final accumulator value.</returns>
 		[Pure, CanBeNull]
 		[return: MaybeNull]
-		public static TSource AggregateOrDefault<TSource>(
+		public static TSource? AggregateOrDefault<TSource>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
 			TSource defaultValue = default)
@@ -50,7 +50,7 @@ namespace CodeJam.Collections
 		/// <returns>The final accumulator value.</returns>
 		[Pure, CanBeNull]
 		[return: MaybeNull]
-		public static TAccumulate AggregateOrDefault<TSource, TAccumulate>(
+		public static TAccumulate? AggregateOrDefault<TSource, TAccumulate>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
@@ -83,7 +83,7 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
 		/// <param name="defaultValue">Default value returned if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
+		[Pure, CanBeNull]
 		public static TResult? AggregateOrDefault<TSource, TAccumulate, TResult>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
@@ -115,8 +115,8 @@ namespace CodeJam.Collections
 		/// <param name="func">An accumulator function to be invoked on each element.</param>
 		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
-		public static TSource AggregateOrDefault<TSource>(
+		[Pure, CanBeNull]
+		public static TSource? AggregateOrDefault<TSource>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource> defaultSelector)
@@ -147,8 +147,8 @@ namespace CodeJam.Collections
 		/// <param name="func">An accumulator function to be invoked on each element.</param>
 		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
-		public static TAccumulate AggregateOrDefault<TSource, TAccumulate>(
+		[Pure. CanBeNull]
+		public static TAccumulate? AggregateOrDefault<TSource, TAccumulate>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
@@ -182,8 +182,8 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
 		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
-		public static TResult AggregateOrDefault<TSource, TAccumulate, TResult>(
+		[Pure, CanBeNull]
+		public static TResult? AggregateOrDefault<TSource, TAccumulate, TResult>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,

@@ -58,6 +58,7 @@ namespace CodeJam.Collections
 	/// <seealso cref="System.Collections.ObjectModel.Collection{TItem}"/>
 	[PublicAPI]
 	public class OwnedCollection<TOwner, TKey, TItem> : OwnedCollectionBase<TOwner, TKey, TItem>
+		where TKey : notnull
 		where TOwner : class
 		where TItem : class
 	{
