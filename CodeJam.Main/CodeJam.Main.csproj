@@ -325,6 +325,7 @@
 		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.Operations.generated.cs">
 			<DependentUpon>CompositeRange`2.Operations.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[CompositeRanges]\CompositeRange`2.Operations.tt">
 			<LastGenOutput>CompositeRange`2.Operations.generated.cs</LastGenOutput>
@@ -372,6 +373,7 @@
 		<Compile Update="Ranges\CompositeRange.generated.cs">
 			<DependentUpon>CompositeRange.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\CompositeRange.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>

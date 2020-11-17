@@ -23,7 +23,7 @@ namespace CodeJam.Ranges
 		/// <param name="range">The range.</param>
 		/// <returns>A new composite range.</returns>
 		[Pure]
-		public static CompositeRange<T, TKey> Create<T, TKey>(Range<T, TKey> range) =>
+		public static CompositeRange<T, TKey> Create<T, TKey>(Range<T, TKey> range) where TKey : notnull =>
 			new CompositeRange<T, TKey>(range);
 
 		/// <summary>Creates the composite range.</summary>
@@ -32,7 +32,7 @@ namespace CodeJam.Ranges
 		/// <param name="ranges">The ranges.</param>
 		/// <returns>A new composite range.</returns>
 		[Pure]
-		public static CompositeRange<T, TKey> Create<T, TKey>([NotNull] params Range<T, TKey>[] ranges) =>
+		public static CompositeRange<T, TKey> Create<T, TKey>([NotNull] params Range<T, TKey>[] ranges) where TKey : notnull =>
 			new CompositeRange<T, TKey>(ranges);
 	}
 }

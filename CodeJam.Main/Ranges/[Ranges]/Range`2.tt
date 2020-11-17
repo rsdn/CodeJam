@@ -1,7 +1,7 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ include file="RangeWithTKeyReplacer.ttinclude" #>
 <#
-	Run(
+	RunRangeWithoutKey(
 		"Range`1.cs",
 		new ReplaceInfo // Add TKey field
 		{

@@ -40,6 +40,52 @@
 				Pattern = @"(,\s+to(?:Value)?)\)",
 				Replacement = @"$1, key)",
 				ThrowOnFail = false
+			},
+			new ReplaceInfo // where TKey : notnull
+			{
+				Pattern = @"(\w+\)\s*)(\=\>)",
+				Replacement = @"$1where TKey : notnull $2",
+				ThrowOnFail = false
+			});
+
+	private void RunRangeWithoutKey(string sourceFileName, params ReplaceInfo[] additionalReplaces) =>
+		Transform(
+			sourceFileName,
+			additionalReplaces,
+			new ReplaceInfo // region for non-updateable text
+			{
+				Pattern = @"(?s)\#region T4\-dont\-replace.*?\#endregion",
+				Replace = ReplaceMode.Ignore
+			},
+			new ReplaceInfo // Fix generic params
+			{
+				Pattern = @"(?<!(?:BoundaryTo<|BoundaryFrom<|Comparer<|Func<T, ))T>",
+				Replacement = "T, TKey>",
+				ThrowOnFail = true
+			},
+			new ReplaceInfo // Fix generic params XML docs
+			{
+				Pattern = @"(\r\n.+?)(<typeparam name=""T"">(?:.|\r|\n)+?</typeparam>)",
+				Replacement = @"$1$2$1<typeparam name=""TKey"">The type of the range key</typeparam>",
+				ThrowOnFail = true
+			},
+			new ReplaceInfo // Fix method signature
+			{
+				Pattern = @"(T>? to(?:Value)?)(\)|,)",
+				Replacement = @"$1, TKey key$2",
+				ThrowOnFail = false
+			},
+			new ReplaceInfo // Fix method XML docs
+			{
+				Pattern = @"(\r\n.+?)(<param name=""to(?:Value)?"">(?:.|\r|\n)+?</param>)",
+				Replacement = @"$1$2$1<param name=""key"">The value of the range key.</param>",
+				ThrowOnFail = false
+			},
+			new ReplaceInfo // Fix parameter passing
+			{
+				Pattern = @"(,\s+to(?:Value)?)\)",
+				Replacement = @"$1, key)",
+				ThrowOnFail = false
 			});
 
 	private void RunRangeExtensions(string sourceFileName, params ReplaceInfo[] additionalReplaces) =>
@@ -83,6 +129,12 @@
 				Pattern = @"(\r\n.+?)(<typeparam name=""T"">(?:.|\r|\n)*?</typeparam>)",
 				Replacement = @"$1$2$1<typeparam name=""TKey"">The type of the range key</typeparam>",
 				ThrowOnFail = true
+			},
+			new ReplaceInfo // where TKey : notnull
+			{
+				Pattern = @"(\w+\)\s*)(\=\>)",
+				Replacement = @"$1where TKey : notnull $2",
+				ThrowOnFail = false
 			});
 
 	private void RunRangeOperations(string sourceFileName, params ReplaceInfo[] additionalReplaces) =>
