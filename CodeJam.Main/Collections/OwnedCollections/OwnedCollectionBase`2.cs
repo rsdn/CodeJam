@@ -153,7 +153,6 @@ namespace CodeJam.Collections
 	/// <seealso cref="KeyedCollection{TKey, TItem}"/>
 	[PublicAPI]
 	public abstract class OwnedCollectionBase<TOwner, TKey, TItem> : KeyedCollection<TKey, TItem>
-		where TKey : notnull
 		where TOwner : class
 		where TItem : class
 	{

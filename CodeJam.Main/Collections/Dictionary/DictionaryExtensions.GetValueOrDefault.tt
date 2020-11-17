@@ -118,7 +118,7 @@ private void BackportedHeader2(string type) {#>
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
-			[MaybeNull] TValue defaultValue)
+			[AllowNull][CanBeNull] TValue? defaultValue)
             where TKey : notnull
 <#+}
 
@@ -201,7 +201,7 @@ private void Header2(string type) {#>
 			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
 			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
-			[MaybeNull] TResult defaultValue)
+			[AllowNull][CanBeNull] TResult? defaultValue)
             where TKey : notnull
 <#+}
 
@@ -247,7 +247,7 @@ private void Header3(string type) {#>
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
-			[JBNotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+			[JBNotNull, InstantHandle] Func<TKey, TValue?> defaultValueFactory)
             where TKey : notnull
 <#+}
 
@@ -295,8 +295,8 @@ private void Header3(string type) {#>
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[JBNotNull] this <#=type#><TKey, TValue> dictionary,
 			[JBNotNull] TKey key,
-			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
-			[JBNotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+			[JBNotNull, InstantHandle] Func<TKey, TValue, TResult?> resultSelector,
+			[JBNotNull, InstantHandle] Func<TKey, TResult?> defaultValueFactory)
             where TKey : notnull
 <#+}
 
