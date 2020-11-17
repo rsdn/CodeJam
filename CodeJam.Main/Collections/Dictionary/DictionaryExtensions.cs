@@ -213,8 +213,8 @@ namespace CodeJam.Collections
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
 			TValue addValue,
-			[NotNull, InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory
-		where TKey : notnull
+			[NotNull, InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
+			where TKey : notnull
 		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
