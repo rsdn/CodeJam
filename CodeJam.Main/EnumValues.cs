@@ -83,7 +83,7 @@ namespace CodeJam
 			_valuesByDisplayName = _values
 				.Where(f => f.DisplayName != null)
 				.ToDictionary(
-					f => f.DisplayName,
+					f => f.DisplayName!,
 					InvariantCultureStringComparer.CompareCase,
 					DictionaryDuplicate.FirstWins);
 		}

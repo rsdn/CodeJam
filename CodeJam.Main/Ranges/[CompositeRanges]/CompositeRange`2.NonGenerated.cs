@@ -13,7 +13,7 @@ using static CodeJam.Ranges.CompositeRangeInternal;
 namespace CodeJam.Ranges
 {
 	/// <summary>Describes a range of the values.</summary>
-	public partial struct CompositeRange<T, TKey>
+	public partial struct CompositeRange<T, TKey> where TKey : notnull
 	{
 		#region Helpers
 		[NotNull]

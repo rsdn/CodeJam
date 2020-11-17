@@ -29,12 +29,13 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
-				[NotNull] Func<TKey, TValue> valueFactory,
-				[CanBeNull] IEqualityComparer<TKey>? comparer,
-				bool threadSafe) where TKey : notnull =>
-			threadSafe
-				? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer)
-				: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, comparer);
+			[NotNull] Func<TKey, TValue> valueFactory,
+			[CanBeNull] IEqualityComparer<TKey>? comparer,
+			bool threadSafe)
+			where TKey : notnull =>
+				threadSafe
+					? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer)
+					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, comparer);
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -55,7 +56,8 @@ namespace CodeJam.Collections
 			[NotNull] Func<TKey, TValue> valueFactory,
 			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
 			[NotNull] IEqualityComparer<TKey> comparer,
-			bool threadSafe) where TKey : notnull =>
+			bool threadSafe)
+			where TKey : notnull =>
 				threadSafe
 					? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer)
 					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer);
@@ -74,11 +76,12 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
-				[NotNull] Func<TKey, TValue> valueFactory,
-				bool threadSafe) where TKey : notnull =>
-			threadSafe
-				? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory)
-				: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory);
+			[NotNull] Func<TKey, TValue> valueFactory,
+			bool threadSafe)
+			where TKey : notnull =>
+				threadSafe
+					? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory)
+					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory);
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -97,7 +100,8 @@ namespace CodeJam.Collections
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
 			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
-			bool threadSafe) where TKey : notnull =>
+			bool threadSafe)
+			where TKey : notnull =>
 				threadSafe
 					? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection)
 					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, collection);
@@ -114,7 +118,8 @@ namespace CodeJam.Collections
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
-			LazyThreadSafetyMode threadSafety) where TKey : notnull
+			LazyThreadSafetyMode threadSafety)
+			where TKey : notnull
 		{
 			return
 				threadSafety switch
@@ -123,7 +128,7 @@ namespace CodeJam.Collections
 					LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory),
 					LazyThreadSafetyMode.ExecutionAndPublication => new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory),
 					_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
-				};
+					};
 		}
 
 		/// <summary>
@@ -138,18 +143,19 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
-				[NotNull] Func<TKey, TValue> valueFactory,
-				[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
-				LazyThreadSafetyMode threadSafety) where TKey : notnull =>
-			threadSafety switch
-			{
-				LazyThreadSafetyMode.None =>
-					new LazyDictionary<TKey, TValue>(valueFactory, collection),
+			[NotNull] Func<TKey, TValue> valueFactory,
+			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
+			LazyThreadSafetyMode threadSafety)
+			where TKey : notnull =>
+				threadSafety switch
+				{
+					LazyThreadSafetyMode.None =>
+						new LazyDictionary<TKey, TValue>(valueFactory, collection),
 					LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection),
 					LazyThreadSafetyMode.ExecutionAndPublication =>
 						new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection),
 					_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
-			};
+					};
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -165,16 +171,17 @@ namespace CodeJam.Collections
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
 			[CanBeNull] IEqualityComparer<TKey>? comparer,
-			LazyThreadSafetyMode threadSafety) where TKey : notnull =>
-			threadSafety switch
-			{
-				LazyThreadSafetyMode.None =>
-					new LazyDictionary<TKey, TValue>(valueFactory, comparer),
-				LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer),
-				LazyThreadSafetyMode.ExecutionAndPublication =>
-					new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer),
-				_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
-			};
+			LazyThreadSafetyMode threadSafety)
+			where TKey : notnull =>
+				threadSafety switch
+				{
+					LazyThreadSafetyMode.None =>
+						new LazyDictionary<TKey, TValue>(valueFactory, comparer),
+					LazyThreadSafetyMode.PublicationOnly => new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer),
+					LazyThreadSafetyMode.ExecutionAndPublication =>
+						new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer),
+					_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
+					};
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -189,18 +196,19 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
-				[NotNull] Func<TKey, TValue> valueFactory,
-				[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
-				[NotNull] IEqualityComparer<TKey> comparer,
-				LazyThreadSafetyMode threadSafety) where TKey : notnull =>
-			threadSafety switch
-			{
-				LazyThreadSafetyMode.None => new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
-				LazyThreadSafetyMode.PublicationOnly =>
-					new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
-				LazyThreadSafetyMode.ExecutionAndPublication =>
-					new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
-				_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
-			};
+			[NotNull] Func<TKey, TValue> valueFactory,
+			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
+			[NotNull] IEqualityComparer<TKey> comparer,
+			LazyThreadSafetyMode threadSafety)
+			where TKey : notnull =>
+				threadSafety switch
+				{
+					LazyThreadSafetyMode.None => new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
+					LazyThreadSafetyMode.PublicationOnly =>
+						new ConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
+					LazyThreadSafetyMode.ExecutionAndPublication =>
+						new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer),
+					_ => throw new ArgumentOutOfRangeException(nameof(threadSafety), threadSafety, null)
+					};
 	}
 }

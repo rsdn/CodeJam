@@ -24,7 +24,8 @@ namespace CodeJam
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 				[NotNull] this Func<TArg, TResult> func,
 				IEqualityComparer<TArg> comparer,
-				bool threadSafe = false) =>
+				bool threadSafe = false)
+			where TArg : notnull =>
 			Memoize(func, comparer, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
 
 		/// <summary>
@@ -42,6 +43,7 @@ namespace CodeJam
 			[NotNull] this Func<TArg, TResult> func,
 			[CanBeNull] IEqualityComparer<TArg>? comparer,
 			LazyThreadSafetyMode threadSafety)
+			where TArg : notnull
 		{
 			var map = LazyDictionary.Create(func, comparer, threadSafety);
 			return arg => map[arg];
@@ -59,7 +61,8 @@ namespace CodeJam
 		[Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 				[NotNull] this Func<TArg, TResult> func,
-				bool threadSafe = false) =>
+				bool threadSafe = false)
+			where TArg : notnull =>
 			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
 
 		/// <summary>
@@ -75,6 +78,7 @@ namespace CodeJam
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 				[NotNull] this Func<TArg, TResult> func,
 				LazyThreadSafetyMode threadSafety)
+			where TArg : notnull
 		{
 			var map = LazyDictionary.Create(func, threadSafety);
 			return arg => map[arg];
