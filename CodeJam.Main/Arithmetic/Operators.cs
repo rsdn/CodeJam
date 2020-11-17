@@ -24,7 +24,7 @@ namespace CodeJam.Arithmetic
 		/// Gets a comparison function.
 		/// </summary>
 		[NotNull]
-		public static Func<T, T, int> Compare => CompareHelper.Value;
+		public static Func<T?, T?, int> Compare => CompareHelper.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -32,13 +32,13 @@ namespace CodeJam.Arithmetic
 		private static class CompareHelper
 		{
 			[NotNull, ItemNotNull]
-			private static readonly Lazy<Func<T, T, int>> _value = new Lazy<Func<T, T, int>>(OperatorsFactory.Comparison<T>, _lazyMode);
+			private static readonly Lazy<Func<T?, T?, int>> _value = new Lazy<Func<T?, T?, int>>(OperatorsFactory.Comparison<T>, _lazyMode);
 
 			/// <summary>
 			/// Gets a comparison function.
 			/// </summary>
 			[NotNull]
-			public static Func<T, T, int> Value => _value.Value;
+			public static Func<T?, T?, int> Value => _value.Value;
 		}
 		#endregion
 
@@ -142,7 +142,7 @@ namespace CodeJam.Arithmetic
 		#region Custom impl for _onesComplement (FW 3.5 targeting)
 		/// <summary>Gets a ones complement operation function, such as (~a) in C#.</summary>
 		[NotNull]
-		public static Func<T, T> OnesComplement => OnesComplementHelper.LazyValue.Value;
+		public static Func<T?, T?> OnesComplement => OnesComplementHelper.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -153,7 +153,7 @@ namespace CodeJam.Arithmetic
 			/// The operator factory.
 			/// </summary>
 			[NotNull, ItemNotNull]
-			public static readonly Lazy<Func<T, T>> LazyValue = new Lazy<Func<T, T>>(CreateValue, _lazyMode);
+			public static readonly Lazy<Func<T?, T?>> LazyValue = new Lazy<Func<T?, T?>>(CreateValue, _lazyMode);
 
 			/// <summary>
 			/// Returns the operator function.
@@ -162,7 +162,7 @@ namespace CodeJam.Arithmetic
 			/// The operator function.
 			/// </returns>
 			[NotNull]
-			private static Func<T, T> CreateValue()
+			private static Func<T?, T?> CreateValue()
 			{
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 				return OperatorsFactory.UnaryOperator<T>(ExpressionType.OnesComplement);

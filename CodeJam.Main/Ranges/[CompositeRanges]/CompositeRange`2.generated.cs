@@ -292,7 +292,7 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
 		[Pure]
-		public string ToString(string format, IFormatProvider formatProvider)
+		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
 			if (IsEmpty)
 				return ContainingRange.ToString(format, formatProvider);

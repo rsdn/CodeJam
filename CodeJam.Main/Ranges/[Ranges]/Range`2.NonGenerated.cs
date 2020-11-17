@@ -15,7 +15,7 @@ using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessage
 namespace CodeJam.Ranges
 {
 	/// <summary>Describes a range of the values with a key attached.</summary>
-	public partial struct Range<T, TKey> where TKey : notnull
+	public partial struct Range<T, TKey>
 	{
 		#region Static members
 		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;

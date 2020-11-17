@@ -17,7 +17,8 @@ namespace CodeJam.Ranges
 	/// <typeparam name="T">The type of the range values.</typeparam>
 	/// <seealso cref="System.IFormattable"/>
 	[PublicAPI]
-	public struct RangeIntersection<T> : IFormattable
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial struct RangeIntersection<T> : IFormattable
 	{
 		[NotNull] private static readonly IReadOnlyList<Range<T>> _emptyRanges = Array<Range<T>>.Empty.AsReadOnly();
 
@@ -107,7 +108,7 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
 		[Pure]
-		public string ToString(string format, IFormatProvider formatProvider)
+		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
 			var intersectionRangePart = IntersectionRange.ToString(format, formatProvider);
 			var rangesPart = IsEmpty

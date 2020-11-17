@@ -18,7 +18,7 @@ namespace CodeJam.Ranges
 		/// <param name="value">The value to compare with.</param>
 		/// <returns>A new boundary to be used in comparison</returns>
 		[MethodImpl(AggressiveInlining)]
-		internal static RangeBoundaryFrom<T> GetCompareToBoundary<T>(T value) =>
+		internal static RangeBoundaryFrom<T> GetCompareToBoundary<T>(T? value) =>
 			RangeBoundaryFrom<T>.AdjustAndCreate(value, RangeBoundaryFromKind.Inclusive);
 		#endregion
 
@@ -32,7 +32,7 @@ namespace CodeJam.Ranges
 		/// or empty boundary if the <paramref name="fromValue"/> equals to NaN static field of the <typeparamref name="T"/>.
 		/// </returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T fromValue) =>
+		public static RangeBoundaryFrom<T> BoundaryFrom<T>(T? fromValue) =>
 			RangeBoundaryFrom<T>.AdjustAndCreate(fromValue, RangeBoundaryFromKind.Inclusive);
 
 		/// <summary>Exclusive boundary From factory method.</summary>
@@ -44,7 +44,7 @@ namespace CodeJam.Ranges
 		/// or empty boundary if the <paramref name="fromValue"/> equals to NaN static field of the <typeparamref name="T"/>.
 		/// </returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T fromValue) =>
+		public static RangeBoundaryFrom<T> BoundaryFromExclusive<T>(T? fromValue) =>
 			RangeBoundaryFrom<T>.AdjustAndCreate(fromValue, RangeBoundaryFromKind.Exclusive);
 
 		/// <summary>Negative infinity boundary (-∞) factory method.</summary>
@@ -63,7 +63,7 @@ namespace CodeJam.Ranges
 		/// or empty boundary if the <paramref name="toValue"/> equals to NaN static field of the <typeparamref name="T"/>.
 		/// </returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryTo<T> BoundaryTo<T>(T toValue) =>
+		public static RangeBoundaryTo<T> BoundaryTo<T>(T? toValue) =>
 			RangeBoundaryTo<T>.AdjustAndCreate(toValue, RangeBoundaryToKind.Inclusive);
 
 		/// <summary>Exclusive boundary To factory method.</summary>
@@ -75,7 +75,7 @@ namespace CodeJam.Ranges
 		/// or empty boundary if the <paramref name="toValue"/> equals to NaN static field of the <typeparamref name="T"/>.
 		/// </returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T toValue) =>
+		public static RangeBoundaryTo<T> BoundaryToExclusive<T>(T? toValue) =>
 			RangeBoundaryTo<T>.AdjustAndCreate(toValue, RangeBoundaryToKind.Exclusive);
 
 		/// <summary>Positive infinity boundary (+∞) factory method.</summary>
@@ -129,7 +129,7 @@ namespace CodeJam.Ranges
 		/// <param name="value2">The value of the boundary2.</param>
 		/// <returns>The less one of the two From boundaries.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryFrom<T> MinFrom<T>(T value1, T value2) =>
+		public static RangeBoundaryFrom<T> MinFrom<T>(T? value1, T value2) =>
 			Min(BoundaryFrom(value1), BoundaryFrom(value2));
 
 		/// <summary>Returns the greater one of the two From boundaries.</summary>
@@ -138,7 +138,7 @@ namespace CodeJam.Ranges
 		/// <param name="value2">The value of the boundary2.</param>
 		/// <returns>The greater one of the two From boundaries.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryFrom<T> MaxFrom<T>(T value1, T value2) =>
+		public static RangeBoundaryFrom<T> MaxFrom<T>(T? value1, T value2) =>
 			Max(BoundaryFrom(value1), BoundaryFrom(value2));
 
 		/// <summary>Returns the less one of the two To boundaries.</summary>
@@ -147,7 +147,7 @@ namespace CodeJam.Ranges
 		/// <param name="value2">The value of the boundary2.</param>
 		/// <returns>The less one of the two To boundaries.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryTo<T> MinTo<T>(T value1, T value2) =>
+		public static RangeBoundaryTo<T> MinTo<T>(T? value1, T value2) =>
 			Min(BoundaryTo(value1), BoundaryTo(value2));
 
 		/// <summary>Returns the greater one of the two To boundaries.</summary>
@@ -156,7 +156,7 @@ namespace CodeJam.Ranges
 		/// <param name="value2">The value of the boundary2.</param>
 		/// <returns>The greater one of the two To boundaries.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryTo<T> MaxTo<T>(T value1, T value2) =>
+		public static RangeBoundaryTo<T> MaxTo<T>(T? value1, T value2) =>
 			Max(BoundaryTo(value1), BoundaryTo(value2));
 		#endregion
 
@@ -167,7 +167,7 @@ namespace CodeJam.Ranges
 		/// <param name="to">The value of the boundary To.</param>
 		/// <returns><c>true</c>, if the boundaries can be used for valid range creation.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public static bool IsValid<T>(T from, T to) =>
+		public static bool IsValid<T>(T? from, T? to) =>
 			RangeBoundaryFrom<T>.IsValid(from) &&
 				RangeBoundaryTo<T>.IsValid(to) &&
 				IsValid(BoundaryFrom(from), BoundaryTo(to));

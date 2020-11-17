@@ -37,22 +37,22 @@ namespace CodeJam.Ranges
 		private const int _equalResult = 0;
 
 		[JetBrains.Annotations.NotNull]
-		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
+		private static readonly Func<T?, T?, bool> _equalsFunc = Operators<T>.AreEqual;
 
 		[JetBrains.Annotations.NotNull]
-		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
+		private static readonly Func<T?, T?, int> _compareFunc = Operators<T>.Compare;
 
 		private static readonly bool _hasNaN = Operators<T>.HasNaN;
 
 		private static readonly bool _hasNegativeInfinity = Operators<T>.HasNegativeInfinity;
 
-		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
+		private static readonly T? _negativeInfinity = Operators<T>.HasNegativeInfinity
 			? Operators<T>.NegativeInfinity
 			: default;
 
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
 
-		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
+		private static readonly T? _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
 			: default;
 
@@ -66,7 +66,7 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryFrom<T> AdjustAndCreate(T value, RangeBoundaryFromKind boundaryKind)
+		public static RangeBoundaryFrom<T> AdjustAndCreate(T? value, RangeBoundaryFromKind boundaryKind)
 		{
 			DebugCode.AssertArgument(
 				boundaryKind == RangeBoundaryFromKind.Inclusive || boundaryKind == RangeBoundaryFromKind.Exclusive,
@@ -105,7 +105,7 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		public static bool IsValid(T value)
+		public static bool IsValid(T? value)
 		{
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
 			{
@@ -125,14 +125,14 @@ namespace CodeJam.Ranges
 
 		#region Formattable logic
 		[JetBrains.Annotations.NotNull]
-		private static readonly Func<T, string?, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
+		private static readonly Func<T?, string?, IFormatProvider?, string> _formattableCallback = CreateFormattableCallback<T>();
 		#endregion
 
 		#endregion
 
 		#region Fields & .ctor
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
-		private T _value;
+		private T? _value;
 		private RangeBoundaryFromKind _kind;
 
 		/// <summary>Creates a new range boundary.</summary>
@@ -141,7 +141,7 @@ namespace CodeJam.Ranges
 		/// Infinite (or empty) boundaries should use default(T) or NegativeInfinity(T) (if the type has one) as the value.
 		/// </param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
-		public RangeBoundaryFrom(T value, RangeBoundaryFromKind boundaryKind)
+		public RangeBoundaryFrom(T? value, RangeBoundaryFromKind boundaryKind)
 		{
 			if (_hasNaN && !_equalsFunc(value, value))
 			{
@@ -192,7 +192,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		/// <param name="skipsArgValidation">Stub argument to mark unsafe (no validation) constructor overload.</param>
 		[Obsolete(SkipsArgValidationObsolete)]
-		internal RangeBoundaryFrom(T value, RangeBoundaryFromKind boundaryKind, UnsafeOverload skipsArgValidation)
+		internal RangeBoundaryFrom(T? value, RangeBoundaryFromKind boundaryKind, UnsafeOverload skipsArgValidation)
 #if DEBUG
 			: this(value, boundaryKind) { }
 #else
@@ -561,7 +561,7 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider</param>
 		/// <returns> The string representation of the boundary. </returns>
 		[Pure]
-		public string ToString(string? format, IFormatProvider formatProvider) =>
+		public string ToString(string? format, IFormatProvider? formatProvider) =>
 			_kind switch
 			{
 				RangeBoundaryFromKind.Empty => EmptyString,

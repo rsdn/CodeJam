@@ -25,6 +25,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Ranges\[Helper types]\RangeIntersection`2.NonGenerated.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 	</ItemGroup>
 
@@ -477,6 +481,7 @@
 			<Pack>true</Pack>
 			<PackagePath>icon.png</PackagePath>
 		</None>
+		<None Include="Ranges\[Helper types]\RangeIntersection`2.NonGenerated.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

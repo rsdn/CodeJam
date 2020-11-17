@@ -47,7 +47,7 @@ namespace CodeJam.Ranges
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new range with the key specified.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public Range<T, TKey2> WithKey<TKey2>(TKey2 key) =>
+		public Range<T, TKey2> WithKey<TKey2>(TKey2 key) where TKey2 : notnull =>
 			Range.Create(From, To, key);
 
 		/// <summary>
@@ -179,7 +179,7 @@ namespace CodeJam.Ranges
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range contains another range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public bool Contains<TKey2>(Range<T, TKey2> other)
+		public bool Contains<TKey2>(Range<T, TKey2> other) where TKey2 : notnull
 		{
 			if (IsEmpty)
 			{
@@ -220,7 +220,7 @@ namespace CodeJam.Ranges
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range has intersection with another range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public bool HasIntersection<TKey2>(Range<T, TKey2> other)
+		public bool HasIntersection<TKey2>(Range<T, TKey2> other) where TKey2 : notnull
 		{
 			if (IsEmpty)
 			{
@@ -302,7 +302,7 @@ namespace CodeJam.Ranges
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range starts after another range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public bool StartsAfter<TKey2>(Range<T, TKey2> other) =>
+		public bool StartsAfter<TKey2>(Range<T, TKey2> other) where TKey2 : notnull =>
 			other.IsNotEmpty && From > other.To;
 
 		/// <summary>Determines whether the range ends before the value specified.</summary>
@@ -344,7 +344,7 @@ namespace CodeJam.Ranges
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range ends before another range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
-		public bool EndsBefore<TKey2>(Range<T, TKey2> other) =>
+		public bool EndsBefore<TKey2>(Range<T, TKey2> other) where TKey2 : notnull =>
 			IsNotEmpty && other.IsNotEmpty && To < other.From;
 		#endregion
 

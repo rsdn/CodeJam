@@ -66,44 +66,44 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">Type of the formattable object.</typeparam>
 		/// <returns>The format callback. Returns <c>null</c> if the first arg is <c>null</c>.</returns>
 		[NotNull]
-		internal static Func<T, string?, IFormatProvider, string> CreateFormattableCallback<T>()
+		internal static Func<T, string?, IFormatProvider?, string> CreateFormattableCallback<T>()
 		{
 			const BindingFlags bf = BindingFlags.Static | BindingFlags.NonPublic;
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T)))
 			{
 				// ReSharper disable once PossibleNullReferenceException
 				var method = typeof(RangeInternal)
-					.GetMethod(nameof(Format), bf)
+					.GetMethod(nameof(Format), bf)!
 					.MakeGenericMethod(typeof(T));
 
 				// no boxing for IFormatProvider
 				var res = method.CreateDelegate<Func<T, string, IFormatProvider, string>>();
 
 				DebugCode.BugIf(res == null, "res == null");
-				return res;
+				return res!;
 			}
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T).ToNullableUnderlying()))
 			{
 				// ReSharper disable once PossibleNullReferenceException
 				var method = typeof(RangeInternal)
-					.GetMethod(nameof(FormatNullable), bf)
+					.GetMethod(nameof(FormatNullable), bf)!
 					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
 
 				// no boxing for IFormatProvider
 				var res = method.CreateDelegate<Func<T, string, IFormatProvider, string>>();
 
 				DebugCode.BugIf(res == null, "res == null");
-				return res;
+				return res!;
 			}
 
-			return (value, format, formatProvider) => value?.ToString();
+			return (value, format, formatProvider) => value?.ToString() ?? string.Empty;
 		}
 
 		private static string Format<T>(T value, string? format, IFormatProvider formatProvider) where T : IFormattable =>
-			value?.ToString(format, formatProvider);
+			value?.ToString(format, formatProvider) ?? string.Empty;
 
 		private static string FormatNullable<T>(T? value, string? format, IFormatProvider formatProvider)
-			where T : struct, IFormattable =>
-				value?.ToString(format, formatProvider);
+			where T : IFormattable =>
+				value?.ToString(format, formatProvider) ?? string.Empty;
 	}
 }

@@ -72,7 +72,7 @@ namespace CodeJam.Ranges
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
 		[Pure]
-		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key) =>
+		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key) where TKey2 : notnull =>
 			IsEmpty
 				? CompositeRange<T, TKey2>.Empty
 				: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
