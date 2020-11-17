@@ -207,8 +207,8 @@ namespace CodeJam.Collections
 		[NotNull]
 		[Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
-			[NotNull] this ICollection<T> source,
-			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
+			[NotNull] this ICollection<T?> source,
+			[NotNull, InstantHandle] Func<T?, IEnumerable<T>> dependsOnGetter,
 			[NotNull] IEqualityComparer<T> equalityComparer)
 			where T : notnull
 		{
