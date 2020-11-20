@@ -7,6 +7,7 @@ What's new in 3.3.0
 * Add value annotations.
 * Add WaitTaskAsync extension method
 * Upgrade to Theraot.Core 3.2.0 which fixes many issues in old .NET Frameworks.
+* Code cleanup
 
 What's new in 3.2.0
 -------------------
