@@ -203,7 +203,7 @@ namespace CodeJam.Collections
 		/// </remarks>
 		/// <returns>The enumeration of all suffixes in the subtree in lexicographical order</returns>
 		[Pure]
-		private IEnumerable<Suffix> AllFromNode(Node node, [NonNegativeValue] int length)
+		private IEnumerable<Suffix> AllFromNode(Node node, int length)
 		{
 			DebugCode.AssertArgument(length >= 0, nameof(length), "The length should be non-negative");
 			if (node.IsLeaf) // Empty subtree
@@ -429,7 +429,7 @@ namespace CodeJam.Collections
 			/// <param name="end">An edge end offset</param>
 			/// <param name="terminal">Is the edge terminates the string or not</param>
 			/// <param name="children">A list of child nodes (edges)</param>
-			public Node([NonNegativeValue] int begin, [NonNegativeValue] int end, bool terminal, List<int> children = null)
+			public Node([NonNegativeValue] int begin, int end, bool terminal, List<int> children = null)
 			{
 				DebugCode.AssertArgument(end >= 0, nameof(end), "end should be nonnegative");
 				Begin = begin;

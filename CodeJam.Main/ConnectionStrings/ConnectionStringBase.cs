@@ -231,7 +231,14 @@ namespace CodeJam.ConnectionStrings
 		}
 
 		/// <inheritdoc />
-		ICollection<string> IDictionary<string, object>.Keys => (ICollection<string>)_wrapper.Keys;
+		ICollection<string> IDictionary<string, object>.Keys
+		{
+			get
+			{
+				DebugCode.BugIf(_wrapper.Keys == null, "_wrapper.Keys == null");
+				return (ICollection<string>)_wrapper.Keys;
+			}
+		}
 
 		/// <inheritdoc />
 		ICollection<object> IDictionary<string, object>.Values => (ICollection<object>)_wrapper.Values;

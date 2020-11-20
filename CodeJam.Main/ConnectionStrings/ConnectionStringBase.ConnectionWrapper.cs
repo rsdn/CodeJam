@@ -25,7 +25,7 @@ namespace CodeJam.ConnectionStrings
 			private static IReadOnlyDictionary<string, KeywordDescriptor> GetDescriptorsCore(Type type)
 			{
 				static KeywordDescriptor GetDescriptor(PropertyInfo property) =>
-					new KeywordDescriptor(
+					new(
 						property.Name,
 						property.PropertyType,
 #if NET35_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP

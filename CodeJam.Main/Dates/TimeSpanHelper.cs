@@ -1,10 +1,13 @@
 ﻿using System;
 
+using JetBrains.Annotations;
+
 namespace CodeJam.Dates
 {
 	/// <summary>
 	/// Helper methods for timespan manipulations
 	/// </summary>
+	[PublicAPI]
 	public static class TimeSpanHelper
 	{
 		private const long _ticksPerMicrosecond = TimeSpan.TicksPerMillisecond / 1000;
@@ -73,13 +76,12 @@ namespace CodeJam.Dates
 		{
 			var temp = timeSpan.Ticks * _microsecondsPerTick;
 
-			if (temp > _maxMicroseconds)
-				return _maxMicroseconds;
-
-			if (temp < _minMicroseconds)
-				return _minMicroseconds;
-
-			return temp;
+			return temp switch
+			{
+				> _maxMicroseconds => _maxMicroseconds,
+				< _minMicroseconds => _minMicroseconds,
+				_ => temp
+			};
 		}
 
 		/// <summary>
@@ -92,13 +94,12 @@ namespace CodeJam.Dates
 		{
 			var temp = timeSpan.Ticks * _nanosecondsPerTick;
 
-			if (temp > _maxNanoseconds)
-				return _maxNanoseconds;
-
-			if (temp < _minNanoseconds)
-				return _minNanoseconds;
-
-			return temp;
+			return temp switch
+			{
+				> _maxNanoseconds => _maxNanoseconds,
+				< _minNanoseconds => _minNanoseconds,
+				_ => temp
+			};
 		}
 
 		/// <summary>
@@ -113,8 +114,12 @@ namespace CodeJam.Dates
 		/// -or-
 		/// value is <see cref="double.NegativeInfinity" />.</exception>
 		/// <exception cref="ArgumentException">value is equal to <see cref="double.NaN" />.</exception>
+#if NETCOREAPP20_OR_GREATER || NETSTANDARD21_OR_GREATER
+		[Obsolete("Use Multiply operator instead.")]
+#endif
 		public static TimeSpan Multiply(this TimeSpan timeSpan, double multiplier) =>
 			FromTicksChecked(timeSpan.Ticks * multiplier);
+
 
 		/// <summary>
 		/// Returns a TimeSpan that represents value divided to specified divisor.
@@ -128,6 +133,9 @@ namespace CodeJam.Dates
 		/// -or-
 		/// value is <see cref="double.NegativeInfinity" />.</exception>
 		/// <exception cref="ArgumentException">value is equal to <see cref="double.NaN" />.</exception>
+#if NETCOREAPP20_OR_GREATER || NETSTANDARD21_OR_GREATER
+		[Obsolete("Use Division operator instead.")]
+#endif
 		public static TimeSpan Divide(this TimeSpan timeSpan, double divisor) =>
 			FromTicksChecked(timeSpan.Ticks / divisor);
 	}

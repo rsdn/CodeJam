@@ -49,7 +49,7 @@ namespace CodeJam.Threading
 		#endregion
 
 		[NotNull]
-		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+		private readonly SemaphoreSlim _semaphore = new(1, 1);
 
 		/// <summary>
 		/// Acquires async lock.

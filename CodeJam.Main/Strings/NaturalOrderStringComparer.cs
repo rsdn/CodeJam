@@ -43,7 +43,7 @@ namespace CodeJam.Strings
 		/// that performs a string comparison using a "natural order" algorithm.
 		/// </returns>
 		[NotNull]
-		public static readonly NaturalOrderStringComparer Comparer = new NaturalOrderStringComparer(false);
+		public static readonly NaturalOrderStringComparer Comparer = new(false);
 
 		/// <summary>
 		/// Gets a <see cref="NaturalOrderStringComparer"/> object
@@ -54,7 +54,7 @@ namespace CodeJam.Strings
 		/// that performs a case-insensitive string comparison using a "natural order" algorithm.
 		/// </returns>
 		[NotNull]
-		public static readonly NaturalOrderStringComparer IgnoreCaseComparer = new NaturalOrderStringComparer(true);
+		public static readonly NaturalOrderStringComparer IgnoreCaseComparer = new(true);
 
 		/// <summary>
 		/// Gets a <see cref="Comparison{T}"/> delegate that performs a string comparison using a "natural order" algorithm.

@@ -253,7 +253,7 @@ namespace CodeJam.Reflection
 			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
 		[NotNull]
-		private static readonly ConcurrentDictionary<Type, object> _defaultValues = new ConcurrentDictionary<Type, object>();
+		private static readonly ConcurrentDictionary<Type, object> _defaultValues = new();
 
 		private object GetDefaultValue([NotNull] Type type)
 		{

@@ -104,15 +104,15 @@ namespace CodeJam.Arithmetic
 
 		[NotNull]
 		private static NotSupportedException FieldNotSupported([NotNull]Type type, string fieldName, Exception ex) =>
-			new NotSupportedException($"The type {type.Name} has no field {fieldName} defined.", ex);
+			new($"The type {type.Name} has no field {fieldName} defined.", ex);
 
 		[NotNull]
 		private static NotSupportedException MethodNotSupported([NotNull] Type type, string methodName, Exception ex) =>
-			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
+			new($"The type {type.Name} has no method {methodName} defined.", ex);
 
 		[NotNull]
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
-			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
+			new($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
 		[CanBeNull]
 		private static FieldInfo TryGetOpField<T>([NotNull] string fieldName)
@@ -199,7 +199,7 @@ namespace CodeJam.Arithmetic
 			if (field == null)
 				throw FieldNotSupported(typeof(T), nameof(double.NegativeInfinity), null);
 
-			return (T)field.GetValue(null);
+			return ((T)field.GetValue(null))!;
 		}
 
 		/// <summary>Determines whether the type has positive infinity value.</summary>
@@ -225,7 +225,7 @@ namespace CodeJam.Arithmetic
 			if (field == null)
 				throw FieldNotSupported(typeof(T), nameof(double.PositiveInfinity), null);
 
-			return (T)field.GetValue(null);
+			return ((T)field.GetValue(null))!;
 		}
 		#endregion
 

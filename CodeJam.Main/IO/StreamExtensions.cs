@@ -27,7 +27,12 @@ namespace CodeJam.IO
 			[NotNull] this Stream stream,
 			[CanBeNull] Encoding encoding = null,
 			bool leaveOpen = false) =>
-				new StreamReader(stream, encoding ?? Encoding.UTF8, true, _defaultBufferSize, leaveOpen);
+				new(
+					stream,
+					encoding ?? Encoding.UTF8,
+					true,
+					_defaultBufferSize,
+					leaveOpen);
 
 		/// <summary>
 		/// Wraps <paramref name="stream"/> with <see cref="BinaryReader"/>.
@@ -40,7 +45,7 @@ namespace CodeJam.IO
 			[NotNull] this Stream stream,
 			[CanBeNull] Encoding encoding = null,
 			bool leaveOpen = false) =>
-				new BinaryReader(stream, encoding ?? Encoding.UTF8, leaveOpen);
+				new(stream, encoding ?? Encoding.UTF8, leaveOpen);
 
 		/// <summary>
 		/// Wraps <paramref name="stream"/> with <see cref="StreamWriter"/>.
@@ -53,7 +58,7 @@ namespace CodeJam.IO
 			[NotNull] this Stream stream,
 			[CanBeNull] Encoding encoding = null,
 			bool leaveOpen = false) =>
-				new StreamWriter(stream, encoding ?? Encoding.UTF8, _defaultBufferSize, leaveOpen);
+				new(stream, encoding ?? Encoding.UTF8, _defaultBufferSize, leaveOpen);
 
 		/// <summary>
 		/// Wraps <paramref name="stream"/> with <see cref="BinaryWriter"/>.
@@ -66,7 +71,7 @@ namespace CodeJam.IO
 			[NotNull] this Stream stream,
 			[CanBeNull] Encoding encoding = null,
 			bool leaveOpen = false) =>
-				new BinaryWriter(stream, encoding ?? Encoding.UTF8, leaveOpen);
+				new(stream, encoding ?? Encoding.UTF8, leaveOpen);
 
 		/// <summary>
 		/// Returns content of the stream as a byte array.

@@ -17,7 +17,7 @@ namespace CodeJam
 		/// <param name="value">Value</param>
 		/// <returns>Instance of <see cref="ValueOption"/>.</returns>
 		[Pure]
-		public static ValueOption<T> Some<T>(T value) => new ValueOption<T>(value);
+		public static ValueOption<T> Some<T>(T value) => new(value);
 
 		/// <summary>
 		/// Creates instance of <see cref="ValueOption"/> with specified value, if value not null.
@@ -51,7 +51,7 @@ namespace CodeJam
 		/// <typeparam name="T">Type of value.</typeparam>
 		/// <returns>Instance without value.</returns>
 		[Pure]
-		public static ValueOption<T> None<T>() => new ValueOption<T>();
+		public static ValueOption<T> None<T>() => new();
 
 		/// <summary>
 		/// Converts <paramref name="option"/> value to another option with <paramref name="selectFunc"/>.

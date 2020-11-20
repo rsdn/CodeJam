@@ -31,7 +31,7 @@ namespace CodeJam.Reflection
 		[Pure]
 		[NotNull]
 		public static ParamInfo Param([NotNull] string name, [CanBeNull] object value, bool required = true) =>
-			new ParamInfo(name, value, required);
+			new(name, value, required);
 
 		/// <summary>
 		/// Parameter name.

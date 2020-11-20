@@ -21,8 +21,7 @@ namespace CodeJam.Collections
 		/// A <see cref="KeyEqualityComparer{T,TKey}"/>.
 		/// </returns>
 		[NotNull]
-		public static KeyEqualityComparer<T, TKey> Create<T, TKey>([NotNull] Func<T, TKey> keySelector) =>
-			new KeyEqualityComparer<T, TKey>(keySelector);
+		public static KeyEqualityComparer<T, TKey> Create<T, TKey>([NotNull] Func<T, TKey> keySelector) => new(keySelector);
 
 		/// <summary>
 		/// Creates a <see cref="KeyEqualityComparer{T,TKey}"/>.
@@ -38,6 +37,6 @@ namespace CodeJam.Collections
 		public static KeyEqualityComparer<T, TKey> Create<T, TKey>(
 			[NotNull] Func<T, TKey> keySelector,
 			[CanBeNull] IEqualityComparer<TKey> comparer) =>
-				new KeyEqualityComparer<T, TKey>(keySelector, comparer);
+				new(keySelector, comparer);
 	}
 }

@@ -82,7 +82,7 @@ namespace CodeJam.Ranges
 		private RangeIntersection<T> GetRangeIntersection(
 			RangeBoundaryFrom<T> intersectionFrom, RangeBoundaryTo<T> intersectionTo,
 			[NotNull] IEnumerable<Range<T>> intersectionRanges) =>
-				new RangeIntersection<T>(
+				new(
 					Range.Create(intersectionFrom, intersectionTo),
 					intersectionRanges.ToArray());
 

@@ -25,8 +25,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[MustUseReturnValue]
 		[AssertionMethod]
-		public static ArgumentAssertion<T> Arg<T>(T arg, [InvokerParameterName] string argName) =>
-			new ArgumentAssertion<T>(arg, argName);
+		public static ArgumentAssertion<T> Arg<T>(T arg, [InvokerParameterName] string argName) => new(arg, argName);
 		#endregion
 
 		#region DisposedIf assertions (DO NOT copy into DebugCode)

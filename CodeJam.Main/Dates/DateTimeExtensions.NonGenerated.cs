@@ -42,16 +42,16 @@ namespace CodeJam.Dates
 		}
 
 		private static DateTime Create(DateTime origin, [NonNegativeValue] int year, [NonNegativeValue] int month, int day) =>
-			new DateTime(year, month, day, 0, 0, 0, origin.Kind);
+			new(year, month, day, 0, 0, 0, origin.Kind);
 
 		private static DateTimeOffset Create(DateTimeOffset origin, [NonNegativeValue] int year, [NonNegativeValue] int month, int day) =>
-			new DateTimeOffset(year, month, day, 0, 0, 0, origin.Offset);
+			new(year, month, day, 0, 0, 0, origin.Offset);
 
 		private static DateTime Create(DateTime origin, [NonNegativeValue] long ticks) =>
-			new DateTime(ticks, origin.Kind);
+			new(ticks, origin.Kind);
 
 		private static DateTimeOffset Create(DateTimeOffset origin, [NonNegativeValue] long ticks) =>
-			new DateTimeOffset(ticks, origin.Offset);
+			new(ticks, origin.Offset);
 
 		/// <summary>Returns count of days in month.</summary>
 		/// <param name="date">The date.</param>
@@ -91,18 +91,18 @@ namespace CodeJam.Dates
 		/// Returns value with Date and Offset components.
 		/// </summary>
 		[Pure]
-		public static DateTimeOffset TruncateTime(this DateTimeOffset date) => new DateTimeOffset(date.Date, date.Offset);
+		public static DateTimeOffset TruncateTime(this DateTimeOffset date) => new(date.Date, date.Offset);
 
 		/// <summary>
 		/// Converts value to <see cref="DateTimeOffset"/>.
 		/// </summary>
 		[Pure]
-		public static DateTimeOffset ToOffset(this DateTime date) => new DateTimeOffset(date);
+		public static DateTimeOffset ToOffset(this DateTime date) => new(date);
 
 		/// <summary>
 		/// Converts value to <see cref="DateTimeOffset"/>.
 		/// </summary>
 		[Pure]
-		public static DateTimeOffset ToOffset(this DateTime date, TimeSpan offset) => new DateTimeOffset(date, offset);
+		public static DateTimeOffset ToOffset(this DateTime date, TimeSpan offset) => new(date, offset);
 	}
 }

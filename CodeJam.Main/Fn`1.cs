@@ -66,7 +66,7 @@ namespace CodeJam
 		private sealed class Methods
 		{
 			[NotNull]
-			public static readonly Methods Instance = new Methods();
+			public static readonly Methods Instance = new();
 
 			public bool GetTrue(T value) => true;
 			public bool GetFalse(T value) => false;

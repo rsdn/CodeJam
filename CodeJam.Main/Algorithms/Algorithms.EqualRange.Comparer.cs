@@ -82,20 +82,19 @@ namespace CodeJam
 			{
 				var median = startIndex + (endIndex - startIndex) / 2;
 				var compareResult = comparer(list[median], value);
-				if (compareResult < 0)
-				{
-					startIndex = median + 1;
-					upperBoundStartIndex = startIndex;
-				}
-				else if (compareResult == 0)
-				{
-					endIndex = median;
-					upperBoundStartIndex = endIndex + 1;
-				}
-				else
-				{
-					endIndex = median;
-					upperBoundEndIndex = endIndex;
+				switch (compareResult) {
+					case < 0:
+						startIndex = median + 1;
+						upperBoundStartIndex = startIndex;
+						break;
+					case 0:
+						endIndex = median;
+						upperBoundStartIndex = endIndex + 1;
+						break;
+					default:
+						endIndex = median;
+						upperBoundEndIndex = endIndex;
+						break;
 				}
 			}
 			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex, comparer));

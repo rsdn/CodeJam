@@ -32,7 +32,7 @@ namespace CodeJam.Arithmetic
 		private static class CompareHelper
 		{
 			[NotNull, ItemNotNull]
-			private static readonly Lazy<Func<T, T, int>> _value = new Lazy<Func<T, T, int>>(OperatorsFactory.Comparison<T>, _lazyMode);
+			private static readonly Lazy<Func<T, T, int>> _value = new(OperatorsFactory.Comparison<T>, _lazyMode);
 
 			/// <summary>
 			/// Gets a comparison function.
@@ -60,7 +60,7 @@ namespace CodeJam.Arithmetic
 		private static class NaNHelper
 		{
 			[NotNull, ItemNotNull]
-			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetNaN<T>, _lazyMode);
+			private static readonly Lazy<T> _value = new(OperatorsFactory.GetNaN<T>, _lazyMode);
 
 			/// <summary>
 			/// Determines whether the type has NaN value.
@@ -93,7 +93,7 @@ namespace CodeJam.Arithmetic
 		private static class NegativeInfinityHelper
 		{
 			[NotNull, ItemNotNull]
-			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetNegativeInfinity<T>, _lazyMode);
+			private static readonly Lazy<T> _value = new(OperatorsFactory.GetNegativeInfinity<T>, _lazyMode);
 
 			/// <summary>
 			/// Gets a value that determines whether the type has negative infinity value.
@@ -125,7 +125,7 @@ namespace CodeJam.Arithmetic
 		private static class PositiveInfinityHelper
 		{
 			[NotNull, ItemNotNull]
-			private static readonly Lazy<T> _value = new Lazy<T>(OperatorsFactory.GetPositiveInfinity<T>, _lazyMode);
+			private static readonly Lazy<T> _value = new(OperatorsFactory.GetPositiveInfinity<T>, _lazyMode);
 
 			/// <summary>
 			/// Gets a value that determines whether the type has positive infinity value.
@@ -153,7 +153,7 @@ namespace CodeJam.Arithmetic
 			/// The operator factory.
 			/// </summary>
 			[NotNull, ItemNotNull]
-			public static readonly Lazy<Func<T, T>> LazyValue = new Lazy<Func<T, T>>(CreateValue, _lazyMode);
+			public static readonly Lazy<Func<T, T>> LazyValue = new(CreateValue, _lazyMode);
 
 			/// <summary>
 			/// Returns the operator function.

@@ -34,7 +34,7 @@ namespace CodeJam.Threading
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));
 
-			asyncOp.Post(state => runner(), null);
+			asyncOp.Post(_ => runner(), null);
 		}
 
 		/// <summary>
@@ -47,7 +47,7 @@ namespace CodeJam.Threading
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));
 
-			asyncOp.PostOperationCompleted(state => runner(), null);
+			asyncOp.PostOperationCompleted(_ => runner(), null);
 		}
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace CodeJam.Threading
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));
 
-			asyncOp.SynchronizationContext.Send(state => runner(), null);
+			asyncOp.SynchronizationContext.Send(_ => runner(), null);
 		}
 
 		/// <summary>
@@ -82,7 +82,7 @@ namespace CodeJam.Threading
 			Code.NotNull(runner, nameof(runner));
 
 			var result = default(T);
-			asyncOp.SynchronizationContext.Send(state => result = runner(), null);
+			asyncOp.SynchronizationContext.Send(_ => result = runner(), null);
 			return result;
 		}
 
@@ -95,7 +95,7 @@ namespace CodeJam.Threading
 			Code.NotNull(runner, nameof(runner));
 
 			var asyncOp = CreateOperation();
-			ThreadPool.QueueUserWorkItem(state => runner(asyncOp));
+			ThreadPool.QueueUserWorkItem(_ => runner(asyncOp));
 		}
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace CodeJam.Threading
 
 			var asyncOp = CreateOperation();
 			ThreadPool.QueueUserWorkItem(
-				state =>
+				_ =>
 				{
 					try
 					{

@@ -246,11 +246,13 @@ namespace CodeJam.Strings
 		[Pure]
 		public static string ToByteSizeString(this long value, [CanBeNull] IFormatProvider provider)
 		{
-			if (value < 0)
-				return "-" + (-value).ToByteSizeString(provider);
-
-			if (value == 0)
-				return "0";
+			switch (value)
+			{
+				case < 0:
+					return "-" + (-value).ToByteSizeString(provider);
+				case 0:
+					return "0";
+			}
 
 			var i = 0;
 			var d = (decimal)value;

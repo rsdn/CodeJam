@@ -20,7 +20,7 @@ namespace CodeJam.Reflection
 	{
 		private sealed class TypeHandleComparer : IEqualityComparer<Type>
 		{
-			public static TypeHandleComparer Default { get; } = new TypeHandleComparer();
+			public static TypeHandleComparer Default { get; } = new();
 
 			public bool Equals(Type x, Type y) =>
 				x is null ? y is null : y != null && x.TypeHandle.Equals(y.TypeHandle);
@@ -30,7 +30,7 @@ namespace CodeJam.Reflection
 
 		private sealed class MethodMethodHandleComparer : IEqualityComparer<MethodInfo>
 		{
-			public static MethodMethodHandleComparer Default { get; } = new MethodMethodHandleComparer();
+			public static MethodMethodHandleComparer Default { get; } = new();
 
 			public bool Equals(MethodInfo x, MethodInfo y)
 			{
@@ -262,10 +262,10 @@ namespace CodeJam.Reflection
 			return member switch
 			{
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
-				TypeInfo _ => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
+				TypeInfo => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
 #endif
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
-				Type _ => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
+				Type => throw CodeExceptions.Argument(nameof(member), "Member should not be a type."),
 #endif
 				MethodInfo method => IsOverriden(method),
 				PropertyInfo property => IsOverriden(property.GetAccessors(true)[0]),
@@ -338,7 +338,7 @@ namespace CodeJam.Reflection
 		#endregion
 
 		#region GetAttributesFromCandidates
-		private static readonly AttributeUsageAttribute _defaultUsage = new AttributeUsageAttribute(AttributeTargets.All);
+		private static readonly AttributeUsageAttribute _defaultUsage = new(AttributeTargets.All);
 
 		[NotNull]
 		private static readonly Func<Type, AttributeUsageAttribute> _attributeUsages = Algorithms.Memoize(

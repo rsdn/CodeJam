@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+
 using static CodeJam.DebugCode;
 
 using System;
@@ -27,6 +28,7 @@ using StringEx = System.StringEx;
 #endif
 
 using static CodeJam.Targeting.MethodImplOptionsEx;
+// ReSharper disable BuiltInTypeReferenceStyleForMemberAccess
 
 namespace CodeJam
 {
@@ -351,7 +353,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndex(
-			[NonNegativeValue] int index,
+			int index,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (index < 0)
@@ -365,7 +367,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndex(
-			[NonNegativeValue] int index,
+			int index,
 			[NotNull, InvokerParameterName] string argName,
 			[NonNegativeValue] int length)
 		{

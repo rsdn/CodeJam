@@ -341,7 +341,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndex(
-			[NonNegativeValue] int index,
+			int index,
 			[NotNull, InvokerParameterName] string argName)
 		{
 			if (index < 0)
@@ -355,7 +355,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndex(
-			[NonNegativeValue] int index,
+			int index,
 			[NotNull, InvokerParameterName] string argName,
 			[NonNegativeValue] int length)
 		{

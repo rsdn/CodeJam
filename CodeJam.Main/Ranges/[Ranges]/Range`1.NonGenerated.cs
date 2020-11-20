@@ -20,14 +20,14 @@ namespace CodeJam.Ranges
 		public static readonly Range<T> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly Range<T> Infinite = new Range<T>(
+		public static readonly Range<T> Infinite = new(
 			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity);
 		#endregion
 
 		#region IRangeFactory members
 		[MethodImpl(AggressiveInlining)]
 		private Range<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
-			new Range<T>(from, to);
+			new(from, to);
 
 		[MethodImpl(AggressiveInlining)]
 		private Range<T> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
@@ -36,11 +36,11 @@ namespace CodeJam.Ranges
 		[MethodImpl(AggressiveInlining)]
 		[Obsolete(SkipsArgValidationObsolete)]
 		private Range<T> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
-			new Range<T>(from, to, UnsafeOverload.SkipsArgValidation);
+			new(from, to, UnsafeOverload.SkipsArgValidation);
 
 		[MethodImpl(AggressiveInlining)]
 		private Range<T2> CreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
-			new Range<T2>(from, to);
+			new(from, to);
 
 		[MethodImpl(AggressiveInlining)]
 		private Range<T2> TryCreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>

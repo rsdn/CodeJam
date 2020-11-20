@@ -68,11 +68,11 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Comparers
-		private static readonly SubRangesComparer _rangeComparer = new SubRangesComparer();
+		private static readonly SubRangesComparer _rangeComparer = new();
 
 		/// <summary>Helper comparer for operations over <see cref="Range{T}.To"/>.</summary>
 		internal static readonly RangeBoundaryToDescendingComparer<T> BoundaryToDescendingComparer =
-			new RangeBoundaryToDescendingComparer<T>();
+			new();
 		#endregion
 
 		#region Helpers
@@ -126,7 +126,7 @@ namespace CodeJam.Ranges
 		public static readonly CompositeRange<T> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly CompositeRange<T> Infinite = new CompositeRange<T>(Range<T>.Infinite);
+		public static readonly CompositeRange<T> Infinite = new(Range<T>.Infinite);
 		#endregion
 
 		#endregion

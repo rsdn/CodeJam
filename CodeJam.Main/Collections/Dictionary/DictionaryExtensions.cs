@@ -397,7 +397,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
-			return dictionary.AddOrUpdate(key, valueFactory, (k, oldValue) => valueFactory(k));
+			return dictionary.AddOrUpdate(key, valueFactory, (k, _) => valueFactory(k));
 		}
 
 		#endregion

@@ -108,7 +108,7 @@ namespace CodeJam
 		#endregion
 
 		/// <summary><see cref="IDisposable"/> instance without any code in <see cref="IDisposable.Dispose"/>.</summary>
-		public static readonly EmptyDisposable Empty = new EmptyDisposable();
+		public static readonly EmptyDisposable Empty = new();
 
 		/// <summary>
 		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.

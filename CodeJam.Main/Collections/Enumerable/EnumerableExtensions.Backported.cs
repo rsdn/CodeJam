@@ -21,7 +21,7 @@ namespace CodeJam.Collections.Backported
 		/// A <see cref="HashSet{T}"/> that contains elements from the input sequence.
 		/// </returns>
 		[Pure, NotNull]
-		public static HashSet<T> ToHashSet<T>([NotNull, InstantHandle] this IEnumerable<T> source) => new HashSet<T>(source);
+		public static HashSet<T> ToHashSet<T>([NotNull, InstantHandle] this IEnumerable<T> source) => new(source);
 
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/> with the specified equality comparer.
@@ -37,7 +37,7 @@ namespace CodeJam.Collections.Backported
 		public static HashSet<T> ToHashSet<T>(
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull] IEqualityComparer<T> comparer) =>
-				new HashSet<T>(source, comparer);
+				new(source, comparer);
 
 
 		/// <summary>

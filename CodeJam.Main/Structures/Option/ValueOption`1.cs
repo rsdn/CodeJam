@@ -48,7 +48,7 @@ namespace CodeJam
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Instance of <see cref="ValueOption"/>.</returns>
 		[Pure]
-		public static implicit operator ValueOption<T>(T value) => new ValueOption<T>(value);
+		public static implicit operator ValueOption<T>(T value) => new(value);
 
 		/// <summary>
 		/// Extracts value from <paramref name="option"/>

@@ -56,14 +56,14 @@ namespace CodeJam.Reflection
 		/// Type members.
 		/// </summary>
 		[NotNull, ItemNotNull]
-		public List<MemberAccessor> Members { get; } = new List<MemberAccessor>();
+		public List<MemberAccessor> Members { get; } = new();
 
 		#endregion
 
 		#region Items
 		[NotNull]
 		private readonly ConcurrentDictionary<string, MemberAccessor> _membersByName =
-			new ConcurrentDictionary<string, MemberAccessor>();
+			new();
 
 		/// <summary>
 		/// Returns <see cref="MemberAccessor"/> by its name.
@@ -92,7 +92,7 @@ namespace CodeJam.Reflection
 		#region Static Members
 		[NotNull]
 		private static readonly ConcurrentDictionary<Type, TypeAccessor> _accessors =
-			new ConcurrentDictionary<Type, TypeAccessor>();
+			new();
 
 		/// <summary>
 		/// Creates an instance of <see cref="TypeAccessor"/>.
@@ -112,6 +112,7 @@ namespace CodeJam.Reflection
 
 			_accessors[type] = accessor;
 
+			Code.BugIf(accessor == null, "accessor == null");
 			return accessor;
 		}
 
