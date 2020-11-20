@@ -14,7 +14,7 @@ namespace CodeJam.Threading
 		[NotNull, ItemNotNull]
 		private readonly BlockingCollection<Action?> _queue = new BlockingCollection<Action?>();
 		[NotNull, ItemNotNull]
-		private readonly List<Exception> _exceptions = new List<Exception>();
+		private readonly List<Exception> _exceptions = new();
 		[NotNull, ItemNotNull]
 		private readonly Thread[] _workers;
 

@@ -1,16 +1,14 @@
 ﻿<Project>
 	<PropertyGroup>
 		<Configurations>Debug;Release</Configurations>
-		<LangVersion>latest</LangVersion>
-
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<SignAssembly>True</SignAssembly>
 		<DelaySign>False</DelaySign>
 		<AssemblyOriginatorKeyFile>..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 
-		<Version>3.2.0.0</Version>
-		<PackageVersion>3.2.0</PackageVersion>
+		<Version>3.3.0.0</Version>
+		<PackageVersion>3.3.0</PackageVersion>
 		<PackageOutputPath>..\_Results</PackageOutputPath>
 
 		<Company>RSDN</Company>

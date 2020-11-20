@@ -26,7 +26,7 @@ namespace CodeJam.Collections
 		/// A new sequence containing any elements sliced out from the source sequence.
 		/// </returns>
 		[NotNull, Pure, LinqTunnel]
-		public static IEnumerable<T> Slice<T>([NotNull] this IEnumerable<T> source, int startIndex, int count)
+		public static IEnumerable<T> Slice<T>([NotNull] this IEnumerable<T> source, int startIndex, [NonNegativeValue] int count)
 		{
 			if (source == null) throw new ArgumentNullException(nameof (source));
 			if (startIndex < 0) throw new ArgumentOutOfRangeException(nameof (startIndex));
@@ -43,7 +43,7 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull]
-		private static IEnumerable<T> SliceImpl<T>([NotNull] IList<T> list, int index, int count)
+		private static IEnumerable<T> SliceImpl<T>([NotNull] IList<T> list, [NonNegativeValue] int index, [NonNegativeValue] int count)
 		{
 			var total = list.Count;
 			while (index < total && count-- > 0)
@@ -51,7 +51,7 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull]
-		private static IEnumerable<T> SliceImpl<T>([NotNull] IEnumerable<T> source, int index, int count)
+		private static IEnumerable<T> SliceImpl<T>([NotNull] IEnumerable<T> source, [NonNegativeValue] int index, [NonNegativeValue] int count)
 		{
 			using var e = source.GetEnumerator();
 			while (index > 0 && e.MoveNext())

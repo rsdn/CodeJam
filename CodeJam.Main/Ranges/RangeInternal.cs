@@ -94,7 +94,7 @@ namespace CodeJam.Ranges
 				return res;
 			}
 
-			return (value, format, formatProvider) => value?.ToString();
+			return (value, _, _) => value?.ToString();
 		}
 
 		private static string? Format<T>(T? value, string? format, IFormatProvider? formatProvider) where T : class, IFormattable =>

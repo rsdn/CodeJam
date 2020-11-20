@@ -45,7 +45,7 @@ namespace CodeJam
 		public static Range<int> EqualRange<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int startIndex,
+				[NonNegativeValue] int startIndex,
 				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
 			EqualRange(list, value, startIndex, list.Count, comparer);
 
@@ -66,8 +66,8 @@ namespace CodeJam
 		public static Range<int> EqualRange<TElement, TValue>(
 			[NotNull, InstantHandle] this IList<TElement> list,
 			TValue value,
-			int startIndex,
-			int endIndex,
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex,
 			[NotNull, InstantHandle] Func<TElement, TValue, int> comparer)
 		{
 			Code.NotNull(list, nameof(list));
@@ -82,20 +82,19 @@ namespace CodeJam
 			{
 				var median = startIndex + (endIndex - startIndex) / 2;
 				var compareResult = comparer(list[median], value);
-				if (compareResult < 0)
-				{
-					startIndex = median + 1;
-					upperBoundStartIndex = startIndex;
-				}
-				else if (compareResult == 0)
-				{
-					endIndex = median;
-					upperBoundStartIndex = endIndex + 1;
-				}
-				else
-				{
-					endIndex = median;
-					upperBoundEndIndex = endIndex;
+				switch (compareResult) {
+					case < 0:
+						startIndex = median + 1;
+						upperBoundStartIndex = startIndex;
+						break;
+					case 0:
+						endIndex = median;
+						upperBoundStartIndex = endIndex + 1;
+						break;
+					default:
+						endIndex = median;
+						upperBoundEndIndex = endIndex;
+						break;
 				}
 			}
 			return Range.Create(startIndex, UpperBoundCore(list, value, upperBoundStartIndex, upperBoundEndIndex, comparer));

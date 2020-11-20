@@ -28,7 +28,7 @@ namespace CodeJam.Strings
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool Is<#=name#>([NotNull] this string str, int index) => char.Is<#=name#>(str, index);
+		public static bool Is<#=name#>([NotNull] this string str, [NonNegativeValue] int index) => char.Is<#=name#>(str, index);
 
 <#+}#>
 <#+

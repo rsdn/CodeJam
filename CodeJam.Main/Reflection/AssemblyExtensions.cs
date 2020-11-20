@@ -80,11 +80,17 @@ namespace CodeJam.Reflection
 			if (string.IsNullOrEmpty(assembly.Location))
 				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 
+#if LESSTHAN_NET50
+
 			var uri = new Uri(assembly.CodeBase);
+
 			if (uri.IsFile)
 				return uri.LocalPath;
 
 			throw CodeExceptions.Argument(nameof(assembly), $"Assembly '{assembly}' has no local path.");
+#else
+			return assembly.Location;
+#endif
 		}
 
 		/// <summary>

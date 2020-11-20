@@ -16,7 +16,7 @@ namespace CodeJam.Expressions
 	static partial class ExpressionExtensions
 	{
 		#region Visit
-		private static void VisitInternal<T>([JetBrains.Annotations.NotNull] IEnumerable<T> source, [JetBrains.Annotations.NotNull, InstantHandle] Action<T> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, [InstantHandle] Action<T> func)
 		{
 			foreach (var item in source)
 				func(item);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 using JetBrains.Annotations;
 
@@ -236,11 +237,13 @@ namespace CodeJam.Strings
 		[Pure]
 		public static string ToByteSizeString(this long value, IFormatProvider? provider)
 		{
-			if (value < 0)
-				return "-" + (-value).ToByteSizeString(provider);
-
-			if (value == 0)
-				return "0";
+			switch (value)
+			{
+				case < 0:
+					return "-" + (-value).ToByteSizeString(provider);
+				case 0:
+					return "0";
+			}
 
 			var i = 0;
 			var d = (decimal)value;
@@ -427,5 +430,287 @@ namespace CodeJam.Strings
 
 			return str;
 		}
+
+		/// <summary>
+		/// Culture invariant version of <see cref="string.Format(string, object)"/>
+		/// </summary>
+		/// <param name="format">A composite format string. </param>
+		/// <param name="arg0">The object to format. </param>
+		/// <returns>A copy of <paramref name="format" /> in which any format items are replaced by the string representation of <paramref name="arg0" />.</returns>
+		[NotNull, Pure]
+		public static string FormatInvariant([NotNull] this string format, object arg0) =>
+			string.Format(CultureInfo.InvariantCulture, format, arg0);
+
+		/// <summary>
+		/// Culture invariant version of <see cref="string.Format(string, object, object)"/>
+		/// </summary>
+		/// <param name="format">A composite format string. </param>
+		/// <param name="arg0">The first object to format. </param>
+		/// <param name="arg1">The second object to format. </param>
+		/// <returns>A copy of <paramref name="format" /> in which format items are replaced by the string representations of <paramref name="arg0" /> and <paramref name="arg1" />.</returns>
+		[NotNull, Pure]
+		public static string FormatInvariant([NotNull] this string format, object arg0, object arg1) =>
+			string.Format(CultureInfo.InvariantCulture, format, arg0, arg1);
+
+		/// <summary>
+		/// Culture invariant version of <see cref="string.Format(string, object, object, object)"/>
+		/// </summary>
+		/// <param name="format">A composite format string. </param>
+		/// <param name="arg0">The first object to format. </param>
+		/// <param name="arg1">The second object to format. </param>
+		/// <param name="arg2">The third object to format. </param>
+		/// <returns>A copy of <paramref name="format" /> in which the format items have been replaced by the string representations of <paramref name="arg0" />, <paramref name="arg1" />, and <paramref name="arg2" />.</returns>
+		[NotNull, Pure]
+		public static string FormatInvariant([NotNull] this string format, object arg0, object arg1, string arg2) =>
+			string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2);
+
+		/// <summary>
+		/// Culture invariant version of <see cref="string.Format(string, object[])"/>
+		/// </summary>
+		/// <param name="format">A composite format string. </param>
+		/// <param name="args">An object array that contains zero or more objects to format. </param>
+		/// <returns>A copy of <paramref name="format" /> in which the format items have been replaced by the string representation of the corresponding objects in <paramref name="args" />.</returns>
+		[NotNull, Pure]
+		public static string FormatInvariant([NotNull] this string format,params object[] args) =>
+			string.Format(CultureInfo.InvariantCulture, format, args);
+
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES
+		/// <summary>
+		/// Determines whether the beginning of this string instance matches the specified string when compared using the
+		/// invariant culture.
+		/// </summary>
+		/// <param name="str">String to check.</param>
+		/// <param name="value">The string to compare.</param>
+		/// <returns><c>true</c> if this instance begins with value; otherwise, <c>false</c>. </returns>
+		[Pure]
+		public static bool StartsWithInvariant([NotNull] this string str, [NotNull] string value) =>
+			str.StartsWith(value, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Determines whether the beginning of this string instance matches the specified string when compared using the
+		/// ordinal culture.
+		/// </summary>
+		/// <param name="str">String to check.</param>
+		/// <param name="value">The string to compare.</param>
+		/// <returns><c>true</c> if this instance begins with value; otherwise, <c>false</c>. </returns>
+		[Pure]
+		public static bool StartsWithOrdinal([NotNull] this string str, [NotNull] string value) =>
+			str.StartsWith(value, StringComparison.Ordinal);
+
+		/// <summary>
+		/// Determines whether the end of this string instance matches the specified string when compared using the
+		/// invariant culture.
+		/// </summary>
+		/// <param name="str">String to check.</param>
+		/// <param name="value">The string to compare.</param>
+		/// <returns><c>true</c> if this instance ends with value; otherwise, <c>false</c>. </returns>
+		[Pure]
+		public static bool EndsWithInvariant([NotNull] this string str, [NotNull] string value) =>
+			str.EndsWith(value, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Determines whether the end of this string instance matches the specified string when compared using the
+		/// ordinal culture.
+		/// </summary>
+		/// <param name="str">String to check.</param>
+		/// <param name="value">The string to compare.</param>
+		/// <returns><c>true</c> if this instance ends with value; otherwise, <c>false</c>. </returns>
+		[Pure]
+		public static bool EndsWithOrdinal([NotNull] this string str, [NotNull] string value) =>
+			str.EndsWith(value, StringComparison.Ordinal);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value) =>
+			str.IndexOf(value, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the ordinal culture.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value) =>
+			str.IndexOf(value, StringComparison.Ordinal);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture. Parameter specify the starting search position in the current string.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
+			str.IndexOf(value, startIndex, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the ordinal culture. Parameter specify the starting search position in the current string.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
+			str.IndexOf(value, startIndex, StringComparison.Ordinal);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture. Parameters specify the starting search position in the current string and
+		/// the number of characters in the current string to search.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <param name="count">The number of character positions to examine.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count) =>
+			str.IndexOf(value, startIndex, count, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of the specified string in the <paramref name="str"/>
+		/// using the ordinal culture. Parameters specify the starting search position in the current string and
+		/// the number of characters in the current string to search.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <param name="count">The number of character positions to examine.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count) =>
+			str.IndexOf(value, startIndex, count, StringComparison.Ordinal);
+
+		/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int LastIndexOfInvariant([NotNull] this string str, [NotNull] string value) =>
+			str.LastIndexOf(value, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the ordinal culture.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int LastIndexOfOrdinal([NotNull] this string str, [NotNull] string value) =>
+			str.LastIndexOf(value, StringComparison.Ordinal);
+
+		/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture. Parameter specify the starting search position in the current string.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int LastIndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
+			str.LastIndexOf(value, startIndex, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the ordinal culture. Parameter specify the starting search position in the current string.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int LastIndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
+			str.LastIndexOf(value, startIndex, StringComparison.Ordinal);
+
+		/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the invariant culture. Parameters specify the starting search position in the current string and
+		/// the number of characters in the current string to search.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <param name="count">The number of character positions to examine.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int LastIndexOfInvariant(
+			[NotNull] this string str,
+			[NotNull] string value,
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int count) =>
+				str.LastIndexOf(value, startIndex, count, StringComparison.InvariantCulture);
+
+		/// <summary>
+		/// Reports the zero-based index of the last occurrence of the specified string in the <paramref name="str"/>
+		/// using the ordinal culture. Parameters specify the starting search position in the current string and
+		/// the number of characters in the current string to search.
+		/// </summary>
+		/// <param name="str">The string to check.</param>
+		/// <param name="value">The string to seek.</param>
+		/// <param name="startIndex">The search starting position.</param>
+		/// <param name="count">The number of character positions to examine.</param>
+		/// <returns>
+		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
+		/// the return value is 0
+		/// </returns>
+		[Pure]
+		public static int LastIndexOfOrdinal(
+			[NotNull] this string str,
+			[NotNull] string value,
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int count) =>
+				str.LastIndexOf(value, startIndex, count, StringComparison.Ordinal);
+
+#endif
 	}
 }

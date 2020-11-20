@@ -19,10 +19,10 @@ namespace CodeJam.Collections
 		public static OwnedCollection<TOwner, TItem> Create<TOwner, TItem>(
 			[NotNull] TOwner owner,
 			[NotNull] Func<TItem, TOwner> ownerGetter,
-			[NotNull] Action<TItem, TOwner> ownerSetter)
+			[NotNull] Action<TItem, int, TOwner> ownerSetter)
 			where TOwner : class
 			where TItem : class =>
-				new OwnedCollection<TOwner, TItem>(owner, ownerGetter, ownerSetter);
+				new(owner, ownerGetter, ownerSetter);
 
 		/// <summary>Creates a new instance of the <see cref="OwnedCollection{TOwner, TKey, TItem}" /> class.</summary>
 		/// <typeparam name="TOwner">The type of the owner.</typeparam>
@@ -37,10 +37,10 @@ namespace CodeJam.Collections
 		public static OwnedCollection<TOwner, TKey, TItem> Create<TOwner, TKey, TItem>(
 			[NotNull] TOwner owner,
 			[NotNull] Func<TItem, TOwner> ownerGetter,
-			[NotNull] Action<TItem, TOwner> ownerSetter,
+			[NotNull] Action<TItem, int, TOwner> ownerSetter,
 			[NotNull] Func<TItem, TKey> keyGetter)
 			where TOwner : class
 			where TItem : class =>
-				new OwnedCollection<TOwner, TKey, TItem>(owner, ownerGetter, ownerSetter, keyGetter);
+				new(owner, ownerGetter, ownerSetter, keyGetter);
 	}
 }

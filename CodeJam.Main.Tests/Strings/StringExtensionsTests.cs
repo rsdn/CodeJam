@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Threading;
 
 using JetBrains.Annotations;
 
@@ -9,6 +10,48 @@ namespace CodeJam.Strings
 	[TestFixture]
 	public class StringExtensionsTests
 	{
+#if TARGETS_NET || NETSTANDARD16_OR_GREATER || NETCOREAPP20_OR_GREATER
+
+		#region Test helpers
+		private CultureInfo _previousCulture;
+
+		[OneTimeSetUp]
+		[UsedImplicitly]
+		public void SetUp()
+		{
+			_previousCulture = Thread.CurrentThread.CurrentCulture;
+			Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("hu-HU");
+		}
+
+		[OneTimeTearDown]
+		[UsedImplicitly]
+		public void TearDown()
+		{
+			Code.NotNull(_previousCulture, nameof(_previousCulture));
+			Thread.CurrentThread.CurrentCulture = _previousCulture;
+		}
+		#endregion
+
+#endif
+
+		[TestCase(1.1, ExpectedResult = "1.1")]
+		public string ToInvariantString(double d) => d.ToInvariantString();
+
+		[TestCase(1.1, ExpectedResult = "1.10")]
+		public string ToInvariantStringFormat(double d) => d.ToInvariantString("F");
+
+		[TestCase(1.1, ExpectedResult = "1.1")]
+		public string FormatInvariant1(double d) => "{0}".FormatInvariant(d);
+
+		[TestCase(1.1, ExpectedResult = "1.1 1.1")]
+		public string FormatInvariant2(double d) => "{0} {1}".FormatInvariant(d, d);
+
+		[TestCase(1.1, ExpectedResult = "1.1 1.1 1.1")]
+		public string FormatInvariant3(double d) => "{0} {1} {2}".FormatInvariant(d, d, d);
+
+		[TestCase(1.1, ExpectedResult = "1.1 1.1 1.1 1.1")]
+		public string FormatInvariant4(double d) => "{0} {1} {2} {3}".FormatInvariant(d, d, d, d);
+
 		[TestCase((string)null, ExpectedResult = 0)]
 		[TestCase("", ExpectedResult = 0)]
 		[TestCase(" ", ExpectedResult = 1)]
@@ -16,15 +59,15 @@ namespace CodeJam.Strings
 		[TestCase("abc", ExpectedResult = 3)]
 		public int Length(string source) => source.Length();
 
-		[TestCase("",    StringOrigin.Begin, 1, ExpectedResult = "")]
-		[TestCase("",    StringOrigin.End,   1, ExpectedResult = "")]
+		[TestCase("", StringOrigin.Begin, 1, ExpectedResult = "")]
+		[TestCase("", StringOrigin.End, 1, ExpectedResult = "")]
 		[TestCase("abc", StringOrigin.Begin, 0, ExpectedResult = "")]
-		[TestCase("abc", StringOrigin.End,   0, ExpectedResult = "")]
+		[TestCase("abc", StringOrigin.End, 0, ExpectedResult = "")]
 		[TestCase("abc", StringOrigin.Begin, 2, ExpectedResult = "ab")]
-		[TestCase("abc", StringOrigin.End,   2, ExpectedResult = "bc")]
+		[TestCase("abc", StringOrigin.End, 2, ExpectedResult = "bc")]
 		[TestCase("abc", StringOrigin.Begin, 4, ExpectedResult = "abc")]
-		[TestCase("abc", StringOrigin.End,   4, ExpectedResult = "abc")]
-		public string SubstringOrigin([NotNull] string str, StringOrigin origin, int length) => str.Substring(origin, length);
+		[TestCase("abc", StringOrigin.End, 4, ExpectedResult = "abc")]
+		public string SubstringOrigin([NotNull] string str, StringOrigin origin, [NonNegativeValue] int length) => str.Substring(origin, length);
 
 		[TestCase("abc", null, ExpectedResult = "abc")]
 		[TestCase("abc", "", ExpectedResult = "abc")]
@@ -159,5 +202,134 @@ namespace CodeJam.Strings
 		[TestCase("2 1.0", ExpectedResult = null)]
 		[TestCase("1.0 2", ExpectedResult = null)]
 		public double? ToDecimal(string str) => (double?)str.ToDecimal(provider: CultureInfo.InvariantCulture);
+
+
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES
+
+		[TestCase("dzab", "d", ExpectedResult = true)]
+		[TestCase("aa", "a", ExpectedResult = true)]
+		[TestCase("Aa", "A", ExpectedResult = true)]
+		[TestCase("a", "b", ExpectedResult = false)]
+		public bool StartsWithInvariant(string str, string prefix) => str.StartsWithInvariant(prefix);
+
+		[TestCase("dzab", "dz", ExpectedResult = true)]
+		[TestCase("aa", "a", ExpectedResult = true)]
+		[TestCase("Aa", "A", ExpectedResult = true)]
+		[TestCase("a", "b", ExpectedResult = false)]
+		[TestCase("\u00DF", "ss", ExpectedResult = false)]
+		public bool StartsWithOrdinal(string str, string prefix) => str.StartsWithOrdinal(prefix);
+
+		[TestCase("dz", "z", ExpectedResult = true)]
+		[TestCase("aa", "aa", ExpectedResult = true)]
+		[TestCase("aa", "a", ExpectedResult = true)]
+		[TestCase("aA", "A", ExpectedResult = true)]
+		[TestCase("a", "b", ExpectedResult = false)]
+		public bool EndsWithInvariant(string str, string prefix) => str.EndsWithInvariant(prefix);
+
+		[TestCase("dz", "z", ExpectedResult = true)]
+		[TestCase("aa", "aa", ExpectedResult = true)]
+		[TestCase("aa", "a", ExpectedResult = true)]
+		[TestCase("aA", "A", ExpectedResult = true)]
+		[TestCase("a", "b", ExpectedResult = false)]
+		[TestCase("\u00DF", "ss", ExpectedResult = false)]
+		public bool EndsWithOrdinal(string str, string prefix) => str.EndsWithOrdinal(prefix);
+
+		[TestCase("daxda", "a", ExpectedResult = 1)]
+		[TestCase("daaxdaa", "a", ExpectedResult = 1)]
+		[TestCase("aaxaa", "a", ExpectedResult = 0)]
+		[TestCase("axa", "b", ExpectedResult = -1)]
+		[TestCase("dz", "d", ExpectedResult = 0)]
+		[TestCase("dz", "z", ExpectedResult = 1)]
+		public int IndexOfInvariant(string str, string prefix) => str.IndexOfInvariant(prefix);
+
+		[TestCase("daxda", "a", ExpectedResult = 1)]
+		[TestCase("daaxdaa", "a", ExpectedResult = 1)]
+		[TestCase("aaxaa", "a", ExpectedResult = 0)]
+		[TestCase("axa", "b", ExpectedResult = -1)]
+		[TestCase("dz", "d", ExpectedResult = 0)]
+		[TestCase("dz", "z", ExpectedResult = 1)]
+		public int IndexOfOrdinal(string str, string prefix) => str.IndexOfOrdinal(prefix);
+
+		[TestCase("xdaxda", "a", ExpectedResult = 2)]
+		[TestCase("xdaaxdaa", "a", ExpectedResult = 2)]
+		[TestCase("xaaxaa", "a", ExpectedResult = 1)]
+		[TestCase("xaxa", "b", ExpectedResult = -1)]
+		[TestCase("xdz", "d", ExpectedResult = 1)]
+		[TestCase("xdz", "z", ExpectedResult = 2)]
+		public int IndexOfInvariantIndex(string str, string prefix) => str.IndexOfInvariant(prefix, 1);
+
+		[TestCase("xdaxda", "a", ExpectedResult = 2)]
+		[TestCase("xdaaxdaa", "a", ExpectedResult = 2)]
+		[TestCase("xaaxaa", "a", ExpectedResult = 1)]
+		[TestCase("xaxa", "b", ExpectedResult = -1)]
+		[TestCase("xdz", "d", ExpectedResult = 1)]
+		[TestCase("xdz", "z", ExpectedResult = 2)]
+		public int IndexOfOrdinalIndex(string str, string prefix) => str.IndexOfOrdinal(prefix, 1);
+
+		[TestCase("xdaxda", "a", ExpectedResult = 2)]
+		[TestCase("xdaaxdaa", "a", ExpectedResult = 2)]
+		[TestCase("xaaxaa", "a", ExpectedResult = 1)]
+		[TestCase("xaxa", "b", ExpectedResult = -1)]
+		[TestCase("xdz", "d", ExpectedResult = 1)]
+		[TestCase("xdz", "z", ExpectedResult = 2)]
+		public int IndexOfInvariantIndexCount(string str, string prefix) => str.IndexOfInvariant(prefix, 1, str.Length - 1);
+
+		[TestCase("xdaxda", "a", ExpectedResult = 2)]
+		[TestCase("xdaaxdaa", "a", ExpectedResult = 2)]
+		[TestCase("xaaxaa", "a", ExpectedResult = 1)]
+		[TestCase("xaxa", "b", ExpectedResult = -1)]
+		[TestCase("xdz", "d", ExpectedResult = 1)]
+		[TestCase("xdz", "z", ExpectedResult = 2)]
+		public int IndexOfOrdinalIndexCount(string str, string prefix) => str.IndexOfOrdinal(prefix, 1, str.Length - 1);
+
+		[TestCase("daxda", "a", ExpectedResult = 4)]
+		[TestCase("daaxdaa", "a", ExpectedResult = 6)]
+		[TestCase("aaxaa", "a", ExpectedResult = 4)]
+		[TestCase("axa", "b", ExpectedResult = -1)]
+		[TestCase("dz", "d", ExpectedResult = 0)]
+		[TestCase("dz", "z", ExpectedResult = 1)]
+		public int LastIndexOfInvariant(string str, string prefix) => str.LastIndexOfInvariant(prefix);
+
+		[TestCase("daxda", "a", ExpectedResult = 4)]
+		[TestCase("daaxdaa", "a", ExpectedResult = 6)]
+		[TestCase("aaxaa", "a", ExpectedResult = 4)]
+		[TestCase("axa", "b", ExpectedResult = -1)]
+		[TestCase("dz", "d", ExpectedResult = 0)]
+		[TestCase("dz", "z", ExpectedResult = 1)]
+		public int LastIndexOfOrdinal(string str, string prefix) => str.LastIndexOfOrdinal(prefix);
+
+		[TestCase("xdaxda", "a", ExpectedResult = 5)]
+		[TestCase("xdaaxdaa", "a", ExpectedResult = 7)]
+		[TestCase("xaaxaa", "a", ExpectedResult = 5)]
+		[TestCase("xaxa", "b", ExpectedResult = -1)]
+		[TestCase("dz", "d", ExpectedResult = 0)]
+		[TestCase("dz", "z", ExpectedResult = 1)]
+		public int LastIndexOfInvariantIndex(string str, string prefix) => str.LastIndexOfInvariant(prefix, str.Length - 1);
+
+		[TestCase("xdaxda", "a", ExpectedResult = 5)]
+		[TestCase("xdaaxdaa", "a", ExpectedResult = 7)]
+		[TestCase("xaaxaa", "a", ExpectedResult = 5)]
+		[TestCase("xaxa", "b", ExpectedResult = -1)]
+		[TestCase("dz", "d", ExpectedResult = 0)]
+		[TestCase("dz", "z", ExpectedResult = 1)]
+		public int LastIndexOfOrdinalIndex(string str, string prefix) => str.LastIndexOfOrdinal(prefix, str.Length - 1);
+
+		[TestCase("xdaxda", "a", ExpectedResult = 5)]
+		[TestCase("xdaaxdaa", "a", ExpectedResult = 7)]
+		[TestCase("xaaxaa", "a", ExpectedResult = 5)]
+		[TestCase("xaxa", "b", ExpectedResult = -1)]
+		[TestCase("dz", "z", ExpectedResult = 1)]
+		public int LastIndexOfInvariantIndexCount(string str, string prefix)
+			=> str.LastIndexOfInvariant(prefix, str.Length - 1, str.Length - 1);
+
+		[TestCase("xdaxda", "a", ExpectedResult = 5)]
+		[TestCase("xdaaxdaa", "a", ExpectedResult = 7)]
+		[TestCase("xaaxaa", "a", ExpectedResult = 5)]
+		[TestCase("xaxa", "b", ExpectedResult = -1)]
+		[TestCase("dz", "z", ExpectedResult = 1)]
+		public int LastIndexOfOrdinalIndexCount(string str, string prefix)
+			=> str.LastIndexOfOrdinal(prefix, str.Length - 1, str.Length - 1);
+
+#endif
 	}
 }

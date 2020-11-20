@@ -8,14 +8,14 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{F6F97573-4D26-4217-89F6-819DF96FCB4A}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
+		<TargetFrameworks>net5.0;net461;netcoreapp2.1</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.12.0" />
-		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
 	</ItemGroup>
 
 	<ItemGroup>

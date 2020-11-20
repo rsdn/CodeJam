@@ -14,14 +14,14 @@ namespace CodeJam.Collections
 
 		/// <summary>Creates a Disjoint sets with the given number of elements</summary>
 		/// <param name="count">The initial number of elements</param>
-		public DisjointSets(int count)
+		public DisjointSets([NonNegativeValue] int count)
 		{
 			Add(count);
 		}
 
 		/// <summary>Appends the given number of new elements</summary>
 		/// <param name="count">The number of elements to add</param>
-		public void Add(int count)
+		public void Add([NonNegativeValue] int count)
 		{
 			for (var i = 0; i < count; ++i)
 			{

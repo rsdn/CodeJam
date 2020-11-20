@@ -28,7 +28,7 @@ namespace CodeJam.Ranges
 		public static readonly Range<T, TKey> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly Range<T, TKey> Infinite = new Range<T, TKey>(
+		public static readonly Range<T, TKey> Infinite = new(
 			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity,
 			default);
 		#endregion
@@ -42,7 +42,7 @@ namespace CodeJam.Ranges
 
 		#region IRangeFactory members
 		private Range<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
-			new Range<T, TKey>(from, to, _key);
+			new(from, to, _key);
 
 		private Range<T, TKey> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			Range.TryCreate(from, to, _key);
@@ -50,10 +50,10 @@ namespace CodeJam.Ranges
 		[MethodImpl(AggressiveInlining)]
 		[Obsolete(SkipsArgValidationObsolete)]
 		private Range<T, TKey> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
-			new Range<T, TKey>(from, to, _key, UnsafeOverload.SkipsArgValidation);
+			new(from, to, _key, UnsafeOverload.SkipsArgValidation);
 
 		private Range<T2, TKey> CreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
-			new Range<T2, TKey>(from, to, _key);
+			new(from, to, _key);
 
 		private Range<T2, TKey> TryCreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
 			Range.TryCreate(from, to, _key);

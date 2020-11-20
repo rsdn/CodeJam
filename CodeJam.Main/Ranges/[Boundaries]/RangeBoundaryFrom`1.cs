@@ -119,7 +119,7 @@ namespace CodeJam.Ranges
 		public static readonly RangeBoundaryFrom<T> Empty;
 
 		/// <summary>Negative infinity, -∞.</summary>
-		public static readonly RangeBoundaryFrom<T> NegativeInfinity = new RangeBoundaryFrom<T>(
+		public static readonly RangeBoundaryFrom<T> NegativeInfinity = new(
 			default, RangeBoundaryFromKind.Infinite);
 		#endregion
 

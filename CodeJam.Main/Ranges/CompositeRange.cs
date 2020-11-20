@@ -14,7 +14,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range.</returns>
 		[Pure]
 		public static CompositeRange<T> Create<T>(Range<T> range) =>
-			new CompositeRange<T>(range);
+			new(range);
 
 		/// <summary>Creates the composite range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -22,6 +22,6 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range.</returns>
 		[Pure]
 		public static CompositeRange<T> Create<T>([NotNull] params Range<T>[] ranges) =>
-			new CompositeRange<T>(ranges);
+			new(ranges);
 	}
 }

@@ -110,7 +110,7 @@ namespace CodeJam.Collections
 		public static HashSet<TKey> ToHashSet<T, TKey>(
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull, InstantHandle] Func<T, TKey> keySelector) =>
-				new HashSet<TKey>(source.Select(keySelector));
+				new(source.Select(keySelector));
 
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/> with the specified equality comparer.
@@ -129,7 +129,7 @@ namespace CodeJam.Collections
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull, InstantHandle] Func<T, TKey> keySelector,
 			[NotNull] IEqualityComparer<TKey> comparer) =>
-				new HashSet<TKey>(source.Select(keySelector), comparer);
+				new(source.Select(keySelector), comparer);
 
 		/// <summary>
 		/// Sorts the elements of a sequence in ascending order.

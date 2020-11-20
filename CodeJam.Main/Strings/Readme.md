@@ -45,7 +45,7 @@ s = str.Unquote(); // removes quotation marks
 s = str.Remove("A", "Bb"); // Removes all specified substrings
 
 s = 12.ToInvariantString(); // Converts to string with invariant culture formatter
-if (str.StartsWih\thInvariant("X") || str.EndsWithInvariant("Y") || str.IndexOfInvariant("Z") == 0 || str.LastIndexOfInvariant("A") == 0) ...;
+if (str.StartsWithInvariant("X") || str.EndsWithInvariant("Y") || str.IndexOfInvariant("Z") == 0 || str.LastIndexOfInvariant("A") == 0) ...;
 
 dt = str.ToDateTime();
 dt = str.ToDateTimeInvariant();

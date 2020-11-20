@@ -43,7 +43,7 @@ namespace CodeJam.Strings
 		/// that performs a string comparison using a "natural order" algorithm.
 		/// </returns>
 		[NotNull]
-		public static readonly NaturalOrderStringComparer Comparer = new NaturalOrderStringComparer(false);
+		public static readonly NaturalOrderStringComparer Comparer = new(false);
 
 		/// <summary>
 		/// Gets a <see cref="NaturalOrderStringComparer"/> object
@@ -54,7 +54,7 @@ namespace CodeJam.Strings
 		/// that performs a case-insensitive string comparison using a "natural order" algorithm.
 		/// </returns>
 		[NotNull]
-		public static readonly NaturalOrderStringComparer IgnoreCaseComparer = new NaturalOrderStringComparer(true);
+		public static readonly NaturalOrderStringComparer IgnoreCaseComparer = new(true);
 
 		/// <summary>
 		/// Gets a <see cref="Comparison{T}"/> delegate that performs a string comparison using a "natural order" algorithm.
@@ -232,7 +232,7 @@ namespace CodeJam.Strings
 			return bias;
 		}
 
-		private static int SkipLeadingZeroesAndWhitespaces([NotNull] string text, int index)
+		private static int SkipLeadingZeroesAndWhitespaces([NotNull] string text, [NonNegativeValue] int index)
 		{
 			while ((uint)index < (uint)text.Length && (text[index] == '0' || text[index].IsWhiteSpace()))
 				index++;
@@ -240,7 +240,7 @@ namespace CodeJam.Strings
 			return index;
 		}
 
-		private static char CharAt([NotNull] string text, int index) => (uint)index < (uint)text.Length ? text[index] : char.MinValue;
+		private static char CharAt([NotNull] string text, [NonNegativeValue] int index) => (uint)index < (uint)text.Length ? text[index] : char.MinValue;
 
 		#region Implementation of the IComparer<string>
 		/// <summary>

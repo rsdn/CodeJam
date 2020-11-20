@@ -20,6 +20,11 @@ namespace CodeJam.Threading
 	public struct AwaitableNonDisposable<T> where T : IDisposable
 	{
 		/// <summary>
+		/// Performs an implicit conversion from <see cref="Task{T}"/> to <see cref="AwaitableNonDisposable{T}"/>.
+		/// </summary>
+		public static implicit operator AwaitableNonDisposable<T>(Task<T> task) => new(task);
+
+		/// <summary>
 		/// The underlying task.
 		/// </summary>
 		[NotNull] private readonly Task<T> _task;

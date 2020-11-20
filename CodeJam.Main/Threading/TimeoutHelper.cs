@@ -3,7 +3,9 @@ using System.Threading;
 
 using JetBrains.Annotations;
 
+#if !(NETCOREAPP20_OR_GREATER || NETSTANDARD21_OR_GREATER)
 using CodeJam.Dates;
+#endif
 
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using TaskEx = System.Threading.Tasks.Task;
@@ -26,7 +28,7 @@ namespace CodeJam.Threading
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			Timeout.InfiniteTimeSpan;
 #else
-			new TimeSpan(0, 0, 0, 0, -1);
+			new(0, 0, 0, 0, -1);
 #endif
 
 		/// <summary>

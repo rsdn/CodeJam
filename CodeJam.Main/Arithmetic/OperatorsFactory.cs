@@ -106,7 +106,7 @@ namespace CodeJam.Arithmetic
 			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
 
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
-			new NotSupportedException($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
+			new($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
 		private static FieldInfo? TryGetOpField<T>(string fieldName)
 		{

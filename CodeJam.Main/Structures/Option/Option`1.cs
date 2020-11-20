@@ -150,7 +150,7 @@ namespace CodeJam
 		public sealed class None : Option<T>
 		{
 			[NotNull]
-			internal static readonly None Instance = new None();
+			internal static readonly None Instance = new();
 
 			private None() { }
 

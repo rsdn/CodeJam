@@ -18,7 +18,7 @@ namespace CodeJam.Collections
 		where TItem : class
 	{
 		[NotNull] private readonly Func<TItem, TOwner> _ownerGetter;
-		[NotNull] private readonly Action<TItem, TOwner> _ownerSetter;
+		[NotNull] private readonly Action<TItem, int, TOwner> _ownerSetter;
 
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TOwner, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
@@ -27,7 +27,7 @@ namespace CodeJam.Collections
 		public OwnedCollection(
 			[NotNull] TOwner owner,
 			[NotNull] Func<TItem, TOwner> ownerGetter,
-			[NotNull] Action<TItem, TOwner> ownerSetter) : base(owner)
+			[NotNull] Action<TItem, int, TOwner> ownerSetter) : base(owner)
 		{
 			Code.NotNull(owner, nameof(owner));
 			Code.NotNull(ownerGetter, nameof(ownerGetter));
@@ -45,8 +45,9 @@ namespace CodeJam.Collections
 
 		/// <summary>Sets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
+		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected override void SetOwner(TItem item, TOwner owner) => _ownerSetter(item, owner);
+		protected override void SetOwner(TItem item, int index, TOwner owner) => _ownerSetter(item, index, owner);
 		#endregion
 	}
 
@@ -61,7 +62,7 @@ namespace CodeJam.Collections
 		where TItem : class
 	{
 		[NotNull] private readonly Func<TItem, TOwner> _ownerGetter;
-		[NotNull] private readonly Action<TItem, TOwner> _ownerSetter;
+		[NotNull] private readonly Action<TItem, int, TOwner> _ownerSetter;
 		[NotNull] private readonly Func<TItem, TKey> _keyGetter;
 
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TOwner, TKey, TItem}"/> class.</summary>
@@ -73,7 +74,7 @@ namespace CodeJam.Collections
 		public OwnedCollection(
 			[NotNull] TOwner owner,
 			[NotNull] Func<TItem, TOwner> ownerGetter,
-			[NotNull] Action<TItem, TOwner> ownerSetter,
+			[NotNull] Action<TItem, int, TOwner> ownerSetter,
 			[NotNull] Func<TItem, TKey> keyGetter) : base(owner)
 		{
 			Code.NotNull(keyGetter, nameof(keyGetter));
@@ -97,8 +98,9 @@ namespace CodeJam.Collections
 
 		/// <summary>Sets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
+		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected override void SetOwner(TItem item, TOwner owner) => _ownerSetter(item, owner);
+		protected override void SetOwner(TItem item, int index, TOwner owner) => _ownerSetter(item, index, owner);
 		#endregion
 	}
 }

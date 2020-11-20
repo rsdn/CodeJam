@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 using JetBrains.Annotations;
@@ -39,10 +39,35 @@ namespace CodeJam.Collections
 		[CanBeNull]
 		protected abstract TOwner GetOwner([NotNull] TItem item);
 
-		/// <summary>Sets the owner of the item.</summary>
+		/// <summary>
+		/// Sets the owner of the item.
+		/// </summary>
 		/// <param name="item">The item.</param>
+		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected abstract void SetOwner([NotNull] TItem item, [CanBeNull] TOwner owner);
+		protected abstract void SetOwner([NotNull] TItem item, int index, [CanBeNull] TOwner owner);
+
+		/// <summary>
+		/// Validates item to be inserted.
+		/// </summary>
+		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
+		/// <param name="item">The object to insert.</param>
+		protected virtual void ValidateInsertItem(int index, TItem item) { }
+
+		/// <summary>
+		/// Validates item to be removed.
+		/// </summary>
+		/// <param name="index">The zero-based index of the element to remove.</param>
+		protected virtual void ValidateRemoveItem(int index) { }
+
+		/// <summary>
+		/// Validates item to be replaced.
+		/// </summary>
+		/// <param name="index">The zero-based index of the element to replace.</param>
+		/// <param name="item">
+		/// The new value for the element at the specified index.
+		/// </param>
+		protected virtual void ValidateSetItem(int index, TItem item) { }
 
 		/// <summary>
 		/// Removes all elements from the <see cref="Collection{T}"/>.
@@ -50,10 +75,16 @@ namespace CodeJam.Collections
 		/// </summary>
 		protected override void ClearItems()
 		{
-			foreach (var item in Items)
+			for (var i = 0; i < Count; i++)
 			{
+				ValidateRemoveItem(i);
+			}
+
+			for (var i = 0; i < Count; i++)
+			{
+				var item = this[i];
 				Code.BugIf(item == null, "One of items in collection is null.");
-				SetOwner(item, null);
+				SetOwner(item, i, null);
 			}
 			base.ClearItems();
 		}
@@ -63,14 +94,15 @@ namespace CodeJam.Collections
 		/// Sets owner for the items being added.
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
-		/// <param name="item">The object to insert. The value can be null for reference types.</param>
-		protected override void InsertItem(int index, TItem item)
+		/// <param name="item">The object to insert.</param>
+		protected override void InsertItem([NonNegativeValue] int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
-
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
+
+			ValidateInsertItem(index, item);
 			base.InsertItem(index, item);
-			SetOwner(item, Owner);
+			SetOwner(item, index, Owner);
 		}
 
 		/// <summary>
@@ -78,13 +110,14 @@ namespace CodeJam.Collections
 		/// Clears owner for the item being removed.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to remove.</param>
-		protected override void RemoveItem(int index)
+		protected override void RemoveItem([NonNegativeValue] int index)
 		{
 			var item = this[index];
 			Code.BugIf(item == null, "One of items in collection is null.");
 
+			ValidateRemoveItem(index);
+			SetOwner(item, index, null);
 			base.RemoveItem(index);
-			SetOwner(item, null);
 		}
 
 		/// <summary>
@@ -94,19 +127,22 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to replace.</param>
 		/// <param name="item">
-		/// The new value for the element at the specified index. The value can be null for reference types.
+		/// The new value for the element at the specified index.
 		/// </param>
-		protected override void SetItem(int index, TItem item)
+		protected override void SetItem([NonNegativeValue] int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
 
 			var oldItem = this[index];
 			Code.BugIf(oldItem == null, "One of items in collection is null.");
-			SetOwner(oldItem, null);
+
+			ValidateSetItem(index, item);
+			SetOwner(oldItem, index, null);
 			base.SetItem(index, item);
-			SetOwner(item, Owner);
+			SetOwner(item, index, Owner);
 		}
+
 		#endregion
 	}
 
@@ -120,9 +156,18 @@ namespace CodeJam.Collections
 		where TOwner : class
 		where TItem : class
 	{
-		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TItem, TOwner}"/> class.</summary>
+		/// <summary>Initializes a new instance of the <see cref="OwnedCollectionBase{TOwner, TKey, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
-		protected OwnedCollectionBase([NotNull] TOwner owner)
+		protected OwnedCollectionBase([NotNull] TOwner owner) : this(owner, null)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="OwnedCollectionBase{TOwner, TKey, TItem}" /> class.
+		/// </summary>
+		/// <param name="owner">The owner for the collection.</param>
+		/// <param name="comparer">The comparer.</param>
+		protected OwnedCollectionBase([NotNull] TOwner owner, IEqualityComparer<TKey> comparer) : base(comparer)
 		{
 			Code.NotNull(owner, nameof(owner));
 
@@ -133,7 +178,7 @@ namespace CodeJam.Collections
 		/// <param name="item">The element from which to extract the key.</param>
 		/// <returns>The key for the specified element.</returns>
 		[NotNull]
-		protected override sealed TKey GetKeyForItem(TItem item)
+		protected sealed override TKey GetKeyForItem(TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 
@@ -162,10 +207,35 @@ namespace CodeJam.Collections
 		[CanBeNull]
 		protected abstract TOwner GetOwner([NotNull] TItem item);
 
-		/// <summary>Sets the owner of the item.</summary>
+		/// <summary>
+		/// Sets the owner of the item.
+		/// </summary>
 		/// <param name="item">The item.</param>
+		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected abstract void SetOwner([NotNull] TItem item, [CanBeNull] TOwner owner);
+		protected abstract void SetOwner([NotNull] TItem item, int index, [CanBeNull] TOwner owner);
+
+		/// <summary>
+		/// Validates item to be inserted.
+		/// </summary>
+		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
+		/// <param name="item">The object to insert.</param>
+		protected virtual void ValidateInsertItem(int index, TItem item) { }
+
+		/// <summary>
+		/// Validates item to be removed.
+		/// </summary>
+		/// <param name="index">The zero-based index of the element to remove.</param>
+		protected virtual void ValidateRemoveItem(int index) { }
+
+		/// <summary>
+		/// Validates item to be replaced.
+		/// </summary>
+		/// <param name="index">The zero-based index of the element to replace.</param>
+		/// <param name="item">
+		/// The new value for the element at the specified index.
+		/// </param>
+		protected virtual void ValidateSetItem(int index, TItem item) { }
 
 		/// <summary>
 		/// Removes all elements from the <see cref="Collection{T}"/>.
@@ -173,10 +243,16 @@ namespace CodeJam.Collections
 		/// </summary>
 		protected override void ClearItems()
 		{
-			foreach (var item in Items)
+			for (var i = 0; i < Count; i++)
 			{
+				ValidateRemoveItem(i);
+			}
+
+			for (var i = 0; i < Count; i++)
+			{
+				var item = this[i];
 				Code.BugIf(item == null, "One of items in collection is null.");
-				SetOwner(item, null);
+				SetOwner(item, i, null);
 			}
 			base.ClearItems();
 		}
@@ -186,14 +262,15 @@ namespace CodeJam.Collections
 		/// Sets owner for the items being added.
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
-		/// <param name="item">The object to insert. The value can be null for reference types.</param>
-		protected override void InsertItem(int index, TItem item)
+		/// <param name="item">The object to insert.</param>
+		protected override void InsertItem([NonNegativeValue] int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
-
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
+
+			ValidateInsertItem(index, item);
 			base.InsertItem(index, item);
-			SetOwner(item, Owner);
+			SetOwner(item, index, Owner);
 		}
 
 		/// <summary>
@@ -201,13 +278,14 @@ namespace CodeJam.Collections
 		/// Clears owner for the item being removed.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to remove.</param>
-		protected override void RemoveItem(int index)
+		protected override void RemoveItem([NonNegativeValue] int index)
 		{
 			var item = this[index];
 			Code.BugIf(item == null, "One of items in collection is null.");
 
+			ValidateRemoveItem(index);
+			SetOwner(item, index, null);
 			base.RemoveItem(index);
-			SetOwner(item, null);
 		}
 
 		/// <summary>
@@ -217,19 +295,22 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to replace.</param>
 		/// <param name="item">
-		/// The new value for the element at the specified index. The value can be null for reference types.
+		/// The new value for the element at the specified index.
 		/// </param>
-		protected override void SetItem(int index, TItem item)
+		protected override void SetItem([NonNegativeValue] int index, TItem item)
 		{
 			Code.NotNull(item, nameof(item));
 			Code.AssertArgument(GetOwner(item) == null, nameof(item), "Cannot add an item as it is mapped to another owner.");
 
 			var oldItem = this[index];
 			Code.BugIf(oldItem == null, "One of items in collection is null.");
-			SetOwner(oldItem, null);
+
+			ValidateSetItem(index, item);
+			SetOwner(oldItem, index, null);
 			base.SetItem(index, item);
-			SetOwner(item, Owner);
+			SetOwner(item, index, Owner);
 		}
+
 		#endregion
 	}
 }

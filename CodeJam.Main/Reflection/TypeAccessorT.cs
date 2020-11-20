@@ -96,7 +96,7 @@ namespace CodeJam.Reflection
 
 		// ReSharper disable once StaticMemberInGenericType
 		[NotNull, ItemNotNull]
-		private static readonly List<MemberInfo> _members = new List<MemberInfo>();
+		private static readonly List<MemberInfo> _members = new();
 
 		internal TypeAccessor()
 		{

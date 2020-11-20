@@ -135,31 +135,31 @@ namespace CodeJam
 				if (!fromNewLine)
 				{
 					for (var i = 0; i < exceptionText.Length; i++)
-						await writer.WriteAsync('-');
-					await writer.WriteLineAsync();
+						await writer.WriteAsync('-').ConfigureAwait(false);
+					await writer.WriteLineAsync().ConfigureAwait(false);
 				}
 				else
 					fromNewLine = false;
 
-				await writer.WriteLineAsync(exceptionText);
+				await writer.WriteLineAsync(exceptionText).ConfigureAwait(false);
 
 				if (ex.Message.NotNullNorEmpty())
-					await writer.WriteLineAsync(ex.Message);
+					await writer.WriteLineAsync(ex.Message).ConfigureAwait(false);
 
 				if (ex.StackTrace.NotNullNorEmpty())
-					await writer.WriteLineAsync(ex.StackTrace);
+					await writer.WriteLineAsync(ex.StackTrace).ConfigureAwait(false);
 
 				switch (ex)
 				{
 					case FileNotFoundException notFoundException:
 						var fex = notFoundException;
 
-						await writer.WriteLineAsync($"File Name: {fex.FileName}");
+						await writer.WriteLineAsync($"File Name: {fex.FileName}").ConfigureAwait(false);
 
 						if (fex.GetFusionLog().IsNullOrEmpty())
-							await writer.WriteLineAsync("Fusion log is empty or disabled.");
+							await writer.WriteLineAsync("Fusion log is empty or disabled.").ConfigureAwait(false);
 						else
-							await writer.WriteAsync(fex.GetFusionLog());
+							await writer.WriteAsync(fex.GetFusionLog()).ConfigureAwait(false);
 						break;
 
 					case AggregateException aex:
@@ -168,7 +168,7 @@ namespace CodeJam
 						foreach (var e in aex.InnerExceptions)
 						{
 							foundInnerException = foundInnerException || e != ex.InnerException;
-							await ToDiagnosticStringAsync(e, writer, false);
+							await ToDiagnosticStringAsync(e, writer, false).ConfigureAwait(false);
 						}
 
 						if (foundInnerException)
@@ -177,7 +177,7 @@ namespace CodeJam
 
 					case ReflectionTypeLoadException loadEx:
 						foreach (var e in loadEx.LoaderExceptions)
-							await ToDiagnosticStringAsync(e, writer, false);
+							await ToDiagnosticStringAsync(e, writer, false).ConfigureAwait(false);
 						break;
 				}
 			}

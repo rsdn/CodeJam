@@ -18,7 +18,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T> Create<T>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
-			new Range<T>(from, to);
+			new(from, to);
 
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -27,7 +27,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T> Create<T>(T fromValue, T toValue) =>
-			new Range<T>(BoundaryFrom(fromValue), BoundaryTo(toValue));
+			new(BoundaryFrom(fromValue), BoundaryTo(toValue));
 
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -36,7 +36,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T> CreateExclusive<T>(T fromValue, T toValue) =>
-			new Range<T>(BoundaryFromExclusive(fromValue), BoundaryToExclusive(toValue));
+			new(BoundaryFromExclusive(fromValue), BoundaryToExclusive(toValue));
 
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -45,7 +45,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T> CreateExclusiveFrom<T>(T fromValue, T toValue) =>
-			new Range<T>(BoundaryFromExclusive(fromValue), BoundaryTo(toValue));
+			new(BoundaryFromExclusive(fromValue), BoundaryTo(toValue));
 
 		/// <summary>Creates the range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -54,7 +54,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new range.</returns>
 		[Pure, MethodImpl(AggressiveInlining)]
 		public static Range<T> CreateExclusiveTo<T>(T fromValue, T toValue) =>
-			new Range<T>(BoundaryFrom(fromValue), BoundaryToExclusive(toValue));
+			new(BoundaryFrom(fromValue), BoundaryToExclusive(toValue));
 		#endregion
 
 		#region Failsafe Range<T> factory methods

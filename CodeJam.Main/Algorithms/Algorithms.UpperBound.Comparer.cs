@@ -39,7 +39,7 @@ namespace CodeJam
 		public static int UpperBound<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int startIndex,
+				[NonNegativeValue] int startIndex,
 				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
 			list.UpperBound(value, startIndex, list.Count, comparer);
 
@@ -59,8 +59,8 @@ namespace CodeJam
 		public static int UpperBound<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
-				int startIndex,
-				int endIndex,
+				[NonNegativeValue] int startIndex,
+				[NonNegativeValue] int endIndex,
 				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer)
 		{
 			Code.NotNull(list, nameof(list));
@@ -85,8 +85,8 @@ namespace CodeJam
 		private static int UpperBoundCore<TElement, TValue>(
 			[NotNull] this IList<TElement> list,
 			TValue value,
-			int startIndex,
-			int endIndex,
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex,
 			[NotNull] Func<TElement, TValue, int> comparer)
 		{
 			while (startIndex < endIndex)

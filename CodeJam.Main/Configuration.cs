@@ -30,12 +30,12 @@ namespace CodeJam.Internal
 
 		#region Logging
 		[NotNull, ItemNotNull]
-		private static readonly Lazy<TraceSource> _codeTraceSource = new Lazy<TraceSource>(
+		private static readonly Lazy<TraceSource> _codeTraceSource = new(
 			() => CreateTraceSource(typeof(Code).Namespace + "." + nameof(CodeTraceSource)));
 
 		[NotNull]
 		private static TraceSource CreateTraceSource([NotNull] string sourceName) =>
-			new TraceSource(sourceName) { Switch = { Level = SourceLevels.Information } };
+			new(sourceName) { Switch = { Level = SourceLevels.Information } };
 
 		private static TraceSource? _customCodeTraceSource;
 

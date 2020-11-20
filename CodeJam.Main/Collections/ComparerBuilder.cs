@@ -78,14 +78,14 @@ namespace CodeJam.Collections
 
 		private class Comparer : EqualityComparer<T>
 		{
-			public Comparer(Func<T, T, bool> equals, Func<T, int> getHashCode)
+			public Comparer([NotNull] Func<T, T, bool> equals, [NotNull] Func<T, int> getHashCode)
 			{
 				_equals = equals;
 				_getHashCode = getHashCode;
 			}
 
-			private readonly Func<T, T, bool> _equals;
-			private readonly Func<T, int> _getHashCode;
+			[NotNull] private readonly Func<T, T, bool> _equals;
+			[NotNull] private readonly Func<T, int> _getHashCode;
 
 			public override bool Equals(T x, T y) =>
 				x != null ? y != null && _equals(x, y) : y == null;

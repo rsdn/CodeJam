@@ -228,7 +228,11 @@ namespace CodeJam.Collections
 			if (source.Count == 0)
 				yield break;
 
-			var dependants = LazyDictionary.Create(k => new List<T>(), equalityComparer, false);
+			var dependants =
+				LazyDictionary.Create(
+					_ => new List<T>(),
+					equalityComparer,
+					false);
 			var workArray = new int[source.Count];
 			var indices = new Dictionary<T, int>(equalityComparer);
 			var level = new List<T>();

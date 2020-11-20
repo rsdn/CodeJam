@@ -217,7 +217,7 @@ namespace CodeJam.Dates
 		#region Rounding
 		// THANKSTO: aj.toulan, https://stackoverflow.com/a/18796370
 		[Pure]
-		private static DateTime FloorCore(DateTime dateTime, long ticksModule)
+		private static DateTime FloorCore(DateTime dateTime, [NonNegativeValue] long ticksModule)
 		{
 			Code.InRange(ticksModule, nameof(ticksModule), 1, long.MaxValue);
 
@@ -227,7 +227,7 @@ namespace CodeJam.Dates
 
 		// THANKSTO: aj.toulan, https://stackoverflow.com/a/18796370
 		[Pure]
-		private static DateTime CeilingCore(DateTime dateTime, long ticksModule)
+		private static DateTime CeilingCore(DateTime dateTime, [NonNegativeValue] long ticksModule)
 		{
 			Code.InRange(ticksModule, nameof(ticksModule), 1, long.MaxValue);
 
@@ -237,7 +237,7 @@ namespace CodeJam.Dates
 
 		// THANKSTO: aj.toulan, https://stackoverflow.com/a/18796370
 		[Pure]
-		private static DateTime RoundAwayFromZeroCore(DateTime dateTime, long ticksModule)
+		private static DateTime RoundAwayFromZeroCore(DateTime dateTime, [NonNegativeValue] long ticksModule)
 		{
 			Code.InRange(ticksModule, nameof(ticksModule), 1, long.MaxValue);
 
@@ -247,7 +247,7 @@ namespace CodeJam.Dates
 		}
 
 		[Pure]
-		private static DateTime RoundToEvenCore(DateTime dateTime, long ticksModule)
+		private static DateTime RoundToEvenCore(DateTime dateTime, [NonNegativeValue] long ticksModule)
 		{
 			Code.InRange(ticksModule, nameof(ticksModule), 1, long.MaxValue);
 
@@ -256,7 +256,7 @@ namespace CodeJam.Dates
 		}
 
 		[Pure]
-		private static DateTime RoundCore(DateTime dateTime, long ticksModule, MidpointRounding mode)
+		private static DateTime RoundCore(DateTime dateTime, [NonNegativeValue] long ticksModule, MidpointRounding mode)
 		{
 			return mode switch
 			{

@@ -52,12 +52,12 @@ namespace CodeJam.Collections
 		/// <summary>Updates the node at the index</summary>
 		/// <param name="index">The index to update</param>
 		/// <param name="node">The new node value</param>
-		protected void UpdateNode(int index, Node node) => _nodes[index] = node;
+		protected void UpdateNode([NonNegativeValue] int index, Node node) => _nodes[index] = node;
 
 		/// <summary>Gets a node at the index</summary>
 		/// <param name="index">The index of the node</param>
 		/// <returns>The node</returns>
-		protected Node GetNode(int index) => _nodes[index];
+		protected Node GetNode([NonNegativeValue] int index) => _nodes[index];
 
 		/// <summary>Number of nodes</summary>
 		protected int NodesCount => _nodes.Count;
@@ -72,7 +72,7 @@ namespace CodeJam.Collections
 			/// <summary>Constructor</summary>
 			/// <param name="start">An edge start offset</param>
 			/// <param name="length">Length of location</param>
-			public StringLocation(int start, int length)
+			public StringLocation([NonNegativeValue] int start, [NonNegativeValue] int length)
 			{
 				Start = start;
 				Length = length;
@@ -263,7 +263,7 @@ namespace CodeJam.Collections
 		/// <param name="length">The suffix length</param>
 		/// <returns>The suffix</returns>
 		[Pure]
-		private Suffix CreateSuffix(int end, int length)
+		private Suffix CreateSuffix([NonNegativeValue] int end, [NonNegativeValue] int length)
 		{
 			var sourceIndex = GetSourceIndexByEnd(end);
 			var sourceOffset = StringLocations[sourceIndex].Start;
@@ -325,7 +325,7 @@ namespace CodeJam.Collections
 		/// <summary>Locates the source string index by the suffix end</summary>
 		/// <param name="end">The suffix end</param>
 		/// <returns>The source string index</returns>
-		private int GetSourceIndexByEnd(int end)
+		private int GetSourceIndexByEnd([NonNegativeValue] int end)
 		{
 			// CSC bug?
 			// ReSharper disable once RedundantTypeArgumentsOfMethod
@@ -339,7 +339,7 @@ namespace CodeJam.Collections
 		/// <summary>Appends suffixes for the last added string</summary>
 		/// <param name="begin">An edge start offset</param>
 		/// <param name="end">An edge end offset</param>
-		protected abstract void BuildFor(int begin, int end);
+		protected abstract void BuildFor([NonNegativeValue] int begin, [NonNegativeValue] int end);
 
 		/// <summary>Prints the tree structure to the string for the debugging purposes</summary>
 		/// <returns>The tree structure as a string</returns>
@@ -413,7 +413,7 @@ namespace CodeJam.Collections
 		/// <summary>Prints a single node information</summary>
 		/// <param name="sb">The builder to print to</param>
 		/// <param name="nodeIndex">The node index</param>
-		protected virtual void AppendNodeText([NotNull] StringBuilder sb, int nodeIndex)
+		protected virtual void AppendNodeText([NotNull] StringBuilder sb, [NonNegativeValue] int nodeIndex)
 		{
 			var n = GetNode(nodeIndex);
 			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.Length)})");

@@ -40,7 +40,7 @@ namespace CodeJam.Threading
 			var waitForCancellationTask = cts.Token.WaitForCancellationAsync();
 			var completedTask = await TaskEx.WhenAny(
 				delayTask,
-				waitForCancellationTask);
+				waitForCancellationTask).ConfigureAwait(false);
 			Assert.AreEqual(completedTask, delayTask);
 
 			// Token canceled case
@@ -49,9 +49,9 @@ namespace CodeJam.Threading
 				delayTask,
 				waitForCancellationTask);
 			cts.Cancel();
-			completedTask = await whenAny;
+			completedTask = await whenAny.ConfigureAwait(false);
 			Assert.AreEqual(completedTask, waitForCancellationTask);
-			await waitForCancellationTask;
+			await waitForCancellationTask.ConfigureAwait(false);
 		}
 
 		[Test]
@@ -77,7 +77,7 @@ namespace CodeJam.Threading
 			var delayTask = TaskEx.Delay(TimeSpan.FromMilliseconds(500), CancellationToken.None);
 			var completedTask = await TaskEx.WhenAny(
 				waitForCancellationTask,
-				delayTask);
+				delayTask).ConfigureAwait(false);
 			Assert.AreEqual(completedTask, delayTask);
 
 			// Token canceled case
@@ -86,16 +86,16 @@ namespace CodeJam.Threading
 				waitForCancellationTask,
 				delayTask);
 			cts.Cancel();
-			completedTask = await whenAny;
+			completedTask = await whenAny.ConfigureAwait(false);
 			Assert.AreEqual(completedTask, waitForCancellationTask);
-			await waitForCancellationTask;
+			await waitForCancellationTask.ConfigureAwait(false);
 
 			// Token cancellation timeout case
 			waitForCancellationTask = new CancellationToken().WaitForCancellationAsync(TimeSpan.FromMilliseconds(500));
 			delayTask = TaskEx.Delay(TimeSpan.FromMinutes(1), CancellationToken.None);
 			completedTask = await TaskEx.WhenAny(
 				waitForCancellationTask,
-				delayTask);
+				delayTask).ConfigureAwait(false);
 			Assert.AreEqual(completedTask, waitForCancellationTask);
 			Assert.Throws<TimeoutException>(() => waitForCancellationTask.WaitForResult());
 		}

@@ -48,7 +48,7 @@ namespace CodeJam.Threading
 		#endregion
 
 		[NotNull]
-		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+		private readonly SemaphoreSlim _semaphore = new(1, 1);
 
 		/// <summary>
 		/// Acquires async lock.
@@ -67,7 +67,7 @@ namespace CodeJam.Threading
 		/// <returns>A task that returns the <see cref="AsyncLockScope"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(int timeout) =>
+		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync([NonNegativeValue] int timeout) =>
 			AcquireAsync(TimeSpan.FromMilliseconds(timeout), CancellationToken.None);
 
 		/// <summary>
@@ -104,7 +104,7 @@ namespace CodeJam.Threading
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(int timeout, CancellationToken cancellation) =>
+		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync([NonNegativeValue] int timeout, CancellationToken cancellation) =>
 			AcquireAsync(TimeSpan.FromMilliseconds(timeout), cancellation);
 
 		/// <summary>
@@ -121,13 +121,13 @@ namespace CodeJam.Threading
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
 		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(TimeSpan timeout, CancellationToken cancellation) =>
-			new AwaitableNonDisposable<AsyncLockScope>(AcquireAsyncImpl(timeout, cancellation));
+			AcquireAsyncImpl(timeout, cancellation);
 
 		[NotNull]
 		[MustUseReturnValue("Lock should be disposed")]
 		private async Task<AsyncLockScope> AcquireAsyncImpl(TimeSpan timeout, CancellationToken cancellation)
 		{
-			var succeeded = await _semaphore.WaitAsync(timeout, cancellation);
+			var succeeded = await _semaphore.WaitAsync(timeout, cancellation).ConfigureAwait(false);
 			if (!succeeded)
 			{
 				cancellation.ThrowIfCancellationRequested();
@@ -153,7 +153,7 @@ namespace CodeJam.Threading
 		/// <returns>An <see cref="AsyncLockScope"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AsyncLockScope AcquireSync(int timeout) =>
+		public AsyncLockScope AcquireSync([NonNegativeValue] int timeout) =>
 			AcquireSync(TimeSpan.FromMilliseconds(timeout), CancellationToken.None);
 
 		/// <summary>
@@ -190,7 +190,7 @@ namespace CodeJam.Threading
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AsyncLockScope AcquireSync(int timeout, CancellationToken cancellation) =>
+		public AsyncLockScope AcquireSync([NonNegativeValue] int timeout, CancellationToken cancellation) =>
 			AcquireSync(TimeSpan.FromMilliseconds(timeout), cancellation);
 
 		/// <summary>

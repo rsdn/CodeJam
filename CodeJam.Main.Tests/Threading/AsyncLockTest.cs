@@ -31,7 +31,7 @@ namespace CodeJam.Threading
 				using (await asyncLock.AcquireAsync(holdTime, cancellation))
 				{
 					callback?.Invoke();
-					await TaskEx.Delay(holdTime);
+					await TaskEx.Delay(holdTime).ConfigureAwait(false);
 				}
 				return true;
 			}
@@ -67,18 +67,18 @@ namespace CodeJam.Threading
 			var cts2 = new CancellationTokenSource();
 			var sw2 = Stopwatch.StartNew();
 			var lock2 = TryTakeAndHold(asyncLock, holdTime, cts2.Token);
-			await TaskEx.Delay(delayTime);
+			await TaskEx.Delay(delayTime).ConfigureAwait(false);
 			cts2.Cancel();
-			var lock2Taken = await lock2;
+			var lock2Taken = await lock2.ConfigureAwait(false);
 			sw2.Stop();
 
 			var sw3 = Stopwatch.StartNew();
 			var lock3 = TryTakeAndHold(asyncLock, delayTime);
-			await TaskEx.Delay(delayTime);
-			var lock3Taken = await lock3;
+			await TaskEx.Delay(delayTime).ConfigureAwait(false);
+			var lock3Taken = await lock3.ConfigureAwait(false);
 			sw3.Stop();
 
-			var lock1Taken = await lock1;
+			var lock1Taken = await lock1.ConfigureAwait(false);
 
 			Assert.IsTrue(lock1Taken);
 			Assert.IsFalse(lock2Taken);
@@ -109,7 +109,7 @@ namespace CodeJam.Threading
 				{
 					Assert.IsFalse(opActive);
 					opActive = true;
-					await TaskEx.Delay(200 + num * timeInc);
+					await TaskEx.Delay(200 + num * timeInc).ConfigureAwait(false);
 					Assert.IsTrue(opActive);
 					opActive = false;
 				}
@@ -119,7 +119,7 @@ namespace CodeJam.Threading
 			await Enumerable
 				.Range(0, 10)
 				.Select(i => TaskEx.Run(() => Op(i)))
-				.WhenAll();
+				.WhenAll().ConfigureAwait(false);
 			sw.Stop();
 			Assert.IsFalse(opActive);
 			Assert.GreaterOrEqual(sw.ElapsedMilliseconds, time * count + timeInc * count / 2);

@@ -128,7 +128,7 @@ namespace CodeJam.Collections
 		{
 			if (!dictionary.TryGetValue(key, out var result))
 			{
-				result = await valueFactory(key);
+				result = await valueFactory(key).ConfigureAwait(false);
 				dictionary.Add(key, result);
 			}
 			return result;
@@ -210,7 +210,7 @@ namespace CodeJam.Collections
 		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
-				var newValue = await updateValueFactory(key, result);
+				var newValue = await updateValueFactory(key, result).ConfigureAwait(false);
 				dictionary[key] = newValue;
 				return newValue;
 			}
@@ -297,11 +297,11 @@ namespace CodeJam.Collections
 		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
-				var newValue = await updateValueFactory(key, result);
+				var newValue = await updateValueFactory(key, result).ConfigureAwait(false);
 				dictionary[key] = newValue;
 				return newValue;
 			}
-			var newAddValue = await addValueFactory(key);
+			var newAddValue = await addValueFactory(key).ConfigureAwait(false);
 			dictionary.Add(key, newAddValue);
 			return newAddValue;
 		}
@@ -368,11 +368,11 @@ namespace CodeJam.Collections
 		{
 			if (dictionary.ContainsKey(key))
 			{
-				var newValue = await valueFactory(key);
+				var newValue = await valueFactory(key).ConfigureAwait(false);
 				dictionary[key] = newValue;
 				return newValue;
 			}
-			var newAddValue = await valueFactory(key);
+			var newAddValue = await valueFactory(key).ConfigureAwait(false);
 			dictionary.Add(key, newAddValue);
 			return newAddValue;
 		}
@@ -397,7 +397,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
-			return dictionary.AddOrUpdate(key, valueFactory, (k, oldValue) => valueFactory(k));
+			return dictionary.AddOrUpdate(key, valueFactory, (k, _) => valueFactory(k));
 		}
 
 		#endregion

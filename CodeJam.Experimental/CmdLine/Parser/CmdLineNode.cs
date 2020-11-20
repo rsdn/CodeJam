@@ -14,8 +14,8 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		public CmdLineNode(
 			[NotNull] string text,
-			int position,
-			int length,
+			[NonNegativeValue] int position,
+			[NonNegativeValue] int length,
 			[NotNull] QuotedOrNonquotedValueNode programName,
 			[NotNull, ItemNotNull] CommandNode[] commands,
 			[NotNull, ItemNotNull] OptionNode[] options) : base(text, position, length)

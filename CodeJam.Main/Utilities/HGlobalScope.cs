@@ -24,8 +24,10 @@ namespace CodeJam
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
+#if LESSTHAN_NET50
 		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
-		internal HGlobalScope(int cb)
+#endif
+		internal HGlobalScope([NonNegativeValue] int cb)
 		{
 			Data = Marshal.AllocHGlobal(cb);
 
