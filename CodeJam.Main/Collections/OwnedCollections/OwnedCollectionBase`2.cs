@@ -156,18 +156,13 @@ namespace CodeJam.Collections
 		where TOwner : class
 		where TItem : class
 	{
-		/// <summary>Initializes a new instance of the <see cref="OwnedCollectionBase{TOwner, TKey, TItem}"/> class.</summary>
-		/// <param name="owner">The owner for the collection.</param>
-		protected OwnedCollectionBase([NotNull] TOwner owner) : this(owner, null)
-		{
-		}
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OwnedCollectionBase{TOwner, TKey, TItem}" /> class.
 		/// </summary>
 		/// <param name="owner">The owner for the collection.</param>
 		/// <param name="comparer">The comparer.</param>
-		protected OwnedCollectionBase([NotNull] TOwner owner, IEqualityComparer<TKey> comparer) : base(comparer)
+		protected OwnedCollectionBase([NotNull] TOwner owner, IEqualityComparer<TKey> comparer = null)
+			: base(comparer)
 		{
 			Code.NotNull(owner, nameof(owner));
 
