@@ -1,4 +1,4 @@
-﻿#if LESSTHAN_NETCOREAPP20 || LESSTHAN_NETSTANDARD21 || TARGETS_NET
+﻿#if LESSTHAN_NETSTANDARD21 || TARGETS_NET
 using System.Collections.Generic;
 
 namespace CodeJam.Targeting

@@ -66,7 +66,7 @@ namespace CodeJam
 #elif NETCOREAPP3_0
 			".NETCoreApp,Version=v3.0";
 #elif NETCOREAPP3_1
-			".NETCoreApp,Version=v3.0";
+			".NETCoreApp,Version=v3.1";
 #else
 			"UNKNOWN";
 #endif
