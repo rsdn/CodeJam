@@ -87,12 +87,12 @@ namespace CodeJam.ConnectionStrings
 					base.ConnectionString = value;
 					if (value.NotNullNorEmpty())
 					{
-						foreach (var nameRequiredPair in Keywords.Where(p => p.Value.IsRequired))
+						foreach (var (key, _) in Keywords.Where(p => p.Value.IsRequired))
 						{
-							if (!ContainsKey(nameRequiredPair.Key))
+							if (!ContainsKey(key))
 								throw CodeExceptions.Argument(
 									nameof(ConnectionString),
-									$"The value of required {nameRequiredPair.Key} connection string parameter is empty.");
+									$"The value of required {key} connection string parameter is empty.");
 						}
 					}
 				}
@@ -103,17 +103,17 @@ namespace CodeJam.ConnectionStrings
 			public string GetBrowsableConnectionString(bool includeNonBrowsable = false)
 			{
 				var builder = new StringBuilder();
-				foreach (var browsablePair in Keywords)
+				foreach (var (key, val) in Keywords)
 				{
-					if (!browsablePair.Value.IsBrowsable && !includeNonBrowsable)
+					if (!val.IsBrowsable && !includeNonBrowsable)
 						continue;
 
-					if (ShouldSerialize(browsablePair.Key) && TryGetValue(browsablePair.Key, out var value))
+					if (ShouldSerialize(key) && TryGetValue(key, out var value))
 					{
-						if (!browsablePair.Value.IsBrowsable)
+						if (!val.IsBrowsable)
 							value = _nonBrowsableValue;
 						var keyValue = Convert.ToString(value, CultureInfo.InvariantCulture);
-						AppendKeyValuePair(builder, browsablePair.Key, keyValue);
+						AppendKeyValuePair(builder, key, keyValue);
 					}
 				}
 

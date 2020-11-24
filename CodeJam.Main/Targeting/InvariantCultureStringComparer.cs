@@ -30,17 +30,17 @@ namespace CodeJam.Targeting
 		#region Overrides of StringComparer
 		public override int Compare(string x, string y)
 		{
-			if (object.ReferenceEquals(x, y)) return 0;
-			if (object.ReferenceEquals(x, null)) return -1;
-			if (object.ReferenceEquals(y, null)) return 1;
+			if (ReferenceEquals(x, y)) return 0;
+			if (ReferenceEquals(x, null)) return -1;
+			if (ReferenceEquals(y, null)) return 1;
 
 			return _invariantCulture.Compare(x, y, _compareOptions);
 		}
 
 		public override bool Equals(string x, string y)
 		{
-			if (object.ReferenceEquals(x, y)) return true;
-			if (object.ReferenceEquals(x, null) || object.ReferenceEquals(y, null)) return false;
+			if (ReferenceEquals(x, y)) return true;
+			if (ReferenceEquals(x, null) || ReferenceEquals(y, null)) return false;
 
 			return _invariantCulture.Compare(x, y, _compareOptions) == 0;
 		}

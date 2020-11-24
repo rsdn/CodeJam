@@ -1,5 +1,5 @@
 ﻿configuration: Release
-image: Visual Studio 2019 Preview
+image: Visual Studio 2019
 version: '3.3.0.{build}'
 
 #environment:

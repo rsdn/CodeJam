@@ -4,12 +4,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
+#if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
+using CodeJam.Reflection;
+#endif
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Expressions
 {
-	using Reflection;
-
 	/// <summary>
 	/// <see cref="Expression"/> Extensions.
 	/// </summary>
@@ -120,9 +122,8 @@ namespace CodeJam.Expressions
 		public static MethodInfo GetMethod([NotNull] this LambdaExpression expression)
 		{
 			var info = GetMemberInfo(expression);
-			var propertyInfo = info as PropertyInfo;
 			return
-				propertyInfo != null
+				info is PropertyInfo propertyInfo
 					? propertyInfo.GetGetMethod(true)
 					: (MethodInfo)info;
 		}
