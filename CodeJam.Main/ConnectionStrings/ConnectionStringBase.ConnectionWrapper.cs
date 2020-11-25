@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -75,10 +76,10 @@ namespace CodeJam.ConnectionStrings
 					ConnectionString = connectionString;
 			}
 
-			[NotNull]
+			[JetBrains.Annotations.NotNull]
 			public IReadOnlyDictionary<string, KeywordDescriptor> Keywords => _keywordsCache(_descriptorType);
 
-			[NotNull]
+			[JetBrains.Annotations.NotNull]
 			public new string ConnectionString
 			{
 				get => base.ConnectionString;
@@ -99,7 +100,7 @@ namespace CodeJam.ConnectionStrings
 			}
 
 			/// <returns></returns>
-			[NotNull, MustUseReturnValue]
+			[JetBrains.Annotations.NotNull, MustUseReturnValue]
 			public string GetBrowsableConnectionString(bool includeNonBrowsable = false)
 			{
 				var builder = new StringBuilder();
@@ -122,7 +123,7 @@ namespace CodeJam.ConnectionStrings
 
 			public string? GetStringValue(string keyword) => (string)this[keyword];
 
-			public bool TryGetStringValue(string keyword, out string? value)
+			public bool TryGetStringValue(string keyword, [MaybeNullWhen(false)] out string value)
 			{
 				value = GetStringValue(keyword);
 				return value != null;

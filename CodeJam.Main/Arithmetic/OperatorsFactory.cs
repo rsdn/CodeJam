@@ -100,10 +100,10 @@ namespace CodeJam.Arithmetic
 		}
 
 		private static NotSupportedException FieldNotSupported(Type type, string fieldName, Exception? ex) =>
-			new NotSupportedException($"The type {type.Name} has no field {fieldName} defined.", ex);
+			new($"The type {type.Name} has no field {fieldName} defined.", ex);
 
 		private static NotSupportedException MethodNotSupported(Type type, string methodName, Exception? ex) =>
-			new NotSupportedException($"The type {type.Name} has no method {methodName} defined.", ex);
+			new($"The type {type.Name} has no method {methodName} defined.", ex);
 
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
 			new($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);

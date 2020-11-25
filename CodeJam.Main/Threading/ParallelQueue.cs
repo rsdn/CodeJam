@@ -12,7 +12,7 @@ namespace CodeJam.Threading
 	internal sealed class ParallelQueue : IDisposable
 	{
 		[NotNull, ItemNotNull]
-		private readonly BlockingCollection<Action?> _queue = new BlockingCollection<Action?>();
+		private readonly BlockingCollection<Action?> _queue = new();
 		[NotNull, ItemNotNull]
 		private readonly List<Exception> _exceptions = new();
 		[NotNull, ItemNotNull]

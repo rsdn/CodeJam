@@ -184,7 +184,7 @@ namespace CodeJam.Reflection
 			this Type type)
 			where TAttribute : class
 		{
-			var inheritanceTypes = Sequence.CreateWhileNotNull(type, t => t.GetBaseType())
+			var inheritanceTypes = Sequence.CreateWhileNotNull(type, t => t?.GetBaseType())
 				.ToArray();
 
 			// ReSharper disable once CoVariantArrayConversion
@@ -201,7 +201,7 @@ namespace CodeJam.Reflection
 			where TAttribute : class
 		{
 			var visited = new HashSet<Type>(_typeComparer);
-			var typesToCheck = Sequence.CreateWhileNotNull(type, t => t.DeclaringType);
+			var typesToCheck = Sequence.CreateWhileNotNull(type, t => t?.DeclaringType);
 			foreach (var typeToCheck in typesToCheck)
 			{
 				var inheritanceTypes = Sequence.Create(

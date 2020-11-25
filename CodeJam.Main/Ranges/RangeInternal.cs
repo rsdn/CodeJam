@@ -2,7 +2,10 @@
 using System.Reflection;
 
 using CodeJam.Reflection;
+
+#if LESSTHAN_NET50 || TARGETS_NET || TARGETS_NETSTANDARD
 using CodeJam.Targeting;
+#endif
 
 namespace CodeJam.Ranges
 {
@@ -71,7 +74,7 @@ namespace CodeJam.Ranges
 			{
 				// ReSharper disable once PossibleNullReferenceException
 				var method = typeof(RangeInternal)
-					.GetMethod(nameof(Format), bf)
+					.GetMethod(nameof(Format), bf)!
 					.MakeGenericMethod(typeof(T));
 
 				// no boxing for IFormatProvider
@@ -84,7 +87,7 @@ namespace CodeJam.Ranges
 			{
 				// ReSharper disable once PossibleNullReferenceException
 				var method = typeof(RangeInternal)
-					.GetMethod(nameof(FormatNullable), bf)
+					.GetMethod(nameof(FormatNullable), bf)!
 					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
 
 				// no boxing for IFormatProvider

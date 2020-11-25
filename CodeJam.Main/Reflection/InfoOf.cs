@@ -140,7 +140,7 @@ namespace CodeJam.Reflection
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
 		[Pure]
-		public static ConstructorInfo Constructor<T>() where T : new() =>
+		public static ConstructorInfo? Constructor<T>() where T : new() =>
 			Expression.New(typeof(T)).Constructor;
 
 		/// <summary>

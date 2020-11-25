@@ -154,6 +154,7 @@ namespace CodeJam.Collections
 	public abstract class OwnedCollectionBase<TOwner, TKey, TItem> : KeyedCollection<TKey, TItem>
 		where TOwner : class
 		where TItem : class
+		where TKey : notnull
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OwnedCollectionBase{TOwner, TKey, TItem}" /> class.

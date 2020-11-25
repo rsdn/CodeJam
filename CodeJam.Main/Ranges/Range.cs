@@ -18,7 +18,7 @@ namespace CodeJam.Ranges
 		/// <param name="value">The value to compare with.</param>
 		/// <returns>A new boundary to be used in comparison</returns>
 		[MethodImpl(AggressiveInlining)]
-		internal static RangeBoundaryFrom<T> GetCompareToBoundary<T>(T value) =>
+		internal static RangeBoundaryFrom<T> GetCompareToBoundary<T>(T? value) =>
 			RangeBoundaryFrom<T>.AdjustAndCreate(value, RangeBoundaryFromKind.Inclusive);
 		#endregion
 
