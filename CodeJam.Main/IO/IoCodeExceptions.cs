@@ -169,7 +169,7 @@ namespace CodeJam.IO
 		// ReSharper disable once InconsistentNaming
 		public static IOException IOException(
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new IOException(

@@ -108,7 +108,8 @@ namespace CodeJam.Reflection
 
 			var accessorType = typeof(TypeAccessor<>).MakeGenericType(type);
 
-			accessor = (TypeAccessor)Activator.CreateInstance(accessorType, true);
+			accessor = (TypeAccessor)(Activator.CreateInstance(accessorType, true)
+				?? throw new InvalidOperationException(""));
 
 			_accessors[type] = accessor;
 
@@ -123,6 +124,7 @@ namespace CodeJam.Reflection
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
 		[NotNull, Pure]
 		public static TypeAccessor<T> GetAccessor<T>()
+			where T : notnull
 		{
 			if (_accessors.TryGetValue(typeof(T), out var accessor))
 				return (TypeAccessor<T>)accessor;

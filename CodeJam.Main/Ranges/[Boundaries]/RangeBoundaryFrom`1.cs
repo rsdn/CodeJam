@@ -36,9 +36,9 @@ namespace CodeJam.Ranges
 		#region Static members
 		private const int _equalResult = 0;
 
-		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
+		private static readonly Func<T?, T?, bool> _equalsFunc = Operators<T>.AreEqual;
 
-		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
+		private static readonly Func<T?, T?, int> _compareFunc = Operators<T>.Compare;
 
 		private static readonly bool _hasNaN = Operators<T>.HasNaN;
 
@@ -105,7 +105,7 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		public static bool IsValid(T value)
+		public static bool IsValid(T? value)
 		{
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
 			{
@@ -266,9 +266,9 @@ namespace CodeJam.Ranges
 		/// The value of the boundary or the default(T) if <see cref="HasValue"/> property equals to <c>false</c>.
 		/// </summary>
 		/// <returns>he value of the boundary or default(T).</returns>
-		[Pure, CanBeNull]
+		[Pure]
 		[MethodImpl(AggressiveInlining)]
-		public T GetValueOrDefault() => _value;
+		public T? GetValueOrDefault() => _value;
 
 		/// <summary>
 		/// The value of the boundary or the <paramref name="defaultValue"/> if <see cref="HasValue"/> property equals to <c>false</c>.
@@ -277,7 +277,7 @@ namespace CodeJam.Ranges
 		/// <returns>Value of the boundary or <paramref name="defaultValue"/>.</returns>
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
-		public T GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
+		public T? GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
 		#endregion
 
 		#region Methods

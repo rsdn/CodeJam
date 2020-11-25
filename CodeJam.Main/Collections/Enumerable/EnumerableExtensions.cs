@@ -168,7 +168,8 @@ namespace CodeJam.Collections
 		[NotNull, Pure, LinqTunnel]
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
-			[NotNull] Func<TSource, TKey> keySelector) =>
+			[NotNull] Func<TSource?, TKey> keySelector)
+			where TKey : notnull =>
 				source.Distinct(KeyEqualityComparer.Create(keySelector));
 
 		/// <summary>
@@ -185,8 +186,9 @@ namespace CodeJam.Collections
 		[NotNull, Pure, LinqTunnel]
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
-			[NotNull] Func<TSource, TKey> keySelector,
-			IEqualityComparer<TKey> comparer) =>
+			[NotNull] Func<TSource?, TKey> keySelector,
+			IEqualityComparer<TKey> comparer)
+			where TKey : notnull =>
 				source.Distinct(KeyEqualityComparer.Create(keySelector, comparer));
 
 		/// <summary>
@@ -204,7 +206,8 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> ExceptBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource, TKey> keySelector) =>
+			[NotNull] Func<TSource?, TKey> keySelector)
+			where TKey : notnull =>
 				first.Except(second, KeyEqualityComparer.Create(keySelector));
 
 		/// <summary>
@@ -223,8 +226,9 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> ExceptBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource, TKey> keySelector,
-			IEqualityComparer<TKey> comparer) =>
+			[NotNull] Func<TSource?, TKey> keySelector,
+			IEqualityComparer<TKey> comparer)
+			where TKey : notnull =>
 				first.Except(second, KeyEqualityComparer.Create(keySelector, comparer));
 
 		/// <summary>
@@ -242,7 +246,8 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> IntersectBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource, TKey> keySelector) =>
+			[NotNull] Func<TSource?, TKey> keySelector)
+			where TKey : notnull =>
 				first.Intersect(second, KeyEqualityComparer.Create(keySelector));
 
 		/// <summary>
@@ -261,8 +266,9 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> IntersectBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource, TKey> keySelector,
-			IEqualityComparer<TKey> comparer) =>
+			[NotNull] Func<TSource?, TKey> keySelector,
+			IEqualityComparer<TKey> comparer)
+			where TKey : notnull =>
 				first.Intersect(second, KeyEqualityComparer.Create(keySelector, comparer));
 
 		/// <summary>
@@ -280,7 +286,8 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> UnionBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource, TKey> keySelector) =>
+			[NotNull] Func<TSource?, TKey> keySelector)
+			where TKey : notnull =>
 				first.Union(second, KeyEqualityComparer.Create(keySelector));
 
 		/// <summary>
@@ -299,8 +306,9 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> UnionBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource, TKey> keySelector,
-			IEqualityComparer<TKey> comparer) =>
+			[NotNull] Func<TSource?, TKey> keySelector,
+			IEqualityComparer<TKey> comparer)
+			where TKey : notnull =>
 				first.Union(second, KeyEqualityComparer.Create(keySelector, comparer));
 
 		/// <summary>
@@ -439,9 +447,9 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		public static bool IsFirst<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] this IEnumerable<TSource> source,
 			TSource item,
-			[CanBeNull] IEqualityComparer<TSource> comparer)
+			IEqualityComparer<TSource>? comparer)
 		{
 			Code.NotNull(source, nameof(source));
 
@@ -486,7 +494,7 @@ namespace CodeJam.Collections
 		public static bool IsLast<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TSource item,
-			[CanBeNull] IEqualityComparer<TSource> comparer)
+			IEqualityComparer<TSource>? comparer)
 		{
 			Code.NotNull(source, nameof(source));
 

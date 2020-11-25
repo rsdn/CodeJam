@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 
 using static CodeJam.Arithmetic.OperatorsFactory;
 
+#nullable enable
 namespace CodeJam.Arithmetic
 {
 	/// <summary>
@@ -68,7 +69,7 @@ namespace CodeJam.Arithmetic
 #>
 		/// <summary>Gets <#=ToLower(op.Comment)#></summary>
 		[NotNull]
-		public static Func<T, T, bool> <#=op.Name#> => <#=op.HelperClass#>.LazyValue.Value;
+		public static Func<T?, T?, bool> <#=op.Name#> => <#=op.HelperClass#>.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -76,11 +77,11 @@ namespace CodeJam.Arithmetic
 		private static class <#=op.HelperClass#>
 		{
 			/// <summary>Gets the operator factory.</summary>
-			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+			public static readonly Lazy<Func<T?, T?, bool>> LazyValue = new (Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.<#=op.Type#>);
+			private static Func<T?, T?, bool> Factory() => ComparisonOperator<T>(ExpressionType.<#=op.Type#>);
 		}
 <#+
 	}

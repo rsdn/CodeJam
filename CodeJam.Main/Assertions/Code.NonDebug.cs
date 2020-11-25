@@ -76,7 +76,7 @@ namespace CodeJam
 			bool disposed,
 			[NotNull] TDisposable thisReference,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			params object[]? args)
 			where TDisposable : IDisposable
 		{
 			if (disposed)
@@ -111,7 +111,7 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull, NoEnumeration] TResource resource,
+			[NoEnumeration] TResource? resource,
 			[NotNull] TDisposable thisReference,
 			[NotNull] string message)
 			where TResource : class
@@ -132,10 +132,10 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull, NoEnumeration] TResource resource,
+			[NoEnumeration] TResource? resource,
 			[NotNull] TDisposable thisReference,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			params object[]? args)
 			where TResource : class
 			where TDisposable : IDisposable
 		{

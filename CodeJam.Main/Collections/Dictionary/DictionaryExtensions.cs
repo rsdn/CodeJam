@@ -393,6 +393,7 @@ namespace CodeJam.Collections
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
 			[NotNull] TKey key,
 			[NotNull, InstantHandle] Func<TKey, TValue> valueFactory)
+			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));

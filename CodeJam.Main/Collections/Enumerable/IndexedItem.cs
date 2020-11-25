@@ -10,7 +10,9 @@ namespace CodeJam.Collections
 	/// </summary>
 	/// <typeparam name="T">Type of item.</typeparam>
 	[PublicAPI]
-	public struct IndexedItem<T> : IEquatable<IndexedItem<T>>
+	public struct IndexedItem<T>
+		: IEquatable<IndexedItem<T>>
+		where T : notnull
 	{
 		/// <summary>
 		/// Gets the value of the element.
@@ -113,7 +115,7 @@ namespace CodeJam.Collections
 		/// true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
 		/// </returns>
 		/// <param name="obj">The object to compare with the current instance. </param>
-		public override bool Equals(object obj) => obj is IndexedItem<T> other && Equals(other);
+		public override bool Equals(object? obj) => obj is IndexedItem<T> other && Equals(other);
 
 		/// <summary>Returns the hash code for this instance.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

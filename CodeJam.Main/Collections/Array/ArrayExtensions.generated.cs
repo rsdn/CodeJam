@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
 using System;
 
 using JetBrains.Annotations;
@@ -23,7 +25,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this byte[] a, [CanBeNull] byte[] b)
+		public static unsafe bool EqualsTo(this byte[]? a, byte[]? b)
 		{
 			if (a == b)
 				return true;
@@ -56,7 +58,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this sbyte[] a, [CanBeNull] sbyte[] b)
+		public static unsafe bool EqualsTo(this sbyte[]? a, sbyte[]? b)
 		{
 			if (a == b)
 				return true;
@@ -89,7 +91,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this short[] a, [CanBeNull] short[] b)
+		public static unsafe bool EqualsTo(this short[]? a, short[]? b)
 		{
 			if (a == b)
 				return true;
@@ -122,7 +124,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this ushort[] a, [CanBeNull] ushort[] b)
+		public static unsafe bool EqualsTo(this ushort[]? a, ushort[]? b)
 		{
 			if (a == b)
 				return true;
@@ -155,7 +157,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this int[] a, [CanBeNull] int[] b)
+		public static unsafe bool EqualsTo(this int[]? a, int[]? b)
 		{
 			if (a == b)
 				return true;
@@ -188,7 +190,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this uint[] a, [CanBeNull] uint[] b)
+		public static unsafe bool EqualsTo(this uint[]? a, uint[]? b)
 		{
 			if (a == b)
 				return true;
@@ -221,7 +223,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this long[] a, [CanBeNull] long[] b)
+		public static unsafe bool EqualsTo(this long[]? a, long[]? b)
 		{
 			if (a == b)
 				return true;
@@ -254,7 +256,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this ulong[] a, [CanBeNull] ulong[] b)
+		public static unsafe bool EqualsTo(this ulong[]? a, ulong[]? b)
 		{
 			if (a == b)
 				return true;
@@ -287,7 +289,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this TimeSpan[] a, [CanBeNull] TimeSpan[] b)
+		public static unsafe bool EqualsTo(this TimeSpan[]? a, TimeSpan[]? b)
 		{
 			if (a == b)
 				return true;
@@ -320,7 +322,7 @@ namespace CodeJam.Collections
 		/// <param name="b">The second array to compare.</param>
 		/// <returns>True, if length and content of <paramref name="a"/> equals <paramref name="b"/>.</returns>
 		[Pure]
-		public static unsafe bool EqualsTo([CanBeNull] this Guid[] a, [CanBeNull] Guid[] b)
+		public static unsafe bool EqualsTo(this Guid[]? a, Guid[]? b)
 		{
 			if (a == b)
 				return true;

@@ -68,7 +68,7 @@ namespace CodeJam.ConnectionStrings
 
 			private readonly Type _descriptorType;
 
-			public StringBuilderWrapper(string connectionString, Type descriptorType)
+			public StringBuilderWrapper(string? connectionString, Type descriptorType)
 			{
 				_descriptorType = descriptorType;
 				if (connectionString != null)
@@ -120,9 +120,9 @@ namespace CodeJam.ConnectionStrings
 				return builder.ToString();
 			}
 
-			public string GetStringValue(string keyword) => (string)this[keyword];
+			public string? GetStringValue(string keyword) => (string)this[keyword];
 
-			public bool TryGetStringValue(string keyword, out string value)
+			public bool TryGetStringValue(string keyword, out string? value)
 			{
 				value = GetStringValue(keyword);
 				return value != null;

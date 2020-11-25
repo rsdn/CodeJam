@@ -89,8 +89,8 @@ namespace CodeJam.Collections
 		/// The item with <#= info.Name #> value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure, CanBeNull]
-		public static TSource <#= info.Method #>OrDefault<TSource>(
+		[Pure]
+		public static TSource? <#= info.Method #>OrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>> selector,
 			TSource defaultValue = default(TSource))
@@ -202,8 +202,8 @@ namespace CodeJam.Collections
 		/// The item with <#= info.Name #> value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure, CanBeNull]
-		public static TSource <#= info.Method #>OrDefault<TSource>(
+		[Pure]
+		public static TSource? <#= info.Method #>OrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>?> selector,
 			TSource defaultValue = default(TSource))

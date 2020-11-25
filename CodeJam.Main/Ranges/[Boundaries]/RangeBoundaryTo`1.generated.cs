@@ -7,9 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
@@ -44,22 +48,22 @@ namespace CodeJam.Ranges
 		#region Static members
 		private const int _equalResult = 0;
 
-		[NotNull]
-		private static readonly Func<T, T, bool> _equalsFunc = Operators<T>.AreEqual;
+		private static readonly Func<T?, T?, bool> _equalsFunc = Operators<T>.AreEqual;
 
-		[NotNull]
-		private static readonly Func<T, T, int> _compareFunc = Operators<T>.Compare;
+		private static readonly Func<T?, T?, int> _compareFunc = Operators<T>.Compare;
 
 		private static readonly bool _hasNaN = Operators<T>.HasNaN;
 
 		private static readonly bool _hasPositiveInfinity = Operators<T>.HasPositiveInfinity;
 
+		[AllowNull]
 		private static readonly T _positiveInfinity = Operators<T>.HasPositiveInfinity
 			? Operators<T>.PositiveInfinity
 			: default;
 
 		private static readonly bool _hasNegativeInfinity = Operators<T>.HasNegativeInfinity;
 
+		[AllowNull]
 		private static readonly T _negativeInfinity = Operators<T>.HasNegativeInfinity
 			? Operators<T>.NegativeInfinity
 			: default;
@@ -127,19 +131,20 @@ namespace CodeJam.Ranges
 		public static readonly RangeBoundaryTo<T> Empty;
 
 		/// <summary>Positive infinity, +∞.</summary>
-		public static readonly RangeBoundaryTo<T> PositiveInfinity = new RangeBoundaryTo<T>(
+		public static readonly RangeBoundaryTo<T> PositiveInfinity = new(
 			default, RangeBoundaryToKind.Infinite);
 		#endregion
 
 		#region Formattable logic
-		[NotNull]
-		private static readonly Func<T, string, IFormatProvider, string> _formattableCallback = CreateFormattableCallback<T>();
+		[JetBrains.Annotations.NotNull]
+		private static readonly Func<T, string?, IFormatProvider?, string?> _formattableCallback = CreateFormattableCallback<T>();
 		#endregion
 
 		#endregion
 
 		#region Fields & .ctor
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
+		[AllowNull]
 		private T _value;
 		private RangeBoundaryToKind _kind;
 
@@ -149,7 +154,7 @@ namespace CodeJam.Ranges
 		/// Infinite (or empty) boundaries should use default(T) or PositiveInfinity(T) (if the type has one) as the value.
 		/// </param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
-		public RangeBoundaryTo(T value, RangeBoundaryToKind boundaryKind)
+		public RangeBoundaryTo([AllowNull] T value, RangeBoundaryToKind boundaryKind)
 		{
 			if (_hasNaN && !_equalsFunc(value, value))
 			{
@@ -200,7 +205,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		/// <param name="skipsArgValidation">Stub argument to mark unsafe (no validation) constructor overload.</param>
 		[Obsolete(SkipsArgValidationObsolete)]
-		internal RangeBoundaryTo(T value, RangeBoundaryToKind boundaryKind, UnsafeOverload skipsArgValidation)
+		internal RangeBoundaryTo([AllowNull] T value, RangeBoundaryToKind boundaryKind, UnsafeOverload skipsArgValidation)
 #if DEBUG
 			: this(value, boundaryKind) { }
 #else
@@ -273,9 +278,9 @@ namespace CodeJam.Ranges
 		/// The value of the boundary or the default(T) if <see cref="HasValue"/> property equals to <c>false</c>.
 		/// </summary>
 		/// <returns>he value of the boundary or default(T).</returns>
-		[Pure, CanBeNull]
+		[Pure]
 		[MethodImpl(AggressiveInlining)]
-		public T GetValueOrDefault() => _value;
+		public T? GetValueOrDefault() => _value;
 
 		/// <summary>
 		/// The value of the boundary or the <paramref name="defaultValue"/> if <see cref="HasValue"/> property equals to <c>false</c>.
@@ -284,7 +289,7 @@ namespace CodeJam.Ranges
 		/// <returns>Value of the boundary or <paramref name="defaultValue"/>.</returns>
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
-		public T GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
+		public T? GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
 		#endregion
 
 		#region Methods
@@ -323,7 +328,7 @@ namespace CodeJam.Ranges
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
 		[Pure]
-		public RangeBoundaryTo<T> WithValue([NotNull, InstantHandle] Func<T, T> newValueSelector)
+		public RangeBoundaryTo<T> WithValue([JetBrains.Annotations.NotNull, InstantHandle] Func<T, T> newValueSelector)
 		{
 			if (HasValue)
 			{
@@ -343,7 +348,7 @@ namespace CodeJam.Ranges
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
 		[Pure]
-		public RangeBoundaryTo<T2> WithValue<T2>([NotNull, InstantHandle] Func<T, T2> newValueSelector)
+		public RangeBoundaryTo<T2> WithValue<T2>([JetBrains.Annotations.NotNull, InstantHandle] Func<T, T2> newValueSelector)
 		{
 			if (HasValue)
 			{
@@ -402,15 +407,8 @@ namespace CodeJam.Ranges
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		[Pure]
 		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
-		public override int GetHashCode()
-		{
-			if (HasValue)
-			{
-				return HashCode.Combine(_value.GetHashCode(), (int)_kind);
-			}
-
-			return (int)_kind;
-		}
+		public override int GetHashCode() =>
+			HasValue ? HashCode.Combine(_value!.GetHashCode(), (int)_kind) : (int)_kind;
 		#endregion
 
 		#region IComparable<RangeBoundaryTo<T>>
@@ -556,7 +554,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="format">The format string</param>
 		/// <returns> The string representation of the boundary. </returns>
-		[Pure, NotNull]
+		[Pure, JetBrains.Annotations.NotNull]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
@@ -567,7 +565,7 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider</param>
 		/// <returns> The string representation of the boundary. </returns>
 		[Pure]
-		public string ToString(string format, IFormatProvider formatProvider) =>
+		public string ToString(string? format, IFormatProvider? formatProvider) =>
 			_kind switch
 			{
 				RangeBoundaryToKind.Empty => EmptyString,

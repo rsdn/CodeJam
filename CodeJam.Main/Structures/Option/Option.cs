@@ -32,7 +32,7 @@ namespace CodeJam
 		/// or instance without value.
 		/// </returns>
 		[Pure, NotNull]
-		public static Option<T> SomeHasValue<T>([CanBeNull] T value) where T : class =>
+		public static Option<T> SomeHasValue<T>(T? value) where T : class =>
 			value != null ? Some(value) : None<T>();
 
 		/// <summary>
@@ -111,8 +111,8 @@ namespace CodeJam
 		/// <param name="option"><see cref="Option"/> instance.</param>
 		/// <param name="defaultValue">Default value.</param>
 		/// <returns>Value, or <paramref name="defaultValue"/> if <paramref name="option"/> has no value.</returns>
-		[Pure, CanBeNull]
-		public static T GetValueOrDefault<T>([NotNull] this IOption<T> option, T defaultValue = default) =>
+		[Pure]
+		public static T? GetValueOrDefault<T>([NotNull] this IOption<T> option, T defaultValue = default) =>
 			option.HasValue ? option.Value : defaultValue;
 
 		/// <summary>

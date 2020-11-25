@@ -104,9 +104,8 @@ namespace CodeJam.Targeting
 			type.GetTypeInfo().IsInterface;
 #endif
 
-		[CanBeNull]
 		[MethodImpl(AggressiveInlining)]
-		public static Type GetBaseType([NotNull] this Type type) =>
+		public static Type? GetBaseType([NotNull] this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.BaseType;
 #else
@@ -261,7 +260,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		private static object GetCustomAttributeWithInterfaceSupport(
+		private static object? GetCustomAttributeWithInterfaceSupport(
 			[NotNull] this Type type, Type attributeType, bool inherit)
 		{
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
@@ -288,9 +287,9 @@ namespace CodeJam.Targeting
 		}
 
 		[MethodImpl(AggressiveInlining)]
-		public static T GetCustomAttributeWithInterfaceSupport<T>([NotNull] this Type type, bool inherit)
+		public static T? GetCustomAttributeWithInterfaceSupport<T>([NotNull] this Type type, bool inherit)
 			where T : class =>
-				(T)GetCustomAttributeWithInterfaceSupport(type, typeof(T), inherit);
+				(T?)GetCustomAttributeWithInterfaceSupport(type, typeof(T), inherit);
 
 		[MethodImpl(AggressiveInlining)]
 		private static IEnumerable<Attribute> GetCustomAttributesWithInterfaceSupport(

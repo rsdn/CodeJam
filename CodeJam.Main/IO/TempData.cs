@@ -207,7 +207,7 @@ namespace CodeJam.IO
 		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
 		/// <param name="dirPath">The dir path.</param>
 		/// <returns>Temp directory to be freed on dispose.</returns>
-		[NotNull] public static TempDirectory CreateDirectory([CanBeNull] string dirPath) => CreateDirectory(dirPath, null);
+		[NotNull] public static TempDirectory CreateDirectory(string? dirPath) => CreateDirectory(dirPath, null);
 
 		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
 		/// <param name="dirPath">The dir path.</param>

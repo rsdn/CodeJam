@@ -245,7 +245,7 @@
 		</None>
 		<Compile Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.generated.cs">
 			<AutoGen>True</AutoGen>
-			<DependentUpon>DictionaryExtensions.Backported.GetValueOrDefault.tt</DependentUpon>
+			<DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>
 		</Compile>
 		<Compile Update="Collections\Dictionary\DictionaryExtensions.GetValueOrDefault.generated.cs">
 			<DependentUpon>DictionaryExtensions.GetValueOrDefault.tt</DependentUpon>

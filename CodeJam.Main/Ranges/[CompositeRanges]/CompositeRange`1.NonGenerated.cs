@@ -116,7 +116,7 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		public override bool Equals(object obj) => obj is CompositeRange<T> other && Equals(other);
+		public override bool Equals(object? obj) => obj is CompositeRange<T> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

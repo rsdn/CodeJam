@@ -13,7 +13,8 @@ namespace CodeJam.Collections
 	/// <typeparam name="TKey">Type of key.</typeparam>
 	/// <typeparam name="TValue">Type of value.</typeparam>
 	[PublicAPI]
-	public class LazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue> where TKey : notnull
+	public class LazyDictionary<TKey, TValue> : ILazyDictionary<TKey, TValue>
+		where TKey : notnull
 	{
 		private readonly Func<TKey, TValue> _valueFactory;
 		private readonly Dictionary<TKey, TValue> _map;
@@ -27,7 +28,7 @@ namespace CodeJam.Collections
 		public LazyDictionary(
 			Func<TKey, TValue> valueFactory,
 			IEnumerable<KeyValuePair<TKey, TValue>> collection,
-			[CanBeNull] IEqualityComparer<TKey> comparer)
+			IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
@@ -41,7 +42,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="valueFactory">Function to create value on demand.</param>
 		/// <param name="comparer">Key comparer.</param>
-		public LazyDictionary(Func<TKey, TValue> valueFactory, [CanBeNull] IEqualityComparer<TKey> comparer)
+		public LazyDictionary(Func<TKey, TValue> valueFactory, IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(valueFactory, nameof(valueFactory));
 
@@ -96,7 +97,8 @@ namespace CodeJam.Collections
 		/// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
 		/// <exception cref="T:System.ArgumentNullException">
 		/// <paramref name="key" /> is null.</exception>
-		public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) => _map.TryGetValue(key, out value);
+		public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) =>
+			_map.TryGetValue(key, out value);
 
 		/// <summary>Gets the element that has the specified key in the read-only dictionary.</summary>
 		/// <returns>The element that has the specified key in the read-only dictionary.</returns>

@@ -58,8 +58,8 @@ namespace CodeJam.Ranges
 		/// <returns>A range with inclusive boundaries.</returns>
 		[Pure]
 		public Range<T> MakeInclusive(
-			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
-			[NotNull, InstantHandle] Func<T, T> toValueSelector)
+			[NotNull, InstantHandle] Func<T?, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<T?, T> toValueSelector)
 		{
 			if (IsEmpty || (!From.IsExclusiveBoundary && !To.IsExclusiveBoundary))
 			{
@@ -68,14 +68,10 @@ namespace CodeJam.Ranges
 
 			var from = From;
 			if (from.IsExclusiveBoundary)
-			{
 				from = Range.BoundaryFrom(fromValueSelector(from.GetValueOrDefault()));
-			}
 			var to = To;
 			if (to.IsExclusiveBoundary)
-			{
 				to = Range.BoundaryTo(toValueSelector(to.GetValueOrDefault()));
-			}
 
 			return TryCreateRange(from, to);
 		}
@@ -88,8 +84,8 @@ namespace CodeJam.Ranges
 		/// <returns>A range with exclusive boundaries.</returns>
 		[Pure]
 		public Range<T> MakeExclusive(
-			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
-			[NotNull, InstantHandle] Func<T, T> toValueSelector)
+			[NotNull, InstantHandle] Func<T?, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<T?, T> toValueSelector)
 		{
 			if (IsEmpty || (!From.IsInclusiveBoundary && !To.IsInclusiveBoundary))
 			{
@@ -238,11 +234,11 @@ namespace CodeJam.Ranges
 		[Pure]
 		public T Clamp(T value)
 		{
-			Code.AssertArgument(IsNotEmpty, nameof(value), "Cannot fit the value into empty range.");
-			Code.AssertArgument(
-				!From.IsExclusiveBoundary, nameof(value), "The clamp range boundary From is exclusive and has no value.");
-			Code.AssertArgument(
-				!To.IsExclusiveBoundary, nameof(value), "The clamp range boundary To is exclusive and has no value.");
+			Code.AssertState(IsNotEmpty, "Cannot fit the value into empty range.");
+			Code.AssertState(
+				!From.IsExclusiveBoundary, "The clamp range boundary From is exclusive and has no value.");
+			Code.AssertState(
+				!To.IsExclusiveBoundary, "The clamp range boundary To is exclusive and has no value.");
 
 			// case for the positive infinity
 			if (!RangeBoundaryFrom<T>.IsValid(value))

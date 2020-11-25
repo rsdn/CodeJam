@@ -52,9 +52,9 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static <#=type.Lang#>? To<#=type.Clr#>(
-			[CanBeNull] this string str,
+			this string? str,
 			NumberStyles numberStyle = NumberStyles.<#=type.Style#>,
-			[CanBeNull] IFormatProvider provider = null)
+			IFormatProvider? provider = null)
 		{
 			<#=type.Lang#> result;
 			return <#=type.Lang#>.TryParse(str, numberStyle, provider, out result) ? (<#=type.Lang#>?)result : null;
@@ -80,7 +80,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		public static <#=type.Lang#>? To<#=type.Clr#>Invariant(
-			[CanBeNull] this string str,
+			this string? str,
 			NumberStyles numberStyle = NumberStyles.<#=type.Style#>)
 		{
 			<#=type.Lang#> result;

@@ -122,7 +122,7 @@ namespace CodeJam.Threading
 			var res = _map.TryGetValue(key, out var lv);
 			if (res)
 			{
-				value = lv.Value;
+				value = lv!.Value;
 				return true;
 			}
 			value = default;

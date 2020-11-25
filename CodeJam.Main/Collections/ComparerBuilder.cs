@@ -20,6 +20,7 @@ namespace CodeJam.Collections
 	/// <typeparam name="T">The type of objects to compare.</typeparam>
 	[PublicAPI]
 	public static class ComparerBuilder<T>
+		where T : notnull
 	{
 		/// <summary>
 		/// Returns GetEqualsFunc function for type T to compare.
@@ -87,10 +88,10 @@ namespace CodeJam.Collections
 			[NotNull] private readonly Func<T, T, bool> _equals;
 			[NotNull] private readonly Func<T, int> _getHashCode;
 
-			public override bool Equals(T x, T y) =>
+			public override bool Equals(T? x, T? y) =>
 				x != null ? y != null && _equals(x, y) : y == null;
 
-			public override int GetHashCode(T obj) =>
+			public override int GetHashCode(T? obj) =>
 				obj == null ? 0 : _getHashCode(obj);
 		}
 
@@ -125,7 +126,9 @@ namespace CodeJam.Collections
 		/// <param name="membersToCompare">A function that returns members to compare.</param>
 		/// <returns>Instance of <see cref="T:System.Collections.Generic.IEqualityComparer`1" />.</returns>
 		[NotNull, Pure]
-		public static IEqualityComparer<T> GetEqualityComparer([NotNull, InstantHandle] Func<TypeAccessor<T>, IEnumerable<MemberAccessor>> membersToCompare)
+		public static IEqualityComparer<T> GetEqualityComparer(
+			[NotNull, InstantHandle] Func<TypeAccessor<T>,
+			IEnumerable<MemberAccessor>> membersToCompare)
 		{
 			var members = membersToCompare(TypeAccessor<T>.GetAccessor()).ToList();
 			return new Comparer(GetEqualsFunc(members), GetGetHashCodeFunc(members));

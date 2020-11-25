@@ -17,6 +17,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[NotNull, Pure, LinqTunnel]
 		public static IEnumerable<IndexedItem<T>> WithIndex<T>([NotNull] this IEnumerable<T> source)
+			where T : notnull
 		{
 			Code.NotNull(source, nameof(source));
 			return IndexImpl(source);
@@ -24,6 +25,7 @@ namespace CodeJam.Collections
 
 		[NotNull, Pure, LinqTunnel]
 		private static IEnumerable<IndexedItem<T>> IndexImpl<T>([NotNull] IEnumerable<T> source)
+			where T : notnull
 		{
 			using var enumerator = source.GetEnumerator();
 			if (enumerator.MoveNext())
@@ -52,7 +54,7 @@ namespace CodeJam.Collections
 		[NotNull, Pure]
 		public static IEnumerable<TResult> CombineWithPrevious<T, TResult>(
 			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T,T,TResult> prevNextSelector)
+			[NotNull] Func<T?,T?,TResult> prevNextSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(prevNextSelector, nameof(prevNextSelector));
@@ -63,7 +65,7 @@ namespace CodeJam.Collections
 		[NotNull, Pure]
 		private static IEnumerable<TResult> CombineWithPreviousImpl<T, TResult>(
 			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, T, TResult> prevNextSelector)
+			[NotNull] Func<T?, T?, TResult> prevNextSelector)
 		{
 			var previous = default(T);
 			var hasPrevious = false;
@@ -121,7 +123,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<TResult> CombineWithNext<T, TResult>(
 			[NotNull] this IEnumerable<T> source,
 			T combineLast,
-			[NotNull] Func<T, T, TResult> prevNextSelector)
+			[NotNull] Func<T?, T?, TResult> prevNextSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(prevNextSelector, nameof(prevNextSelector));
@@ -132,7 +134,7 @@ namespace CodeJam.Collections
 		[NotNull, Pure]
 		private static IEnumerable<TResult> CombineWithNextImpl<T, TResult>(
 			[NotNull] this IEnumerable<T> source, T combineLast,
-			[NotNull] Func<T, T, TResult> prevNextSelector)
+			[NotNull] Func<T?, T?, TResult> prevNextSelector)
 		{
 			var previous = default(T);
 			var hasPrevious = false;

@@ -191,7 +191,7 @@ namespace CodeJam.Expressions
 		}
 
 		[NotNull, ItemNotNull]
-		private static IEnumerable<MemberInfo> GetMembers([NotNull] Expression expression, bool passIndexer = true)
+		private static IEnumerable<MemberInfo> GetMembers(Expression expression, bool passIndexer = true)
 		{
 			MemberInfo? lastMember = null;
 

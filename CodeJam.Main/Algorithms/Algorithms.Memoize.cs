@@ -41,7 +41,7 @@ namespace CodeJam
 		[Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 			[NotNull] this Func<TArg, TResult> func,
-			[CanBeNull] IEqualityComparer<TArg> comparer,
+			IEqualityComparer<TArg>? comparer,
 			LazyThreadSafetyMode threadSafety)
 			where TArg : notnull
 		{

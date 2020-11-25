@@ -22,8 +22,8 @@ namespace CodeJam.Ranges
 		/// <returns>A range with inclusive boundaries.</returns>
 		[Pure]
 		public CompositeRange<T> MakeInclusive(
-			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
-			[NotNull, InstantHandle] Func<T, T> toValueSelector)
+			[NotNull, InstantHandle] Func<T?, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<T?, T> toValueSelector)
 		{
 			if (IsEmpty)
 				return this;
@@ -41,8 +41,8 @@ namespace CodeJam.Ranges
 		/// <returns>A range with exclusive boundaries.</returns>
 		[Pure]
 		public CompositeRange<T> MakeExclusive(
-			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
-			[NotNull, InstantHandle] Func<T, T> toValueSelector)
+			[NotNull, InstantHandle] Func<T?, T> fromValueSelector,
+			[NotNull, InstantHandle] Func<T?, T> toValueSelector)
 		{
 			if (IsEmpty)
 				return this;
@@ -623,7 +623,8 @@ namespace CodeJam.Ranges
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
 		[Pure]
-		public CompositeRange<T> Intersect<TKey2>(Range<T, TKey2> other) =>
+		public CompositeRange<T> Intersect<TKey2>(Range<T, TKey2> other)
+			where TKey2 : notnull =>
 			Intersect(other.ToCompositeRange());
 
 		/// <summary>Returns an intersection of the the ranges.</summary>
@@ -702,6 +703,7 @@ namespace CodeJam.Ranges
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
 		[Pure]
 		public CompositeRange<T> Intersect<TKey2>(CompositeRange<T, TKey2> other)
+			where TKey2 : notnull
 		{
 			if (IsEmpty)
 			{

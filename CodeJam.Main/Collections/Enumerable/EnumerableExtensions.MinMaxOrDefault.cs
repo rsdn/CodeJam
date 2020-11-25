@@ -400,7 +400,7 @@ namespace CodeJam.Collections
 		[Pure]
 		[return:MaybeNull]
 		public static TSource MaxOrDefault<TSource>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source, [CanBeNull] IComparer<TSource> comparer) =>
+			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source, IComparer<TSource>? comparer) =>
 				MaxOrDefault(source, comparer, default);
 
 		/// <summary>Returns maximum item from the sequence or default value.</summary>

@@ -34,7 +34,7 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expr"><see cref="Expression"/> to visit.</param>
 		/// <param name="func">Visit action.</param>
-		public static void Visit([CanBeNull] this Expression expr, [JetBrains.Annotations.NotNull, InstantHandle] Action<Expression> func)
+		public static void Visit(this Expression? expr, [InstantHandle] Action<Expression> func)
 		{
 			Code.NotNull(func, nameof(func));
 
@@ -348,7 +348,7 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expr"><see cref="Expression"/> to visit.</param>
 		/// <param name="func">Visit function. Return true to stop.</param>
-		public static void Visit([CanBeNull] this Expression expr, [JetBrains.Annotations.NotNull] Func<Expression, bool> func)
+		public static void Visit(this Expression? expr, Func<Expression, bool> func)
 		{
 			Code.NotNull(func, nameof(func));
 
@@ -691,7 +691,7 @@ namespace CodeJam.Expressions
 		/// <param name="func">Find function. Return true if expression is found.</param>
 		/// <returns>Found expression or null.</returns>
 		[Pure]
-		public static Expression? Find([CanBeNull] this Expression expr, [JetBrains.Annotations.NotNull] Func<Expression, bool> func)
+		public static Expression? Find(this Expression? expr, Func<Expression, bool> func)
 		{
 			Code.NotNull(func, nameof(func));
 

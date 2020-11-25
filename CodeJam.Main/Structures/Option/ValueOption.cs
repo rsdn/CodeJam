@@ -29,7 +29,7 @@ namespace CodeJam
 		/// or instance without value.
 		/// </returns>
 		[Pure]
-		public static ValueOption<T> SomeHasValue<T>([CanBeNull] T value) where T : class =>
+		public static ValueOption<T> SomeHasValue<T>(T? value) where T : class =>
 			value != null ? Some(value) : None<T>();
 
 		/// <summary>

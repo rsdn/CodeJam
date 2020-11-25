@@ -38,7 +38,6 @@ namespace CodeJam
 		/// <summary>
 		/// Gets enum element name.
 		/// </summary>
-		[NotNull]
 		public string Name { get; }
 
 		/// <summary>
@@ -61,7 +60,7 @@ namespace CodeJam
 
 		/// <summary>Gets enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</summary>
 		/// <returns>Enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</returns>
-		[Pure, NotNull]
+		[Pure]
 		public string GetDisplayName() => DisplayName ?? Name;
 
 		/// <summary>

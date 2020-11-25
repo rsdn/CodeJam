@@ -36,8 +36,7 @@ namespace CodeJam.Collections
 		/// <summary>Gets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
 		/// <returns>Owner of the item.</returns>
-		[CanBeNull]
-		protected abstract TOwner GetOwner([NotNull] TItem item);
+		protected abstract TOwner? GetOwner([NotNull] TItem item);
 
 		/// <summary>
 		/// Sets the owner of the item.
@@ -45,7 +44,7 @@ namespace CodeJam.Collections
 		/// <param name="item">The item.</param>
 		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected abstract void SetOwner([NotNull] TItem item, int index, [CanBeNull] TOwner owner);
+		protected abstract void SetOwner([NotNull] TItem item, int index, TOwner? owner);
 
 		/// <summary>
 		/// Validates item to be inserted.
@@ -161,7 +160,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="owner">The owner for the collection.</param>
 		/// <param name="comparer">The comparer.</param>
-		protected OwnedCollectionBase([NotNull] TOwner owner, IEqualityComparer<TKey> comparer = null)
+		protected OwnedCollectionBase([NotNull] TOwner owner, IEqualityComparer<TKey>? comparer = null)
 			: base(comparer)
 		{
 			Code.NotNull(owner, nameof(owner));
@@ -199,8 +198,7 @@ namespace CodeJam.Collections
 		/// <summary>Gets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
 		/// <returns>Owner of the item.</returns>
-		[CanBeNull]
-		protected abstract TOwner GetOwner([NotNull] TItem item);
+		protected abstract TOwner? GetOwner([NotNull] TItem item);
 
 		/// <summary>
 		/// Sets the owner of the item.
@@ -208,7 +206,7 @@ namespace CodeJam.Collections
 		/// <param name="item">The item.</param>
 		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected abstract void SetOwner([NotNull] TItem item, int index, [CanBeNull] TOwner owner);
+		protected abstract void SetOwner([NotNull] TItem item, int index, TOwner? owner);
 
 		/// <summary>
 		/// Validates item to be inserted.

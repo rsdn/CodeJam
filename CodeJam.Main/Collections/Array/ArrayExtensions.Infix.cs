@@ -267,7 +267,7 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
 		[Pure]
-		public static T Find<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
+		public static T? Find<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.Find(array, match);
 
 		/// <summary>Retrieves all the elements that match the conditions defined by the specified predicate.</summary>
@@ -336,7 +336,7 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
 		[Pure]
-		public static T FindLast<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
+		public static T? FindLast<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindLast(array, match);
 
 		/// <summary>Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the entire <see cref="Array" />.</summary>

@@ -150,7 +150,7 @@ namespace CodeJam
 			this ArgumentAssertion<T> arg,
 			bool condition,
 			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			params object[]? args)
 		{
 			Code.AssertArgument(condition, arg.ArgumentName, messageFormat, args);
 			return arg;

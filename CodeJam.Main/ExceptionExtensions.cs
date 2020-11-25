@@ -40,14 +40,14 @@ namespace CodeJam
 		/// <param name="fromNewLine">If <c>true</c> - do not inject separator line from start.</param>
 		/// <returns>Detailed exception text.</returns>
 		public static void ToDiagnosticString(
-			[CanBeNull] this Exception exception,
+			this Exception? exception,
 			[NotNull] TextWriter writer,
 			bool fromNewLine = true)
 		{
 			Code.NotNull(writer, nameof(writer));
 
 			// ReSharper disable once PossibleNullReferenceException
-			for (var ex = exception; ex != null; ex = ex.InnerException)
+			for (var ex = exception; ex != null; ex = ex?.InnerException)
 			{
 				var exceptionText = $"Exception: {ex.GetType()}";
 
@@ -96,7 +96,8 @@ namespace CodeJam
 
 					case ReflectionTypeLoadException loadEx:
 						foreach (var e in loadEx.LoaderExceptions)
-							ToDiagnosticString(e, writer, false);
+							if (e != null)
+								ToDiagnosticString(e, writer, false);
 						break;
 				}
 			}
@@ -112,7 +113,7 @@ namespace CodeJam
 		/// <returns>Detailed exception text.</returns>
 		[NotNull]
 		public static Task ToDiagnosticStringAsync(
-			[CanBeNull] this Exception exception,
+			this Exception? exception,
 			[NotNull] TextWriter writer,
 			bool fromNewLine = true)
 		{
@@ -123,12 +124,12 @@ namespace CodeJam
 
 		[NotNull]
 		private static async Task ToDiagnosticStringImplAsync(
-			[CanBeNull] this Exception exception,
+			this Exception? exception,
 			[NotNull] TextWriter writer,
 			bool fromNewLine = true)
 		{
 			// ReSharper disable once PossibleNullReferenceException
-			for (var ex = exception; ex != null; ex = ex.InnerException)
+			for (var ex = exception; ex != null; ex = ex?.InnerException)
 			{
 				var exceptionText = $"Exception: {ex.GetType()}";
 
@@ -177,7 +178,8 @@ namespace CodeJam
 
 					case ReflectionTypeLoadException loadEx:
 						foreach (var e in loadEx.LoaderExceptions)
-							await ToDiagnosticStringAsync(e, writer, false).ConfigureAwait(false);
+							if (e != null)
+								await ToDiagnosticStringAsync(e, writer, false).ConfigureAwait(false);
 						break;
 				}
 			}
@@ -191,7 +193,7 @@ namespace CodeJam
 		/// <returns>Detailed exception text.</returns>
 		[Pure]
 		[NotNull]
-		public static string ToDiagnosticString([CanBeNull] this Exception exception) =>
+		public static string ToDiagnosticString(this Exception? exception) =>
 			exception == null ? "" : exception.ToDiagnosticString(new StringBuilder()).ToString();
 	}
 }

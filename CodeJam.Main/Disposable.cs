@@ -77,7 +77,7 @@ namespace CodeJam
 			/// <summary>Initialize instance.</summary>
 			/// <param name="disposeAction">The dispose action.</param>
 			/// <param name="state">A value that contains data for the disposal action.</param>
-			public AnonymousDisposable(Action<T> disposeAction, T state)
+			public AnonymousDisposable(Action<T> disposeAction, T? state)
 			{
 				_disposeAction = disposeAction;
 				_state = state;
@@ -133,7 +133,8 @@ namespace CodeJam
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
 		[JetBrains.Annotations.NotNull, Pure]
-		public static IDisposable Create<T>([JetBrains.Annotations.NotNull] Action<T> disposeAction, [CanBeNull] T state) => new AnonymousDisposable<T>(disposeAction, state);
+		public static IDisposable Create<T>([JetBrains.Annotations.NotNull] Action<T> disposeAction, T? state) =>
+			new AnonymousDisposable<T>(disposeAction, state);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>

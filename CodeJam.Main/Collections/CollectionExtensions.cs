@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -36,7 +37,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("array:null => true")]
-		public static bool IsNullOrEmpty<T>(this T[]? array)
+		public static bool IsNullOrEmpty<T>([NotNullWhen(false)] this T[]? array)
 		{
 			// DONTTOUCH: Do not remove return statements
 			// https://github.com/dotnet/coreclr/issues/914
@@ -57,7 +58,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("collection:null => false")]
-		public static bool NotNullNorEmpty<T>(this ICollection<T> collection) =>
+		public static bool NotNullNorEmpty<T>(this ICollection<T>? collection) =>
 			collection != null && collection.Count != 0;
 
 		/// <summary>
@@ -79,9 +80,9 @@ namespace CodeJam.Collections
 		/// <param name="source">The source.</param>
 		/// <returns>The collection or empty instance if the collection is <c>null</c>.</returns>
 		[Pure]
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[LinqTunnel]
-		public static IEnumerable<T> EmptyIfNull<T>([CanBeNull] this IEnumerable<T> source) => source ?? Enumerable.Empty<T>();
+		public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T>? source) => source ?? Enumerable.Empty<T>();
 
 		/// <summary>
 		/// Returns an empty instance of the array for null values.
@@ -90,8 +91,8 @@ namespace CodeJam.Collections
 		/// <param name="array">The array.</param>
 		/// <returns>The array or empty instance if the array is <c>null</c>.</returns>
 		[Pure]
-		[NotNull]
-		public static T[] EmptyIfNull<T>([CanBeNull] this T[] array) => array ?? Array<T>.Empty;
+		[JetBrains.Annotations.NotNull]
+		public static T[] EmptyIfNull<T>(this T[]? array) => array ?? Array<T>.Empty;
 
 		/// <summary>
 		/// Returns an empty instance of the collection for null values.
@@ -100,8 +101,8 @@ namespace CodeJam.Collections
 		/// <param name="collection">The collection.</param>
 		/// <returns>The collection or empty instance if the collection is <c>null</c>.</returns>
 		[Pure]
-		[NotNull]
-		public static List<T> EmptyIfNull<T>([CanBeNull] this List<T> collection) => collection ?? new List<T>();
+		[JetBrains.Annotations.NotNull]
+		public static List<T> EmptyIfNull<T>(this List<T>? collection) => collection ?? new List<T>();
 
 		/// <summary>
 		/// Returns an empty instance of the dictionary for null values.
@@ -111,8 +112,9 @@ namespace CodeJam.Collections
 		/// <param name="dictionary">The dictionary.</param>
 		/// <returns>The dictionary or <c>null</c> if the dictionary is <c>null</c>.</returns>
 		[Pure]
-		[NotNull]
-		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>([CanBeNull] this Dictionary<TKey, TValue> dictionary) =>
+		[JetBrains.Annotations.NotNull]
+		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>(this Dictionary<TKey, TValue>? dictionary)
+			where TKey : notnull =>
 			dictionary ?? new Dictionary<TKey, TValue>();
 
 		/// <summary>
@@ -124,10 +126,12 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>The dictionary or <c>null</c> if the dictionary is <c>null</c>.</returns>
 		[Pure]
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public static Dictionary<TKey, TValue> EmptyIfNull<TKey, TValue>(
-			[CanBeNull] this Dictionary<TKey, TValue> dictionary,
-			IEqualityComparer<TKey> comparer) => dictionary ?? new Dictionary<TKey, TValue>(comparer);
+			this Dictionary<TKey, TValue>? dictionary,
+			IEqualityComparer<TKey> comparer)
+			where TKey : notnull =>
+			dictionary ?? new Dictionary<TKey, TValue>(comparer);
 
 		/// <summary>
 		/// Returns <c>null</c> if the collection is array.
@@ -145,7 +149,7 @@ namespace CodeJam.Collections
 		/// <param name="collection">The collection.</param>
 		/// <returns><c>null</c> if the collection is empty.</returns>
 		[Pure]
-		public static List<T>? NullIfEmpty<T>([CanBeNull] this List<T> collection) =>
+		public static List<T>? NullIfEmpty<T>(this List<T>? collection) =>
 			collection.IsNullOrEmpty() ? null : collection;
 
 		/// <summary>
@@ -157,7 +161,7 @@ namespace CodeJam.Collections
 		/// <returns><c>null</c> if the dictionary is empty.</returns>
 		[Pure]
 		public static Dictionary<TKey, TValue>? NullIfEmpty<TKey, TValue>(
-			this Dictionary<TKey, TValue>? dictionary) =>
+			this Dictionary<TKey, TValue>? dictionary) where TKey : notnull =>
 				dictionary.IsNullOrEmpty() ? null : dictionary;
 
 		/// <summary>
@@ -168,8 +172,8 @@ namespace CodeJam.Collections
 		/// <param name="defaultValue">The default value.</param>
 		/// <returns>A new array with default value if the array is empty.</returns>
 		[Pure]
-		[NotNull]
-		public static T[] DefaultIfEmpty<T>([NotNull] this T[] array, T defaultValue)
+		[JetBrains.Annotations.NotNull]
+		public static T[] DefaultIfEmpty<T>([JetBrains.Annotations.NotNull] this T[] array, T defaultValue)
 		{
 			Code.NotNull(array, nameof(array));
 			return array.Length == 0
@@ -185,8 +189,8 @@ namespace CodeJam.Collections
 		/// <param name="defaultValue">The default value.</param>
 		/// <returns>A new collection with default value if the collection is empty.</returns>
 		[Pure]
-		[NotNull]
-		public static List<T> DefaultIfEmpty<T>([NotNull] this List<T> collection, T defaultValue)
+		[JetBrains.Annotations.NotNull]
+		public static List<T> DefaultIfEmpty<T>([JetBrains.Annotations.NotNull] this List<T> collection, T defaultValue)
 		{
 			Code.NotNull(collection, nameof(collection));
 			return collection.Count == 0
@@ -206,11 +210,12 @@ namespace CodeJam.Collections
 		/// A new dictionary with default key and value if the dictionary is empty.
 		/// </returns>
 		[Pure]
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public static Dictionary<TKey, TValue> DefaultIfEmpty<TKey, TValue>(
-			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			[JetBrains.Annotations.NotNull] this Dictionary<TKey, TValue> dictionary,
 			TKey defaultKey,
 			TValue defaultValue)
+			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			return dictionary.Count == 0
@@ -231,12 +236,13 @@ namespace CodeJam.Collections
 		/// A new dictionary with default key and value if the dictionary is empty.
 		/// </returns>
 		[Pure]
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public static Dictionary<TKey, TValue> DefaultIfEmpty<TKey, TValue>(
-			[NotNull] this Dictionary<TKey, TValue> dictionary,
+			[JetBrains.Annotations.NotNull] this Dictionary<TKey, TValue> dictionary,
 			TKey defaultKey,
 			TValue defaultValue,
 			IEqualityComparer<TKey> comparer)
+			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			return dictionary.Count == 0
@@ -250,7 +256,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the items that the collection contains.</typeparam>
 		/// <param name="source">The collection to add the elements to.</param>
 		/// <param name="items">The items to add to the collection.</param>
-		public static void AddRange<T>([NotNull] this ICollection<T> source, [NotNull] params T[] items)
+		public static void AddRange<T>([JetBrains.Annotations.NotNull] this ICollection<T> source, [JetBrains.Annotations.NotNull] params T[] items)
 		{
 			foreach (var item in items)
 				source.Add(item);
@@ -262,7 +268,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the items that the collection contains.</typeparam>
 		/// <param name="source">The collection to add the elements to.</param>
 		/// <param name="items">The items to add to the collection.</param>
-		public static void AddRange<T>([NotNull] this ICollection<T> source, [NotNull] IList<T> items)
+		public static void AddRange<T>([JetBrains.Annotations.NotNull] this ICollection<T> source, [JetBrains.Annotations.NotNull] IList<T> items)
 		{
 			for (int i = 0, count = items.Count; i < count; i++)
 				source.Add(items[i]);
@@ -274,7 +280,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the items that the collection contains.</typeparam>
 		/// <param name="source">The collection to add the elements to.</param>
 		/// <param name="items">The items to add to the collection.</param>
-		public static void AddRange<T>([NotNull] this ICollection<T> source, [NotNull, InstantHandle] IEnumerable<T> items)
+		public static void AddRange<T>([JetBrains.Annotations.NotNull] this ICollection<T> source, [JetBrains.Annotations.NotNull, InstantHandle] IEnumerable<T> items)
 		{
 			foreach (var item in items)
 				source.Add(item);

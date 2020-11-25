@@ -14,6 +14,7 @@ namespace CodeJam.Ranges
 {
 	/// <summary>Describes a range of the values.</summary>
 	public partial struct CompositeRange<T, TKey>
+		where TKey : notnull
 	{
 		#region Helpers
 		[NotNull]
@@ -84,7 +85,8 @@ namespace CodeJam.Ranges
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
 		[Pure]
-		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key) =>
+		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key)
+			where TKey2 : notnull =>
 			IsEmpty
 				? CompositeRange<T, TKey2>.Empty
 				: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
@@ -95,7 +97,8 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range with the key specified.</returns>
 		[Pure]
 		public CompositeRange<T, TKey2> WithKeys<TKey2>(
-			[NotNull, InstantHandle] Func<TKey, TKey2> keySelector) =>
+			[NotNull, InstantHandle] Func<TKey, TKey2> keySelector)
+			where TKey2 : notnull =>
 				IsEmpty
 					? CompositeRange<T, TKey2>.Empty
 					: SubRanges.Select(s => s.WithKey(keySelector(s.Key))).ToCompositeRange();
@@ -180,7 +183,7 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		public override bool Equals(object obj) => obj is CompositeRange<T, TKey> other && Equals(other);
+		public override bool Equals(object? obj) => obj is CompositeRange<T, TKey> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

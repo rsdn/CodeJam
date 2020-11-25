@@ -19,8 +19,7 @@ namespace CodeJam.Collections
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure]
-		[NotNull]
-		public static IEnumerable<T> Create<T>(T start, [NotNull] Func<T, T> next)
+		public static IEnumerable<T?> Create<T>(T? start, Func<T?, T?> next)
 		{
 			Code.NotNull(next, nameof(next));
 
@@ -43,11 +42,10 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure]
-		[NotNull]
-		public static IEnumerable<TResult> Create<T, TResult>(
-			T start,
-			[NotNull] Func<T, T> next,
-			[NotNull] Func<T, TResult> resultSelector)
+		public static IEnumerable<TResult?> Create<T, TResult>(
+			T? start,
+			[NotNull] Func<T?, T?> next,
+			[NotNull] Func<T?, TResult?> resultSelector)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -70,8 +68,7 @@ namespace CodeJam.Collections
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure]
-		[NotNull]
-		public static IEnumerable<T> Create<T>(T start, [NotNull] Func<T, bool> predicate, [NotNull] Func<T, T> next)
+		public static IEnumerable<T?> Create<T>(T? start, Func<T?, bool> predicate, Func<T?, T?> next)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof (predicate));
@@ -96,11 +93,11 @@ namespace CodeJam.Collections
 		/// <returns>Generated sequence.</returns>
 		[Pure]
 		[NotNull]
-		public static IEnumerable<TResult> Create<T, TResult>(
+		public static IEnumerable<TResult?> Create<T, TResult>(
 			T start,
-			[NotNull] Func<T, bool> predicate,
-			[NotNull] Func<T, T> next,
-			[NotNull] Func<T, TResult> resultSelector)
+			[NotNull] Func<T?, bool> predicate,
+			[NotNull] Func<T?, T?> next,
+			[NotNull] Func<T?, TResult?> resultSelector)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof(predicate));
@@ -146,11 +143,10 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure]
-		[NotNull]
-		public static IEnumerable<TResult> CreateWhileNotNull<T, TResult>(
+		public static IEnumerable<TResult?> CreateWhileNotNull<T, TResult>(
 			T start,
-			[NotNull] Func<T, T> next,
-			[NotNull] Func<T, TResult> resultSelector)
+			Func<T?, T?> next,
+			Func<T?, TResult?> resultSelector)
 			where T : class
 		{
 			Code.NotNull(next, nameof(next));
@@ -171,8 +167,7 @@ namespace CodeJam.Collections
 		/// <param name="element">Element instance to create sequence from.</param>
 		/// <returns>Single element sequence</returns>
 		[Pure]
-		[NotNull]
-		public static IEnumerable<T> CreateSingle<T>(T element)
+		public static IEnumerable<T?> CreateSingle<T>(T? element)
 		{
 			return new[] { element };
 		}
@@ -184,8 +179,7 @@ namespace CodeJam.Collections
 		/// <param name="elementFactory">Element factory.</param>
 		/// <returns>Single element sequence</returns>
 		[Pure]
-		[NotNull]
-		public static IEnumerable<T> CreateSingle<T>([NotNull] Func<T> elementFactory)
+		public static IEnumerable<T?> CreateSingle<T>(Func<T?> elementFactory)
 		{
 			yield return elementFactory();
 		}
@@ -202,7 +196,6 @@ namespace CodeJam.Collections
 		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
 		/// </param>
 		/// <returns>Infinite random sequence.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<int> Random(int minValue, int maxValue, int seed)
 		{
@@ -220,7 +213,6 @@ namespace CodeJam.Collections
 		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
 		/// </param>
 		/// <returns>Infinite random sequence.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<int> Random(int minValue, int maxValue)
 		{
@@ -237,7 +229,6 @@ namespace CodeJam.Collections
 		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
 		/// </param>
 		/// <returns>Infinite random sequence.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<int> Random(int maxValue = int.MaxValue) => Random(0, maxValue);
 	}

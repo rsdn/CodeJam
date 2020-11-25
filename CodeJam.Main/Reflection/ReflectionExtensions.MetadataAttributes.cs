@@ -22,7 +22,7 @@ namespace CodeJam.Reflection
 		{
 			public static TypeHandleComparer Default { get; } = new();
 
-			public bool Equals(Type x, Type y) =>
+			public bool Equals(Type? x, Type? y) =>
 				x is null ? y is null : y != null && x.TypeHandle.Equals(y.TypeHandle);
 
 			public int GetHashCode(Type obj) => obj.TypeHandle.GetHashCode();
@@ -32,7 +32,7 @@ namespace CodeJam.Reflection
 		{
 			public static MethodMethodHandleComparer Default { get; } = new();
 
-			public bool Equals(MethodInfo x, MethodInfo y)
+			public bool Equals(MethodInfo? x, MethodInfo? y)
 			{
 				if (x is null) return y is null;
 				if (y == null) return false;
@@ -82,8 +82,7 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TAttribute">Type of the attribute or type of the interface implemented by the attributes.</typeparam>
 		/// <param name="attributeProvider">Metadata attribute source.</param>
 		/// <returns>First attribute found.</returns>
-		[CanBeNull]
-		public static TAttribute TryGetMetadataAttribute<TAttribute>(
+		public static TAttribute? TryGetMetadataAttribute<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class =>
 				TryGetMetadataAttribute<TAttribute>(attributeProvider, false);
@@ -106,12 +105,12 @@ namespace CodeJam.Reflection
 		/// <param name="attributeProvider">Metadata attribute source.</param>
 		/// <param name="thisLevelOnly">Do not check containers for the attributes.</param>
 		/// <returns>First attribute found.</returns>
-		[CanBeNull]
-		public static TAttribute TryGetMetadataAttribute<TAttribute>(
+		public static TAttribute? TryGetMetadataAttribute<TAttribute>(
 			[NotNull] this ICustomAttributeProvider attributeProvider,
 			bool thisLevelOnly)
 			where TAttribute : class =>
-				GetMetadataAttributes<TAttribute>(attributeProvider, thisLevelOnly).FirstOrDefault();
+				GetMetadataAttributes<TAttribute>(attributeProvider, thisLevelOnly)
+					.FirstOrDefault();
 
 		/// <summary>
 		/// Performs search for metadata attributes.
@@ -196,7 +195,7 @@ namespace CodeJam.Reflection
 			}
 		}
 
-		[NotNull, ItemNotNull]
+		[ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForTypeWithNesting<TAttribute>(
 			this Type type)
 			where TAttribute : class
@@ -208,26 +207,22 @@ namespace CodeJam.Reflection
 				var inheritanceTypes = Sequence.Create(
 					typeToCheck,
 					t => t != null && !visited.Contains(t),
-					t => t.GetBaseType())
+					t => t?.GetBaseType())
 					.ToArray();
 
 				if (inheritanceTypes.Length == 0)
 					continue;
 
-				visited.AddRange(inheritanceTypes);
+				visited.AddRange(inheritanceTypes!); // Always contains no nulls due to predicate
 
 				// ReSharper disable once CoVariantArrayConversion
-				var attributes = GetAttributesFromCandidates<TAttribute>(false, inheritanceTypes);
+				var attributes = GetAttributesFromCandidates<TAttribute>(false, inheritanceTypes!);
 				foreach (var attribute in attributes)
-				{
 					yield return attribute;
-				}
 			}
 
 			foreach (var attribute in GetAttributesFromCandidates<TAttribute>(true, type.GetAssembly()))
-			{
 				yield return attribute;
-			}
 		}
 
 		[NotNull, ItemNotNull]
@@ -242,13 +237,9 @@ namespace CodeJam.Reflection
 				yield return attribute;
 			}
 
-			if (!thisLevelOnly)
-			{
+			if (!thisLevelOnly && member.DeclaringType != null)
 				foreach (var attribute in member.DeclaringType.GetAttributesForTypeWithNesting<TAttribute>())
-				{
 					yield return attribute;
-				}
-			}
 		}
 		#endregion
 
@@ -274,7 +265,7 @@ namespace CodeJam.Reflection
 			};
 		}
 
-		private static bool IsOverriden([CanBeNull] MethodInfo method) =>
+		private static bool IsOverriden(MethodInfo? method) =>
 			method != null &&
 				!method.IsStatic &&
 				method.IsVirtual &&
@@ -303,7 +294,8 @@ namespace CodeJam.Reflection
 					t => t.GetProperties(_thisTypeMembers)),
 				EventInfo eventInfo => GetOverrideChainCore(
 					eventInfo,
-					e => e.GetAddMethod(true),
+					e => e.GetAddMethod(true)
+						?? throw new InvalidOperationException("Event has no add accessor."),
 					t => t.GetEvents(_thisTypeMembers)),
 				_ => new[] { member }
 			};
@@ -318,7 +310,7 @@ namespace CodeJam.Reflection
 			var result = new List<MemberInfo>();
 			var implMethod = accessorGetter(member);
 			var baseDefinition = implMethod.GetBaseDefinition();
-			var typesToCheck = Sequence.CreateWhileNotNull(implMethod.DeclaringType, t => t.GetBaseType());
+			var typesToCheck = Sequence.CreateWhileNotNull(implMethod.DeclaringType, t => t?.GetBaseType());
 			foreach (var type in typesToCheck)
 			{
 				foreach (var candidate in membersGetter(type))

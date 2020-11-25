@@ -84,20 +84,26 @@ namespace CodeJam.Ranges
 		// ReSharper disable once UnusedMethodReturnValue.Global
 		internal static int InsertInSortedList<T>(
 			[NotNull] List<T> sortedList,
-			[CanBeNull] T value,
-			[CanBeNull] IComparer<T> comparer,
+			T? value,
+			IComparer<T>? comparer,
 			bool skipDuplicates)
 		{
-			var insertIndex = sortedList.BinarySearch(value, comparer);
+#pragma warning disable 8604
+			var insertIndex = sortedList.BinarySearch(value, comparer); // Bug in MS code markup. value can be null for ref types.
+#pragma warning restore 8604
 
 			if (insertIndex < 0)
 			{
 				insertIndex = ~insertIndex;
-				sortedList.Insert(insertIndex, value);
+#pragma warning disable 8604
+				sortedList.Insert(insertIndex, value); // Bug in MS code markup. value can be nul for ref types
+#pragma warning restore 8604
 			}
 			else if (!skipDuplicates)
 			{
-				sortedList.Insert(insertIndex, value);
+#pragma warning disable 8604
+				sortedList.Insert(insertIndex, value); // Bug in MS code markup. value can be nul for ref types
+#pragma warning restore 8604
 			}
 			return insertIndex;
 		}

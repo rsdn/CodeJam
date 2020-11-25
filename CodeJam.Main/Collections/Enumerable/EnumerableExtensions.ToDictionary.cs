@@ -35,7 +35,8 @@ namespace CodeJam.Collections
 		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, TKey> keySelector,
-			DictionaryDuplicate duplicateHandling) =>
+			DictionaryDuplicate duplicateHandling)
+			where TKey : notnull =>
 				ToDictionary(source, keySelector, Fn<T>.Self, null, duplicateHandling);
 
 		/// <summary>
@@ -54,7 +55,8 @@ namespace CodeJam.Collections
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, TKey> keySelector,
 			IEqualityComparer<TKey>? comparer,
-			DictionaryDuplicate duplicateHandling) =>
+			DictionaryDuplicate duplicateHandling)
+			where TKey : notnull =>
 				ToDictionary(source, keySelector, Fn<T>.Self, comparer, duplicateHandling);
 
 		/// <summary>
@@ -74,7 +76,8 @@ namespace CodeJam.Collections
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, TKey> keySelector,
 			[InstantHandle] Func<T, TElement> elementSelector,
-			DictionaryDuplicate duplicateHandling) =>
+			DictionaryDuplicate duplicateHandling)
+			where TKey : notnull =>
 				ToDictionary(source, keySelector, elementSelector, null, duplicateHandling);
 
 		/// <summary>
@@ -98,6 +101,7 @@ namespace CodeJam.Collections
 			[InstantHandle] Func<T, TElement> elementSelector,
 			IEqualityComparer<TKey>? comparer,
 			DictionaryDuplicate duplicateHandling)
+			where TKey : notnull
 		{
 			Code.InRange((int)duplicateHandling, nameof(duplicateHandling), (int)DictionaryDuplicate.Throw, (int)DictionaryDuplicate.LastWins);
 

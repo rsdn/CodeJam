@@ -116,7 +116,7 @@ namespace CodeJam
 		/// Combined hash code.
 		/// </returns>
 		[Pure]
-		public static int CombineValues<T>([CanBeNull] params T[] values)
+		public static int CombineValues<T>(params T[]? values)
 		{
 			if (values.IsNullOrEmpty())
 				return 0;

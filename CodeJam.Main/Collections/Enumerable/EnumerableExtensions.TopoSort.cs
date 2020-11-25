@@ -16,11 +16,10 @@ namespace CodeJam.Collections
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
 			where T : notnull =>
 				TopoSort(source, dependsOnGetter, EqualityComparer<T>.Default);
 
@@ -31,11 +30,10 @@ namespace CodeJam.Collections
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T>(
-			[NotNull] this ICollection<T> source,
-			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
+			this ICollection<T> source,
+			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
 			where T : notnull =>
 				TopoSort(source, dependsOnGetter, EqualityComparer<T>.Default);
 
@@ -48,14 +46,17 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector)
-			where T : notnull =>
-				TopoSort(source, dependsOnGetter, KeyEqualityComparer.Create(keySelector));
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
+			[InstantHandle] Func<T?, TKey> keySelector)
+			where T : notnull
+			where TKey : notnull
+		{
+			Code.NotNull(source, nameof(source));
+			return TopoSort(source, dependsOnGetter, KeyEqualityComparer.Create(keySelector));
+		}
 
 		/// <summary>
 		/// Performs topological sort on <paramref name="source"/>.
@@ -66,13 +67,13 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
-			[NotNull] this ICollection<T> source,
-			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector)
-			where T : notnull =>
+			this ICollection<T> source,
+			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
+			[InstantHandle] Func<T?, TKey> keySelector)
+			where T : notnull
+			where TKey : notnull =>
 				TopoSort(source, dependsOnGetter, KeyEqualityComparer.Create(keySelector));
 
 		/// <summary>
@@ -85,14 +86,14 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <param name="keyComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector,
-			[NotNull] IEqualityComparer<TKey> keyComparer)
-			where T : notnull =>
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
+			[InstantHandle] Func<T?, TKey> keySelector,
+			IEqualityComparer<TKey> keyComparer)
+			where T : notnull
+			where TKey : notnull =>
 				TopoSort(source, dependsOnGetter, KeyEqualityComparer.Create(keySelector, keyComparer));
 
 		/// <summary>
@@ -105,14 +106,14 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <param name="keyComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
-			[NotNull] this ICollection<T> source,
-			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector,
-			[NotNull] IEqualityComparer<TKey> keyComparer)
-			where T : notnull =>
+			this ICollection<T> source,
+			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
+			[InstantHandle] Func<T?, TKey> keySelector,
+			IEqualityComparer<TKey> keyComparer)
+			where T : notnull
+			where TKey : notnull =>
 				TopoSort(source, dependsOnGetter, KeyEqualityComparer.Create(keySelector, keyComparer));
 
 		/// <summary>
@@ -123,13 +124,12 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[NotNull]
 		[Pure]
 		public static IEnumerable<T> TopoSort<T>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[NotNull] IEqualityComparer<T> equalityComparer)
-			where T : notnull =>
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
+			IEqualityComparer<T> equalityComparer)
+			where T : notnull=>
 				GroupTopoSort(source, dependsOnGetter, equalityComparer)
 					.Select(g => g.AsEnumerable())
 					.SelectMany();

@@ -37,7 +37,7 @@ namespace CodeJam.Reflection
 				? assemblyPath
 				: System.IO.Path.Combine(
 					// ReSharper disable once AssignNullToNotNullAttribute
-					System.IO.Path.GetDirectoryName(assemblyPath),
+					System.IO.Path.GetDirectoryName(assemblyPath) ?? "",
 					module.Name);
 		}
 #endif
@@ -65,7 +65,7 @@ namespace CodeJam.Reflection
 
 				var index = -1;
 
-				var assemblyFullName = t.GetAssembly().FullName;
+				var assemblyFullName = t.GetAssembly().FullName ?? throw new InvalidOperationException("Assembly has no name.");
 
 				while (true)
 				{
@@ -110,7 +110,7 @@ namespace CodeJam.Reflection
 			{
 				DebugCode.AssertState(t.IsArray || t.IsPointer || t.IsByRef, "Invalid type");
 
-				Write(sb, t.GetElementType());
+				Write(sb, t.GetElementType()!); // Always not null for array, pointer or byref
 
 				if (t.IsArray)
 				{
@@ -397,12 +397,12 @@ namespace CodeJam.Reflection
 						return true;
 				}
 
-				type = type.GetBaseType();
+				var baseType = type.GetBaseType();
 
-				if (type == null)
+				if (baseType == null)
 					return false;
 
-				if (type == check)
+				if (baseType == check)
 					return true;
 			}
 		}
@@ -507,8 +507,9 @@ namespace CodeJam.Reflection
 				MethodInfo methodInfo => methodInfo.ReturnType,
 				ConstructorInfo constructorInfo => constructorInfo.DeclaringType,
 				EventInfo eventInfo => eventInfo.EventHandlerType,
-				_ => throw new InvalidOperationException()
-			};
+				_ => throw new InvalidOperationException("Invalid member type.")
+			}
+				?? throw new InvalidOperationException("Member has no type");
 		}
 		/// <summary>
 		/// Returns default constructor.
@@ -546,7 +547,7 @@ namespace CodeJam.Reflection
 		/// <returns>Returns item type or null.</returns>
 		[Pure]
 		[ContractAnnotation("type:null => null")]
-		public static Type? GetItemType([CanBeNull] this Type type)
+		public static Type? GetItemType(this Type? type)
 		{
 			while (true)
 			{

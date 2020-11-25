@@ -19,7 +19,8 @@ namespace CodeJam.Reflection
 		private static bool IsConstructorSuitable([NotNull] ConstructorInfo ctor, [NotNull, ItemNotNull] ParamInfo[] parameters)
 		{
 			var ctorParameters = ctor.GetParameters();
-			var ctorMap = ctorParameters.ToDictionary(p => p.Name);
+			var ctorMap = ctorParameters.ToDictionary(
+				p => p.Name ?? throw new InvalidOperationException("Ctor parameter has no name"));
 			foreach (var parameter in parameters)
 			{
 				if (!parameter.Required)
@@ -35,7 +36,7 @@ namespace CodeJam.Reflection
 			{
 				if (parameter.GetHasDefaultValue())
 					continue;
-				if (!argsMap.Contains(parameter.Name))
+				if (!argsMap.Contains(parameter.Name!)) // already checked for nullability above
 					return false;
 			}
 
@@ -66,7 +67,9 @@ namespace CodeJam.Reflection
 			var values =
 				ctor
 					.GetParameters()
-					.Select(p => parametersMap.TryGetValue(p.Name, out var result) ? result : p.DefaultValue)
+					.Select(p => parametersMap.TryGetValue(
+						p.Name ?? throw new InvalidOperationException("Ctor parameter has no name."),
+						out var result) ? result : p.DefaultValue)
 					.ToArray();
 			// ReSharper disable once AssignNullToNotNullAttribute
 			return ctor.Invoke(values);

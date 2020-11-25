@@ -90,7 +90,7 @@ namespace CodeJam
 		/// <param name="other">An object to compare with this object.</param>
 		public bool Equals(Option<T>? other)
 		{
-			if (other == null)
+			if (ReferenceEquals(other, null))
 				return false;
 
 			var otherSome = other as Some;
@@ -115,7 +115,7 @@ namespace CodeJam
 
 		/// <summary>Returns the hash code for this instance.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-		public override int GetHashCode() => HasValue ? EqualityComparer<T>.Default.GetHashCode(Value) : 0;
+		public override int GetHashCode() => HasValue ? EqualityComparer<T>.Default.GetHashCode(Value!) : 0;
 		#endregion
 
 		/// <summary>Returns the fully qualified type name of this instance.</summary>
@@ -141,7 +141,7 @@ namespace CodeJam
 
 			/// <summary>Returns the hash code for this instance.</summary>
 			/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-			public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Value);
+			public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Value!);
 		}
 
 		/// <summary>

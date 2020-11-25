@@ -20,7 +20,7 @@ namespace CodeJam.Collections
 		/// true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </returns>
 		[Pure]
-		public static bool EqualsTo([CanBeNull] this string[] a, [CanBeNull] string[] b)
+		public static bool EqualsTo(this string[]? a, string[]? b)
 		{
 			if (a == b)
 				return true;
@@ -51,7 +51,7 @@ namespace CodeJam.Collections
 		/// true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </returns>
 		[Pure]
-		public static bool EqualsTo([CanBeNull] this string[] a, [CanBeNull] string[] b, StringComparison comparison)
+		public static bool EqualsTo(this string[]? a, string[]? b, StringComparison comparison)
 		{
 			if (comparison == StringComparison.Ordinal)
 				return EqualsTo(a, b);
@@ -84,7 +84,7 @@ namespace CodeJam.Collections
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>
 		[Pure]
-		public static bool EqualsTo<T>([CanBeNull] this T[] a, [CanBeNull] T[] b) where T : IEquatable<T>
+		public static bool EqualsTo<T>(this T?[]? a, T?[]? b) where T : IEquatable<T>
 		{
 			if (a == b)
 				return true;
@@ -99,7 +99,7 @@ namespace CodeJam.Collections
 			{
 				if (a[i] != null)
 				{
-					if (!a[i].Equals(b[i]))
+					if (!a[i]!.Equals(b[i]))
 						return false;
 				}
 				else if (b[i] != null)
@@ -121,7 +121,7 @@ namespace CodeJam.Collections
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>
 		[Pure]
-		public static bool EqualsTo<T>([CanBeNull] this T?[] a, [CanBeNull] T?[] b) where T : struct, IEquatable<T>
+		public static bool EqualsTo<T>(this T?[]? a, T?[]? b) where T : struct, IEquatable<T>
 		{
 			if (a == b)
 				return true;
@@ -151,7 +151,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		/// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
 		[Pure]
-		public static bool EqualsTo<T>([CanBeNull] this T[] a, [CanBeNull] T[] b, [NotNull] IEqualityComparer<T> comparer)
+		public static bool EqualsTo<T>(this T[]? a, T[]? b, [NotNull] IEqualityComparer<T> comparer)
 		{
 			Code.NotNull(comparer, nameof(comparer));
 

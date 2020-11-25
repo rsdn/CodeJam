@@ -17,6 +17,7 @@ namespace CodeJam.Reflection
 	/// <typeparam name="T">Type to access.</typeparam>
 	[PublicAPI]
 	public class TypeAccessor<T> : TypeAccessor
+		where T : notnull
 	{
 		static TypeAccessor()
 		{

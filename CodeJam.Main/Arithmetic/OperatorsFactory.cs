@@ -65,11 +65,11 @@ namespace CodeJam.Arithmetic
 					: body;
 
 		private static TDelegate CompileOperatorCore<TDelegate>(
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<Expression[], Expression> expressionFactory,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<Exception, Exception> exceptionFactory,
+			[InstantHandle] Func<Expression[], Expression> expressionFactory,
+			[InstantHandle] Func<Exception, Exception> exceptionFactory,
 			string methodName,
 			Type resultType,
-			[JetBrains.Annotations.NotNull, ItemNotNull] params ParameterExpression[] args)
+			[ItemNotNull] params ParameterExpression[] args)
 		{
 			var expressionArgs = args.ConvertAll(PrepareOperand);
 
@@ -122,15 +122,17 @@ namespace CodeJam.Arithmetic
 
 		private static Func<T, TResult> GetUnaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
 			CompileOperatorCore<Func<T, TResult>>(
-				// ReSharper disable once AssignNullToNotNullAttribute
+				// Bug in MS code - MakeUnary actually allows null in type parameters (see documentation)
+#pragma warning disable 8625
 				args => MakeUnary(operatorType, args[0], null),
+#pragma warning restore 8625
 				ex => NotSupported<T>(operatorType, ex),
 				operatorType.ToString(),
 				typeof(TResult),
 				Parameter(typeof(T), "arg1"));
 
-		private static Func<T, T, TResult> GetBinaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
-			CompileOperatorCore<Func<T, T, TResult>>(
+		private static Func<T?, T?, TResult> GetBinaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
+			CompileOperatorCore<Func<T?, T?, TResult>>(
 				args => MakeBinary(operatorType, args[0], args[1]),
 				ex => NotSupported<T>(operatorType, ex),
 				operatorType.ToString(),
@@ -237,14 +239,14 @@ namespace CodeJam.Arithmetic
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for the comparison</returns>
 		/// <exception cref="System.NotSupportedException">Type does not implement IComparable nor IComparable{T} interface</exception>
-		public static Func<T, T, int> Comparison<T>()
+		public static Func<T?, T?, int> Comparison<T>()
 		{
 			var t = typeof(T);
 
 			// Recommendation from https://msdn.microsoft.com/en-us/library/azhsac5f.aspx
 			// For string comparisons, the StringComparer class is recommended over Comparer<String>
 			if (t == typeof(string))
-				return (Func<T, T, int>)(object)(Func<string, string, int>)string.CompareOrdinal;
+				return (Func<T?, T?, int>)(object)(Func<string?, string?, int>)string.CompareOrdinal;
 
 			if (t.GetIsEnum())
 				return EnumComparison<T>(false);
@@ -263,7 +265,7 @@ namespace CodeJam.Arithmetic
 		}
 
 		#region Enum comparison
-		private static Func<T, T, int> EnumComparison<T>(bool nullable)
+		private static Func<T?, T?, int> EnumComparison<T>(bool nullable)
 		{
 			var underlyingType = typeof(T);
 			if (nullable)
@@ -298,7 +300,7 @@ namespace CodeJam.Arithmetic
 
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			const string compareToName = nameof(int.CompareTo);
-			var result = Lambda<Func<T, T, int>>(body, compareToName, new[] { argA, argB });
+			var result = Lambda<Func<T?, T?, int>>(body, compareToName, new[] { argA, argB });
 #else
 			var result = Lambda<Func<T, T, int>>(body, new[] { argA, argB });
 #endif
@@ -322,6 +324,7 @@ namespace CodeJam.Arithmetic
 			ParameterExpression argB)
 		{
 			var underlyingType = compareMethod.DeclaringType;
+			Code.BugIf(underlyingType == null, "underlyingType == null");
 
 			// (a,b)=> a_Underlying.CompareTo(b_Underlying)
 			return Call(
@@ -338,6 +341,7 @@ namespace CodeJam.Arithmetic
 			ParameterExpression argB)
 		{
 			var underlyingType = compareMethod.DeclaringType;
+			Code.BugIf(underlyingType == null, "underlyingType == null");
 			var nullConst = Constant(null, typeof(T));
 
 			// (b == null ? 0 : -1)
@@ -371,7 +375,7 @@ namespace CodeJam.Arithmetic
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <param name="comparisonType">Type of the comparison operator.</param>
 		/// <returns>Callback for the compare operator</returns>
-		public static Func<T, T, bool> ComparisonOperator<T>(ExpressionType comparisonType)
+		public static Func<T?, T?, bool> ComparisonOperator<T>(ExpressionType comparisonType)
 		{
 			switch (comparisonType)
 			{
@@ -398,7 +402,7 @@ namespace CodeJam.Arithmetic
 			return GetComparerComparison<T>(comparisonType);
 		}
 
-		private static Func<T, T, bool> GetComparerComparison<T>(ExpressionType comparisonType)
+		private static Func<T?, T?, bool> GetComparerComparison<T>(ExpressionType comparisonType)
 		{
 			// ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
 			switch (comparisonType)
@@ -411,7 +415,7 @@ namespace CodeJam.Arithmetic
 					return (a, b) => !equalityComparer.Equals(a, b);
 			}
 
-			var comparison = Comparison<T>();
+			var comparison = Comparison<T?>();
 			return comparisonType switch
 			{
 				ExpressionType.GreaterThan => (a, b) => comparison(a, b) > 0,

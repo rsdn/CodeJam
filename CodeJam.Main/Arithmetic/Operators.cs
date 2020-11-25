@@ -24,7 +24,7 @@ namespace CodeJam.Arithmetic
 		/// Gets a comparison function.
 		/// </summary>
 		[NotNull]
-		public static Func<T, T, int> Compare => CompareHelper.Value;
+		public static Func<T?, T?, int> Compare => CompareHelper.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -32,13 +32,13 @@ namespace CodeJam.Arithmetic
 		private static class CompareHelper
 		{
 			[NotNull, ItemNotNull]
-			private static readonly Lazy<Func<T, T, int>> _value = new(OperatorsFactory.Comparison<T>, _lazyMode);
+			private static readonly Lazy<Func<T?, T?, int>> _value = new(OperatorsFactory.Comparison<T>, _lazyMode);
 
 			/// <summary>
 			/// Gets a comparison function.
 			/// </summary>
 			[NotNull]
-			public static Func<T, T, int> Value => _value.Value;
+			public static Func<T?, T?, int> Value => _value.Value;
 		}
 		#endregion
 
