@@ -18,7 +18,7 @@ namespace CodeJam.Ranges
 	public partial struct Range<T, TKey>
 	{
 		#region Static members
-		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
+		private static readonly Func<TKey?, TKey?, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
 
 		private static readonly Func<TKey, string?, IFormatProvider?, string?> _formattableCallback =
 			CreateFormattableCallback<TKey>();

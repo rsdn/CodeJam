@@ -204,16 +204,16 @@ namespace CodeJam.Reflection
 			var typesToCheck = Sequence.CreateWhileNotNull(type, t => t?.DeclaringType);
 			foreach (var typeToCheck in typesToCheck)
 			{
-				var inheritanceTypes = Sequence.Create(
+				Type[] inheritanceTypes = Sequence.Create(
 					typeToCheck,
 					t => t != null && !visited.Contains(t),
 					t => t?.GetBaseType())
-					.ToArray();
+					.ToArray()!; // Always contains no nulls due to predicate
 
 				if (inheritanceTypes.Length == 0)
 					continue;
 
-				visited.AddRange(inheritanceTypes!); // Always contains no nulls due to predicate
+				visited.AddRange(inheritanceTypes!);
 
 				// ReSharper disable once CoVariantArrayConversion
 				var attributes = GetAttributesFromCandidates<TAttribute>(false, inheritanceTypes!);

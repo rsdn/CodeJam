@@ -94,8 +94,8 @@ namespace CodeJam
 							ex = ex.InnerException;
 						break;
 
-					case ReflectionTypeLoadException loadEx:
-						foreach (var e in loadEx.LoaderExceptions)
+					case ReflectionTypeLoadException{LoaderExceptions: { } inners }:
+						foreach (var e in inners)
 							if (e != null)
 								ToDiagnosticString(e, writer, false);
 						break;
@@ -176,8 +176,8 @@ namespace CodeJam
 							ex = ex.InnerException;
 						break;
 
-					case ReflectionTypeLoadException loadEx:
-						foreach (var e in loadEx.LoaderExceptions)
+					case ReflectionTypeLoadException {LoaderExceptions:{} inners}:
+						foreach (var e in inners)
 							if (e != null)
 								await ToDiagnosticStringAsync(e, writer, false).ConfigureAwait(false);
 						break;

@@ -150,11 +150,11 @@ namespace CodeJam.Targeting
 			type.GetTypeInfo().GetRuntimeInterfaceMap(interfaceType);
 
 		[MethodImpl(AggressiveInlining)]
-		public static MethodInfo GetMethod(
+		public static MethodInfo? GetMethod(
 			[NotNull] this Type type,
 			[NotNull] string name,
 			BindingFlags bindingAttr,
-			[CanBeNull] object binder,
+			object? binder,
 			[NotNull, ItemNotNull] Type[] types)
 		{
 			if (name == null) throw new ArgumentNullException(name, nameof(name));
@@ -165,13 +165,13 @@ namespace CodeJam.Targeting
 		}
 
 		[MethodImpl(AggressiveInlining)]
-		public static MethodInfo GetMethod(
+		public static MethodInfo? GetMethod(
 			[NotNull] this Type type,
 			[NotNull] string name,
 			BindingFlags bindingAttr,
-			[CanBeNull] object binder,
+			object? binder,
 			[NotNull, ItemNotNull] Type[] types,
-			[CanBeNull] ParameterModifierEx[] modifiers)
+			ParameterModifierEx[]? modifiers)
 		{
 			if (name == null) throw new ArgumentNullException(nameof(name));
 			if (binder != null) throw new NotImplementedException(nameof(binder));
@@ -184,14 +184,13 @@ namespace CodeJam.Targeting
 			return type.GetMethods(bindingAttr).Where(m => m.Name == name).TryFindParametersTypesMatch(types);
 		}
 
-		[CanBeNull]
 		[MethodImpl(AggressiveInlining)]
-		public static ConstructorInfo GetConstructor(
+		public static ConstructorInfo? GetConstructor(
 			[NotNull] this Type type,
 			BindingFlags bindingAttr,
-			[CanBeNull] object binder,
+			object? binder,
 			[NotNull, ItemNotNull] Type[] types,
-			[CanBeNull] ParameterModifierEx[] modifiers)
+			ParameterModifierEx[]? modifiers)
 		{
 			if (binder != null) throw new NotImplementedException(nameof(binder));
 			if (types == null) throw new ArgumentNullException(nameof(types));
@@ -203,8 +202,7 @@ namespace CodeJam.Targeting
 			return type.GetConstructors(bindingAttr).TryFindParametersTypesMatch(types);
 		}
 
-		[CanBeNull]
-		private static T TryFindParametersTypesMatch<T>(
+		private static T? TryFindParametersTypesMatch<T>(
 			[NotNull, ItemNotNull] this IEnumerable<T> methods,
 			[NotNull, ItemNotNull] Type[] types)
 			where T : MethodBase =>
@@ -215,9 +213,8 @@ namespace CodeJam.Targeting
 						if (parameters.Length != types.Length) return false;
 
 						for (var i = 0; i < parameters.Length; i++)
-						{
-							if (!parameters[i].ParameterType.Equals(types[i])) return false;
-						}
+							if (parameters[i].ParameterType != types[i])
+								return false;
 
 						return true;
 					})

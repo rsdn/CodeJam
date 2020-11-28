@@ -333,6 +333,7 @@ namespace CodeJam.Ranges
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the composite range contains another range.</returns>
 		public bool Contains<TKey2>(CompositeRange<T, TKey2> other)
+			where TKey2 : notnull
 		{
 			if (IsEmpty && other.IsEmpty)
 			{
@@ -447,6 +448,7 @@ namespace CodeJam.Ranges
 		/// <returns><c>true</c>, if the composite range has intersection with another range.</returns>
 		[Pure]
 		public bool HasIntersection<TKey2>(CompositeRange<T, TKey2> other)
+			where TKey2 : notnull
 		{
 			if (IsEmpty && other.IsEmpty)
 			{
@@ -816,7 +818,8 @@ namespace CodeJam.Ranges
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>Source range with other range excluded.</returns>
 		[Pure]
-		public CompositeRange<T> Except<TKey2>(Range<T, TKey2> other) =>
+		public CompositeRange<T> Except<TKey2>(Range<T, TKey2> other)
+			where TKey2 : notnull =>
 			Except(other.ToCompositeRange());
 
 		/// <summary>Returns source range with other range excluded.</summary>
@@ -845,6 +848,7 @@ namespace CodeJam.Ranges
 		/// <returns>Source range with other range excluded.</returns>
 		[Pure]
 		public CompositeRange<T> Except<TKey2>(CompositeRange<T, TKey2> other)
+			where TKey2 : notnull
 		{
 			if (IsEmpty || other.IsEmpty || !ContainingRange.HasIntersection(other.ContainingRange))
 			{

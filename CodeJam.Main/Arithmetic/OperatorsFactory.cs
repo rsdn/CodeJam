@@ -131,8 +131,8 @@ namespace CodeJam.Arithmetic
 				typeof(TResult),
 				Parameter(typeof(T), "arg1"));
 
-		private static Func<T?, T?, TResult> GetBinaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
-			CompileOperatorCore<Func<T?, T?, TResult>>(
+		private static Func<T, T, TResult> GetBinaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
+			CompileOperatorCore<Func<T, T, TResult>>(
 				args => MakeBinary(operatorType, args[0], args[1]),
 				ex => NotSupported<T>(operatorType, ex),
 				operatorType.ToString(),
@@ -261,7 +261,11 @@ namespace CodeJam.Arithmetic
 				!typeof(IComparable).IsAssignableFrom(t))
 				throw new NotSupportedException("Type does not implement IComparable nor IComparable<T> interface");
 
-			return Comparer<T>.Default.Compare;
+			return Comparer<T>.Default.Compare
+#if LESSTHAN_NET50 || TARGETS_NET || TARGETS_NETSTANDARD
+			 ! // No NRT markup in targets early than NET Core 3, incompatible [AllowNull] markup in NET Core 3
+#endif
+				;
 		}
 
 		#region Enum comparison
@@ -302,7 +306,7 @@ namespace CodeJam.Arithmetic
 			const string compareToName = nameof(int.CompareTo);
 			var result = Lambda<Func<T?, T?, int>>(body, compareToName, new[] { argA, argB });
 #else
-			var result = Lambda<Func<T, T, int>>(body, new[] { argA, argB });
+			var result = Lambda<Func<T?, T?, int>>(body, new[] { argA, argB });
 #endif
 			try
 			{
@@ -393,7 +397,7 @@ namespace CodeJam.Arithmetic
 
 			try
 			{
-				return GetBinaryOperatorCore<T, bool>(comparisonType);
+				return GetBinaryOperatorCore<T?, bool>(comparisonType);
 			}
 			catch (NotSupportedException ex)
 			{
@@ -409,10 +413,22 @@ namespace CodeJam.Arithmetic
 			{
 				case ExpressionType.Equal:
 					var equalityComparer = EqualityComparer<T>.Default;
-					return (a, b) => equalityComparer.Equals(a, b);
+					return (a, b) => equalityComparer.Equals(
+#if NETCOREAPP30_OR_GREATER
+						a, b
+#else
+						a!, b! // No NRT markup in older targets
+#endif
+						);
 				case ExpressionType.NotEqual:
 					equalityComparer = EqualityComparer<T>.Default;
-					return (a, b) => !equalityComparer.Equals(a, b);
+					return (a, b) => !equalityComparer.Equals(
+#if NETCOREAPP30_OR_GREATER
+						a, b
+#else
+						a!, b! // No NRT markup in older targets
+#endif
+						);
 			}
 
 			var comparison = Comparison<T?>();

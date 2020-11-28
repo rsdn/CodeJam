@@ -40,7 +40,8 @@ namespace CodeJam.Collections
 			[NotNull] Action<TItem, int, TOwner> ownerSetter,
 			[NotNull] Func<TItem, TKey> keyGetter)
 			where TOwner : class
-			where TItem : class =>
+			where TItem : class
+			where TKey : notnull =>
 				new(owner, ownerGetter, ownerSetter, keyGetter);
 	}
 }

@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
+using CodeJam.Strings;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Reflection
@@ -77,11 +79,13 @@ namespace CodeJam.Reflection
 			//   If the assembly was loaded as a byte array, using an overload of the Load method that takes an array of bytes,
 			//   this property returns the location of the caller of the method, not the location of the loaded assembly.
 			// (c) https://msdn.microsoft.com/en-us/library/system.reflection.assembly.codebase(v=vs.110).aspx
-			if (string.IsNullOrEmpty(assembly.Location))
+			if (assembly.Location.IsNullOrEmpty())
 				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 
 #if LESSTHAN_NET50
 
+			if (assembly.CodeBase.IsNullOrEmpty())
+				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 			var uri = new Uri(assembly.CodeBase);
 
 			if (uri.IsFile)

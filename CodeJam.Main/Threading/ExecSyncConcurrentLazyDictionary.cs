@@ -117,7 +117,11 @@ namespace CodeJam.Threading
 		/// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
 		/// <exception cref="T:System.ArgumentNullException">
 		/// <paramref name="key" /> is null.</exception>
-		public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
+		public bool TryGetValue(TKey key,
+#if NET30_OR_GREATER
+			[MaybeNullWhen(false)]
+#endif
+			out TValue value)
 		{
 			var res = _map.TryGetValue(key, out var lv);
 			if (res)
@@ -125,7 +129,11 @@ namespace CodeJam.Threading
 				value = lv!.Value;
 				return true;
 			}
+#if NET30_OR_GREATER
 			value = default;
+#else
+			value = default!; // No NRT markup in older frameworks
+#endif
 			return false;
 		}
 

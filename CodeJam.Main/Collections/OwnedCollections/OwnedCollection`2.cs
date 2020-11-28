@@ -60,6 +60,7 @@ namespace CodeJam.Collections
 	public class OwnedCollection<TOwner, TKey, TItem> : OwnedCollectionBase<TOwner, TKey, TItem>
 		where TOwner : class
 		where TItem : class
+		where TKey : notnull
 	{
 		[NotNull] private readonly Func<TItem, TOwner> _ownerGetter;
 		[NotNull] private readonly Action<TItem, int, TOwner> _ownerSetter;

@@ -99,7 +99,11 @@ namespace CodeJam.Collections
 			{
 				if (a[i] != null)
 				{
-					if (!a[i]!.Equals(b[i]))
+					if (!a[i]!.Equals(b[i]
+#if !NETCOREAPP30_OR_GREATER
+						!
+#endif
+					))
 						return false;
 				}
 				else if (b[i] != null)

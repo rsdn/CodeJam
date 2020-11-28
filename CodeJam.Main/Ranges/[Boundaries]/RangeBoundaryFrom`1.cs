@@ -515,7 +515,7 @@ namespace CodeJam.Ranges
 			{
 				RangeBoundaryFrom<T> rbf => CompareTo(rbf),
 				RangeBoundaryTo<T> rbt => CompareTo(rbt),
-				_ => CompareTo((T?)obj)
+				_ => CompareTo((T?)obj!) // https://github.com/dotnet/roslyn/issues/34976
 			};
 		#endregion
 

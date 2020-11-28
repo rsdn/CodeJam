@@ -16,7 +16,11 @@ namespace CodeJam.Expressions
 	/// <see cref="Expression"/> Extensions.
 	/// </summary>
 	[PublicAPI]
-	public static partial class ExpressionExtensions
+	public static
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
+		partial
+#endif
+		class ExpressionExtensions
 	{
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/>.
@@ -60,7 +64,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[Pure]
 		public static MemberInfo GetMemberInfo([NotNull] this LambdaExpression expression)
 		{
 			Code.NotNull(expression, nameof(expression));
@@ -70,11 +74,14 @@ namespace CodeJam.Expressions
 				body = unary.Operand;
 
 			return
-				body.NodeType switch
+				body switch
 				{
-					ExpressionType.MemberAccess => ((MemberExpression)body).Member,
-					ExpressionType.Call => ((MethodCallExpression)body).Method,
-					_ => ((NewExpression)body).Constructor
+					MemberExpression {Member:{} member} => member,
+					MethodCallExpression {Method:{} method} => method,
+					NewExpression {Constructor:{} ctor} => ctor,
+					_ => throw CodeExceptions.Argument(
+						nameof(expression),
+						$"Unsupported expression type '{expression.NodeType}' or expression is invalid.")
 				};
 		}
 
@@ -107,9 +114,11 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[Pure]
 		public static ConstructorInfo GetConstructor([NotNull] this LambdaExpression expression) =>
-			(ConstructorInfo)GetMemberInfo(expression);
+			GetMemberInfo(expression) is ConstructorInfo ctor
+			? ctor
+			: throw CodeExceptions.Argument(nameof(expression), "Expression is not constructor call.");
 
 		/// <summary>
 		/// Returns the method.
@@ -118,15 +127,15 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static MethodInfo GetMethod([NotNull] this LambdaExpression expression)
-		{
-			var info = GetMemberInfo(expression);
-			return
-				info is PropertyInfo propertyInfo
-					? propertyInfo.GetGetMethod(true)
-					: (MethodInfo)info;
-		}
+		[Pure]
+		public static MethodInfo GetMethod([NotNull] this LambdaExpression expression) =>
+			GetMemberInfo(expression) switch
+			{
+				PropertyInfo pi => pi.GetGetMethod(true)
+					?? throw CodeExceptions.Argument(nameof(expression), "Property has no get accessor."),
+				MethodInfo mi => mi,
+				_ => throw CodeExceptions.Argument(nameof(expression), "Expression is invalid.")
+			};
 
 		/// <summary>
 		/// Returns a name of the property.
@@ -157,7 +166,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// A name of the method.
 		/// </returns>
-		[NotNull, Pure]
+		[Pure]
 		public static string GetMethodName([NotNull] this LambdaExpression expression) =>
 			GetMethod(expression).Name;
 

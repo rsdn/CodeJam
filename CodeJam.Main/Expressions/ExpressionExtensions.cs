@@ -1117,6 +1117,7 @@ namespace CodeJam.Expressions
 				case ExpressionType.SubtractAssignChecked:
 				{
 					var e = (BinaryExpression)expr;
+					Code.BugIf(e.Conversion == null, "e.Conversion == null");
 					return e.Update(
 						TransformInternal(e.Left, func),
 						(LambdaExpression)TransformInternal(e.Conversion, func),
@@ -1151,6 +1152,7 @@ namespace CodeJam.Expressions
 				case ExpressionType.Call:
 				{
 					var e = (MethodCallExpression)expr;
+					Code.BugIf(e.Object == null, "e.Object == null");
 					return e.Update(
 						TransformInternal(e.Object, func),
 						TransformInternal(e.Arguments, func));
@@ -1332,9 +1334,12 @@ namespace CodeJam.Expressions
 						TransformInternal(
 							e.Handlers,
 							h =>
-								h.Update(
+							{
+								Code.BugIf(h.Variable == null, "h.Variable == null");
+								return h.Update(
 									(ParameterExpression)TransformInternal(h.Variable, func), TransformInternal(h.Filter, func),
-									TransformInternal(h.Body, func))),
+									TransformInternal(h.Body, func));
+							}),
 						TransformInternal(e.Finally, func),
 						TransformInternal(e.Fault, func));
 				}

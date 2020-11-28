@@ -78,7 +78,7 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		public static RangeBoundaryTo<T> AdjustAndCreate(T value, RangeBoundaryToKind boundaryKind)
+		public static RangeBoundaryTo<T> AdjustAndCreate(T? value, RangeBoundaryToKind boundaryKind)
 		{
 			DebugCode.AssertArgument(
 				boundaryKind == RangeBoundaryToKind.Inclusive || boundaryKind == RangeBoundaryToKind.Exclusive,
@@ -117,7 +117,7 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[MethodImpl(AggressiveInlining)]
-		public static bool IsValid(T value)
+		public static bool IsValid(T? value)
 		{
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
 			{
@@ -401,7 +401,7 @@ namespace CodeJam.Ranges
 		/// and represent the same value; otherwise, false.
 		/// </returns>
 		[Pure]
-		public override bool Equals(object obj) => obj is RangeBoundaryTo<T> other && Equals(other);
+		public override bool Equals(object? obj) => obj is RangeBoundaryTo<T> other && Equals(other);
 
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
@@ -505,8 +505,7 @@ namespace CodeJam.Ranges
 		//   Please create issue at first
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
-		public int CompareTo(T other) =>
-			CompareTo(Range.GetCompareToBoundary(other));
+		public int CompareTo(T? other) => CompareTo(Range.GetCompareToBoundary(other));
 		#endregion
 
 		#region IComparable
@@ -523,12 +522,12 @@ namespace CodeJam.Ranges
 		/// * Greater than zero This object is greater than <paramref name="obj"/>.
 		/// </returns>
 		[Pure]
-		int IComparable.CompareTo(object obj) =>
+		int IComparable.CompareTo(object? obj) =>
 			obj switch
 			{
 				RangeBoundaryTo<T> rbf => CompareTo(rbf),
 				RangeBoundaryFrom<T> rbt => CompareTo(rbt),
-				_ => CompareTo((T)obj)
+				_ => CompareTo((T?)obj)
 			};
 		#endregion
 

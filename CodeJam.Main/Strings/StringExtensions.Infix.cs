@@ -49,7 +49,12 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? str) => StringEx.IsNullOrWhiteSpace(str);
+		public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? str) =>
+			StringEx.IsNullOrWhiteSpace(str
+#if LESSTHAN_NET47
+			!
+#endif
+			);
 
 		/// <summary>
 		/// Returns an empty string for null value.
@@ -86,7 +91,13 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure]
 		// ReSharper disable once BuiltInTypeReferenceStyle
-		public static bool NotNullNorWhiteSpace([NotNullWhen(true)] this string? str) => !StringEx.IsNullOrWhiteSpace(str);
+		public static bool NotNullNorWhiteSpace([NotNullWhen(true)] this string? str) =>
+			!StringEx.IsNullOrWhiteSpace(
+				str
+#if LESSTHAN_NET47
+				!
+#endif
+				);
 
 		/// <summary>
 		/// Replaces one or more format items in a specified string with the string representation of a specified object.
@@ -187,7 +198,13 @@ namespace CodeJam.Strings
 		[Pure]
 		public static string Join([InstantHandle] this IEnumerable<string> values, string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
-			StringEx.Join(separator, values);
+			StringEx.Join(
+				separator
+#if LESSTHAN_NET47
+				!
+#endif
+				,
+				values);
 
 		/// <summary>
 		/// Concatenates the members of a collection, using the specified separator between each member.
@@ -206,7 +223,13 @@ namespace CodeJam.Strings
 		[Pure]
 		public static string Join<T>([InstantHandle] this IEnumerable<T> values, string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
-			StringEx.Join(separator, values);
+			StringEx.Join(
+				separator
+#if LESSTHAN_NET47
+				!
+#endif
+				,
+				values);
 
 		/// <summary>
 		/// Concatenates the members of a collection.

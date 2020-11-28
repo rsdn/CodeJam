@@ -56,7 +56,12 @@ namespace CodeJam.Collections
 			foreach (var item in source)
 			{
 				var newKey = keySelector(item);
-				if (groupingList.Count > 0 && !comparer.Equals(key, newKey))
+				if (groupingList.Count > 0 && !comparer.Equals(
+					key
+#if !NETCOREAPP30_OR_GREATER
+				 ! // Old frameworks missing NRT markup
+#endif
+					, newKey))
 				{
 					yield return new Grouping<TKey?, T>(key, groupingList.ToArray());
 					groupingList.Clear();
@@ -126,7 +131,14 @@ namespace CodeJam.Collections
 			foreach (var item in source)
 			{
 				var newKey = keySelector(item);
-				if (groupingList.Count > 0 && !comparer.Equals(key, newKey))
+				if (groupingList.Count > 0 && !comparer.Equals(
+#if NETCOREAPP30_OR_GREATER
+					key
+#else
+					key! // No nullable markup in older targets
+#endif
+					,
+					newKey))
 				{
 					yield return new Grouping<TKey?, TItem>(key, groupingList.ToArray());
 					groupingList.Clear();
