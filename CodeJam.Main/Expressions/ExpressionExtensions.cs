@@ -1117,10 +1117,9 @@ namespace CodeJam.Expressions
 				case ExpressionType.SubtractAssignChecked:
 				{
 					var e = (BinaryExpression)expr;
-					Code.BugIf(e.Conversion == null, "e.Conversion == null");
 					return e.Update(
 						TransformInternal(e.Left, func),
-						(LambdaExpression)TransformInternal(e.Conversion, func),
+						(LambdaExpression?)TransformInternal(e.Conversion, func),
 						TransformInternal(e.Right, func));
 				}
 
@@ -1152,9 +1151,8 @@ namespace CodeJam.Expressions
 				case ExpressionType.Call:
 				{
 					var e = (MethodCallExpression)expr;
-					Code.BugIf(e.Object == null, "e.Object == null");
 					return e.Update(
-						TransformInternal(e.Object, func),
+						TransformInternal(e.Object, func)!, // Bug in NRT markup, fixed after .NET 5.0
 						TransformInternal(e.Arguments, func));
 				}
 

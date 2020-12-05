@@ -62,10 +62,10 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
-		/// The <see cref="MemberInfo"/> instance.
+		/// The <see cref="MemberInfo"/> instance. For value types, the method returns null for the default constructor.
 		/// </returns>
 		[Pure]
-		public static MemberInfo GetMemberInfo([NotNull] this LambdaExpression expression)
+		public static MemberInfo? GetMemberInfo([NotNull] this LambdaExpression expression)
 		{
 			Code.NotNull(expression, nameof(expression));
 
@@ -78,7 +78,7 @@ namespace CodeJam.Expressions
 				{
 					MemberExpression {Member:{} member} => member,
 					MethodCallExpression {Method:{} method} => method,
-					NewExpression {Constructor:{} ctor} => ctor,
+					NewExpression ne => ne.Constructor,
 					_ => throw CodeExceptions.Argument(
 						nameof(expression),
 						$"Unsupported expression type '{expression.NodeType}' or expression is invalid.")
@@ -115,10 +115,15 @@ namespace CodeJam.Expressions
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
 		[Pure]
-		public static ConstructorInfo GetConstructor([NotNull] this LambdaExpression expression) =>
-			GetMemberInfo(expression) is ConstructorInfo ctor
-			? ctor
-			: throw CodeExceptions.Argument(nameof(expression), "Expression is not constructor call.");
+		public static ConstructorInfo? GetConstructor([NotNull] this LambdaExpression expression)
+		{
+			var memberInfo = GetMemberInfo(expression);
+			if (memberInfo == null)
+				return null;
+			return memberInfo is ConstructorInfo ctor
+				? ctor
+				: throw CodeExceptions.Argument(nameof(expression), "Expression is not constructor call.");
+		}
 
 		/// <summary>
 		/// Returns the method.
@@ -202,66 +207,69 @@ namespace CodeJam.Expressions
 		[NotNull, ItemNotNull]
 		private static IEnumerable<MemberInfo> GetMembers(Expression expression, bool passIndexer = true)
 		{
+			Code.NotNull(expression, nameof(expression));
+
 			MemberInfo? lastMember = null;
 
 			for (; ; )
 			{
-				switch (expression.NodeType)
+				switch (expression)
 				{
-					case ExpressionType.Parameter:
+					case {NodeType: ExpressionType.Parameter }:
 						if (lastMember == null)
 							goto default;
 						yield break;
 
-					case ExpressionType.Call:
+					case MethodCallExpression mce:
+					{
+						if (lastMember == null)
+							goto default;
+
+						var expr = mce.Object;
+
+						if (expr == null)
 						{
-							if (lastMember == null)
+							if (mce.Arguments.Count == 0)
 								goto default;
 
-							var cExpr = (MethodCallExpression)expression;
-							var expr = cExpr.Object;
+							expr = mce.Arguments[0];
+						}
 
-							if (expr == null)
-							{
-								if (cExpr.Arguments.Count == 0)
-									goto default;
-
-								expr = cExpr.Arguments[0];
-							}
-
-							if (expr.NodeType != ExpressionType.MemberAccess)
-								goto default;
+						if (expr.NodeType != ExpressionType.MemberAccess)
+							goto default;
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
-							var member = ((MemberExpression)expr).Member;
-							var memberType = member.GetMemberType();
+						var member = ((MemberExpression)expr).Member;
+						var memberType = member.GetMemberType();
 
-							if (lastMember.ReflectedType != memberType.GetItemType())
-								goto default;
+						if (lastMember.ReflectedType != memberType.GetItemType())
+							goto default;
 #endif
 
-							expression = expr;
+						expression = expr;
 
-							break;
-						}
+						break;
+					}
 
-					case ExpressionType.MemberAccess:
-						{
-							var mExpr = (MemberExpression)expression;
-							var member = lastMember = mExpr.Member;
+					case MemberExpression me:
+					{
+						var member = lastMember = me.Member;
 
-							yield return member;
+						yield return member;
 
-							expression = mExpr.Expression;
+						expression = me.Expression
+							?? throw CodeExceptions.Argument(
+								nameof(expression),
+								"Invalid expression, MemberExpression.Member is null.");
 
-							break;
-						}
+						break;
+					}
 
-					case ExpressionType.ArrayIndex:
+					case BinaryExpression{NodeType: ExpressionType.ArrayIndex } be:
 						{
 							if (passIndexer)
 							{
-								expression = ((BinaryExpression)expression).Left;
+								expression = be.Left;
 								break;
 							}
 

@@ -23,8 +23,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static MemberInfo Member<TValue>([NotNull] Expression<Func<TValue>> expression) =>
+		[Pure]
+		public static MemberInfo? Member<TValue>([NotNull] Expression<Func<TValue>> expression) =>
 			expression.GetMemberInfo();
 
 		/// <summary>
@@ -35,8 +35,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static MemberInfo Member<T>([NotNull] Expression<Func<T, object>> expression) =>
+		[Pure]
+		public static MemberInfo? Member<T>([NotNull] Expression<Func<T, object>> expression) =>
 			expression.GetMemberInfo();
 
 		/// <summary>
@@ -48,8 +48,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static MemberInfo Member<T, TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
+		[Pure]
+		public static MemberInfo? Member<T, TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
 			expression.GetMemberInfo();
 		#endregion
 
@@ -151,8 +151,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
-		[Pure][NotNull]
-		public static ConstructorInfo Constructor<T>([NotNull] Expression<Func<T>> expression) =>
+		[Pure]
+		public static ConstructorInfo? Constructor<T>([NotNull] Expression<Func<T>> expression) =>
 			expression.GetConstructor();
 		#endregion
 

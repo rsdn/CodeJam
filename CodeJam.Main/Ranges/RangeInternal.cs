@@ -72,7 +72,6 @@ namespace CodeJam.Ranges
 			const BindingFlags bf = BindingFlags.Static | BindingFlags.NonPublic;
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T)))
 			{
-				// ReSharper disable once PossibleNullReferenceException
 				var method = typeof(RangeInternal)
 					.GetMethod(nameof(Format), bf)!
 					.MakeGenericMethod(typeof(T));
@@ -100,7 +99,8 @@ namespace CodeJam.Ranges
 			return (value, _, _) => value?.ToString();
 		}
 
-		private static string? Format<T>(T? value, string? format, IFormatProvider? formatProvider) where T : class, IFormattable =>
+		private static string? Format<T>(T? value, string? format, IFormatProvider? formatProvider)
+			where T : IFormattable =>
 			value?.ToString(format, formatProvider);
 
 		private static string? FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)

@@ -23,8 +23,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static MemberInfo Member<TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
+		[Pure]
+		public static MemberInfo? Member<TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
 			expression.GetMemberInfo();
 
 		/// <summary>
@@ -59,7 +59,7 @@ namespace CodeJam.Reflection
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
 		[Pure]
-		public static ConstructorInfo Constructor([NotNull] Expression<Func<T>> expression) =>
+		public static ConstructorInfo? Constructor([NotNull] Expression<Func<T>> expression) =>
 			expression.GetConstructor();
 
 		/// <summary>
