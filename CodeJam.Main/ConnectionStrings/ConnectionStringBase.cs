@@ -6,6 +6,9 @@ using System.Linq;
 
 using JetBrains.Annotations;
 
+using AllowNullAttribute = System.Diagnostics.CodeAnalysis.AllowNullAttribute;
+using MaybeNullWhenAttribute = System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute;
+
 namespace CodeJam.ConnectionStrings
 {
 	/// <summary>
@@ -56,8 +59,10 @@ namespace CodeJam.ConnectionStrings
 
 		/// <summary>Initializes a new instance of the <see cref="ConnectionStringBase" /> class.</summary>
 		/// <param name="connectionString">The connection string.</param>
-		protected ConnectionStringBase(string? connectionString) =>
+		protected ConnectionStringBase(string? connectionString)
+		{
 			_wrapper = new StringBuilderWrapper(connectionString, GetType());
+		}
 
 		/// <summary>
 		/// Gets all supported keywords for current connection.
@@ -221,9 +226,16 @@ namespace CodeJam.ConnectionStrings
 		public bool Remove(string key) => _wrapper.Remove(key);
 
 		/// <inheritdoc />
-		public bool TryGetValue(string key, out object value) => _wrapper.TryGetValue(key, out value);
+		public bool TryGetValue(
+			string key,
+#if NETCOREAPP30_OR_GREATER
+			[MaybeNullWhen(false)]
+#endif
+			out object value) =>
+			_wrapper.TryGetValue(key, out value);
 
 		/// <inheritdoc />
+		[AllowNull]
 		public object this[string key]
 		{
 			get => _wrapper[key];

@@ -121,7 +121,11 @@ namespace CodeJam.ConnectionStrings
 				return builder.ToString();
 			}
 
-			public string? GetStringValue(string keyword) => (string)this[keyword];
+			public string? GetStringValue(string keyword)
+			{
+				TryGetValue(keyword, out var value);
+				return (string?)value;
+			}
 
 			public bool TryGetStringValue(string keyword, [MaybeNullWhen(false)] out string value)
 			{
@@ -130,17 +134,19 @@ namespace CodeJam.ConnectionStrings
 			}
 
 			#region Use only allowed keywords
-			/// <inheritdoc />
+			public override bool TryGetValue(string keyword,
+#if NETCOREAPP30_OR_GREATER
+				[MaybeNullWhen(false)]
+#endif
+				out object value) =>
+				base.TryGetValue(keyword, out value);
+
+			[AllowNull]
 			public override object this[string keyword]
 			{
 				get
 				{
-					if (Keywords.ContainsKey(keyword))
-					{
-						TryGetValue(keyword, out var value);
-						return value;
-					}
-					return base[keyword]; // exception for not supported keyword.
+					return base[keyword];
 				}
 				set
 				{

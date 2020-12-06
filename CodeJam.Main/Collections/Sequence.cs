@@ -71,7 +71,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<T?> Create<T>(T? start, Func<T?, bool> predicate, Func<T?, T?> next)
 		{
 			Code.NotNull(next, nameof(next));
-			Code.NotNull(predicate, nameof (predicate));
+			Code.NotNull(predicate, nameof(predicate));
 
 			var cur = start;
 			while (predicate(cur))
@@ -120,8 +120,8 @@ namespace CodeJam.Collections
 		/// <returns>Generated sequence.</returns>
 		[Pure]
 		[NotNull]
-		public static IEnumerable<T> CreateWhileNotNull<T>(T? start, [NotNull] Func<T?, T?> next)
-			where T: class
+		public static IEnumerable<T> CreateWhileNotNull<T>(T? start, [NotNull] Func<T, T?> next)
+			where T : class
 		{
 			Code.NotNull(next, nameof(next));
 
