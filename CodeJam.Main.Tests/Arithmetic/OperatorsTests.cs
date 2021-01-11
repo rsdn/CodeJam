@@ -19,22 +19,22 @@ namespace CodeJam.Arithmetic
 		private class ClassNoComparable
 		{
 			[UsedImplicitly]
-			public static readonly ClassNoComparable NegativeInfinity = new ClassNoComparable();
+			public static readonly ClassNoComparable NegativeInfinity = new();
 		}
 
 		private struct StructComparable : IComparable
 		{
 			[UsedImplicitly]
 			// ReSharper disable once RedundantDefaultMemberInitializer
-			public static readonly StructComparable NaN = new StructComparable();
+			public static readonly StructComparable NaN = new();
 
 			// DONTTOUCH: uses wrong type to proof that check for infinity will fail.
 			[UsedImplicitly]
-			public static readonly ClassNoComparable NegativeInfinity = new ClassNoComparable();
+			public static readonly ClassNoComparable NegativeInfinity = new();
 
 			[UsedImplicitly]
 			// ReSharper disable once RedundantDefaultMemberInitializer
-			public static readonly StructComparable PositiveInfinity = new StructComparable();
+			public static readonly StructComparable PositiveInfinity = new();
 
 			public int CompareTo(object obj) => 0;
 		}

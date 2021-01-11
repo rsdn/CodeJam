@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System.Diagnostics.CodeAnalysis;
+
+using JetBrains.Annotations;
 
 namespace CodeJam.CmdLine
 {
@@ -11,7 +13,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		private OptionNode([NotNull] string text, [NonNegativeValue] int position, [NonNegativeValue] int length, OptionType type)
+		private OptionNode([JetBrains.Annotations.NotNull] string text, [NonNegativeValue] int position, [NonNegativeValue] int length, OptionType type)
 			: base(text, position, length)
 		{
 			Type = type;
@@ -21,7 +23,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			[NotNull] string text,
+			[JetBrains.Annotations.NotNull] string text,
 			[NonNegativeValue] int position,
 			[NonNegativeValue] int length)
 			: this(text, position, length, OptionType.Valueless)
@@ -31,7 +33,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			[NotNull] string text,
+			[JetBrains.Annotations.NotNull] string text,
 			[NonNegativeValue] int position,
 			[NonNegativeValue] int length,
 			bool boolValue)
@@ -44,10 +46,10 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			[NotNull] string text,
+			[JetBrains.Annotations.NotNull] string text,
 			[NonNegativeValue] int position,
 			[NonNegativeValue] int length,
-			[NotNull] QuotedOrNonquotedValueNode value)
+			[JetBrains.Annotations.NotNull] QuotedOrNonquotedValueNode value)
 			: this(text, position, length, OptionType.Value)
 		{
 			Value = value;
@@ -66,6 +68,6 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Option value.
 		/// </summary>
-		[NotNull] public QuotedOrNonquotedValueNode Value { get; }
+		[DisallowNull] public QuotedOrNonquotedValueNode? Value { get; }
 	}
 }

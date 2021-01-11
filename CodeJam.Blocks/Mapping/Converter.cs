@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Xml;
@@ -14,14 +15,14 @@ namespace CodeJam.Mapping
 	using Expressions;
 
 	/// <summary>
-	/// Provides data convertion functionality.
+	/// Provides data conversion functionality.
 	/// </summary>
 	[PublicAPI]
 	public static class Converter
 	{
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private static readonly ConcurrentDictionary<object, LambdaExpression> _expressions =
-			new ConcurrentDictionary<object, LambdaExpression>();
+			new();
 
 		static Converter()
 		{
@@ -41,8 +42,8 @@ namespace CodeJam.Mapping
 			SetConverter<string, bool>(v => v.Length == 1 ? ToBoolean(v[0]) : bool.Parse(v));
 		}
 
-		[NotNull]
-		private static XmlDocument CreateXmlDocument([NotNull] string str)
+		[JetBrains.Annotations.NotNull]
+		private static XmlDocument CreateXmlDocument([JetBrains.Annotations.NotNull] string str)
 		{
 			var xml = new XmlDocument();
 			xml.LoadXml(str);
@@ -80,16 +81,16 @@ namespace CodeJam.Mapping
 		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr)
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
 
-		[CanBeNull]
-		internal static LambdaExpression GetConverter([NotNull] Type from, [NotNull] Type to)
+		[return: MaybeNull]
+		internal static LambdaExpression GetConverter([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to)
 		{
 			_expressions.TryGetValue(new { from, to }, out var l);
 			return l;
 		}
 
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private static readonly ConcurrentDictionary<object, Func<object, object>> _converters =
-			new ConcurrentDictionary<object, Func<object, object>>();
+			new();
 
 		/// <summary>
 		/// Returns an object of a specified type whose value is equivalent to a specified object.
@@ -98,7 +99,7 @@ namespace CodeJam.Mapping
 		/// <param name="conversionType">The type of object to return.</param>
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
-		public static object ChangeType([CanBeNull] object value, [NotNull] Type conversionType, MappingSchema mappingSchema = null)
+		public static object ChangeType([AllowNull] object value, [JetBrains.Annotations.NotNull] Type conversionType, MappingSchema mappingSchema = null)
 		{
 			Code.NotNull(conversionType, nameof(conversionType));
 
@@ -147,9 +148,9 @@ namespace CodeJam.Mapping
 
 		private static class ExprHolder<T>
 		{
-			[NotNull]
+			[JetBrains.Annotations.NotNull]
 			public static readonly ConcurrentDictionary<Type, Func<object, T>> Converters =
-				new ConcurrentDictionary<Type, Func<object, T>>();
+				new();
 		}
 
 		/// <summary>

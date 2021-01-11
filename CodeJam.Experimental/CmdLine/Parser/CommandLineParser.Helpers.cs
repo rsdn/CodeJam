@@ -107,7 +107,7 @@ namespace CodeJam.CmdLine
 		[NotNull]
 		private static ParseResult<T[]> ConsumeTillEof<T>(
 			[NotNull] this ICharInput input,
-			[NotNull] Func<ICharInput, ParseResult<T>> consumer)
+			[NotNull] Func<ICharInput, ParseResult<T>?> consumer)
 		{
 			var list = new List<T>();
 			while (true)

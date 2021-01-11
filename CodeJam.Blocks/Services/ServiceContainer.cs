@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -14,12 +15,12 @@ namespace CodeJam.Services
 	[PublicAPI]
 	public class ServiceContainer : IServicePublisher, IDisposable
 	{
-		[CanBeNull]
+		[AllowNull]
 		private readonly IServiceProvider _parentProvider;
 
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private readonly ConcurrentDictionary<Type, IServiceBag> _services =
-			new ConcurrentDictionary<Type, IServiceBag>();
+			new();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:System.Object" /> class.
@@ -28,7 +29,7 @@ namespace CodeJam.Services
 		/// <param name="publishSelf">
 		/// if set to <c>true</c> container publish itself as <see cref="IServicePublisher"/> service.
 		/// </param>
-		public ServiceContainer([CanBeNull] IServiceProvider parentProvider, bool publishSelf = true)
+		public ServiceContainer([AllowNull] IServiceProvider parentProvider, bool publishSelf = true)
 		{
 			_parentProvider = parentProvider;
 			if (publishSelf)
@@ -41,7 +42,7 @@ namespace CodeJam.Services
 		/// </param>
 		public ServiceContainer(bool publishSelf = true) : this(null, publishSelf) { }
 
-		private void ConcealService([NotNull] Type serviceType)
+		private void ConcealService([JetBrains.Annotations.NotNull] Type serviceType)
 		{
 			if (!_services.TryRemove(serviceType, out var bag))
 				throw new ArgumentException($"Service with type '{serviceType}' not registered.");
@@ -51,8 +52,8 @@ namespace CodeJam.Services
 		/// <summary>Gets the service object of the specified type.</summary>
 		/// <returns>A service object of type <paramref name="serviceType" />.-or- null if there is no service object of type <paramref name="serviceType" />.</returns>
 		/// <param name="serviceType">An object that specifies the type of service object to get. </param>
-		[CanBeNull]
-		public object GetService([NotNull] Type serviceType)
+		[return: MaybeNull]
+		public object GetService([JetBrains.Annotations.NotNull] Type serviceType)
 		{
 			Code.NotNull(serviceType, nameof(serviceType));
 
@@ -137,12 +138,12 @@ namespace CodeJam.Services
 
 		private class FactoryBag : IServiceBag
 		{
-			[NotNull]
+			[JetBrains.Annotations.NotNull]
 			private readonly Func<IServicePublisher, object> _factory;
 			private object _instance;
 
 			/// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-			public FactoryBag([NotNull] Func<IServicePublisher, object> factory) => _factory = factory;
+			public FactoryBag([JetBrains.Annotations.NotNull] Func<IServicePublisher, object> factory) => _factory = factory;
 
 			#region Overrides of ServiceBag
 			public object GetInstance(IServicePublisher publisher, Type serviceType)

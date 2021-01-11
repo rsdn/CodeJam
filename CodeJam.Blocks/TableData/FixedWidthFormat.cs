@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -23,8 +24,8 @@ namespace CodeJam.TableData
 		/// <param name="widths">Array of column widths</param>
 		/// <returns>Parser to use with <see cref="TableDataParser.Parse(Parser,string)"/></returns>
 		[Pure]
-		[NotNull]
-		public static Parser CreateParser([NotNull] int[] widths)
+		[JetBrains.Annotations.NotNull]
+		public static Parser CreateParser([JetBrains.Annotations.NotNull] int[] widths)
 		{
 			Code.NotNull(widths, nameof(widths));
 			Code.AssertArgument(widths.Length > 0, nameof(widths), "At least one column must be specified");
@@ -40,12 +41,12 @@ namespace CodeJam.TableData
 		/// <param name="widths">Array of column widths</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
 		[Pure]
-		[NotNull]
-		public static IEnumerable<DataLine> Parse([NotNull] TextReader reader, [NotNull] int[] widths) =>
+		[JetBrains.Annotations.NotNull]
+		public static IEnumerable<DataLine> Parse([JetBrains.Annotations.NotNull] TextReader reader, [JetBrains.Annotations.NotNull] int[] widths) =>
 			CreateParser(widths).Parse(reader);
 
-		[CanBeNull]
-		private static string[] Parse([NotNull] TextReader reader, ref int lineNum, [NotNull] int[] widths)
+		[return: MaybeNull]
+		private static string[] Parse([JetBrains.Annotations.NotNull] TextReader reader, ref int lineNum, [JetBrains.Annotations.NotNull] int[] widths)
 		{
 			var line = reader.ReadLine();
 			if (line == null)
@@ -78,10 +79,10 @@ namespace CodeJam.TableData
 		/// <param name="widths">Array of column widths</param>
 		/// <param name="indent">The indent.</param>
 		public static void Print(
-			[NotNull] TextWriter writer,
-			[NotNull, ItemNotNull] IEnumerable<string[]> data,
-			[NotNull] int[] widths,
-			[CanBeNull] string indent = null)
+			[JetBrains.Annotations.NotNull] TextWriter writer,
+			[JetBrains.Annotations.NotNull, ItemNotNull] IEnumerable<string[]> data,
+			[JetBrains.Annotations.NotNull] int[] widths,
+			[AllowNull] string indent = null)
 		{
 			Code.NotNull(writer, nameof (writer));
 			Code.NotNull(data, nameof (writer));

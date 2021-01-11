@@ -9,7 +9,7 @@ namespace CodeJam.Collections
 	[TestFixture]
 	public class DisjointSetsTest
 	{
-		private readonly Random _random = new Random();
+		private readonly Random _random = new();
 		private const int ElementsNumber = 10000;
 		private readonly List<int> _seq = Enumerable.Range(0, ElementsNumber).ToList();
 

@@ -10,6 +10,6 @@ namespace CodeJam.Parsing
 		public Parser OpenBracket { get; set; } = ParseHelper.SpecificChar('(');
 		public Parser CloseBracket { get; set; } = ParseHelper.SpecificChar(')');
 
-		public Operator[] Operators { get; set; }
+		public Operator[]? Operators { get; set; }
 	}
 }

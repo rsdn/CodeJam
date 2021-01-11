@@ -17,7 +17,7 @@ namespace CodeJam.UseCases.TempDataSamples
 			// weird one.
 
 			var fileName = "1.txt";
-			Exception deletedEx = null;
+			Exception? deletedEx = null;
 			try
 			{
 				File.Create(fileName).Close();
@@ -54,7 +54,7 @@ namespace CodeJam.UseCases.TempDataSamples
 		public void CaseC_LetItCrashHandle()
 		{
 			// BAD BAD BAD: we need to store fileName somewhere.
-			string fileName = null;
+			string? fileName = null;
 			try
 			{
 				using (var tempFile = TempData.CreateFile(throwOnDisposeFailure: true))
@@ -77,7 +77,7 @@ namespace CodeJam.UseCases.TempDataSamples
 
 				if (!tempFile.TryClose())
 				{
-					HandleDeleteFailure(tempFile.FileName, null); // no exception info available.
+					HandleDeleteFailure(tempFile.FileName!, null); // no exception info available.
 				}
 			}
 		}
@@ -138,11 +138,11 @@ namespace CodeJam.UseCases.TempDataSamples
 	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 	public class TempData : IDisposable
 	{
-		[JBNotNull] public static TempData CreateFile() => new TempData();
-		[JBNotNull] public static TempData CreateFile(bool throwOnDisposeFailure) => new TempData();
-		[JBNotNull] public static TempData CreateFile([JBNotNull] Action<TempData, Exception> deleteFallback) => new TempData();
+		[JBNotNull] public static TempData CreateFile() => new();
+		[JBNotNull] public static TempData CreateFile(bool throwOnDisposeFailure) => new();
+		[JBNotNull] public static TempData CreateFile([JBNotNull] Action<TempData, Exception> deleteFallback) => new();
 
-		public string FileName => null;
+		public string? FileName => null;
 
 		public void EnsureDelete()
 		{

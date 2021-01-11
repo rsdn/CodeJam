@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -19,7 +20,7 @@ namespace CodeJam.Collections
 
 		/// <summary>Creates a Disjoint sets with the passed values</summary>
 		/// <param name="values">The values to store</param>
-		public DisjointSets([NotNull, ItemNotNull] IEnumerable<T> values)
+		public DisjointSets([JetBrains.Annotations.NotNull, ItemNotNull] IEnumerable<T> values)
 		{
 			Code.NotNull(values, nameof(values));
 
@@ -28,11 +29,11 @@ namespace CodeJam.Collections
 
 		/// <summary>Gets an element by its index</summary>
 		/// <param name="index">Element's index</param>
-		public T this[[NonNegativeValue] int index] => Nodes[index].Value;
+		public T this[[NonNegativeValue] int index] => Nodes[index].Value!;
 
 		/// <summary>Appends a list of values</summary>
 		/// <param name="values">The values to append</param>
-		public void Add([NotNull, ItemNotNull] IEnumerable<T> values)
+		public void Add([JetBrains.Annotations.NotNull, ItemNotNull] IEnumerable<T> values)
 		{
 			Code.NotNull(values, nameof(values));
 
@@ -53,7 +54,7 @@ namespace CodeJam.Collections
 		public class Node : BasicNode
 		{
 			/// <summary>The node data</summary>
-			public T Value;
+			[DisallowNull] public T? Value;
 		}
 	}
 }

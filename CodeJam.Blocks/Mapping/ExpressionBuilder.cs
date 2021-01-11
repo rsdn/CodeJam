@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -28,14 +29,14 @@ namespace CodeJam.Mapping
 			public BuilderData(ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers) => MemberMappers = memberMappers;
 
 			public readonly ValueTuple<MemberInfo[],LambdaExpression>[]           MemberMappers;
-			[NotNull]
-			public readonly Dictionary<ValueTuple<Type,Type>,ParameterExpression> Mappers     = new Dictionary<ValueTuple<Type,Type>, ParameterExpression>();
-			[NotNull]
-			public readonly HashSet<ValueTuple<Type,Type>>                        MapperTypes = new HashSet<ValueTuple<Type,Type>>();
-			[NotNull, ItemNotNull]
-			public readonly List<ParameterExpression>                             Locals      = new List<ParameterExpression>();
-			[NotNull, ItemNotNull]
-			public readonly List<Expression>                                      Expressions = new List<Expression>();
+			[JetBrains.Annotations.NotNull]
+			public readonly Dictionary<ValueTuple<Type,Type>,ParameterExpression> Mappers     = new();
+			[JetBrains.Annotations.NotNull]
+			public readonly HashSet<ValueTuple<Type,Type>>                        MapperTypes = new();
+			[JetBrains.Annotations.NotNull, ItemNotNull]
+			public readonly List<ParameterExpression>                             Locals      = new();
+			[JetBrains.Annotations.NotNull, ItemNotNull]
+			public readonly List<Expression>                                      Expressions = new();
 
 			public ParameterExpression LocalDic;
 
@@ -45,11 +46,11 @@ namespace CodeJam.Mapping
 			public bool IsRestart => RestartCounter > 10;
 		}
 
-		public ExpressionBuilder([NotNull] IMapperBuilder mapperBuilder, ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers)
+		public ExpressionBuilder([JetBrains.Annotations.NotNull] IMapperBuilder mapperBuilder, ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers)
 			: this(mapperBuilder, new BuilderData(memberMappers)) =>
 			_processCrossReferences = mapperBuilder.ProcessCrossReferences == true;
 
-		private ExpressionBuilder([NotNull] IMapperBuilder mapperBuilder, [NotNull] BuilderData data)
+		private ExpressionBuilder([JetBrains.Annotations.NotNull] IMapperBuilder mapperBuilder, [JetBrains.Annotations.NotNull] BuilderData data)
 		{
 			_mapperBuilder          = mapperBuilder;
 			_data                   = data;
@@ -58,19 +59,19 @@ namespace CodeJam.Mapping
 			_processCrossReferences = true;
 		}
 
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private readonly IMapperBuilder   _mapperBuilder;
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private readonly Type             _fromType;
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private readonly Type             _toType;
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private readonly BuilderData      _data;
 		private readonly bool             _processCrossReferences;
 
 		#region GetExpressionEx
 
-		[CanBeNull]
+		[return: MaybeNull]
 		public LambdaExpression GetExpressionEx()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
@@ -112,7 +113,7 @@ namespace CodeJam.Mapping
 			return l;
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private LambdaExpression GetExpressionExInner()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
@@ -129,8 +130,8 @@ namespace CodeJam.Mapping
 			return l;
 		}
 
-		[CanBeNull]
-		private Expression GetExpressionExImpl([NotNull] Expression fromExpression, [NotNull] Type toType)
+		[return: MaybeNull]
+		private Expression GetExpressionExImpl([JetBrains.Annotations.NotNull] Expression fromExpression, [JetBrains.Annotations.NotNull] Type toType)
 		{
 			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
 			var toAccessor   = TypeAccessor.GetAccessor(toType);
@@ -239,8 +240,8 @@ namespace CodeJam.Mapping
 			return initExpression;
 		}
 
-		[NotNull]
-		private static NewExpression GetNewExpression([NotNull] Type originalType)
+		[JetBrains.Annotations.NotNull]
+		private static NewExpression GetNewExpression([JetBrains.Annotations.NotNull] Type originalType)
 		{
 			var type = originalType;
 
@@ -257,13 +258,13 @@ namespace CodeJam.Mapping
 			return New(type);
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		[ContractAnnotation("expr:null => null; expr:notnull => notnull")]
-		private static Expression Convert([CanBeNull] Expression expr, [NotNull] Type toType) =>
+		private static Expression Convert([AllowNull] Expression expr, [JetBrains.Annotations.NotNull] Type toType) =>
 			expr == null ? null : expr.Type == toType ? expr : Expression.Convert(expr, toType);
 
-		[CanBeNull]
-		private Expression BuildCollectionMapper([NotNull] Expression fromExpression, [NotNull] Type toType)
+		[return: MaybeNull]
+		private Expression BuildCollectionMapper([JetBrains.Annotations.NotNull] Expression fromExpression, [JetBrains.Annotations.NotNull] Type toType)
 		{
 			var fromType = fromExpression.Type;
 
@@ -273,8 +274,8 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[CanBeNull]
-		private Expression ConvertCollection([NotNull] Expression fromExpression, [NotNull] Type toType)
+		[return: MaybeNull]
+		private Expression ConvertCollection([JetBrains.Annotations.NotNull] Expression fromExpression, [JetBrains.Annotations.NotNull] Type toType)
 		{
 			var fromType     = fromExpression.Type;
 			var fromItemType = fromType.GetItemType();
@@ -300,10 +301,10 @@ namespace CodeJam.Mapping
 		}
 
 		private MemberAssignment BuildAssignment(
-			[NotNull] LambdaExpression getter,
-			[NotNull] Expression fromExpression,
-			[NotNull] Type fromMemberType,
-			[NotNull] MemberAccessor toMember)
+			[JetBrains.Annotations.NotNull] LambdaExpression getter,
+			[JetBrains.Annotations.NotNull] Expression fromExpression,
+			[JetBrains.Annotations.NotNull] Type fromMemberType,
+			[JetBrains.Annotations.NotNull] MemberAccessor toMember)
 		{
 			var getValue = getter.ReplaceParameters(fromExpression);
 			var expr     = _mapperBuilder.MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
@@ -316,7 +317,7 @@ namespace CodeJam.Mapping
 
 		#region GetExpression
 
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public LambdaExpression GetExpression()
 		{
 			var pFrom = Parameter(_fromType, "from");
@@ -366,9 +367,9 @@ namespace CodeJam.Mapping
 		private class MappingImpl
 		{
 			public MappingImpl(
-				[NotNull] ExpressionBuilder builder,
-				[NotNull] Expression        fromExpression,
-				[NotNull] Expression        toExpression)
+				[JetBrains.Annotations.NotNull] ExpressionBuilder builder,
+				[JetBrains.Annotations.NotNull] Expression        fromExpression,
+				[JetBrains.Annotations.NotNull] Expression        toExpression)
 			{
 				_builder        = builder;
 				_fromExpression = fromExpression;
@@ -379,14 +380,14 @@ namespace CodeJam.Mapping
 				_cacheMapper    = _builder._mapperBuilder.ProcessCrossReferences != false;
 			}
 
-			[NotNull] private readonly ExpressionBuilder         _builder;
-			[NotNull] private readonly Expression                _fromExpression;
-			[NotNull] private readonly Expression                _toExpression;
-			[NotNull] private readonly ParameterExpression       _localObject;
-			[NotNull] private readonly TypeAccessor              _fromAccessor;
-			[NotNull] private readonly TypeAccessor              _toAccessor;
-			[NotNull, ItemNotNull] private readonly List<Expression>          _expressions = new List<Expression>();
-			[NotNull, ItemNotNull] private readonly List<ParameterExpression> _locals      = new List<ParameterExpression>();
+			[JetBrains.Annotations.NotNull] private readonly ExpressionBuilder         _builder;
+			[JetBrains.Annotations.NotNull] private readonly Expression                _fromExpression;
+			[JetBrains.Annotations.NotNull] private readonly Expression                _toExpression;
+			[JetBrains.Annotations.NotNull] private readonly ParameterExpression       _localObject;
+			[JetBrains.Annotations.NotNull] private readonly TypeAccessor              _fromAccessor;
+			[JetBrains.Annotations.NotNull] private readonly TypeAccessor              _toAccessor;
+			[JetBrains.Annotations.NotNull, ItemNotNull] private readonly List<Expression>          _expressions = new();
+			[JetBrains.Annotations.NotNull, ItemNotNull] private readonly List<ParameterExpression> _locals      = new();
 			private readonly bool                      _cacheMapper;
 
 			//private Type _actualLocalObjectType;
@@ -636,10 +637,10 @@ namespace CodeJam.Mapping
 			}
 
 			private Expression BuildAssignment(
-				[NotNull] LambdaExpression getter,
-				[NotNull] LambdaExpression setter,
-				[NotNull] Type fromMemberType,
-				[NotNull] Expression toExpression,
+				[JetBrains.Annotations.NotNull] LambdaExpression getter,
+				[JetBrains.Annotations.NotNull] LambdaExpression setter,
+				[JetBrains.Annotations.NotNull] Type fromMemberType,
+				[JetBrains.Annotations.NotNull] Expression toExpression,
 				MemberAccessor toMember)
 			{
 				var getValue = getter.ReplaceParameters(_fromExpression);
@@ -661,8 +662,8 @@ namespace CodeJam.Mapping
 				dic[key] = value;
 		}
 
-		[NotNull]
-		private static IMapperBuilder GetBuilder<TFrom,TTo>([NotNull] IMapperBuilder builder) =>
+		[JetBrains.Annotations.NotNull]
+		private static IMapperBuilder GetBuilder<TFrom,TTo>([JetBrains.Annotations.NotNull] IMapperBuilder builder) =>
 			new MapperBuilder<TFrom,TTo>
 			{
 				MappingSchema          = builder.MappingSchema,
@@ -674,12 +675,12 @@ namespace CodeJam.Mapping
 				DeepCopy               = builder.DeepCopy
 			};
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private static Expression ToList(
-			[NotNull] ExpressionBuilder builder,
+			[JetBrains.Annotations.NotNull] ExpressionBuilder builder,
 			Expression fromExpression,
-			[NotNull] Type fromItemType,
-			[NotNull] Type toItemType)
+			[JetBrains.Annotations.NotNull] Type fromItemType,
+			[JetBrains.Annotations.NotNull] Type toItemType)
 		{
 			var toListInfo = InfoOf.Method(() => Enumerable.ToList<int>(null)).GetGenericMethodDefinition();
 			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
@@ -690,12 +691,12 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private static Expression ToHashSet(
-			[NotNull] ExpressionBuilder builder,
+			[JetBrains.Annotations.NotNull] ExpressionBuilder builder,
 			Expression fromExpression,
-			[NotNull] Type fromItemType,
-			[NotNull] Type toItemType)
+			[JetBrains.Annotations.NotNull] Type fromItemType,
+			[JetBrains.Annotations.NotNull] Type toItemType)
 		{
 			var toListInfo = InfoOf.Method(() => Array<int>.Empty.ToHashSet()).GetGenericMethodDefinition();
 			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
@@ -706,12 +707,12 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private static Expression ToArray(
-			[NotNull] ExpressionBuilder builder,
+			[JetBrains.Annotations.NotNull] ExpressionBuilder builder,
 			Expression fromExpression,
-			[NotNull] Type fromItemType,
-			[NotNull] Type toItemType)
+			[JetBrains.Annotations.NotNull] Type fromItemType,
+			[JetBrains.Annotations.NotNull] Type toItemType)
 		{
 			var toListInfo = InfoOf.Method(() => Enumerable.ToArray<int>(null)).GetGenericMethodDefinition();
 			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
@@ -722,12 +723,12 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private static Expression Select(
-			[NotNull] ExpressionBuilder builder,
+			[JetBrains.Annotations.NotNull] ExpressionBuilder builder,
 			Expression getValue,
-			[NotNull] Type fromItemType,
-			[NotNull] Type toItemType)
+			[JetBrains.Annotations.NotNull] Type fromItemType,
+			[JetBrains.Annotations.NotNull] Type toItemType)
 		{
 			var getBuilderInfo = InfoOf.Method(() => GetBuilder<int,int>(null)).               GetGenericMethodDefinition();
 			var selectInfo     = InfoOf.Method(() => Enumerable.Select<int,int>(null, _ => _)).GetGenericMethodDefinition();

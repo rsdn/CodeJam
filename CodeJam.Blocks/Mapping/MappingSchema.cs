@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -89,7 +90,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		[NotNull, ItemNotNull]
+		[JetBrains.Annotations.NotNull, ItemNotNull]
 		internal readonly MappingSchemaInfo[] Schemas;
 
 		#endregion
@@ -104,7 +105,7 @@ namespace CodeJam.Mapping
 		/// <param name="type"><see cref="Type"/> to get default value.</param>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
 		[Pure]
-		public object GetDefaultValue([NotNull] Type type)
+		public object GetDefaultValue([JetBrains.Annotations.NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -144,7 +145,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="type">Type to set default value for.</param>
 		/// <param name="value">Value to set.</param>
-		public void SetDefaultValue([NotNull] Type type, object value)
+		public void SetDefaultValue([JetBrains.Annotations.NotNull] Type type, object value)
 		{
 			Code.NotNull(type, nameof(type));
 			Schemas[0].SetDefaultValue(type, value);
@@ -158,10 +159,10 @@ namespace CodeJam.Mapping
 		//
 		private void InitGenericConvertProvider<T>() => InitGenericConvertProvider(typeof(T));
 
-		private bool InitGenericConvertProvider([NotNull, ItemNotNull] params Type[] types) =>
+		private bool InitGenericConvertProvider([JetBrains.Annotations.NotNull, ItemNotNull] params Type[] types) =>
 			Schemas.Aggregate(false, (cur, info) => cur || info.InitGenericConvertProvider(types));
 
-		private void SetGenericConvertProvider([NotNull] Type type)
+		private void SetGenericConvertProvider([JetBrains.Annotations.NotNull] Type type)
 		{
 			if (!type.GetIsGenericTypeDefinition())
 				throw new CodeJamMappingException($"'{type}' must be a generic type.");
@@ -196,7 +197,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Mapped value.</returns>
-		public object EnumToValue([NotNull] Enum value)
+		public object EnumToValue([JetBrains.Annotations.NotNull] Enum value)
 		{
 			Code.NotNull(value, nameof(value));
 			var toType = ConvertBuilder.GetDefaultMappingFromEnumType(this, value.GetType());
@@ -210,14 +211,14 @@ namespace CodeJam.Mapping
 		/// <param name="to">Type to convert to.</param>
 		/// <returns>Convert expression.</returns>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
-		[CanBeNull]
-		protected internal virtual LambdaExpression TryGetConvertExpression([NotNull] Type from, [NotNull]Type to)
+		[return: MaybeNull]
+		protected internal virtual LambdaExpression TryGetConvertExpression([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull]Type to)
 		{
 			var li = GetConverter(from, to, false);
 			return li == null ? null : (LambdaExpression)ReduceDefaultValue(li.CheckNullLambda);
 		}
 
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		internal ConcurrentDictionary<object,Func<object,object>> Converters
 			=> Schemas[0].Converters;
 
@@ -241,10 +242,10 @@ namespace CodeJam.Mapping
 		/// <param name="checkNull">If <i>true</i>, created expression checks input value for <i>null</i>.</param>
 		/// <param name="createDefault">If <i>true</i>, new expression is created.</param>
 		/// <returns>Convert expression.</returns>
-		[CanBeNull]
+		[return: MaybeNull]
 		public LambdaExpression GetConvertExpression(
-			[NotNull] Type from,
-			[NotNull] Type to,
+			[JetBrains.Annotations.NotNull] Type from,
+			[JetBrains.Annotations.NotNull] Type to,
 			bool checkNull = true,
 			bool createDefault = true)
 		{
@@ -261,7 +262,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TFrom">Type to convert from.</typeparam>
 		/// <typeparam name="TTo">Type to convert to.</typeparam>
 		/// <returns>Convert function.</returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public Func<TFrom,TTo> GetConverter<TFrom,TTo>()
 		{
 			var li = GetConverter(typeof(TFrom), typeof(TTo), true);
@@ -287,9 +288,9 @@ namespace CodeJam.Mapping
 		/// <param name="expr">Expression to set.</param>
 		/// <param name="addNullCheck">If <i>true</i>, adds an expression to check null value.</param>
 		public void SetConvertExpression(
-			[NotNull] Type fromType,
-			[NotNull] Type toType,
-			[NotNull] LambdaExpression expr,
+			[JetBrains.Annotations.NotNull] Type fromType,
+			[JetBrains.Annotations.NotNull] Type toType,
+			[JetBrains.Annotations.NotNull] LambdaExpression expr,
 			bool addNullCheck = true)
 		{
 			Code.NotNull(fromType, nameof(fromType));
@@ -311,7 +312,7 @@ namespace CodeJam.Mapping
 		/// <param name="expr">Expression to set.</param>
 		/// <param name="addNullCheck">If <i>true</i>, adds an expression to check null value.</param>
 		public void SetConvertExpression<TFrom,TTo>(
-			[NotNull] Expression<Func<TFrom,TTo>> expr,
+			[JetBrains.Annotations.NotNull] Expression<Func<TFrom,TTo>> expr,
 			bool addNullCheck = true)
 		{
 			Code.NotNull(expr, nameof(expr));
@@ -331,8 +332,8 @@ namespace CodeJam.Mapping
 		/// <param name="checkNullExpr">Null check expression.</param>
 		/// <param name="expr">Convert expression.</param>
 		public void SetConvertExpression<TFrom,TTo>(
-			[NotNull] Expression<Func<TFrom,TTo>> checkNullExpr,
-			[NotNull] Expression<Func<TFrom,TTo>> expr)
+			[JetBrains.Annotations.NotNull] Expression<Func<TFrom,TTo>> checkNullExpr,
+			[JetBrains.Annotations.NotNull] Expression<Func<TFrom,TTo>> expr)
 		{
 			Code.NotNull(expr, nameof(expr));
 
@@ -345,7 +346,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TFrom">Type to convert from.</typeparam>
 		/// <typeparam name="TTo">Type to convert to.</typeparam>
 		/// <param name="func">Convert function.</param>
-		public void SetConverter<TFrom,TTo>([NotNull] Func<TFrom,TTo> func)
+		public void SetConverter<TFrom,TTo>([JetBrains.Annotations.NotNull] Func<TFrom,TTo> func)
 		{
 			Code.NotNull(func, nameof(func));
 
@@ -355,8 +356,8 @@ namespace CodeJam.Mapping
 			Schemas[0].SetConvertInfo(typeof(TFrom), typeof(TTo), new ConvertInfo.LambdaInfo(ex, null, func, false));
 		}
 
-		[NotNull]
-		private LambdaExpression AddNullCheck([NotNull] LambdaExpression expr)
+		[JetBrains.Annotations.NotNull]
+		private LambdaExpression AddNullCheck([JetBrains.Annotations.NotNull] LambdaExpression expr)
 		{
 			var p = expr.Parameters[0];
 
@@ -379,9 +380,9 @@ namespace CodeJam.Mapping
 			return expr;
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		[ContractAnnotation("create:true => notnull")]
-		private ConvertInfo.LambdaInfo GetConverter([NotNull] Type from, [NotNull] Type to, bool create)
+		private ConvertInfo.LambdaInfo GetConverter([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, bool create)
 		{
 			for (var i = 0; i < Schemas.Length; i++)
 			{
@@ -495,8 +496,8 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[NotNull]
-		private Expression ReduceDefaultValue([NotNull] Expression expr) =>
+		[JetBrains.Annotations.NotNull]
+		private Expression ReduceDefaultValue([JetBrains.Annotations.NotNull] Expression expr) =>
 			expr.Transform(e =>
 				Converter.IsDefaultValuePlaceHolder(e)
 					? Expression.Constant(GetDefaultValue(e.Type), e.Type)
@@ -506,7 +507,7 @@ namespace CodeJam.Mapping
 		/// Initializes culture specific converters.
 		/// </summary>
 		/// <param name="info">Instance of <seealso cref="CultureInfo"/></param>
-		public void SetCultureInfo([NotNull] CultureInfo info)
+		public void SetCultureInfo([JetBrains.Annotations.NotNull] CultureInfo info)
 		{
 			Code.NotNull(info, nameof(info));
 
@@ -597,7 +598,7 @@ namespace CodeJam.Mapping
 		/// Adds metadata reader.
 		/// </summary>
 		/// <param name="reader">Instance of <see cref="IMetadataReader"/></param>
-		public void AddMetadataReader([NotNull] IMetadataReader reader)
+		public void AddMetadataReader([JetBrains.Annotations.NotNull] IMetadataReader reader)
 		{
 			Code.NotNull(reader, nameof(reader));
 
@@ -632,8 +633,8 @@ namespace CodeJam.Mapping
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
-		[NotNull, ItemNotNull]
-		public T[] GetAttributes<T>([NotNull] Type type, bool inherit = true)
+		[JetBrains.Annotations.NotNull, ItemNotNull]
+		public T[] GetAttributes<T>([JetBrains.Annotations.NotNull] Type type, bool inherit = true)
 			where T : Attribute
 		{
 			var q =
@@ -651,8 +652,8 @@ namespace CodeJam.Mapping
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
-		[NotNull, ItemNotNull]
-		public T[] GetAttributes<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
+		[JetBrains.Annotations.NotNull, ItemNotNull]
+		public T[] GetAttributes<T>([JetBrains.Annotations.NotNull] MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
 			var q =
@@ -670,8 +671,8 @@ namespace CodeJam.Mapping
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
-		[CanBeNull]
-		public T GetAttribute<T>([NotNull] Type type, bool inherit = true)
+		[return: MaybeNull]
+		public T GetAttribute<T>([JetBrains.Annotations.NotNull] Type type, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes<T>(type, inherit);
@@ -685,8 +686,8 @@ namespace CodeJam.Mapping
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
-		[CanBeNull]
-		public T GetAttribute<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
+		[return: MaybeNull]
+		public T GetAttribute<T>([JetBrains.Annotations.NotNull] MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes<T>(memberInfo, inherit);
@@ -701,8 +702,8 @@ namespace CodeJam.Mapping
 		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
-		[NotNull, ItemNotNull]
-		public T[] GetAttributes<T>([NotNull] Type type, [NotNull] Func<T,string> configGetter, bool inherit = true)
+		[JetBrains.Annotations.NotNull, ItemNotNull]
+		public T[] GetAttributes<T>([JetBrains.Annotations.NotNull] Type type, [JetBrains.Annotations.NotNull] Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
 			var list  = new List<T>();
@@ -724,8 +725,8 @@ namespace CodeJam.Mapping
 		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
-		[NotNull, ItemNotNull]
-		public T[] GetAttributes<T>([NotNull] MemberInfo memberInfo, [NotNull] Func<T,string> configGetter, bool inherit = true)
+		[JetBrains.Annotations.NotNull, ItemNotNull]
+		public T[] GetAttributes<T>([JetBrains.Annotations.NotNull] MemberInfo memberInfo, [JetBrains.Annotations.NotNull] Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
 			var list  = new List<T>();
@@ -747,8 +748,8 @@ namespace CodeJam.Mapping
 		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
-		[CanBeNull]
-		public T GetAttribute<T>([NotNull] Type type, [NotNull] Func<T,string> configGetter, bool inherit = true)
+		[return: MaybeNull]
+		public T GetAttribute<T>([JetBrains.Annotations.NotNull] Type type, [JetBrains.Annotations.NotNull] Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes(type, configGetter, inherit);
@@ -763,8 +764,8 @@ namespace CodeJam.Mapping
 		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
-		[CanBeNull]
-		public T GetAttribute<T>([NotNull] MemberInfo memberInfo, [NotNull] Func<T,string> configGetter, bool inherit = true)
+		[return: MaybeNull]
+		public T GetAttribute<T>([JetBrains.Annotations.NotNull] MemberInfo memberInfo, [JetBrains.Annotations.NotNull] Func<T,string> configGetter, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes(memberInfo, configGetter, inherit);
@@ -775,20 +776,20 @@ namespace CodeJam.Mapping
 
 		#region Configuration
 
-		private string _configurationID;
+		private string? _configurationID;
 
 		/// <summary>
 		/// Gets configuration ID.
 		/// </summary>
-		[NotNull]
-		public  string  ConfigurationID => _configurationID ?? (_configurationID = string.Join(".", ConfigurationList));
+		[JetBrains.Annotations.NotNull]
+		public  string  ConfigurationID => _configurationID ??= string.Join(".", ConfigurationList);
 
 		private string[] _configurationList;
 
 		/// <summary>
 		/// Configuration list.
 		/// </summary>
-		[NotNull, ItemNotNull]
+		[JetBrains.Annotations.NotNull, ItemNotNull]
 		public string[] ConfigurationList
 		{
 			get
@@ -818,7 +819,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Default mapping schema.
 		/// </summary>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public static MappingSchema Default = new DefaultMappingSchema();
 
 		private class DefaultMappingSchema : MappingSchema
@@ -844,7 +845,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True if provided type is a scalar type.</returns>
-		public bool IsScalarType([NotNull] Type type)
+		public bool IsScalarType([JetBrains.Annotations.NotNull] Type type)
 		{
 			foreach (var info in Schemas)
 			{
@@ -878,7 +879,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="type">Type to set.</param>
 		/// <param name="isScalarType">Scalar type indicator.</param>
-		public void SetScalarType([NotNull] Type type, bool isScalarType = true)
+		public void SetScalarType([JetBrains.Annotations.NotNull] Type type, bool isScalarType = true)
 			=> Schemas[0].SetScalarType(type, isScalarType);
 
 		/// <summary>
@@ -886,7 +887,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="type">Type to add</param>
 		/// <param name="defaultValue">Default value.</param>
-		public void AddScalarType([NotNull] Type type, object defaultValue)
+		public void AddScalarType([JetBrains.Annotations.NotNull] Type type, object defaultValue)
 		{
 			SetScalarType  (type);
 			SetDefaultValue(type, defaultValue);
@@ -905,7 +906,7 @@ namespace CodeJam.Mapping
 		/// <exception cref="ArgumentNullException"><paramref name="type" /> is null.</exception>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
 		[ItemNotNull]
-		public virtual MapValue[] GetMapValues([NotNull] Type type)
+		public virtual MapValue[] GetMapValues([JetBrains.Annotations.NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));
 

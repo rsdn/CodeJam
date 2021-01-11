@@ -20,17 +20,17 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Product name string.
 		/// </summary>
-		public string ProductNameString { get; set; }
+		public string? ProductNameString { get; set; }
 
 		/// <summary>
 		/// Copyright string.
 		/// </summary>
-		public string CopyrightString { get; set; }
+		public string? CopyrightString { get; set; }
 
 		/// <summary>
 		/// Name of the exe file of program.
 		/// </summary>
-		public string ProgramFileName { get; set; }
+		public string? ProgramFileName { get; set; }
 
 		/// <summary>
 		/// Print real command names in head line. Otherwise only abstract 'command' is printed.

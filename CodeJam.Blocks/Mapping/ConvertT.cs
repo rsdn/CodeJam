@@ -9,7 +9,7 @@ namespace CodeJam.Mapping
 	using Expressions;
 
 	/// <summary>
-	/// Provides data convertion functionality.
+	/// Provides data conversion functionality.
 	/// </summary>
 	/// <typeparam name="TFrom">Type to convert from.</typeparam>
 	/// <typeparam name="TTo">Type to convert to.</typeparam>

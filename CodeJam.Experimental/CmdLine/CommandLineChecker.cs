@@ -33,7 +33,7 @@ namespace CodeJam.CmdLine
 								? new[] { new {Cmd = "", Opt = opt.Name} }
 								: opt.DependOnCommands.Select(cn => new {Cmd = cn, Opt = opt.Name})))
 			{
-				HashSet<string> opts;
+				HashSet<string>? opts;
 				if (!cmdOpts.TryGetValue(cmdOpt.Cmd, out opts))
 				{
 					opts = new HashSet<string>();

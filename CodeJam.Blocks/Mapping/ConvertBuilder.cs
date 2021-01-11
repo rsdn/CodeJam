@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -20,10 +21,10 @@ namespace CodeJam.Mapping
 
 	internal static class ConvertBuilder
 	{
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private static readonly MethodInfo _defaultConverter = InfoOf.Method(() => ConvertDefault(null, typeof(int)));
 
-		private static object ConvertDefault(object value, [NotNull] Type conversionType)
+		private static object ConvertDefault(object value, [JetBrains.Annotations.NotNull] Type conversionType)
 		{
 			try
 			{
@@ -35,8 +36,8 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		[CanBeNull]
-		private static Expression GetCtor([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		[return: MaybeNull]
+		private static Expression? GetCtor([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, [JetBrains.Annotations.NotNull] Expression p)
 		{
 			var ctor = to.GetConstructor(new[] { from });
 
@@ -51,8 +52,8 @@ namespace CodeJam.Mapping
 			return Expression.New(ctor, p);
 		}
 
-		[CanBeNull]
-		private static Expression GetValue([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		[return: MaybeNull]
+		private static Expression? GetValue([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, [JetBrains.Annotations.NotNull] Expression p)
 		{
 			var pi = from.GetProperty("Value");
 
@@ -72,7 +73,7 @@ namespace CodeJam.Mapping
 		private const BindingFlags _methodLookup =
 			BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
 
-		private static Expression GetOperator([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		private static Expression? GetOperator([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, [JetBrains.Annotations.NotNull] Expression p)
 		{
 			var op =
 				to.GetMethod("op_Implicit", _methodLookup, null, new[] { from }, null) ??
@@ -81,7 +82,7 @@ namespace CodeJam.Mapping
 			return op != null ? Expression.Convert(p, to, op) : null;
 		}
 
-		private static bool IsConvertible([NotNull] Type type)
+		private static bool IsConvertible([JetBrains.Annotations.NotNull] Type type)
 		{
 			if (type.GetIsEnum())
 				return false;
@@ -125,8 +126,8 @@ namespace CodeJam.Mapping
 #endif
 		}
 
-		[CanBeNull]
-		private static Expression GetConvertion([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		[return: MaybeNull]
+		private static Expression? GetConversion([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, [JetBrains.Annotations.NotNull] Expression p)
 		{
 			if (IsConvertible(from) && IsConvertible(to) && to != typeof(bool) ||
 				from.IsAssignableFrom(to) && to.IsAssignableFrom(from))
@@ -135,8 +136,8 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[CanBeNull]
-		private static Expression GetParse([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		[return: MaybeNull]
+		private static Expression? GetParse([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, [JetBrains.Annotations.NotNull] Expression p)
 		{
 			if (from == typeof(string))
 			{
@@ -161,8 +162,8 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[CanBeNull]
-		private static Expression GetToString([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		[return: MaybeNull]
+		private static Expression? GetToString([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, [JetBrains.Annotations.NotNull] Expression p)
 		{
 			if (to == typeof(string) && !from.IsNullable())
 			{
@@ -179,8 +180,8 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[CanBeNull]
-		private static Expression GetParseEnum([NotNull] Type from, [NotNull] Type to, [NotNull] Expression p)
+		[return: MaybeNull]
+		private static Expression? GetParseEnum([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, [JetBrains.Annotations.NotNull] Expression p)
 		{
 			if (from == typeof(string) && to.GetIsEnum())
 			{
@@ -239,15 +240,15 @@ namespace CodeJam.Mapping
 		[ContractAnnotation("=> halt")]
 		private static object ThrowLinqToDBException(string text) => throw new CodeJamConvertException(text);
 
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		private static readonly MethodInfo _throwLinqToDBConvertException = InfoOf.Method(() => ThrowLinqToDBException(null));
 
-		[CanBeNull]
-		private static Expression GetToEnum(
-			[NotNull] Type from,
-			[NotNull] Type to,
-			[NotNull] Expression expression,
-			[NotNull] MappingSchema mappingSchema)
+		[return: MaybeNull]
+		private static Expression? GetToEnum(
+			[JetBrains.Annotations.NotNull] Type from,
+			[JetBrains.Annotations.NotNull] Type to,
+			[JetBrains.Annotations.NotNull] Expression expression,
+			[JetBrains.Annotations.NotNull] MappingSchema mappingSchema)
 		{
 			if (to.GetIsEnum())
 			{
@@ -333,12 +334,12 @@ namespace CodeJam.Mapping
 			public MapValueAttribute[] Attrs;
 		}
 
-		[CanBeNull]
-		private static Expression GetFromEnum(
-			[NotNull] Type from,
-			[NotNull] Type to,
-			[NotNull] Expression expression,
-			[NotNull] MappingSchema mappingSchema)
+		[return: MaybeNull]
+		private static Expression? GetFromEnum(
+			[JetBrains.Annotations.NotNull] Type from,
+			[JetBrains.Annotations.NotNull] Type to,
+			[JetBrains.Annotations.NotNull] Expression expression,
+			[JetBrains.Annotations.NotNull] MappingSchema mappingSchema)
 		{
 			if (from.GetIsEnum())
 			{
@@ -485,10 +486,10 @@ namespace CodeJam.Mapping
 		}
 
 		private static ValueTuple<Expression, bool>? GetConverter(
-			[CanBeNull] MappingSchema mappingSchema,
-			[NotNull] Expression expr,
-			[NotNull] Type from,
-			[NotNull] Type to)
+			[AllowNull] MappingSchema mappingSchema,
+			[JetBrains.Annotations.NotNull] Expression expr,
+			[JetBrains.Annotations.NotNull] Type from,
+			[JetBrains.Annotations.NotNull] Type to)
 		{
 			if (from == to)
 				return ValueTuple.Create(expr, false);
@@ -511,7 +512,7 @@ namespace CodeJam.Mapping
 				return ValueTuple.Create(ex, true);
 
 			ex =
-				GetConvertion(from, to, expr) ??
+				GetConversion(from, to, expr) ??
 				GetCtor(from, to, expr) ??
 				GetValue(from, to, expr) ??
 				GetOperator(from, to, expr) ??
@@ -522,14 +523,14 @@ namespace CodeJam.Mapping
 			return ex != null ? ValueTuple.Create(ex, false) : (ValueTuple<Expression, bool>?)null;
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private static ValueTuple<Expression, bool>? ConvertUnderlying(
-			[CanBeNull] MappingSchema mappingSchema,
-			[NotNull] Expression expr,
-			[NotNull] Type from,
-			[NotNull] Type ufrom,
-			[NotNull] Type to,
-			[NotNull] Type uto)
+			[AllowNull] MappingSchema mappingSchema,
+			[JetBrains.Annotations.NotNull] Expression expr,
+			[JetBrains.Annotations.NotNull] Type from,
+			[JetBrains.Annotations.NotNull] Type ufrom,
+			[JetBrains.Annotations.NotNull] Type to,
+			[JetBrains.Annotations.NotNull] Type uto)
 		{
 			ValueTuple<Expression, bool>? ex = null;
 
@@ -561,9 +562,9 @@ namespace CodeJam.Mapping
 
 		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 		public static ValueTuple<LambdaExpression, LambdaExpression, bool> GetConverter(
-			[CanBeNull] MappingSchema mappingSchema,
-			[NotNull] Type from,
-			[NotNull] Type to)
+			[AllowNull] MappingSchema mappingSchema,
+			[JetBrains.Annotations.NotNull] Type from,
+			[JetBrains.Annotations.NotNull] Type to)
 		{
 			if (mappingSchema == null)
 				mappingSchema = MappingSchema.Default;
@@ -632,8 +633,8 @@ namespace CodeJam.Mapping
 
 		#region Default Enum Mapping Type
 
-		[CanBeNull]
-		public static Type GetDefaultMappingFromEnumType([NotNull] MappingSchema mappingSchema, [NotNull] Type enumType)
+		[return: MaybeNull]
+		public static Type? GetDefaultMappingFromEnumType([JetBrains.Annotations.NotNull] MappingSchema mappingSchema, [JetBrains.Annotations.NotNull] Type enumType)
 		{
 			var type = enumType.ToNullableUnderlying();
 
@@ -654,7 +655,7 @@ namespace CodeJam.Mapping
 				).ToList()
 			).ToList();
 
-			Type defaultType = null;
+			Type? defaultType = null;
 
 			if (fields.All(attrs => attrs.Count != 0))
 			{

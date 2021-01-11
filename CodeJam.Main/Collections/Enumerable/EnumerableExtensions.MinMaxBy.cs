@@ -46,7 +46,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static TSource? MinByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource?, TValue> selector,
 			TSource defaultValue = default) =>
 				MinByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
@@ -224,7 +224,7 @@ namespace CodeJam.Collections
 		[Pure]
 		public static TSource? MaxByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
+			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource?, TValue> selector,
 			TSource defaultValue = default) =>
 				MaxByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 

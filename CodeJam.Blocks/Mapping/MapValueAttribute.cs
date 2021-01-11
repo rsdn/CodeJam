@@ -1,5 +1,6 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -29,7 +30,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="configuration">Active configuration.</param>
 		/// <param name="value">Mapping value.</param>
-		public MapValueAttribute([CanBeNull] string configuration, [CanBeNull] object value)
+		public MapValueAttribute([AllowNull] string configuration, [AllowNull] object value)
 		{
 			Configuration = configuration;
 			Value         = value;
@@ -39,8 +40,8 @@ namespace CodeJam.Mapping
 		/// Creates an instance of <see cref="MapValueAttribute"/> attribute.
 		/// </summary>
 		/// <param name="value">Mapping value.</param>
-		/// <param name="isDefault"><i>true</i> if default.</param>
-		public MapValueAttribute([CanBeNull] object value, bool isDefault)
+		/// <param name="isDefault"><i>true</i> if dmefault.</param>
+		public MapValueAttribute([AllowNull] object value, bool isDefault)
 		{
 			Value     = value;
 			IsDefault = isDefault;
@@ -52,7 +53,7 @@ namespace CodeJam.Mapping
 		/// <param name="configuration">Active configuration.</param>
 		/// <param name="value">Mapping value.</param>
 		/// <param name="isDefault"><i>true</i> if default.</param>
-		public MapValueAttribute([CanBeNull] string configuration, [CanBeNull] object value, bool isDefault)
+		public MapValueAttribute([AllowNull] string? configuration, [AllowNull] object? value, bool isDefault)
 		{
 			Configuration = configuration;
 			Value         = value;
@@ -62,14 +63,12 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Active configuration.
 		/// </summary>
-		[CanBeNull]
-		public string Configuration { get; set; }
+		public string? Configuration { get; set; }
 
 		/// <summary>
 		/// Mapping value.
 		/// </summary>
-		[CanBeNull]
-		public object Value { get; set; }
+		public object? Value { get; set; }
 
 		/// <summary>
 		/// <i>true</i> if default.

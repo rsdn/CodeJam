@@ -15,7 +15,7 @@ namespace CodeJam.ConnectionStrings
 	[SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
 	public class ConnectionStringTests
 	{
-		private static readonly DateTimeOffset _defaultDateTimeOffset = new DateTimeOffset(
+		private static readonly DateTimeOffset _defaultDateTimeOffset = new(
 			new DateTime(2010, 11, 12),
 			TimeSpan.Zero);
 

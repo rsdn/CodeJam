@@ -6,7 +6,7 @@ namespace CodeJam.CmdLine
 	public class PrintUsageTest
 	{
 		private static PrintUsageSettings GetSettings() =>
-			new PrintUsageSettings
+			new()
 			{
 				ProductNameString = "Test program.",
 				CopyrightString = "Copyright (C) 2010 by CodeJam Team. All rights reserved.",

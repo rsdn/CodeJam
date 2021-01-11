@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-
-using JetBrains.Annotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CodeJam.CmdLine
 {
@@ -25,15 +24,15 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		private const char _quota = '"';
 
-		[NotNull]
-		private static ParseResult<T> CreateResult<T>([NotNull] T result, [NotNull] ICharInput inputRest) =>
-			new ParseResult<T>(result, inputRest);
+		[JetBrains.Annotations.NotNull]
+		private static ParseResult<T> CreateResult<T>([JetBrains.Annotations.NotNull] T result, [JetBrains.Annotations.NotNull] ICharInput inputRest) =>
+			new(result, inputRest);
 
 		/// <summary>
 		/// Parse command line.
 		/// </summary>
-		[NotNull]
-		public static CmdLineNode ParseCommandLine([NotNull] string source)
+		[JetBrains.Annotations.NotNull]
+		public static CmdLineNode ParseCommandLine([JetBrains.Annotations.NotNull] string source)
 		{
 			Code.NotNull(source, nameof(source));
 
@@ -47,9 +46,9 @@ namespace CodeJam.CmdLine
 			var opts = new List<OptionNode>();
 			foreach (var cmdOrOpt in cmdOrOpts.Result)
 				if (cmdOrOpt.Command != null)
-					cmds.Add(cmdOrOpt.Command);
+					cmds.Add(cmdOrOpt.Command!);
 				else
-					opts.Add(cmdOrOpt.Option);
+					opts.Add(cmdOrOpt.Option!);
 			rest = cmdOrOpts.InputRest;
 
 			rest = rest.ConsumeSpaces();
@@ -67,8 +66,8 @@ namespace CodeJam.CmdLine
 					opts.ToArray());
 		}
 
-		[NotNull]
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedValue([NotNull] ICharInput input)
+		[JetBrains.Annotations.NotNull]
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedValue([JetBrains.Annotations.NotNull] ICharInput input)
 		{
 			var startPos = input.Position;
 			input = input.ConsumeChar(_quota);
@@ -80,8 +79,8 @@ namespace CodeJam.CmdLine
 					input);
 		}
 
-		[NotNull]
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseNonquotedValue([NotNull] ICharInput input)
+		[JetBrains.Annotations.NotNull]
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseNonquotedValue([JetBrains.Annotations.NotNull] ICharInput input)
 		{
 			var res = input.ConsumeWhileNonSpace();
 			return
@@ -90,15 +89,14 @@ namespace CodeJam.CmdLine
 					res.InputRest);
 		}
 
-		[NotNull]
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedOrNonquotedValue([NotNull] ICharInput input) =>
+		[JetBrains.Annotations.NotNull]
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedOrNonquotedValue([JetBrains.Annotations.NotNull] ICharInput input) =>
 			input.Current == _quota ? ParseQuotedValue(input) : ParseNonquotedValue(input);
 
 		#region Commands and options
 		private static bool IsOptionPrefix(char prefixChar) => prefixChar == '/' || prefixChar == '-';
 
-		[CanBeNull]
-		private static ParseResult<CommandOrOption> ParseCommandOrOption([NotNull] ICharInput input)
+		private static ParseResult<CommandOrOption>? ParseCommandOrOption([JetBrains.Annotations.NotNull] ICharInput input)
 		{
 			input = input.ConsumeSpaces();
 			if (IsOptionPrefix(input.Current))
@@ -112,9 +110,7 @@ namespace CodeJam.CmdLine
 					? null
 					: new ParseResult<CommandOrOption>(new CommandOrOption(command.Result), command.InputRest);
 		}
-
-		[CanBeNull]
-		private static ParseResult<CommandNode> ParseCommand([NotNull] ICharInput input)
+		private static ParseResult<CommandNode>? ParseCommand([JetBrains.Annotations.NotNull] ICharInput input)
 		{
 			var res = input.ConsumeWhileNonSpace();
 			if (input.IsEof())
@@ -125,8 +121,8 @@ namespace CodeJam.CmdLine
 					res.InputRest);
 		}
 
-		[NotNull]
-		private static ParseResult<OptionNode> ParseOption([NotNull] ICharInput input)
+		[JetBrains.Annotations.NotNull]
+		private static ParseResult<OptionNode> ParseOption([JetBrains.Annotations.NotNull] ICharInput input)
 		{
 			var startPos = input.Position;
 
@@ -186,9 +182,9 @@ namespace CodeJam.CmdLine
 				Option = option;
 			}
 
-			public OptionNode Option { get; }
+			[DisallowNull] public OptionNode? Option { get; }
 
-			public CommandNode Command { get; }
+			[DisallowNull] public CommandNode? Command { get; }
 		}
 		#endregion
 	}

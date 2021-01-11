@@ -75,7 +75,7 @@ namespace CodeJam.Mapping
 		[Pure]
 		[NotNull]
 		public Mapper<TFrom, TTo> GetMapper()
-			=> new Mapper<TFrom, TTo>(this);
+			=> new(this);
 
 		/// <summary>
 		/// Sets mapping schema.
@@ -422,7 +422,7 @@ namespace CodeJam.Mapping
 		/// <returns><see cref="ExpressionBuilder"/>.</returns>
 		[NotNull]
 		internal ExpressionBuilder GetExpressionMapper()
-			=> new ExpressionBuilder(this, MemberMappers?.Select(mm => ValueTuple.Create(mm.From.GetMembersInfo(), mm.To)).ToArray());
+			=> new(this, MemberMappers?.Select(mm => ValueTuple.Create(mm.From.GetMembersInfo(), mm.To)).ToArray());
 	}
 }
 #endif

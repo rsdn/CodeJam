@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 using JetBrains.Annotations;
@@ -19,20 +20,20 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public class Mapper<TFrom, TTo>
 	{
-		[NotNull] private MapperBuilder<TFrom, TTo> _mapperBuilder;
-		[CanBeNull] private Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> _mapperExpression;
+		[JetBrains.Annotations.NotNull] private MapperBuilder<TFrom, TTo> _mapperBuilder;
+		private Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>>? _mapperExpression;
 		private Expression<Func<TFrom, TTo>> _mapperExpressionEx;
-		private Func<TFrom, TTo, IDictionary<object, object>, TTo> _mapper;
-		private Func<TFrom, TTo> _mapperEx;
+		private Func<TFrom, TTo, IDictionary<object, object>, TTo>? _mapper;
+		private Func<TFrom, TTo>? _mapperEx;
 
-		internal Mapper([NotNull] MapperBuilder<TFrom, TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
+		internal Mapper([JetBrains.Annotations.NotNull] MapperBuilder<TFrom, TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// Returned expression is compatible to IQueryable.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure, NotNull]
+		[Pure, JetBrains.Annotations.NotNull]
 		public Expression<Func<TFrom, TTo>> GetMapperExpressionEx()
 			=> _mapperExpressionEx ??= _mapperBuilder.GetMapperExpressionEx();
 
@@ -40,7 +41,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure, NotNull]
+		[Pure, JetBrains.Annotations.NotNull]
 		public Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> GetMapperExpression()
 			=> _mapperExpression ??= _mapperBuilder.GetMapperExpression();
 
@@ -48,7 +49,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure, NotNull]
+		[Pure, JetBrains.Annotations.NotNull]
 		public Func<TFrom, TTo> GetMapperEx()
 			=> _mapperEx ??= GetMapperExpressionEx().Compile();
 
@@ -56,7 +57,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure, NotNull]
+		[Pure, JetBrains.Annotations.NotNull]
 		public Func<TFrom, TTo, IDictionary<object, object>, TTo> GetMapper()
 			=> _mapper ??= GetMapperExpression().Compile();
 
