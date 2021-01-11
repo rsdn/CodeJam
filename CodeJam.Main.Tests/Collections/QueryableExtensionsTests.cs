@@ -1,8 +1,4 @@
-﻿#if LESSTHAN_NET35
-extern alias nunitlinq;
-#endif
-
-#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
+﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
 using System.Linq;
 

@@ -106,7 +106,6 @@ namespace CodeJam.IO
 		[TestCase(@"a\:a", PathKind.ValidRelativePath)]
 		[TestCase(@"a\|a", PathKind.ValidRelativePath)]
 #else
-#if !LESSTHAN_NETCOREAPP20
 		[TestCase(@":", PathKind.Invalid)]
 		[TestCase(@":a", PathKind.Invalid)]
 		[TestCase(@"\\a", PathKind.Invalid)]
@@ -119,7 +118,6 @@ namespace CodeJam.IO
 		[TestCase(@"|a", PathKind.Invalid)]
 		[TestCase(@"a|", PathKind.Invalid)]
 		[TestCase(@"a|a", PathKind.Invalid)]
-#endif
 #endif
 		[TestCase(@"a:\\a", PathKind.Invalid)]
 		[TestCase(@"a:\/a", PathKind.Invalid)]

@@ -1,8 +1,4 @@
-﻿#if LESSTHAN_NET35
-extern alias nunitlinq;
-#endif
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
