@@ -23,14 +23,14 @@ namespace CodeJam.Mapping
 		/// Creates an instance of <see cref="MapValueAttribute"/> attribute.
 		/// </summary>
 		/// <param name="value">Mapping value.</param>
-		public MapValueAttribute(object value) => Value = value;
+		public MapValueAttribute(object? value) => Value = value;
 
 		/// <summary>
 		/// Creates an instance of <see cref="MapValueAttribute"/> attribute.
 		/// </summary>
 		/// <param name="configuration">Active configuration.</param>
 		/// <param name="value">Mapping value.</param>
-		public MapValueAttribute([AllowNull] string configuration, [AllowNull] object value)
+		public MapValueAttribute([AllowNull] string? configuration, [AllowNull] object? value)
 		{
 			Configuration = configuration;
 			Value         = value;

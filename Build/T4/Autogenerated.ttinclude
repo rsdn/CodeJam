@@ -46,7 +46,7 @@
 			public string LevelKey { get; private set; }
 		}
 
-		private readonly Stack<RegionData> _regions = new Stack<RegionData>();
+		private readonly Stack<RegionData> _regions = new();
 
 		private RegionData FindRegion(string regionLevelKey) =>
 			_regions.FirstOrDefault(r => r.LevelKey == regionLevelKey);
@@ -120,7 +120,7 @@
 		}
 	}
 
-	private readonly RegionState _regions = new RegionState();
+	private readonly RegionState _regions = new();
 
 	private void WriteRegionLine(string regionName, string regionLevelKey = "") =>
 		_regions.WriteRegionLine(WriteLine, regionName, regionLevelKey);

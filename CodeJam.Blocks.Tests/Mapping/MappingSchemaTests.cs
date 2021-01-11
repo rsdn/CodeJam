@@ -275,11 +275,11 @@ namespace CodeJam.Mapping
 				InfoOf.Field<AttrTest>(a => a.Field1),
 				a => a.Configuration);
 
-			Assert.That(attrs.Length,   Is.EqualTo(4));
-			Assert.That(attrs[0].Value, Is.EqualTo(2));
-			Assert.That(attrs[1].Value, Is.EqualTo(30));
-			Assert.That(attrs[2].Value, Is.EqualTo(3));
-			Assert.That(attrs[3].Value, Is.EqualTo(1));
+			Assert.That(attrs!.Length,   Is.EqualTo(4));
+			Assert.That(attrs![0].Value, Is.EqualTo(2));
+			Assert.That(attrs![1].Value, Is.EqualTo(30));
+			Assert.That(attrs![2].Value, Is.EqualTo(3));
+			Assert.That(attrs![3].Value, Is.EqualTo(1));
 		}
 
 		[Test]

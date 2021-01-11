@@ -99,7 +99,7 @@ namespace CodeJam.Mapping
 		/// <param name="conversionType">The type of object to return.</param>
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
-		public static object ChangeType([AllowNull] object value, [JetBrains.Annotations.NotNull] Type conversionType, MappingSchema mappingSchema = null)
+		public static object ChangeType([AllowNull] object? value, [JetBrains.Annotations.NotNull] Type conversionType, MappingSchema? mappingSchema = null)
 		{
 			Code.NotNull(conversionType, nameof(conversionType));
 

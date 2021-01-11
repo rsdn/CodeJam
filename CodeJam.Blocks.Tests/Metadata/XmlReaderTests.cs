@@ -55,6 +55,8 @@ namespace CodeJam.Metadata
 
 		class TableAttribute : Attribute
 		{
+			public TableAttribute(string name) => Name = name;
+
 			public string Name;
 		}
 
@@ -62,6 +64,7 @@ namespace CodeJam.Metadata
 
 		public class ColumnAttribute : Attribute
 		{
+			public ColumnAttribute(string name) => Name = name;
 			public string Name;
 		}
 
