@@ -6,5 +6,46 @@ end_of_line = crlf
 indent_style = tab
 trim_trailing_whitespace = true
 
+# Nullability as error
+dotnet_diagnostic.cs8600.severity=error
+dotnet_diagnostic.cs8602.severity=error
+dotnet_diagnostic.cs8603.severity=error
+dotnet_diagnostic.cs8604.severity=error
+dotnet_diagnostic.cs8605.severity=error
+dotnet_diagnostic.cs8606.severity=error
+dotnet_diagnostic.cs8607.severity=error
+dotnet_diagnostic.cs8608.severity=error
+dotnet_diagnostic.cs8609.severity=error
+dotnet_diagnostic.cs8610.severity=error
+dotnet_diagnostic.cs8611.severity=error
+dotnet_diagnostic.cs8612.severity=error
+dotnet_diagnostic.cs8613.severity=error
+dotnet_diagnostic.cs8614.severity=error
+dotnet_diagnostic.cs8615.severity=error
+dotnet_diagnostic.cs8616.severity=error
+dotnet_diagnostic.cs8617.severity=error
+dotnet_diagnostic.cs8618.severity=error
+dotnet_diagnostic.cs8619.severity=error
+dotnet_diagnostic.cs8620.severity=error
+dotnet_diagnostic.cs8621.severity=error
+dotnet_diagnostic.cs8622.severity=error
+dotnet_diagnostic.cs8624.severity=error
+dotnet_diagnostic.cs8625.severity=error
+dotnet_diagnostic.cs8626.severity=error
+dotnet_diagnostic.cs8629.severity=error
+dotnet_diagnostic.cs8631.severity=error
+dotnet_diagnostic.cs8632.severity=error
+dotnet_diagnostic.cs8633.severity=error
+dotnet_diagnostic.cs8634.severity=error
+dotnet_diagnostic.cs8638.severity=error
+dotnet_diagnostic.cs8643.severity=error
+dotnet_diagnostic.cs8644.severity=error
+dotnet_diagnostic.cs8645.severity=error
+dotnet_diagnostic.cs8653.severity=error
+dotnet_diagnostic.cs8654.severity=error
+dotnet_diagnostic.cs8655.severity=error
+dotnet_diagnostic.cs8667.severity=error
+dotnet_diagnostic.cs8714.severity=error
+
 [*.ttinclude]
 insert_final_newline = false
