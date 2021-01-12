@@ -32,13 +32,13 @@ namespace CodeJam.Mapping
 
 			public readonly ValueTuple<MemberInfo[],LambdaExpression>[]           MemberMappers;
 			[NotNull]
-			public readonly Dictionary<ValueTuple<Type,Type>,ParameterExpression> Mappers     = new Dictionary<ValueTuple<Type,Type>, ParameterExpression>();
+			public readonly Dictionary<ValueTuple<Type,Type>,ParameterExpression> Mappers     = new();
 			[NotNull]
-			public readonly HashSet<ValueTuple<Type,Type>>                        MapperTypes = new HashSet<ValueTuple<Type,Type>>();
+			public readonly HashSet<ValueTuple<Type,Type>>                        MapperTypes = new();
 			[NotNull, ItemNotNull]
-			public readonly List<ParameterExpression>                             Locals      = new List<ParameterExpression>();
+			public readonly List<ParameterExpression>                             Locals      = new();
 			[NotNull, ItemNotNull]
-			public readonly List<Expression>                                      Expressions = new List<Expression>();
+			public readonly List<Expression>                                      Expressions = new();
 
 			public ParameterExpression LocalDic;
 
@@ -388,8 +388,8 @@ namespace CodeJam.Mapping
 			[NotNull] private readonly ParameterExpression       _localObject;
 			[NotNull] private readonly TypeAccessor              _fromAccessor;
 			[NotNull] private readonly TypeAccessor              _toAccessor;
-			[NotNull, ItemNotNull] private readonly List<Expression>          _expressions = new List<Expression>();
-			[NotNull, ItemNotNull] private readonly List<ParameterExpression> _locals      = new List<ParameterExpression>();
+			[NotNull, ItemNotNull] private readonly List<Expression>          _expressions = new();
+			[NotNull, ItemNotNull] private readonly List<ParameterExpression> _locals      = new();
 			private readonly bool                      _cacheMapper;
 
 			//private Type _actualLocalObjectType;

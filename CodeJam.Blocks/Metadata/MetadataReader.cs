@@ -10,7 +10,7 @@ namespace CodeJam.Metadata
 	internal class MetadataReader : IMetadataReader
 	{
 		public static readonly MetadataReader Default =
-			new MetadataReader(new AttributeReader());
+			new(new AttributeReader());
 
 		public MetadataReader([NotNull, ItemNotNull] params IMetadataReader[] readers) =>
 			_readers = readers ?? throw new ArgumentNullException(nameof(readers));

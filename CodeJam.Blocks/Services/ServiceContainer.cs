@@ -19,7 +19,7 @@ namespace CodeJam.Services
 
 		[NotNull]
 		private readonly ConcurrentDictionary<Type, IServiceBag> _services =
-			new ConcurrentDictionary<Type, IServiceBag>();
+			new();
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:System.Object" /> class.

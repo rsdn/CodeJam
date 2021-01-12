@@ -43,15 +43,15 @@ namespace CodeJam
 			// Histogram of a value over a discrete range
 			var histogram = new List<KeyValuePair<int, int>>
 			{
-				new KeyValuePair<int, int>(7, 24),
-				new KeyValuePair<int, int>(1, 10),
-				new KeyValuePair<int, int>(6, 34),
-				new KeyValuePair<int, int>(4, 25),
-				new KeyValuePair<int, int>(5, 18),
-				new KeyValuePair<int, int>(3, 8),
-				new KeyValuePair<int, int>(8, 7),
-				new KeyValuePair<int, int>(2, 12),
-				new KeyValuePair<int, int>(9, 4)
+				new(7, 24),
+				new(1, 10),
+				new(6, 34),
+				new(4, 25),
+				new(5, 18),
+				new(3, 8),
+				new(8, 7),
+				new(2, 12),
+				new(9, 4)
 			};
 
 			// Calculate the sum of all values in the range [5, 8]

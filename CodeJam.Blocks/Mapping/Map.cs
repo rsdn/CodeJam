@@ -23,7 +23,7 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure]
 		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>()
-			=> new Mapper<TFrom, TTo>(new MapperBuilder<TFrom, TTo>());
+			=> new(new MapperBuilder<TFrom, TTo>());
 
 		/// <summary>
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.

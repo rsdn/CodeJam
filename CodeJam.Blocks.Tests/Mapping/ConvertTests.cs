@@ -75,7 +75,7 @@ namespace CodeJam.Mapping
 
 			public static implicit operator TestData1(int i)
 			{
-				return new TestData1 { Value = i };
+				return new() { Value = i };
 			}
 		}
 
@@ -85,7 +85,7 @@ namespace CodeJam.Mapping
 
 			public static explicit operator TestData2(int i)
 			{
-				return new TestData2 { Value = i };
+				return new() { Value = i };
 			}
 		}
 

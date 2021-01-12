@@ -27,7 +27,7 @@ namespace CodeJam.CmdLine
 
 		[NotNull]
 		private static ParseResult<T> CreateResult<T>([NotNull] T result, [NotNull] ICharInput inputRest) =>
-			new ParseResult<T>(result, inputRest);
+			new(result, inputRest);
 
 		/// <summary>
 		/// Parse command line.

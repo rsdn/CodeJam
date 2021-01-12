@@ -12,10 +12,10 @@ namespace CodeJam.Collections
 	public class SuffixTreeTest : SuffixTreeNaiveTest
 	{
 		private static readonly char[] _alphabet = Enumerable.Range('A', 26).Select(_ => (char)_).ToArray();
-		private static readonly Random _rnd = new Random();
+		private static readonly Random _rnd = new();
 
 		private static string MakeRandomString([NonNegativeValue] int length) =>
-			new string(Enumerable.Range(0, length).Select(_ => _alphabet[_rnd.Next(0, _alphabet.Length)]).ToArray());
+			new(Enumerable.Range(0, length).Select(_ => _alphabet[_rnd.Next(0, _alphabet.Length)]).ToArray());
 
 		[Test]
 #if !DEFAULT_PLATFORM

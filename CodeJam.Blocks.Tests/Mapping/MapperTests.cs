@@ -332,8 +332,8 @@ namespace CodeJam.Mapping
 
 		private class Class1 { public int Field = 1; }
 		private class Class2 { public int Field = 2; }
-		private class Class3 { public Class1 Class = new Class1(); }
-		private class Class4 { public Class2 Class = new Class2(); }
+		private class Class3 { public Class1 Class = new(); }
+		private class Class4 { public Class2 Class = new(); }
 
 		[Test]
 		public void MapInnerObject1([Values(true,false)] bool useAction)
@@ -343,8 +343,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Class.Field, Is.EqualTo(map.From.Class.Field));
 		}
 
-		private class Class5 { public Class1 Class1 = new Class1(); public Class1 Class2; }
-		private class Class6 { public Class2 Class1 = new Class2(); public Class2 Class2 = null; }
+		private class Class5 { public Class1 Class1 = new(); public Class1 Class2; }
+		private class Class6 { public Class2 Class1 = new(); public Class2 Class2 = null; }
 
 		[Test]
 		public void MapInnerObject2([Values(true,false)] bool useAction)
@@ -376,8 +376,8 @@ namespace CodeJam.Mapping
 
 		private class Class7  { public Class9  Class; }
 		private class Class8  { public Class10 Class = null; }
-		private class Class9  { public Class7  Class = new Class7(); }
-		private class Class10 { public Class8  Class = new Class8(); }
+		private class Class9  { public Class7  Class = new(); }
+		private class Class10 { public Class8  Class = new(); }
 
 		[Test]
 		public void SelfReference1([Values(true,false)] bool useAction)
@@ -392,8 +392,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To, Is.SameAs(map.To.Class.Class));
 		}
 
-		private class Class11 { public Class9  Class = new Class9();  }
-		private class Class12 { public Class10 Class = new Class10(); }
+		private class Class11 { public Class9  Class = new();  }
+		private class Class12 { public Class10 Class = new(); }
 
 		[Test]
 		public void SelfReference2([Values(true,false)] bool useAction)
@@ -409,9 +409,9 @@ namespace CodeJam.Mapping
 		}
 
 		private class Cl1 {}
-		private class Cl2 { public Cl1 Class1 = new Cl1(); }
-		private class Cl3 { public Cl1 Class1 = new Cl1(); }
-		private class Cl4 { public Cl1 Class1 = new Cl1(); public Cl2 Class2 = new Cl2(); public Cl3 Class3 = new Cl3(); }
+		private class Cl2 { public Cl1 Class1 = new(); }
+		private class Cl3 { public Cl1 Class1 = new(); }
+		private class Cl4 { public Cl1 Class1 = new(); public Cl2 Class2 = new(); public Cl3 Class3 = new(); }
 		private class Cl21 { public Cl1 Class1; }
 		private class Cl31 { public Cl1 Class1; }
 		private class Cl41 { public Cl1 Class1; public Cl21 Class2; public Cl31 Class3; }
@@ -436,8 +436,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Class2, Is.Null);
 		}
 
-		private class Class13 { public Class1 Class = new Class1();  }
-		private class Class14 { public Class1 Class = new Class1();  }
+		private class Class13 { public Class1 Class = new();  }
+		private class Class14 { public Class1 Class = new();  }
 
 		[Test]
 		public void DeepCopy1([Values(true,false)] bool useAction)
@@ -460,7 +460,7 @@ namespace CodeJam.Mapping
 			Assert.That(map.To.Class, Is.SameAs(src.Class));
 		}
 
-		private class Class15 { public List<Class1> List = new List<Class1> { new Class1(), new Class1() }; }
+		private class Class15 { public List<Class1> List = new() { new Class1(), new Class1() }; }
 		private class Class16 { public List<Class2> List = null; }
 
 		[Test]
@@ -564,7 +564,7 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To.Arr[0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
-		private class Class20 { public Source Class1 = new Source(); public Source Class2; }
+		private class Class20 { public Source Class1 = new(); public Source Class2; }
 		private class Class21 { public Dest   Class1 = null;         public Dest   Class2 = null; }
 
 		[Test]
@@ -585,7 +585,7 @@ namespace CodeJam.Mapping
 
 		private class Object3
 		{
-			public HashSet<string> HashSet = new HashSet<string>(InvariantCultureStringComparer.IgnoreCase);
+			public HashSet<string> HashSet = new(InvariantCultureStringComparer.IgnoreCase);
 		}
 
 		[Test]
@@ -669,8 +669,8 @@ namespace CodeJam.Mapping
 				{
 					List = new List<RClass3>
 					{
-						new RClass3 { Class2 = new RClass2() },
-						new RClass3 { Class2 = new RClass2(), Class1 = new RClass1() },
+						new() { Class2 = new RClass2() },
+						new() { Class2 = new RClass2(), Class1 = new RClass1() },
 					}
 				}
 			};

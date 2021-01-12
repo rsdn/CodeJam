@@ -12,7 +12,7 @@ namespace CodeJam.Collections
 	{
 		/// <summary>All nodes</summary>
 		[NotNull, ItemNotNull]
-		protected readonly List<T> Nodes = new List<T>();
+		protected readonly List<T> Nodes = new();
 
 		/// <summary>Creates an empty base</summary>
 		protected DisjointSetsBase() { }

@@ -138,9 +138,9 @@ namespace CodeJam.UseCases.TempDataSamples
 	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 	public class TempData : IDisposable
 	{
-		[JBNotNull] public static TempData CreateFile() => new TempData();
-		[JBNotNull] public static TempData CreateFile(bool throwOnDisposeFailure) => new TempData();
-		[JBNotNull] public static TempData CreateFile([JBNotNull] Action<TempData, Exception> deleteFallback) => new TempData();
+		[JBNotNull] public static TempData CreateFile() => new();
+		[JBNotNull] public static TempData CreateFile(bool throwOnDisposeFailure) => new();
+		[JBNotNull] public static TempData CreateFile([JBNotNull] Action<TempData, Exception> deleteFallback) => new();
 
 		public string FileName => null;
 

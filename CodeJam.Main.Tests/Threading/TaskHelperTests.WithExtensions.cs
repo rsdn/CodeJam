@@ -39,11 +39,11 @@ namespace CodeJam.Threading
 
 		private class TimedOutSample
 		{
-			private readonly TaskCompletionSource<SampleResult> _callbackCompletion = new TaskCompletionSource<SampleResult>();
+			private readonly TaskCompletionSource<SampleResult> _callbackCompletion = new();
 
-			private readonly TaskCompletionSource<SampleResult> _cancellationCompletion = new TaskCompletionSource<SampleResult>();
+			private readonly TaskCompletionSource<SampleResult> _cancellationCompletion = new();
 
-			private readonly List<SampleEvent> _events = new List<SampleEvent>();
+			private readonly List<SampleEvent> _events = new();
 
 			public TimeSpan CallbackDelay { get; set; }
 

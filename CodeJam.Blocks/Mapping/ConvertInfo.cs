@@ -11,7 +11,7 @@ namespace CodeJam.Mapping
 	internal class ConvertInfo
 	{
 		[NotNull]
-		public static readonly ConvertInfo Default = new ConvertInfo();
+		public static readonly ConvertInfo Default = new();
 
 		public class LambdaInfo
 		{
@@ -35,7 +35,7 @@ namespace CodeJam.Mapping
 
 		[NotNull]
 		private readonly ConcurrentDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>> _expressions =
-			new ConcurrentDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>>();
+			new();
 
 		public void Set([NotNull] Type from, [NotNull] Type to, [NotNull] LambdaInfo expr) => Set(_expressions, from, to, expr);
 

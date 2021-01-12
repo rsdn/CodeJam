@@ -21,7 +21,7 @@ namespace CodeJam.Mapping
 	{
 		[NotNull]
 		private static readonly ConcurrentDictionary<object, LambdaExpression> _expressions =
-			new ConcurrentDictionary<object, LambdaExpression>();
+			new();
 
 		static Converter()
 		{
@@ -89,7 +89,7 @@ namespace CodeJam.Mapping
 
 		[NotNull]
 		private static readonly ConcurrentDictionary<object, Func<object, object>> _converters =
-			new ConcurrentDictionary<object, Func<object, object>>();
+			new();
 
 		/// <summary>
 		/// Returns an object of a specified type whose value is equivalent to a specified object.
@@ -149,7 +149,7 @@ namespace CodeJam.Mapping
 		{
 			[NotNull]
 			public static readonly ConcurrentDictionary<Type, Func<object, T>> Converters =
-				new ConcurrentDictionary<Type, Func<object, T>>();
+				new();
 		}
 
 		/// <summary>
