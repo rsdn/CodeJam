@@ -46,7 +46,7 @@ namespace CodeJam.Mapping
 		/// <param name="type"><see cref="Type"/> to get default value.</param>
 		/// <param name="mappingSchema">An instance of <see cref="MappingSchema"/>.</param>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static object? GetValue([NotNull] Type type, MappingSchema? mappingSchema = null)
 		{
 			Code.NotNull(type, nameof(type));
@@ -93,7 +93,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <typeparam name="T">Type to get default value.</typeparam>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T? GetValue<T>()
 		{
 			if (_defaultValues.TryGetValue(typeof(T), out var value))

@@ -20,7 +20,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 				[NotNull] this Func<TArg, TResult> func,
 				IEqualityComparer<TArg> comparer,
@@ -38,7 +38,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 			[NotNull] this Func<TArg, TResult> func,
 			IEqualityComparer<TArg>? comparer,
@@ -58,7 +58,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 				[NotNull] this Func<TArg, TResult> func,
 				bool threadSafe = false)
@@ -74,7 +74,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
 				[NotNull] this Func<TArg, TResult> func,
 				LazyThreadSafetyMode threadSafety)

@@ -20,7 +20,7 @@ namespace CodeJam.Services
 		/// A service object of type <paramref name="serviceType"/>.
 		/// </returns>
 		[JetBrains.Annotations.NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static object GetRequiredService(
 			[JetBrains.Annotations.NotNull] this IServiceProvider provider,
 			[JetBrains.Annotations.NotNull] Type serviceType)
@@ -41,7 +41,7 @@ namespace CodeJam.Services
 		/// <param name="provider">Instance of <see cref="IServiceProvider"/>.</param>
 		/// <returns>A service object of type serviceType.</returns>
 		[return: MaybeNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T GetService<T>([JetBrains.Annotations.NotNull] this IServiceProvider provider)
 		{
 			Code.NotNull(provider, nameof(provider));
@@ -57,7 +57,7 @@ namespace CodeJam.Services
 		/// A service object of type <typeparamref name="T"/>.
 		/// </returns>
 		[JetBrains.Annotations.NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T GetRequiredService<T>([JetBrains.Annotations.NotNull] this IServiceProvider provider) =>
 			(T)provider.GetRequiredService(typeof(T));
 

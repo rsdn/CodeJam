@@ -20,7 +20,7 @@ namespace CodeJam.TableData
 		/// <param name="text">Text to parse</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
 		[JetBrains.Annotations.NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<DataLine> Parse([JetBrains.Annotations.NotNull, InstantHandle] this Parser parser, [JetBrains.Annotations.NotNull] string text)
 		{
 			Code.NotNull(text, nameof(text));
@@ -35,7 +35,7 @@ namespace CodeJam.TableData
 		/// <param name="reader">Text to parse</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
 		[JetBrains.Annotations.NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<DataLine> Parse([JetBrains.Annotations.NotNull, InstantHandle] this Parser parser, [JetBrains.Annotations.NotNull] TextReader reader)
 		{
 			Code.NotNull(parser, nameof(parser));

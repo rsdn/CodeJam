@@ -25,7 +25,7 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<float> list, float value) =>
 			list.LowerBound(value, 0);
 
@@ -37,7 +37,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<float> list, float value, [NonNegativeValue] int startIndex) =>
 			list.LowerBound(value, startIndex, list.Count);
 
@@ -50,7 +50,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<float> list,
 			float value,
@@ -83,7 +83,7 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<double> list, double value) =>
 			list.LowerBound(value, 0);
 
@@ -95,7 +95,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<double> list, double value, [NonNegativeValue] int startIndex) =>
 			list.LowerBound(value, startIndex, list.Count);
 
@@ -108,7 +108,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<double> list,
 			double value,
@@ -141,7 +141,7 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value) =>
 			list.LowerBound(value, 0);
 
@@ -153,7 +153,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, [NonNegativeValue] int startIndex) =>
 			list.LowerBound(value, startIndex, list.Count);
 
@@ -166,7 +166,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<TimeSpan> list,
 			TimeSpan value,
@@ -199,7 +199,7 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value) =>
 			list.LowerBound(value, 0);
 
@@ -211,7 +211,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, [NonNegativeValue] int startIndex) =>
 			list.LowerBound(value, startIndex, list.Count);
 
@@ -224,7 +224,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<DateTime> list,
 			DateTime value,
@@ -257,7 +257,7 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value) =>
 			list.LowerBound(value, 0);
 
@@ -269,7 +269,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, [NonNegativeValue] int startIndex) =>
 			list.LowerBound(value, startIndex, list.Count);
 
@@ -282,7 +282,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LowerBound(
 			[NotNull, InstantHandle] this IList<DateTimeOffset> list,
 			DateTimeOffset value,

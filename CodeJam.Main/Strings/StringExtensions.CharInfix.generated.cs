@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Strings
@@ -22,7 +25,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a control
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsControl([NotNull] this string str, [NonNegativeValue] int index) => char.IsControl(str, index);
 
 		/// <summary>
@@ -34,7 +37,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a highsurrogate
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsHighSurrogate([NotNull] this string str, [NonNegativeValue] int index) => char.IsHighSurrogate(str, index);
 
 		/// <summary>
@@ -46,7 +49,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a lowsurrogate
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsLowSurrogate([NotNull] this string str, [NonNegativeValue] int index) => char.IsLowSurrogate(str, index);
 
 		/// <summary>
@@ -58,7 +61,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a digit
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsDigit([NotNull] this string str, [NonNegativeValue] int index) => char.IsDigit(str, index);
 
 		/// <summary>
@@ -89,7 +92,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a letter
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsLetter([NotNull] this string str, [NonNegativeValue] int index) => char.IsLetter(str, index);
 
 		/// <summary>
@@ -120,7 +123,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a letterordigit
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsLetterOrDigit([NotNull] this string str, [NonNegativeValue] int index) => char.IsLetterOrDigit(str, index);
 
 		/// <summary>
@@ -151,7 +154,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a lower
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsLower([NotNull] this string str, [NonNegativeValue] int index) => char.IsLower(str, index);
 
 		/// <summary>
@@ -182,7 +185,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a upper
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsUpper([NotNull] this string str, [NonNegativeValue] int index) => char.IsUpper(str, index);
 
 		/// <summary>
@@ -213,7 +216,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a number
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsNumber([NotNull] this string str, [NonNegativeValue] int index) => char.IsNumber(str, index);
 
 		/// <summary>
@@ -244,7 +247,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a punctuation
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsPunctuation([NotNull] this string str, [NonNegativeValue] int index) => char.IsPunctuation(str, index);
 
 		/// <summary>
@@ -275,7 +278,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a separator
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsSeparator([NotNull] this string str, [NonNegativeValue] int index) => char.IsSeparator(str, index);
 
 		/// <summary>
@@ -306,7 +309,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a surrogate
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsSurrogate([NotNull] this string str, [NonNegativeValue] int index) => char.IsSurrogate(str, index);
 
 		/// <summary>
@@ -318,7 +321,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a surrogatepair
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsSurrogatePair([NotNull] this string str, [NonNegativeValue] int index) => char.IsSurrogatePair(str, index);
 
 		/// <summary>
@@ -330,7 +333,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a symbol
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsSymbol([NotNull] this string str, [NonNegativeValue] int index) => char.IsSymbol(str, index);
 
 		/// <summary>
@@ -361,7 +364,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a whitespace
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsWhiteSpace([NotNull] this string str, [NonNegativeValue] int index) => char.IsWhiteSpace(str, index);
 
 		/// <summary>

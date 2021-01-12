@@ -16,7 +16,7 @@ namespace CodeJam.Collections
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T> TopoSort<T>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
@@ -30,7 +30,7 @@ namespace CodeJam.Collections
 		/// <param name="source">Collection to sort.</param>
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T> TopoSort<T>(
 			this ICollection<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
@@ -46,7 +46,7 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
@@ -67,7 +67,7 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
 			this ICollection<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
@@ -86,7 +86,7 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <param name="keyComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
@@ -106,7 +106,7 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">Function that returns an item key, which is used to compare.</param>
 		/// <param name="keyComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T> TopoSort<T, TKey>(
 			this ICollection<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
@@ -124,7 +124,7 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T> TopoSort<T>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
@@ -143,7 +143,7 @@ namespace CodeJam.Collections
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/>.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T> TopoSort<T>(
 			[NotNull] this ICollection<T> source,
 			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
@@ -163,7 +163,7 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/> separated by dependency level.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
@@ -178,7 +178,7 @@ namespace CodeJam.Collections
 		/// <param name="dependsOnGetter">Function that returns items dependent on specified item.</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/> separated by dependency level.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
 			[NotNull] this ICollection<T> source,
 			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter)
@@ -194,7 +194,7 @@ namespace CodeJam.Collections
 		/// <param name="equalityComparer">Equality comparer for item comparison</param>
 		/// <returns>Topologically sorted list of items in <paramref name="source"/> separated by dependency level.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
 			[NotNull, InstantHandle] this IEnumerable<T> source,
 			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
@@ -213,7 +213,7 @@ namespace CodeJam.Collections
 		/// Topologically sorted list of items in <paramref name="source"/>, separated by dependency level.
 		/// </returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T[]> GroupTopoSort<T>(
 			[NotNull] this ICollection<T> source,
 			[NotNull, InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,

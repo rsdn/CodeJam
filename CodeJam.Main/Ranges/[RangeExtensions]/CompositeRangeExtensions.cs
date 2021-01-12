@@ -18,7 +18,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(
 			[NotNull] this IEnumerable<TKey> source,
 			[NotNull, InstantHandle] Func<TKey, T> fromValueSelector,
@@ -37,7 +37,7 @@ namespace CodeJam.Ranges
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRange<TSource, T, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
@@ -57,7 +57,7 @@ namespace CodeJam.Ranges
 		/// <param name="source">Original collection.</param>
 		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TSource> ToCompositeRangeFrom<TSource, T>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector)
@@ -75,7 +75,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
 		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRangeFrom<TSource, T, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
@@ -126,7 +126,7 @@ namespace CodeJam.Ranges
 		/// <param name="source">Original collection.</param>
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TSource> ToCompositeRangeTo<TSource, T>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> toValueSelector)
@@ -144,7 +144,7 @@ namespace CodeJam.Ranges
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRangeTo<TSource, T, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> toValueSelector,
@@ -189,7 +189,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusive<T, TKey>(
 			[NotNull] this IEnumerable<TKey> source,
 			[NotNull, InstantHandle] Func<TKey, T> fromValueSelector,
@@ -208,7 +208,7 @@ namespace CodeJam.Ranges
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusive<TSource, T, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
@@ -226,7 +226,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveFrom<T, TKey>(
 			[NotNull] this IEnumerable<TKey> source,
 			[NotNull, InstantHandle] Func<TKey, T> fromValueSelector,
@@ -245,7 +245,7 @@ namespace CodeJam.Ranges
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveFrom<TSource, T, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
@@ -263,7 +263,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a value for the From boundary.</param>
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveTo<T, TKey>(
 			[NotNull] this IEnumerable<TKey> source,
 			[NotNull, InstantHandle] Func<TKey, T> fromValueSelector,
@@ -282,7 +282,7 @@ namespace CodeJam.Ranges
 		/// <param name="toValueSelector">Callback to obtain a value for the To boundary.</param>
 		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
 		/// <returns>A new composite range with keys filled from the original collection.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveTo<TSource, T, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, T> fromValueSelector,
@@ -302,7 +302,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T">The type of the range values.</typeparam>
 		/// <param name="range">The source range.</param>
 		/// <returns>Complementation composite range.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T> GetComplementation<T>(this Range<T> range) =>
 			range.ToCompositeRange().GetComplementation();
 
@@ -314,7 +314,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The source range.</param>
 		/// <returns>Complementation composite range.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T> GetComplementation<T, TKey>(this Range<T, TKey> range) =>
 			range.ToCompositeRange().GetComplementation();
 		#endregion

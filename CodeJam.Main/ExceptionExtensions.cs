@@ -191,7 +191,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="exception">Exception to process.</param>
 		/// <returns>Detailed exception text.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static string ToDiagnosticString(this Exception? exception) =>
 			exception == null ? "" : exception.ToDiagnosticString(new StringBuilder()).ToString();

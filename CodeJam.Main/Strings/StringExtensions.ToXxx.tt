@@ -50,7 +50,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="<#=type.Clr#>.MinValue"/> or greater than <see cref="<#=type.Clr#>.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static <#=type.Lang#>? To<#=type.Clr#>(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.<#=type.Style#>,
@@ -78,7 +78,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="<#=type.Clr#>.MinValue"/> or greater than <see cref="<#=type.Clr#>.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static <#=type.Lang#>? To<#=type.Clr#>Invariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.<#=type.Style#>)

@@ -50,7 +50,7 @@ namespace CodeJam.TableData
 		/// <param name="allowEscaping">If true, allows values escaping.</param>
 		/// <param name="columnSeparator">Char to use as column separator</param>
 		/// <returns>Parser to use with <see cref="TableDataParser.Parse(Parser,string)"/></returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[JetBrains.Annotations.NotNull]
 		public static Parser CreateParser(bool allowEscaping = true, char columnSeparator = ',') =>
 			allowEscaping
@@ -63,7 +63,7 @@ namespace CodeJam.TableData
 		/// <param name="columnSeparator">Char to use as column separator</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
 		[JetBrains.Annotations.NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<DataLine> Parse(
 				[JetBrains.Annotations.NotNull] TextReader reader,
 				bool allowEscaping = true,

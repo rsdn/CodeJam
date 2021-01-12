@@ -34,7 +34,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this IDictionary<TKey, TValue> dictionary,
@@ -58,7 +58,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
@@ -90,7 +90,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
@@ -123,7 +123,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
@@ -159,7 +159,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
@@ -183,7 +183,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
@@ -215,7 +215,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
@@ -248,7 +248,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
@@ -284,7 +284,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this Dictionary<TKey, TValue> dictionary,
@@ -308,7 +308,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
@@ -340,7 +340,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
@@ -373,7 +373,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
@@ -409,7 +409,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
@@ -433,7 +433,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
@@ -465,7 +465,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
@@ -498,7 +498,7 @@ namespace CodeJam.Collections
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,
@@ -543,7 +543,7 @@ namespace CodeJam.Collections.Backported
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			this IDictionary<TKey, TValue> dictionary,
@@ -564,7 +564,7 @@ namespace CodeJam.Collections.Backported
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IDictionary<TKey, TValue> dictionary,
@@ -596,7 +596,7 @@ namespace CodeJam.Collections.Backported
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			this IReadOnlyDictionary<TKey, TValue> dictionary,
@@ -617,7 +617,7 @@ namespace CodeJam.Collections.Backported
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			[NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary,
@@ -649,7 +649,7 @@ namespace CodeJam.Collections.Backported
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			this Dictionary<TKey, TValue> dictionary,
@@ -670,7 +670,7 @@ namespace CodeJam.Collections.Backported
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			[NotNull] this Dictionary<TKey, TValue> dictionary,
@@ -702,7 +702,7 @@ namespace CodeJam.Collections.Backported
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			this ConcurrentDictionary<TKey, TValue> dictionary,
@@ -723,7 +723,7 @@ namespace CodeJam.Collections.Backported
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			[NotNull] this ConcurrentDictionary<TKey, TValue> dictionary,

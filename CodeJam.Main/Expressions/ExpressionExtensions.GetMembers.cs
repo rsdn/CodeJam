@@ -64,7 +64,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance. For value types, the method returns null for the default constructor.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static MemberInfo? GetMemberInfo([NotNull] this LambdaExpression expression)
 		{
 			Code.NotNull(expression, nameof(expression));
@@ -114,7 +114,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ConstructorInfo? GetConstructor([NotNull] this LambdaExpression expression)
 		{
 			var memberInfo = GetMemberInfo(expression);
@@ -132,7 +132,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static MethodInfo GetMethod([NotNull] this LambdaExpression expression) =>
 			GetMemberInfo(expression) switch
 			{
@@ -171,7 +171,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// A name of the method.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string GetMethodName([NotNull] this LambdaExpression expression) =>
 			GetMethod(expression).Name;
 

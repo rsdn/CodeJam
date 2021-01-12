@@ -22,7 +22,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 1 item of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1)
@@ -36,7 +36,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 1 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1)
@@ -50,7 +50,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 1 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1)
@@ -65,7 +65,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 2 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -81,7 +81,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 2 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -97,7 +97,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 2 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,
@@ -115,7 +115,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 3 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -133,7 +133,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 3 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -151,7 +151,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 3 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,
@@ -172,7 +172,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 4 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -192,7 +192,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 4 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -212,7 +212,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 4 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,
@@ -236,7 +236,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 5 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -258,7 +258,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 5 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -280,7 +280,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 5 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,
@@ -307,7 +307,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 6 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -331,7 +331,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 6 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -355,7 +355,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 6 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,
@@ -385,7 +385,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 7 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -411,7 +411,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 7 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -437,7 +437,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 7 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,
@@ -470,7 +470,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 8 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -498,7 +498,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 8 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -526,7 +526,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 8 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,
@@ -562,7 +562,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 9 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -592,7 +592,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 9 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -622,7 +622,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 9 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,
@@ -661,7 +661,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 10 items of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this T[] array,
 			out T item1,
@@ -693,7 +693,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 10 items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IList<T> list,
 			out T item1,
@@ -725,7 +725,7 @@ namespace CodeJam.Collections
 		/// <summary>
 		/// Deconstructs 10 items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
 			[NotNull] this IEnumerable<T> enumerable,
 			out T item1,

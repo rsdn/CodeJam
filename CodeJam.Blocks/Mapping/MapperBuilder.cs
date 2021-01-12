@@ -39,7 +39,7 @@ namespace CodeJam.Mapping
 		/// Returned expression is compatible to IQueriable.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public Expression<Func<TFrom, TTo>> GetMapperExpressionEx()
 			=> (Expression<Func<TFrom, TTo>>)GetExpressionMapper().GetExpressionEx()!;
 
@@ -51,7 +51,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public Func<TFrom,TTo> GetMapperEx()
 			=> GetMapperExpressionEx().Compile();
 		*/
@@ -60,7 +60,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[JetBrains.Annotations.NotNull]
 		public Expression<Func<TFrom, TTo, IDictionary<object, object>?, TTo>> GetMapperExpression()
 			=> (Expression<Func<TFrom, TTo, IDictionary<object, object>?, TTo>>)GetExpressionMapper().GetExpression();
@@ -73,7 +73,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[JetBrains.Annotations.NotNull]
 		public Mapper<TFrom, TTo> GetMapper()
 			=> new(this);

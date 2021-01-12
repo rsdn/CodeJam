@@ -28,7 +28,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TResult> Memoize<TArg1, TArg2, TResult>(
 				[NotNull] this Func<TArg1, TArg2, TResult> func,
 				bool threadSafe = false) =>
@@ -44,7 +44,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TResult> Memoize<TArg1, TArg2, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TResult> func,
 			LazyThreadSafetyMode threadSafety)
@@ -67,7 +67,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TResult> Memoize<TArg1, TArg2, TArg3, TResult>(
 				[NotNull] this Func<TArg1, TArg2, TArg3, TResult> func,
 				bool threadSafe = false) =>
@@ -84,7 +84,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TResult> Memoize<TArg1, TArg2, TArg3, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TResult> func,
 			LazyThreadSafetyMode threadSafety)
@@ -108,7 +108,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TResult>(
 				[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TResult> func,
 				bool threadSafe = false) =>
@@ -126,7 +126,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TResult> func,
 			LazyThreadSafetyMode threadSafety)
@@ -151,7 +151,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(
 				[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> func,
 				bool threadSafe = false) =>
@@ -170,7 +170,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult> func,
 			LazyThreadSafetyMode threadSafety)
@@ -196,7 +196,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(
 				[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult> func,
 				bool threadSafe = false) =>
@@ -216,7 +216,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult> func,
 			LazyThreadSafetyMode threadSafety)
@@ -243,7 +243,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(
 				[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult> func,
 				bool threadSafe = false) =>
@@ -264,7 +264,7 @@ namespace CodeJam
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult> Memoize<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(
 			[NotNull] this Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult> func,
 			LazyThreadSafetyMode threadSafety)

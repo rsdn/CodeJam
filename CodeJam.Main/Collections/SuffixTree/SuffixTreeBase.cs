@@ -131,13 +131,13 @@ namespace CodeJam.Collections
 		/// May return suffixes with the same value of the they are present in different source strings
 		/// </remarks>
 		/// <returns>The enumeration of all suffixes in lexicographical order</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public IEnumerable<Suffix> All() => AllFromNode(Root, 0);
 
 		/// <summary>Checks whether the suffix tree contains the given substring or not</summary>
 		/// <param name="substring">The substring to locate</param>
 		/// <returns>true if found, false otherwise</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public bool Contains([NotNull] string substring)
 		{
 			Code.NotNull(substring, nameof(substring));
@@ -152,7 +152,7 @@ namespace CodeJam.Collections
 		/// <summary>Checks whether the suffix tree contains the given suffix or not</summary>
 		/// <param name="suffix">The suffix to locate</param>
 		/// <returns>true if found, false otherwise</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public bool ContainsSuffix([NotNull] string suffix)
 		{
 			Code.NotNull(suffix, nameof(suffix));
@@ -174,7 +174,7 @@ namespace CodeJam.Collections
 		/// <summary>Enumerates all suffixes starting with the given prefix</summary>
 		/// <param name="prefix">The prefix to find</param>
 		/// <returns>The enumeration of all suffixes with the given prefix in lexicographical order</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public IEnumerable<Suffix> StartingWith([NotNull] string prefix)
 		{
 			Code.NotNull(prefix, nameof(prefix));
@@ -202,7 +202,7 @@ namespace CodeJam.Collections
 		/// May return suffixes with the same value of the they are present in different source strings
 		/// </remarks>
 		/// <returns>The enumeration of all suffixes in the subtree in lexicographical order</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		private IEnumerable<Suffix> AllFromNode(Node node, int length)
 		{
 			DebugCode.AssertArgument(length >= 0, nameof(length), "The length should be non-negative");
@@ -262,7 +262,7 @@ namespace CodeJam.Collections
 		/// <param name="end">The suffix end</param>
 		/// <param name="length">The suffix length</param>
 		/// <returns>The suffix</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		private Suffix CreateSuffix([NonNegativeValue] int end, [NonNegativeValue] int length)
 		{
 			var sourceIndex = GetSourceIndexByEnd(end);
@@ -274,7 +274,7 @@ namespace CodeJam.Collections
 		/// <summary>Locates the branch corresponding to the given string</summary>
 		/// <param name="s">The string to find</param>
 		/// <returns>The last matched edge and the matched length over this edge or null if no match found</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		private ValueOption<FindResult> FindBranch([NotNull] string s)
 		{
 			DebugCode.AssertState(s.Length > 0, "The string length should be positive");
@@ -304,7 +304,7 @@ namespace CodeJam.Collections
 		/// <param name="c">The char to find</param>
 		/// <param name="edge">Te edge found</param>
 		/// <returns>The index of the edge or -1 if there is no edge starting with the given char</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		private int FindEdge(Node node, char c, out Node edge)
 		{
 			edge = default;
@@ -343,7 +343,7 @@ namespace CodeJam.Collections
 
 		/// <summary>Prints the tree structure to the string for the debugging purposes</summary>
 		/// <returns>The tree structure as a string</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public string Print()
 		{
 			var sb = new StringBuilder();

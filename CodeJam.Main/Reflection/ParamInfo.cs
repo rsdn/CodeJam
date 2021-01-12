@@ -28,7 +28,7 @@ namespace CodeJam.Reflection
 		/// <param name="value">Value of the parameter.</param>
 		/// <param name="required"><c>True</c> if parameter required.</param>
 		/// <returns>Instance of <see cref="ParamInfo"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static ParamInfo Param([NotNull] string name, object? value, bool required = true) =>
 			new(name, value, required);

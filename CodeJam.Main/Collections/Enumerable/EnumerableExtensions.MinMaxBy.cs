@@ -22,7 +22,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MinBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource?> source,
@@ -43,7 +43,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource?> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource?, TValue?> selector,
@@ -61,7 +61,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource? MinBy<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource?> source,
@@ -133,7 +133,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue?> selector,
@@ -202,7 +202,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the maximum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MaxBy<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
@@ -221,7 +221,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource?> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource?, TValue> selector,
@@ -238,7 +238,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <param name="comparer">The <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MaxBy<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
@@ -310,7 +310,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,

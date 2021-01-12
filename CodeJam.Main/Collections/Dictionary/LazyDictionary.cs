@@ -27,7 +27,7 @@ namespace CodeJam.Collections
 		/// </param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 				[NotNull] Func<TKey, TValue> valueFactory,
 				[NotNull] IEqualityComparer<TKey> comparer,
@@ -51,7 +51,7 @@ namespace CodeJam.Collections
 		/// <param name="collection">The <see cref="IEnumerable{T}"/> whose elements are copied to new.</param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
 			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
@@ -74,7 +74,7 @@ namespace CodeJam.Collections
 		/// </param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 				[NotNull] Func<TKey, TValue> valueFactory,
 				bool threadSafe)
@@ -96,7 +96,7 @@ namespace CodeJam.Collections
 		/// <param name="collection">The <see cref="IEnumerable{T}"/> whose elements are copied to new.</param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
 			[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
@@ -115,7 +115,7 @@ namespace CodeJam.Collections
 		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode. </param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
 			LazyThreadSafetyMode threadSafety)
@@ -141,7 +141,7 @@ namespace CodeJam.Collections
 		/// <param name="collection">The <see cref="IEnumerable{T}"/> whose elements are copied to new.</param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 				[NotNull] Func<TKey, TValue> valueFactory,
 				[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,
@@ -167,7 +167,7 @@ namespace CodeJam.Collections
 		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode. </param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 			[NotNull] Func<TKey, TValue> valueFactory,
 			IEqualityComparer<TKey>? comparer,
@@ -194,7 +194,7 @@ namespace CodeJam.Collections
 		/// <param name="collection">The <see cref="IEnumerable{T}"/> whose elements are copied to new.</param>
 		/// <returns><see cref="ILazyDictionary{TKey,TValue}"/> implementation.</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ILazyDictionary<TKey, TValue> Create<TKey, TValue>(
 				[NotNull] Func<TKey, TValue> valueFactory,
 				[NotNull] IEnumerable<KeyValuePair<TKey, TValue>> collection,

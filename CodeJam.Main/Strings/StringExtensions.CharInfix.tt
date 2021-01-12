@@ -27,7 +27,7 @@ namespace CodeJam.Strings
 		/// <c>true</c> if the character at position <paramref name="index"/> in <paramref name="str"/> is a <#=name.ToLower()#>
 		/// character; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool Is<#=name#>([NotNull] this string str, [NonNegativeValue] int index) => char.Is<#=name#>(str, index);
 
 <#+}#>

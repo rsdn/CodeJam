@@ -20,7 +20,7 @@ namespace CodeJam.Threading
 		/// An <see cref="AsyncOperation"/> that you can use to track the duration of an asynchronous method invocation.
 		/// </returns>
 		[JetBrains.Annotations.NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static AsyncOperation CreateOperation() => AsyncOperationManager.CreateOperation(null);
 
 		/// <summary>

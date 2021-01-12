@@ -38,7 +38,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.</exception>
 		/// <exception cref="InvalidOperationException">
 		/// <paramref name="value" /> does not implement the <see cref="IComparable{T}" /> generic interface, and the search encounters an element that does not implement the <see cref="IComparable{T}" /> generic interface.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int BinarySearch<T>([NotNull] this T[] array, T value) => Array.BinarySearch(array, value);
 
 		/// <summary>Searches an entire one-dimensional sorted <see cref="Array" /> for a value using the specified <see cref="IComparer{T}" /> generic interface.</summary>
@@ -53,7 +53,7 @@ namespace CodeJam.Collections
 		/// <paramref name="comparer" /> is null, and <paramref name="value" /> is of a type that is not compatible with the elements of <paramref name="array" />.</exception>
 		/// <exception cref="InvalidOperationException">
 		/// <paramref name="comparer" /> is null, <paramref name="value" /> does not implement the <see cref="IComparable{T}" /> generic interface, and the search encounters an element that does not implement the <see cref="IComparable{T}" /> generic interface.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int BinarySearch<T>([NotNull] this T[] array, T value, IComparer<T> comparer) =>
 			Array.BinarySearch(array, value, comparer);
 
@@ -72,7 +72,7 @@ namespace CodeJam.Collections
 		/// <paramref name="index" /> and <paramref name="length" /> do not specify a valid range in <paramref name="array" />.-or-<paramref name="value" /> is of a type that is not compatible with the elements of <paramref name="array" />.</exception>
 		/// <exception cref="InvalidOperationException">
 		/// <paramref name="value" /> does not implement the <see cref="IComparable{T}" /> generic interface, and the search encounters an element that does not implement the <see cref="IComparable{T}" /> generic interface.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int BinarySearch<T>([NotNull] this T[] array, [NonNegativeValue] int index, [NonNegativeValue] int length, T value) =>
 			Array.BinarySearch(array, index, length, value);
 
@@ -92,7 +92,7 @@ namespace CodeJam.Collections
 		/// <paramref name="index" /> and <paramref name="length" /> do not specify a valid range in <paramref name="array" />.-or-<paramref name="comparer" /> is null, and <paramref name="value" /> is of a type that is not compatible with the elements of <paramref name="array" />.</exception>
 		/// <exception cref="InvalidOperationException">
 		/// <paramref name="comparer" /> is null, <paramref name="value" /> does not implement the <see cref="IComparable{T}" /> generic interface, and the search encounters an element that does not implement the <see cref="IComparable{T}" /> generic interface.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int BinarySearch<T>([NotNull] this T[] array, [NonNegativeValue] int index, [NonNegativeValue] int length, T value, IComparer<T> comparer) =>
 			Array.BinarySearch(array, index, length, value, comparer);
 		#endregion BinarySearch
@@ -249,7 +249,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool Exists<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.Exists(array, match);
 
@@ -266,7 +266,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T? Find<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.Find(array, match);
 
@@ -289,7 +289,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int FindIndex<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindIndex(array, match);
 
@@ -303,7 +303,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <paramref name="startIndex" /> is outside the range of valid indexes for <paramref name="array" />.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int FindIndex<T>([NotNull] this T[] array, [NonNegativeValue] int startIndex, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindIndex(array, startIndex, match);
 
@@ -318,7 +318,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <paramref name="startIndex" /> is outside the range of valid indexes for <paramref name="array" />.-or-<paramref name="count" /> is less than zero.-or-<paramref name="startIndex" /> and <paramref name="count" /> do not specify a valid section in <paramref name="array" />.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int FindIndex<T>(
 			[NotNull] this T[] array, [NonNegativeValue] int startIndex, [NonNegativeValue] int count, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindIndex(array, startIndex, count, match);
@@ -335,7 +335,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T? FindLast<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindLast(array, match);
 
@@ -346,7 +346,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int FindLastIndex<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindLastIndex(array, match);
 
@@ -360,7 +360,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <paramref name="startIndex" /> is outside the range of valid indexes for <paramref name="array" />.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int FindLastIndex<T>(
 			[NotNull] this T[] array, [NonNegativeValue] int startIndex, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindLastIndex(array, startIndex, match);
@@ -376,7 +376,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <paramref name="startIndex" /> is outside the range of valid indexes for <paramref name="array" />.-or-<paramref name="count" /> is less than zero.-or-<paramref name="startIndex" /> and <paramref name="count" /> do not specify a valid section in <paramref name="array" />.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int FindLastIndex<T>(
 			[NotNull] this T[] array, [NonNegativeValue] int startIndex, [NonNegativeValue] int count, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindLastIndex(array, startIndex, count, match);
@@ -399,7 +399,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOf<T>([NotNull] this T[] array, T value) => Array.IndexOf(array, value);
 
 		/// <summary>Searches for the specified object and returns the index of the first occurrence within the range of elements in the <see cref="Array" /> that extends from the specified index to the last element.</summary>
@@ -412,7 +412,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <paramref name="startIndex" /> is outside the range of valid indexes for <paramref name="array" />.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOf<T>([NotNull] this T[] array, T value, [NonNegativeValue] int startIndex) =>
 			Array.IndexOf(array, value, startIndex);
 
@@ -427,7 +427,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <paramref name="startIndex" /> is outside the range of valid indexes for <paramref name="array" />.-or-<paramref name="count" /> is less than zero.-or-<paramref name="startIndex" /> and <paramref name="count" /> do not specify a valid section in <paramref name="array" />.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOf<T>([NotNull] this T[] array, T value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count) =>
 			Array.IndexOf(array, value, startIndex, count);
 
@@ -438,7 +438,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOf<T>([NotNull] this T[] array, T value) => Array.LastIndexOf(array, value);
 
 		/// <summary>Searches for the specified object and returns the index of the last occurrence within the range of elements in the <see cref="Array" /> that extends from the first element to the specified index.</summary>
@@ -451,7 +451,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <paramref name="startIndex" /> is outside the range of valid indexes for <paramref name="array" />.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOf<T>([NotNull] this T[] array, T value, [NonNegativeValue] int startIndex) =>
 			Array.LastIndexOf(array, value, startIndex);
 
@@ -466,7 +466,7 @@ namespace CodeJam.Collections
 		/// <paramref name="array" /> is null.</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <paramref name="startIndex" /> is outside the range of valid indexes for <paramref name="array" />.-or-<paramref name="count" /> is less than zero.-or-<paramref name="startIndex" /> and <paramref name="count" /> do not specify a valid section in <paramref name="array" />.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOf<T>([NotNull] this T[] array, T value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count) =>
 			Array.LastIndexOf(array, value, startIndex, count);
 		#endregion [Last]IndexOf
@@ -566,7 +566,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool TrueForAll<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.TrueForAll(array, match);
 	}

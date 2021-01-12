@@ -21,7 +21,7 @@ namespace CodeJam.Threading
 		/// The <see cref="IDisposable"/> object that reduce the recursion count for read mode, and exits read mode if the
 		/// resulting count is 0 (zero).
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ReadLockScope GetReadLock([NotNull] this ReaderWriterLockSlim readerWriterLock)
 		{
 			readerWriterLock.EnterReadLock();
@@ -36,7 +36,7 @@ namespace CodeJam.Threading
 		/// The <see cref="IDisposable"/> object that reduce the recursion count for write mode, and exits write mode if the
 		/// resulting count is 0 (zero).
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static WriteLockScope GetWriteLock([NotNull] this ReaderWriterLockSlim readerWriterLock)
 		{
 			readerWriterLock.EnterWriteLock();
@@ -51,7 +51,7 @@ namespace CodeJam.Threading
 		/// The <see cref="IDisposable"/> object that reduce the recursion count for upgradeable mode, and exits upgradeable
 		/// mode if the resulting count is 0 (zero).
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static UpgradeableReadLockScope GetUpgradeableReadLock([NotNull] this ReaderWriterLockSlim readerWriterLock)
 		{
 			readerWriterLock.EnterUpgradeableReadLock();

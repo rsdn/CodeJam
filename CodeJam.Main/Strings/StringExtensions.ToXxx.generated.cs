@@ -39,7 +39,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Byte.MinValue"/> or greater than <see cref="Byte.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static byte? ToByte(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
@@ -67,7 +67,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Byte.MinValue"/> or greater than <see cref="Byte.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static byte? ToByteInvariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
@@ -99,7 +99,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="SByte.MinValue"/> or greater than <see cref="SByte.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static sbyte? ToSByte(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
@@ -127,7 +127,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="SByte.MinValue"/> or greater than <see cref="SByte.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static sbyte? ToSByteInvariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
@@ -159,7 +159,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Int16.MinValue"/> or greater than <see cref="Int16.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static short? ToInt16(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Number,
@@ -187,7 +187,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Int16.MinValue"/> or greater than <see cref="Int16.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static short? ToInt16Invariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Number)
@@ -219,7 +219,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="UInt16.MinValue"/> or greater than <see cref="UInt16.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ushort? ToUInt16(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
@@ -247,7 +247,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="UInt16.MinValue"/> or greater than <see cref="UInt16.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ushort? ToUInt16Invariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
@@ -279,7 +279,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Int32.MinValue"/> or greater than <see cref="Int32.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int? ToInt32(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
@@ -307,7 +307,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Int32.MinValue"/> or greater than <see cref="Int32.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int? ToInt32Invariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
@@ -339,7 +339,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="UInt32.MinValue"/> or greater than <see cref="UInt32.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static uint? ToUInt32(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
@@ -367,7 +367,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="UInt32.MinValue"/> or greater than <see cref="UInt32.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static uint? ToUInt32Invariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
@@ -399,7 +399,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Int64.MinValue"/> or greater than <see cref="Int64.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static long? ToInt64(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
@@ -427,7 +427,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Int64.MinValue"/> or greater than <see cref="Int64.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static long? ToInt64Invariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
@@ -459,7 +459,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="UInt64.MinValue"/> or greater than <see cref="UInt64.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ulong? ToUInt64(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer,
@@ -487,7 +487,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="UInt64.MinValue"/> or greater than <see cref="UInt64.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static ulong? ToUInt64Invariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Integer)
@@ -519,7 +519,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Single.MinValue"/> or greater than <see cref="Single.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static float? ToSingle(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Float,
@@ -547,7 +547,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Single.MinValue"/> or greater than <see cref="Single.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static float? ToSingleInvariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Float)
@@ -579,7 +579,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Double.MinValue"/> or greater than <see cref="Double.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static double? ToDouble(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Float,
@@ -607,7 +607,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Double.MinValue"/> or greater than <see cref="Double.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static double? ToDoubleInvariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Float)
@@ -639,7 +639,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Decimal.MinValue"/> or greater than <see cref="Decimal.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static decimal? ToDecimal(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Number,
@@ -667,7 +667,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant withstyle, or
 		/// represents a number less than <see cref="Decimal.MinValue"/> or greater than <see cref="Decimal.MaxValue"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static decimal? ToDecimalInvariant(
 			this string? str,
 			NumberStyles numberStyle = NumberStyles.Number)

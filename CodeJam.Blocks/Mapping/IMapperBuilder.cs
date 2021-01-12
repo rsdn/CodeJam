@@ -26,14 +26,14 @@ namespace CodeJam.Mapping
 		/// Returned expression is compatible to IQueriable.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		LambdaExpression GetMapperLambdaExpressionEx();
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		LambdaExpression GetMapperLambdaExpression();
 
 		/// <summary>

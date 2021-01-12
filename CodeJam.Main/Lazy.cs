@@ -17,7 +17,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">The type of object that is being lazily initialized.</typeparam>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static Lazy<T> Create<T>() => new();
 
@@ -31,7 +31,7 @@ namespace CodeJam
 		/// usable by only one thread at a time.
 		/// </param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static Lazy<T> Create<T>(bool isThreadSafe) => new(isThreadSafe);
 
@@ -44,7 +44,7 @@ namespace CodeJam
 		/// The delegate that is invoked to produce the lazily initialized value when it is needed.
 		/// </param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static Lazy<T> Create<T>([NotNull] Func<T> valueFactory) => new(valueFactory);
 
@@ -55,7 +55,7 @@ namespace CodeJam
 		/// <typeparam name="T">The type of object that is being lazily initialized.</typeparam>
 		/// <param name="mode">One of the enumeration values that specifies the thread safety mode.</param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static Lazy<T> Create<T>(LazyThreadSafetyMode mode) => new(mode);
 
@@ -72,7 +72,7 @@ namespace CodeJam
 		/// usable by only one thread at a time.
 		/// </param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static Lazy<T> Create<T>([NotNull] Func<T> valueFactory, bool isThreadSafe) => new(valueFactory, isThreadSafe);
 
@@ -86,7 +86,7 @@ namespace CodeJam
 		/// </param>
 		/// <param name="mode">One of the enumeration values that specifies the thread safety mode.</param>
 		/// <returns>New <see cref="Lazy{T}"/> instance.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static Lazy<T> Create<T>([NotNull] Func<T> valueFactory, LazyThreadSafetyMode mode) => new(valueFactory, mode);
 	}

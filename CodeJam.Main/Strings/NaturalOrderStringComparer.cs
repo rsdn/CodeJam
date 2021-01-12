@@ -98,7 +98,7 @@ namespace CodeJam.Strings
 		/// Zero <paramref name="a"/> equals <paramref name="b"/>.
 		/// Greater than zero <paramref name="a"/> is greater than <paramref name="b"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Compare(string? a, string? b) => Compare(a, b, false);
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace CodeJam.Strings
 		/// Zero <paramref name="a"/> equals <paramref name="b"/>.
 		/// Greater than zero <paramref name="a"/> is greater than <paramref name="b"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Compare(string? a, string? b, bool ignoreCase)
 		{
 			if (a == b)

@@ -29,7 +29,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <returns><c>true</c> if the path is either absolute or relative not rooted path, <c>false</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsWellFormedPath([NotNull] string path)
 		{
 			Code.NotNullNorEmpty(path, nameof(path));
@@ -48,7 +48,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <returns><c>true</c> if the path is well-formed absolute path; otherwise, <c>false</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsWellFormedAbsolutePath([NotNull] string path)
 		{
 			Code.NotNullNorEmpty(path, nameof(path));
@@ -66,7 +66,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <returns><c>true</c> if the path is not rooted well-formed relative path; otherwise, <c>false</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsWellFormedRelativePath([NotNull] string path)
 		{
 			Code.NotNullNorEmpty(path, nameof(path));
@@ -87,7 +87,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <returns><c>true</c> if the path ends with separator char; otherwise, <c>false</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsWellFormedContainerPath([NotNull] string path) =>
 			IsContainerPath(path) && IsWellFormedPath(path);
 
@@ -96,7 +96,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <returns><c>true</c> if the path ends with separator char; otherwise, <c>false</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsWellFormedFileName([NotNull] string path) =>
 			IsFileName(path) && IsWellFormedRelativePath(path);
 
@@ -105,7 +105,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <returns><c>true</c> if the path is a file or directory name; otherwise, <c>false</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsFileName([NotNull] string path)
 		{
 			Code.NotNullNorEmpty(path, nameof(path));
@@ -118,7 +118,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <returns><c>true</c> if the path ends with separator char; otherwise, <c>false</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsContainerPath([NotNull] string path)
 		{
 			Code.NotNullNorEmpty(path, nameof(path));
@@ -133,7 +133,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <returns>Path that ends with one of path separator chars.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string EnsureContainerPath([NotNull] string path) =>
 			IsContainerPath(path)
 				? path

@@ -31,7 +31,7 @@ private void GenerateMethod(int argCount)
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<<#=typeArgs#>, TResult> Memoize<<#=typeArgs#>, TResult>(
 				[NotNull] this Func<<#=typeArgs#>, TResult> func,
 				bool threadSafe = false) =>
@@ -48,7 +48,7 @@ private void GenerateMethod(int argCount)
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
 		[NotNull]
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Func<<#=typeArgs#>, TResult> Memoize<<#=typeArgs#>, TResult>(
 			[NotNull] this Func<<#=typeArgs#>, TResult> func,
 			LazyThreadSafetyMode threadSafety)

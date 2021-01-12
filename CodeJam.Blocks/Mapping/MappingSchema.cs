@@ -104,7 +104,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="type"><see cref="Type"/> to get default value.</param>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public object? GetDefaultValue([JetBrains.Annotations.NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));

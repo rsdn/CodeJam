@@ -74,7 +74,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="source">Object to map.</param>
 		/// <returns>Destination object.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public TTo Map(TFrom source)
 			=> GetMapperEx()(source);
 
@@ -94,7 +94,7 @@ namespace CodeJam.Mapping
 		/// <param name="destination">Destination object.</param>
 		/// <param name="crossReferenceDictionary">Storage for cress references if applied.</param>
 		/// <returns>Destination object.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public TTo Map(TFrom source, TTo destination, IDictionary<object, object>? crossReferenceDictionary)
 			=> GetMapper()(source, destination, crossReferenceDictionary);
 	}

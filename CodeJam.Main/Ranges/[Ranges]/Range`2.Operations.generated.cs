@@ -65,7 +65,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if the boundary is exclusive.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is exclusive.</param>
 		/// <returns>A range with inclusive boundaries.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public Range<T, TKey> MakeInclusive(
 			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
 			[NotNull, InstantHandle] Func<T, T> toValueSelector)
@@ -95,7 +95,7 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if the boundary is inclusive.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is inclusive.</param>
 		/// <returns>A range with exclusive boundaries.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public Range<T, TKey> MakeExclusive(
 			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
 			[NotNull, InstantHandle] Func<T, T> toValueSelector)
@@ -244,7 +244,7 @@ namespace CodeJam.Ranges
 		/// <param name="value">The value to be adjusted.</param>
 		/// <exception cref="ArgumentException">The range is empty or any of its boundaries is exclusive.</exception>
 		/// <returns>A new value that fits into a range specified</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public T Clamp(T value)
 		{
 			Code.AssertArgument(IsNotEmpty, nameof(value), "Cannot fit the value into empty range.");

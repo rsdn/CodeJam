@@ -33,7 +33,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with <#= info.Name #> value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource <#= info.Method #><TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>> selector)
@@ -89,7 +89,7 @@ namespace CodeJam.Collections
 		/// The item with <#= info.Name #> value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? <#= info.Method #>OrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>> selector,
@@ -141,7 +141,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with <#= info.Name #> value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource <#= info.Method #><TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>?> selector)
@@ -202,7 +202,7 @@ namespace CodeJam.Collections
 		/// The item with <#= info.Name #> value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? <#= info.Method #>OrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, <#= type #>?> selector,

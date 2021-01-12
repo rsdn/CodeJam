@@ -19,7 +19,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo(this string[]? a, string[]? b)
 		{
 			if (a == b)
@@ -50,7 +50,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo(this string[]? a, string[]? b, StringComparison comparison)
 		{
 			if (comparison == StringComparison.Ordinal)
@@ -83,7 +83,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo<T>(this T?[]? a, T?[]? b) where T : IEquatable<T>
 		{
 			if (a == b)
@@ -124,7 +124,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo<T>(this T?[]? a, T?[]? b) where T : struct, IEquatable<T>
 		{
 			if (a == b)
@@ -154,7 +154,7 @@ namespace CodeJam.Collections
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>
 		/// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo<T>(this T[]? a, T[]? b, [NotNull] IEqualityComparer<T> comparer)
 		{
 			Code.NotNull(comparer, nameof(comparer));
@@ -183,7 +183,7 @@ namespace CodeJam.Collections
 		/// <param name="array">Array to check.</param>
 		/// <returns><c>True</c>, if array is not empty.</returns>
 		/// <remarks>This method performs fast check instead of creating enumerator</remarks>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool Any<T>([NotNull] this T[] array)
 		{
 			Code.NotNull(array, nameof(array));

@@ -60,7 +60,7 @@ namespace CodeJam
 
 		/// <summary>Gets enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</summary>
 		/// <returns>Enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public string GetDisplayName() => DisplayName ?? Name;
 
 		/// <summary>

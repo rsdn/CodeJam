@@ -20,7 +20,7 @@ namespace CodeJam
 		/// <param name="h1">Hash code 1</param>
 		/// <param name="h2">Hash code 2</param>
 		/// <returns>Combined hash code</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Combine(int h1, int h2)
 		{
 			// RyuJIT optimizes this to use the ROL instruction
@@ -36,7 +36,7 @@ namespace CodeJam
 		/// <param name="h2">Hash code 2</param>
 		/// <param name="h3">Hash code 3</param>
 		/// <returns>Combined hash code</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Combine(int h1, int h2, int h3) => Combine(Combine(h1, h2), h3);
 
 		/// <summary>
@@ -47,7 +47,7 @@ namespace CodeJam
 		/// <param name="h3">Hash code 3</param>
 		/// <param name="h4">Hash code 4</param>
 		/// <returns>Combined hash code</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Combine(int h1, int h2, int h3, int h4) => Combine(Combine(h1, h2), Combine(h3, h4));
 
 		/// <summary>
@@ -59,7 +59,7 @@ namespace CodeJam
 		/// <param name="h4">Hash code 4</param>
 		/// <param name="h5">Hash code 5</param>
 		/// <returns>Combined hash code</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Combine(int h1, int h2, int h3, int h4, int h5) => Combine(Combine(h1, h2, h3, h4), h5);
 
 		/// <summary>
@@ -72,7 +72,7 @@ namespace CodeJam
 		/// <param name="h5">Hash code 5</param>
 		/// <param name="h6">Hash code 6</param>
 		/// <returns>Combined hash code</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Combine(int h1, int h2, int h3, int h4, int h5, int h6) =>
 			Combine(Combine(h1, h2, h3, h4), Combine(h5, h6));
 
@@ -87,7 +87,7 @@ namespace CodeJam
 		/// <param name="h6">Hash code 6</param>
 		/// <param name="h7">Hash code 7</param>
 		/// <returns>Combined hash code</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Combine(int h1, int h2, int h3, int h4, int h5, int h6, int h7) =>
 			Combine(Combine(h1, h2, h3, h4), Combine(h5, h6, h7));
 
@@ -103,7 +103,7 @@ namespace CodeJam
 		/// <param name="h7">Hash code 7</param>
 		/// <param name="h8">Hash code 8</param>
 		/// <returns>Combined hash code</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int Combine(int h1, int h2, int h3, int h4, int h5, int h6, int h7, int h8) =>
 			Combine(Combine(h1, h2, h3, h4), Combine(h5, h6, h7, h8));
 
@@ -115,7 +115,7 @@ namespace CodeJam
 		/// <returns>
 		/// Combined hash code.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int CombineValues<T>(params T[]? values)
 		{
 			if (values.IsNullOrEmpty())
@@ -137,7 +137,7 @@ namespace CodeJam
 		/// <returns>
 		/// Combined hash code.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int CombineValues<T>([InstantHandle] IEnumerable<T>? values)
 		{
 			if (values == null)

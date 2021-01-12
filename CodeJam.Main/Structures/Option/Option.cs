@@ -44,7 +44,7 @@ namespace CodeJam
 		/// Instance of <see cref="Option"/> with <paramref name="value"/>, if <paramref name="value"/> has value,
 		/// or instance without value.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Option<T> SomeHasValue<T>(T? value) where T : struct =>
 			value.HasValue ? Some(value.Value) : None<T>();
 
@@ -90,7 +90,7 @@ namespace CodeJam
 		/// <param name="someSelector">Function if value exists.</param>
 		/// <param name="noneSelector">Function if no value.</param>
 		/// <returns>Result of matched function</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TResult GetValueOrDefault<T, TResult>(
 			[NotNull] this IOption<T> option,
 			[NotNull, InstantHandle] Func<IOption<T>, TResult> someSelector,
@@ -111,7 +111,7 @@ namespace CodeJam
 		/// <param name="option"><see cref="Option"/> instance.</param>
 		/// <param name="defaultValue">Default value.</param>
 		/// <returns>Value, or <paramref name="defaultValue"/> if <paramref name="option"/> has no value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T? GetValueOrDefault<T>([NotNull] this IOption<T> option, T defaultValue = default) =>
 			option.HasValue ? option.Value : defaultValue;
 
@@ -126,7 +126,7 @@ namespace CodeJam
 		/// Converted by <paramref name="selectFunc"/> value, or option with no value, if <paramref name="option"/>
 		/// has no value.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Option<TResult> With<T, TResult>(
 			[NotNull] this Option<T> option,
 			[NotNull, InstantHandle] Func<T, TResult> selectFunc)
@@ -149,7 +149,7 @@ namespace CodeJam
 		/// Converted by <paramref name="selectFunc"/> value, or option with <paramref name="defaultValue"/>, if
 		/// <paramref name="option"/> has no value.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Option<TResult> With<T, TResult>(
 			[NotNull] this Option<T> option,
 			[NotNull, InstantHandle] Func<T, TResult> selectFunc,
@@ -173,7 +173,7 @@ namespace CodeJam
 		/// Converted by <paramref name="selectFunc"/> value, or option with value returned by
 		/// <paramref name="defaultFunc"/>, if <paramref name="option"/> has no value.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Option<TResult> With<T, TResult>(
 			[NotNull] this Option<T> option,
 			[NotNull, InstantHandle] Func<T, TResult> selectFunc,

@@ -15,7 +15,7 @@ namespace CodeJam.Collections
 		/// <param name="source">The source.</param>
 		/// <param name="keySelector">The grouping key selector.</param>
 		/// <returns>Grouped items with grouping key.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static IEnumerable<IGrouping<TKey?, T>> GroupWhileEquals<T, TKey>(
 			[NotNull] this IEnumerable<T> source,
@@ -29,7 +29,7 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">The grouping key selector.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Grouped items with grouping key.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static IEnumerable<IGrouping<TKey?, T>> GroupWhileEquals<T, TKey>(
 			[NotNull] this IEnumerable<T> source,
@@ -42,7 +42,7 @@ namespace CodeJam.Collections
 			return GroupWhileCore(source, keySelector, comparer);
 		}
 
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		private static IEnumerable<IGrouping<TKey?, T>> GroupWhileCore<T, TKey>(
 			IEnumerable<T> source,
@@ -86,7 +86,7 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">The grouping key selector.</param>
 		/// <param name="itemSelector">The item selector.</param>
 		/// <returns>Grouped items with grouping key.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static IEnumerable<IGrouping<TKey?, TItem>> GroupWhileEquals<T, TItem, TKey>(
 			[NotNull] this IEnumerable<T> source,
@@ -160,7 +160,7 @@ namespace CodeJam.Collections
 		/// <param name="source">The source.</param>
 		/// <param name="predicate">Grouping predicate.</param>
 		/// <returns>Grouped items.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static IEnumerable<T[]> GroupWhile<T>(
 			[NotNull] this IEnumerable<T> source,

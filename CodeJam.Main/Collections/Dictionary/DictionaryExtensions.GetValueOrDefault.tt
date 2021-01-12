@@ -77,7 +77,7 @@ private void BackportedHeader1(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			this <#=type#><TKey, TValue> dictionary,
@@ -110,7 +110,7 @@ private void BackportedHeader2(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
@@ -154,7 +154,7 @@ private void Header1(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 				[NotNull] this <#=type#><TKey, TValue> dictionary,
@@ -190,7 +190,7 @@ private void Header2(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
@@ -236,7 +236,7 @@ private void Header3(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,
@@ -283,7 +283,7 @@ private void Header3(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
 			[NotNull] this <#=type#><TKey, TValue> dictionary,

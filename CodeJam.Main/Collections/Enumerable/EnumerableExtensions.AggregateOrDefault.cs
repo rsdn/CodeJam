@@ -15,7 +15,7 @@ namespace CodeJam.Collections
 		/// <param name="func">An accumulator function to be invoked on each element.</param>
 		/// <param name="defaultValue">Default value returned if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? AggregateOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
@@ -46,7 +46,7 @@ namespace CodeJam.Collections
 		/// <param name="func">An accumulator function to be invoked on each element.</param>
 		/// <param name="defaultValue">Default value returned if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TAccumulate? AggregateOrDefault<TSource, TAccumulate>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
@@ -80,7 +80,7 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
 		/// <param name="defaultValue">Default value returned if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TResult? AggregateOrDefault<TSource, TAccumulate, TResult>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
@@ -112,7 +112,7 @@ namespace CodeJam.Collections
 		/// <param name="func">An accumulator function to be invoked on each element.</param>
 		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource AggregateOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, TSource, TSource> func,
@@ -144,7 +144,7 @@ namespace CodeJam.Collections
 		/// <param name="func">An accumulator function to be invoked on each element.</param>
 		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TAccumulate AggregateOrDefault<TSource, TAccumulate>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
@@ -179,7 +179,7 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
 		/// <param name="defaultSelector">A function to select default value if the source is empty.</param>
 		/// <returns>The final accumulator value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TResult AggregateOrDefault<TSource, TAccumulate, TResult>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,

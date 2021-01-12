@@ -21,7 +21,7 @@ namespace CodeJam.Mapping
 		/// <example>
 		/// ConvertTo&lt;int&gt;.From("123");
 		/// </example>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TTo From<TFrom>(TFrom o) => Convert<TFrom,TTo>.From(o);
 	}
 }

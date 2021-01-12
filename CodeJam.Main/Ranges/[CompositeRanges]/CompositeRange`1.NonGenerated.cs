@@ -55,7 +55,7 @@ namespace CodeJam.Ranges
 		#region Operations
 		/// <summary>Returns simplified composite range. Adjacent ranges with same keys will be merged.</summary>
 		/// <returns>Simplified composite range.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T> Merge()
 		{
 			if (IsMerged)
@@ -71,7 +71,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the new key.</typeparam>
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key)
 			where TKey2 : notnull =>
 			IsEmpty

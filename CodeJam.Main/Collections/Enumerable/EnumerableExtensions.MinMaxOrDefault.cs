@@ -262,7 +262,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
 		/// <param name="source">The sequence.</param>
 		/// <returns>Minimum item from the sequence or default value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MinOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source) =>
@@ -273,7 +273,7 @@ namespace CodeJam.Collections
 		/// <param name="source">The sequence.</param>
 		/// <param name="defaultValue">The default value to return if the sequence.s empty.</param>
 		/// <returns>Minimum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MinOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -285,7 +285,7 @@ namespace CodeJam.Collections
 		/// <param name="source">The sequence.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Minimum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MinOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -298,7 +298,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The comparer.</param>
 		/// <param name="defaultValue">The default value to return if the sequence.s empty.</param>
 		/// <returns>Minimum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MinOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -314,7 +314,7 @@ namespace CodeJam.Collections
 		/// <param name="source">The sequence.</param>
 		/// <param name="selector">The value selector.</param>
 		/// <returns>Minimum item from the sequence or default value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static T MinOrDefault<TSource, T>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -328,7 +328,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">The value selector.</param>
 		/// <param name="defaultValue">The default value to return if the sequence.s empty.</param>
 		/// <returns>Minimum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static T MinOrDefault<TSource, T>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -343,7 +343,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">The value selector.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Minimum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static T MinOrDefault<TSource, T>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -359,7 +359,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The comparer.</param>
 		/// <param name="defaultValue">The default value to return if the sequence.s empty.</param>
 		/// <returns>Minimum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static T MinOrDefault<TSource, T>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -374,7 +374,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
 		/// <param name="source">The sequence.</param>
 		/// <returns>Maximum item from the sequence or default value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MaxOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source) =>
@@ -385,7 +385,7 @@ namespace CodeJam.Collections
 		/// <param name="source">The sequence.</param>
 		/// <param name="defaultValue">The default value to return if the sequence.s empty.</param>
 		/// <returns>Maximum item from the sequence or default value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MaxOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -397,7 +397,7 @@ namespace CodeJam.Collections
 		/// <param name="source">The sequence.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Maximum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MaxOrDefault<TSource>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source, IComparer<TSource>? comparer) =>
@@ -409,7 +409,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The comparer.</param>
 		/// <param name="defaultValue">The default value to return if the sequence.s empty.</param>
 		/// <returns>Maximum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static TSource MaxOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -425,7 +425,7 @@ namespace CodeJam.Collections
 		/// <param name="source">The sequence.</param>
 		/// <param name="selector">The value selector.</param>
 		/// <returns>Maximum item from the sequence or default value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static T MaxOrDefault<TSource, T>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -439,7 +439,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">The value selector.</param>
 		/// <param name="defaultValue">The default value to return if the sequence.s empty.</param>
 		/// <returns>Maximum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
 		public static T MaxOrDefault<TSource, T>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -454,7 +454,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">The value selector.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Maximum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T? MaxOrDefault<TSource, T>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, T> selector,
@@ -469,7 +469,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The comparer.</param>
 		/// <param name="defaultValue">The default value to return if the sequence.s empty.</param>
 		/// <returns>Maximum item from the sequence or default value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T? MaxOrDefault<TSource, T>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, T> selector,

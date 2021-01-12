@@ -20,7 +20,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// <c>true</c> if <paramref name="ch"/> matches the beginning of the <paramref name="value"/>; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool StartsWith(this string value, char ch)
 		{
 			Code.NotNull(value, nameof(value));
@@ -48,7 +48,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// <c>true</c> if <paramref name="ch"/> matches the end of the <paramref name="value"/>; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool EndsWith([NotNull] this string value, char ch)
 		{
 			Code.NotNull(value, nameof(value));
@@ -87,7 +87,7 @@ namespace CodeJam.Strings
 		/// <paramref name="origin"/> in  <paramref name="str"/>, or Empty if length of <paramref name="str"/>
 		/// or <paramref name="length"/> is zero.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string Substring(this string str, StringOrigin origin, int length)
 		{
 			Code.NotNull(str, nameof(str));
@@ -115,7 +115,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Prefix of specified length, or <paramref name="str"/> itself, if total length less than required.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string Prefix(this string str, int length) => str.Substring(StringOrigin.Begin, length);
 
 		/// <summary>
@@ -126,7 +126,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Suffix of specified length, or <paramref name="str"/> itself, if total length less than required.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string Suffix(this string str, int length) => str.Substring(StringOrigin.End, length);
 
 		/// <summary>
@@ -135,7 +135,7 @@ namespace CodeJam.Strings
 		/// <param name="str">String to trim.</param>
 		/// <param name="prefix">Prefix to trim.</param>
 		/// <returns>Trimmed <paramref name="str"/>, or original <paramref name="str"/> if prefix not exists.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string TrimPrefix(this string str, string? prefix) =>
 			TrimPrefix(str, prefix, StringComparer.CurrentCulture);
 
@@ -146,7 +146,7 @@ namespace CodeJam.Strings
 		/// <param name="prefix">Prefix to trim.</param>
 		/// <param name="comparer">Comparer to compare value of prefix.</param>
 		/// <returns>Trimmed <paramref name="str"/>, or original <paramref name="str"/> if prefix not exists.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string TrimPrefix(
 			this string str,
 			string? prefix,
@@ -175,7 +175,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string TrimSuffix(
 			this string str,
 			string? suffix,
@@ -205,7 +205,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string TrimSuffix(this string str, string? suffix) =>
 			TrimSuffix(str, suffix, StringComparer.CurrentCulture);
 
@@ -217,7 +217,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="value">Value to represent.</param>
 		/// <returns>Value as size in bytes</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string ToByteSizeString(this long value) => ToByteSizeString(value, null);
 
 		/// <summary>
@@ -225,7 +225,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="value">Value to represent.</param>
 		/// <returns>Value as size in bytes</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string ToByteSizeString(this int value) => ToByteSizeString(value, null);
 
 		/// <summary>
@@ -234,7 +234,7 @@ namespace CodeJam.Strings
 		/// <param name="value">Value to represent.</param>
 		/// <param name="provider">Format provider for number part of value</param>
 		/// <returns>Value as size in bytes</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string ToByteSizeString(this long value, IFormatProvider? provider)
 		{
 			switch (value)
@@ -262,7 +262,7 @@ namespace CodeJam.Strings
 		/// <param name="value">Value to represent.</param>
 		/// <param name="provider">Format provider for number part of value</param>
 		/// <returns>Value as size in bytes</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string ToByteSizeString(this int value, IFormatProvider? provider) =>
 			ToByteSizeString((long)value, provider);
 
@@ -272,7 +272,7 @@ namespace CodeJam.Strings
 		/// <param name="source">Source string.</param>
 		/// <param name="separators">Separator chars</param>
 		/// <returns>Enumeration of parts.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<string> SplitWithTrim(this string source, params char[] separators)
 		{
 			Code.NotNull(source, nameof(source));
@@ -292,7 +292,7 @@ namespace CodeJam.Strings
 		/// <paramref name="data"/> represented as a series of hexadecimal representations.
 		/// </returns>
 		/// <exception cref="ArgumentNullException"><paramref name="data"/> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static unsafe string ToHexString(this byte[] data)
 		{
 			Code.NotNull(data, nameof(data));
@@ -331,7 +331,7 @@ namespace CodeJam.Strings
 		/// <paramref name="data"/> represented as a series of hexadecimal representations divided by separator.
 		/// </returns>
 		/// <exception cref="ArgumentNullException"><paramref name="data"/> is null.</exception>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static unsafe string ToHexString(this byte[] data, string? byteSeparator)
 		{
 			Code.NotNull(data, nameof(data));
@@ -376,7 +376,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string Unquote(this string arg) => Unquote(arg, out _);
 
 		/// <summary>
@@ -387,7 +387,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string Unquote(this string arg, out bool quoted) => Unquote(arg, '"', out quoted);
 
 		/// <summary>
@@ -399,7 +399,7 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string Unquote(this string arg, char quotationChar, out bool quoted)
 		{
 			Code.NotNull(arg, nameof(arg));
@@ -419,7 +419,7 @@ namespace CodeJam.Strings
 		/// <param name="str">String to remove.</param>
 		/// <param name="toRemoveStrings">Substrings to remove.</param>
 		/// <returns>New string without provided substrings.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static string Remove(this string str, params string[] toRemoveStrings)
 		{
 			Code.NotNull(str,             nameof(str));
@@ -482,7 +482,7 @@ namespace CodeJam.Strings
 		/// <param name="str">String to check.</param>
 		/// <param name="value">The string to compare.</param>
 		/// <returns><c>true</c> if this instance begins with value; otherwise, <c>false</c>. </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool StartsWithInvariant([NotNull] this string str, [NotNull] string value) =>
 			str.StartsWith(value, StringComparison.InvariantCulture);
 
@@ -493,7 +493,7 @@ namespace CodeJam.Strings
 		/// <param name="str">String to check.</param>
 		/// <param name="value">The string to compare.</param>
 		/// <returns><c>true</c> if this instance begins with value; otherwise, <c>false</c>. </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool StartsWithOrdinal([NotNull] this string str, [NotNull] string value) =>
 			str.StartsWith(value, StringComparison.Ordinal);
 
@@ -504,7 +504,7 @@ namespace CodeJam.Strings
 		/// <param name="str">String to check.</param>
 		/// <param name="value">The string to compare.</param>
 		/// <returns><c>true</c> if this instance ends with value; otherwise, <c>false</c>. </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool EndsWithInvariant([NotNull] this string str, [NotNull] string value) =>
 			str.EndsWith(value, StringComparison.InvariantCulture);
 
@@ -515,7 +515,7 @@ namespace CodeJam.Strings
 		/// <param name="str">String to check.</param>
 		/// <param name="value">The string to compare.</param>
 		/// <returns><c>true</c> if this instance ends with value; otherwise, <c>false</c>. </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool EndsWithOrdinal([NotNull] this string str, [NotNull] string value) =>
 			str.EndsWith(value, StringComparison.Ordinal);
 
@@ -529,7 +529,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value) =>
 			str.IndexOf(value, StringComparison.InvariantCulture);
 
@@ -543,7 +543,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value) =>
 			str.IndexOf(value, StringComparison.Ordinal);
 
@@ -558,7 +558,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
 			str.IndexOf(value, startIndex, StringComparison.InvariantCulture);
 
@@ -573,7 +573,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
 			str.IndexOf(value, startIndex, StringComparison.Ordinal);
 
@@ -590,7 +590,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count) =>
 			str.IndexOf(value, startIndex, count, StringComparison.InvariantCulture);
 
@@ -607,7 +607,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int IndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count) =>
 			str.IndexOf(value, startIndex, count, StringComparison.Ordinal);
 
@@ -621,7 +621,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOfInvariant([NotNull] this string str, [NotNull] string value) =>
 			str.LastIndexOf(value, StringComparison.InvariantCulture);
 
@@ -635,7 +635,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOfOrdinal([NotNull] this string str, [NotNull] string value) =>
 			str.LastIndexOf(value, StringComparison.Ordinal);
 
@@ -650,7 +650,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOfInvariant([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
 			str.LastIndexOf(value, startIndex, StringComparison.InvariantCulture);
 
@@ -665,7 +665,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOfOrdinal([NotNull] this string str, [NotNull] string value, [NonNegativeValue] int startIndex) =>
 			str.LastIndexOf(value, startIndex, StringComparison.Ordinal);
 
@@ -682,7 +682,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOfInvariant(
 			[NotNull] this string str,
 			[NotNull] string value,
@@ -703,7 +703,7 @@ namespace CodeJam.Strings
 		/// The index position of the value parameter if that string is found, or -1 if it is not. If value is <see cref="string.Empty"/>,
 		/// the return value is 0
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOfOrdinal(
 			[NotNull] this string str,
 			[NotNull] string value,

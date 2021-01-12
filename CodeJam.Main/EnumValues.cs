@@ -104,7 +104,7 @@ namespace CodeJam
 		/// <returns>
 		///   <c>true</c> if the specified enum name is defined; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public bool IsDefined([NotNull] string name) => _valuesByName.ContainsKey(name);
 
 		/// <summary>Determines whether the specified enum name is defined.</summary>
@@ -113,7 +113,7 @@ namespace CodeJam
 		/// <returns>
 		///   <c>true</c> if the specified enum name is defined; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public bool IsDefined([NotNull] string name, bool ignoreCase)
 		{
 			var lookup = ignoreCase ? _valuesByNameIgnoreCase : _valuesByName;

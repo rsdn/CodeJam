@@ -17,7 +17,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int UpperBound<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
@@ -35,7 +35,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int UpperBound<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,
@@ -55,7 +55,7 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static int UpperBound<TElement, TValue>(
 				[NotNull, InstantHandle] this IList<TElement> list,
 				TValue value,

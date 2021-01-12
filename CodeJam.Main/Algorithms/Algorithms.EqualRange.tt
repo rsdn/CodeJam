@@ -40,7 +40,7 @@ private void GenerateMethods(string type)
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value) =>
 			list.EqualRange(value, 0);
 
@@ -53,7 +53,7 @@ private void GenerateMethods(string type)
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
@@ -67,7 +67,7 @@ private void GenerateMethods(string type)
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange(
 			[NotNull, InstantHandle] this IList<<#= type #>> list,
 			<#= type #> value,

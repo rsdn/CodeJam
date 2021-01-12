@@ -22,7 +22,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a <#=name.ToLower()#>; otherwise, <c>false</c>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool Is<#=name#>(this char chr) => char.Is<#=name#>(chr);
 
 <#+}#>

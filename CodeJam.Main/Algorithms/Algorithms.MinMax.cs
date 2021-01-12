@@ -19,7 +19,7 @@ namespace CodeJam
 		/// var min = value1 &lt;= value2 ? value1 : value2;
 		/// </code>
 		/// </remarks>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T Min<T>(T value1, T value2) => Operators<T>.Compare(value1, value2) <= 0 ? value1 : value2;
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace CodeJam
 		/// var max = value1 &gt;= value2 ? value1 : value2;
 		/// </code>
 		/// </remarks>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T Max<T>(T value1, T value2) => Operators<T>.Compare(value1, value2) >= 0 ? value1 : value2;
 	}
 }

@@ -29,7 +29,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte> selector)
@@ -72,7 +72,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte> selector,
@@ -111,7 +111,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte?> selector)
@@ -168,7 +168,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte?> selector,
@@ -224,7 +224,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte> selector)
@@ -267,7 +267,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte> selector,
@@ -306,7 +306,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte?> selector)
@@ -363,7 +363,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte?> selector,
@@ -419,7 +419,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short> selector)
@@ -462,7 +462,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short> selector,
@@ -501,7 +501,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short?> selector)
@@ -558,7 +558,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short?> selector,
@@ -614,7 +614,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort> selector)
@@ -657,7 +657,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort> selector,
@@ -696,7 +696,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort?> selector)
@@ -753,7 +753,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort?> selector,
@@ -809,7 +809,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int> selector)
@@ -852,7 +852,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int> selector,
@@ -891,7 +891,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int?> selector)
@@ -948,7 +948,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int?> selector,
@@ -1004,7 +1004,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint> selector)
@@ -1047,7 +1047,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint> selector,
@@ -1086,7 +1086,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint?> selector)
@@ -1143,7 +1143,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint?> selector,
@@ -1199,7 +1199,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long> selector)
@@ -1242,7 +1242,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long> selector,
@@ -1281,7 +1281,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long?> selector)
@@ -1338,7 +1338,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long?> selector,
@@ -1394,7 +1394,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong> selector)
@@ -1437,7 +1437,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong> selector,
@@ -1476,7 +1476,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong?> selector)
@@ -1533,7 +1533,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong?> selector,
@@ -1589,7 +1589,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float> selector)
@@ -1637,7 +1637,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float> selector,
@@ -1681,7 +1681,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float?> selector)
@@ -1738,7 +1738,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float?> selector,
@@ -1794,7 +1794,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double> selector)
@@ -1842,7 +1842,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double> selector,
@@ -1886,7 +1886,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double?> selector)
@@ -1943,7 +1943,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double?> selector,
@@ -1999,7 +1999,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal> selector)
@@ -2042,7 +2042,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal> selector,
@@ -2081,7 +2081,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MinBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal?> selector)
@@ -2138,7 +2138,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal?> selector,
@@ -2198,7 +2198,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte> selector)
@@ -2241,7 +2241,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte> selector,
@@ -2280,7 +2280,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte?> selector)
@@ -2337,7 +2337,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, byte?> selector,
@@ -2393,7 +2393,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte> selector)
@@ -2436,7 +2436,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte> selector,
@@ -2475,7 +2475,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte?> selector)
@@ -2532,7 +2532,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, sbyte?> selector,
@@ -2588,7 +2588,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short> selector)
@@ -2631,7 +2631,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short> selector,
@@ -2670,7 +2670,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short?> selector)
@@ -2727,7 +2727,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, short?> selector,
@@ -2783,7 +2783,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort> selector)
@@ -2826,7 +2826,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort> selector,
@@ -2865,7 +2865,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort?> selector)
@@ -2922,7 +2922,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ushort?> selector,
@@ -2978,7 +2978,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int> selector)
@@ -3021,7 +3021,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int> selector,
@@ -3060,7 +3060,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int?> selector)
@@ -3117,7 +3117,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, int?> selector,
@@ -3173,7 +3173,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint> selector)
@@ -3216,7 +3216,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint> selector,
@@ -3255,7 +3255,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint?> selector)
@@ -3312,7 +3312,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, uint?> selector,
@@ -3368,7 +3368,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long> selector)
@@ -3411,7 +3411,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long> selector,
@@ -3450,7 +3450,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long?> selector)
@@ -3507,7 +3507,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, long?> selector,
@@ -3563,7 +3563,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong> selector)
@@ -3606,7 +3606,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong> selector,
@@ -3645,7 +3645,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong?> selector)
@@ -3702,7 +3702,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, ulong?> selector,
@@ -3758,7 +3758,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float> selector)
@@ -3806,7 +3806,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float> selector,
@@ -3850,7 +3850,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float?> selector)
@@ -3907,7 +3907,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, float?> selector,
@@ -3963,7 +3963,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double> selector)
@@ -4011,7 +4011,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double> selector,
@@ -4055,7 +4055,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double?> selector)
@@ -4112,7 +4112,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, double?> selector,
@@ -4168,7 +4168,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal> selector)
@@ -4211,7 +4211,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal> selector,
@@ -4250,7 +4250,7 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the minimum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource MaxBy<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal?> selector)
@@ -4307,7 +4307,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[NotNull, InstantHandle] Func<TSource, decimal?> selector,

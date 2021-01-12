@@ -21,7 +21,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TFrom">Type to map from.</typeparam>
 		/// <typeparam name="TTo">Type to map to.</typeparam>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>()
 			=> new(new MapperBuilder<TFrom, TTo>());
 
@@ -32,7 +32,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TTo">Type to map to.</typeparam>
 		/// <param name="setter">MapperBuilder parameter setter.</param>
 		/// <returns>Mapping expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[NotNull]
 		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>(
 			[NotNull] Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>> setter)
@@ -56,7 +56,7 @@ namespace CodeJam.Mapping
 		/// <param name="obj">An object to copy.</param>
 		/// <typeparam name="T">Type of object.</typeparam>
 		/// <returns>Created object.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static T DeepCopy<T>(this T obj) => MapHolder<T>.Mapper.Map(obj);
 	}
 }

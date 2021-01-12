@@ -25,7 +25,7 @@ namespace CodeJam.Strings
 		/// The lowercase equivalent of <paramref name="chr"/>, or the unchanged value of <paramref name="chr"/>,
 		/// if <paramref name="chr"/> is already lowercase or not alphabetic.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static char ToLower(this char chr) => char.ToLower(chr);
 
 		/// <summary>
@@ -38,7 +38,7 @@ namespace CodeJam.Strings
 		/// or the unchanged value of <paramref name="chr"/>, if <paramref name="chr"/> is already lowercase or not
 		/// alphabetic.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static char ToLower(this char chr, [NotNull] CultureInfo culture) =>
 			CharEx.ToLower(chr, culture);
 
@@ -51,7 +51,7 @@ namespace CodeJam.Strings
 		/// The lowercase equivalent of <paramref name="chr"/>, or the unchanged value of <paramref name="chr"/>,
 		/// if <paramref name="chr"/> is already lowercase or not alphabetic.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static char ToLowerInvariant(this char chr) => char.ToLowerInvariant(chr);
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace CodeJam.Strings
 		/// The uppercase equivalent of <paramref name="chr"/>, or the unchanged value of <paramref name="chr"/>,
 		/// if <paramref name="chr"/> is already uppercase or not alphabetic.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static char ToUpper(this char chr) => char.ToUpper(chr);
 
 		/// <summary>
@@ -75,7 +75,7 @@ namespace CodeJam.Strings
 		/// or the unchanged value of <paramref name="chr"/>,  if <paramref name="chr"/> is already uppercase or not
 		/// alphabetic.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static char ToUpper(this char chr, [NotNull] CultureInfo culture) =>
 			CharEx.ToUpper(chr, culture);
 
@@ -88,7 +88,7 @@ namespace CodeJam.Strings
 		/// The uppercase equivalent of <paramref name="chr"/>, or the unchanged value of <paramref name="chr"/>,
 		/// if <paramref name="chr"/> is already uppercase or not alphabetic.
 		/// </returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static char ToUpperInvariant(this char chr) => char.ToUpperInvariant(chr);
 	}
 }

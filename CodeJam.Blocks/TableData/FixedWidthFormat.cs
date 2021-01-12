@@ -23,7 +23,7 @@ namespace CodeJam.TableData
 		/// </summary>
 		/// <param name="widths">Array of column widths</param>
 		/// <returns>Parser to use with <see cref="TableDataParser.Parse(Parser,string)"/></returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[JetBrains.Annotations.NotNull]
 		public static Parser CreateParser([JetBrains.Annotations.NotNull] int[] widths)
 		{
@@ -40,7 +40,7 @@ namespace CodeJam.TableData
 		/// <param name="reader">Text to parse</param>
 		/// <param name="widths">Array of column widths</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[JetBrains.Annotations.NotNull]
 		public static IEnumerable<DataLine> Parse([JetBrains.Annotations.NotNull] TextReader reader, [JetBrains.Annotations.NotNull] int[] widths) =>
 			CreateParser(widths).Parse(reader);

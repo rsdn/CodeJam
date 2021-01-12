@@ -47,7 +47,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Instance of <see cref="ValueOption"/>.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static implicit operator ValueOption<T>(T value) => new(value);
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="option"></param>
 		/// <returns>Value of <paramref name="option"/></returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static explicit operator T(ValueOption<T> option) => option.Value;
 
 		/// <summary>

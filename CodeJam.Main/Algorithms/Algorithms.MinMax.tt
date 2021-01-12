@@ -54,7 +54,7 @@ private void GenerateMethods(string type, bool useMath)
 		/// <param name="value1">Value 1.</param>
 		/// <param name="value2">Value 2.</param>
 		/// <returns>Minimal value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static <#=type#> Min(<#=type#> value1, <#=type#> value2) =>
 <#+ if (useMath) #>
@@ -69,7 +69,7 @@ private void GenerateMethods(string type, bool useMath)
 		/// <param name="value1">Value 1.</param>
 		/// <param name="value2">Value 2.</param>
 		/// <returns>Minimal value.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static <#=type#> Max(<#=type#> value1, <#=type#> value2) =>
 <#+ if (useMath) #>

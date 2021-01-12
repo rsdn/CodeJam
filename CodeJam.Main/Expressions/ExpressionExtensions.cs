@@ -676,7 +676,7 @@ namespace CodeJam.Expressions
 		/// <param name="expr"><see cref="Expression"/> to VisitInternal.</param>
 		/// <param name="exprToFind">Expression to find.</param>
 		/// <returns>Found expression or null.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Expression? Find(this Expression? expr, Expression exprToFind)
 		{
 			Code.NotNull(exprToFind, nameof(exprToFind));
@@ -690,7 +690,7 @@ namespace CodeJam.Expressions
 		/// <param name="expr"><see cref="Expression"/> to VisitInternal.</param>
 		/// <param name="func">Find function. Return true if expression is found.</param>
 		/// <returns>Found expression or null.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static Expression? Find(this Expression? expr, Func<Expression, bool> func)
 		{
 			Code.NotNull(func, nameof(func));
@@ -953,7 +953,7 @@ namespace CodeJam.Expressions
 		/// <param name="lambda">Original lambda.</param>
 		/// <param name="exprToReplaceParameter">An expression to replace lambda parameter.</param>
 		/// <returns>Modified body.</returns>
-		[Pure][JetBrains.Annotations.NotNull]
+		[Pure][System.Diagnostics.Contracts.Pure][JetBrains.Annotations.NotNull]
 		public static Expression ReplaceParameters(
 			[JetBrains.Annotations.NotNull] this LambdaExpression lambda, [JetBrains.Annotations.NotNull] Expression exprToReplaceParameter)
 		{
@@ -972,7 +972,7 @@ namespace CodeJam.Expressions
 		/// <param name="lambda">Original lambda.</param>
 		/// <param name="exprToReplaceParameter">Expressions to replace lambda parameters.</param>
 		/// <returns>Modified body.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[JetBrains.Annotations.NotNull]
 		public static Expression ReplaceParameters(
 			[JetBrains.Annotations.NotNull] this LambdaExpression lambda, [JetBrains.Annotations.NotNull] params Expression[] exprToReplaceParameter)
@@ -1034,7 +1034,7 @@ namespace CodeJam.Expressions
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
 		[return:NotNullIfNotNull("expr")]
 		public static T? Transform<T>(this T? expr, Func<Expression, Expression> func)
@@ -1051,7 +1051,7 @@ namespace CodeJam.Expressions
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
-		[Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
 		[return:NotNullIfNotNull("expr")]
 		public static Expression? Transform(this Expression? expr, [InstantHandle] Func<Expression, Expression> func)
