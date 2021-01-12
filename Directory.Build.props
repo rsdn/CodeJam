@@ -1,7 +1,9 @@
 <Project>
 	<PropertyGroup>
-		<!-- Compile Include="x.cs" doesn't use LangVersion defined in the PropertyGroup -->
+		<!-- Compile Include="x.cs" doesn't use properties defined in the PropertyGroup -->
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
+		<AnalysisLevel>latest</AnalysisLevel>
+    	<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	</PropertyGroup>
 </Project>
