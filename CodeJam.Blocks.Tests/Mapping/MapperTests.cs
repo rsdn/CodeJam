@@ -28,8 +28,8 @@ namespace CodeJam.Mapping
 	public class MapperTests
 	{
 		private class MapHelper<TFrom,TTo>
-			where TFrom : class, new()
-			where TTo   : class, new()
+			where TFrom : new()
+			where TTo   : new()
 		{
 			[MemberNotNull("From")]
 			[MemberNotNull("To")]
