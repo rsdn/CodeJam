@@ -100,7 +100,7 @@ namespace CodeJam.Metadata
 			[NotNull] XElement el,
 			string? exclude,
 			string typeName,
-			string memberName)
+			string? memberName)
 		{
 			var attrs = el.Elements().Where(e => e.Name.LocalName != exclude).Select(a =>
 			{

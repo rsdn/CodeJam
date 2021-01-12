@@ -44,17 +44,17 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Defines member name mapping for source types.
 		/// </summary>
-		Dictionary<Type,Dictionary<string,string>> FromMappingDictionary { get; set; }
+		Dictionary<Type,Dictionary<string,string>>? FromMappingDictionary { get; set; }
 
 		/// <summary>
 		/// Defines member name mapping for destination types.
 		/// </summary>
-		Dictionary<Type,Dictionary<string,string>> ToMappingDictionary { get; set; }
+		Dictionary<Type,Dictionary<string,string>>? ToMappingDictionary { get; set; }
 
 		/// <summary>
 		/// Member mappers.
 		/// </summary>
-		List<MemberMapper> MemberMappers { get; set; }
+		List<MemberMapper>? MemberMappers { get; set; }
 
 		/// <summary>
 		/// If true, processes object cross references.

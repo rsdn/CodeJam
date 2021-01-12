@@ -78,7 +78,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TFrom">Type to convert from.</typeparam>
 		/// <typeparam name="TTo">Type to convert to.</typeparam>
 		/// <param name="expr">Convert expression.</param>
-		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom?, TTo?>> expr)
+		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr)
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
 
 		[return: MaybeNull]
@@ -150,7 +150,7 @@ namespace CodeJam.Mapping
 		private static class ExprHolder<T>
 		{
 			[JetBrains.Annotations.NotNull]
-			public static readonly ConcurrentDictionary<Type, Func<object, T>> Converters =
+			public static readonly ConcurrentDictionary<Type, Func<object?, T>> Converters =
 				new();
 		}
 
@@ -161,13 +161,12 @@ namespace CodeJam.Mapping
 		/// <param name="value">An object to convert.</param>
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
-		[return: NotNullIfNotNull("value")]
-		public static T? ChangeTypeTo<T>(object value, MappingSchema? mappingSchema = null)
+		public static T? ChangeTypeTo<T>(object? value, MappingSchema? mappingSchema = null)
 		{
 			if (value == null || value is DBNull)
 				return mappingSchema == null ?
 					DefaultValue<T>.Value :
-					(T)mappingSchema.GetDefaultValue(typeof(T));
+					(T)mappingSchema.GetDefaultValue(typeof(T))!;
 
 			if (value.GetType() == typeof(T))
 				return (T)value;
@@ -191,7 +190,7 @@ namespace CodeJam.Mapping
 								e),
 					p);
 
-				l = ex.Compile();
+				l = ex.Compile()!;
 
 				ExprHolder<T>.Converters[from] = l;
 			}

@@ -331,8 +331,8 @@ namespace CodeJam.Mapping
 
 		private class EnumValues
 		{
-			public FieldInfo Field;
-			public MapValueAttribute[] Attrs;
+			public FieldInfo? Field;
+			public MapValueAttribute[]? Attrs;
 		}
 
 		[return: MaybeNull]
@@ -354,7 +354,7 @@ namespace CodeJam.Mapping
 						.Select(f => new
 						{
 							f.Field,
-							Attrs = f.Attrs
+							Attrs = f.Attrs!
 							.OrderBy(a =>
 							{
 								var idx = a.Configuration == null ?
@@ -371,8 +371,8 @@ namespace CodeJam.Mapping
 					if (toTypeFields.All(f => f.Attrs != null))
 					{
 						var cases = toTypeFields.Select(f => Expression.SwitchCase(
-							Expression.Constant(f.Attrs.Value ?? mappingSchema.GetDefaultValue(to), to),
-							Expression.Constant(Enum.Parse(from, f.Field.Name, false))));
+							Expression.Constant(f.Attrs!.Value ?? mappingSchema.GetDefaultValue(to), to),
+							Expression.Constant(Enum.Parse(from, f.Field!.Name, false))));
 
 						var expr = Expression.Switch(
 							expression,
@@ -394,7 +394,7 @@ namespace CodeJam.Mapping
 							Expression.Call(
 								_throwLinqToDBConvertException,
 								Expression.Constant(
-									$"Inconsistent mapping. '{from.FullName}.{field.Field.Name}' does not have MapValue(<{to.FullName}>) attribute.")),
+									$"Inconsistent mapping. '{from.FullName}.{field.Field!.Name}' does not have MapValue(<{to.FullName}>) attribute.")),
 								to);
 					}
 				}
@@ -407,7 +407,7 @@ namespace CodeJam.Mapping
 						.ToList();
 
 					var dic = new Dictionary<EnumValues, EnumValues>();
-					var cl = mappingSchema.ConfigurationList.Concat("", null).Select((c, i) => new { c, i }).ToArray();
+					var cl = ((string?[])mappingSchema.ConfigurationList).Concat("", null).Select((c, i) => new { c, i }).ToArray();
 
 					foreach (var toField in toFields)
 					{
@@ -418,7 +418,7 @@ namespace CodeJam.Mapping
 
 						toAttr = toField.Attrs.FirstOrDefault(a => a.Configuration == toAttr.Configuration && a.IsDefault) ?? toAttr;
 
-						var fromAttrs = fromFields.Where(f => f.Attrs.Any(a =>
+						var fromAttrs = fromFields.Where(f => f.Attrs!.Any(a =>
 							a.Value?.Equals(toAttr.Value) ?? (toAttr.Value == null))).ToList();
 
 						if (fromAttrs.Count == 0)
@@ -431,7 +431,7 @@ namespace CodeJam.Mapping
 								select new
 								{
 									f,
-									a = f.Attrs.First(a => a.Value?.Equals(toAttr.Value) ?? (toAttr.Value == null))
+									a = f.Attrs!.First(a => a.Value?.Equals(toAttr.Value) ?? (toAttr.Value == null))
 								} into fa
 								from c in cl
 								where fa.a.Configuration == c.c
@@ -455,7 +455,7 @@ namespace CodeJam.Mapping
 								Expression.Call(
 									_throwLinqToDBConvertException,
 									Expression.Constant(
-										$"Mapping ambiguity. '{from.FullName}.{fromAttrs[0].Field.Name}' can be mapped to either '{to.FullName}.{prev.To.Field.Name}' or '{to.FullName}.{toField.Field.Name}'.")),
+										$"Mapping ambiguity. '{from.FullName}.{fromAttrs[0].Field!.Name}' can be mapped to either '{to.FullName}.{prev.To.Field!.Name}' or '{to.FullName}.{toField.Field!.Name}'.")),
 									to);
 						}
 
@@ -466,8 +466,8 @@ namespace CodeJam.Mapping
 					{
 						// ReSharper disable once ImplicitlyCapturedClosure
 						var cases = dic.Select(f => Expression.SwitchCase(
-							Expression.Constant(Enum.Parse(to, f.Key.Field.Name, false)),
-							Expression.Constant(Enum.Parse(from, f.Value.Field.Name, false))));
+							Expression.Constant(Enum.Parse(to, f.Key.Field!.Name, false)),
+							Expression.Constant(Enum.Parse(from, f.Value.Field!.Name, false))));
 
 						var expr = Expression.Switch(
 							expression,
@@ -487,7 +487,7 @@ namespace CodeJam.Mapping
 		}
 
 		private static ValueTuple<Expression, bool>? GetConverter(
-			[AllowNull] MappingSchema mappingSchema,
+			[AllowNull] MappingSchema? mappingSchema,
 			[JetBrains.Annotations.NotNull] Expression expr,
 			[JetBrains.Annotations.NotNull] Type from,
 			[JetBrains.Annotations.NotNull] Type to)
@@ -500,7 +500,7 @@ namespace CodeJam.Mapping
 			if (le != null)
 				return ValueTuple.Create(le.ReplaceParameters(expr), false);
 
-			var lex = mappingSchema.TryGetConvertExpression(from, to);
+			var lex = mappingSchema!.TryGetConvertExpression(from, to);
 
 			if (lex != null)
 				return ValueTuple.Create(lex.ReplaceParameters(expr), true);
@@ -617,7 +617,7 @@ namespace CodeJam.Mapping
 
 				defex = GetCtor(uto, to, defex);
 
-				return ValueTuple.Create(Expression.Lambda(defex, p), nullLambda, false);
+				return ValueTuple.Create(Expression.Lambda(defex!, p), nullLambda, false);
 			}
 			else
 			{

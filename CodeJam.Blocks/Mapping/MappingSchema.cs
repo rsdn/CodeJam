@@ -181,7 +181,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="T">The type of object to return.</typeparam>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
 		public T ChangeTypeTo<T>(object value)
-			=> Converter.ChangeTypeTo<T>(value, this);
+			=> Converter.ChangeTypeTo<T>(value, this)!;
 
 		/// <summary>
 		/// Returns an object of a specified type whose value is equivalent to a specified object.
