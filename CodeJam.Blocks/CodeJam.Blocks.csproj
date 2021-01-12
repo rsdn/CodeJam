@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{0DFF0859-2400-4487-83AD-0ED10203D6D9}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net5.0;net472;net461;net45;net40;net35;netstandard2.1;netstandard2.0;netstandard1.5;netstandard1.3;netcoreapp3.0;netcoreapp2.0;netcoreapp1.0</TargetFrameworks>
+		<TargetFrameworks>net5.0;net472;net461;net45;net40;net35;netstandard2.1;netstandard2.0;netcoreapp3.1</TargetFrameworks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 
 		<PackageId>CodeJam.Blocks</PackageId>
@@ -33,29 +33,12 @@
 			<_Parameter1>.NETFramework,Version=v3.5</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net30'">
-		<AssemblyAttribute Include="System.Runtime.Versioning.TargetFrameworkAttribute">
-			<_Parameter1>.NETFramework,Version=v3.0</_Parameter1>
-		</AssemblyAttribute>
-	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
 		<PackageReference Include="System.Data.Common" Version="4.3.0" />
 		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="System.Data.Common" Version="4.3.0" />
-		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
-		<PackageReference Include="System.Data.Common" Version="4.3.0" />
-		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-		<PackageReference Include="System.Data.Common" Version="4.3.0" />
-		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
 		<PackageReference Include="System.Data.Common" Version="4.3.0" />
 		<PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
 	</ItemGroup>

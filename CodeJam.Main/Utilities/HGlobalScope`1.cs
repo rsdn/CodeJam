@@ -37,10 +37,6 @@ namespace CodeJam
 		{
 		}
 
-#if LESSTHAN_NETCOREAPP11 || LESSTHAN_NETSTANDARD20
-#pragma warning disable CS0618 // 'Marshal.SizeOf(Type)', 'Marshal.PtrToStructure(IntPtr, Type)' are obsolete
-#endif
-
 		/// <summary>
 		/// Value
 		/// </summary>
@@ -50,10 +46,6 @@ namespace CodeJam
 		/// Size of the of the generic parameter <typeparamref name="T"/>.
 		/// </summary>
 		private static readonly int _size = Marshal.SizeOf(typeof(T));
-
-#if LESSTHAN_NETCOREAPP11 || LESSTHAN_NETSTANDARD20
-#pragma warning restore CS0618
-#endif
 
 		/// <summary>
 		/// Validate <paramref name="cb" /> is at least as the size of <typeparamref name="T"/>.
