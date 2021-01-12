@@ -127,19 +127,19 @@ namespace CodeJam.Arithmetic
 			var compare = Operators<T>.Compare;
 
 			Assert.AreEqual(
-				NormalizeComparison(comparer.Compare(value1, value2)),
+				NormalizeComparison(comparer.Compare(value1!, value2!)),
 				NormalizeComparison(compare(value1, value2)));
 
 			Assert.AreEqual(
-				NormalizeComparison(comparer.Compare(value2, value1)),
+				NormalizeComparison(comparer.Compare(value2!, value1!)),
 				NormalizeComparison(compare(value2, value1)));
 
 			Assert.AreEqual(
-				NormalizeComparison(comparer.Compare(value1, value1)),
+				NormalizeComparison(comparer.Compare(value1!, value1!)),
 				NormalizeComparison(compare(value1, value1)));
 
 			Assert.AreEqual(
-				NormalizeComparison(comparer.Compare(value2, value2)),
+				NormalizeComparison(comparer.Compare(value2!, value2!)),
 				NormalizeComparison(compare(value2, value2)));
 		}
 
@@ -302,7 +302,7 @@ namespace CodeJam.Arithmetic
 		public void Test02NullableComparisonOperators()
 		{
 			Assert.AreNotEqual(
-				Comparer<object>.Default.Compare(1, null) > 0,
+				Comparer<object>.Default.Compare(1, null!) > 0,
 				Operators<int?>.GreaterThan(1, null));
 
 

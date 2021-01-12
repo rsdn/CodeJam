@@ -108,7 +108,7 @@ namespace CodeJam.Collections
 				while (e.MoveNext())
 				{
 					var x = selector(e.Current);
-					if (comparer.Compare(x, value) < 0)
+					if (comparer.Compare(x!, value!) < 0)
 					{
 						value = x;
 						item = e.Current;
@@ -180,7 +180,7 @@ namespace CodeJam.Collections
 				while (e.MoveNext())
 				{
 					var x = selector(e.Current);
-					if (comparer.Compare(x, value) < 0)
+					if (comparer.Compare(x!, value!) < 0)
 					{
 						value = x;
 						item = e.Current;

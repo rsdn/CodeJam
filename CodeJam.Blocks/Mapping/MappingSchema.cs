@@ -800,7 +800,7 @@ namespace CodeJam.Mapping
 					var list = new List<string>();
 
 					foreach (var s in Schemas)
-						if (!string.IsNullOrEmpty(s.Configuration) && hash.Add(s.Configuration))
+						if (!string.IsNullOrEmpty(s.Configuration) && hash.Add(s.Configuration!))
 							list.Add(s.Configuration!);
 
 					_configurationList = list.ToArray();
