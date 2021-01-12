@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -36,12 +37,12 @@ namespace CodeJam.Arithmetic
 			// ReSharper disable once RedundantDefaultMemberInitializer
 			public static readonly StructComparable PositiveInfinity = new();
 
-			public int CompareTo(object obj) => 0;
+			public int CompareTo([AllowNull] object obj) => 0;
 		}
 
 		private class ClassGenericComparable : IComparable<ClassGenericComparable>
 		{
-			public int CompareTo(ClassGenericComparable other) => 0;
+			public int CompareTo([AllowNull] ClassGenericComparable other) => 0;
 		}
 
 		private class ClassComparable2 : IComparable, IComparable<ClassComparable2>
@@ -49,13 +50,13 @@ namespace CodeJam.Arithmetic
 			public bool NonGenericCalled { get; set; }
 			public bool GenericCalled { get; set; }
 
-			public int CompareTo(object obj)
+			public int CompareTo([AllowNull] object obj)
 			{
 				NonGenericCalled = true;
 				return 0;
 			}
 
-			public int CompareTo(ClassComparable2 other)
+			public int CompareTo([AllowNull] ClassComparable2 other)
 			{
 				GenericCalled = true;
 				return 0;
@@ -79,7 +80,7 @@ namespace CodeJam.Arithmetic
 			public static bool OpCalled { get; set; }
 			public static bool GenericCalled { get; set; }
 
-			public int CompareTo(ClassOperatorsComparable other)
+			public int CompareTo([AllowNull] ClassOperatorsComparable other)
 			{
 				GenericCalled = true;
 				return 0;
@@ -111,10 +112,10 @@ namespace CodeJam.Arithmetic
 			B
 		}
 
-		private static void AssertOperator<T>([NotNull] Func<T> opGetter) =>
+		private static void AssertOperator<T>([JetBrains.Annotations.NotNull] Func<T> opGetter) =>
 			Assert.DoesNotThrow(() => opGetter());
 
-		private static void AssertNoOperator<T>([NotNull] Func<T> opGetter) =>
+		private static void AssertNoOperator<T>([JetBrains.Annotations.NotNull] Func<T> opGetter) =>
 			Assert.Throws<NotSupportedException>(() => opGetter());
 
 		private static int NormalizeComparison(int value) =>

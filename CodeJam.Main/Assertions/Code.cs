@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using SDC = System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -23,8 +24,6 @@ using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
-	using WasNotNull = System.Diagnostics.CodeAnalysis.NotNullAttribute;
-
 	/// <summary>Assertions class.</summary>
 	[PublicAPI]
 	public static partial class Code
@@ -37,7 +36,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
-			[AllowNull, WasNotNull, NoEnumeration] T arg,
+			[AllowNull, SDC.NotNull, NoEnumeration] T? arg,
 			[InvokerParameterName] string argName)
 			where T : class
 		{
@@ -57,7 +56,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void GenericNotNull<T>(
-			[AllowNull, WasNotNull, NoEnumeration] T arg,
+			[AllowNull, SDC.NotNull, NoEnumeration] T? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -100,7 +99,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
-			[WasNotNull] T? arg,
+			[SDC.NotNull] T? arg,
 			[InvokerParameterName] string argName) where T : struct
 		{
 			if (arg == null)
@@ -116,7 +115,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, WasNotNull, InstantHandle] IEnumerable<T> arg,
+			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T?>? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -134,7 +133,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, WasNotNull] ICollection<T> arg,
+			[AllowNull, SDC.NotNull] ICollection<T>? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -152,7 +151,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, WasNotNull] T[] arg,
+			[AllowNull, SDC.NotNull] T?[]? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -167,7 +166,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty(
-			[AllowNull, WasNotNull] string arg,
+			[AllowNull, SDC.NotNull] string? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrEmpty())
@@ -180,7 +179,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorWhiteSpace(
-			[AllowNull, WasNotNull] string arg,
+			[AllowNull, SDC.NotNull] string? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrWhiteSpace())
@@ -194,7 +193,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullAndItemNotNull<T>(
-			[AllowNull, WasNotNull, InstantHandle] IEnumerable<T> arg,
+			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T?>? arg,
 			[InvokerParameterName] string argName) where T : class
 		{
 			if (arg == null)
@@ -209,7 +208,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ItemNotNull<T>(
-			[InstantHandle] IEnumerable<T> arg,
+			[InstantHandle] IEnumerable<T?> arg,
 			[InvokerParameterName] string argName) where T : class
 		{
 			foreach (var item in arg)

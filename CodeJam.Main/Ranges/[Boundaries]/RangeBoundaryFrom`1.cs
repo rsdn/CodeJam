@@ -493,7 +493,7 @@ namespace CodeJam.Ranges
 		//   Please create issue at first
 		[Pure]
 		[MethodImpl(AggressiveInlining)]
-		public int CompareTo(T? other) => CompareTo(Range.GetCompareToBoundary(other));
+		public int CompareTo([AllowNull] T other) => CompareTo(Range.GetCompareToBoundary(other));
 		#endregion
 
 		#region IComparable

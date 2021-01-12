@@ -131,7 +131,7 @@ namespace CodeJam.UseCases.TempDataSamples
 
 		private void Process(string tempFile) { }
 
-		private void HandleDeleteFailure(string fileName, Exception exception) { }
+		private void HandleDeleteFailure(string fileName, Exception? exception) { }
 	}
 
 	// Stub implementation. Unusable by design.
@@ -142,7 +142,7 @@ namespace CodeJam.UseCases.TempDataSamples
 		[JBNotNull] public static TempData CreateFile(bool throwOnDisposeFailure) => new();
 		[JBNotNull] public static TempData CreateFile([JBNotNull] Action<TempData, Exception> deleteFallback) => new();
 
-		public string? FileName => null;
+		public string FileName => null!;
 
 		public void EnsureDelete()
 		{

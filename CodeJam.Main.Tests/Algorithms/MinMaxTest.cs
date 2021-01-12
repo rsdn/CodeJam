@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using NUnit.Framework;
@@ -18,7 +19,7 @@ namespace CodeJam
 			public int Value { get; }
 
 			#region Implementation of IComparable
-			public int CompareTo(object obj)
+			public int CompareTo([AllowNull] object obj)
 			{
 				if (!(obj is Comparable other)) return 1;
 

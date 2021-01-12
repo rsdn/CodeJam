@@ -17,7 +17,7 @@ namespace CodeJam.UseCases.EnumHelperSamples
 		#region Test helpers
 
 		[DisallowNull]
-		private CultureInfo? _previousCulture;
+		private CultureInfo? _previousCulture = null!;
 
 		[OneTimeSetUp]
 		[UsedImplicitly]

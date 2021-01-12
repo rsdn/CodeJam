@@ -28,10 +28,10 @@ namespace CodeJam
 		public abstract void Do(<#=List(i, j => $"Action<T{j}> case{j}Action")#>);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<<#=types#>> other);
+		public abstract bool Equals(OneOf<<#=types#>>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -78,7 +78,7 @@ namespace CodeJam
 
 			public override void Do(<#=List(i, j => $"Action<T{j}> case{j}Action")#>) => case<#=k#>Action(_value);
 
-			public override bool Equals(OneOf<<#=types#>> other) => Equals(other as Case<#=k#>);
+			public override bool Equals(OneOf<<#=types#>>? other) => Equals(other as Case<#=k#>);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}

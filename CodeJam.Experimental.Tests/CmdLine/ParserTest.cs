@@ -65,10 +65,10 @@ namespace CodeJam.CmdLine
 			Assert.AreEqual(2, res.Options.Length, "#A21");
 			Assert.AreEqual(OptionType.Value, res.Options[0].Type, "#A22");
 			Assert.AreEqual(OptionType.Value, res.Options[1].Type, "#A23");
-			Assert.AreEqual("def", res.Options[0].Value.Text, "#A24");
-			Assert.AreEqual(" h k l ", res.Options[1].Value.Text, "#A25");
-			Assert.IsFalse(res.Options[0].Value.Quoted, "#A26");
-			Assert.IsTrue(res.Options[1].Value.Quoted, "#A27");
+			Assert.AreEqual("def", res.Options[0].Value!.Text, "#A24");
+			Assert.AreEqual(" h k l ", res.Options[1].Value!.Text, "#A25");
+			Assert.IsFalse(res.Options[0].Value!.Quoted, "#A26");
+			Assert.IsTrue(res.Options[1].Value!.Quoted, "#A27");
 		}
 
 		[Test]
