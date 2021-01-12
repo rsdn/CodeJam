@@ -25,7 +25,7 @@ namespace CodeJam
 		{
 #if TARGETS_NET || NETCOREAPP20_OR_GREATER
 			if (memberName.IsNullOrEmpty())
-				memberName = new StackTrace(1).GetFrame(0).GetMethod().Name;
+				memberName = new StackTrace(1).GetFrame(0)!.GetMethod()!.Name;
 #endif
 			Console.WriteLine(
 				$"{memberName}: Rnd seed: {seed} (use the seed to reproduce test results).");

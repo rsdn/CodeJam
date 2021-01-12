@@ -140,15 +140,15 @@ namespace CodeJam.Reflection
 			else
 			{
 				var bf = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
-				var result = GetAttributesString<TAttribute>(type.GetMethod("M", bf), searchMode);
+				var result = GetAttributesString<TAttribute>(type.GetMethod("M", bf)!, searchMode);
 				AreEqual(result, expected);
 
 				if (searchMode != SearchMode.Attributes) // default do not honor inherit flag for properties / events
 				{
-					result = GetAttributesString<TAttribute>(type.GetProperty("P", bf), searchMode);
+					result = GetAttributesString<TAttribute>(type.GetProperty("P", bf)!, searchMode);
 					AreEqual(result, expected.Replace(".M", ".P"));
 
-					result = GetAttributesString<TAttribute>(type.GetEvent("E", bf), searchMode);
+					result = GetAttributesString<TAttribute>(type.GetEvent("E", bf)!, searchMode);
 					AreEqual(result, expected.Replace(".M", ".E"));
 				}
 			}

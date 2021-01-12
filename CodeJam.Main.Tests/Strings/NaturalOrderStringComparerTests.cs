@@ -98,8 +98,8 @@ namespace CodeJam.Strings
 					"x10m.txt"
 				};
 
-			var actual = data.OrderBy(s => s, NaturalOrderStringComparer.Comparer).ToList();
-			DumpData(actual);
+			var actual = data.OrderBy(s => s, NaturalOrderStringComparer.Comparer!).ToList();
+			DumpData(actual!);
 
 			Assert.AreEqual(expected, actual);
 		}

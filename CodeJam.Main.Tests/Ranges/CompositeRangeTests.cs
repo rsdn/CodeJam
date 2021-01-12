@@ -48,6 +48,7 @@ namespace CodeJam.Ranges
 			[NotNull] string value,
 			Func<string, T> parseValueCallback,
 			Func<string, TKey> parseKeyCallback)
+			where TKey : notnull
 		{
 			if (value == RangeInternal.EmptyString)
 				return CompositeRange<T, TKey>.Empty;
@@ -75,7 +76,7 @@ namespace CodeJam.Ranges
 			ParseCompositeRange(value, s => (double?)double.Parse(s, CultureInfo.InvariantCulture));
 
 		public static CompositeRange<int?, string> ParseCompositeKeyedRangeInt32([NotNull] string value) =>
-			ParseCompositeRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture), s => s.IsNullOrEmpty() ? null : s);
+			ParseCompositeRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture), s => s.IsNullOrEmpty() ? null! : s);
 		#endregion
 
 		[Test]
@@ -289,7 +290,7 @@ namespace CodeJam.Ranges
 			IsFalse(a.IsNotEmpty);
 			IsTrue(a.IsMerged);
 
-			a = new CompositeRange<int, string>(infinite);
+			a = new CompositeRange<int, string>(infinite!);
 			AreNotEqual(a, new CompositeRange<int, string>());
 			AreEqual(a, CompositeRange.Create(infinite));
 			AreNotEqual(a, CompositeRange.Create(infinite, infinite));
@@ -300,9 +301,9 @@ namespace CodeJam.Ranges
 			IsTrue(a.IsNotEmpty);
 			IsTrue(a.IsMerged);
 
-			a = CompositeRange.Create(range1A);
+			a = CompositeRange.Create(range1A)!;
 			AreNotEqual(a, new CompositeRange<int, string>());
-			AreNotEqual(a, new CompositeRange<int, string>(infinite));
+			AreNotEqual(a, new CompositeRange<int, string>(infinite!));
 			AreNotEqual(a, CompositeRange.Create(range1A, range1A));
 			AreNotEqual(a, CompositeRange.Create(range1B));
 			AreEqual(a.SubRanges.Count, 1);
@@ -313,7 +314,7 @@ namespace CodeJam.Ranges
 			IsTrue(a.IsNotEmpty);
 			IsTrue(a.IsMerged);
 
-			a = CompositeRange.Create(range1A, range1B);
+			a = CompositeRange.Create(range1A, range1B)!;
 			AreNotEqual(a, CompositeRange<int>.Empty);
 			AreNotEqual(a, CompositeRange<int>.Infinite);
 			AreEqual(a, CompositeRange.Create(range1B, range1A));
@@ -325,7 +326,7 @@ namespace CodeJam.Ranges
 			IsTrue(a.IsNotEmpty);
 			IsFalse(a.IsMerged);
 
-			a = CompositeRange.Create(range1A, range2C);
+			a = CompositeRange.Create(range1A, range2C)!;
 			AreNotEqual(a, CompositeRange<int>.Empty);
 			AreNotEqual(a, CompositeRange<int>.Infinite);
 			AreEqual(a, CompositeRange.Create(range2C, range1A));
@@ -339,7 +340,7 @@ namespace CodeJam.Ranges
 			IsFalse(a.SubRanges[0].HasIntersection(a.SubRanges[1]));
 			IsTrue(a.SubRanges[0].To.GetComplementation() == a.SubRanges[1].From);
 
-			a = CompositeRange.Create(range1A, range3A);
+			a = CompositeRange.Create(range1A, range3A)!;
 			AreNotEqual(a, CompositeRange<int>.Empty);
 			AreNotEqual(a, CompositeRange<int>.Infinite);
 			AreEqual(a, CompositeRange.Create(range3A, range1A));

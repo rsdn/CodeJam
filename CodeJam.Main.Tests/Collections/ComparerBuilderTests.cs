@@ -86,7 +86,7 @@ namespace CodeJam.Collections
 		[TestCase("Alpha", "Beta", false)]
 		public void ComplexMemberTest(string p1, string p2, bool expected)
 		{
-			var comparer = ComparerBuilder<TestClass>.GetEqualityComparer(c => c!.Prop2.Length);
+			var comparer = ComparerBuilder<TestClass>.GetEqualityComparer(c => c!.Prop2!.Length);
 			var o1 = new TestClass { Prop2 = p1 };
 			var o2 = new TestClass { Prop2 = p2 };
 
@@ -214,13 +214,13 @@ namespace CodeJam.Collections
 				null
 			};
 
-			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(3));
+			Assert.That(arr.Distinct(eq!).Count(), Is.EqualTo(3));
 		}
 
 		[Test]
 		public void DistinctByMember2Test()
 		{
-			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(t => t!.Field1, t => t!.Prop2);
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(t => t!.Field1, t => t!.Prop2!);
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },
@@ -232,7 +232,7 @@ namespace CodeJam.Collections
 				null
 			};
 
-			Assert.That(arr.Distinct(eq).Count(), Is.EqualTo(5));
+			Assert.That(arr.Distinct(eq!).Count(), Is.EqualTo(5));
 		}
 
 		[Test]

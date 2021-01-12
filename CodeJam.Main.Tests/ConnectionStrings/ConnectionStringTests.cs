@@ -49,7 +49,7 @@ namespace CodeJam.ConnectionStrings
 		{
 			public DerivedConnectionString(string connectionString) : base(connectionString) { }
 
-			public new string RequiredValue
+			public new string? RequiredValue
 			{
 				get => TryGetValue(nameof(RequiredValue));
 				set => SetValue(nameof(RequiredValue), value);

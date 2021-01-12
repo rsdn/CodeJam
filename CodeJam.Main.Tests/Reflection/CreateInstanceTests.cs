@@ -28,7 +28,7 @@ namespace CodeJam.Reflection
 		{
 			var inst = type.CreateInstance(ParseParams(paramStrs));
 			Assert.IsNotNull(inst);
-			return inst.ToString();
+			return inst!.ToString()!;
 		}
 
 		[NotNull, ItemNotNull]

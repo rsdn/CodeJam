@@ -99,7 +99,7 @@ namespace CodeJam.Ranges
 			ParseRange(value, s => (double?)double.Parse(s, CultureInfo.InvariantCulture));
 
 		public static Range<int?, string> ParseKeyedRangeInt32([NotNull] string value) =>
-			ParseRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture), s => s.IsNullOrEmpty() ? null : s);
+			ParseRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture), s => s.IsNullOrEmpty() ? null : s)!;
 		#endregion
 	}
 }
