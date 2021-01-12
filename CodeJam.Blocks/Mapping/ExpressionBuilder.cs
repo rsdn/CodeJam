@@ -708,7 +708,7 @@ namespace CodeJam.Mapping
 		}
 
 		[return: MaybeNull]
-		private static Expression ToArray(
+		private static Expression? ToArray(
 			[JetBrains.Annotations.NotNull] ExpressionBuilder builder,
 			Expression fromExpression,
 			[JetBrains.Annotations.NotNull] Type fromItemType,

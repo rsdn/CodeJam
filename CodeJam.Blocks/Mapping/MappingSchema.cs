@@ -31,7 +31,7 @@ namespace CodeJam.Mapping
 		/// Create an instance of <seealso cref="MappingSchema"/>.
 		/// </summary>
 		public MappingSchema()
-			: this(null, (MappingSchema[])null)
+			: this(null, (MappingSchema[]?)null)
 		{
 		}
 
@@ -39,7 +39,7 @@ namespace CodeJam.Mapping
 		/// Create an instance of <seealso cref="MappingSchema"/>.
 		/// </summary>
 		/// <param name="schemas">Base schemas.</param>
-		public MappingSchema(params MappingSchema[] schemas)
+		public MappingSchema(params MappingSchema[]? schemas)
 			: this(null, schemas)
 		{
 		}
@@ -58,7 +58,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="configuration">Configuration name.</param>
 		/// <param name="schemas">Base schemas.</param>
-		public MappingSchema(string configuration, params MappingSchema[] schemas)
+		public MappingSchema(string configuration, params MappingSchema[]? schemas)
 		{
 			var schemaInfo = new MappingSchemaInfo(configuration);
 
@@ -896,7 +896,7 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region GetMapValues
-		private ConcurrentDictionary<Type,MapValue[]> _mapValues;
+		private ConcurrentDictionary<Type,MapValue[]?> _mapValues;
 
 		/// <summary>
 		/// Returns mapping values for provided enum type.
@@ -906,7 +906,7 @@ namespace CodeJam.Mapping
 		/// <exception cref="ArgumentNullException"><paramref name="type" /> is null.</exception>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
 		[ItemNotNull]
-		public virtual MapValue[] GetMapValues([JetBrains.Annotations.NotNull] Type type)
+		public virtual MapValue[]? GetMapValues([JetBrains.Annotations.NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));
 

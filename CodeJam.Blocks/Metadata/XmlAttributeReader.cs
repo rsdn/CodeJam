@@ -42,7 +42,7 @@ namespace CodeJam.Metadata
 			Code.NotNull(xmlFile, nameof(xmlFile));
 			Code.NotNull(assembly, nameof(assembly));
 
-			StreamReader streamReader = null;
+			StreamReader? streamReader = null;
 
 			try
 			{
@@ -59,7 +59,7 @@ namespace CodeJam.Metadata
 				}
 
 				var embedded = streamReader == null;
-				var stream = embedded ? assembly.GetManifestResourceStream(xmlFile) : streamReader.BaseStream;
+				var stream = embedded ? assembly.GetManifestResourceStream(xmlFile) : streamReader!.BaseStream;
 
 				if (embedded && stream == null)
 				{

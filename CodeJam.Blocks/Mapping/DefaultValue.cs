@@ -18,7 +18,7 @@ namespace CodeJam.Mapping
 	public static class DefaultValue
 	{
 		[NotNull]
-		private static readonly ConcurrentDictionary<Type,object> _defaultValues = new()
+		private static readonly ConcurrentDictionary<Type,object?> _defaultValues = new()
 		{
 			[typeof(int)]            = default(int),
 			[typeof(uint)]           = default(uint),
@@ -94,7 +94,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="T">Type to get default value.</typeparam>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
 		[Pure]
-		public static T GetValue<T>()
+		public static T? GetValue<T>()
 		{
 			if (_defaultValues.TryGetValue(typeof(T), out var value))
 				return (T)value;
@@ -109,7 +109,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <typeparam name="T">Type to set default value for.</typeparam>
 		/// <param name="value">Value to set.</param>
-		public static void SetValue<T>(T value)
+		public static void SetValue<T>(T? value)
 			=> _defaultValues[typeof(T)] = value;
 	}
 }

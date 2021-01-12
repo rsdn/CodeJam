@@ -19,10 +19,10 @@ namespace CodeJam.Mapping
 		public MappingSchemaInfo(string configuration) => Configuration = configuration;
 
 		public readonly string Configuration;
-		public IMetadataReader MetadataReader;
+		public IMetadataReader? MetadataReader;
 
 		#region Default Values
-		private volatile ConcurrentDictionary<Type,object> _defaultValues;
+		private volatile ConcurrentDictionary<Type,object>? _defaultValues;
 
 		[JetBrains.Annotations.NotNull]
 		public Option<object> GetDefaultValue([JetBrains.Annotations.NotNull] Type type)
@@ -65,7 +65,7 @@ namespace CodeJam.Mapping
 								continue;
 
 							var gtype    = type.Key.MakeGenericType(types);
-							var provider = (IGenericInfoProvider)Activator.CreateInstance(gtype);
+							var provider = (IGenericInfoProvider)Activator.CreateInstance(gtype)!;
 
 							provider.SetInfo(new MappingSchema(this));
 

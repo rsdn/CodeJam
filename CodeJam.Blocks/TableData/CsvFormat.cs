@@ -28,7 +28,7 @@ namespace CodeJam.TableData
 		/// <returns>Escaped value.</returns>
 		public static string EscapeValue([JetBrains.Annotations.NotNull] string value)
 		{
-			StringBuilder escaped = null;
+			StringBuilder? escaped = null;
 			for (var i = 0; i < value.Length; i++)
 			{
 				var chr = value[i];
@@ -330,14 +330,14 @@ namespace CodeJam.TableData
 
 		private class CsvFormatter : ITableDataFormatter
 		{
-			public int GetValueLength([AllowNull] string value)
+			public int GetValueLength([AllowNull] string? value)
 			{
 				var len = value?.Length;
 				if (!len.HasValue || len == 0)
 					return 0;
 
 				var append = 0;
-				foreach (var chr in value) {
+				foreach (var chr in value!) {
 					if (append == 0)
 					{
 						if (IsEscapeRequired(chr))

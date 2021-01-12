@@ -17,7 +17,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Gets default value for provided <see cref="Type"/>.
 		/// </summary>
-		public static T Value
+		public static T? Value
 		{
 			get => _value;
 			set => DefaultValue.SetValue(_value = value);

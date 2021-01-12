@@ -188,7 +188,7 @@ namespace CodeJam.Mapping
 				var values = Enum.GetValues(to);
 				var names = Enum.GetNames(to);
 
-				var dic = new Dictionary<string, object>();
+				var dic = new Dictionary<string, object?>();
 
 				for (var i = 0; i < values.Length; i++)
 				{

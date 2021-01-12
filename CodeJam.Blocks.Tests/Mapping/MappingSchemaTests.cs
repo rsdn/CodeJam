@@ -349,7 +349,7 @@ namespace CodeJam.Mapping
 		{
 			var schema = new MappingSchema("2");
 			Assert.That(schema.GetDefaultValue(typeof(Enum1?)), Is.Null);
-			var mapType = ConvertBuilder.GetDefaultMappingFromEnumType(schema, typeof(Enum1?));
+			var mapType = ConvertBuilder.GetDefaultMappingFromEnumType(schema, typeof(Enum1?))!;
 			Assert.That(mapType, Is.EqualTo(typeof(int?)));
 			var convertedValue = Converter.ChangeType(null, mapType, schema);
 			Assert.IsNull(convertedValue);

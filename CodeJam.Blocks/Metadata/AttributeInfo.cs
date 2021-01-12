@@ -24,7 +24,7 @@ namespace CodeJam.Metadata
 
 		[NotNull] private readonly Dictionary<string,object> _values;
 
-		private Func<Attribute> _func;
+		private Func<Attribute>? _func;
 
 		public Attribute MakeAttribute([NotNull] Type type)
 		{

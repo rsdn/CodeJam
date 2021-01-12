@@ -1,5 +1,6 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 using JetBrains.Annotations;
@@ -21,6 +22,8 @@ namespace CodeJam.Mapping
 			Init();
 		}
 
+		[MemberNotNull("_expression")]
+		[MemberNotNull("_lambda")]
 		private static void Init()
 		{
 			var expr = ConvertBuilder.GetConverter(null, typeof(TFrom), typeof(TTo));
@@ -62,7 +65,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		[NotNull] private static Func<TFrom,TTo> _lambda;
+		[JetBrains.Annotations.NotNull] private static Func<TFrom,TTo> _lambda;
 
 		/// <summary>
 		/// Represents a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
@@ -102,7 +105,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Returns a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
 		/// </summary>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		public static Func<TFrom,TTo> From => _lambda;
 	}
 }
