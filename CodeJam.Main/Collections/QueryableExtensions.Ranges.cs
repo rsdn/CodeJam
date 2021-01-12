@@ -61,8 +61,8 @@ namespace CodeJam.Collections
 		[NotNull, Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
 			[NotNull] this IQueryable<T> source,
-			[NotNull] Expression<Func<T, object>> fromValueSelector,
-			[NotNull] Expression<Func<T, object>> toValueSelector,
+			[NotNull] Expression<Func<T?, object>> fromValueSelector,
+			[NotNull] Expression<Func<T?, object>> toValueSelector,
 			Range<TValue> range) =>
 				Intersect(source, fromValueSelector, toValueSelector, range, QueryRangeBoundaries.InfiniteBoth);
 
@@ -78,8 +78,8 @@ namespace CodeJam.Collections
 		[NotNull, Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
 			[NotNull] this IQueryable<T> source,
-			[NotNull] Expression<Func<T, object>> fromValueSelector,
-			[NotNull] Expression<Func<T, object>> toValueSelector,
+			[NotNull] Expression<Func<T?, object>> fromValueSelector,
+			[NotNull] Expression<Func<T?, object>> toValueSelector,
 			Range<TValue> range,
 			QueryRangeBoundaries rangeBoundaries)
 		{
@@ -130,8 +130,8 @@ namespace CodeJam.Collections
 		[NotNull, Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
 			this IQueryable<T> source,
-			Expression<Func<T, object>> fromValueSelector,
-			Expression<Func<T, object>> toValueSelector,
+			Expression<Func<T?, object>> fromValueSelector,
+			Expression<Func<T?, object>> toValueSelector,
 			Expression<Func<T, bool>>? fromInfinityPredicate,
 			Expression<Func<T, bool>>? toInfinityPredicate,
 			Range<TValue> range)

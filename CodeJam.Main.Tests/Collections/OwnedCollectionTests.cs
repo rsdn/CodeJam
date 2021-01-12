@@ -23,7 +23,7 @@ namespace CodeJam.Collections
 		public class Item
 		{
 			public Guid Key { get; } = Guid.NewGuid();
-			public Owner Owner { get; set; }
+			public Owner? Owner { get; set; }
 		}
 
 		public class MyCollection : OwnedCollection<Owner, Item>

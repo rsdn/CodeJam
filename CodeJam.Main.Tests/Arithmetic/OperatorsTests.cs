@@ -121,7 +121,7 @@ namespace CodeJam.Arithmetic
 		private static int NormalizeComparison(int value) =>
 			value < 0 ? -1 : (value > 0 ? 1 : 0);
 
-		private static void AssertComparison<T>(T value1, T value2)
+		private static void AssertComparison<T>(T? value1, T? value2)
 		{
 			var comparer = Comparer<T>.Default;
 			var compare = Operators<T>.Compare;

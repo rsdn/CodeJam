@@ -39,7 +39,7 @@ namespace CodeJam.Collections
 			var items = GetDepStructure(source, out deps);
 
 			// Perform sort
-			return items.TopoSort(i => deps[i], v => v.Value).Join(", ");
+			return items.TopoSort(i => deps[i], v => v!.Value).Join(", ");
 		}
 
 		[TestCase(arg: new[] { "a:a" })]
@@ -133,7 +133,7 @@ namespace CodeJam.Collections
 			deps = innerDeps.ToDictionary(
 				kv => new Holder(kv.Key),
 				kv => kv.Value.Select(v => new Holder(v)).ToArray(),
-				new KeyEqualityComparer<Holder, string>(v => v.Value));
+				new KeyEqualityComparer<Holder, string>(v => v!.Value));
 
 			return items.Select(v => new Holder(v));
 		}

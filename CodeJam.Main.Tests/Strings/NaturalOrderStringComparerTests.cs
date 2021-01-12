@@ -146,7 +146,7 @@ namespace CodeJam.Strings
 			using (var stream = assembly.GetRequiredResourceStream(resourceName))
 			using (var reader = new StreamReader(stream))
 				while (!reader.EndOfStream)
-					list.Add(reader.ReadLine());
+					list.Add(reader.ReadLine()!);
 
 			return list;
 		}

@@ -35,7 +35,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void InheritedMember0Test()
 		{
-			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o.Value, o => o.Overridable);
+			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o!.Value, o => o!.Overridable);
 			var o1 = new A { Value = 10, Overridable = 20 };
 			var o2 = new A { Value = 10, Overridable = 20 };
 
@@ -45,7 +45,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void InheritedMember1Test()
 		{
-			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o.Value, o => o.Overridable);
+			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o!.Value, o => o!.Overridable);
 			var o1 = new A { Value = 10, Overridable = 20 };
 			var o2 = new B { Value = 10, Overridable = 20 };
 
@@ -55,7 +55,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void InheritedMember2Test()
 		{
-			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o.Value, o => o.Overridable);
+			var comparer = ComparerBuilder<A>.GetEqualityComparer(o => o!.Value, o => o!.Overridable);
 			var o1 = new B { Value = 10, Overridable = 20 };
 			var o2 = new B { Value = 10, Overridable = 20 };
 
@@ -65,7 +65,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void InheritedMember3Test()
 		{
-			var comparer = ComparerBuilder<B>.GetEqualityComparer(o => o.Value, o => o.Overridable);
+			var comparer = ComparerBuilder<B>.GetEqualityComparer(o => o!.Value, o => o!.Overridable);
 			var o1 = new B { Value = 10, Overridable = 20 };
 			var o2 = new B { Value = 20, Overridable = 10 };
 
@@ -75,7 +75,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void InheritedMember4Test()
 		{
-			var comparer = ComparerBuilder<C>.GetEqualityComparer(o => o.Value);
+			var comparer = ComparerBuilder<C>.GetEqualityComparer(o => o!.Value);
 			var o1 = new C { Value = 10, Overridable = 20 };
 			var o2 = new C { Value = 20, Overridable = 10 };
 
@@ -86,7 +86,7 @@ namespace CodeJam.Collections
 		[TestCase("Alpha", "Beta", false)]
 		public void ComplexMemberTest(string p1, string p2, bool expected)
 		{
-			var comparer = ComparerBuilder<TestClass>.GetEqualityComparer(c => c.Prop2.Length);
+			var comparer = ComparerBuilder<TestClass>.GetEqualityComparer(c => c!.Prop2.Length);
 			var o1 = new TestClass { Prop2 = p1 };
 			var o2 = new TestClass { Prop2 = p2 };
 
@@ -97,10 +97,10 @@ namespace CodeJam.Collections
 		[Test]
 		public void MethodHandleTest()
 		{
-			var comparer = ComparerBuilder<MethodInfo>.GetEqualityComparer(m => m.MethodHandle);
+			var comparer = ComparerBuilder<MethodInfo>.GetEqualityComparer(m => m!.MethodHandle);
 
-			var a = typeof(A).GetMethod("M");
-			var b = typeof(B).GetMethod("M");
+			var a = typeof(A).GetMethod("M")!;
+			var b = typeof(B).GetMethod("M")!;
 			var b2 = b.GetBaseDefinition();
 
 			Assert.False(a.Equals(b), "MethodInfo fails");
@@ -121,7 +121,7 @@ namespace CodeJam.Collections
 		private class TestClass
 		{
 			public int Field1;
-			public string Prop2 { get; set; }
+			public string? Prop2 { get; set; }
 
 			private static int _n;
 			private int _field = ++_n;
@@ -133,7 +133,7 @@ namespace CodeJam.Collections
 			var eq = ComparerBuilder<TestClass>.GetEqualityComparer();
 
 			Assert.That(eq.GetHashCode(new TestClass()), Is.Not.EqualTo(0));
-			Assert.That(eq.GetHashCode(null), Is.EqualTo(0));
+			Assert.That(eq.GetHashCode(null!), Is.EqualTo(0));
 		}
 
 		[Test]
@@ -202,7 +202,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void DistinctByMember1Test()
 		{
-			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(t => t.Field1);
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(t => t!.Field1);
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },
@@ -220,7 +220,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void DistinctByMember2Test()
 		{
-			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(t => t.Field1, t => t.Prop2);
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(t => t!.Field1, t => t!.Prop2);
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },
@@ -266,7 +266,7 @@ namespace CodeJam.Collections
 			[Identifier]
 			public int EntityID { get; set; }
 
-			public string Name { get; set; }
+			public string? Name { get; set; }
 		}
 
 		private static IEnumerable<MemberAccessor> GetIdentifiers([NotNull] TypeAccessor typeAccessor)

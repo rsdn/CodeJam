@@ -89,7 +89,7 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>Set value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
 		/// <param name="value">The value.</param>
-		protected void SetValue(string keyword, object value) => _wrapper[keyword] = value;
+		protected void SetValue(string keyword, object? value) => _wrapper[keyword] = value;
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>

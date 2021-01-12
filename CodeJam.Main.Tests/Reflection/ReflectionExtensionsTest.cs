@@ -292,7 +292,7 @@ namespace CodeJam.Reflection
 		{
 			private static Func<int> GetCompilerGeneratedClosure(int arg) => () => arg;
 
-			public TestCompilerGeneratedCaseAttribute() : base(GetCompilerGeneratedClosure(0).Target.GetType())
+			public TestCompilerGeneratedCaseAttribute() : base(GetCompilerGeneratedClosure(0).Target!.GetType())
 			{
 			}
 		}

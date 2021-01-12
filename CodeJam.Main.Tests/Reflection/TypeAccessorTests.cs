@@ -10,8 +10,8 @@ namespace CodeJam.Reflection
 	{
 		private class TestType
 		{
-			public string Field1;
-			public string Field2 { get; set; }
+			public string? Field1;
+			public string? Field2 { get; set; }
 
 			// ReSharper disable once ConvertToConstant.Local
 			private readonly string _field3 = "123";

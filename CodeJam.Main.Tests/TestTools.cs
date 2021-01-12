@@ -21,7 +21,7 @@ namespace CodeJam
 
 		[NotNull]
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static Random GetTestRandom(int seed, [CallerMemberName] string memberName = "")
+		public static Random GetTestRandom(int seed, [CallerMemberName] string? memberName = "")
 		{
 #if TARGETS_NET || NETCOREAPP20_OR_GREATER
 			if (memberName.IsNullOrEmpty())

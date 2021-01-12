@@ -196,7 +196,7 @@ namespace CodeJam.Ranges
 
 			// ReSharper disable once ObjectCreationAsStatement
 			// ReSharper disable once AssignNullToNotNullAttribute
-			Throws<ArgumentNullException>(() => new CompositeRange<int>(null));
+			Throws<ArgumentNullException>(() => new CompositeRange<int>(null!));
 
 			var a = new CompositeRange<int>();
 			AreEqual(a, CompositeRange<int>.Empty);
@@ -277,8 +277,8 @@ namespace CodeJam.Ranges
 			var range1B = Range.Create(1, 2, "B");
 			var range2C = Range.CreateExclusiveFrom(2, 3, "C");
 			var range3A = Range.Create(3, 4).WithKey("A");
-			var empty = Range<int>.Empty.WithKey((string)null);
-			var infinite = Range<int>.Infinite.WithKey((string)null);
+			var empty = Range<int>.Empty.WithKey((string?)null);
+			var infinite = Range<int>.Infinite.WithKey((string?)null);
 
 			var a = new CompositeRange<int, string>();
 			AreEqual(a, CompositeRange.Create(empty, empty));

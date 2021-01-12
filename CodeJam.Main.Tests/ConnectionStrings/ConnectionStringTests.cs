@@ -21,12 +21,12 @@ namespace CodeJam.ConnectionStrings
 
 		public class BaseConnectionString : ConnectionStringBase
 		{
-			public BaseConnectionString(string connectionString) : base(connectionString) { }
+			public BaseConnectionString(string? connectionString) : base(connectionString) { }
 
 #if NET35_OR_GREATER || TARGETS_NETCOREAPP
 			[Required]
 #endif
-			public string RequiredValue
+			public string? RequiredValue
 			{
 				get => TryGetValue(nameof(RequiredValue));
 				set => SetValue(nameof(RequiredValue), value);
@@ -57,7 +57,7 @@ namespace CodeJam.ConnectionStrings
 
 			// Never filled. Used to test roundtrip scenario
 			[UsedImplicitly]
-			public string OptionalValue
+			public string? OptionalValue
 			{
 				get => TryGetValue(nameof(OptionalValue));
 				set => SetValue(nameof(OptionalValue), value);
@@ -75,7 +75,7 @@ namespace CodeJam.ConnectionStrings
 			public NonBrowsableConnectionString(string connectionString) : base(connectionString) { }
 
 			[Browsable(false)]
-			public new string RequiredValue
+			public new string? RequiredValue
 			{
 				get => TryGetValue(nameof(RequiredValue));
 				set => SetValue(nameof(RequiredValue), value);
@@ -89,7 +89,7 @@ namespace CodeJam.ConnectionStrings
 			DoesNotThrow(() => new BaseConnectionString(""));
 			DoesNotThrow(() => new BaseConnectionString("requiredValue=aaa"));
 			DoesNotThrow(() => new BaseConnectionString("RequiredValue=aaa;IgnoredValue=123"));
-			DoesNotThrow(() => new BaseConnectionString("") { ConnectionString = null });
+			DoesNotThrow(() => new BaseConnectionString("") { ConnectionString = null! });
 			DoesNotThrow(() => new BaseConnectionString("") { ConnectionString = "" });
 			DoesNotThrow(() => new BaseConnectionString("") { ConnectionString = "requiredValue=aaa" });
 			DoesNotThrow(() => new BaseConnectionString("") { ConnectionString = "RequiredValue=aaa;IgnoredValue=123" });

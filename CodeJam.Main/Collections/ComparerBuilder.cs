@@ -27,7 +27,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <returns>GetEqualsFunc function.</returns>
 		[NotNull, Pure]
-		public static Func<T, T, bool> GetEqualsFunc() =>
+		public static Func<T?, T?, bool> GetEqualsFunc() =>
 			GetEqualsFunc(TypeAccessor.GetAccessor<T>().Members);
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace CodeJam.Collections
 		/// <param name="members">Members to compare.</param>
 		/// <returns>GetEqualsFunc function.</returns>
 		[NotNull, Pure]
-		public static Func<T, T, bool> GetEqualsFunc([NotNull, InstantHandle] IEnumerable<MemberAccessor> members) =>
+		public static Func<T?, T?, bool> GetEqualsFunc([NotNull, InstantHandle] IEnumerable<MemberAccessor> members) =>
 			CreateEqualsFunc(members.Select(m => m.GetterExpression));
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace CodeJam.Collections
 		/// <param name="members">Members to compare.</param>
 		/// <returns>GetEqualsFunc function.</returns>
 		[NotNull, Pure]
-		public static Func<T, T, bool> GetEqualsFunc([NotNull] params Expression<Func<T, object>>[] members) =>
+		public static Func<T?, T?, bool> GetEqualsFunc([NotNull] params Expression<Func<T, object>>[] members) =>
 			CreateEqualsFunc(members);
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <returns>GetHashCode function.</returns>
 		[NotNull, Pure]
-		public static Func<T, int> GetGetHashCodeFunc() =>
+		public static Func<T?, int> GetGetHashCodeFunc() =>
 			GetGetHashCodeFunc(TypeAccessor.GetAccessor<T>().Members);
 
 		// ReSharper disable once StaticMemberInGenericType
@@ -65,7 +65,7 @@ namespace CodeJam.Collections
 		/// <param name="members">Members to compare.</param>
 		/// <returns>GetHashCode function.</returns>
 		[NotNull, Pure]
-		public static Func<T, int> GetGetHashCodeFunc([NotNull, InstantHandle] IEnumerable<MemberAccessor> members) =>
+		public static Func<T?, int> GetGetHashCodeFunc([NotNull, InstantHandle] IEnumerable<MemberAccessor> members) =>
 			CreateGetHashCodeFunc(members.Select(m => m.GetterExpression));
 
 		/// <summary>
@@ -77,16 +77,16 @@ namespace CodeJam.Collections
 		public static Func<T, int> GetGetHashCodeFunc([NotNull] params Expression<Func<T, object>>[] members) =>
 			CreateGetHashCodeFunc(members);
 
-		private class Comparer : EqualityComparer<T>
+		private class Comparer : EqualityComparer<T?>
 		{
-			public Comparer([NotNull] Func<T, T, bool> equals, [NotNull] Func<T, int> getHashCode)
+			public Comparer([NotNull] Func<T?, T?, bool> equals, [NotNull] Func<T?, int> getHashCode)
 			{
 				_equals = equals;
 				_getHashCode = getHashCode;
 			}
 
-			[NotNull] private readonly Func<T, T, bool> _equals;
-			[NotNull] private readonly Func<T, int> _getHashCode;
+			[NotNull] private readonly Func<T?, T?, bool> _equals;
+			[NotNull] private readonly Func<T?, int> _getHashCode;
 
 			public override bool Equals(T? x, T? y) =>
 				x != null ? y != null && _equals(x, y) : y == null;
@@ -103,7 +103,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <returns>Instance of <see cref="T:System.Collections.Generic.IEqualityComparer`1" />.</returns>
 		[NotNull, Pure]
-		public static IEqualityComparer<T> GetEqualityComparer() =>
+		public static IEqualityComparer<T?> GetEqualityComparer() =>
 			_equalityComparer ??= new Comparer(GetEqualsFunc(), GetGetHashCodeFunc());
 
 		/// <summary>
@@ -113,7 +113,7 @@ namespace CodeJam.Collections
 		/// <param name="membersToCompare">Members to compare.</param>
 		/// <returns>Instance of <see cref="T:System.Collections.Generic.IEqualityComparer`1" />.</returns>
 		[NotNull, Pure]
-		public static IEqualityComparer<T> GetEqualityComparer([NotNull] params Expression<Func<T, object>>[] membersToCompare)
+		public static IEqualityComparer<T> GetEqualityComparer([NotNull] params Expression<Func<T?, object>>[] membersToCompare)
 		{
 			Code.NotNull(membersToCompare, nameof(membersToCompare));
 			return new Comparer(CreateEqualsFunc(membersToCompare), CreateGetHashCodeFunc(membersToCompare));
@@ -126,7 +126,7 @@ namespace CodeJam.Collections
 		/// <param name="membersToCompare">A function that returns members to compare.</param>
 		/// <returns>Instance of <see cref="T:System.Collections.Generic.IEqualityComparer`1" />.</returns>
 		[NotNull, Pure]
-		public static IEqualityComparer<T> GetEqualityComparer(
+		public static IEqualityComparer<T?> GetEqualityComparer(
 			[NotNull, InstantHandle] Func<TypeAccessor<T>,
 			IEnumerable<MemberAccessor>> membersToCompare)
 		{
@@ -135,7 +135,7 @@ namespace CodeJam.Collections
 		}
 
 		[NotNull, Pure]
-		private static Func<T, T, bool> CreateEqualsFunc([NotNull] IEnumerable<LambdaExpression> membersToCompare)
+		private static Func<T?, T?, bool> CreateEqualsFunc([NotNull] IEnumerable<LambdaExpression> membersToCompare)
 		{
 			Code.NotNull(membersToCompare, nameof(membersToCompare));
 
@@ -161,12 +161,12 @@ namespace CodeJam.Collections
 				.Aggregate(Expression.AndAlso);
 
 			return Expression
-				.Lambda<Func<T, T, bool>>(expression, x, y)
+				.Lambda<Func<T?, T?, bool>>(expression, x, y)
 				.Compile();
 		}
 
 		[NotNull, Pure]
-		private static Func<T, int> CreateGetHashCodeFunc([NotNull] IEnumerable<LambdaExpression> membersToEval)
+		private static Func<T?, int> CreateGetHashCodeFunc([NotNull] IEnumerable<LambdaExpression> membersToEval)
 		{
 			Code.NotNull(membersToEval, nameof(membersToEval));
 
@@ -188,7 +188,7 @@ namespace CodeJam.Collections
 				});
 
 			return Expression
-				.Lambda<Func<T, int>>(expression, parameter)
+				.Lambda<Func<T?, int>>(expression, parameter)
 				.Compile();
 		}
 

@@ -41,9 +41,9 @@ namespace CodeJam.Expressions
 
 		private class MultiSelectItem
 		{
-			public byte   ItemType;
-			public int    ItemValue;
-			public string ItemText;
+			public byte    ItemType;
+			public int     ItemValue;
+			public string? ItemText;
 		}
 
 		private static Func<T,MultiSelectItem> ToMultiSelectItem<T>(
@@ -70,7 +70,7 @@ namespace CodeJam.Expressions
 				{
 					if (ce.Value is byte) return ex1;
 					if (ce.Value is int)  return ex2;
-					if (ce.Value.ToString() == "$3$") return ex3;
+					if (ce.Value!.ToString() == "$3$") return ex3;
 				}
 
 				return ex;

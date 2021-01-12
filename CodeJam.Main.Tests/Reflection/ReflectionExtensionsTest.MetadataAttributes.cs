@@ -267,7 +267,7 @@ namespace CodeJam.Reflection
 				private int P => 0;
 
 				[SI("C.E")]
-				protected event EventHandler E;
+				protected event EventHandler? E;
 			}
 		}
 		#endregion
@@ -288,7 +288,7 @@ namespace CodeJam.Reflection
 
 			[MI("T1.E"), MN("T1.E"), SI("T1.E"), SN("T1.E")]
 			[MI("T1.E"), MN("T1.E")]
-			protected event EventHandler E;
+			protected event EventHandler? E;
 
 			[SI("T2"), SN("T2"), MI("T2"), MN("T2")]
 			[MI("T2"), MN("T2")]
@@ -304,7 +304,7 @@ namespace CodeJam.Reflection
 
 				[MI("T2.E"), MN("T2.E"), SI("T2.E"), SN("T2.E")]
 				[MI("T2.E"), MN("T2.E")]
-				protected virtual new event EventHandler E;
+				protected virtual new event EventHandler? E;
 			}
 
 			[SI("T3"), SN("T3"), MI("T3"), MN("T3")]
@@ -321,7 +321,7 @@ namespace CodeJam.Reflection
 
 				[MI("T3.E"), MN("T3.E"), SI("T3.E"), SN("T3.E")]
 				[MI("T3.E"), MN("T3.E")]
-				protected override event EventHandler E;
+				protected override event EventHandler? E;
 
 				[SI("T4"), SN("T4"), MI("T4"), MN("T4")]
 				[MI("T4"), MN("T4")]
@@ -336,7 +336,7 @@ namespace CodeJam.Reflection
 					internal static int P => 0;
 
 					[MI("T4.E"), MN("T4.E"), SI("T4.E"), SN("T4.E")]
-					private static event EventHandler E;
+					private static event EventHandler? E;
 				}
 			}
 		}

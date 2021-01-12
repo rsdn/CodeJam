@@ -617,7 +617,7 @@ namespace CodeJam.Mapping
 
 						_expressions.Add(
 							Call(
-								InfoOf.Method(() => ((ICollection<int>)null!).AddRange((IEnumerable<int>)null!))
+								InfoOf.Method(() => ((ICollection<int>?)null!).AddRange((IEnumerable<int>)null!))
 									.GetGenericMethodDefinition()
 									.MakeGenericMethod(toItemType),
 								_localObject,

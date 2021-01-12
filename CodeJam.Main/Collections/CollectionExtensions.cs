@@ -58,7 +58,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("collection:null => false")]
-		public static bool NotNullNorEmpty<T>(this ICollection<T>? collection) =>
+		public static bool NotNullNorEmpty<T>([NotNullWhen(true)] this ICollection<T>? collection) =>
 			collection != null && collection.Count != 0;
 
 		/// <summary>
@@ -71,7 +71,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure]
 		[ContractAnnotation("array:null => false")]
-		public static bool NotNullNorEmpty<T>(this T[] array) => !array.IsNullOrEmpty();
+		public static bool NotNullNorEmpty<T>([NotNullWhen(true)] this T[]? array) => !array.IsNullOrEmpty();
 
 		/// <summary>
 		/// Returns an empty instance of the collection for null values.

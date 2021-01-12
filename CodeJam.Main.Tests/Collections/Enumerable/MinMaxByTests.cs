@@ -38,7 +38,7 @@ namespace CodeJam.Collections
 
 
 		[TestCase(arg: new string[0])]
-		[TestCase(arg: new string[] { null, null })]
+		[TestCase(arg: new string?[] { null, null })]
 		public void MinByStringNoElements(string[] source) =>
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 			Assert.Throws<InvalidOperationException>(() => source.MinBy(s => s));
@@ -57,7 +57,7 @@ namespace CodeJam.Collections
 			source.Select(v => new Item<string>(v.ToString())).MaxBy(i => i.Value)?.Value;
 
 		[TestCase(arg: new string[0])]
-		[TestCase(arg: new string[] { null, null })]
+		[TestCase(arg: new string?[] { null, null })]
 		public void MaxByStringNoElements(string[] source) =>
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 			Assert.Throws<InvalidOperationException>(() => source.MaxBy(s => s));

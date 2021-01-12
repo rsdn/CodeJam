@@ -20,7 +20,7 @@ namespace CodeJam.IO
 			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedPath("", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
-			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedPath(null, "arg00"));
+			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedPath(null!, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
 			Assert.DoesNotThrow(() => IoCode.IsWellFormedPath(@"\\valid\path", "arg00"));
@@ -64,7 +64,7 @@ namespace CodeJam.IO
 			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedAbsolutePath("", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
-			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedAbsolutePath(null, "arg00"));
+			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedAbsolutePath(null!, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
 
@@ -81,7 +81,7 @@ namespace CodeJam.IO
 			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedRelativePath("", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
-			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedRelativePath(null, "arg00"));
+			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedRelativePath(null!, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
 			Assert.DoesNotThrow(() => IoCode.IsWellFormedRelativePath("some/path", "arg00"));

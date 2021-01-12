@@ -33,23 +33,23 @@ namespace CodeJam.Collections
 			Assert.AreEqual(queryableRanges.ToArray(), ranges.SubRanges.Select(x => x.Key).ToArray());
 
 			Assert.AreEqual(
-				queryableRanges.Intersect(x => x.From, x => x.To, Range.Create<int?>(5, null)).ToArray(),
+				queryableRanges.Intersect(x => x!.From!, x => x!.To!, Range.Create<int?>(5, null)).ToArray(),
 				ranges.Intersect(5, null).SubRanges.Select(x => x.Key).ToArray());
 
 			Assert.AreEqual(
-				queryableRanges.Intersect(x => x.From, x => x.To, Range.Create<int?>(-2, -1)).ToArray(),
+				queryableRanges.Intersect(x => x!.From!, x => x!.To!, Range.Create<int?>(-2, -1)).ToArray(),
 				ranges.Intersect(-2, -1).SubRanges.Select(x => x.Key).ToArray());
 
 			Assert.AreEqual(
-				queryableRanges.Intersect(x => x.From, x => x.To, Range.Create<int?>(null, -1)).ToArray(),
+				queryableRanges.Intersect(x => x!.From!, x => x!.To!, Range.Create<int?>(null, -1)).ToArray(),
 				ranges.Intersect(null, -1).SubRanges.Select(x => x.Key).ToArray());
 
 			Assert.AreEqual(
-				queryableRanges.Intersect(x => x.From, x => x.To, Range<int?>.Empty).ToArray(),
+				queryableRanges.Intersect(x => x!.From!, x => x!.To!, Range<int?>.Empty).ToArray(),
 				ranges.Intersect(Range<int?>.Empty).SubRanges.Select(x => x.Key).ToArray());
 
 			Assert.AreEqual(
-				queryableRanges.Intersect(x => x.From, x => x.To, Range<int?>.Infinite).ToArray(),
+				queryableRanges.Intersect(x => x!.From!, x => x!.To!, Range<int?>.Infinite).ToArray(),
 				ranges.Intersect(Range<int?>.Infinite).SubRanges.Select(x => x.Key).ToArray());
 		}
 	}

@@ -112,7 +112,7 @@ namespace CodeJam.Collections
 
 		[TestCase(new[] { "A" }, "A")]
 		[TestCase(new[] { "A", "B", "C", "D", "E" }, "A")]
-		[TestCase(new string[] { null, null, null }, null)]
+		[TestCase(new string?[] { null, null, null }, null)]
 		[TestCase(new[] { null, null, "A", null }, "A")]
 		public void MinOrDefaultString([NotNull] string[] source, [NotNull] string expected)
 		{
@@ -236,7 +236,7 @@ namespace CodeJam.Collections
 
 		[TestCase(new[] { "A" }, "A")]
 		[TestCase(new[] { "A", "B", "C", "D", "E" }, "E")]
-		[TestCase(new string[] { null, null, null }, null)]
+		[TestCase(new string?[] { null, null, null }, null)]
 		[TestCase(new[] { null, null, "A", null }, "A")]
 		public void MaxOrDefaultString(string[] source, string expected)
 		{
