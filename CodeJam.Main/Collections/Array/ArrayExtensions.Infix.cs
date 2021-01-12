@@ -25,7 +25,7 @@ namespace CodeJam.Collections
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 		public static ReadOnlyCollection<T> AsReadOnly<T>([NotNull] this T[] array) => ArrayEx.AsReadOnly(array);
 #else
-		public static ReadOnlyCollectionEx<T> AsReadOnly<T>([NotNull] this T[] array) => new ReadOnlyCollectionEx<T>(array);
+		public static ReadOnlyCollectionEx<T> AsReadOnly<T>([NotNull] this T[] array) => new(array);
 #endif
 
 		#region BinarySearch

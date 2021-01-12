@@ -53,7 +53,7 @@ namespace CodeJam.Collections
 #if NET40_OR_GREATER || TARGETS_NETCOREAPP
 		private static HashSet<T> CreateHashSet<T>(params T[] values) => new(values);
 #elif NET35_OR_GREATER
-		private static HashSetEx<T> CreateHashSet<T>(params T[] values) => new HashSetEx<T>(values);
+		private static HashSetEx<T> CreateHashSet<T>(params T[] values) => new(values);
 #else
 		private static HashSet<T> CreateHashSet<T>(params T[] values) => new HashSet<T>(values);
 #endif
