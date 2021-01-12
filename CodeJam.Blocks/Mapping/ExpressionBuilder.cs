@@ -281,8 +281,8 @@ namespace CodeJam.Mapping
 		private Expression ConvertCollection([JetBrains.Annotations.NotNull] Expression fromExpression, [JetBrains.Annotations.NotNull] Type toType)
 		{
 			var fromType     = fromExpression.Type;
-			var fromItemType = fromType.GetItemType();
-			var toItemType   = toType.  GetItemType();
+			var fromItemType = fromType.GetItemType()!;
+			var toItemType   = toType.  GetItemType()!;
 
 			if (toType.GetIsGenericType() && !toType.GetIsGenericTypeDefinition())
 			{
@@ -570,8 +570,8 @@ namespace CodeJam.Mapping
 
 				if (toType.IsArray && fromType.IsSubClass(typeof(IEnumerable<>)))
 				{
-					var fromItemType = fromType.GetItemType();
-					var toItemType   = toType.  GetItemType();
+					var fromItemType = fromType.GetItemType()!;
+					var toItemType   = toType.  GetItemType()!;
 
 					var expr = ToArray(_builder, _fromExpression, fromItemType, toItemType)!;
 
@@ -596,8 +596,8 @@ namespace CodeJam.Mapping
 				if (clearMethodInfo != null)
 					_expressions.Add(Call(_localObject, clearMethodInfo));
 
-				var fromItemType = fromListType.GetItemType();
-				var toItemType   = toListType.  GetItemType();
+				var fromItemType = fromListType.GetItemType()!;
+				var toItemType   = toListType.  GetItemType()!;
 
 				var addRangeMethodInfo = toListType.GetMethod("AddRange");
 

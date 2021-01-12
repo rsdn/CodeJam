@@ -547,7 +547,6 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to get item type.</param>
 		/// <returns>Returns item type or null.</returns>
 		[Pure]
-		[return: NotNullIfNotNull("type")]
 		[ContractAnnotation("type:null => null")]
 		public static Type? GetItemType(this Type? type)
 		{

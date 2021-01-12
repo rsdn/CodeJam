@@ -28,8 +28,8 @@ namespace CodeJam.Mapping
 	public class MapperTests
 	{
 		private class MapHelper<TFrom,TTo>
-			where TFrom : new()
-			where TTo   : new()
+			where TFrom : class, new()
+			where TTo   : class, new()
 		{
 			[MemberNotNull("From")]
 			[MemberNotNull("To")]
@@ -224,10 +224,10 @@ namespace CodeJam.Mapping
 			var sw   = new Stopwatch();
 
 			map.Map(src);
-			map.Map(src, null);
-			map.Map(src, null, null);
+			map.Map(src, null!);
+			map.Map(src, null!, null);
 			map.GetMapperEx()(src);
-			map.GetMapper()(src, null, null);
+			map.GetMapper()(src, null!, null);
 
 			const int n = 1000000;
 
@@ -242,7 +242,7 @@ namespace CodeJam.Mapping
 
 			for (var i = 0; i < n; i++)
 			{
-				sw.Start(); map.Map(src, null); sw.Stop();
+				sw.Start(); map.Map(src, null!); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);
@@ -251,7 +251,7 @@ namespace CodeJam.Mapping
 
 			for (var i = 0; i < n; i++)
 			{
-				sw.Start(); map.Map(src, null, null); sw.Stop();
+				sw.Start(); map.Map(src, null!, null); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);
@@ -273,7 +273,7 @@ namespace CodeJam.Mapping
 
 			for (var i = 0; i < n; i++)
 			{
-				sw.Start(); map4(src, null, null); sw.Stop();
+				sw.Start(); map4(src, null!, null); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);
@@ -497,7 +497,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual("2", dest[1]);
 			Assert.AreEqual("3", dest[2]);
 
-			dest = mapper.Map(new List<int> { 1, 2, 3}, null);
+			dest = mapper.Map(new List<int> { 1, 2, 3}, null!);
 
 			Assert.AreEqual("1", dest[0]);
 			Assert.AreEqual("2", dest[1]);
@@ -514,7 +514,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual("2", dest[1]);
 			Assert.AreEqual("3", dest[2]);
 
-			dest   = mapper.Map(new[] { 1, 2, 3 }, null);
+			dest   = mapper.Map(new[] { 1, 2, 3 }, null!);
 
 			Assert.AreEqual("1", dest[0]);
 			Assert.AreEqual("2", dest[1]);
@@ -547,8 +547,8 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To!.Arr![0], Is.Not.Null);
 			Assert.That(mapper.To!.Arr![1], Is.Not.Null);
 			Assert.That(mapper.To!.Arr![2], Is.Not.Null);
-			Assert.That(mapper.To!.Arr![0], Is.Not.SameAs(mapper.To.Arr[1]));
-			Assert.That(mapper.To!.Arr![0], Is.SameAs(mapper.To.Arr[2]));
+			Assert.That(mapper.To!.Arr![0], Is.Not.SameAs(mapper.To!.Arr[1]));
+			Assert.That(mapper.To!.Arr![0], Is.SameAs(mapper.To!.Arr[2]));
 		}
 
 		private class Class19
@@ -566,7 +566,7 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To!.Arr![0], Is.Not.Null);
 			Assert.That(mapper.To!.Arr![1], Is.Not.Null);
 			Assert.That(mapper.To!.Arr![2], Is.Not.Null);
-			Assert.That(mapper.To!.Arr![0], Is.Not.SameAs(mapper.To.Arr[1]));
+			Assert.That(mapper.To!.Arr![0], Is.Not.SameAs(mapper.To!.Arr[1]));
 			Assert.That(mapper.To!.Arr![0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
@@ -586,7 +586,7 @@ namespace CodeJam.Mapping
 
 			Assert.That(mapper.To!.Class1, Is.Not.Null);
 			Assert.That(mapper.To!.Class2, Is.Not.Null);
-			Assert.That(mapper.To!.Class1, Is.Not.SameAs(mapper.To.Class2));
+			Assert.That(mapper.To!.Class1, Is.Not.SameAs(mapper.To!.Class2));
 		}
 
 		private class Object3
