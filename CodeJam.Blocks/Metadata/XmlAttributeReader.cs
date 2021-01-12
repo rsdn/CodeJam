@@ -52,7 +52,7 @@ namespace CodeJam.Metadata
 				}
 				else
 				{
-					var combinePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, xmlFile);
+					var combinePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, xmlFile);
 
 					if (File.Exists(combinePath))
 						streamReader = File.OpenText(combinePath);
