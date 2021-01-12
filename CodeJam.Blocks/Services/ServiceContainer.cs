@@ -140,7 +140,7 @@ namespace CodeJam.Services
 		{
 			[JetBrains.Annotations.NotNull]
 			private readonly Func<IServicePublisher, object> _factory;
-			private object _instance;
+			private object? _instance;
 
 			/// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
 			public FactoryBag([JetBrains.Annotations.NotNull] Func<IServicePublisher, object> factory) => _factory = factory;

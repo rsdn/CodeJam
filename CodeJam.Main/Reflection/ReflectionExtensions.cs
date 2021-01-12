@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -25,9 +26,9 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="module">Assembly.</param>
 		/// <returns>Path to <paramref name="module"/>.</returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[Pure]
-		public static string GetModulePath([NotNull] this Module module)
+		public static string GetModulePath([JetBrains.Annotations.NotNull] this Module module)
 		{
 			Code.NotNull(module, nameof(module));
 
@@ -53,9 +54,9 @@ namespace CodeJam.Reflection
 		/// </example>
 		/// <param name="type">The type to get the name for.</param>
 		/// <returns>The short form of assembly qualified type name.</returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[Pure]
-		public static string GetShortAssemblyQualifiedName([NotNull] this Type type)
+		public static string GetShortAssemblyQualifiedName([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -177,7 +178,7 @@ namespace CodeJam.Reflection
 		/// A value indicating whether the <paramref name="type"/> can be instantiated.
 		/// </returns>
 		[Pure]
-		public static bool IsInstantiable([NotNull] this Type type)
+		public static bool IsInstantiable([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			return !(type.GetIsAbstract() || type.GetIsInterface() || type.IsArray || type.GetContainsGenericParameters());
@@ -191,7 +192,7 @@ namespace CodeJam.Reflection
 		/// A value indicating whether the <paramref name="type"/> is declared static.
 		/// </returns>
 		[Pure]
-		public static bool IsStatic([NotNull] this Type type)
+		public static bool IsStatic([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			return type.GetIsClass() && type.GetIsAbstract() && type.GetIsSealed();
@@ -205,7 +206,7 @@ namespace CodeJam.Reflection
 		/// A value indicating whether the <paramref name="type"/> is Nullable&#60;&#62;.
 		/// </returns>
 		[Pure]
-		public static bool IsNullable([NotNull] this Type type)
+		public static bool IsNullable([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			return type.GetIsGenericType() && type.GetGenericTypeDefinition() == typeof(Nullable<>);
@@ -217,7 +218,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is numeric.</returns>
 		[Pure]
-		public static bool IsNumeric([NotNull] this Type type)
+		public static bool IsNumeric([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			while (true) // tail recursion expanded
@@ -277,7 +278,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is integer type.</returns>
 		[Pure]
-		public static bool IsInteger([NotNull] this Type type)
+		public static bool IsInteger([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			while (true) // tail recursion expanded
@@ -331,7 +332,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type" /> is nullable numeric.</returns>
 		[Pure]
-		public static bool IsNullableNumeric([NotNull] this Type type)
+		public static bool IsNullableNumeric([JetBrains.Annotations.NotNull] this Type type)
 		{
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.IsNumeric();
@@ -343,7 +344,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is nullable integer type.</returns>
 		[Pure]
-		public static bool IsNullableInteger([NotNull] this Type type)
+		public static bool IsNullableInteger([JetBrains.Annotations.NotNull] this Type type)
 		{
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.IsInteger();
@@ -355,7 +356,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is nullable enum type.</returns>
 		[Pure]
-		public static bool IsNullableEnum([NotNull] this Type type)
+		public static bool IsNullableEnum([JetBrains.Annotations.NotNull] this Type type)
 		{
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.GetIsEnum();
@@ -373,7 +374,7 @@ namespace CodeJam.Reflection
 		/// true if the <paramref name="type"/> derives from <paramref name="check"/>; otherwise, false.
 		/// </returns>
 		[Pure]
-		public static bool IsSubClass([NotNull] this Type type, [NotNull] Type check)
+		public static bool IsSubClass([JetBrains.Annotations.NotNull] this Type type, [JetBrains.Annotations.NotNull] Type check)
 		{
 			Code.NotNull(type, nameof(type));
 			Code.NotNull(check, nameof(check));
@@ -412,9 +413,9 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="delegateType">Type of delegate</param>
 		/// <returns>Array of <see cref="ParameterInfo"/>.</returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[Pure]
-		public static ParameterInfo[] GetDelegateParams([NotNull] Type delegateType)
+		public static ParameterInfo[] GetDelegateParams([JetBrains.Annotations.NotNull] Type delegateType)
 		{
 			Code.NotNull(delegateType, nameof(delegateType));
 
@@ -434,9 +435,9 @@ namespace CodeJam.Reflection
 		/// <item>Otherwise, the type itself.</item>
 		/// </list>
 		/// </returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[Pure]
-		public static Type ToUnderlying([NotNull] this Type type)
+		public static Type ToUnderlying([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -453,9 +454,9 @@ namespace CodeJam.Reflection
 		/// if the type parameter is a closed generic nullable type.</item>
 		/// </list>
 		/// </returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[Pure]
-		public static Type ToNullableUnderlying([NotNull] this Type type)
+		public static Type ToNullableUnderlying([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -471,9 +472,9 @@ namespace CodeJam.Reflection
 		/// <item>Otherwise, the type itself.</item>
 		/// </list>
 		/// </returns>
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[Pure]
-		public static Type ToEnumUnderlying([NotNull] this Type type)
+		public static Type ToEnumUnderlying([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -494,8 +495,8 @@ namespace CodeJam.Reflection
 		/// </list>
 		/// </returns>
 		[Pure]
-		[NotNull]
-		public static Type GetMemberType([NotNull] this MemberInfo memberInfo)
+		[JetBrains.Annotations.NotNull]
+		public static Type GetMemberType([JetBrains.Annotations.NotNull] this MemberInfo memberInfo)
 		{
 			Code.NotNull(memberInfo, nameof(memberInfo));
 
@@ -546,6 +547,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to get item type.</param>
 		/// <returns>Returns item type or null.</returns>
 		[Pure]
+		[return: NotNullIfNotNull("type")]
 		[ContractAnnotation("type:null => null")]
 		public static Type? GetItemType(this Type? type)
 		{
@@ -586,7 +588,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is an anonymous type.</returns>
 		[Pure]
-		public static bool IsAnonymous([NotNull] this Type type)
+		public static bool IsAnonymous([JetBrains.Annotations.NotNull] this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -603,7 +605,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <typeparamref name="TAttribute"/> is defined on <paramref name="type"/></returns>
 		[Pure]
-		public static bool IsDefined<TAttribute>([NotNull] this Type type) where TAttribute : Attribute
+		public static bool IsDefined<TAttribute>([JetBrains.Annotations.NotNull] this Type type) where TAttribute : Attribute
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -616,7 +618,7 @@ namespace CodeJam.Reflection
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <typeparamref name="TAttribute"/> is defined on <paramref name="member"/></returns>
 		[Pure]
-		public static bool IsDefined<TAttribute>([NotNull] this MemberInfo member) where TAttribute : Attribute
+		public static bool IsDefined<TAttribute>([JetBrains.Annotations.NotNull] this MemberInfo member) where TAttribute : Attribute
 		{
 			Code.NotNull(member, nameof(member));
 
@@ -629,7 +631,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is generated by compiler.</returns>
 		[Pure]
-		public static bool IsCompilerGenerated([NotNull] this Type type) => type.IsDefined<CompilerGeneratedAttribute>();
+		public static bool IsCompilerGenerated([JetBrains.Annotations.NotNull] this Type type) => type.IsDefined<CompilerGeneratedAttribute>();
 
 		/// <summary>
 		/// Checks if <paramref name="member"/> is is compiler generated member.
@@ -637,7 +639,7 @@ namespace CodeJam.Reflection
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <paramref name="member"/> is generated by compiler.</returns>
 		[Pure]
-		public static bool IsCompilerGenerated([NotNull] this MemberInfo member) => member.IsDefined<CompilerGeneratedAttribute>();
+		public static bool IsCompilerGenerated([JetBrains.Annotations.NotNull] this MemberInfo member) => member.IsDefined<CompilerGeneratedAttribute>();
 
 #if NET35_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 		/// <summary>
@@ -646,7 +648,7 @@ namespace CodeJam.Reflection
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <paramref name="member"/> is generated by compiler.</returns>
 		[Pure]
-		public static bool IsRequired([NotNull] this MemberInfo member) => member.IsDefined<RequiredAttribute>();
+		public static bool IsRequired([JetBrains.Annotations.NotNull] this MemberInfo member) => member.IsDefined<RequiredAttribute>();
 #endif
 
 		/// <summary>
@@ -657,7 +659,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is browsable.</returns>
 		[Pure]
-		public static bool IsBrowsable([NotNull] this Type type) =>
+		public static bool IsBrowsable([JetBrains.Annotations.NotNull] this Type type) =>
 			type.GetCustomAttribute<BrowsableAttribute>()?.Browsable ?? true;
 
 		/// <summary>
@@ -668,7 +670,7 @@ namespace CodeJam.Reflection
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <paramref name="member"/> is browsable.</returns>
 		[Pure]
-		public static bool IsBrowsable([NotNull] this MemberInfo member) =>
+		public static bool IsBrowsable([JetBrains.Annotations.NotNull] this MemberInfo member) =>
 			member.GetCustomAttribute<BrowsableAttribute>()?.Browsable ?? true;
 
 		/// <summary>
@@ -680,7 +682,7 @@ namespace CodeJam.Reflection
 		///   <c>true</c> if instance of <typeparamref name="T"/> can be assigned to instance of current type; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsAssignableFrom<T>([NotNull] this Type type) => type.IsAssignableFrom(typeof(T));
+		public static bool IsAssignableFrom<T>([JetBrains.Annotations.NotNull] this Type type) => type.IsAssignableFrom(typeof(T));
 
 		/// <summary>
 		/// Determines whether instance of current type can be assigned to instance of <typeparamref name="T"/>.
@@ -691,7 +693,7 @@ namespace CodeJam.Reflection
 		///   <c>true</c> if instance of current type can be assigned to instance of <typeparamref name="T"/>; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure]
-		public static bool IsAssignableTo<T>([NotNull] this Type type) => typeof(T).IsAssignableFrom(type);
+		public static bool IsAssignableTo<T>([JetBrains.Annotations.NotNull] this Type type) => typeof(T).IsAssignableFrom(type);
 
 		/// <summary>
 		/// Determines whether instance of current type can be assigned to instance of <paramref name="targetType"/>.

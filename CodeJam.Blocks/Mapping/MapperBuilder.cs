@@ -39,8 +39,8 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure]
-		public Expression<Func<TFrom, TTo>> GetMapperExpressionEx()
-			=> (Expression<Func<TFrom, TTo>>)GetExpressionMapper().GetExpressionEx();
+		public Expression<Func<TFrom?, TTo?>> GetMapperExpressionEx()
+			=> (Expression<Func<TFrom?, TTo?>>)GetExpressionMapper().GetExpressionEx();
 
 		LambdaExpression IMapperBuilder.GetMapperLambdaExpressionEx()
 			=> GetExpressionMapper().GetExpressionEx();
@@ -61,8 +61,8 @@ namespace CodeJam.Mapping
 		/// <returns>Mapping expression.</returns>
 		[Pure]
 		[NotNull]
-		public Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> GetMapperExpression()
-			=> (Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>>)GetExpressionMapper().GetExpression();
+		public Expression<Func<TFrom?, TTo?, IDictionary<object, object>?, TTo>> GetMapperExpression()
+			=> (Expression<Func<TFrom?, TTo?, IDictionary<object, object>?, TTo>>)GetExpressionMapper().GetExpression();
 
 		[NotNull]
 		LambdaExpression IMapperBuilder.GetMapperLambdaExpression()
@@ -422,7 +422,7 @@ namespace CodeJam.Mapping
 		/// <returns><see cref="ExpressionBuilder"/>.</returns>
 		[NotNull]
 		internal ExpressionBuilder GetExpressionMapper()
-			=> new(this, MemberMappers?.Select(mm => ValueTuple.Create(mm.From.GetMembersInfo(), mm.To)).ToArray());
+			=> new(this, MemberMappers?.Select(mm => ValueTuple.Create(mm.From.GetMembersInfo(), mm.To))?.ToArray());
 	}
 }
 #endif

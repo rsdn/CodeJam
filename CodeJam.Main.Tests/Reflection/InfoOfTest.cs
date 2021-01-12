@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 
 using JetBrains.Annotations;
 
@@ -18,8 +17,8 @@ namespace CodeJam.Reflection
 			var expected = typeof(User).GetProperty(nameof(User.Name));
 
 			var info1 = InfoOf.Property(() => new User().Name);
-			var info2 = InfoOf.Property<User>(u => u.Name);
-			var info3 = InfoOf.Property<User, string>(u => u.Name);
+			var info2 = InfoOf.Property<User>(u => u.Name!);
+			var info3 = InfoOf.Property<User, string>(u => u.Name!);
 			var info4 = InfoOf<User>.Property(u => u.Name);
 
 			Assert.AreEqual(expected, info1, "#1");
@@ -50,8 +49,8 @@ namespace CodeJam.Reflection
 			var expected = typeof(User).GetField(nameof(User.LastName));
 
 			var info1 = InfoOf.Field(() => new User().LastName);
-			var info2 = InfoOf.Field<User>(u => u.LastName);
-			var info3 = InfoOf.Field<User, string>(u => u.LastName);
+			var info2 = InfoOf.Field<User>(u => u.LastName!);
+			var info3 = InfoOf.Field<User, string>(u => u.LastName!);
 			var info4 = InfoOf<User>.Field(u => u.LastName);
 
 			Assert.AreEqual(expected, info1, "#1");
@@ -136,10 +135,10 @@ namespace CodeJam.Reflection
 		[Test]
 		public void ExtractingPropertyGetMethod()
 		{
-			var expected = typeof(User).GetProperty("Name").GetGetMethod();
+			var expected = typeof(User).GetProperty("Name")!.GetGetMethod();
 			var method1 = InfoOf.Method(() => new User().Name);
-			var method2 = InfoOf.Method<User>(u => u.Name);
-			var method3 = InfoOf.Method<User, string>(u => u.Name);
+			var method2 = InfoOf.Method<User>(u => u.Name!);
+			var method3 = InfoOf.Method<User, string>(u => u.Name!);
 			var method4 = InfoOf<User>.Method(u => u.Name);
 
 			Assert.AreEqual(expected, method1, "#1");
@@ -152,8 +151,8 @@ namespace CodeJam.Reflection
 		[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 		public class User
 		{
-			public string Name { get; set; }
-			public string LastName;
+			public string? Name { get; set; }
+			public string? LastName;
 			public int Age { get; set; }
 
 			public User()

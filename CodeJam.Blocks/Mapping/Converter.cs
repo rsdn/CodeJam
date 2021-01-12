@@ -78,7 +78,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TFrom">Type to convert from.</typeparam>
 		/// <typeparam name="TTo">Type to convert to.</typeparam>
 		/// <param name="expr">Convert expression.</param>
-		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr)
+		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom?, TTo?>> expr)
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
 
 		[return: MaybeNull]
@@ -99,7 +99,8 @@ namespace CodeJam.Mapping
 		/// <param name="conversionType">The type of object to return.</param>
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
-		public static object ChangeType([AllowNull] object? value, [JetBrains.Annotations.NotNull] Type conversionType, MappingSchema? mappingSchema = null)
+		[return: NotNullIfNotNull("value")]
+		public static object? ChangeType([AllowNull] object? value, [JetBrains.Annotations.NotNull] Type conversionType, MappingSchema? mappingSchema = null)
 		{
 			Code.NotNull(conversionType, nameof(conversionType));
 
@@ -160,7 +161,8 @@ namespace CodeJam.Mapping
 		/// <param name="value">An object to convert.</param>
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
-		public static T ChangeTypeTo<T>(object value, MappingSchema mappingSchema = null)
+		[return: NotNullIfNotNull("value")]
+		public static T? ChangeTypeTo<T>(object value, MappingSchema? mappingSchema = null)
 		{
 			if (value == null || value is DBNull)
 				return mappingSchema == null ?

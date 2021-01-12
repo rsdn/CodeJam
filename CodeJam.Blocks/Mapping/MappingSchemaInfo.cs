@@ -16,9 +16,9 @@ namespace CodeJam.Mapping
 
 	internal class MappingSchemaInfo
 	{
-		public MappingSchemaInfo(string configuration) => Configuration = configuration;
+		public MappingSchemaInfo(string? configuration) => Configuration = configuration;
 
-		public readonly string Configuration;
+		public readonly string? Configuration;
 		public IMetadataReader? MetadataReader;
 
 		#region Default Values
@@ -46,7 +46,7 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region GenericConvertProvider
-		private volatile ConcurrentDictionary<Type,List<Type[]>> _genericConvertProviders;
+		private volatile ConcurrentDictionary<Type,List<Type[]>>? _genericConvertProviders;
 
 		public bool InitGenericConvertProvider([JetBrains.Annotations.NotNull, ItemNotNull] Type[] types)
 		{
@@ -114,7 +114,7 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region Scalar Types
-		private volatile ConcurrentDictionary<Type,bool> _scalarTypes;
+		private volatile ConcurrentDictionary<Type,bool>? _scalarTypes;
 
 		[JetBrains.Annotations.NotNull]
 		public Option<bool> GetScalarType([JetBrains.Annotations.NotNull] Type type)

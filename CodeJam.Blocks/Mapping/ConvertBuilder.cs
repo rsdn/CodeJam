@@ -24,7 +24,8 @@ namespace CodeJam.Mapping
 		[JetBrains.Annotations.NotNull]
 		private static readonly MethodInfo _defaultConverter = InfoOf.Method(() => ConvertDefault(null, typeof(int)));
 
-		private static object ConvertDefault(object value, [JetBrains.Annotations.NotNull] Type conversionType)
+		[return: NotNullIfNotNull("value")]
+		private static object? ConvertDefault(object? value, [JetBrains.Annotations.NotNull] Type conversionType)
 		{
 			try
 			{
@@ -192,7 +193,7 @@ namespace CodeJam.Mapping
 
 				for (var i = 0; i < values.Length; i++)
 				{
-					var val = values.GetValue(i);
+					var val = values.GetValue(i)!;
 					var lv =
 						// enum values always can be casted to long
 						// ReSharper disable once PossibleNullReferenceException
@@ -238,7 +239,7 @@ namespace CodeJam.Mapping
 			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
 		[ContractAnnotation("=> halt")]
-		private static object ThrowLinqToDBException(string text) => throw new CodeJamConvertException(text);
+		private static object ThrowLinqToDBException(string? text) => throw new CodeJamConvertException(text);
 
 		[JetBrains.Annotations.NotNull]
 		private static readonly MethodInfo _throwLinqToDBConvertException = InfoOf.Method(() => ThrowLinqToDBException(null));
@@ -561,7 +562,7 @@ namespace CodeJam.Mapping
 		}
 
 		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
-		public static ValueTuple<LambdaExpression, LambdaExpression, bool> GetConverter(
+		public static ValueTuple<LambdaExpression, LambdaExpression?, bool> GetConverter(
 			[AllowNull] MappingSchema mappingSchema,
 			[JetBrains.Annotations.NotNull] Type from,
 			[JetBrains.Annotations.NotNull] Type to)
@@ -663,10 +664,10 @@ namespace CodeJam.Mapping
 
 				if (attr != null)
 				{
-					DebugCode.AssertState(attr[0].Value != null, "attr[0].Value != null");
-					var valueType = attr[0].Value.GetType();
+					DebugCode.AssertState(attr[0]!.Value != null, "attr[0].Value != null");
+					var valueType = attr[0]!.Value!.GetType();
 
-					if (fields.All(attrs => attrs[0].Value == null || attrs[0].Value.GetType() == valueType))
+					if (fields.All(attrs => attrs![0]!.Value == null || attrs![0]!.Value!.GetType() == valueType))
 						defaultType = valueType;
 				}
 			}

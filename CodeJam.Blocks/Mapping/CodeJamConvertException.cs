@@ -35,7 +35,7 @@ namespace CodeJam.Mapping
 		/// <param name="message">The message to display to the client when the
 		/// exception is thrown.</param>
 		/// <seealso cref="Exception.Message"/>
-		public CodeJamConvertException(string message)
+		public CodeJamConvertException(string? message)
 			: base(message)
 		{
 		}

@@ -29,7 +29,7 @@ namespace CodeJam.Metadata
 		public void FieldAttribute()
 		{
 			var rd    = new AttributeReader();
-			var attrs = rd.GetAttributes<MapValueAttribute>(InfoOf.Member<AttributeReaderTests>(a => a.Field1));
+			var attrs = rd.GetAttributes<MapValueAttribute>(InfoOf.Member<AttributeReaderTests>(a => a.Field1)!);
 
 			Assert.AreEqual(0, attrs.Length);
 		}
@@ -41,7 +41,7 @@ namespace CodeJam.Metadata
 		public void PropertyAttribute()
 		{
 			var rd    = new AttributeReader();
-			var attrs = rd.GetAttributes<MapValueAttribute>(InfoOf.Member<AttributeReaderTests>(a => a.Property1));
+			var attrs = rd.GetAttributes<MapValueAttribute>(InfoOf.Member<AttributeReaderTests>(a => a.Property1)!);
 
 			Assert.NotNull (attrs);
 			Assert.AreEqual(1, attrs.Length);

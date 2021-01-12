@@ -47,7 +47,7 @@ namespace CodeJam.Mapping
 		/// <param name="mappingSchema">An instance of <see cref="MappingSchema"/>.</param>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
 		[Pure]
-		public static object GetValue([NotNull] Type type, MappingSchema? mappingSchema = null)
+		public static object? GetValue([NotNull] Type type, MappingSchema? mappingSchema = null)
 		{
 			Code.NotNull(type, nameof(type));
 

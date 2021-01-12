@@ -7,13 +7,13 @@ namespace CodeJam.Mapping
 {
 	internal class DefaultValueExpression : Expression
 	{
-		public DefaultValueExpression([AllowNull] MappingSchema mappingSchema, [JetBrains.Annotations.NotNull] Type type)
+		public DefaultValueExpression([AllowNull] MappingSchema? mappingSchema, [JetBrains.Annotations.NotNull] Type type)
 		{
 			_mappingSchema = mappingSchema;
 			Type          = type;
 		}
 
-		private readonly MappingSchema _mappingSchema;
+		private readonly MappingSchema? _mappingSchema;
 
 		public override Type           Type { get; }
 		public override ExpressionType NodeType => ExpressionType.Extension;

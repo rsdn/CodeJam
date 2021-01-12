@@ -98,7 +98,7 @@ namespace CodeJam.Metadata
 			[NotNull] string fileName,
 			// ReSharper disable once SuggestBaseTypeForParameter
 			[NotNull] XElement el,
-			string exclude,
+			string? exclude,
 			string typeName,
 			string memberName)
 		{
@@ -119,7 +119,7 @@ namespace CodeJam.Metadata
 
 					var val =
 						type != null ?
-							Converter.ChangeType(value.Value, Type.GetType(type.Value, true)) :
+							Converter.ChangeType(value.Value, Type.GetType(type.Value, true)!) :
 							value.Value;
 
 					return Tuple.Create(name, val);

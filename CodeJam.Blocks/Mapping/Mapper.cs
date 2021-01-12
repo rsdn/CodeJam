@@ -21,10 +21,18 @@ namespace CodeJam.Mapping
 	public class Mapper<TFrom, TTo>
 	{
 		[JetBrains.Annotations.NotNull] private MapperBuilder<TFrom, TTo> _mapperBuilder;
-		private Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>>? _mapperExpression;
-		private Expression<Func<TFrom, TTo>> _mapperExpressionEx;
-		private Func<TFrom, TTo, IDictionary<object, object>, TTo>? _mapper;
-		private Func<TFrom, TTo>? _mapperEx;
+
+		[DisallowNull]
+		private Expression<Func<TFrom?, TTo?, IDictionary<object, object>?, TTo>>? _mapperExpression;
+
+		[DisallowNull]
+		private Expression<Func<TFrom?, TTo?>>? _mapperExpressionEx = null!;
+
+		[DisallowNull]
+		private Func<TFrom?, TTo?, IDictionary<object, object>, TTo>? _mapper = null!;
+
+		[DisallowNull]
+		private Func<TFrom, TTo>? _mapperEx = null!;
 
 		internal Mapper([JetBrains.Annotations.NotNull] MapperBuilder<TFrom, TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
 
@@ -34,7 +42,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure, JetBrains.Annotations.NotNull]
-		public Expression<Func<TFrom, TTo>> GetMapperExpressionEx()
+		public Expression<Func<TFrom?, TTo?>> GetMapperExpressionEx()
 			=> _mapperExpressionEx ??= _mapperBuilder.GetMapperExpressionEx();
 
 		/// <summary>
@@ -42,7 +50,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure, JetBrains.Annotations.NotNull]
-		public Expression<Func<TFrom, TTo, IDictionary<object, object>, TTo>> GetMapperExpression()
+		public Expression<Func<TFrom?, TTo?, IDictionary<object, object>?, TTo>> GetMapperExpression()
 			=> _mapperExpression ??= _mapperBuilder.GetMapperExpression();
 
 		/// <summary>
@@ -58,7 +66,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure, JetBrains.Annotations.NotNull]
-		public Func<TFrom, TTo, IDictionary<object, object>, TTo> GetMapper()
+		public Func<TFrom?, TTo?, IDictionary<object, object>?, TTo> GetMapper()
 			=> _mapper ??= GetMapperExpression().Compile();
 
 		/// <summary>
@@ -67,7 +75,7 @@ namespace CodeJam.Mapping
 		/// <param name="source">Object to map.</param>
 		/// <returns>Destination object.</returns>
 		[Pure]
-		public TTo Map(TFrom source)
+		public TTo Map(TFrom? source)
 			=> GetMapperEx()(source);
 
 		/// <summary>
@@ -76,7 +84,7 @@ namespace CodeJam.Mapping
 		/// <param name="source">Object to map.</param>
 		/// <param name="destination">Destination object.</param>
 		/// <returns>Destination object.</returns>
-		public TTo Map(TFrom source, TTo destination)
+		public TTo Map(TFrom? source, TTo? destination)
 			=> GetMapper()(source, destination, new Dictionary<object, object>());
 
 		/// <summary>
@@ -87,7 +95,7 @@ namespace CodeJam.Mapping
 		/// <param name="crossReferenceDictionary">Storage for cress references if applied.</param>
 		/// <returns>Destination object.</returns>
 		[Pure]
-		public TTo Map(TFrom source, TTo destination, IDictionary<object, object> crossReferenceDictionary)
+		public TTo Map(TFrom? source, TTo? destination, IDictionary<object, object>? crossReferenceDictionary)
 			=> GetMapper()(source, destination, crossReferenceDictionary);
 	}
 }

@@ -48,7 +48,7 @@ namespace CodeJam.Metadata
 		[Test]
 		public void Parse()
 		{
-			new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
+			_ = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
 		}
 
 #pragma warning disable 649
@@ -85,7 +85,7 @@ namespace CodeJam.Metadata
 		public void FieldAttribute()
 		{
 			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
-			var attrs = rd.GetAttributes<ColumnAttribute>(InfoOf.Member<XmlReaderTests>(a => a.Field1));
+			var attrs = rd.GetAttributes<ColumnAttribute>(InfoOf.Member<XmlReaderTests>(a => a.Field1)!);
 
 			Assert.NotNull (attrs);
 			Assert.AreEqual(1, attrs.Length);
@@ -101,7 +101,7 @@ namespace CodeJam.Metadata
 
 			MappingSchema.Default.AddMetadataReader(rd);
 
-			var attrs = MappingSchema.Default.GetAttributes<MapValueAttribute>(InfoOf.Member<XmlReaderTests>(a => a.Property1));
+			var attrs = MappingSchema.Default.GetAttributes<MapValueAttribute>(InfoOf.Member<XmlReaderTests>(a => a.Property1)!);
 
 			Assert.NotNull (attrs);
 			Assert.AreEqual(1, attrs.Length);

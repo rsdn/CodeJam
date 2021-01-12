@@ -30,7 +30,7 @@ namespace CodeJam.Mapping.Examples
 		private static readonly Mapper<Class1, Class2> _class1ToClass2Mapper =
 			Map.GetMapper<Class1, Class2>(
 				m =>
-					m.MapMember(c2 => c2.Field1, c1 => DateTime.Parse(c1.Field1).AddDays(1)));
+					m.MapMember(c2 => c2.Field1, c1 => DateTime.Parse(c1.Field1!).AddDays(1)));
 
 		[Test]
 		public void Test1()

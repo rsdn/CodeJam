@@ -40,6 +40,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Represents an expression that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
 		/// </summary>
+		[AllowNull]
 		public static Expression<Func<TFrom,TTo>> Expression
 		{
 			get => _expression;
@@ -70,6 +71,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Represents a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
 		/// </summary>
+		[AllowNull]
 		public static Func<TFrom,TTo> Lambda
 		{
 			get => _lambda;

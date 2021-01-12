@@ -51,7 +51,7 @@ namespace CodeJam.Mapping
 			var ms1 = new MappingSchema();
 			var ms2 = new MappingSchema(ms1);
 
-			ms1.SetConvertExpression<int?,int>(i => i.Value * 2);
+			ms1.SetConvertExpression<int?,int>(i => i!.Value * 2);
 			ms2.SetDefaultValue(typeof(int), -1);
 
 			var c1 = ms1.GetConverter<int?,int>();

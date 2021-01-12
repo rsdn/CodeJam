@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
@@ -38,7 +39,7 @@ namespace CodeJam.Mapping
 			[JetBrains.Annotations.NotNull, ItemNotNull]
 			public readonly List<Expression>                                      Expressions = new();
 
-			public ParameterExpression LocalDic;
+			public ParameterExpression? LocalDic;
 
 			public int  NameCounter;
 			public int  RestartCounter;
@@ -72,14 +73,14 @@ namespace CodeJam.Mapping
 		#region GetExpressionEx
 
 		[return: MaybeNull]
-		public LambdaExpression GetExpressionEx()
+		public LambdaExpression? GetExpressionEx()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 				return _mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType);
 
 			var pFrom = Parameter(_fromType, "from");
 
-			Expression expr;
+			Expression? expr;
 
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 			{
@@ -121,11 +122,12 @@ namespace CodeJam.Mapping
 
 			var pFrom = Parameter(_fromType, "from");
 			var expr  = GetExpressionExImpl(pFrom, _toType);
+			Debug.Assert(expr != null);
 
 			if (_data.IsRestart)
 				return null;
 
-			var l = Lambda(expr, pFrom);
+			var l = Lambda(expr!, pFrom);
 
 			return l;
 		}
@@ -417,7 +419,7 @@ namespace CodeJam.Mapping
 					{
 						_expressions.Add(
 							Call(
-								InfoOf.Method(() => Add(null, null, null)),
+								InfoOf.Method(() => Add(null!, null!, null!)),
 								_builder._data.LocalDic,
 								_fromExpression,
 								_localObject));
@@ -614,7 +616,7 @@ namespace CodeJam.Mapping
 
 						_expressions.Add(
 							Call(
-								InfoOf.Method(() => ((ICollection<int>)null).AddRange((IEnumerable<int>)null))
+								InfoOf.Method(() => ((ICollection<int>)null!).AddRange((IEnumerable<int>)null))
 									.GetGenericMethodDefinition()
 									.MakeGenericMethod(toItemType),
 								_localObject,
@@ -682,7 +684,7 @@ namespace CodeJam.Mapping
 			[JetBrains.Annotations.NotNull] Type fromItemType,
 			[JetBrains.Annotations.NotNull] Type toItemType)
 		{
-			var toListInfo = InfoOf.Method(() => Enumerable.ToList<int>(null)).GetGenericMethodDefinition();
+			var toListInfo = InfoOf.Method(() => Enumerable.ToList<int>(null!)).GetGenericMethodDefinition();
 			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
 
 			if (builder._data.IsRestart)
@@ -714,7 +716,7 @@ namespace CodeJam.Mapping
 			[JetBrains.Annotations.NotNull] Type fromItemType,
 			[JetBrains.Annotations.NotNull] Type toItemType)
 		{
-			var toListInfo = InfoOf.Method(() => Enumerable.ToArray<int>(null)).GetGenericMethodDefinition();
+			var toListInfo = InfoOf.Method(() => Enumerable.ToArray<int>(null!)).GetGenericMethodDefinition();
 			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
 
 			if (builder._data.IsRestart)
@@ -730,8 +732,8 @@ namespace CodeJam.Mapping
 			[JetBrains.Annotations.NotNull] Type fromItemType,
 			[JetBrains.Annotations.NotNull] Type toItemType)
 		{
-			var getBuilderInfo = InfoOf.Method(() => GetBuilder<int,int>(null)).               GetGenericMethodDefinition();
-			var selectInfo     = InfoOf.Method(() => Enumerable.Select<int,int>(null, _ => _)).GetGenericMethodDefinition();
+			var getBuilderInfo = InfoOf.Method(() => GetBuilder<int,int>(null!)).               GetGenericMethodDefinition();
+			var selectInfo     = InfoOf.Method(() => Enumerable.Select<int,int>(null!, _ => _)).GetGenericMethodDefinition();
 			var itemBuilder    =
 				(IMapperBuilder)getBuilderInfo
 					.MakeGenericMethod(fromItemType, toItemType)
