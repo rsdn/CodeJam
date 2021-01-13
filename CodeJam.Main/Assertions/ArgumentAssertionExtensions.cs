@@ -48,10 +48,10 @@ namespace CodeJam
 		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static ArgumentAssertion<IEnumerable<T>> ItemNotNull<T>(this ArgumentAssertion<IEnumerable<T>> arg) where T : class
+		public static ArgumentAssertion<IEnumerable<T>> ItemNotNull<T>(this ArgumentAssertion<IEnumerable<T?>> arg) where T : class
 		{
 			Code.ItemNotNull(arg.Argument, arg.ArgumentName);
-			return arg;
+			return arg!;
 		}
 
 		/// <summary>

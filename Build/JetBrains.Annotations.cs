@@ -24,8 +24,10 @@ using System;
 
 // ReSharper disable InheritdocConsiderUsage
 
+#pragma warning disable IDE0079
 #pragma warning disable 1591
 #pragma warning disable CS8618
+#pragma warning disable CS0618
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global

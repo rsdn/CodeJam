@@ -25,7 +25,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A new sequence containing any elements sliced out from the source sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<T> Slice<T>([NotNull] this IEnumerable<T> source, int startIndex, [NonNegativeValue] int count)
 		{
 			if (source == null) throw new ArgumentNullException(nameof (source));

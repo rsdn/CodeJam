@@ -20,7 +20,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains the specified number of elements from the end of the input sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<T> TakeLast<T>([NotNull] this IEnumerable<T> source, [NonNegativeValue] int count)
 		{
 			Code.NotNull(source, nameof (source));

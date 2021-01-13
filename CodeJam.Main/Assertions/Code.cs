@@ -115,7 +115,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T?>? arg,
+			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T>? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)

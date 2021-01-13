@@ -15,7 +15,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence of elements paired with their index in the sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<IndexedItem<T>> WithIndex<T>([NotNull] this IEnumerable<T> source)
 			where T : notnull
 		{
@@ -23,7 +23,7 @@ namespace CodeJam.Collections
 			return IndexImpl(source);
 		}
 
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		private static IEnumerable<IndexedItem<T>> IndexImpl<T>([NotNull] IEnumerable<T> source)
 			where T : notnull
 		{

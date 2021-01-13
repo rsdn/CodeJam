@@ -17,7 +17,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A new sequence containing elements are at the specified <paramref name="pageIndex"/> from the source sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<T> Page<T>([NotNull] this IEnumerable<T> source, int pageIndex, int pageSize) =>
 			source.Slice((pageIndex - 1)*pageSize, pageSize);
 	}

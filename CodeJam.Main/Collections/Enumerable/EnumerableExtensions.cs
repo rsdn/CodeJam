@@ -139,7 +139,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IOrderedEnumerable{TElement}"/> whose elements are sorted.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IOrderedEnumerable<TSource> OrderBy<TSource>([NotNull] this IEnumerable<TSource> source) =>
 			source.OrderBy(Fn<TSource>.Self);
 
@@ -151,7 +151,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IOrderedEnumerable{TElement}"/> whose elements are sorted.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IOrderedEnumerable<TSource> OrderByDescending<TSource>([NotNull] this IEnumerable<TSource> source) =>
 			source.OrderByDescending(Fn<TSource>.Self);
 
@@ -165,7 +165,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains distinct elements from the source sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull] Func<TSource?, TKey> keySelector)
@@ -183,7 +183,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains distinct elements from the source sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> source,
 			[NotNull] Func<TSource?, TKey> keySelector,
@@ -202,7 +202,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence that contains the set difference of the elements of two sequences.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> ExceptBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
@@ -222,7 +222,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence that contains the set difference of the elements of two sequences.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> ExceptBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
@@ -242,7 +242,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence that contains the elements that form the set intersection of two sequences.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> IntersectBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
@@ -262,7 +262,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence that contains the elements that form the set intersection of two sequences.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> IntersectBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
@@ -282,7 +282,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains the elements from both input sequences, excluding duplicates.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> UnionBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
@@ -302,7 +302,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains the elements from both input sequences, excluding duplicates.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> UnionBy<TSource, TKey>(
 			[NotNull] this IEnumerable<TSource> first,
 			[NotNull] IEnumerable<TSource> second,
@@ -321,7 +321,7 @@ namespace CodeJam.Collections
 		/// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the one-to-many transform function
 		/// on each element of the input sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> SelectMany<TSource>(
 			[NotNull, InstantHandle] this IEnumerable<IEnumerable<TSource>> source) =>
 				source.SelectMany(Fn<IEnumerable<TSource>>.Self);

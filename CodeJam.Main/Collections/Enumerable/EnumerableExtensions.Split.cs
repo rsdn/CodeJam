@@ -16,7 +16,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence of chunks of the specified size.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<T[]> Split<T>([NotNull] this IEnumerable<T> source, int size)
 		{
 			if (source == null)
@@ -28,7 +28,7 @@ namespace CodeJam.Collections
 			return SplitImpl(source, size);
 		}
 
-		[NotNull, Pure, LinqTunnel]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		private static IEnumerable<T[]> SplitImpl<T>([NotNull] IEnumerable<T> source, int size)
 		{
 			using var enumerator = source.GetEnumerator();
