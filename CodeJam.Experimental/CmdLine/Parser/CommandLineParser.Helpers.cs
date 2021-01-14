@@ -33,7 +33,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume single char.
 		/// </summary>
-				private static ICharInput ConsumeChar(this ICharInput input, char charToConsume)
+		private static ICharInput ConsumeChar(this ICharInput input, char charToConsume)
 		{
 			if (input.Current != charToConsume)
 				throw new ParsingException(
@@ -45,7 +45,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume leading spaces.
 		/// </summary>
-				private static ICharInput ConsumeSpaces(this ICharInput input)
+		private static ICharInput ConsumeSpaces(this ICharInput input)
 		{
 			while (char.IsWhiteSpace(input.Current))
 				input = input.GetNext();
@@ -55,7 +55,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume while space character or end of file reached.
 		/// </summary>
-				private static ParseResult<string> ConsumeWhileNonSpace(this ICharInput input)
+		private static ParseResult<string> ConsumeWhileNonSpace(this ICharInput input)
 		{
 			var sb = new StringBuilder();
 			while (!input.IsEof() && !char.IsWhiteSpace(input.Current))
@@ -69,7 +69,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume while stop char occured.
 		/// </summary>
-				private static ParseResult<string> ConsumeWhile(this ICharInput input, char stopChar)
+		private static ParseResult<string> ConsumeWhile(this ICharInput input, char stopChar)
 		{
 			var sb = new StringBuilder();
 			while (input.Current != stopChar)
@@ -84,7 +84,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume while predicate is true.
 		/// </summary>
-				private static ParseResult<string> ConsumeWhile(this ICharInput input, Func<char, bool> predicate)
+		private static ParseResult<string> ConsumeWhile(this ICharInput input, Func<char, bool> predicate)
 		{
 			var sb = new StringBuilder();
 			while (predicate(input.Current))
@@ -99,7 +99,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Consume many elements.
 		/// </summary>
-				private static ParseResult<T[]> ConsumeTillEof<T>(
+		private static ParseResult<T[]> ConsumeTillEof<T>(
 			this ICharInput input,
 			Func<ICharInput, ParseResult<T>?> consumer)
 		{
