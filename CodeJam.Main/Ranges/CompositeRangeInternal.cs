@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using JetBrains.Annotations;
-
 namespace CodeJam.Ranges
 {
 	/// <summary>CompositeRange internal helpers</summary>
@@ -82,7 +80,7 @@ namespace CodeJam.Ranges
 		/// Index of the inserted item (or existing one if <paramref name="skipDuplicates"/> is set to <c>true</c>).
 		/// </returns>
 		// ReSharper disable once UnusedMethodReturnValue.Global
-			internal static int InsertInSortedList<T>(
+		internal static int InsertInSortedList<T>(
 			List<T> sortedList,
 			T? value,
 			IComparer<T>? comparer,
