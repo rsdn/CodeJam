@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using static CodeJam.DebugCode;
 
 //------------------------------------------------------------------------------
@@ -17,6 +20,9 @@ using static CodeJam.DebugCode;
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+#nullable enable
+
 
 using System;
 using System.Diagnostics;
@@ -97,7 +103,6 @@ namespace CodeJam.Dates
 			if (arg != arg.FirstDayOfYear())
 				throw DateTimeCodeExceptions.ArgumentNotFirstDayOfYear(argName, arg);
 		}
-
 
 		/// <summary>Ensures that <paramref name="arg"/> represents a last day of month</summary>
 		/// <param name="arg">The argument.</param>

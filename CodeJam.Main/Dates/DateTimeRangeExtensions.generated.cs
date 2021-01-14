@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 using System.Collections.Generic;
 
@@ -78,7 +81,7 @@ namespace CodeJam.Dates
 		private static int DifferenceInMonths(DateTimeOffset startDate, DateTimeOffset endDate) =>
 			// ReSharper disable once ArrangeRedundantParentheses
 			(endDate.Month - startDate.Month) +
-			(endDate.Year - startDate.Year) * 12;
+				(endDate.Year - startDate.Year) * 12;
 
 		/// <summary>Returns count of days between two dates.</summary>
 		/// <param name="range">The date range.</param>

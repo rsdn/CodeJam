@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using static CodeJam.DebugCode;
 
 using System.Diagnostics;

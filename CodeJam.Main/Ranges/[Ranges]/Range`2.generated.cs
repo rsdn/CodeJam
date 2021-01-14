@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
@@ -64,7 +67,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		/// <param name="key">The value of the range key.</param>
-		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, [AllowNull] TKey key)
+		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key)
 		{
 			bool fromEmpty = from.IsEmpty;
 			bool toEmpty = to.IsEmpty;
@@ -95,8 +98,7 @@ namespace CodeJam.Ranges
 		/// <param name="to">Boundary To.</param>
 		/// <param name="key">The value of the range key.</param>
 		public Range(T from, T to, TKey key) :
-			this(Range.BoundaryFrom(from), Range.BoundaryTo(to), key)
-		{ }
+			this(Range.BoundaryFrom(from), Range.BoundaryTo(to), key) { }
 
 		/// <summary>
 		/// Creates instance of <seealso cref="Range{T}"/>

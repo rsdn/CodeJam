@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Strings
@@ -18,7 +21,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a control; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsControl(this char chr) => char.IsControl(chr);
 
 		/// <summary>
@@ -26,7 +29,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a highsurrogate; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsHighSurrogate(this char chr) => char.IsHighSurrogate(chr);
 
 		/// <summary>
@@ -34,7 +37,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a lowsurrogate; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsLowSurrogate(this char chr) => char.IsLowSurrogate(chr);
 
 		/// <summary>
@@ -42,7 +45,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a digit; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsDigit(this char chr) => char.IsDigit(chr);
 
 		/// <summary>
@@ -50,7 +53,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a letter; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsLetter(this char chr) => char.IsLetter(chr);
 
 		/// <summary>
@@ -58,7 +61,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a letterordigit; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsLetterOrDigit(this char chr) => char.IsLetterOrDigit(chr);
 
 		/// <summary>
@@ -66,7 +69,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a lower; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsLower(this char chr) => char.IsLower(chr);
 
 		/// <summary>
@@ -74,7 +77,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a upper; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsUpper(this char chr) => char.IsUpper(chr);
 
 		/// <summary>
@@ -82,7 +85,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a number; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsNumber(this char chr) => char.IsNumber(chr);
 
 		/// <summary>
@@ -90,7 +93,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a punctuation; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsPunctuation(this char chr) => char.IsPunctuation(chr);
 
 		/// <summary>
@@ -98,7 +101,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a separator; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsSeparator(this char chr) => char.IsSeparator(chr);
 
 		/// <summary>
@@ -106,7 +109,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a surrogate; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsSurrogate(this char chr) => char.IsSurrogate(chr);
 
 		/// <summary>
@@ -114,7 +117,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a symbol; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsSymbol(this char chr) => char.IsSymbol(chr);
 
 		/// <summary>
@@ -122,7 +125,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="chr">The Unicode character to evaluate.</param>
 		/// <returns><c>true</c> if <paramref name="chr"/> is a whitespace; otherwise, <c>false</c>.</returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+		[Pure][System.Diagnostics.Contracts.Pure]
 		public static bool IsWhiteSpace(this char chr) => char.IsWhiteSpace(chr);
 
 	}

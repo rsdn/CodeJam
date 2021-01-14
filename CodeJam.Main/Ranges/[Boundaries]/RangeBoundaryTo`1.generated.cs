@@ -76,8 +76,8 @@ namespace CodeJam.Ranges
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		/// <returns>A new range boundary.</returns>
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[MethodImpl(AggressiveInlining)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[MethodImpl(AggressiveInlining)]
 		public static RangeBoundaryTo<T> AdjustAndCreate(T? value, RangeBoundaryToKind boundaryKind)
 		{
 			DebugCode.AssertArgument(
@@ -115,8 +115,8 @@ namespace CodeJam.Ranges
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c> if it is safe to pass the value as a boundary constructor parameter.</returns>
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[MethodImpl(AggressiveInlining)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[MethodImpl(AggressiveInlining)]
 		public static bool IsValid(T? value)
 		{
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
@@ -136,7 +136,8 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Formattable logic
-		private static readonly Func<T, string?, IFormatProvider?, string?> _formattableCallback = CreateFormattableCallback<T>();
+		private static readonly Func<T, string?, IFormatProvider?, string?> _formattableCallback =
+			CreateFormattableCallback<T>();
 		#endregion
 
 		#endregion
@@ -145,6 +146,7 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
 		[AllowNull]
 		private T _value;
+
 		private RangeBoundaryToKind _kind;
 
 		/// <summary>Creates a new range boundary.</summary>
@@ -219,7 +221,7 @@ namespace CodeJam.Ranges
 		/// <summary>The kind of the boundary.</summary>
 		/// <value>The kind of the boundary.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
-		public RangeBoundaryToKind Kind => _kind;
+			public RangeBoundaryToKind Kind => _kind;
 
 		/// <summary>The boundary == ∅.</summary>
 		/// <value><c>true</c> if the boundary is empty; otherwise, <c>false</c>.</value>
@@ -311,8 +313,8 @@ namespace CodeJam.Ranges
 					RangeBoundaryToKind.Inclusive => RangeBoundaryFromKind.Exclusive,
 					RangeBoundaryToKind.Exclusive => RangeBoundaryFromKind.Inclusive,
 					_ => throw CodeExceptions.UnexpectedValue(
-							$"Cannot get complementation for the boundary '{this}' as it has no value.")
-				});
+						$"Cannot get complementation for the boundary '{this}' as it has no value.")
+					});
 
 		/// <summary>Checks that the boundary is complementation for specified boundary.</summary>
 		/// <param name="other">Another boundary.</param>
@@ -504,7 +506,7 @@ namespace CodeJam.Ranges
 		//   Please create issue at first
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public int CompareTo(T? other) => CompareTo(Range.GetCompareToBoundary(other));
+		public int CompareTo([AllowNull] T other) => CompareTo(Range.GetCompareToBoundary(other));
 		#endregion
 
 		#region IComparable
@@ -526,8 +528,8 @@ namespace CodeJam.Ranges
 			{
 				RangeBoundaryTo<T> rbf => CompareTo(rbf),
 				RangeBoundaryFrom<T> rbt => CompareTo(rbt),
-				_ => CompareTo((T?)obj)
-			};
+				_ => CompareTo((T?)obj!) // https://github.com/dotnet/roslyn/issues/34976
+				};
 		#endregion
 
 		#endregion
@@ -544,7 +546,7 @@ namespace CodeJam.Ranges
 				RangeBoundaryToKind.Inclusive => _value + ToInclusiveString,
 				RangeBoundaryToKind.Exclusive => _value + ToExclusiveString,
 				_ => EmptyString
-			};
+				};
 
 		/// <summary>
 		/// Returns string representation of the boundary using the specified format string.
@@ -571,7 +573,7 @@ namespace CodeJam.Ranges
 				RangeBoundaryToKind.Inclusive => _formattableCallback(_value, format, formatProvider) + ToInclusiveString,
 				RangeBoundaryToKind.Exclusive => _formattableCallback(_value, format, formatProvider) + ToExclusiveString,
 				_ => EmptyString
-			};
+				};
 		#endregion
 	}
 }

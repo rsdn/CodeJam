@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 
 using JetBrains.Annotations;
@@ -277,7 +280,7 @@ namespace CodeJam.Dates
 				MidpointRounding.ToPositiveInfinity => CeilingCore(dateTime, ticksModule),
 #endif
 				_ => throw CodeExceptions.UnexpectedArgumentValue(nameof(mode), mode)
-			};
+				};
 		}
 
 		/// <summary>Returns the datetime rounded down to specified interval.</summary>

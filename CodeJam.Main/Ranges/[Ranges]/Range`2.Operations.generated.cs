@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 using System.Runtime.CompilerServices;
 
@@ -67,8 +70,8 @@ namespace CodeJam.Ranges
 		/// <returns>A range with inclusive boundaries.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public Range<T, TKey> MakeInclusive(
-			[InstantHandle] Func<T, T> fromValueSelector,
-			[InstantHandle] Func<T, T> toValueSelector)
+			[InstantHandle] Func<T?, T> fromValueSelector,
+			[InstantHandle] Func<T?, T> toValueSelector)
 		{
 			if (IsEmpty || (!From.IsExclusiveBoundary && !To.IsExclusiveBoundary))
 			{
@@ -77,14 +80,10 @@ namespace CodeJam.Ranges
 
 			var from = From;
 			if (from.IsExclusiveBoundary)
-			{
 				from = Range.BoundaryFrom(fromValueSelector(from.GetValueOrDefault()));
-			}
 			var to = To;
 			if (to.IsExclusiveBoundary)
-			{
 				to = Range.BoundaryTo(toValueSelector(to.GetValueOrDefault()));
-			}
 
 			return TryCreateRange(from, to);
 		}
@@ -97,8 +96,8 @@ namespace CodeJam.Ranges
 		/// <returns>A range with exclusive boundaries.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public Range<T, TKey> MakeExclusive(
-			[InstantHandle] Func<T, T> fromValueSelector,
-			[InstantHandle] Func<T, T> toValueSelector)
+			[InstantHandle] Func<T?, T> fromValueSelector,
+			[InstantHandle] Func<T?, T> toValueSelector)
 		{
 			if (IsEmpty || (!From.IsInclusiveBoundary && !To.IsInclusiveBoundary))
 			{
@@ -170,9 +169,9 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool Contains(
 
-		#region T4-dont-replace
+			#region T4-dont-replace
 			Range<T> other
-		#endregion
+			#endregion
 
 			)
 		{
@@ -211,9 +210,9 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool HasIntersection(
 
-		#region T4-dont-replace
+			#region T4-dont-replace
 			Range<T> other
-		#endregion
+			#endregion
 
 			)
 		{
@@ -247,11 +246,11 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public T Clamp(T value)
 		{
-			Code.AssertArgument(IsNotEmpty, nameof(value), "Cannot fit the value into empty range.");
-			Code.AssertArgument(
-				!From.IsExclusiveBoundary, nameof(value), "The clamp range boundary From is exclusive and has no value.");
-			Code.AssertArgument(
-				!To.IsExclusiveBoundary, nameof(value), "The clamp range boundary To is exclusive and has no value.");
+			Code.AssertState(IsNotEmpty, "Cannot fit the value into empty range.");
+			Code.AssertState(
+				!From.IsExclusiveBoundary, "The clamp range boundary From is exclusive and has no value.");
+			Code.AssertState(
+				!To.IsExclusiveBoundary, "The clamp range boundary To is exclusive and has no value.");
 
 			// case for the positive infinity
 			if (!RangeBoundaryFrom<T>.IsValid(value))
@@ -299,9 +298,9 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool StartsAfter(
 
-		#region T4-dont-replace
+			#region T4-dont-replace
 			Range<T> other
-		#endregion
+			#endregion
 
 			) =>
 				other.IsNotEmpty && From > other.To;
@@ -341,9 +340,9 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool EndsBefore(
 
-		#region T4-dont-replace
+			#region T4-dont-replace
 			Range<T> other
-		#endregion
+			#endregion
 
 			) =>
 				IsNotEmpty && other.IsNotEmpty && To < other.From;
@@ -379,9 +378,9 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Union(
 
-		#region T4-dont-replace
+			#region T4-dont-replace
 			Range<T> other
-		#endregion
+			#endregion
 
 			)
 		{
@@ -484,9 +483,9 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Intersect(
 
-		#region T4-dont-replace
+			#region T4-dont-replace
 			Range<T> other
-		#endregion
+			#endregion
 
 			) =>
 				TryCreateRange(

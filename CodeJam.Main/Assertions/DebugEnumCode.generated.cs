@@ -142,6 +142,7 @@ namespace CodeJam
 			if (!value.IsFlagSet(flag))
 				throw CodeExceptions.InvalidOperation(message);
 		}
+
 		/// <summary>Asserts that the specified state flag is set.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="value">The value.</param>

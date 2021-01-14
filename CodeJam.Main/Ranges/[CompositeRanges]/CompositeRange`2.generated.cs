@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -78,11 +81,11 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Comparers
-		private static readonly SubRangesComparer _rangeComparer = new SubRangesComparer();
+		private static readonly SubRangesComparer _rangeComparer = new();
 
 		/// <summary>Helper comparer for operations over <see cref="Range{T}.To"/>.</summary>
 		internal static readonly RangeBoundaryToDescendingComparer<T> BoundaryToDescendingComparer =
-			new RangeBoundaryToDescendingComparer<T>();
+			new();
 		#endregion
 
 		#region Helpers
@@ -94,7 +97,7 @@ namespace CodeJam.Ranges
 				lastBoundary.GetComplementation() >= nextRange.From;
 		}
 
-				private static IEnumerable<Range<T, TKey>> MergeRangesCore(
+		private static IEnumerable<Range<T, TKey>> MergeRangesCore(
 			IEnumerable<Range<T, TKey>> sortedRanges)
 		{
 			var temp = Range<T, TKey>.Empty;
@@ -124,7 +127,6 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Predefined values
-
 		private static readonly ReadOnlyCollection<Range<T, TKey>> _emptyRanges = Array<Range<T, TKey>>.Empty.AsReadOnly();
 
 		#region T4-dont-replace
@@ -135,7 +137,7 @@ namespace CodeJam.Ranges
 		public static readonly CompositeRange<T, TKey> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly CompositeRange<T, TKey> Infinite = new CompositeRange<T, TKey>(Range<T, TKey>.Infinite);
+		public static readonly CompositeRange<T, TKey> Infinite = new(Range<T, TKey>.Infinite);
 		#endregion
 
 		#endregion
@@ -231,8 +233,8 @@ namespace CodeJam.Ranges
 
 		/// <summary>Collection of subranges.</summary>
 		/// <value>The collection of subranges.</value>
-				// ReSharper disable once ConstantNullCoalescingCondition
-		public ReadOnlyCollection<Range<T, TKey>> SubRanges => _ranges ?? _emptyRanges;
+		// ReSharper disable once ConstantNullCoalescingCondition
+			public ReadOnlyCollection<Range<T, TKey>> SubRanges => _ranges ?? _emptyRanges;
 
 		#region T4-dont-replace
 		/// <summary>Range that contains all subranges.</summary>
@@ -279,7 +281,7 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
+		public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.
@@ -289,7 +291,7 @@ namespace CodeJam.Ranges
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public string ToString(string format, IFormatProvider formatProvider)
+		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
 			if (IsEmpty)
 				return ContainingRange.ToString(format, formatProvider);

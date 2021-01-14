@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
 using System;
 
 using JetBrains.Annotations;
@@ -33,10 +35,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2> other);
+		public abstract bool Equals(OneOf<T1, T2>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -81,7 +83,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2>? other) => Equals(other as Case1);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -121,7 +123,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2>? other) => Equals(other as Case2);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -171,10 +173,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3> other);
+		public abstract bool Equals(OneOf<T1, T2, T3>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -220,7 +222,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case1);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -261,7 +263,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case2);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -302,7 +304,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case3);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -356,10 +358,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -406,7 +408,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case1);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -448,7 +450,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case2);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -490,7 +492,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case3);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -532,7 +534,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case4);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -590,10 +592,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -641,7 +643,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case1);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -684,7 +686,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case2);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -727,7 +729,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case3);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -770,7 +772,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case4);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -813,7 +815,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case5Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case5);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case5);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -875,10 +877,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -927,7 +929,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case1);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -971,7 +973,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case2);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1015,7 +1017,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case3);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1059,7 +1061,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case4);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1103,7 +1105,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case5Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case5);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case5);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1147,7 +1149,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case6Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case6);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case6);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1213,10 +1215,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -1266,7 +1268,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case1);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1311,7 +1313,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case2);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1356,7 +1358,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case3);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1401,7 +1403,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case4);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1446,7 +1448,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case5Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case5);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case5);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1491,7 +1493,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case6Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case6);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case6);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1536,7 +1538,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case7Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case7);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case7);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1606,10 +1608,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -1660,7 +1662,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case1);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1706,7 +1708,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case2);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1752,7 +1754,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case3);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1798,7 +1800,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case4);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1844,7 +1846,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case5Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case5);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case5);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1890,7 +1892,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case6Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case6);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case6);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1936,7 +1938,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case7Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case7);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case7);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}
@@ -1982,7 +1984,7 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case8Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case8);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case8);
 
 			public override int GetHashCode() => _value.GetHashCode();
 		}

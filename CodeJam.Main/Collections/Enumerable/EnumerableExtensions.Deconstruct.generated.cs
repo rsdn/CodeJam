@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
 using System.Collections.Generic;
 
 using JetBrains.Annotations;

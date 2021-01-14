@@ -17,7 +17,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+
 using SDC = System.Diagnostics.CodeAnalysis;
+
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -25,13 +27,11 @@ using CodeJam.Arithmetic;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
-
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using StringEx = System.String;
 #else
 using StringEx = System.StringEx;
 #endif
-
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
 // ReSharper disable BuiltInTypeReferenceStyleForMemberAccess
@@ -129,7 +129,7 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T?>? arg,
+			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T>? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -317,7 +317,6 @@ namespace CodeJam
 			if (!(Operators<T>.GreaterThanOrEqual(value, fromValue) && Operators<T>.LessThanOrEqual(value, toValue)))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
-
 		#endregion
 
 		#region Argument validation - valid count
@@ -339,7 +338,7 @@ namespace CodeJam
 			int count,
 			[InvokerParameterName] string argName,
 			int length) =>
-			InRange(count, argName, 0, length);
+				InRange(count, argName, 0, length);
 		#endregion
 
 		#region Argument validation - valid index

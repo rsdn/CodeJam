@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System.Collections.Generic;
 
 using JetBrains.Annotations;
@@ -28,7 +31,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(this Range<T, TKey> range) =>
-			new CompositeRange<T, TKey>(range);
+			new(range);
 
 		/// <summary>Converts sequence of elements to the composite range.</summary>
 		/// <typeparam name="T">The type of the range values.</typeparam>
@@ -37,7 +40,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(this IEnumerable<Range<T, TKey>> ranges) =>
-			new CompositeRange<T, TKey>(ranges);
+			new(ranges);
 		#endregion
 	}
 }
