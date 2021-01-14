@@ -109,6 +109,7 @@ internal sealed class ItemNotNullAttribute : Attribute { }
   [AttributeUsage(
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
     AttributeTargets.Delegate | AttributeTargets.Field)]
+  [Obsolete("Use C# NRT markup")]
 internal sealed class ItemCanBeNullAttribute : Attribute { }
 
   /// <summary>
