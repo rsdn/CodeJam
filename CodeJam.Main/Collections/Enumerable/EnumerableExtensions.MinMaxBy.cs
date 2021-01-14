@@ -24,7 +24,7 @@ namespace CodeJam.Collections
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
 		[Pure][System.Diagnostics.Contracts.Pure]
 		[return:MaybeNull]
-		public static TSource? MinBy<TSource, TValue>(
+		public static TSource MinBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector) =>
 				MinBy(source, selector, Comparer<TValue>.Default);
@@ -44,10 +44,11 @@ namespace CodeJam.Collections
 		/// </returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
 		[Pure][System.Diagnostics.Contracts.Pure]
-		public static TSource? MinByOrDefault<TSource, TValue>(
+		[return:MaybeNull]
+		public static TSource MinByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
-			TSource defaultValue = default) =>
+			TSource? defaultValue = default) =>
 				MinByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
 		/// <summary>
@@ -63,7 +64,7 @@ namespace CodeJam.Collections
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
 		[Pure][System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
-		public static TSource? MinBy<TSource, TValue>(
+		public static TSource MinBy<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer)
@@ -101,14 +102,16 @@ namespace CodeJam.Collections
 			{
 				using var e = source.GetEnumerator();
 				if (!e.MoveNext())
-					return default;
+					return default!;
 
 				value = selector(e.Current);
 				item = e.Current;
 				while (e.MoveNext())
 				{
 					var x = selector(e.Current);
-					if (comparer.Compare(x!, value!) < 0)
+#pragma warning disable CS8604
+					if (comparer.Compare(x, value) < 0)
+#pragma warning restore CS8604
 					{
 						value = x;
 						item = e.Current;
@@ -134,11 +137,12 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure][System.Diagnostics.Contracts.Pure]
-		public static TSource? MinByOrDefault<TSource, TValue>(
+		[return:MaybeNull]
+		public static TSource MinByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer,
-			TSource defaultValue = default)
+			TSource? defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -173,14 +177,16 @@ namespace CodeJam.Collections
 			{
 				using var e = source.GetEnumerator();
 				if (!e.MoveNext())
-					return defaultValue;
+					return defaultValue!;
 
 				value = selector(e.Current);
 				item = e.Current;
 				while (e.MoveNext())
 				{
 					var x = selector(e.Current);
-					if (comparer.Compare(x!, value!) < 0)
+#pragma warning disable CS8604
+					if (comparer.Compare(x, value) < 0)
+#pragma warning restore CS8604
 					{
 						value = x;
 						item = e.Current;
@@ -222,10 +228,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure][System.Diagnostics.Contracts.Pure]
-		public static TSource? MaxByOrDefault<TSource, TValue>(
+		[return:MaybeNull]
+		public static TSource MaxByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
-			TSource defaultValue = default) =>
+			TSource? defaultValue = default) =>
 				MaxByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
 		/// <summary>
@@ -278,7 +285,7 @@ namespace CodeJam.Collections
 			{
 				using var e = source.GetEnumerator();
 				if (!e.MoveNext())
-					return default;
+					return default!;
 
 				value = selector(e.Current);
 				item = e.Current;
@@ -311,11 +318,12 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure][System.Diagnostics.Contracts.Pure]
-		public static TSource? MaxByOrDefault<TSource, TValue>(
+		[return:MaybeNull]
+		public static TSource MaxByOrDefault<TSource, TValue>(
 			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
 			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer,
-			TSource defaultValue = default)
+			TSource? defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(selector, nameof(selector));
@@ -350,14 +358,16 @@ namespace CodeJam.Collections
 			{
 				using var e = source.GetEnumerator();
 				if (!e.MoveNext())
-					return defaultValue;
+					return defaultValue!;
 
 				value = selector(e.Current);
 				item = e.Current;
 				while (e.MoveNext())
 				{
 					var x = selector(e.Current);
+#pragma warning disable CS8604
 					if (comparer.Compare(x, value) > 0)
+#pragma warning restore CS8604
 					{
 						value = x;
 						item = e.Current;
