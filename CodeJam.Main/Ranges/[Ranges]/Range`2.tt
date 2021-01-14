@@ -6,7 +6,7 @@
 		new ReplaceInfo // Add TKey field
 		{
 			Pattern = @"(\r\n.+?)(private RangeBoundaryTo<T> _to;)",
-			Replacement = @"$1$2$1private TKey _key;",
+			Replacement = @"$1$2$1private TKey? _key;",
 			ThrowOnFail = true
 		},
 		new ReplaceInfo // Fix .ctor body

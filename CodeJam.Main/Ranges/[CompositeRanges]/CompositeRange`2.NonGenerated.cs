@@ -95,7 +95,7 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range with the key specified.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T, TKey2> WithKeys<TKey2>(
-			[InstantHandle] Func<TKey, TKey2> keySelector)
+			[InstantHandle] Func<TKey?, TKey2> keySelector)
 			where TKey2 : notnull =>
 				IsEmpty
 					? CompositeRange<T, TKey2>.Empty

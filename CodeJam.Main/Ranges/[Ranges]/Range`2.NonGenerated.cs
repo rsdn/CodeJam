@@ -20,7 +20,7 @@ namespace CodeJam.Ranges
 		#region Static members
 		private static readonly Func<TKey?, TKey?, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
 
-		private static readonly Func<TKey, string?, IFormatProvider?, string?> _formattableCallback =
+		private static readonly Func<TKey?, string?, IFormatProvider?, string?> _formattableCallback =
 			CreateFormattableCallback<TKey>();
 
 		#region Predefined values
@@ -38,7 +38,7 @@ namespace CodeJam.Ranges
 		/// <summary>The value associated with the range.</summary>
 		/// <value>The value of the range key.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
-			public TKey Key => _key;
+		public TKey? Key => _key;
 
 		#region IRangeFactory members
 		private Range<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>

@@ -61,13 +61,13 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
 		private RangeBoundaryFrom<T> _from;
 		private RangeBoundaryTo<T> _to;
-		private TKey _key;
+		private TKey? _key;
 
 		/// <summary>Creates instance of <seealso cref="Range{T}"/></summary>
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		/// <param name="key">The value of the range key.</param>
-		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key)
+		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey? key)
 		{
 			bool fromEmpty = from.IsEmpty;
 			bool toEmpty = to.IsEmpty;
@@ -97,7 +97,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		/// <param name="key">The value of the range key.</param>
-		public Range(T from, T to, TKey key) :
+		public Range(T from, T to, TKey? key) :
 			this(Range.BoundaryFrom(from), Range.BoundaryTo(to), key) { }
 
 		/// <summary>
@@ -108,7 +108,7 @@ namespace CodeJam.Ranges
 		/// <param name="key">The value of the range key.</param>
 		/// <param name="skipsArgValidation">Stub argument to mark unsafe (no validation) constructor overload.</param>
 		[Obsolete(SkipsArgValidationObsolete)]
-		internal Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key, UnsafeOverload skipsArgValidation)
+		internal Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey? key, UnsafeOverload skipsArgValidation)
 #if DEBUG
 			: this(from, to, key) { }
 #else

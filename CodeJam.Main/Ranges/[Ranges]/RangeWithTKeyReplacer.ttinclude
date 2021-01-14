@@ -26,7 +26,7 @@
 			new ReplaceInfo // Fix method signature
 			{
 				Pattern = @"(T>? to(?:Value)?)(\)|,)",
-				Replacement = @"$1, TKey key$2",
+				Replacement = @"$1, TKey? key$2",
 				ThrowOnFail = false
 			},
 			new ReplaceInfo // Fix method XML docs
