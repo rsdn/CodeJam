@@ -2,8 +2,6 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-using JetBrains.Annotations;
-
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam.Targeting

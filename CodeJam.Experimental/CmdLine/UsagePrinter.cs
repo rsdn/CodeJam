@@ -6,8 +6,6 @@ using System.Text;
 
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 namespace CodeJam.CmdLine
 {
 	internal static class UsagePrinter
@@ -132,7 +130,7 @@ namespace CodeJam.CmdLine
 			}
 		}
 
-				private static string GetOptionDescription(OptionRule opt)
+		private static string GetOptionDescription(OptionRule opt)
 		{
 			var sb = new StringBuilder(opt.Description);
 			if (opt.Required)
@@ -142,7 +140,7 @@ namespace CodeJam.CmdLine
 			return sb.ToString();
 		}
 
-				private static string GetOptionString(OptionRule opt, bool full, string optPrefix)
+		private static string GetOptionString(OptionRule opt, bool full, string optPrefix)
 		{
 			switch (opt.Type)
 			{

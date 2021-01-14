@@ -5,8 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Linq;
 
 using CodeJam.Collections;
-
-using JetBrains.Annotations;
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
 using ParameterModifierEx = System.Reflection.ParameterModifier;
 #else
