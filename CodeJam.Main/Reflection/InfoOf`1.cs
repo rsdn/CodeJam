@@ -35,7 +35,7 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static PropertyInfo Property<TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
 			expression.GetProperty();
 
@@ -47,7 +47,7 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static FieldInfo Field<TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
 			expression.GetField();
 
@@ -70,7 +70,7 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static MethodInfo Method<TResult>([NotNull] Expression<Func<T, TResult>> expression) =>
 			expression.GetMethod();
 
@@ -81,7 +81,7 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static MethodInfo Method([NotNull] Expression<Action<T>> expression) =>
 			expression.GetMethod();
 	}

@@ -13,7 +13,7 @@ namespace CodeJam.Strings
 		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="s">Object to convert.</param>
 		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static string ToInvariantString<T>([NotNull] this T s) where T : IFormattable =>
 			s.ToString(null, CultureInfo.InvariantCulture);
 
@@ -24,7 +24,7 @@ namespace CodeJam.Strings
 		/// <param name="s">Object to convert.</param>
 		/// <param name="format">Format string</param>
 		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static string ToInvariantString<T>([NotNull] this T s, string format) where T : IFormattable =>
 			s.ToString(format, CultureInfo.InvariantCulture);
 

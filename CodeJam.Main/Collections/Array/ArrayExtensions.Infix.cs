@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 		public static ReadOnlyCollection<T> AsReadOnly<T>([NotNull] this T[] array) => ArrayEx.AsReadOnly(array);
 #else
@@ -143,7 +143,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="TOutput">The type of the elements of the target array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="converter" /> is null.</exception>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static TOutput[] ConvertAll<TInput, TOutput>(
 			[NotNull] this TInput[] array, [NotNull, InstantHandle] Converter<TInput, TOutput> converter) =>
 				ArrayEx.ConvertAll(array, converter);
@@ -154,7 +154,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the target array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.</exception>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static T[] ConvertAll<T>([NotNull] this object[] array) =>
 			ArrayEx.ConvertAll(array, o => (T)o);
 
@@ -277,7 +277,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of the array.</typeparam>
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static T[] FindAll<T>([NotNull] this T[] array, [NotNull, InstantHandle] Predicate<T> match) =>
 			Array.FindAll(array, match);
 

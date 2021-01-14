@@ -16,7 +16,7 @@ namespace CodeJam
 		/// <param name="baseUri">Base uri</param>
 		/// <param name="relativeUri">Relative uri</param>
 		/// <returns>Combined uri.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static Uri Combine([NotNull] this Uri baseUri, [NotNull] Uri relativeUri) => new(baseUri, relativeUri);
 
 		/// <summary>
@@ -25,7 +25,7 @@ namespace CodeJam
 		/// <param name="baseUri">Base uri</param>
 		/// <param name="relativeUri">Relative uri</param>
 		/// <returns>Combined uri.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static Uri Combine([NotNull] this Uri baseUri, [NotNull] string relativeUri) => new(baseUri, relativeUri);
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace CodeJam
 		/// <param name="baseUri">Base uri</param>
 		/// <param name="relativeUri">Relative uri</param>
 		/// <returns>Combined uri.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static Uri Combine([NotNull] string baseUri, [NotNull] string relativeUri)
 		{
 			var baseParsed = new Uri(baseUri);

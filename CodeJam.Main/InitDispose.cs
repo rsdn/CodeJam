@@ -17,7 +17,7 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static IDisposable Create([NotNull] Action initAction, [NotNull] Action disposeAction)
 		{
 			Code.NotNull(initAction,    nameof(initAction));
@@ -37,7 +37,7 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static IDisposable Create<T>([NotNull] Func<T> initAction, [NotNull] Action<T> disposeAction)
 		{
 			Code.NotNull(initAction,    nameof(initAction));
@@ -55,7 +55,7 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="initDisposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static IDisposable Create([NotNull] Action initDisposeAction)
 		{
 			Code.NotNull(initDisposeAction, nameof(initDisposeAction));
@@ -76,7 +76,7 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="initDisposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static IDisposable Create([NotNull] Action<bool> initDisposeAction)
 		{
 			Code.NotNull(initDisposeAction, nameof(initDisposeAction));

@@ -382,7 +382,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A <see cref="List{T}"/> that contains elements from the input sequence.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static List<T> AsList<T>([NotNull, InstantHandle] this IEnumerable<T> source) =>
 			source as List<T> ?? new List<T>(source);
 
@@ -394,7 +394,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An array that contains elements from the input sequence.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static T[] AsArray<T>([NotNull, InstantHandle] this IEnumerable<T> source) =>
 			source as T[] ?? source.ToArray();
 
@@ -404,7 +404,7 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">An <see cref="IEnumerable{T}"/> to create strings from.</param>
 		/// <returns>Enumeration of string representation of <paramref name="source"/> elements.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<string> ToStrings<T>([NotNull, InstantHandle] this IEnumerable<T> source)
 		{
 			Code.NotNull(source, nameof(source));
@@ -412,7 +412,7 @@ namespace CodeJam.Collections
 			return ToStringsCore(source);
 		}
 
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		private static IEnumerable<string> ToStringsCore<T>([NotNull] IEnumerable<T> source)
 		{
 			// ReSharper disable once LoopCanBeConvertedToQuery

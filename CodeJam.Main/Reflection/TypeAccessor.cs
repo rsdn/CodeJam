@@ -38,7 +38,7 @@ namespace CodeJam.Reflection
 		/// Creates an instance of the accessed type.
 		/// </summary>
 		/// <returns>An instance of the accessed type.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		[DebuggerStepThrough]
 		public virtual object CreateInstance() =>
 			throw new InvalidOperationException($"The '{Type.Name}' type must have public default or init constructor.");
@@ -99,7 +99,7 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to access.</param>
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static TypeAccessor GetAccessor([NotNull] Type type)
 		{
 			Code.NotNull(type, nameof(type));
@@ -122,7 +122,7 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <typeparam name="T">Type to access.</typeparam>
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static TypeAccessor<T> GetAccessor<T>()
 			where T : notnull
 		{

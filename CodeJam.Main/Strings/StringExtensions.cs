@@ -437,7 +437,7 @@ namespace CodeJam.Strings
 		/// <param name="format">A composite format string. </param>
 		/// <param name="arg0">The object to format. </param>
 		/// <returns>A copy of <paramref name="format" /> in which any format items are replaced by the string representation of <paramref name="arg0" />.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static string FormatInvariant([NotNull] this string format, object arg0) =>
 			string.Format(CultureInfo.InvariantCulture, format, arg0);
 
@@ -448,7 +448,7 @@ namespace CodeJam.Strings
 		/// <param name="arg0">The first object to format. </param>
 		/// <param name="arg1">The second object to format. </param>
 		/// <returns>A copy of <paramref name="format" /> in which format items are replaced by the string representations of <paramref name="arg0" /> and <paramref name="arg1" />.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static string FormatInvariant([NotNull] this string format, object arg0, object arg1) =>
 			string.Format(CultureInfo.InvariantCulture, format, arg0, arg1);
 
@@ -460,7 +460,7 @@ namespace CodeJam.Strings
 		/// <param name="arg1">The second object to format. </param>
 		/// <param name="arg2">The third object to format. </param>
 		/// <returns>A copy of <paramref name="format" /> in which the format items have been replaced by the string representations of <paramref name="arg0" />, <paramref name="arg1" />, and <paramref name="arg2" />.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static string FormatInvariant([NotNull] this string format, object arg0, object arg1, string arg2) =>
 			string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2);
 
@@ -470,7 +470,7 @@ namespace CodeJam.Strings
 		/// <param name="format">A composite format string. </param>
 		/// <param name="args">An object array that contains zero or more objects to format. </param>
 		/// <returns>A copy of <paramref name="format" /> in which the format items have been replaced by the string representation of the corresponding objects in <paramref name="args" />.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static string FormatInvariant([NotNull] this string format,params object[] args) =>
 			string.Format(CultureInfo.InvariantCulture, format, args);
 

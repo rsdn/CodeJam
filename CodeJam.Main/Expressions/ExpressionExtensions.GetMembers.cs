@@ -29,7 +29,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static MemberExpression GetMemberExpression([NotNull] this LambdaExpression expression)
 		{
 			var body = expression.Body;
@@ -45,7 +45,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static MemberExpression GetMemberExpression(this Expression expression)
 		{
 			var body = expression is LambdaExpression lambda
@@ -92,7 +92,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static PropertyInfo GetProperty([NotNull] this LambdaExpression expression) =>
 			(PropertyInfo)GetMemberExpression(expression).Member;
 
@@ -103,7 +103,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static FieldInfo GetField([NotNull] this LambdaExpression expression) =>
 			(FieldInfo)GetMemberExpression(expression).Member;
 
@@ -149,7 +149,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// A name of the property.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static string GetPropertyName([NotNull] this LambdaExpression expression) =>
 			GetMemberExpression(expression).Member.Name;
 
@@ -160,7 +160,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// A composed name of the property.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static string GetFullPropertyName([NotNull] this LambdaExpression expression) =>
 			GetFullPropertyNameImpl(GetMemberExpression(expression));
 
@@ -192,7 +192,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public static MemberInfo[] GetMembersInfo([NotNull] this LambdaExpression expression)
 		{
 			Code.NotNull(expression, nameof(expression));

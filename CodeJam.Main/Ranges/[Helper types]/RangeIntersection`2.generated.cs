@@ -97,7 +97,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="format">The format string.</param>
 		/// <returns>The string representation of the range.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
@@ -106,7 +106,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
 
 		/// <summary>

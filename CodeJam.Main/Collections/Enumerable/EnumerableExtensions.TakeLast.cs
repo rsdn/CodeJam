@@ -36,7 +36,7 @@ namespace CodeJam.Collections
 			return TakeLastImpl(source, count);
 		}
 
-		[NotNull, Pure]
+		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
 		private static IEnumerable<T> TakeLastImpl<T>([NotNull] IList<T> source, [NonNegativeValue] int count)
 		{
 			var total = source.Count;
