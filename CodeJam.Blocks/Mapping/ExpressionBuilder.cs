@@ -262,6 +262,7 @@ namespace CodeJam.Mapping
 		}
 
 		[return: MaybeNull]
+		[return: NotNullIfNotNull("expr")]
 		[ContractAnnotation("expr:null => null; expr:notnull => notnull")]
 		private static Expression Convert([AllowNull] Expression expr, [JetBrains.Annotations.NotNull] Type toType) =>
 			expr == null ? null : expr.Type == toType ? expr : Expression.Convert(expr, toType);
