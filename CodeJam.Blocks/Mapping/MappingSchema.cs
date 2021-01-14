@@ -880,7 +880,7 @@ namespace CodeJam.Mapping
 		/// <returns>Array of mapping values.</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="type" /> is null.</exception>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
-			public virtual MapValue[]? GetMapValues(Type type)
+		public virtual MapValue[]? GetMapValues(Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
