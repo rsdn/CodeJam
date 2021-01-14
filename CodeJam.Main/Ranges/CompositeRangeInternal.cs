@@ -86,23 +86,23 @@ namespace CodeJam.Ranges
 			IComparer<T>? comparer,
 			bool skipDuplicates)
 		{
-#pragma warning disable 8604
+#pragma warning disable CS8604
 			var insertIndex = sortedList.BinarySearch(value, comparer);
 			// Bug in MS code markup. value can be null for ref types.
-#pragma warning restore 8604
+#pragma warning restore CS8604
 
 			if (insertIndex < 0)
 			{
 				insertIndex = ~insertIndex;
-#pragma warning disable 8604
+#pragma warning disable CS8604
 				sortedList.Insert(insertIndex, value); // Bug in MS code markup. value can be nul for ref types
-#pragma warning restore 8604
+#pragma warning restore CS8604
 			}
 			else if (!skipDuplicates)
 			{
-#pragma warning disable 8604
+#pragma warning disable CS8604
 				sortedList.Insert(insertIndex, value); // Bug in MS code markup. value can be nul for ref types
-#pragma warning restore 8604
+#pragma warning restore CS8604
 			}
 			return insertIndex;
 		}
