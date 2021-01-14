@@ -81,7 +81,7 @@ namespace CodeJam.Dates
 				> _maxMicroseconds => _maxMicroseconds,
 				< _minMicroseconds => _minMicroseconds,
 				_ => temp
-			};
+				};
 		}
 
 		/// <summary>
@@ -99,7 +99,7 @@ namespace CodeJam.Dates
 				> _maxNanoseconds => _maxNanoseconds,
 				< _minNanoseconds => _minNanoseconds,
 				_ => temp
-			};
+				};
 		}
 
 		/// <summary>
@@ -115,11 +115,10 @@ namespace CodeJam.Dates
 		/// value is <see cref="double.NegativeInfinity" />.</exception>
 		/// <exception cref="ArgumentException">value is equal to <see cref="double.NaN" />.</exception>
 #if NETCOREAPP20_OR_GREATER || NETSTANDARD21_OR_GREATER
-		[Obsolete("Use Multiply operator instead.")]
+			[Obsolete("Use Multiply operator instead.")]
 #endif
 		public static TimeSpan Multiply(this TimeSpan timeSpan, double multiplier) =>
 			FromTicksChecked(timeSpan.Ticks * multiplier);
-
 
 		/// <summary>
 		/// Returns a TimeSpan that represents value divided to specified divisor.
@@ -134,7 +133,7 @@ namespace CodeJam.Dates
 		/// value is <see cref="double.NegativeInfinity" />.</exception>
 		/// <exception cref="ArgumentException">value is equal to <see cref="double.NaN" />.</exception>
 #if NETCOREAPP20_OR_GREATER || NETSTANDARD21_OR_GREATER
-		[Obsolete("Use Division operator instead.")]
+			[Obsolete("Use Division operator instead.")]
 #endif
 		public static TimeSpan Divide(this TimeSpan timeSpan, double divisor) =>
 			FromTicksChecked(timeSpan.Ticks / divisor);

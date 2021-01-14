@@ -12,7 +12,7 @@ namespace CodeJam.CmdLine
 {
 	internal static class UsagePrinter
 	{
-		public static void PrintUsage([NotNull] CmdLineRules rules, [NotNull] TextWriter writer, [NotNull] PrintUsageSettings settings)
+		public static void PrintUsage(CmdLineRules rules, TextWriter writer, PrintUsageSettings settings)
 		{
 			var titleExists = false;
 			if (!settings.ProductNameString.IsNullOrEmpty())
@@ -132,8 +132,7 @@ namespace CodeJam.CmdLine
 			}
 		}
 
-		[NotNull]
-		private static string GetOptionDescription([NotNull] OptionRule opt)
+				private static string GetOptionDescription(OptionRule opt)
 		{
 			var sb = new StringBuilder(opt.Description);
 			if (opt.Required)
@@ -143,8 +142,7 @@ namespace CodeJam.CmdLine
 			return sb.ToString();
 		}
 
-		[NotNull]
-		private static string GetOptionString([NotNull] OptionRule opt, bool full, string optPrefix)
+				private static string GetOptionString(OptionRule opt, bool full, string optPrefix)
 		{
 			switch (opt.Type)
 			{
@@ -187,14 +185,13 @@ namespace CodeJam.CmdLine
 		#region ItemDescriptor class
 		private class ItemDescriptor
 		{
-			public ItemDescriptor([NotNull] string name, string description)
+			public ItemDescriptor(string name, string description)
 			{
 				Name = name;
 				Description = description;
 			}
 
-			[NotNull]
-			public string Name { get; }
+				public string Name { get; }
 
 			public string Description { get; }
 		}

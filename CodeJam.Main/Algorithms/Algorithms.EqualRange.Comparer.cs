@@ -22,12 +22,12 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
-			EqualRange(list, value, 0, list.Count, comparer);
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[InstantHandle] Func<TElement, TValue, int> comparer) =>
+				EqualRange(list, value, 0, list.Count, comparer);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -41,13 +41,13 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NonNegativeValue] int startIndex,
-				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
-			EqualRange(list, value, startIndex, list.Count, comparer);
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[NonNegativeValue] int startIndex,
+			[InstantHandle] Func<TElement, TValue, int> comparer) =>
+				EqualRange(list, value, startIndex, list.Count, comparer);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -62,13 +62,13 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
-			[NotNull, InstantHandle] this IList<TElement> list,
+			[InstantHandle] this IList<TElement> list,
 			TValue value,
 			[NonNegativeValue] int startIndex,
 			[NonNegativeValue] int endIndex,
-			[NotNull, InstantHandle] Func<TElement, TValue, int> comparer)
+			[InstantHandle] Func<TElement, TValue, int> comparer)
 		{
 			Code.NotNull(list, nameof(list));
 			Code.NotNull(comparer, nameof(comparer));
@@ -82,7 +82,8 @@ namespace CodeJam
 			{
 				var median = startIndex + (endIndex - startIndex) / 2;
 				var compareResult = comparer(list[median], value);
-				switch (compareResult) {
+				switch (compareResult)
+				{
 					case < 0:
 						startIndex = median + 1;
 						upperBoundStartIndex = startIndex;

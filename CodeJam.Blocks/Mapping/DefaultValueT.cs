@@ -24,4 +24,5 @@ namespace CodeJam.Mapping
 		}
 	}
 }
+
 #endif

@@ -2,7 +2,7 @@
 <#@ import namespace="System.Linq.Expressions" #>
 <#
 	var ops =
-		new []
+		new[]
 		{
 			new OpInfo("UnaryMinus",         "-",  ExpressionType.Negate,             "An arithmetic negation operation function, such as (-a)."),
 			new OpInfo("OnesComplement",     "~",  ExpressionType.OnesComplement,     "A ones complement operation function, such as (~a) in C#."),

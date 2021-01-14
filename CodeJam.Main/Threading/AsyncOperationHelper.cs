@@ -19,8 +19,7 @@ namespace CodeJam.Threading
 		/// <returns>
 		/// An <see cref="AsyncOperation"/> that you can use to track the duration of an asynchronous method invocation.
 		/// </returns>
-		[JetBrains.Annotations.NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static AsyncOperation CreateOperation() => AsyncOperationManager.CreateOperation(null);
 
 		/// <summary>
@@ -30,7 +29,7 @@ namespace CodeJam.Threading
 		/// <param name="runner">
 		/// A <see cref="Action"/> that wraps the delegate to be called when the operation ends.
 		/// </param>
-		public static void Post([JetBrains.Annotations.NotNull] this AsyncOperation asyncOp, [JetBrains.Annotations.NotNull, InstantHandle] Action runner)
+		public static void Post(this AsyncOperation asyncOp, [InstantHandle] Action runner)
 		{
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));
@@ -43,7 +42,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="asyncOp"></param>
 		/// <param name="runner">A <see cref="Action"/> that wraps the delegate to be called when the operation ends.</param>
-		public static void PostOperationCompleted([JetBrains.Annotations.NotNull] this AsyncOperation asyncOp, [JetBrains.Annotations.NotNull, InstantHandle] Action runner)
+		public static void PostOperationCompleted(this AsyncOperation asyncOp, [InstantHandle] Action runner)
 		{
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));
@@ -59,7 +58,7 @@ namespace CodeJam.Threading
 		/// <param name="runner">
 		/// A <see cref="Action"/> that wraps the delegate to be called when the operation ends.
 		/// </param>
-		public static void Send([JetBrains.Annotations.NotNull] this AsyncOperation asyncOp, [JetBrains.Annotations.NotNull, InstantHandle] Action runner)
+		public static void Send(this AsyncOperation asyncOp, [InstantHandle] Action runner)
 		{
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));
@@ -77,7 +76,7 @@ namespace CodeJam.Threading
 		/// A <see cref="Func{TResult}"/> that wraps the delegate to be called when the operation ends.
 		/// </param>
 		/// <returns>Result of <paramref name="runner"/> execution.</returns>
-		[return:MaybeNull]
+		[return: MaybeNull]
 		public static T Send<T>(this AsyncOperation asyncOp, [InstantHandle] Func<T> runner)
 		{
 			Code.NotNull(asyncOp, nameof(asyncOp));
@@ -92,7 +91,7 @@ namespace CodeJam.Threading
 		/// Gets thread from pool and run <paramref name="runner"/> inside it.
 		/// </summary>
 		/// <param name="runner">Action to run inside created thread.</param>
-		public static void RunAsync([JetBrains.Annotations.NotNull, InstantHandle] Action<AsyncOperation> runner)
+		public static void RunAsync([InstantHandle] Action<AsyncOperation> runner)
 		{
 			Code.NotNull(runner, nameof(runner));
 
@@ -108,8 +107,8 @@ namespace CodeJam.Threading
 		/// Action called after <paramref name="runner"/> complete execution. Synchronized with method calling thread.
 		/// </param>
 		public static void RunAsync(
-			[JetBrains.Annotations.NotNull, InstantHandle] Action<AsyncOperation> runner,
-			[JetBrains.Annotations.NotNull, InstantHandle] Action completeHandler)
+			[InstantHandle] Action<AsyncOperation> runner,
+			[InstantHandle] Action completeHandler)
 		{
 			Code.NotNull(runner, nameof(runner));
 			Code.NotNull(completeHandler, nameof(completeHandler));

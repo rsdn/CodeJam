@@ -20,7 +20,7 @@ namespace CodeJam.Collections
 
 		/// <summary>Creates a Disjoint sets with the passed values</summary>
 		/// <param name="values">The values to store</param>
-		public DisjointSets([JetBrains.Annotations.NotNull, ItemNotNull] IEnumerable<T> values)
+		public DisjointSets(IEnumerable<T> values)
 		{
 			Code.NotNull(values, nameof(values));
 
@@ -33,7 +33,7 @@ namespace CodeJam.Collections
 
 		/// <summary>Appends a list of values</summary>
 		/// <param name="values">The values to append</param>
-		public void Add([JetBrains.Annotations.NotNull, ItemNotNull] IEnumerable<T> values)
+		public void Add(IEnumerable<T> values)
 		{
 			Code.NotNull(values, nameof(values));
 

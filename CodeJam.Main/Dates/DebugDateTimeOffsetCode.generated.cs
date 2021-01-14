@@ -38,7 +38,7 @@ namespace CodeJam.Dates
 		[AssertionMethod]
 		public static void DateOnly(
 			DateTimeOffset arg,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (arg.TimeOfDay > TimeSpan.Zero)
 				throw DateTimeCodeExceptions.ArgumentWithTime(argName, arg);
@@ -51,7 +51,7 @@ namespace CodeJam.Dates
 		[AssertionMethod]
 		public static void IsUtc(
 			DateTimeOffset arg,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (!arg.IsUtc())
 				throw DateTimeCodeExceptions.ArgumentNotUtc(argName, arg);
@@ -64,7 +64,7 @@ namespace CodeJam.Dates
 		[AssertionMethod]
 		public static void IsUtcAndDateOnly(
 			DateTimeOffset arg,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (!arg.IsUtc())
 				throw DateTimeCodeExceptions.ArgumentNotUtc(argName, arg);
@@ -79,7 +79,7 @@ namespace CodeJam.Dates
 		[AssertionMethod]
 		public static void FirstDayOfMonth(
 			DateTimeOffset arg,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (arg != arg.FirstDayOfMonth())
 				throw DateTimeCodeExceptions.ArgumentNotFirstDayOfMonth(argName, arg);
@@ -92,7 +92,7 @@ namespace CodeJam.Dates
 		[AssertionMethod]
 		public static void FirstDayOfYear(
 			DateTimeOffset arg,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (arg != arg.FirstDayOfYear())
 				throw DateTimeCodeExceptions.ArgumentNotFirstDayOfYear(argName, arg);
@@ -106,7 +106,7 @@ namespace CodeJam.Dates
 		[AssertionMethod]
 		public static void LastDayOfMonth(
 			DateTimeOffset arg,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (arg != arg.LastDayOfMonth())
 				throw DateTimeCodeExceptions.ArgumentNotLastDayOfMonth(argName, arg);
@@ -119,7 +119,7 @@ namespace CodeJam.Dates
 		[AssertionMethod]
 		public static void LastDayOfYear(
 			DateTimeOffset arg,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (arg != arg.LastDayOfYear())
 				throw DateTimeCodeExceptions.ArgumentNotLastDayOfYear(argName, arg);

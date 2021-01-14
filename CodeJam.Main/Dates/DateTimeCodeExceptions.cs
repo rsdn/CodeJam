@@ -22,8 +22,9 @@ namespace CodeJam.Dates
 		/// <returns>
 		/// Initialized instance of <see cref="ArgumentException" />.
 		/// </returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentWithTime<T>([NotNull, InvokerParameterName] string argumentName, T value) where T : struct
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentWithTime<T>([InvokerParameterName] string argumentName, T value)
+			where T : struct
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -41,8 +42,9 @@ namespace CodeJam.Dates
 		/// <returns>
 		/// Initialized instance of <see cref="ArgumentException" />.
 		/// </returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNotUtc<T>([NotNull, InvokerParameterName] string argumentName, T value) where T : struct
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNotUtc<T>([InvokerParameterName] string argumentName, T value)
+			where T : struct
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -60,8 +62,9 @@ namespace CodeJam.Dates
 		/// <returns>
 		/// Initialized instance of <see cref="ArgumentException" />.
 		/// </returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNotFirstDayOfMonth<T>([NotNull, InvokerParameterName] string argumentName, T value) where T : struct
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNotFirstDayOfMonth<T>([InvokerParameterName] string argumentName, T value)
+			where T : struct
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -79,8 +82,9 @@ namespace CodeJam.Dates
 		/// <returns>
 		/// Initialized instance of <see cref="ArgumentException" />.
 		/// </returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNotFirstDayOfYear<T>([NotNull, InvokerParameterName] string argumentName, T value) where T : struct
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNotFirstDayOfYear<T>([InvokerParameterName] string argumentName, T value)
+			where T : struct
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -98,8 +102,9 @@ namespace CodeJam.Dates
 		/// <returns>
 		/// Initialized instance of <see cref="ArgumentException" />.
 		/// </returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNotLastDayOfMonth<T>([NotNull, InvokerParameterName] string argumentName, T value) where T : struct
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNotLastDayOfMonth<T>([InvokerParameterName] string argumentName, T value)
+			where T : struct
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -117,8 +122,9 @@ namespace CodeJam.Dates
 		/// <returns>
 		/// Initialized instance of <see cref="ArgumentException" />.
 		/// </returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNotLastDayOfYear<T>([NotNull, InvokerParameterName] string argumentName, T value) where T : struct
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNotLastDayOfYear<T>([InvokerParameterName] string argumentName, T value)
+			where T : struct
 		{
 			BreakIfAttached();
 			return new ArgumentException(

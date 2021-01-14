@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+
 using SDC = System.Diagnostics.CodeAnalysis;
+
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -11,13 +13,11 @@ using CodeJam.Arithmetic;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
-
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using StringEx = System.String;
 #else
 using StringEx = System.StringEx;
 #endif
-
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
 // ReSharper disable BuiltInTypeReferenceStyleForMemberAccess
@@ -86,7 +86,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void GenericNotDefault<T>(
 			[NoEnumeration, AllowNull] T arg,
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (Operators<T>.AreEqual(arg, default))
 				throw CodeExceptions.ArgumentDefault(argName, typeof(T));
@@ -303,7 +303,6 @@ namespace CodeJam
 			if (!(Operators<T>.GreaterThanOrEqual(value, fromValue) && Operators<T>.LessThanOrEqual(value, toValue)))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
-
 		#endregion
 
 		#region Argument validation - valid count
@@ -325,7 +324,7 @@ namespace CodeJam
 			int count,
 			[InvokerParameterName] string argName,
 			int length) =>
-			InRange(count, argName, 0, length);
+				InRange(count, argName, 0, length);
 		#endregion
 
 		#region Argument validation - valid index

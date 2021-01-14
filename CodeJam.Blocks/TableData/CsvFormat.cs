@@ -18,7 +18,6 @@ namespace CodeJam.TableData
 	[PublicAPI]
 	public static class CsvFormat
 	{
-		[JetBrains.Annotations.NotNull]
 		private static readonly char[] _conflictChars = { '\r', '\n', '"', ',' };
 
 		private static bool IsEscapeRequired(char value) => value.IsWhiteSpace() || _conflictChars.Contains(value);
@@ -26,7 +25,7 @@ namespace CodeJam.TableData
 		/// <summary>Escapes csv value.</summary>
 		/// <param name="value">The value.</param>
 		/// <returns>Escaped value.</returns>
-		public static string EscapeValue([JetBrains.Annotations.NotNull] string value)
+		public static string EscapeValue(string value)
 		{
 			StringBuilder? escaped = null;
 			for (var i = 0; i < value.Length; i++)
@@ -50,8 +49,7 @@ namespace CodeJam.TableData
 		/// <param name="allowEscaping">If true, allows values escaping.</param>
 		/// <param name="columnSeparator">Char to use as column separator</param>
 		/// <returns>Parser to use with <see cref="TableDataParser.Parse(Parser,string)"/></returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[JetBrains.Annotations.NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Parser CreateParser(bool allowEscaping = true, char columnSeparator = ',') =>
 			allowEscaping
 				? (Parser)((TextReader rdr, ref int ln) => ParseCsv(rdr, ref ln, columnSeparator))
@@ -62,16 +60,15 @@ namespace CodeJam.TableData
 		/// <param name = "allowEscaping" > If true, allows values escaping.</param>
 		/// <param name="columnSeparator">Char to use as column separator</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
-		[JetBrains.Annotations.NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<DataLine> Parse(
-				[JetBrains.Annotations.NotNull] TextReader reader,
-				bool allowEscaping = true,
-				char columnSeparator = ',') =>
-			CreateParser(allowEscaping, columnSeparator).Parse(reader);
+			TextReader reader,
+			bool allowEscaping = true,
+			char columnSeparator = ',') =>
+				CreateParser(allowEscaping, columnSeparator).Parse(reader);
 
 		[return: MaybeNull]
-		private static string[] ParseCsv([JetBrains.Annotations.NotNull] TextReader reader, ref int lineNum, char separator)
+		private static string[] ParseCsv(TextReader reader, ref int lineNum, char separator)
 		{
 			var curChar = CharReader.Create(reader);
 			if (curChar.IsEof)
@@ -194,7 +191,7 @@ namespace CodeJam.TableData
 		}
 
 		[return: MaybeNull]
-		private static string[] ParseCsvNoEscape([JetBrains.Annotations.NotNull] TextReader reader, ref int lineNum, char separator)
+		private static string[] ParseCsvNoEscape(TextReader reader, ref int lineNum, char separator)
 		{
 			var line = reader.ReadLine();
 			if (line == null)
@@ -213,11 +210,10 @@ namespace CodeJam.TableData
 			private const int _eof = -1;
 			private const int _eol = -2;
 
-			[JetBrains.Annotations.NotNull]
 			private readonly TextReader _reader;
 			private readonly int _code;
 
-			private CharReader([JetBrains.Annotations.NotNull] TextReader reader, int code)
+			private CharReader(TextReader reader, int code)
 			{
 				_reader = reader;
 				_code = code;
@@ -233,7 +229,7 @@ namespace CodeJam.TableData
 
 			public bool IsDoubleQuota => _code == '"';
 
-			private static int Read([JetBrains.Annotations.NotNull] TextReader reader)
+			private static int Read(TextReader reader)
 			{
 				var code = reader.Read();
 				if (code == '\r' || code == '\n')
@@ -245,7 +241,7 @@ namespace CodeJam.TableData
 				return code;
 			}
 
-			public static CharReader Create([JetBrains.Annotations.NotNull] TextReader reader) => new(reader, Read(reader));
+			public static CharReader Create(TextReader reader) => new(reader, Read(reader));
 
 			public CharReader Next() => Create(_reader);
 
@@ -274,8 +270,8 @@ namespace CodeJam.TableData
 		/// <param name="indent">The indent.</param>
 		/// <param name="allowEscaping">If true, allows values escaping.</param>
 		public static void Print(
-			[JetBrains.Annotations.NotNull] TextWriter writer,
-			[JetBrains.Annotations.NotNull] IEnumerable<string[]> data,
+			TextWriter writer,
+			IEnumerable<string[]> data,
 			[AllowNull] string indent = null,
 			bool allowEscaping = true)
 		{
@@ -323,10 +319,8 @@ namespace CodeJam.TableData
 			/// <param name="values">Line values.</param>
 			/// <param name="columnWidths">Array of column widths.</param>
 			/// <returns>String representation of values</returns>
-			[JetBrains.Annotations.NotNull]
-			string FormatLine([JetBrains.Annotations.NotNull] string[] values, [JetBrains.Annotations.NotNull] int[] columnWidths);
+			string FormatLine(string[] values, int[] columnWidths);
 		}
-
 
 		private class CsvFormatter : ITableDataFormatter
 		{
@@ -337,7 +331,8 @@ namespace CodeJam.TableData
 					return 0;
 
 				var append = 0;
-				foreach (var chr in value!) {
+				foreach (var chr in value!)
+				{
 					if (append == 0)
 					{
 						if (IsEscapeRequired(chr))

@@ -57,10 +57,8 @@ namespace CodeJam.Reflection
 
 		// DONTTOUCH: Direct compare may result in false negative.
 		// See http://stackoverflow.com/questions/27645408 for explanation.
-		[NotNull]
 		private static readonly IEqualityComparer<Type> _typeComparer = TypeHandleComparer.Default;
 
-		[NotNull]
 		private static readonly IEqualityComparer<MethodInfo> _methodComparer = MethodMethodHandleComparer.Default;
 
 		#region GetMetadataAttributes
@@ -83,7 +81,7 @@ namespace CodeJam.Reflection
 		/// <param name="attributeProvider">Metadata attribute source.</param>
 		/// <returns>First attribute found.</returns>
 		public static TAttribute? TryGetMetadataAttribute<TAttribute>(
-			[NotNull] this ICustomAttributeProvider attributeProvider)
+			this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class =>
 				TryGetMetadataAttribute<TAttribute>(attributeProvider, false);
 
@@ -106,7 +104,7 @@ namespace CodeJam.Reflection
 		/// <param name="thisLevelOnly">Do not check containers for the attributes.</param>
 		/// <returns>First attribute found.</returns>
 		public static TAttribute? TryGetMetadataAttribute<TAttribute>(
-			[NotNull] this ICustomAttributeProvider attributeProvider,
+			this ICustomAttributeProvider attributeProvider,
 			bool thisLevelOnly)
 			where TAttribute : class =>
 				GetMetadataAttributes<TAttribute>(attributeProvider, thisLevelOnly)
@@ -129,9 +127,8 @@ namespace CodeJam.Reflection
 		/// <typeparam name="TAttribute">Type of the attribute or type of the interface implemented by the attributes.</typeparam>
 		/// <param name="attributeProvider">Metadata attribute source.</param>
 		/// <returns>Metadata attributes.</returns>
-		[NotNull]
 		public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(
-			[NotNull] this ICustomAttributeProvider attributeProvider)
+			this ICustomAttributeProvider attributeProvider)
 			where TAttribute : class =>
 				GetMetadataAttributes<TAttribute>(attributeProvider, false);
 
@@ -153,9 +150,8 @@ namespace CodeJam.Reflection
 		/// including checks of <see cref="AttributeUsageAttribute" />.
 		/// Ordering of attributes at each level is undefined and depends on runtime implementation.
 		/// </remarks>
-		[NotNull, ItemNotNull]
 		public static IEnumerable<TAttribute> GetMetadataAttributes<TAttribute>(
-			[NotNull] this ICustomAttributeProvider attributeProvider,
+			this ICustomAttributeProvider attributeProvider,
 			bool thisLevelOnly)
 			where TAttribute : class
 		{
@@ -167,11 +163,10 @@ namespace CodeJam.Reflection
 					Type type => type.GetAttributesForType<TAttribute>(thisLevelOnly),
 					MemberInfo member => member.GetAttributesForMember<TAttribute>(thisLevelOnly),
 					_ => GetAttributesFromCandidates<TAttribute>(true, attributeProvider)
-				};
+					};
 		}
 #pragma warning restore 1574, 1584, 1581, 1580
 
-		[NotNull, ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForType<TAttribute>(
 			this Type type, bool thisLevelOnly)
 			where TAttribute : class =>
@@ -179,7 +174,6 @@ namespace CodeJam.Reflection
 					? GetAttributesForTypeSingleLevel<TAttribute>(type)
 					: GetAttributesForTypeWithNesting<TAttribute>(type);
 
-		[NotNull, ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForTypeSingleLevel<TAttribute>(
 			this Type type)
 			where TAttribute : class
@@ -195,7 +189,6 @@ namespace CodeJam.Reflection
 			}
 		}
 
-		[ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForTypeWithNesting<TAttribute>(
 			this Type type)
 			where TAttribute : class
@@ -225,9 +218,8 @@ namespace CodeJam.Reflection
 				yield return attribute;
 		}
 
-		[NotNull, ItemNotNull]
 		private static IEnumerable<TAttribute> GetAttributesForMember<TAttribute>(
-			[NotNull] this MemberInfo member, bool thisLevelOnly)
+			this MemberInfo member, bool thisLevelOnly)
 			where TAttribute : class
 		{
 			// ReSharper disable once CoVariantArrayConversion
@@ -244,7 +236,6 @@ namespace CodeJam.Reflection
 		#endregion
 
 		#region Get override chain
-		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChain(this MemberInfo member) =>
 			IsOverriden(member) ? _getOverrideChainCache(member) : new[] { member };
 
@@ -262,7 +253,7 @@ namespace CodeJam.Reflection
 				PropertyInfo property => IsOverriden(property.GetAccessors(true)[0]),
 				EventInfo eventInfo => IsOverriden(eventInfo.GetAddMethod(true)),
 				_ => false
-			};
+				};
 		}
 
 		private static bool IsOverriden(MethodInfo? method) =>
@@ -271,7 +262,6 @@ namespace CodeJam.Reflection
 				method.IsVirtual &&
 				!_methodComparer.Equals(method, method.GetBaseDefinition());
 
-		[NotNull]
 		private static Func<MemberInfo, MemberInfo[]> _getOverrideChainCache = Algorithms.Memoize(
 			(MemberInfo m) => GetOverrideChainDispatch(m), true);
 
@@ -280,7 +270,6 @@ namespace CodeJam.Reflection
 				BindingFlags.Public | BindingFlags.NonPublic |
 				BindingFlags.DeclaredOnly;
 
-		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChainDispatch(MemberInfo member) =>
 			member switch
 			{
@@ -298,13 +287,12 @@ namespace CodeJam.Reflection
 						?? throw new InvalidOperationException("Event has no add accessor."),
 					t => t.GetEvents(_thisTypeMembers)),
 				_ => new[] { member }
-			};
+				};
 
-		[NotNull, ItemNotNull]
 		private static MemberInfo[] GetOverrideChainCore<TMember>(
-			[NotNull] TMember member,
-			[NotNull] Func<TMember, MethodInfo> accessorGetter,
-			[NotNull] Func<Type, IEnumerable<TMember>> membersGetter)
+			TMember member,
+			Func<TMember, MethodInfo> accessorGetter,
+			Func<Type, IEnumerable<TMember>> membersGetter)
 			where TMember : MemberInfo
 		{
 			var result = new List<MemberInfo>();
@@ -332,17 +320,15 @@ namespace CodeJam.Reflection
 		#region GetAttributesFromCandidates
 		private static readonly AttributeUsageAttribute _defaultUsage = new(AttributeTargets.All);
 
-		[NotNull]
 		private static readonly Func<Type, AttributeUsageAttribute> _attributeUsages = Algorithms.Memoize(
 			(Type t) => t.GetTypeInfo().GetCustomAttribute<AttributeUsageAttribute>(true) ?? _defaultUsage,
 			true);
 
 		// BASEDON: https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/Attribute.cs#L28
 		// Behavior matches the Attribute.InternalGetCustomAttributes() method.
-		[NotNull, ItemNotNull]
 		private static TAttribute[] GetAttributesFromCandidates<TAttribute>(
 			bool inherit,
-			[NotNull, ItemNotNull] params ICustomAttributeProvider[] traversePath)
+			params ICustomAttributeProvider[] traversePath)
 			where TAttribute : class
 		{
 			var result = new List<TAttribute>();
@@ -374,10 +360,9 @@ namespace CodeJam.Reflection
 
 		// BASEDON: https://github.com/dotnet/runtime/blob/master/src/coreclr/src/System.Private.CoreLib/src/System/Attribute.CoreCLR.cs#L16
 		// Behavior matches the Attribute.InternalGetCustomAttributes() method.
-		[NotNull, ItemNotNull]
 		private static TAttribute[] GetAttributesFromCandidates<TAttribute>(
 			bool inherit,
-			[NotNull, ItemNotNull] params Type[] traversePath)
+			params Type[] traversePath)
 			where TAttribute : class
 		{
 			var result = new List<TAttribute>();

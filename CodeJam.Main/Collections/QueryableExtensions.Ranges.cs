@@ -58,11 +58,11 @@ namespace CodeJam.Collections
 		/// <param name="toValueSelector">To value selector.</param>
 		/// <param name="range">The range.</param>
 		/// <returns>Intersection</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
-			[NotNull] this IQueryable<T> source,
-			[NotNull] Expression<Func<T?, object>> fromValueSelector,
-			[NotNull] Expression<Func<T?, object>> toValueSelector,
+			this IQueryable<T> source,
+			Expression<Func<T?, object>> fromValueSelector,
+			Expression<Func<T?, object>> toValueSelector,
 			Range<TValue> range) =>
 				Intersect(source, fromValueSelector, toValueSelector, range, QueryRangeBoundaries.InfiniteBoth);
 
@@ -75,11 +75,11 @@ namespace CodeJam.Collections
 		/// <param name="range">The range.</param>
 		/// <param name="rangeBoundaries">The range boundaries.</param>
 		/// <returns>Intersection</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
-			[NotNull] this IQueryable<T> source,
-			[NotNull] Expression<Func<T?, object>> fromValueSelector,
-			[NotNull] Expression<Func<T?, object>> toValueSelector,
+			this IQueryable<T> source,
+			Expression<Func<T?, object>> fromValueSelector,
+			Expression<Func<T?, object>> toValueSelector,
 			Range<TValue> range,
 			QueryRangeBoundaries rangeBoundaries)
 		{
@@ -127,7 +127,7 @@ namespace CodeJam.Collections
 		/// <param name="toInfinityPredicate">To infinity predicate.</param>
 		/// <param name="range">The range.</param>
 		/// <returns>Intersection</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
 			this IQueryable<T> source,
 			Expression<Func<T?, object>> fromValueSelector,
@@ -195,4 +195,5 @@ namespace CodeJam.Collections
 		}
 	}
 }
+
 #endif

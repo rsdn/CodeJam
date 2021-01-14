@@ -12,30 +12,34 @@ namespace CodeJam.Collections
 	partial class DictionaryExtensions
 	{
 <#
-// ReSharper disable UnusedMember.Local
-var types =
-new[]
-{
-	new {Name = "IDictionary", Conflict = false},
-	new {Name = "IReadOnlyDictionary", Conflict = false},
-	new {Name = "Dictionary", Conflict = false},
-	new {Name = "ConcurrentDictionary", Conflict = false}
-};
-var self = GetType();
-const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-var methodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("Header"));
-foreach (var type in types) {#>
-		#region <#=type.Name#><TKey, TValue> overloads
+	// ReSharper disable UnusedMember.Local
+		var types =
+			new[]
+			{
+				new { Name = "IDictionary", Conflict = false },
+				new { Name = "IReadOnlyDictionary", Conflict = false },
+				new { Name = "Dictionary", Conflict = false },
+				new { Name = "ConcurrentDictionary", Conflict = false }
+			};
+		var self = GetType();
+		const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+		var methodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("Header"));
+		foreach (var type in types)
+		{
+#>
+		#region <#= type.Name #><TKey, TValue> overloads
 <#
-	for (var i = 1; i <= methodCount; i++)
-	{
-		self.GetMethod("Header" + i, flags).Invoke(this, new object[] {type.Name});
-		self.GetMethod((type.Conflict ? "Conflict" : "") + "Body" + i, flags).Invoke(this, new object[] {});
-	}
+			for (var i = 1; i <= methodCount; i++)
+			{
+				self.GetMethod("Header" + i, flags).Invoke(this, new object[] { type.Name });
+				self.GetMethod((type.Conflict ? "Conflict" : "") + "Body" + i, flags).Invoke(this, new object[] { });
+			}
 #>
 		#endregion
 
-<#}#>
+<#
+		}
+#>
 	}
 }
 
@@ -48,23 +52,29 @@ namespace CodeJam.Collections.Backported
 	public static class DictionaryExtensions
 	{
 <#
-var backportedMethodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("BackportedHeader"));
-foreach (var type in types) {#>
-		#region <#=type.Name#><TKey, TValue> overloads
+		var backportedMethodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("BackportedHeader"));
+		foreach (var type in types)
+		{
+#>
+		#region <#= type.Name #><TKey, TValue> overloads
 <#
-	for (var i = 1; i <= backportedMethodCount; i++)
-	{
-		self.GetMethod("BackportedHeader" + i, flags).Invoke(this, new object[] {type.Name});
-		self.GetMethod("Backported" + (type.Conflict ? "Conflict" : "") + "Body" + i, flags).Invoke(this, new object[] {});
-	}
+			for (var i = 1; i <= backportedMethodCount; i++)
+			{
+				self.GetMethod("BackportedHeader" + i, flags).Invoke(this, new object[] { type.Name });
+				self.GetMethod("Backported" + (type.Conflict ? "Conflict" : "") + "Body" + i, flags).Invoke(this, new object[] { });
+			}
 #>
 		#endregion
 
-<#}#>
+<#
+		}
+#>
 	}
 }
 <#+
-private void BackportedHeader1(string type) {#>
+	private void BackportedHeader1(string type)
+	{
+#>
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default(TValue) if key does not exists in
 		/// <paramref name="dictionary"/>
@@ -77,26 +87,36 @@ private void BackportedHeader1(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/> does not exists
 		/// in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
-			this <#=type#><TKey, TValue> dictionary,
+			this <#= type #><TKey, TValue> dictionary,
 			TKey key)
 			where TKey: notnull =>
-<#+}
+<#+
+	}
 
-private void BackportedBody1() {#>
+	private void BackportedBody1()
+	{
+#>
 			GetValueOrDefault(dictionary, key, default(TValue));
 
-<#+}
+<#+
+	}
 
-private void BackportedConflictBody1() {#>
+	private void BackportedConflictBody1()
+	{
+#>
 			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key);
 
-<#+}#>
+<#+
+	}
+#>
 
 <#+
-private void BackportedHeader2(string type) {#>
+	private void BackportedHeader2(string type)
+	{
+#>
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -110,16 +130,19 @@ private void BackportedHeader2(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue? GetValueOrDefault<TKey, TValue>(
-			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			[NotNull] TKey key,
+			this <#= type #><TKey, TValue> dictionary,
+			TKey key,
 			TValue? defaultValue)
 		where TKey: notnull
-<#+}
+<#+
+	}
 
-private void BackportedBody2() {#>
+	private void BackportedBody2()
+	{
+#>
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
@@ -130,16 +153,23 @@ private void BackportedBody2() {#>
 					: defaultValue;
 		}
 
-<#+}
+<#+
+	}
 
-private void BackportedConflictBody2() {#>
+	private void BackportedConflictBody2()
+	{
+#>
 		{
 			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValue);
 		}
-<#+}#>
+<#+
+	}
+#>
 
 <#+
-private void Header1(string type) {#>
+	private void Header1(string type)
+	{
+#>
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or default value if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -154,27 +184,37 @@ private void Header1(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or default value if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
-				[NotNull] this <#=type#><TKey, TValue> dictionary,
-				[NotNull] TKey key,
-				[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector)
+				this <#= type #><TKey, TValue> dictionary,
+				TKey key,
+				[InstantHandle] Func<TKey, TValue, TResult> resultSelector)
 				where TKey: notnull =>
-<#+}
+<#+
+	}
 
-private void Body1() {#>
+	private void Body1()
+	{
+#>
 			GetValueOrDefault(dictionary, key, resultSelector, default(TResult));
 
-<#+}
+<#+
+	}
 
-private void ConflictBody1() {#>
+	private void ConflictBody1()
+	{
+#>
 			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, default(TResult));
 
-<#+}#>
+<#+
+	}
+#>
 
 <#+
-private void Header2(string type) {#>
+	private void Header2(string type)
+	{
+#>
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or <paramref name="defaultValue"/> if key does not exists
 		/// in <paramref name="dictionary"/>
@@ -190,17 +230,20 @@ private void Header2(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or <paramref name="defaultValue"/> if <paramref name="key"/>
 		/// does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult? GetValueOrDefault<TKey, TValue, TResult>(
-			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			this <#= type #><TKey, TValue> dictionary,
+			TKey key,
+			[InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			TResult? defaultValue)
 			where TKey: notnull
-<#+}
+<#+
+	}
 
-private void Body2() {#>
+	private void Body2()
+	{
+#>
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -212,17 +255,24 @@ private void Body2() {#>
 					: defaultValue;
 		}
 
-<#+}
+<#+
+	}
 
-private void ConflictBody2() {#>
+	private void ConflictBody2()
+	{
+#>
 		{
 			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValue);
 		}
 
-<#+}#>
+<#+
+	}
+#>
 
 <#+
-private void Header3(string type) {#>
+	private void Header3(string type)
+	{
+#>
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if key does not exists in <paramref name="dictionary"/>
@@ -236,16 +286,19 @@ private void Header3(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TValue GetValueOrDefault<TKey, TValue>(
-			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			[NotNull, InstantHandle] Func<TKey, TValue> defaultValueFactory)
+			this <#= type #><TKey, TValue> dictionary,
+			TKey key,
+			[InstantHandle] Func<TKey, TValue> defaultValueFactory)
 			where TKey: notnull
-<#+}
+<#+
+	}
 
-		private void Body3() {#>
+	private void Body3()
+	{
+#>
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
@@ -257,17 +310,24 @@ private void Header3(string type) {#>
 					: defaultValueFactory(key);
 		}
 
-<#+}
+<#+
+	}
 
-		private void ConflictBody3() {#>
+	private void ConflictBody3()
+	{
+#>
 		{
 			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, defaultValueFactory);
 		}
 
-<#+}#>
+<#+
+	}
+#>
 
 <#+
-		private void Header4(string type) {#>
+	private void Header4(string type)
+	{
+#>
 		/// <summary>
 		/// Returns value associated with <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if key does not exists in <paramref name="dictionary"/>
@@ -283,17 +343,20 @@ private void Header3(string type) {#>
 		/// Value, associated with the <paramref name="key"/>, or value returned by <paramref name="defaultValueFactory"/>
 		/// if <paramref name="key"/> does not exists in <paramref name="dictionary"/>
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[CollectionAccess(CollectionAccessType.Read)]
 		public static TResult GetValueOrDefault<TKey, TValue, TResult>(
-			[NotNull] this <#=type#><TKey, TValue> dictionary,
-			[NotNull] TKey key,
-			[NotNull, InstantHandle] Func<TKey, TValue, TResult> resultSelector,
-			[NotNull, InstantHandle] Func<TKey, TResult> defaultValueFactory)
+			this <#= type #><TKey, TValue> dictionary,
+			TKey key,
+			[InstantHandle] Func<TKey, TValue, TResult> resultSelector,
+			[InstantHandle] Func<TKey, TResult> defaultValueFactory)
 			where TKey: notnull
-<#+}
+<#+
+	}
 
-		private void Body4() {#>
+	private void Body4()
+	{
+#>
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -305,10 +368,15 @@ private void Header3(string type) {#>
 					? resultSelector(key, result)
 					: defaultValueFactory(key);
 		}
-<#+}
+<#+
+	}
 
-		private void ConflictBody4() {#>
+	private void ConflictBody4()
+	{
+#>
 		{
 			GetValueOrDefault((IDictionary<TKey, TValue>)dictionary, key, resultSelector, defaultValueFactory);
 		}
-<#+}#>
+<#+
+	}
+#>

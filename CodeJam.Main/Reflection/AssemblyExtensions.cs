@@ -22,7 +22,7 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="assembly">The assembly to check.</param>
 		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool IsDebugAssembly(this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));
@@ -38,7 +38,7 @@ namespace CodeJam.Reflection
 		/// <returns>The manifest resource.</returns>
 		/// <exception cref="ArgumentNullException">The name parameter is null.</exception>
 		/// <exception cref="ArgumentException">Resource with specified name not found</exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Stream GetRequiredResourceStream(this Assembly assembly, string name)
 		{
 			Code.NotNull(assembly, nameof(assembly));
@@ -69,7 +69,7 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="assembly">Assembly.</param>
 		/// <returns>Path to <paramref name="assembly"/>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string GetAssemblyPath(this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));

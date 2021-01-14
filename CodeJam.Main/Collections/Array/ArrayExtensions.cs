@@ -19,7 +19,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo(this string[]? a, string[]? b)
 		{
 			if (a == b)
@@ -50,7 +50,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// true, if length and content of <paramref name="a"/> equals <paramref name="b"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo(this string[]? a, string[]? b, StringComparison comparison)
 		{
 			if (comparison == StringComparison.Ordinal)
@@ -83,7 +83,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo<T>(this T?[]? a, T?[]? b) where T : IEquatable<T>
 		{
 			if (a == b)
@@ -99,11 +99,12 @@ namespace CodeJam.Collections
 			{
 				if (a[i] != null)
 				{
-					if (!a[i]!.Equals(b[i]
+					if (!a[i]!.Equals(
+						b[i]
 #if !NETCOREAPP30_OR_GREATER
-						!
+							!
 #endif
-					))
+						))
 						return false;
 				}
 				else if (b[i] != null)
@@ -124,7 +125,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool EqualsTo<T>(this T?[]? a, T?[]? b) where T : struct, IEquatable<T>
 		{
 			if (a == b)
@@ -154,8 +155,8 @@ namespace CodeJam.Collections
 		/// <c>true</c> if content of <paramref name="a"/> equals to <paramref name="b"/>, <c>false</c> otherwise.
 		/// </returns>
 		/// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static bool EqualsTo<T>(this T[]? a, T[]? b, [NotNull] IEqualityComparer<T> comparer)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool EqualsTo<T>(this T[]? a, T[]? b, IEqualityComparer<T> comparer)
 		{
 			Code.NotNull(comparer, nameof(comparer));
 
@@ -183,8 +184,8 @@ namespace CodeJam.Collections
 		/// <param name="array">Array to check.</param>
 		/// <returns><c>True</c>, if array is not empty.</returns>
 		/// <remarks>This method performs fast check instead of creating enumerator</remarks>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static bool Any<T>([NotNull] this T[] array)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool Any<T>(this T[] array)
 		{
 			Code.NotNull(array, nameof(array));
 			return array.Length != 0;

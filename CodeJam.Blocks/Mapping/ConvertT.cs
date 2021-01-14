@@ -15,7 +15,7 @@ namespace CodeJam.Mapping
 	/// <typeparam name="TFrom">Type to convert from.</typeparam>
 	/// <typeparam name="TTo">Type to convert to.</typeparam>
 	[PublicAPI]
-	public static class Convert<TFrom,TTo>
+	public static class Convert<TFrom, TTo>
 	{
 		static Convert()
 		{
@@ -28,20 +28,20 @@ namespace CodeJam.Mapping
 		{
 			var expr = ConvertBuilder.GetConverter(null, typeof(TFrom), typeof(TTo));
 
-			_expression = (Expression<Func<TFrom,TTo>>)expr.Item1;
+			_expression = (Expression<Func<TFrom, TTo>>)expr.Item1;
 
-			var rexpr = (Expression<Func<TFrom,TTo>>)expr.Item1.Transform(e => e is DefaultValueExpression ? e.Reduce() : e);
+			var rexpr = (Expression<Func<TFrom, TTo>>)expr.Item1.Transform(e => e is DefaultValueExpression ? e.Reduce() : e);
 
 			_lambda = rexpr.Compile();
 		}
 
-		private static Expression<Func<TFrom,TTo>> _expression;
+		private static Expression<Func<TFrom, TTo>> _expression;
 
 		/// <summary>
 		/// Represents an expression that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
 		/// </summary>
 		[AllowNull]
-		public static Expression<Func<TFrom,TTo>> Expression
+		public static Expression<Func<TFrom, TTo>> Expression
 		{
 			get => _expression;
 			set
@@ -66,13 +66,13 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		[JetBrains.Annotations.NotNull] private static Func<TFrom,TTo> _lambda;
+		private static Func<TFrom, TTo> _lambda;
 
 		/// <summary>
 		/// Represents a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
 		/// </summary>
 		[AllowNull]
-		public static Func<TFrom,TTo> Lambda
+		public static Func<TFrom, TTo> Lambda
 		{
 			get => _lambda;
 			set
@@ -87,9 +87,9 @@ namespace CodeJam.Mapping
 				{
 					var p = System.Linq.Expressions.Expression.Parameter(typeof(TFrom), "p");
 
-					_lambda     = value;
+					_lambda = value;
 					_expression =
-						System.Linq.Expressions.Expression.Lambda<Func<TFrom,TTo>>(
+						System.Linq.Expressions.Expression.Lambda<Func<TFrom, TTo>>(
 							System.Linq.Expressions.Expression.Invoke(
 								System.Linq.Expressions.Expression.Constant(value),
 								p),
@@ -107,8 +107,8 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Returns a function that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
 		/// </summary>
-		[JetBrains.Annotations.NotNull]
-		public static Func<TFrom,TTo> From => _lambda;
+		public static Func<TFrom, TTo> From => _lambda;
 	}
 }
+
 #endif

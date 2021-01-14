@@ -16,10 +16,10 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A flat sequence of elements produced from the elements in the source hierarchy.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<T> Flatten<T>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, IEnumerable<T>> childrenSelector)
+			this IEnumerable<T> source,
+			Func<T, IEnumerable<T>> childrenSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(childrenSelector, nameof(childrenSelector));
@@ -27,10 +27,10 @@ namespace CodeJam.Collections
 			return FlattenImpl(source, childrenSelector);
 		}
 
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		private static IEnumerable<T> FlattenImpl<T>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, IEnumerable<T>> childrenSelector)
+			this IEnumerable<T> source,
+			Func<T, IEnumerable<T>> childrenSelector)
 		{
 			foreach (var root in source)
 			{

@@ -68,7 +68,7 @@ internal sealed class CanBeNullAttribute : Attribute { }
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
     AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
     AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-  //[Obsolete("Use C# NRT markup")]
+  [Obsolete("Use C# NRT markup")]
 internal sealed class NotNullAttribute : Attribute { }
 
   /// <summary>
@@ -88,6 +88,7 @@ internal sealed class NotNullAttribute : Attribute { }
   [AttributeUsage(
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
     AttributeTargets.Delegate | AttributeTargets.Field)]
+  [Obsolete("Use C# NRT markup")]
 internal sealed class ItemNotNullAttribute : Attribute { }
 
   /// <summary>

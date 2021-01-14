@@ -21,8 +21,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains the elements from both input sequences, excluding duplicates.
 		/// </returns>
-		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Union<T>([NotNull] this IEnumerable<T> source, [NotNull] params T[] elements) =>
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IEnumerable<T> Union<T>(this IEnumerable<T> source, params T[] elements) =>
 			source.Union(elements.AsEnumerable());
 
 		/// <summary>
@@ -32,16 +32,16 @@ namespace CodeJam.Collections
 		/// <param name="source">The source enumerable.</param>
 		/// <param name="element">Element to concat.</param>
 		/// <returns>Concatenated enumerable</returns>
-		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Concat<T>([NotNull] this IEnumerable<T> source, T element)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IEnumerable<T> Concat<T>(this IEnumerable<T> source, T element)
 		{
 			Code.NotNull(source, nameof(source));
 
 			return ConcatCore(source, element);
 		}
 
-		[Pure, NotNull, LinqTunnel]
-		private static IEnumerable<T> ConcatCore<T>([NotNull] IEnumerable<T> source, T element)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		private static IEnumerable<T> ConcatCore<T>(IEnumerable<T> source, T element)
 		{
 			foreach (var item in source)
 				yield return item;
@@ -55,16 +55,16 @@ namespace CodeJam.Collections
 		/// <param name="source">The source enumerable.</param>
 		/// <param name="elements">Elements to concat.</param>
 		/// <returns>Concatenated enumerable</returns>
-		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Concat<T>([NotNull] this IEnumerable<T> source, [NotNull] params T[] elements)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IEnumerable<T> Concat<T>(this IEnumerable<T> source, params T[] elements)
 		{
 			Code.NotNull(source, nameof(source));
 
 			return ConcatCore(source, elements);
 		}
 
-		[Pure, NotNull, LinqTunnel]
-		private static IEnumerable<T> ConcatCore<T>([NotNull] IEnumerable<T> source, [NotNull] T[] elements)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		private static IEnumerable<T> ConcatCore<T>(IEnumerable<T> source, T[] elements)
 		{
 			foreach (var item in source)
 				yield return item;
@@ -79,16 +79,16 @@ namespace CodeJam.Collections
 		/// <param name="source">The source enumerable.</param>
 		/// <param name="elements">Elements to prepend.</param>
 		/// <returns>Concatenated enumerable</returns>
-		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Prepend<T>([NotNull] this IEnumerable<T> source, [NotNull] params T[] elements)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IEnumerable<T> Prepend<T>(this IEnumerable<T> source, params T[] elements)
 		{
 			Code.NotNull(source, nameof(source));
 
 			return PrependCore(source, elements);
 		}
 
-		[Pure, NotNull, LinqTunnel]
-		private static IEnumerable<T> PrependCore<T>([NotNull] IEnumerable<T> source, [NotNull] T[] elements)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		private static IEnumerable<T> PrependCore<T>(IEnumerable<T> source, T[] elements)
 		{
 			foreach (var element in elements)
 				yield return element;
@@ -106,10 +106,10 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A <see cref="HashSet{T}"/> that contains keys from the input sequence.
 		/// </returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static HashSet<TKey> ToHashSet<T, TKey>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector) =>
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, TKey> keySelector) =>
 				new(source.Select(keySelector));
 
 		/// <summary>
@@ -124,11 +124,11 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A <see cref="HashSet{T}"/> that contains keys from the input sequence.
 		/// </returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static HashSet<TKey> ToHashSet<T, TKey>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull, InstantHandle] Func<T, TKey> keySelector,
-			[NotNull] IEqualityComparer<TKey> comparer) =>
+			[InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] Func<T, TKey> keySelector,
+			IEqualityComparer<TKey> comparer) =>
 				new(source.Select(keySelector), comparer);
 
 		/// <summary>
@@ -139,8 +139,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IOrderedEnumerable{TElement}"/> whose elements are sorted.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
-		public static IOrderedEnumerable<TSource> OrderBy<TSource>([NotNull] this IEnumerable<TSource> source) =>
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IOrderedEnumerable<TSource> OrderBy<TSource>(this IEnumerable<TSource> source) =>
 			source.OrderBy(Fn<TSource>.Self);
 
 		/// <summary>
@@ -151,8 +151,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IOrderedEnumerable{TElement}"/> whose elements are sorted.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
-		public static IOrderedEnumerable<TSource> OrderByDescending<TSource>([NotNull] this IEnumerable<TSource> source) =>
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IOrderedEnumerable<TSource> OrderByDescending<TSource>(this IEnumerable<TSource> source) =>
 			source.OrderByDescending(Fn<TSource>.Self);
 
 		/// <summary>
@@ -165,10 +165,10 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains distinct elements from the source sequence.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
-			[NotNull] this IEnumerable<TSource> source,
-			[NotNull] Func<TSource?, TKey> keySelector)
+			this IEnumerable<TSource> source,
+			Func<TSource?, TKey> keySelector)
 			where TKey : notnull =>
 				source.Distinct(KeyEqualityComparer.Create(keySelector));
 
@@ -183,10 +183,10 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains distinct elements from the source sequence.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
-			[NotNull] this IEnumerable<TSource> source,
-			[NotNull] Func<TSource?, TKey> keySelector,
+			this IEnumerable<TSource> source,
+			Func<TSource?, TKey> keySelector,
 			IEqualityComparer<TKey> comparer)
 			where TKey : notnull =>
 				source.Distinct(KeyEqualityComparer.Create(keySelector, comparer));
@@ -202,11 +202,11 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence that contains the set difference of the elements of two sequences.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> ExceptBy<TSource, TKey>(
-			[NotNull] this IEnumerable<TSource> first,
-			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource?, TKey> keySelector)
+			this IEnumerable<TSource> first,
+			IEnumerable<TSource> second,
+			Func<TSource?, TKey> keySelector)
 			where TKey : notnull =>
 				first.Except(second, KeyEqualityComparer.Create(keySelector));
 
@@ -222,11 +222,11 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence that contains the set difference of the elements of two sequences.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> ExceptBy<TSource, TKey>(
-			[NotNull] this IEnumerable<TSource> first,
-			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource?, TKey> keySelector,
+			this IEnumerable<TSource> first,
+			IEnumerable<TSource> second,
+			Func<TSource?, TKey> keySelector,
 			IEqualityComparer<TKey> comparer)
 			where TKey : notnull =>
 				first.Except(second, KeyEqualityComparer.Create(keySelector, comparer));
@@ -242,11 +242,11 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence that contains the elements that form the set intersection of two sequences.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> IntersectBy<TSource, TKey>(
-			[NotNull] this IEnumerable<TSource> first,
-			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource?, TKey> keySelector)
+			this IEnumerable<TSource> first,
+			IEnumerable<TSource> second,
+			Func<TSource?, TKey> keySelector)
 			where TKey : notnull =>
 				first.Intersect(second, KeyEqualityComparer.Create(keySelector));
 
@@ -262,11 +262,11 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence that contains the elements that form the set intersection of two sequences.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> IntersectBy<TSource, TKey>(
-			[NotNull] this IEnumerable<TSource> first,
-			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource?, TKey> keySelector,
+			this IEnumerable<TSource> first,
+			IEnumerable<TSource> second,
+			Func<TSource?, TKey> keySelector,
 			IEqualityComparer<TKey> comparer)
 			where TKey : notnull =>
 				first.Intersect(second, KeyEqualityComparer.Create(keySelector, comparer));
@@ -282,11 +282,11 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains the elements from both input sequences, excluding duplicates.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> UnionBy<TSource, TKey>(
-			[NotNull] this IEnumerable<TSource> first,
-			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource?, TKey> keySelector)
+			this IEnumerable<TSource> first,
+			IEnumerable<TSource> second,
+			Func<TSource?, TKey> keySelector)
 			where TKey : notnull =>
 				first.Union(second, KeyEqualityComparer.Create(keySelector));
 
@@ -302,11 +302,11 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that contains the elements from both input sequences, excluding duplicates.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> UnionBy<TSource, TKey>(
-			[NotNull] this IEnumerable<TSource> first,
-			[NotNull] IEnumerable<TSource> second,
-			[NotNull] Func<TSource?, TKey> keySelector,
+			this IEnumerable<TSource> first,
+			IEnumerable<TSource> second,
+			Func<TSource?, TKey> keySelector,
 			IEqualityComparer<TKey> comparer)
 			where TKey : notnull =>
 				first.Union(second, KeyEqualityComparer.Create(keySelector, comparer));
@@ -321,9 +321,9 @@ namespace CodeJam.Collections
 		/// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the one-to-many transform function
 		/// on each element of the input sequence.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> SelectMany<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<IEnumerable<TSource>> source) =>
+			[InstantHandle] this IEnumerable<IEnumerable<TSource>> source) =>
 				source.SelectMany(Fn<IEnumerable<TSource>>.Self);
 
 		/// <summary>
@@ -336,8 +336,8 @@ namespace CodeJam.Collections
 		/// <c>default</c>(<typeparamref name="T"/>) if <paramref name="source"/> is empty; otherwise, the first element in
 		/// <paramref name="source"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static T FirstOrDefault<T>([NotNull, InstantHandle] this IEnumerable<T> source, T defaultValue)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static T FirstOrDefault<T>([InstantHandle] this IEnumerable<T> source, T defaultValue)
 		{
 			Code.NotNull(source, nameof(source));
 
@@ -359,11 +359,11 @@ namespace CodeJam.Collections
 		/// specified by <paramref name="predicate"/>; otherwise, the first element in source that passes the test specified
 		/// by <paramref name="predicate"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static T FirstOrDefault<T>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
+			[InstantHandle] this IEnumerable<T> source,
 			T defaultValue,
-			[NotNull, InstantHandle] Func<T, bool> predicate)
+			[InstantHandle] Func<T, bool> predicate)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(predicate, nameof(predicate));
@@ -382,8 +382,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A <see cref="List{T}"/> that contains elements from the input sequence.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static List<T> AsList<T>([NotNull, InstantHandle] this IEnumerable<T> source) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static List<T> AsList<T>([InstantHandle] this IEnumerable<T> source) =>
 			source as List<T> ?? new List<T>(source);
 
 		/// <summary>
@@ -394,8 +394,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An array that contains elements from the input sequence.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static T[] AsArray<T>([NotNull, InstantHandle] this IEnumerable<T> source) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static T[] AsArray<T>([InstantHandle] this IEnumerable<T> source) =>
 			source as T[] ?? source.ToArray();
 
 		/// <summary>
@@ -404,16 +404,16 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">An <see cref="IEnumerable{T}"/> to create strings from.</param>
 		/// <returns>Enumeration of string representation of <paramref name="source"/> elements.</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<string> ToStrings<T>([NotNull, InstantHandle] this IEnumerable<T> source)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<string> ToStrings<T>([InstantHandle] this IEnumerable<T> source)
 		{
 			Code.NotNull(source, nameof(source));
 
 			return ToStringsCore(source);
 		}
 
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		private static IEnumerable<string> ToStringsCore<T>([NotNull] IEnumerable<T> source)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		private static IEnumerable<string> ToStringsCore<T>(IEnumerable<T> source)
 		{
 			// ReSharper disable once LoopCanBeConvertedToQuery
 			foreach (var obj in source)
@@ -430,8 +430,8 @@ namespace CodeJam.Collections
 		/// <c>true</c>, if <paramref name="source"/> has at least one element and first element is equals to
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static bool IsFirst<TSource>([NotNull, InstantHandle] this IEnumerable<TSource> source, TSource item) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsFirst<TSource>([InstantHandle] this IEnumerable<TSource> source, TSource item) =>
 			source.IsFirst(item, EqualityComparer<TSource>.Default);
 
 		/// <summary>
@@ -445,7 +445,7 @@ namespace CodeJam.Collections
 		/// <c>true</c>, if <paramref name="source"/> has at least one element and first element is equals to
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool IsFirst<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			TSource item,
@@ -475,8 +475,8 @@ namespace CodeJam.Collections
 		/// <c>true</c>, if <paramref name="source"/> has at least one element and last element is equals to
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static bool IsLast<TSource>([NotNull, InstantHandle] this IEnumerable<TSource> source, TSource item) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsLast<TSource>([InstantHandle] this IEnumerable<TSource> source, TSource item) =>
 			source.IsLast(item, EqualityComparer<TSource>.Default);
 
 		/// <summary>
@@ -490,9 +490,9 @@ namespace CodeJam.Collections
 		/// <c>true</c>, if <paramref name="source"/> has at least one element and last element is equals to
 		/// <paramref name="item"/>, otherwise <c>false</c>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool IsLast<TSource>(
-			[NotNull, InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] this IEnumerable<TSource> source,
 			TSource item,
 			IEqualityComparer<TSource>? comparer)
 		{

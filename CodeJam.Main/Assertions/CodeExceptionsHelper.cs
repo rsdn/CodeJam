@@ -10,6 +10,7 @@ using static CodeJam.Targeting.MethodImplOptionsEx;
 using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 // ReSharper disable once CheckNamespace
+
 namespace CodeJam.Internal
 {
 	/// <summary>Helper class for custom code exception factory classes</summary>
@@ -34,7 +35,7 @@ namespace CodeJam.Internal
 		/// <param name="args">The arguments.</param>
 		/// <returns>Formatted string.</returns>
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static string InvariantFormat(string messageFormat, params object[]? args) =>
 			(args == null || args.Length == 0)
@@ -47,11 +48,10 @@ namespace CodeJam.Internal
 		/// <param name="messageFormat">The message format.</param>
 		/// <returns>Formatted string.</returns>
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		internal static string Invariant([NotNull] FormattableString messageFormat) =>
+		internal static string Invariant(FormattableString messageFormat) =>
 			messageFormat.ToString(CultureInfo.InvariantCulture);
-
 		#endregion
 	}
 }

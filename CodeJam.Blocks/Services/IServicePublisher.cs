@@ -16,8 +16,7 @@ namespace CodeJam.Services
 		/// <param name="serviceType">Type of service object to publish.</param>
 		/// <param name="serviceInstance">Instance of service of type <paramref name="serviceType"/>.</param>
 		/// <returns>Disposable cookie to conceal published service</returns>
-		[NotNull]
-		IDisposable Publish([NotNull] Type serviceType, [NotNull] object serviceInstance);
+		IDisposable Publish(Type serviceType, object serviceInstance);
 
 		/// <summary>
 		/// Publish service.
@@ -25,9 +24,8 @@ namespace CodeJam.Services
 		/// <param name="serviceType">Type of service object to publish.</param>
 		/// <param name="instanceFactory">Factory to create service instance</param>
 		/// <returns>Disposable cookie to conceal published service</returns>
-		[NotNull]
 		IDisposable Publish(
-			[NotNull] Type serviceType,
-			[NotNull] Func<IServicePublisher, object> instanceFactory);
+			Type serviceType,
+			Func<IServicePublisher, object> instanceFactory);
 	}
 }

@@ -18,7 +18,6 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Mapping schema.
 		/// </summary>
-		[NotNull]
 		MappingSchema MappingSchema { get; set; }
 
 		/// <summary>
@@ -26,30 +25,30 @@ namespace CodeJam.Mapping
 		/// Returned expression is compatible to IQueriable.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		LambdaExpression GetMapperLambdaExpressionEx();
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		LambdaExpression GetMapperLambdaExpression();
 
 		/// <summary>
 		/// Filters target members to map.
 		/// </summary>
-		Func<MemberAccessor,bool> MemberFilter { get; set; }
+		Func<MemberAccessor, bool> MemberFilter { get; set; }
 
 		/// <summary>
 		/// Defines member name mapping for source types.
 		/// </summary>
-		Dictionary<Type,Dictionary<string,string>>? FromMappingDictionary { get; set; }
+		Dictionary<Type, Dictionary<string, string>>? FromMappingDictionary { get; set; }
 
 		/// <summary>
 		/// Defines member name mapping for destination types.
 		/// </summary>
-		Dictionary<Type,Dictionary<string,string>>? ToMappingDictionary { get; set; }
+		Dictionary<Type, Dictionary<string, string>>? ToMappingDictionary { get; set; }
 
 		/// <summary>
 		/// Member mappers.
@@ -73,12 +72,12 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Type to map from.
 		/// </summary>
-		[NotNull] Type FromType { get; }
+		Type FromType { get; }
 
 		/// <summary>
 		/// Type to map to.
 		/// </summary>
-		[NotNull] Type ToType { get; }
+		Type ToType { get; }
 	}
 
 	/// <summary>Member Mapper</summary>
@@ -98,6 +97,7 @@ namespace CodeJam.Mapping
 
 		/// <summary>To</summary>
 		public readonly LambdaExpression To;
-    }
+	}
 }
+
 #endif

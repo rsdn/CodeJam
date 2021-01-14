@@ -24,9 +24,8 @@ namespace CodeJam.Xml
 		/// <returns>Document root</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="document"/> is null</exception>
 		/// <exception cref="XmlException">Document has no root.</exception>
-		[NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static XElement RequiredRoot([NotNull] this XDocument document)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static XElement RequiredRoot(this XDocument document)
 		{
 			Code.NotNull(document, nameof(document));
 
@@ -43,9 +42,8 @@ namespace CodeJam.Xml
 		/// <returns>Document root</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="document"/> is null</exception>
 		/// <exception cref="XmlException">Document has no root with specified name.</exception>
-		[NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static XElement RequiredRoot([NotNull] this XDocument document, [NotNull] XName rootName)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static XElement RequiredRoot(this XDocument document, XName rootName)
 		{
 			Code.NotNull(rootName, nameof(rootName));
 
@@ -63,9 +61,8 @@ namespace CodeJam.Xml
 		/// <returns>First element with specified name.</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="parent"/> or <paramref name="name"/> is null.</exception>
 		/// <exception cref="XmlException">Element with specified name does not exists.</exception>
-		[NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static XElement RequiredElement([NotNull] this XElement parent, [NotNull] XName name)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static XElement RequiredElement(this XElement parent, XName name)
 		{
 			Code.NotNull(parent, nameof(parent));
 			Code.NotNull(name, nameof(name));
@@ -87,9 +84,8 @@ namespace CodeJam.Xml
 		/// <paramref name="parent"/> or <paramref name="names"/> is null.
 		/// </exception>
 		/// <exception cref="XmlException">Element with one of specified names does not exists.</exception>
-		[NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static XElement RequiredElement([NotNull] this XElement parent, [NotNull, ItemNotNull] params XName[] names)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static XElement RequiredElement(this XElement parent, params XName[] names)
 		{
 			Code.NotNull(parent, nameof(parent));
 			Code.NotNull(names, nameof(names));
@@ -111,9 +107,8 @@ namespace CodeJam.Xml
 		/// <paramref name="element"/> or <paramref name="name"/> is null.
 		/// </exception>
 		/// <exception cref="XmlException">Attribute with specified name not found.</exception>
-		[NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static XAttribute RequiredAttribute([NotNull] this XElement element, [NotNull] XName name)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static XAttribute RequiredAttribute(this XElement element, XName name)
 		{
 			Code.NotNull(element, nameof(element));
 			Code.NotNull(name, nameof(name));
@@ -136,11 +131,11 @@ namespace CodeJam.Xml
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="element"/> or <paramref name="attrName"/> or <paramref name="parser"/> is null.
 		/// </exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static T AttributeValueOrDefault<T>(
-			[NotNull] this XElement element,
-			[NotNull] XName attrName,
-			[NotNull, InstantHandle] Func<string, T> parser,
+			this XElement element,
+			XName attrName,
+			[InstantHandle] Func<string, T> parser,
 			T defaultValue)
 		{
 			Code.NotNull(element, nameof(element));
@@ -161,10 +156,10 @@ namespace CodeJam.Xml
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="element"/> or <paramref name="attrName"/> is null.
 		/// </exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string AttributeValueOrDefault(
-			[NotNull] this XElement element,
-			[NotNull] XName attrName,
+			this XElement element,
+			XName attrName,
 			string defaultValue)
 		{
 			Code.NotNull(element, nameof(element));
@@ -185,12 +180,12 @@ namespace CodeJam.Xml
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="parent"/> or <paramref name="valueSelector"/> or <paramref name="names"/> is null.
 		/// </exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static T ElementAltValueOrDefault<T>(
-			[NotNull] this XElement parent,
-			[NotNull, InstantHandle] Func<XElement, T> valueSelector,
+			this XElement parent,
+			[InstantHandle] Func<XElement, T> valueSelector,
 			T defaultValue,
-			[NotNull, ItemNotNull] params XName[] names)
+			params XName[] names)
 		{
 			Code.NotNull(parent, nameof(parent));
 			Code.NotNull(valueSelector, nameof(valueSelector));
@@ -212,11 +207,11 @@ namespace CodeJam.Xml
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="parent"/> or <paramref name="valueSelector"/> is null.
 		/// </exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static T ElementValueOrDefault<T>(
-			[NotNull] this XElement parent,
-			[NotNull] XName name,
-			[NotNull, InstantHandle] Func<XElement, T> valueSelector,
+			this XElement parent,
+			XName name,
+			[InstantHandle] Func<XElement, T> valueSelector,
 			T defaultValue)
 		{
 			Code.NotNull(name, nameof(name));
@@ -236,11 +231,11 @@ namespace CodeJam.Xml
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="parent"/> or <paramref name="name"/> or <paramref name="valueSelector"/> is null.
 		/// </exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static T ElementValueOrDefault<T>(
-			[NotNull] this XElement parent,
-			[NotNull] XName name,
-			[NotNull, InstantHandle] Func<string, T> valueSelector,
+			this XElement parent,
+			XName name,
+			[InstantHandle] Func<string, T> valueSelector,
 			T defaultValue)
 		{
 			Code.NotNull(name, nameof(name));
@@ -258,11 +253,10 @@ namespace CodeJam.Xml
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="parent"/> or <paramref name="name"/> is null.
 		/// </exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string ElementValueOrDefault(
-			[NotNull] this XElement parent,
-			[NotNull] XName name,
+			this XElement parent,
+			XName name,
 			string defaultValue)
 		{
 			Code.NotNull(name, nameof(name));
@@ -271,4 +265,5 @@ namespace CodeJam.Xml
 		}
 	}
 }
+
 #endif

@@ -13,7 +13,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		public CommandRule([NotNull] string name, string description = "")
+		public CommandRule(string name, string description = "")
 		{
 			Code.NotNull(name, nameof(name));
 			Name = name;
@@ -23,7 +23,6 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Command name.
 		/// </summary>
-		[NotNull]
 		public string Name { get; }
 
 		/// <summary>

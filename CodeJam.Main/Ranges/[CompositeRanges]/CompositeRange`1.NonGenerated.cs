@@ -14,12 +14,10 @@ namespace CodeJam.Ranges
 		#region ICompositeRange<T>
 		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
 		/// <returns>A sequence of merged subranges</returns>
-		[NotNull]
 		internal IEnumerable<Range<T>> GetMergedRanges() => _hasRangesToMerge
 			? MergeRangesCore()
 			: SubRanges;
 
-		[NotNull]
 		private IEnumerable<Range<T>> MergeRangesCore()
 		{
 			var mergedRange = _emptyRangeNoKey;
@@ -55,7 +53,7 @@ namespace CodeJam.Ranges
 		#region Operations
 		/// <summary>Returns simplified composite range. Adjacent ranges with same keys will be merged.</summary>
 		/// <returns>Simplified composite range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T> Merge()
 		{
 			if (IsMerged)
@@ -71,12 +69,12 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the new key.</typeparam>
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key)
 			where TKey2 : notnull =>
-			IsEmpty
-				? CompositeRange<T, TKey2>.Empty
-				: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
+				IsEmpty
+					? CompositeRange<T, TKey2>.Empty
+					: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
 		#endregion
 
 		#endregion

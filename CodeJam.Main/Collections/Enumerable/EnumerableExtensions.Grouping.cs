@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
@@ -14,13 +15,12 @@ namespace CodeJam.Collections
 		/// <seealso cref="System.Linq.IGrouping{TKey, TElement}" />
 		private sealed class Grouping<TKey, TElement> : IGrouping<TKey, TElement>
 		{
-			[NotNull]
 			private readonly TElement[] _elements;
 
 			/// <summary>Initializes a new instance of the <see cref="Grouping{TKey, TElement}"/> class.</summary>
 			/// <param name="key">The key.</param>
 			/// <param name="elements">The elements.</param>
-			internal Grouping(TKey key, [NotNull] TElement[] elements)
+			internal Grouping(TKey key, TElement[] elements)
 			{
 				Code.NotNull(elements, nameof(elements));
 

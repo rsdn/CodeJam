@@ -9,13 +9,12 @@ namespace CodeJam.Mapping
 {
 	internal class ConvertInfo
 	{
-		[JetBrains.Annotations.NotNull]
 		public static readonly ConvertInfo Default = new();
 
 		public class LambdaInfo
 		{
 			public LambdaInfo(
-				[JetBrains.Annotations.NotNull] LambdaExpression checkNullLambda,
+				LambdaExpression checkNullLambda,
 				[AllowNull] LambdaExpression lambda,
 				[AllowNull] Delegate @delegate,
 				bool isSchemaSpecific)
@@ -26,23 +25,25 @@ namespace CodeJam.Mapping
 				IsSchemaSpecific = isSchemaSpecific;
 			}
 
-			[JetBrains.Annotations.NotNull] public readonly LambdaExpression Lambda;
-			[JetBrains.Annotations.NotNull] public readonly LambdaExpression CheckNullLambda;
-			[AllowNull] public readonly Delegate Delegate;
+			public readonly LambdaExpression Lambda;
+			public readonly LambdaExpression CheckNullLambda;
+
+			[AllowNull]
+			public readonly Delegate Delegate;
+
 			public readonly bool IsSchemaSpecific;
 		}
 
-		[JetBrains.Annotations.NotNull]
 		private readonly ConcurrentDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>> _expressions =
 			new();
 
-		public void Set([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to, [JetBrains.Annotations.NotNull] LambdaInfo expr) => Set(_expressions, from, to, expr);
+		public void Set(Type from, Type to, LambdaInfo expr) => Set(_expressions, from, to, expr);
 
 		private static void Set(
-			[JetBrains.Annotations.NotNull] IDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>> expressions,
-			[JetBrains.Annotations.NotNull] Type from,
-			[JetBrains.Annotations.NotNull] Type to,
-			[JetBrains.Annotations.NotNull] LambdaInfo expr)
+			IDictionary<Type, ConcurrentDictionary<Type, LambdaInfo>> expressions,
+			Type from,
+			Type to,
+			LambdaInfo expr)
 		{
 			if (!expressions.TryGetValue(from, out var dic))
 				expressions[from] = dic = new ConcurrentDictionary<Type, LambdaInfo>();
@@ -51,11 +52,10 @@ namespace CodeJam.Mapping
 		}
 
 		[return: MaybeNull]
-		public LambdaInfo Get([JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to) =>
+		public LambdaInfo Get(Type from, Type to) =>
 			_expressions.TryGetValue(from, out var dic) && dic.TryGetValue(to, out var li) ? li : null;
 
-		[JetBrains.Annotations.NotNull]
-		public LambdaInfo Create([AllowNull] MappingSchema mappingSchema, [JetBrains.Annotations.NotNull] Type from, [JetBrains.Annotations.NotNull] Type to)
+		public LambdaInfo Create([AllowNull] MappingSchema mappingSchema, Type from, Type to)
 		{
 			var ex = ConvertBuilder.GetConverter(mappingSchema, from, to);
 			var lm = ex.Item1.Compile();
@@ -67,4 +67,5 @@ namespace CodeJam.Mapping
 		}
 	}
 }
+
 #endif

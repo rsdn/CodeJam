@@ -14,7 +14,7 @@ namespace CodeJam.Reflection
 		/// <param name="name">Name of the parameter.</param>
 		/// <param name="value">Value of the parameter.</param>
 		/// <param name="required"><c>True</c> if parameter required.</param>
-		public ParamInfo([NotNull] string name, object? value, bool required = true)
+		public ParamInfo(string name, object? value, bool required = true)
 		{
 			Code.NotNullNorWhiteSpace(name, nameof(name));
 
@@ -28,15 +28,13 @@ namespace CodeJam.Reflection
 		/// <param name="value">Value of the parameter.</param>
 		/// <param name="required"><c>True</c> if parameter required.</param>
 		/// <returns>Instance of <see cref="ParamInfo"/>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[NotNull]
-		public static ParamInfo Param([NotNull] string name, object? value, bool required = true) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static ParamInfo Param(string name, object? value, bool required = true) =>
 			new(name, value, required);
 
 		/// <summary>
 		/// Parameter name.
 		/// </summary>
-		[NotNull]
 		public string Name { get; set; }
 
 		/// <summary>

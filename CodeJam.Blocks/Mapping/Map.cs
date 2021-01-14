@@ -21,7 +21,7 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TFrom">Type to map from.</typeparam>
 		/// <typeparam name="TTo">Type to map to.</typeparam>
 		/// <returns>Mapping expression.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>()
 			=> new(new MapperBuilder<TFrom, TTo>());
 
@@ -32,10 +32,9 @@ namespace CodeJam.Mapping
 		/// <typeparam name="TTo">Type to map to.</typeparam>
 		/// <param name="setter">MapperBuilder parameter setter.</param>
 		/// <returns>Mapping expression.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Mapper<TFrom, TTo> GetMapper<TFrom, TTo>(
-			[NotNull] Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>> setter)
+			Func<MapperBuilder<TFrom, TTo>, MapperBuilder<TFrom, TTo>> setter)
 		{
 			Code.NotNull(setter, nameof(setter));
 			return new Mapper<TFrom, TTo>(setter(new MapperBuilder<TFrom, TTo>()));
@@ -43,11 +42,11 @@ namespace CodeJam.Mapping
 
 		private static class MapHolder<T>
 		{
-			[NotNull]
 			public static readonly Mapper<T, T> Mapper =
-				GetMapper<T, T>(m => m
-					 .SetProcessCrossReferences(true)
-					 .SetDeepCopy(true));
+				GetMapper<T, T>(
+					m => m
+						.SetProcessCrossReferences(true)
+						.SetDeepCopy(true));
 		}
 
 		/// <summary>
@@ -56,8 +55,9 @@ namespace CodeJam.Mapping
 		/// <param name="obj">An object to copy.</param>
 		/// <typeparam name="T">Type of object.</typeparam>
 		/// <returns>Created object.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static T DeepCopy<T>(this T obj) => MapHolder<T>.Mapper.Map(obj);
 	}
 }
+
 #endif

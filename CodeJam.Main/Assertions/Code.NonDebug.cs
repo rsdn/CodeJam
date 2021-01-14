@@ -40,7 +40,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void DisposedIf<TDisposable>(
 			bool disposed,
-			[NotNull] TDisposable thisReference)
+			TDisposable thisReference)
 			where TDisposable : IDisposable
 		{
 			if (disposed)
@@ -56,8 +56,8 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void DisposedIf<TDisposable>(
 			bool disposed,
-			[NotNull] TDisposable thisReference,
-			[NotNull] string message)
+			TDisposable thisReference,
+			string message)
 			where TDisposable : IDisposable
 		{
 			if (disposed)
@@ -74,8 +74,8 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void DisposedIf<TDisposable>(
 			bool disposed,
-			[NotNull] TDisposable thisReference,
-			[NotNull] string messageFormat,
+			TDisposable thisReference,
+			string messageFormat,
 			params object[]? args)
 			where TDisposable : IDisposable
 		{
@@ -112,8 +112,8 @@ namespace CodeJam
 		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
 			[NoEnumeration] TResource? resource,
-			[NotNull] TDisposable thisReference,
-			[NotNull] string message)
+			TDisposable thisReference,
+			string message)
 			where TResource : class
 			where TDisposable : IDisposable
 		{
@@ -133,8 +133,8 @@ namespace CodeJam
 		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
 			[NoEnumeration] TResource? resource,
-			[NotNull] TDisposable thisReference,
-			[NotNull] string messageFormat,
+			TDisposable thisReference,
+			string messageFormat,
 			params object[]? args)
 			where TResource : class
 			where TDisposable : IDisposable

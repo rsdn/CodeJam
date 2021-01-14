@@ -24,19 +24,26 @@ namespace CodeJam.Collections
 
 		/// <summary>Links between nodes</summary>
 		private Lazy<List<int>> _nodeLinks = null!;
+
 		// state: (activeNode_, activeChild_, activeLength_), pending_
 		/// <summary>Index of the branch node</summary>
 		private int _branchNodeIndex;
+
 		/// <summary>Index of the active edge (child node) of the branch node</summary>
 		private int _activeEdgeIndex;
+
 		/// <summary>The length of the current part of the active child</summary>
 		private int _activeLength;
+
 		/// <summary>Offset of the first suffix to insert</summary>
 		private int _nextSuffixOffset;
+
 		/// <summary>Current working offset in the string</summary>
 		private int _currentOffset;
+
 		/// <summary>Index of the previous insertion node that should be linked with a subsequent insertion node</summary>
 		private int _pendingLinkIndexFrom;
+
 		/// <summary>The end of the string</summary>
 		private int _end;
 
@@ -264,10 +271,12 @@ namespace CodeJam.Collections
 				// need to create a new internal node
 				var edgeNode = GetNode(edgeNodeIndex);
 				DebugCode.AssertState(_activeLength < edgeNode.Length, "Invalid active state");
-				var newEdgeNode = new Node(edgeNode.Begin, edgeNode.Begin + _activeLength, false
+				var newEdgeNode = new Node(
+					edgeNode.Begin, edgeNode.Begin + _activeLength, false
 					, new List<int> { edgeNodeIndex });
 				var newEdgeNodeIndex = AddNode(newEdgeNode);
-				var updatedEdgeNode = new Node(newEdgeNode.End, edgeNode.End, edgeNode.IsTerminal
+				var updatedEdgeNode = new Node(
+					newEdgeNode.End, edgeNode.End, edgeNode.IsTerminal
 					, edgeNode.Children);
 				UpdateNode(edgeNodeIndex, updatedEdgeNode);
 				branchChildren[_activeEdgeIndex] = newEdgeNodeIndex;

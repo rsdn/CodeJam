@@ -67,7 +67,6 @@ namespace CodeJam.IO
 			ex = Assert.Throws<ArgumentException>(() => IoCode.IsWellFormedAbsolutePath(null!, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
-
 			Assert.DoesNotThrow(() => IoCode.IsWellFormedAbsolutePath("c:\\valid\\path", "arg00"));
 		}
 
@@ -112,7 +111,6 @@ namespace CodeJam.IO
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain(dirPath));
 		}
-
 
 		[Test]
 		public void TestFileExists()

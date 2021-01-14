@@ -17,10 +17,10 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Create([NotNull] Action initAction, [NotNull] Action disposeAction)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IDisposable Create(Action initAction, Action disposeAction)
 		{
-			Code.NotNull(initAction,    nameof(initAction));
+			Code.NotNull(initAction, nameof(initAction));
 			Code.NotNull(disposeAction, nameof(disposeAction));
 
 			initAction();
@@ -37,10 +37,10 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Create<T>([NotNull] Func<T> initAction, [NotNull] Action<T> disposeAction)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IDisposable Create<T>(Func<T> initAction, Action<T> disposeAction)
 		{
-			Code.NotNull(initAction,    nameof(initAction));
+			Code.NotNull(initAction, nameof(initAction));
 			Code.NotNull(disposeAction, nameof(disposeAction));
 
 			var initState = initAction();
@@ -55,8 +55,8 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="initDisposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Create([NotNull] Action initDisposeAction)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IDisposable Create(Action initDisposeAction)
 		{
 			Code.NotNull(initDisposeAction, nameof(initDisposeAction));
 
@@ -76,8 +76,8 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="initDisposeAction"/> on disposing.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Create([NotNull] Action<bool> initDisposeAction)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IDisposable Create(Action<bool> initDisposeAction)
 		{
 			Code.NotNull(initDisposeAction, nameof(initDisposeAction));
 

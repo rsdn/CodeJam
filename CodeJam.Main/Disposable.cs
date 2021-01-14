@@ -48,9 +48,7 @@ namespace CodeJam
 					{
 						disposeAction.Invoke();
 					}
-					catch when (OnException(disposeAction))
-					{
-					}
+					catch when (OnException(disposeAction)) { }
 				}
 			}
 
@@ -96,9 +94,7 @@ namespace CodeJam
 						disposeAction.Invoke(_state);
 						_state = default;
 					}
-					catch when (OnException(disposeAction))
-					{
-					}
+					catch when (OnException(disposeAction)) { }
 				}
 			}
 
@@ -120,8 +116,8 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
-		[JetBrains.Annotations.NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Create([JetBrains.Annotations.NotNull] Action disposeAction) => new AnonymousDisposable(disposeAction);
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IDisposable Create(Action disposeAction) => new AnonymousDisposable(disposeAction);
 
 		/// <summary>
 		/// Creates <see cref="IDisposable"/> instance that calls <paramref name="disposeAction"/> on disposing.
@@ -132,21 +128,22 @@ namespace CodeJam
 		/// <returns>
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
-		[JetBrains.Annotations.NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Create<T>([JetBrains.Annotations.NotNull] Action<T> disposeAction, T? state) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IDisposable Create<T>(Action<T> disposeAction, T? state) =>
 			new AnonymousDisposable<T>(disposeAction, state);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
 		/// <returns>Instance of <see cref="IDisposable"/> that will dispose the specified disposables.</returns>
-		[JetBrains.Annotations.NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Merge([JetBrains.Annotations.NotNull, ItemNotNull] params IDisposable[] disposables) => Merge((IEnumerable<IDisposable>)disposables);
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IDisposable Merge(params IDisposable[] disposables)
+			=> Merge((IEnumerable<IDisposable>)disposables);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>
 		/// <returns>Instance of <see cref="IDisposable"/> that will dispose the specified disposables.</returns>
-		[JetBrains.Annotations.NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Merge([JetBrains.Annotations.NotNull] this IEnumerable<IDisposable> disposables) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IDisposable Merge(this IEnumerable<IDisposable> disposables) =>
 			Create(disposables.DisposeAll);
 	}
 }

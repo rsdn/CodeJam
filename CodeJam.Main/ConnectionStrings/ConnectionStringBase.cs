@@ -67,13 +67,11 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>
 		/// Gets all supported keywords for current connection.
 		/// </summary>
-		[NotNull]
 		protected IReadOnlyDictionary<string, KeywordDescriptor> Keywords => _wrapper.Keywords;
 
 		/// <summary>
 		/// Gets or sets the connection string associated with the <see cref="T:System.Data.Common.DbConnectionStringBuilder" />.
 		/// </summary>
-		[NotNull]
 		public string ConnectionString
 		{
 			get => _wrapper.ConnectionString;
@@ -154,7 +152,7 @@ namespace CodeJam.ConnectionStrings
 		/// </summary>
 		/// <param name="includeNonBrowsable">If set to <c>true</c>, non browsable values will be .</param>
 		/// <returns>Browsable connection string</returns>
-		[NotNull, MustUseReturnValue]
+		[MustUseReturnValue]
 		public string GetBrowsableConnectionString(bool includeNonBrowsable = false) =>
 			_wrapper.GetBrowsableConnectionString(includeNonBrowsable);
 

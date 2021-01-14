@@ -13,8 +13,8 @@ namespace CodeJam.Strings
 		/// <typeparam name="T">Type of object.</typeparam>
 		/// <param name="s">Object to convert.</param>
 		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static string ToInvariantString<T>([NotNull] this T s) where T : IFormattable =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static string ToInvariantString<T>(this T s) where T : IFormattable =>
 			s.ToString(null, CultureInfo.InvariantCulture);
 
 		/// <summary>
@@ -24,8 +24,8 @@ namespace CodeJam.Strings
 		/// <param name="s">Object to convert.</param>
 		/// <param name="format">Format string</param>
 		/// <returns>String representation of <paramref name="s"/> according to rules of invariant culture.</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static string ToInvariantString<T>([NotNull] this T s, string format) where T : IFormattable =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static string ToInvariantString<T>(this T s, string format) where T : IFormattable =>
 			s.ToString(format, CultureInfo.InvariantCulture);
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string to convert.</param>
 		/// <returns>A structure that contains the value that was parsed.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool? ToBoolean(this string? str) =>
 			bool.TryParse(str, out var result) ? (bool?)result : null;
 
@@ -58,7 +58,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant with style, or
 		/// represents a date less than <see cref="DateTime.MinValue"/> or greater than <see cref="DateTime.MaxValue"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static DateTime? ToDateTime(
 			this string? str,
 			DateTimeStyles dateStyle = DateTimeStyles.None,
@@ -83,7 +83,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant with style, or
 		/// represents a date less than <see cref="DateTime.MinValue"/> or greater than <see cref="DateTime.MaxValue"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static DateTime? ToDateTimeInvariant(
 			this string? str,
 			DateTimeStyles dateStyle = DateTimeStyles.None) =>
@@ -110,7 +110,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant with style, or
 		/// represents a date less than <see cref="DateTimeOffset.MinValue"/> or greater than <see cref="DateTimeOffset.MaxValue"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static DateTimeOffset? ToDateTimeOffset(
 			this string? str,
 			DateTimeStyles dateStyle = DateTimeStyles.None,
@@ -135,7 +135,7 @@ namespace CodeJam.Strings
 		/// the <paramref name="str"/> parameter is null or String.Empty, is not in a format compliant with style, or
 		/// represents a date less than <see cref="DateTimeOffset.MinValue"/> or greater than <see cref="DateTimeOffset.MaxValue"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static DateTimeOffset? ToDateTimeOffsetInvariant(
 			this string? str,
 			DateTimeStyles dateStyle = DateTimeStyles.None) =>
@@ -150,7 +150,7 @@ namespace CodeJam.Strings
 		/// <param name="str">The <see cref="T:System.String" /> representing the <see cref="T:System.Uri" />.</param>
 		/// <param name="uriKind">The type of the Uri. DefaultValue is <see cref="UriKind.RelativeOrAbsolute"/>.</param>
 		/// <returns>Constructed <see cref="T:System.Uri" />.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Uri? ToUri(this string? str, UriKind uriKind = UriKind.RelativeOrAbsolute) =>
 			Uri.TryCreate(str, uriKind, out var result) ? result : null;
 
@@ -160,7 +160,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string to convert.</param>
 		/// <returns>A structure that contains the value that was parsed.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Guid? ToGuid(this string? str) =>
 			Guid.TryParse(str, out var result) ? (Guid?)result : null;
 
@@ -170,7 +170,7 @@ namespace CodeJam.Strings
 		/// </summary><param name="str">A string that specifies the time interval to convert.</param>
 		/// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
 		/// <returns>A time interval that corresponds to <paramref name="str" />, as specified by <paramref name="formatProvider" />.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TimeSpan? ToTimeSpan(this string? str, IFormatProvider formatProvider) =>
 			TimeSpan.TryParse(str, formatProvider, out var result) ? (TimeSpan?)result : null;
 
@@ -179,10 +179,9 @@ namespace CodeJam.Strings
 		/// by using invariant culture format information.
 		/// </summary><param name="str">A string that specifies the time interval to convert.</param>
 		/// <returns>A time interval that corresponds to <paramref name="str" />.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TimeSpan? ToTimeSpanInvariant(this string? str) =>
 			TimeSpan.TryParse(str, CultureInfo.InvariantCulture, out var result) ? (TimeSpan?)result : null;
 #endif
-
 	}
 }

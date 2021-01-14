@@ -25,33 +25,32 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A new sequence containing any elements sliced out from the source sequence.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
-		public static IEnumerable<T> Slice<T>([NotNull] this IEnumerable<T> source, int startIndex, [NonNegativeValue] int count)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IEnumerable<T> Slice<T>(this IEnumerable<T> source, int startIndex, [NonNegativeValue] int count)
 		{
-			if (source == null) throw new ArgumentNullException(nameof (source));
-			if (startIndex < 0) throw new ArgumentOutOfRangeException(nameof (startIndex));
+			if (source == null) throw new ArgumentNullException(nameof(source));
+			if (startIndex < 0) throw new ArgumentOutOfRangeException(nameof(startIndex));
 
 			if (count <= 0)
 				return Enumerable.Empty<T>();
 
-		if (source is IList<T> list)
-			return startIndex != 0 || list.Count > count
-				? SliceImpl(list, startIndex, count)
-				: list;
+			if (source is IList<T> list)
+				return startIndex != 0 || list.Count > count
+					? SliceImpl(list, startIndex, count)
+					: list;
 
 			return SliceImpl(source, startIndex, count);
 		}
 
-		[NotNull]
-		private static IEnumerable<T> SliceImpl<T>([NotNull] IList<T> list, [NonNegativeValue] int index, [NonNegativeValue] int count)
+		private static IEnumerable<T> SliceImpl<T>(IList<T> list, [NonNegativeValue] int index, [NonNegativeValue] int count)
 		{
 			var total = list.Count;
 			while (index < total && count-- > 0)
 				yield return list[index++];
 		}
 
-		[NotNull]
-		private static IEnumerable<T> SliceImpl<T>([NotNull] IEnumerable<T> source, [NonNegativeValue] int index, [NonNegativeValue] int count)
+		private static IEnumerable<T> SliceImpl<T>(
+			IEnumerable<T> source, [NonNegativeValue] int index, [NonNegativeValue] int count)
 		{
 			using var e = source.GetEnumerator();
 			while (index > 0 && e.MoveNext())

@@ -27,9 +27,9 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T2">The type of new range values.</typeparam>
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundaries. Used if boundary has a value.</param>
 		/// <returns>A range with new values.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T2, TKey> WithValues<T2>(
-			[NotNull, InstantHandle] Func<T, T2> newValueSelector)
+			[InstantHandle] Func<T, T2> newValueSelector)
 		{
 			var from = From.WithValue(newValueSelector);
 			var to = To.WithValue(newValueSelector);
@@ -41,10 +41,10 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if boundary has a value.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if boundary has a value.</param>
 		/// <returns>A range with new values.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T2, TKey> WithValues<T2>(
-			[NotNull, InstantHandle] Func<T, T2> fromValueSelector,
-			[NotNull, InstantHandle] Func<T, T2> toValueSelector)
+			[InstantHandle] Func<T, T2> fromValueSelector,
+			[InstantHandle] Func<T, T2> toValueSelector)
 		{
 			var from = From.WithValue(fromValueSelector);
 			var to = To.WithValue(toValueSelector);
@@ -55,7 +55,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the new key.</typeparam>
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new range with the key specified.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey2> WithKey<TKey2>(TKey2 key) =>
 			Range.Create(From, To, key);
 
@@ -65,10 +65,10 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if the boundary is exclusive.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is exclusive.</param>
 		/// <returns>A range with inclusive boundaries.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public Range<T, TKey> MakeInclusive(
-			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
-			[NotNull, InstantHandle] Func<T, T> toValueSelector)
+			[InstantHandle] Func<T, T> fromValueSelector,
+			[InstantHandle] Func<T, T> toValueSelector)
 		{
 			if (IsEmpty || (!From.IsExclusiveBoundary && !To.IsExclusiveBoundary))
 			{
@@ -95,10 +95,10 @@ namespace CodeJam.Ranges
 		/// <param name="fromValueSelector">Callback to obtain a new value for the From boundary. Used if the boundary is inclusive.</param>
 		/// <param name="toValueSelector">Callback to obtain a new value for the To boundary. Used if the boundary is inclusive.</param>
 		/// <returns>A range with exclusive boundaries.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public Range<T, TKey> MakeExclusive(
-			[NotNull, InstantHandle] Func<T, T> fromValueSelector,
-			[NotNull, InstantHandle] Func<T, T> toValueSelector)
+			[InstantHandle] Func<T, T> fromValueSelector,
+			[InstantHandle] Func<T, T> toValueSelector)
 		{
 			if (IsEmpty || (!From.IsInclusiveBoundary && !To.IsInclusiveBoundary))
 			{
@@ -124,7 +124,7 @@ namespace CodeJam.Ranges
 		/// <summary>Determines whether the range contains the specified value.</summary>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c>, if the range contains the value.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool Contains(T value) =>
 			RangeBoundaryFrom<T>.IsValid(value)
 				? Contains(Range.BoundaryFrom(value))
@@ -133,7 +133,7 @@ namespace CodeJam.Ranges
 		/// <summary>Determines whether the range contains the specified range boundary.</summary>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range contains the boundary.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool Contains(RangeBoundaryTo<T> other)
 		{
 			if (IsEmpty)
@@ -146,7 +146,7 @@ namespace CodeJam.Ranges
 		/// <summary>Determines whether the range contains the specified range boundary.</summary>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range contains the boundary.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool Contains(RangeBoundaryFrom<T> other)
 		{
 			if (IsEmpty)
@@ -160,14 +160,14 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value of the range to check.</param>
 		/// <param name="to">The boundary To value of the range to check.</param>
 		/// <returns><c>true</c>, if the range contains another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool Contains(T from, T to) =>
 			Contains(Range.Create(from, to));
 
 		/// <summary>Determines whether the range contains another range.</summary>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range contains another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool Contains(
 
 		#region T4-dont-replace
@@ -187,7 +187,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the key of another range.</typeparam>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range contains another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool Contains<TKey2>(Range<T, TKey2> other)
 		{
 			if (IsEmpty)
@@ -201,14 +201,14 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value of the range to check.</param>
 		/// <param name="to">The boundary To value of the range to check.</param>
 		/// <returns><c>true</c>, if the range has intersection with another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool HasIntersection(T from, T to) =>
 			HasIntersection(Range.Create(from, to));
 
 		/// <summary>Determines whether the range has intersection with another range.</summary>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range has intersection with another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool HasIntersection(
 
 		#region T4-dont-replace
@@ -228,7 +228,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the key of another range.</typeparam>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range has intersection with another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool HasIntersection<TKey2>(Range<T, TKey2> other)
 		{
 			if (IsEmpty)
@@ -244,7 +244,7 @@ namespace CodeJam.Ranges
 		/// <param name="value">The value to be adjusted.</param>
 		/// <exception cref="ArgumentException">The range is empty or any of its boundaries is exclusive.</exception>
 		/// <returns>A new value that fits into a range specified</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public T Clamp(T value)
 		{
 			Code.AssertArgument(IsNotEmpty, nameof(value), "Cannot fit the value into empty range.");
@@ -275,28 +275,28 @@ namespace CodeJam.Ranges
 		/// <summary>Determines whether the range starts after the value specified.</summary>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c>, if the range starts after the value.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool StartsAfter(T value) =>
 			RangeBoundaryFrom<T>.IsValid(value) && From > Range.BoundaryFrom(value);
 
 		/// <summary>Determines whether the range starts after the boundary specified.</summary>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range starts after the boundary.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool StartsAfter(RangeBoundaryFrom<T> other) =>
 			other.IsNotEmpty && From > other;
 
 		/// <summary>Determines whether the range starts after the boundary specified.</summary>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range starts after the boundary.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool StartsAfter(RangeBoundaryTo<T> other) =>
 			other.IsNotEmpty && From > other;
 
 		/// <summary>Determines whether the range starts after the range specified.</summary>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range starts after another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool StartsAfter(
 
 		#region T4-dont-replace
@@ -310,35 +310,35 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the key of another range.</typeparam>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range starts after another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool StartsAfter<TKey2>(Range<T, TKey2> other) =>
 			other.IsNotEmpty && From > other.To;
 
 		/// <summary>Determines whether the range ends before the value specified.</summary>
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c>, if the range ends before the value.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool EndsBefore(T value) =>
 			IsNotEmpty && RangeBoundaryTo<T>.IsValid(value) && To < Range.BoundaryTo(value);
 
 		/// <summary>Determines whether the range ends before the boundary specified.</summary>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range ends before the boundary.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool EndsBefore(RangeBoundaryFrom<T> other) =>
 			IsNotEmpty && other.IsNotEmpty && To < other;
 
 		/// <summary>Determines whether the range ends before the boundary specified.</summary>
 		/// <param name="other">The boundary to check.</param>
 		/// <returns><c>true</c>, if the range ends before the boundary.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool EndsBefore(RangeBoundaryTo<T> other) =>
 			IsNotEmpty && other.IsNotEmpty && To < other;
 
 		/// <summary>Determines whether the range ends before the range specified.</summary>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range ends before another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool EndsBefore(
 
 		#region T4-dont-replace
@@ -352,7 +352,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the key of another range.</typeparam>
 		/// <param name="other">The range to check.</param>
 		/// <returns><c>true</c>, if the range ends before another range.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public bool EndsBefore<TKey2>(Range<T, TKey2> other) =>
 			IsNotEmpty && other.IsNotEmpty && To < other.From;
 		#endregion
@@ -361,7 +361,7 @@ namespace CodeJam.Ranges
 		/// <summary>Returns a union range containing original range and the <paramref name="value"/>.</summary>
 		/// <param name="value">The value to be included in range.</param>
 		/// <returns>A union range containing both of the ranges.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Union(T value) =>
 			Union(Range.Create(value, value));
 
@@ -369,14 +369,14 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value.</param>
 		/// <param name="to">The boundary To value.</param>
 		/// <returns>A union range containing both of the ranges.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Union(T from, T to) =>
 			Union(Range.Create(from, to));
 
 		/// <summary>Returns a union range containing both of the ranges.</summary>
 		/// <param name="other">The range to union with.</param>
 		/// <returns>A union range containing both of the ranges.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Union(
 
 		#region T4-dont-replace
@@ -402,7 +402,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the key of another range.</typeparam>
 		/// <param name="other">The range to union with.</param>
 		/// <returns>A union range containing both of the ranges.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Union<TKey2>(Range<T, TKey2> other)
 		{
 			if (other.IsEmpty)
@@ -423,7 +423,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new From boundary or the source range if the new boundary is greater than original.
 		/// </returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> ExtendFrom(T from) =>
 			ExtendFrom(Range.BoundaryFrom(from));
 
@@ -432,7 +432,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new From boundary or the source range if the new boundary is greater than original.
 		/// </returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> ExtendFrom(RangeBoundaryFrom<T> from)
 		{
 			if (IsEmpty || from.IsEmpty)
@@ -448,7 +448,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new To boundary or the source range if the new boundary is less than original.
 		/// </returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> ExtendTo(T to) =>
 			ExtendTo(Range.BoundaryTo(to));
 
@@ -457,7 +457,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// A range with a new To boundary or the source range if the new boundary is less than original.
 		/// </returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> ExtendTo(RangeBoundaryTo<T> to)
 		{
 			if (IsEmpty || to.IsEmpty)
@@ -474,14 +474,14 @@ namespace CodeJam.Ranges
 		/// <param name="from">The boundary From value.</param>
 		/// <param name="to">The boundary To value.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Intersect(T from, T to) =>
 			Intersect(Range.Create(from, to));
 
 		/// <summary>Returns an intersection of the the ranges.</summary>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Intersect(
 
 		#region T4-dont-replace
@@ -497,7 +497,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the key of another range.</typeparam>
 		/// <param name="other">The range to intersect with.</param>
 		/// <returns>An intersection range or empty range if the ranges do not intersect.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> Intersect<TKey2>(Range<T, TKey2> other) =>
 			TryCreateRange(
 				(IsEmpty || From >= other.From) ? From : other.From,
@@ -510,7 +510,7 @@ namespace CodeJam.Ranges
 		/// or the source range if the new boundary is less than original
 		/// or an empty range if the new From boundary is greater than To boundary of the range.
 		/// </returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> TrimFrom(T from) =>
 			TrimFrom(Range.BoundaryFrom(from));
 
@@ -521,7 +521,7 @@ namespace CodeJam.Ranges
 		/// or the source range if the new boundary is less than original
 		/// or an empty range if the new From boundary is greater than To boundary of the range.
 		/// </returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> TrimFrom(RangeBoundaryFrom<T> from) =>
 			from.IsNotEmpty && From >= from
 				? this
@@ -534,7 +534,7 @@ namespace CodeJam.Ranges
 		/// or the source range if the new boundary is greater than original
 		/// or an empty range if the new To boundary is less than From boundary of the range.
 		/// </returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> TrimTo(T to) =>
 			TrimTo(Range.BoundaryTo(to));
 
@@ -545,7 +545,7 @@ namespace CodeJam.Ranges
 		/// or the source range if the new boundary is greater than original
 		/// or an empty range if the new To boundary is less than From boundary of the range.
 		/// </returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T, TKey> TrimTo(RangeBoundaryTo<T> to) =>
 			to.IsNotEmpty && To <= to
 				? this

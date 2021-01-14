@@ -44,7 +44,7 @@ namespace CodeJam.Ranges
 		///// <param name="value">The value.</param>
 		///// <returns>Index of the inserted item.</returns>
 		//internal static int InsertInSortedList<T>(
-		//	[NotNull] List<T> sortedList,
+		//	List<T> sortedList,
 		//	T value) =>
 		//		InsertInSortedList(sortedList, value, Comparer<T>.Default, false);
 
@@ -55,7 +55,7 @@ namespace CodeJam.Ranges
 		///// <param name="comparer">The comparer.</param>
 		///// <returns>Index of the inserted item.</returns>
 		//internal static int InsertInSortedList<T>(
-		//	[NotNull] List<T> sortedList,
+		//	List<T> sortedList,
 		//	T value,
 		//	IComparer<T> comparer) =>
 		//		InsertInSortedList(sortedList, value, comparer, false);
@@ -67,7 +67,7 @@ namespace CodeJam.Ranges
 		///// <param name="skipDuplicates">If set to <c>true</c> duplicates are not inserted.</param>
 		///// <returns>Index of the inserted item (or existing one if <paramref name="skipDuplicates"/> is set to <c>true</c>).</returns>
 		//internal static int InsertInSortedList<T>(
-		//	[NotNull] List<T> sortedList,
+		//	List<T> sortedList,
 		//	T value,
 		//	bool skipDuplicates) =>
 		//		InsertInSortedList(sortedList, value, null, skipDuplicates);
@@ -82,14 +82,15 @@ namespace CodeJam.Ranges
 		/// Index of the inserted item (or existing one if <paramref name="skipDuplicates"/> is set to <c>true</c>).
 		/// </returns>
 		// ReSharper disable once UnusedMethodReturnValue.Global
-		internal static int InsertInSortedList<T>(
-			[NotNull] List<T> sortedList,
+			internal static int InsertInSortedList<T>(
+			List<T> sortedList,
 			T? value,
 			IComparer<T>? comparer,
 			bool skipDuplicates)
 		{
 #pragma warning disable 8604
-			var insertIndex = sortedList.BinarySearch(value, comparer); // Bug in MS code markup. value can be null for ref types.
+			var insertIndex = sortedList.BinarySearch(value, comparer);
+			// Bug in MS code markup. value can be null for ref types.
 #pragma warning restore 8604
 
 			if (insertIndex < 0)

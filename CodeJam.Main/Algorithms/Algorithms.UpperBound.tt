@@ -25,8 +25,8 @@ namespace CodeJam
 	}
 }
 <#+
-private void GenerateMethods(string type)
-{
+	private void GenerateMethods(string type)
+	{
 #>
 		/// <summary>
 		/// Returns the minimum index i in the range [0, list.Count - 1] such that list[i] > value
@@ -35,8 +35,8 @@ private void GenerateMethods(string type)
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static int UpperBound([InstantHandle] this IList<<#= type #>> list, <#= type #> value) =>
 			list.UpperBound(value, 0);
 
 		/// <summary>
@@ -47,8 +47,8 @@ private void GenerateMethods(string type)
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, [NonNegativeValue] int startIndex) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static int UpperBound([InstantHandle] this IList<<#= type #>> list, <#= type #> value, [NonNegativeValue] int startIndex) =>
 			list.UpperBound(value, startIndex, list.Count);
 
 		/// <summary>
@@ -60,8 +60,8 @@ private void GenerateMethods(string type)
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static int UpperBound([NotNull, InstantHandle] this IList<<#= type #>> list, <#= type #> value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static int UpperBound([InstantHandle] this IList<<#= type #>> list, <#= type #> value, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);
@@ -94,5 +94,5 @@ private void GenerateMethods(string type)
 			return startIndex;
 		}
 <#+
-}
+	}
 #>

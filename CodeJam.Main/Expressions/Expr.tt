@@ -33,22 +33,26 @@ namespace CodeJam.Expressions
 #>
 	}
 }<#+
-
 	private void EmitAction(int argCount)
 	{
-		var typeList = argCount == 0?
-			"" :
-			"<" + List(argCount, n => "T" + n, ", ") + ">";
+		var typeList = argCount == 0
+			? ""
+			: "<" + List(argCount, n => "T" + n, ", ") + ">";
 #>
 		/// <summary>Helper for type inference from the lambda expression.</summary>
-<#+		for (var i = 1; i <= argCount; i++) {#>
-		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
-<#+		}#>
+<#+
+		for (var i = 1; i <= argCount; i++)
+		{
+#>
+		/// <typeparam name="T<#= i #>">The type of argument #<#= i #>.</typeparam>
+<#+
+		}
+#>
 		/// <param name="actionExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
-		[Pure, NotNull]
-		public static Expression<Action<#=typeList#>> Action<#=typeList#>(
-			[NotNull] Expression<Action<#=typeList#>> actionExpression)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Expression<Action<#= typeList #>> Action<#= typeList #>(
+			Expression<Action<#= typeList #>> actionExpression)
 		{
 			Code.NotNull(actionExpression, nameof(actionExpression));
 			return actionExpression;
@@ -58,19 +62,25 @@ namespace CodeJam.Expressions
 
 	private void EmitFunc(int argCount)
 	{
-		var typeList = argCount == 0?
-			"<TResult>" :
-			"<" + List(argCount, n => "T" + n, ", ") + ", TResult" + ">";#>
+		var typeList = argCount == 0
+			? "<TResult>"
+			: "<" + List(argCount, n => "T" + n, ", ") + ", TResult" + ">";
+#>
 		/// <summary>Helper for type inference from the lambda expression.</summary>
-<#+		for (var i = 1; i <= argCount; i++) {#>
-		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
-<#+		}#>
+<#+
+		for (var i = 1; i <= argCount; i++)
+		{
+#>
+		/// <typeparam name="T<#= i #>">The type of argument #<#= i #>.</typeparam>
+<#+
+		}
+#>
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="funcExpression">The lambda expression.</param>
 		/// <returns>The lambda expression passed.</returns>
-		[Pure, NotNull]
-		public static Expression<Func<#=typeList#>> Func<#=typeList#>(
-			[NotNull] Expression<Func<#=typeList#>> funcExpression)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Expression<Func<#= typeList #>> Func<#= typeList #>(
+			Expression<Func<#= typeList #>> funcExpression)
 		{
 			Code.NotNull(funcExpression, nameof(funcExpression));
 			return funcExpression;

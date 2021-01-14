@@ -11,7 +11,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public QuotedOrNonquotedValueNode(
-			[NotNull] string text,
+			string text,
 			[NonNegativeValue] int position,
 			[NonNegativeValue] int length,
 			bool quoted) : base(text, position, length)

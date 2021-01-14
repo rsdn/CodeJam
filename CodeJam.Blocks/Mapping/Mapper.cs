@@ -20,7 +20,7 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public class Mapper<TFrom, TTo>
 	{
-		[JetBrains.Annotations.NotNull] private MapperBuilder<TFrom, TTo> _mapperBuilder;
+		private MapperBuilder<TFrom, TTo> _mapperBuilder;
 
 		[DisallowNull]
 		private Expression<Func<TFrom, TTo, IDictionary<object, object>?, TTo>>? _mapperExpression = null!;
@@ -34,14 +34,14 @@ namespace CodeJam.Mapping
 		[DisallowNull]
 		private Func<TFrom, TTo>? _mapperEx = null!;
 
-		internal Mapper([JetBrains.Annotations.NotNull] MapperBuilder<TFrom, TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
+		internal Mapper(MapperBuilder<TFrom, TTo> mapperBuilder) => _mapperBuilder = mapperBuilder;
 
 		/// <summary>
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// Returned expression is compatible to IQueryable.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure, JetBrains.Annotations.NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public Expression<Func<TFrom, TTo>> GetMapperExpressionEx()
 			=> _mapperExpressionEx ??= _mapperBuilder.GetMapperExpressionEx();
 
@@ -49,7 +49,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper expression to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure, JetBrains.Annotations.NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public Expression<Func<TFrom, TTo, IDictionary<object, object>?, TTo>> GetMapperExpression()
 			=> _mapperExpression ??= _mapperBuilder.GetMapperExpression();
 
@@ -57,7 +57,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure, JetBrains.Annotations.NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public Func<TFrom, TTo> GetMapperEx()
 			=> _mapperEx ??= GetMapperExpressionEx().Compile();
 
@@ -65,7 +65,7 @@ namespace CodeJam.Mapping
 		/// Returns a mapper to map an object of <i>TFrom</i> type to an object of <i>TTo</i> type.
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
-		[Pure, JetBrains.Annotations.NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public Func<TFrom, TTo, IDictionary<object, object>?, TTo> GetMapper()
 			=> _mapper ??= GetMapperExpression().Compile()!;
 
@@ -74,7 +74,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="source">Object to map.</param>
 		/// <returns>Destination object.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public TTo Map(TFrom source)
 			=> GetMapperEx()(source);
 
@@ -94,9 +94,10 @@ namespace CodeJam.Mapping
 		/// <param name="destination">Destination object.</param>
 		/// <param name="crossReferenceDictionary">Storage for cress references if applied.</param>
 		/// <returns>Destination object.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public TTo Map(TFrom source, TTo destination, IDictionary<object, object>? crossReferenceDictionary)
 			=> GetMapper()(source, destination, crossReferenceDictionary);
 	}
 }
+
 #endif

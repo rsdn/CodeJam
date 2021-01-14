@@ -10,7 +10,7 @@ namespace CodeJam.CmdLine
 		///<summary>
 		/// Initialize instance with result.
 		///</summary>
-		public ParseResult([NotNull] T result, [NotNull] ICharInput inputRest)
+		public ParseResult(T result, ICharInput inputRest)
 		{
 			Result = result;
 			InputRest = inputRest;
@@ -19,11 +19,11 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Parsing result.
 		/// </summary>
-		[NotNull] public T Result { get; }
+		public T Result { get; }
 
 		/// <summary>
 		/// Input rest.
 		/// </summary>
-		[NotNull] public ICharInput InputRest { get; }
+		public ICharInput InputRest { get; }
 	}
 }

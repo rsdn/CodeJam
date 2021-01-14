@@ -55,7 +55,7 @@ namespace CodeJam
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 15, 0, 3, ExpectedResult = 3)]
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 5, 1, 4, ExpectedResult = 1)]
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 30000, 0, 4, ExpectedResult = 4)]
-		public int Test05WithAllParams([NotNull] int[] data, int partitionValue, int from, int to)
+		public int Test05WithAllParams(int[] data, int partitionValue, int from, int to)
 		{
 			var list = (IList<int>)data;
 			return list.PartitionPoint(from, to, _ => _ < partitionValue);
@@ -70,7 +70,7 @@ namespace CodeJam
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 42, 6, ExpectedResult = 6)]
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 1002, 3, ExpectedResult = 7)]
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 12, 3, ExpectedResult = 3)]
-		public int Test06WithFrom([NotNull] int[] data, int partitionValue, int from)
+		public int Test06WithFrom(int[] data, int partitionValue, int from)
 		{
 			var list = (IList<int>)data;
 			return list.PartitionPoint(from, _ => _ < partitionValue);
@@ -87,7 +87,7 @@ namespace CodeJam
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 12, ExpectedResult = 2)]
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 3, ExpectedResult = 1)]
 		[TestCase(new[] { 1, 5, 12, 12, 123, 512, 512, 14534 }, 14534, ExpectedResult = 7)]
-		public int Test07WithoutParams([NotNull] int[] data, int partitionValue)
+		public int Test07WithoutParams(int[] data, int partitionValue)
 		{
 			var list = (IList<int>)data;
 			return list.PartitionPoint(_ => _ < partitionValue);

@@ -106,9 +106,8 @@ namespace CodeJam.Collections
 						.ToArray());
 		}
 
-		[NotNull, ItemNotNull]
 		private static ICollection<string> GetDepStructure(
-			[NotNull, ItemNotNull] IEnumerable<string> source, out Dictionary<string, string[]> deps)
+			IEnumerable<string> source, out Dictionary<string, string[]> deps)
 		{
 			var items = new HashSet<string>();
 			deps = new Dictionary<string, string[]>();
@@ -126,7 +125,7 @@ namespace CodeJam.Collections
 			return items;
 		}
 
-		private static IEnumerable<Holder> GetDepStructure([NotNull] IEnumerable<string> source, out Dictionary<Holder, Holder[]> deps)
+		private static IEnumerable<Holder> GetDepStructure(IEnumerable<string> source, out Dictionary<Holder, Holder[]> deps)
 		{
 			Dictionary<string, string[]> innerDeps;
 			var items = GetDepStructure(source, out innerDeps);

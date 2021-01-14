@@ -8,7 +8,5 @@ namespace CodeJam.Dates
 	/// Helper methods for date manipulations
 	/// </summary>
 	[PublicAPI]
-	public static partial class DateTimeRangeExtensions
-	{
-	}
+	public static partial class DateTimeRangeExtensions { }
 }

@@ -84,9 +84,8 @@ namespace CodeJam.Ranges
 				lastBoundary.GetComplementation() >= nextRange.From;
 		}
 
-		[NotNull]
 		private static IEnumerable<Range<T>> MergeRangesCore(
-			[NotNull] IEnumerable<Range<T>> sortedRanges)
+			IEnumerable<Range<T>> sortedRanges)
 		{
 			var temp = Range<T>.Empty;
 			foreach (var range in sortedRanges)
@@ -115,7 +114,6 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Predefined values
-		[NotNull]
 		private static readonly ReadOnlyCollection<Range<T>> _emptyRanges = Array<Range<T>>.Empty.AsReadOnly();
 
 		#region T4-dont-replace
@@ -133,7 +131,7 @@ namespace CodeJam.Ranges
 
 		#region Fields & .ctor()
 		// TODO: REMOVE readonly modifier. Same reason as for Range<T>. Proof: NestedStructAccessPerfTests.
-		[NotNull] private readonly ReadOnlyCollection<Range<T>> _ranges; // TODO: own collection?
+		private readonly ReadOnlyCollection<Range<T>> _ranges; // TODO: own collection?
 		private readonly bool _hasRangesToMerge;
 
 		#region T4-dont-replace
@@ -142,7 +140,7 @@ namespace CodeJam.Ranges
 
 		/// <summary>Creates instance of <seealso cref="CompositeRange{T}"/>.</summary>
 		/// <param name="ranges">Contained ranges.</param>
-		public CompositeRange([NotNull] IEnumerable<Range<T>> ranges)
+		public CompositeRange(IEnumerable<Range<T>> ranges)
 			: this(ranges, UnsafeOverload.FullValidation) { }
 
 		/// <summary>Creates instance of <seealso cref="CompositeRange{T}"/>.</summary>
@@ -157,7 +155,7 @@ namespace CodeJam.Ranges
 		/// <summary>Creates instance of <seealso cref="CompositeRange{T}"/>.</summary>
 		/// <param name="ranges">Contained ranges.</param>
 		/// <param name="skipsArgHandling">Stub argument to mark unsafe (no validation) constructor overload.</param>
-		internal CompositeRange([NotNull] IEnumerable<Range<T>> ranges, UnsafeOverload skipsArgHandling)
+		internal CompositeRange(IEnumerable<Range<T>> ranges, UnsafeOverload skipsArgHandling)
 		{
 			Code.NotNull(ranges, nameof(ranges));
 
@@ -222,9 +220,8 @@ namespace CodeJam.Ranges
 
 		/// <summary>Collection of subranges.</summary>
 		/// <value>The collection of subranges.</value>
-		[NotNull]
 		// ReSharper disable once ConstantNullCoalescingCondition
-		public ReadOnlyCollection<Range<T>> SubRanges => _ranges ?? _emptyRanges;
+			public ReadOnlyCollection<Range<T>> SubRanges => _ranges ?? _emptyRanges;
 
 		#region T4-dont-replace
 		/// <summary>Range that contains all subranges.</summary>
@@ -237,7 +234,7 @@ namespace CodeJam.Ranges
 		#region ToString
 		/// <summary>Returns string representation of the range.</summary>
 		/// <returns>The string representation of the range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public override string ToString()
 		{
 			if (IsEmpty)
@@ -261,7 +258,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="format">The format string.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
@@ -270,7 +267,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 		/// <summary>
@@ -280,7 +277,7 @@ namespace CodeJam.Ranges
 		/// <param name="format">The format string.</param>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
 			if (IsEmpty)

@@ -14,15 +14,15 @@ namespace CodeJam.CmdLine
 		///</summary>
 		public const char Eof = '\0';
 
-		[NotNull] private readonly string _source;
+		private readonly string _source;
 
 		///<summary>
 		/// Initialize instance.
 		///</summary>
-		public CharInput([NotNull] string source) : this(source, 0)
+		public CharInput(string source) : this(source, 0)
 		{}
 
-		private CharInput([NotNull] string source, [NonNegativeValue] int position)
+		private CharInput(string source, [NonNegativeValue] int position)
 		{
 			_source = source;
 			Position = position;

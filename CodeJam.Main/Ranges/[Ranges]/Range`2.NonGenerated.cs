@@ -38,7 +38,7 @@ namespace CodeJam.Ranges
 		/// <summary>The value associated with the range.</summary>
 		/// <value>The value of the range key.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
-		public TKey Key => _key;
+			public TKey Key => _key;
 
 		#region IRangeFactory members
 		private Range<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
@@ -62,7 +62,7 @@ namespace CodeJam.Ranges
 		#region Operations
 		/// <summary>Creates a range without a range key.</summary>
 		/// <returns>A new range without a key.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T> WithoutKey() =>
 			Range.Create(From, To);
 		#endregion
@@ -74,7 +74,7 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if the current range is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public bool Equals(Range<T, TKey> other) =>
 			_from == other._from && _to == other._to && _keyEqualityFunc(_key, other._key);
@@ -85,12 +85,12 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public override bool Equals(object? obj) => obj is Range<T, TKey> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
 		public override int GetHashCode() =>
 			HashCode.Combine(
@@ -102,7 +102,7 @@ namespace CodeJam.Ranges
 		#region ToString
 		/// <summary>Returns string representation of the range.</summary>
 		/// <returns>The string representation of the range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public override string ToString() =>
 			KeyPrefixString + _key + KeySeparatorString +
 				(IsEmpty ? EmptyString : _from + SeparatorString + _to);
@@ -113,7 +113,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="format">The format string.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
@@ -122,7 +122,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
 
 		/// <summary>
@@ -132,7 +132,7 @@ namespace CodeJam.Ranges
 		/// <param name="format">The format string.</param>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		public string ToString(string? format, IFormatProvider? formatProvider) =>
 			KeyPrefixString + _formattableCallback(_key, null, formatProvider) + KeySeparatorString +

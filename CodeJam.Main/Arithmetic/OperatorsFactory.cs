@@ -69,7 +69,7 @@ namespace CodeJam.Arithmetic
 			[InstantHandle] Func<Exception, Exception> exceptionFactory,
 			string methodName,
 			Type resultType,
-			[ItemNotNull] params ParameterExpression[] args)
+			params ParameterExpression[] args)
 		{
 			var expressionArgs = args.ConvertAll(PrepareOperand);
 
@@ -263,7 +263,7 @@ namespace CodeJam.Arithmetic
 
 			return Comparer<T>.Default.Compare
 #if LESSTHAN_NET50 || TARGETS_NET || TARGETS_NETSTANDARD
-			 ! // No NRT markup in targets early than NET Core 3, incompatible [AllowNull] markup in NET Core 3
+				! // No NRT markup in targets early than NET Core 3, incompatible [AllowNull] markup in NET Core 3
 #endif
 				;
 		}
@@ -439,7 +439,7 @@ namespace CodeJam.Arithmetic
 				ExpressionType.LessThan => (a, b) => comparison(a, b) < 0,
 				ExpressionType.LessThanOrEqual => (a, b) => comparison(a, b) <= 0,
 				_ => throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType)
-			};
+				};
 		}
 		#endregion
 

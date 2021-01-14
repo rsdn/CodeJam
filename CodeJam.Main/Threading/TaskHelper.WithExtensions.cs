@@ -8,11 +8,12 @@ using TaskEx = System.Threading.Tasks.Task;
 #else
 using TaskEx = System.Threading.Tasks.TaskEx;
 #endif
-
 #if NET46_OR_GREATER || NETSTANDARD13_OR_GREATER || TARGETS_NETCOREAPP
 using TaskExEx = System.Threading.Tasks.Task;
+
 #else
 using TaskExEx = System.Threading.Tasks.TaskExEx;
+
 #endif
 
 namespace CodeJam.Threading
@@ -29,7 +30,7 @@ namespace CodeJam.Threading
 		/// <param name="timeout">The timeout.</param>
 		/// <param name="cancellation">The cancellation.</param>
 		public static Task WithTimeout(
-			[NotNull] this Task task,
+			this Task task,
 			TimeSpan timeout,
 			CancellationToken cancellation = default) =>
 				task.WithTimeout(
@@ -44,7 +45,7 @@ namespace CodeJam.Threading
 		/// <param name="cancellation">The cancellation.</param>
 		/// <remarks>The method is not called WaitAsync and WithCancellation prevent ambiguity with other libraries.</remarks>
 		public static Task WaitTaskAsync(
-			[NotNull] this Task task,
+			this Task task,
 			CancellationToken cancellation)
 		{
 			Code.NotNull(task, nameof(task));
@@ -59,9 +60,9 @@ namespace CodeJam.Threading
 		/// <param name="timeoutCallback">Callback that will be called on timeout.</param>
 		/// <param name="cancellation">The cancellation.</param>
 		public static Task WithTimeout(
-			[NotNull] this Task task,
+			this Task task,
 			TimeSpan timeout,
-			[NotNull, InstantHandle] Func<CancellationToken, Task> timeoutCallback,
+			[InstantHandle] Func<CancellationToken, Task> timeoutCallback,
 			CancellationToken cancellation = default)
 		{
 			Code.NotNull(task, nameof(task));
@@ -79,7 +80,7 @@ namespace CodeJam.Threading
 		/// <param name="timeout">The timeout.</param>
 		/// <param name="cancellation">The cancellation.</param>
 		public static Task<TResult> WithTimeout<TResult>(
-			[NotNull] this Task<TResult> task,
+			this Task<TResult> task,
 			TimeSpan timeout,
 			CancellationToken cancellation = default) =>
 				task.WithTimeout(
@@ -94,7 +95,7 @@ namespace CodeJam.Threading
 		/// <param name="cancellation">The cancellation.</param>
 		/// <remarks>The method is not called WaitAsync and WithCancellation prevent ambiguity with other libraries.</remarks>
 		public static Task<TResult> WaitTaskAsync<TResult>(
-			[NotNull] this Task<TResult> task,
+			this Task<TResult> task,
 			CancellationToken cancellation)
 		{
 			Code.NotNull(task, nameof(task));
@@ -110,9 +111,9 @@ namespace CodeJam.Threading
 		/// <param name="timeoutCallback">Callback that will be called on timeout.</param>
 		/// <param name="cancellation">The cancellation.</param>
 		public static Task<TResult> WithTimeout<TResult>(
-			[NotNull] this Task<TResult> task,
+			this Task<TResult> task,
 			TimeSpan timeout,
-			[NotNull, InstantHandle] Func<CancellationToken, Task<TResult>> timeoutCallback,
+			[InstantHandle] Func<CancellationToken, Task<TResult>> timeoutCallback,
 			CancellationToken cancellation = default)
 		{
 			Code.NotNull(task, nameof(task));
@@ -131,7 +132,7 @@ namespace CodeJam.Threading
 		/// <param name="timeout">The timeout.</param>
 		/// <param name="cancellation">The cancellation.</param>
 		public static Task RunWithTimeout(
-			[NotNull, InstantHandle] Func<CancellationToken, Task> taskFactory,
+			[InstantHandle] Func<CancellationToken, Task> taskFactory,
 			TimeSpan timeout,
 			CancellationToken cancellation = default) =>
 				RunWithTimeout(
@@ -150,9 +151,9 @@ namespace CodeJam.Threading
 		/// <param name="timeoutCallback">Callback that will be called on timeout. Accepts <paramref name="cancellation"/>.</param>
 		/// <param name="cancellation">The cancellation.</param>
 		public static Task RunWithTimeout(
-			[NotNull, InstantHandle] Func<CancellationToken, Task> taskFactory,
+			[InstantHandle] Func<CancellationToken, Task> taskFactory,
 			TimeSpan timeout,
-			[NotNull, InstantHandle] Func<CancellationToken, Task> timeoutCallback,
+			[InstantHandle] Func<CancellationToken, Task> timeoutCallback,
 			CancellationToken cancellation = default)
 		{
 			/*
@@ -204,7 +205,7 @@ namespace CodeJam.Threading
 		/// <param name="timeout">The timeout.</param>
 		/// <param name="cancellation">The cancellation.</param>
 		public static Task<TResult> RunWithTimeout<TResult>(
-			[NotNull, InstantHandle] Func<CancellationToken, Task<TResult>> taskFactory,
+			[InstantHandle] Func<CancellationToken, Task<TResult>> taskFactory,
 			TimeSpan timeout,
 			CancellationToken cancellation = default) =>
 				RunWithTimeout(
@@ -224,9 +225,9 @@ namespace CodeJam.Threading
 		/// <param name="timeoutCallback">Callback that will be called on timeout. Accepts <paramref name="cancellation"/>.</param>
 		/// <param name="cancellation">The cancellation.</param>
 		public static Task<TResult> RunWithTimeout<TResult>(
-			[NotNull, InstantHandle] Func<CancellationToken, Task<TResult>> taskFactory,
+			[InstantHandle] Func<CancellationToken, Task<TResult>> taskFactory,
 			TimeSpan timeout,
-			[NotNull, InstantHandle] Func<CancellationToken, Task<TResult>> timeoutCallback,
+			[InstantHandle] Func<CancellationToken, Task<TResult>> timeoutCallback,
 			CancellationToken cancellation = default)
 		{
 			/*
@@ -269,11 +270,10 @@ namespace CodeJam.Threading
 		}
 
 		#region Internal implementation
-
 		private static async Task WithTimeoutCore(
-			[NotNull] Task task,
+			Task task,
 			TimeSpan timeout,
-			[NotNull, InstantHandle] Func<CancellationToken, Task> timeoutCallback,
+			[InstantHandle] Func<CancellationToken, Task> timeoutCallback,
 			CancellationToken cancellation)
 		{
 			var timeoutTask = TaskEx.Delay(timeout, cancellation);
@@ -293,9 +293,9 @@ namespace CodeJam.Threading
 		}
 
 		private static async Task<TResult> WithTimeoutCore<TResult>(
-			[NotNull] Task<TResult> task,
+			Task<TResult> task,
 			TimeSpan timeout,
-			[NotNull, InstantHandle] Func<CancellationToken, Task<TResult>> timeoutCallback,
+			[InstantHandle] Func<CancellationToken, Task<TResult>> timeoutCallback,
 			CancellationToken cancellation)
 		{
 			var timeoutTask = TaskEx.Delay(timeout, cancellation);
@@ -311,7 +311,7 @@ namespace CodeJam.Threading
 			return await task.ConfigureAwait(false);
 		}
 
-		private static Task WaitTaskAsyncCore([NotNull] Task task, CancellationToken cancellation)
+		private static Task WaitTaskAsyncCore(Task task, CancellationToken cancellation)
 		{
 			if (!cancellation.CanBeCanceled)
 				return task;
@@ -322,7 +322,7 @@ namespace CodeJam.Threading
 			return WaitTaskAsyncImplCore(task, cancellation);
 		}
 
-		private static Task<TResult> WaitTaskAsyncCore<TResult>([NotNull] Task<TResult> task, CancellationToken cancellation)
+		private static Task<TResult> WaitTaskAsyncCore<TResult>(Task<TResult> task, CancellationToken cancellation)
 		{
 			if (!cancellation.CanBeCanceled)
 				return task;
@@ -333,7 +333,7 @@ namespace CodeJam.Threading
 			return WaitTaskAsyncImplCore(task, cancellation);
 		}
 
-		private static async Task WaitTaskAsyncImplCore([NotNull] Task task, CancellationToken cancellation)
+		private static async Task WaitTaskAsyncImplCore(Task task, CancellationToken cancellation)
 		{
 			var tcs = new TaskCompletionSource<object>();
 			using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
@@ -343,7 +343,7 @@ namespace CodeJam.Threading
 		}
 
 		private static async Task<TResult> WaitTaskAsyncImplCore<TResult>(
-			[NotNull] Task<TResult> task, CancellationToken cancellation)
+			Task<TResult> task, CancellationToken cancellation)
 		{
 			var tcs = new TaskCompletionSource<TResult>();
 			using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
@@ -351,7 +351,6 @@ namespace CodeJam.Threading
 				return await (await TaskEx.WhenAny(task, tcs.Task).ConfigureAwait(false)).ConfigureAwait(false);
 			}
 		}
-
 		#endregion
 	}
 }

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Security;
-
 #if LESSTHAN_NET50
 using System.Runtime.ConstrainedExecution;
 #endif
-
 using JetBrains.Annotations;
 
 namespace CodeJam
@@ -22,7 +20,7 @@ namespace CodeJam
 		/// Default constructor, allocates memory with the size of <typeparamref name="T"/>
 		/// </summary>
 #if LESSTHAN_NET50
-		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
+			[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
 #endif
 		public HGlobalScope() : this(_size) { }
 
@@ -31,11 +29,9 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 #if LESSTHAN_NET50
-		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
+			[ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
 #endif
-		public HGlobalScope([NonNegativeValue] int cb) : base(CheckSize(cb))
-		{
-		}
+		public HGlobalScope([NonNegativeValue] int cb) : base(CheckSize(cb)) { }
 
 		/// <summary>
 		/// Value

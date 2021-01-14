@@ -23,7 +23,6 @@ namespace CodeJam.Arithmetic
 		/// <summary>
 		/// Gets a comparison function.
 		/// </summary>
-		[NotNull]
 		public static Func<T?, T?, int> Compare => CompareHelper.Value;
 
 		/// <summary>
@@ -31,13 +30,11 @@ namespace CodeJam.Arithmetic
 		/// </summary>
 		private static class CompareHelper
 		{
-			[NotNull, ItemNotNull]
 			private static readonly Lazy<Func<T?, T?, int>> _value = new(OperatorsFactory.Comparison<T>, _lazyMode);
 
 			/// <summary>
 			/// Gets a comparison function.
 			/// </summary>
-			[NotNull]
 			public static Func<T?, T?, int> Value => _value.Value;
 		}
 		#endregion
@@ -59,7 +56,6 @@ namespace CodeJam.Arithmetic
 		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
 		private static class NaNHelper
 		{
-			[NotNull, ItemNotNull]
 			private static readonly Lazy<T> _value = new(OperatorsFactory.GetNaN<T>, _lazyMode);
 
 			/// <summary>
@@ -70,7 +66,6 @@ namespace CodeJam.Arithmetic
 			/// <summary>
 			/// Gets a value that is not a number (NaN).
 			/// </summary>
-			[NotNull]
 			public static T NaN => _value.Value;
 		}
 		#endregion
@@ -92,7 +87,6 @@ namespace CodeJam.Arithmetic
 		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
 		private static class NegativeInfinityHelper
 		{
-			[NotNull, ItemNotNull]
 			private static readonly Lazy<T> _value = new(OperatorsFactory.GetNegativeInfinity<T>, _lazyMode);
 
 			/// <summary>
@@ -103,7 +97,7 @@ namespace CodeJam.Arithmetic
 			/// <summary>
 			/// Gets negative infinity.
 			/// </summary>
-			[NotNull] public static T NegativeInfinity => _value.Value;
+			public static T NegativeInfinity => _value.Value;
 		}
 		#endregion
 
@@ -124,7 +118,6 @@ namespace CodeJam.Arithmetic
 		[SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
 		private static class PositiveInfinityHelper
 		{
-			[NotNull, ItemNotNull]
 			private static readonly Lazy<T> _value = new(OperatorsFactory.GetPositiveInfinity<T>, _lazyMode);
 
 			/// <summary>
@@ -135,13 +128,12 @@ namespace CodeJam.Arithmetic
 			/// <summary>
 			/// Gets positive infinity.
 			/// </summary>
-			[NotNull] public static T PositiveInfinity => _value.Value;
+			public static T PositiveInfinity => _value.Value;
 		}
 		#endregion
 
 		#region Custom impl for _onesComplement (FW 3.5 targeting)
 		/// <summary>Gets a ones complement operation function, such as (~a) in C#.</summary>
-		[NotNull]
 		public static Func<T, T> OnesComplement => OnesComplementHelper.LazyValue.Value;
 
 		/// <summary>
@@ -152,7 +144,6 @@ namespace CodeJam.Arithmetic
 			/// <summary>
 			/// The operator factory.
 			/// </summary>
-			[NotNull, ItemNotNull]
 			public static readonly Lazy<Func<T, T>> LazyValue = new(CreateValue, _lazyMode);
 
 			/// <summary>
@@ -161,7 +152,6 @@ namespace CodeJam.Arithmetic
 			/// <returns>
 			/// The operator function.
 			/// </returns>
-			[NotNull]
 			private static Func<T, T> CreateValue()
 			{
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP

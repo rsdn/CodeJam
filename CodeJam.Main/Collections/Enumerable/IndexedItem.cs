@@ -108,7 +108,7 @@ namespace CodeJam.Collections
 		/// <param name="other">An object to compare with this object.</param>
 		public bool Equals(IndexedItem<T> other) =>
 			EqualityComparer<T>.Default.Equals(Item, other.Item) &&
-			Index == other.Index;
+				Index == other.Index;
 
 		/// <summary>Indicates whether this instance and a specified object are equal.</summary>
 		/// <returns>

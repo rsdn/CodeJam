@@ -13,7 +13,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		private OptionNode([JetBrains.Annotations.NotNull] string text, [NonNegativeValue] int position, [NonNegativeValue] int length, OptionType type)
+		private OptionNode(string text, [NonNegativeValue] int position, [NonNegativeValue] int length, OptionType type)
 			: base(text, position, length)
 		{
 			Type = type;
@@ -23,7 +23,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			[JetBrains.Annotations.NotNull] string text,
+			string text,
 			[NonNegativeValue] int position,
 			[NonNegativeValue] int length)
 			: this(text, position, length, OptionType.Valueless)
@@ -33,7 +33,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			[JetBrains.Annotations.NotNull] string text,
+			string text,
 			[NonNegativeValue] int position,
 			[NonNegativeValue] int length,
 			bool boolValue)
@@ -46,10 +46,10 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionNode(
-			[JetBrains.Annotations.NotNull] string text,
+			string text,
 			[NonNegativeValue] int position,
 			[NonNegativeValue] int length,
-			[JetBrains.Annotations.NotNull] QuotedOrNonquotedValueNode value)
+			QuotedOrNonquotedValueNode value)
 			: this(text, position, length, OptionType.Value)
 		{
 			Value = value;

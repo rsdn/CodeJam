@@ -22,7 +22,7 @@ namespace CodeJam.Expressions
 				func(item);
 		}
 
-		private static void VisitInternal<T>([JetBrains.Annotations.NotNull] IEnumerable<T> source, [JetBrains.Annotations.NotNull, InstantHandle] Action<Expression> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, [InstantHandle] Action<Expression> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -330,13 +330,13 @@ namespace CodeJam.Expressions
 			func(expr);
 		}
 
-		private static void VisitInternal<T>([JetBrains.Annotations.NotNull] IEnumerable<T> source, [JetBrains.Annotations.NotNull, InstantHandle] Func<T, bool> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, [InstantHandle] Func<T, bool> func)
 		{
 			foreach (var item in source)
 				func(item);
 		}
 
-		private static void VisitInternal<T>([JetBrains.Annotations.NotNull] IEnumerable<T> source, [JetBrains.Annotations.NotNull, InstantHandle] Func<Expression, bool> func)
+		private static void VisitInternal<T>(IEnumerable<T> source, [InstantHandle] Func<Expression, bool> func)
 			where T : Expression
 		{
 			foreach (var item in source)
@@ -676,7 +676,7 @@ namespace CodeJam.Expressions
 		/// <param name="expr"><see cref="Expression"/> to VisitInternal.</param>
 		/// <param name="exprToFind">Expression to find.</param>
 		/// <returns>Found expression or null.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Expression? Find(this Expression? expr, Expression exprToFind)
 		{
 			Code.NotNull(exprToFind, nameof(exprToFind));
@@ -690,7 +690,7 @@ namespace CodeJam.Expressions
 		/// <param name="expr"><see cref="Expression"/> to VisitInternal.</param>
 		/// <param name="func">Find function. Return true if expression is found.</param>
 		/// <returns>Found expression or null.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Expression? Find(this Expression? expr, Func<Expression, bool> func)
 		{
 			Code.NotNull(func, nameof(func));
@@ -838,7 +838,7 @@ namespace CodeJam.Expressions
 								p => FindInternal(p.Arguments, func)),
 							MemberBindingType.MemberBinding => FindInternal(((MemberMemberBinding)b).Bindings, Func),
 							_ => null
-						};
+							};
 
 					var e = (MemberInitExpression)expr;
 
@@ -953,9 +953,9 @@ namespace CodeJam.Expressions
 		/// <param name="lambda">Original lambda.</param>
 		/// <param name="exprToReplaceParameter">An expression to replace lambda parameter.</param>
 		/// <returns>Modified body.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure][JetBrains.Annotations.NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Expression ReplaceParameters(
-			[JetBrains.Annotations.NotNull] this LambdaExpression lambda, [JetBrains.Annotations.NotNull] Expression exprToReplaceParameter)
+			this LambdaExpression lambda, Expression exprToReplaceParameter)
 		{
 			Code.NotNull(lambda, nameof(lambda));
 			Code.NotNull(exprToReplaceParameter, nameof(exprToReplaceParameter));
@@ -972,10 +972,9 @@ namespace CodeJam.Expressions
 		/// <param name="lambda">Original lambda.</param>
 		/// <param name="exprToReplaceParameter">Expressions to replace lambda parameters.</param>
 		/// <returns>Modified body.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[JetBrains.Annotations.NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Expression ReplaceParameters(
-			[JetBrains.Annotations.NotNull] this LambdaExpression lambda, [JetBrains.Annotations.NotNull] params Expression[] exprToReplaceParameter)
+			this LambdaExpression lambda, params Expression[] exprToReplaceParameter)
 		{
 			Code.NotNull(lambda, nameof(lambda));
 			Code.NotNull(exprToReplaceParameter, nameof(exprToReplaceParameter));
@@ -993,8 +992,7 @@ namespace CodeJam.Expressions
 				});
 		}
 
-		[JetBrains.Annotations.NotNull]
-		private static IEnumerable<T> TransformInternal<T>([JetBrains.Annotations.NotNull] ICollection<T> source, [JetBrains.Annotations.NotNull, InstantHandle] Func<T, T> func)
+		private static IEnumerable<T> TransformInternal<T>(ICollection<T> source, [InstantHandle] Func<T, T> func)
 			where T : class
 		{
 			var modified = false;
@@ -1010,8 +1008,8 @@ namespace CodeJam.Expressions
 			return modified ? list : source;
 		}
 
-		[JetBrains.Annotations.NotNull]
-		private static IEnumerable<T> TransformInternal<T>([JetBrains.Annotations.NotNull] ICollection<T> source, [JetBrains.Annotations.NotNull, InstantHandle] Func<Expression, Expression> func)
+		private static IEnumerable<T> TransformInternal<T>(
+			ICollection<T> source, [InstantHandle] Func<Expression, Expression> func)
 			where T : Expression
 		{
 			var modified = false;
@@ -1034,9 +1032,9 @@ namespace CodeJam.Expressions
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		[return:NotNullIfNotNull("expr")]
+		[return: NotNullIfNotNull("expr")]
 		public static T? Transform<T>(this T? expr, Func<Expression, Expression> func)
 			where T : LambdaExpression
 		{
@@ -1051,9 +1049,9 @@ namespace CodeJam.Expressions
 		/// <param name="expr">Expression to transform.</param>
 		/// <param name="func">Transform function.</param>
 		/// <returns>Modified expression.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		[return:NotNullIfNotNull("expr")]
+		[return: NotNullIfNotNull("expr")]
 		public static Expression? Transform(this Expression? expr, [InstantHandle] Func<Expression, Expression> func)
 		{
 			Code.NotNull(func, nameof(func));
@@ -1062,7 +1060,7 @@ namespace CodeJam.Expressions
 		}
 
 		[ContractAnnotation("expr: null => null; expr: notnull => notnull")]
-		[return:NotNullIfNotNull("expr")]
+		[return: NotNullIfNotNull("expr")]
 		private static Expression? TransformInternal(this Expression? expr, [InstantHandle] Func<Expression, Expression> func)
 		{
 			if (expr == null)
@@ -1217,11 +1215,13 @@ namespace CodeJam.Expressions
 							case MemberBindingType.ListBinding:
 							{
 								var ml = (MemberListBinding)b;
-								return ml.Update(TransformInternal(ml.Initializers, p =>
-								{
-									var args = TransformInternal(p.Arguments, func);
-									return !ReferenceEquals(args, p.Arguments) ? Expression.ElementInit(p.AddMethod, args) : p;
-								}));
+								return ml.Update(
+									TransformInternal(
+										ml.Initializers, p =>
+										{
+											var args = TransformInternal(p.Arguments, func);
+											return !ReferenceEquals(args, p.Arguments) ? Expression.ElementInit(p.AddMethod, args) : p;
+										}));
 							}
 
 							case MemberBindingType.MemberBinding:
@@ -1354,8 +1354,7 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expression">Expression to get DebugView.</param>
 		/// <returns>DebugView value.</returns>
-		[JetBrains.Annotations.NotNull]
-		public static string GetDebugView([JetBrains.Annotations.NotNull] this Expression expression)
+		public static string GetDebugView(this Expression expression)
 		{
 			Code.NotNull(expression, nameof(expression));
 

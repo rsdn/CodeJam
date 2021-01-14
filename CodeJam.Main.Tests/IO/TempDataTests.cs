@@ -140,7 +140,6 @@ namespace CodeJam.IO
 
 					Assert.DoesNotThrow(() => dir.Dispose());
 					Assert.AreEqual(disposeCallCount, 2);
-
 				}
 				Assert.AreEqual(disposeCallCount, 2);
 				Assert.IsFalse(Directory.Exists(dirPath), "Directory should NOT exist");
@@ -314,6 +313,7 @@ namespace CodeJam.IO
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
 			Directory.Delete(tempPath);
 		}
+
 		[Test]
 		public void TestDirectorySpecificPathSubDirectory()
 		{
@@ -428,8 +428,7 @@ namespace CodeJam.IO
 				Assert.IsNotNull(file.Info, "Info is null");
 				Assert.IsFalse(file.Info.Exists, "File should not exist");
 
-				using (File.Create(filePath))
-				{ }
+				using (File.Create(filePath)) { }
 				file.Info.Refresh();
 				Assert.IsTrue(file.Info.Exists, "File should exist");
 			}
@@ -448,8 +447,7 @@ namespace CodeJam.IO
 				Assert.IsNotNull(file.Info, "Info is null");
 				Assert.IsFalse(file.Info.Exists, "File should not exist");
 
-				using (File.Create(filePath))
-				{ }
+				using (File.Create(filePath)) { }
 				file.Info.Refresh();
 				Assert.IsTrue(file.Info.Exists, "File should exist");
 			}

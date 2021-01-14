@@ -47,7 +47,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Instance of <see cref="ValueOption"/>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static implicit operator ValueOption<T>(T value) => new(value);
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="option"></param>
 		/// <returns>Value of <paramref name="option"/></returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static explicit operator T(ValueOption<T> option) => option.Value;
 
 		/// <summary>
@@ -98,9 +98,9 @@ namespace CodeJam
 		public override int GetHashCode() =>
 			HashCode.Combine(
 				HasValue.GetHashCode(),
-				 _value != null
-					 ? EqualityComparer<T>.Default.GetHashCode(_value)
-					 : 0);
+				_value != null
+					? EqualityComparer<T>.Default.GetHashCode(_value)
+					: 0);
 		#endregion
 
 		/// <summary>Returns the fully qualified type name of this instance.</summary>

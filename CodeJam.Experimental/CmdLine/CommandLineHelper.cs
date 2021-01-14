@@ -14,8 +14,7 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Parse command line.
 		/// </summary>
-		[NotNull]
-		public static CmdLineNode ParseCommandLine([NotNull] string source) => CommandLineParser.ParseCommandLine(source);
+		public static CmdLineNode ParseCommandLine(string source) => CommandLineParser.ParseCommandLine(source);
 
 		/// <summary>
 		/// Check command line semantics.
@@ -33,9 +32,9 @@ namespace CodeJam.CmdLine
 		/// Print usage.
 		/// </summary>
 		public static void PrintUsage(
-			[NotNull] this CmdLineRules rules,
-			[NotNull] TextWriter writer,
-			[NotNull] PrintUsageSettings settings)
+			this CmdLineRules rules,
+			TextWriter writer,
+			PrintUsageSettings settings)
 		{
 			Code.NotNull(rules, nameof(rules));
 			Code.NotNull(writer, nameof(writer));
@@ -48,8 +47,8 @@ namespace CodeJam.CmdLine
 		/// Print usage.
 		/// </summary>
 		public static string PrintUsage(
-			[NotNull] this CmdLineRules rules,
-			[NotNull] PrintUsageSettings settings)
+			this CmdLineRules rules,
+			PrintUsageSettings settings)
 		{
 			var sw = new StringWriter();
 			PrintUsage(rules, sw, settings);
@@ -60,8 +59,8 @@ namespace CodeJam.CmdLine
 		/// Print usage with default settings.
 		/// </summary>
 		public static void PrintUsage(
-			[NotNull] this CmdLineRules rules,
-			[NotNull] TextWriter writer) =>
+			this CmdLineRules rules,
+			TextWriter writer) =>
 				PrintUsage(rules, writer, new PrintUsageSettings());
 	}
 }

@@ -13,11 +13,10 @@ namespace CodeJam.Parsing
 		private const int _eof = -1;
 		private const int _eol = -2;
 
-		[NotNull]
 		private readonly TextReader _reader;
 		private readonly int _code;
 
-		private CharReader([NotNull] TextReader reader, int code)
+		private CharReader(TextReader reader, int code)
 		{
 			Code.NotNull(reader, nameof(reader));
 
@@ -33,7 +32,7 @@ namespace CodeJam.Parsing
 
 		public bool IsWhitespace => Char.IsWhiteSpace();
 
-		private static int Read([NotNull] TextReader reader)
+		private static int Read(TextReader reader)
 		{
 			var code = reader.Read();
 			if (code == '\r' || code == '\n')
@@ -45,7 +44,7 @@ namespace CodeJam.Parsing
 			return code;
 		}
 
-		public static CharReader Create([NotNull] TextReader reader) => new(reader, Read(reader));
+		public static CharReader Create(TextReader reader) => new(reader, Read(reader));
 
 		public CharReader Next() => Create(_reader);
 

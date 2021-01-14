@@ -114,7 +114,7 @@
 			: pattern;
 
 		pattern = replaceInfo.WholeLineMode
-			? @".*" +  pattern + @".*[\r\n]+"
+			? @".*" + pattern + @".*[\r\n]+"
 			: pattern;
 
 		return pattern;

@@ -1,9 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
-
 #if LESSTHAN_NET50
 using System.Runtime.ConstrainedExecution;
 #endif
-
 using JetBrains.Annotations;
 
 using static CodeJam.Targeting.MethodImplOptionsEx;
@@ -26,7 +24,7 @@ namespace CodeJam
 		/// true if all count bytes of the <paramref name="p1"/> and <paramref name="p2"/> are equal; otherwise, false.
 		/// </returns>
 #if LESSTHAN_NET50
-		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+			[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 #endif
 		public static bool Compare(byte* p1, byte* p2, [NonNegativeValue] int count) =>
 			CompareInline(p1, p2, count);
@@ -66,8 +64,7 @@ namespace CodeJam
 					bp1 += 32;
 					bp2 += 32;
 					len -= 32;
-				}
-				while (len >= 32);
+				} while (len >= 32);
 			}
 
 			if ((count & 16) != 0)

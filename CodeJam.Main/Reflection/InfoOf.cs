@@ -23,8 +23,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static MemberInfo? Member<TValue>([NotNull] Expression<Func<TValue>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MemberInfo? Member<TValue>(Expression<Func<TValue>> expression) =>
 			expression.GetMemberInfo();
 
 		/// <summary>
@@ -35,8 +35,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static MemberInfo? Member<T>([NotNull] Expression<Func<T, object>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MemberInfo? Member<T>(Expression<Func<T, object>> expression) =>
 			expression.GetMemberInfo();
 
 		/// <summary>
@@ -48,8 +48,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static MemberInfo? Member<T, TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MemberInfo? Member<T, TValue>(Expression<Func<T, TValue>> expression) =>
 			expression.GetMemberInfo();
 		#endregion
 
@@ -62,8 +62,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static PropertyInfo Property<TValue>([NotNull] Expression<Func<TValue>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static PropertyInfo Property<TValue>(Expression<Func<TValue>> expression) =>
 			expression.GetProperty();
 
 		/// <summary>
@@ -74,8 +74,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static PropertyInfo Property<T>([NotNull] Expression<Func<T, object>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static PropertyInfo Property<T>(Expression<Func<T, object>> expression) =>
 			expression.GetProperty();
 
 		/// <summary>
@@ -87,8 +87,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static PropertyInfo Property<T, TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static PropertyInfo Property<T, TValue>(Expression<Func<T, TValue>> expression) =>
 			expression.GetProperty();
 		#endregion
 
@@ -101,8 +101,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static FieldInfo Field<TValue>([NotNull] Expression<Func<TValue>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static FieldInfo Field<TValue>(Expression<Func<TValue>> expression) =>
 			expression.GetField();
 
 		/// <summary>
@@ -113,8 +113,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static FieldInfo Field<T>([NotNull] Expression<Func<T, object>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static FieldInfo Field<T>(Expression<Func<T, object>> expression) =>
 			expression.GetField();
 
 		/// <summary>
@@ -126,8 +126,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static FieldInfo Field<T, TValue>([NotNull] Expression<Func<T, TValue>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static FieldInfo Field<T, TValue>(Expression<Func<T, TValue>> expression) =>
 			expression.GetField();
 		#endregion
 
@@ -139,7 +139,7 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static ConstructorInfo? Constructor<T>() where T : new() =>
 			Expression.New(typeof(T)).Constructor;
 
@@ -151,8 +151,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static ConstructorInfo? Constructor<T>([NotNull] Expression<Func<T>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static ConstructorInfo? Constructor<T>(Expression<Func<T>> expression) =>
 			expression.GetConstructor();
 		#endregion
 
@@ -165,8 +165,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static MethodInfo Method<T>([NotNull] Expression<Func<T>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MethodInfo Method<T>(Expression<Func<T>> expression) =>
 			expression.GetMethod();
 
 		/// <summary>
@@ -177,8 +177,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static MethodInfo Method<T>([NotNull] Expression<Func<T, object>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MethodInfo Method<T>(Expression<Func<T, object>> expression) =>
 			expression.GetMethod();
 
 		/// <summary>
@@ -190,8 +190,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static MethodInfo Method<T, TResult>([NotNull] Expression<Func<T, TResult>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MethodInfo Method<T, TResult>(Expression<Func<T, TResult>> expression) =>
 			expression.GetMethod();
 
 		/// <summary>
@@ -201,8 +201,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static MethodInfo Method([NotNull] Expression<Action> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MethodInfo Method(Expression<Action> expression) =>
 			expression.GetMethod();
 
 		/// <summary>
@@ -213,8 +213,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static MethodInfo Method<T>([NotNull] Expression<Action<T>> expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MethodInfo Method<T>(Expression<Action<T>> expression) =>
 			expression.GetMethod();
 		#endregion
 	}

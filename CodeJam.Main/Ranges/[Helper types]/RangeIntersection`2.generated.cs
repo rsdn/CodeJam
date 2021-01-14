@@ -29,7 +29,7 @@ namespace CodeJam.Ranges
 	[PublicAPI]
 	public struct RangeIntersection<T, TKey> : IFormattable
 	{
-		[NotNull] private static readonly IReadOnlyList<Range<T, TKey>> _emptyRanges = Array<Range<T, TKey>>.Empty.AsReadOnly();
+		private static readonly IReadOnlyList<Range<T, TKey>> _emptyRanges = Array<Range<T, TKey>>.Empty.AsReadOnly();
 
 		private readonly IReadOnlyList<Range<T, TKey>> _ranges;
 
@@ -42,7 +42,7 @@ namespace CodeJam.Ranges
 		#region T4-dont-replace
 			Range<T> intersectionRange,
 		#endregion
-			[NotNull] Range<T, TKey>[] ranges)
+			Range<T, TKey>[] ranges)
 		{
 			DebugCode.BugIf(
 				ranges.Any(r => !r.HasIntersection(intersectionRange)),
@@ -61,8 +61,7 @@ namespace CodeJam.Ranges
 
 		/// <summary>The ranges in the intersection, if any.</summary>
 		/// <value>The ranges in the intersection, if any.</value>
-		[NotNull]
-		public IReadOnlyList<Range<T, TKey>> Ranges => _ranges ?? _emptyRanges;
+				public IReadOnlyList<Range<T, TKey>> Ranges => _ranges ?? _emptyRanges;
 
 		/// <summary>Gets a value indicating whether the intersection does not contain any ranges.</summary>
 		/// <value><c>true</c> if the intersection does not contain any ranges; otherwise, <c>false</c>.</value>
@@ -97,7 +96,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="format">The format string.</param>
 		/// <returns>The string representation of the range.</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
@@ -106,7 +105,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
 
 		/// <summary>
@@ -116,7 +115,7 @@ namespace CodeJam.Ranges
 		/// <param name="format">The format string.</param>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string format, IFormatProvider formatProvider)
 		{
 			var intersectionRangePart = IntersectionRange.ToString(format, formatProvider);

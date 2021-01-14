@@ -2,9 +2,9 @@
 using System.Reflection;
 
 using CodeJam.Reflection;
-
 #if LESSTHAN_NET50 || TARGETS_NET || TARGETS_NETSTANDARD
 using CodeJam.Targeting;
+
 #endif
 
 namespace CodeJam.Ranges
@@ -41,7 +41,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		[Obsolete(SkipsArgValidationObsolete)]
 #pragma warning disable 618 // The warning is transitive: the constant is marked as obsolete.
-		internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
+			internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
 #pragma warning restore 618
 		#endregion
 
@@ -66,7 +66,6 @@ namespace CodeJam.Ranges
 		/// <summary>Creates formattable callback for arbitrary type.</summary>
 		/// <typeparam name="T">Type of the formattable object.</typeparam>
 		/// <returns>The format callback. Returns <c>null</c> if the first arg is <c>null</c>.</returns>
-		[JetBrains.Annotations.NotNull]
 		internal static Func<T, string?, IFormatProvider?, string?> CreateFormattableCallback<T>()
 		{
 			const BindingFlags bf = BindingFlags.Static | BindingFlags.NonPublic;
@@ -101,7 +100,7 @@ namespace CodeJam.Ranges
 
 		private static string? Format<T>(T? value, string? format, IFormatProvider? formatProvider)
 			where T : IFormattable =>
-			value?.ToString(format, formatProvider);
+				value?.ToString(format, formatProvider);
 
 		private static string? FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
 			where T : struct, IFormattable =>

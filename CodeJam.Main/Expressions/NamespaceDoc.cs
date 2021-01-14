@@ -11,6 +11,5 @@ namespace CodeJam.Expressions
 	/// </summary>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	internal class NamespaceDoc
-	{}
+	internal class NamespaceDoc { }
 }

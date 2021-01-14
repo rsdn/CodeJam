@@ -28,12 +28,10 @@ namespace CodeJam.IO
 		[TestCase(@"a\t", PathKind.ValidRelativePath)]
 		[TestCase(@"a...", PathKind.ValidFileName)]
 		[TestCase(@"a.", PathKind.ValidFileName)]
-
 		[TestCase(@" a", PathKind.ValidFileName)]
 		[TestCase(@"    a", PathKind.ValidFileName)]
 		[TestCase(@"\ta", PathKind.Invalid)]
 		[TestCase(@"...a", PathKind.ValidFileName)]
-
 		[TestCase(@"a\b", PathKind.ValidRelativePath)]
 		[TestCase(@"a\b\", PathKind.ValidRelativeContainerPath)]
 		[TestCase(@"a/b", PathKind.ValidRelativePath)]

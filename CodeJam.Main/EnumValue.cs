@@ -18,9 +18,9 @@ namespace CodeJam
 		/// <param name="displayName">Display name.</param>
 		/// <param name="description">Description</param>
 		internal EnumValue(
-			[NotNull] string name,
-			[NotNull] Enum value,
-			[NotNull] FieldInfo underlyingField,
+			string name,
+			Enum value,
+			FieldInfo underlyingField,
 			string? displayName,
 			string? description)
 		{
@@ -43,13 +43,11 @@ namespace CodeJam
 		/// <summary>
 		/// Gets enum element value.
 		/// </summary>
-		[NotNull]
 		public Enum Value { get; }
 
 		/// <summary>
 		/// Gets enum underlying field.
 		/// </summary>
-		[NotNull]
 		public FieldInfo UnderlyingField { get; }
 
 		/// <summary>
@@ -57,10 +55,9 @@ namespace CodeJam
 		/// </summary>
 		public string? DisplayName { get; }
 
-
 		/// <summary>Gets enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</summary>
 		/// <returns>Enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string GetDisplayName() => DisplayName ?? Name;
 
 		/// <summary>

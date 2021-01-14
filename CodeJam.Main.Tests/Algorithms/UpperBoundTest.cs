@@ -148,7 +148,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 15.0, 0, 3, 3)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 5.0, 1, 4, 2)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 30000.0, 0, 4, 4)]
-		public void Test07WithAllParams([NotNull] double[] data, double value, int from, int to, int expected)
+		public void Test07WithAllParams(double[] data, double value, int from, int to, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -162,7 +162,7 @@ namespace CodeJam
 
 		[Test]
 		[TestCase(new double[0], 11.0, 0)]
-		public void Test08WithComparer([NotNull] double[] data, double value, int expected)
+		public void Test08WithComparer(double[] data, double value, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -179,7 +179,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 42.0, 6, 6)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 1002.0, 3, 7)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 12.0, 1, 4)]
-		public void Test09WithFrom([NotNull] double[] data, double value, int from, int expected)
+		public void Test09WithFrom(double[] data, double value, int from, int expected)
 		{
 			// comparer version
 			var list = (IList<double>)data;
@@ -203,7 +203,7 @@ namespace CodeJam
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 12.0, 4)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 3.0, 1)]
 		[TestCase(new[] { 1.0, 5, 12, 12, 123, 512, 512, 14534 }, 14534.0, 8)]
-		public void Test10WithoutParams([NotNull] double[] data, double value, int expected)
+		public void Test10WithoutParams(double[] data, double value, int expected)
 		{
 			var list = (IList<double>)data;
 			Assert.That(list.UpperBound(value, Comparer<double>.Default.Compare), Is.EqualTo(expected));

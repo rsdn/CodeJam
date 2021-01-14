@@ -17,17 +17,17 @@ namespace CodeJam.Collections
 		where TOwner : class
 		where TItem : class
 	{
-		[NotNull] private readonly Func<TItem, TOwner?> _ownerGetter;
-		[NotNull] private readonly Action<TItem, int, TOwner?> _ownerSetter;
+		private readonly Func<TItem, TOwner?> _ownerGetter;
+		private readonly Action<TItem, int, TOwner?> _ownerSetter;
 
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TOwner, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
 		/// <param name="ownerGetter">Owner getter for the item.</param>
 		/// <param name="ownerSetter">Owner setter for the item.</param>
 		public OwnedCollection(
-			[NotNull] TOwner owner,
-			[NotNull] Func<TItem, TOwner?> ownerGetter,
-			[NotNull] Action<TItem, int, TOwner?> ownerSetter) : base(owner)
+			TOwner owner,
+			Func<TItem, TOwner?> ownerGetter,
+			Action<TItem, int, TOwner?> ownerSetter) : base(owner)
 		{
 			Code.NotNull(owner, nameof(owner));
 			Code.NotNull(ownerGetter, nameof(ownerGetter));
@@ -62,21 +62,20 @@ namespace CodeJam.Collections
 		where TItem : class
 		where TKey : notnull
 	{
-		[NotNull] private readonly Func<TItem, TOwner?> _ownerGetter;
-		[NotNull] private readonly Action<TItem, int, TOwner?> _ownerSetter;
-		[NotNull] private readonly Func<TItem, TKey> _keyGetter;
+		private readonly Func<TItem, TOwner?> _ownerGetter;
+		private readonly Action<TItem, int, TOwner?> _ownerSetter;
+		private readonly Func<TItem, TKey> _keyGetter;
 
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollection{TOwner, TKey, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
-
 		/// <param name="ownerGetter">Owner getter for the item.</param>
 		/// <param name="ownerSetter">Owner setter for the item.</param>
 		/// <param name="keyGetter">Key getter for the item.</param>
 		public OwnedCollection(
-			[NotNull] TOwner owner,
-			[NotNull] Func<TItem, TOwner?> ownerGetter,
-			[NotNull] Action<TItem, int, TOwner?> ownerSetter,
-			[NotNull] Func<TItem, TKey> keyGetter) : base(owner)
+			TOwner owner,
+			Func<TItem, TOwner?> ownerGetter,
+			Action<TItem, int, TOwner?> ownerSetter,
+			Func<TItem, TKey> keyGetter) : base(owner)
 		{
 			Code.NotNull(keyGetter, nameof(keyGetter));
 			Code.NotNull(ownerGetter, nameof(ownerGetter));

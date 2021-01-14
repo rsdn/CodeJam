@@ -29,8 +29,8 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<float> list, float value) =>
 			list.EqualRange(value, 0);
 
 		/// <summary>
@@ -42,8 +42,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<float> list, float value, [NonNegativeValue] int startIndex) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<float> list, float value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -56,9 +56,9 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange(
-			[NotNull, InstantHandle] this IList<float> list,
+			[InstantHandle] this IList<float> list,
 			float value,
 			[NonNegativeValue] int startIndex,
 			[NonNegativeValue] int endIndex)
@@ -101,8 +101,8 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<double> list, double value) =>
 			list.EqualRange(value, 0);
 
 		/// <summary>
@@ -114,8 +114,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<double> list, double value, [NonNegativeValue] int startIndex) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<double> list, double value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -128,9 +128,9 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange(
-			[NotNull, InstantHandle] this IList<double> list,
+			[InstantHandle] this IList<double> list,
 			double value,
 			[NonNegativeValue] int startIndex,
 			[NonNegativeValue] int endIndex)
@@ -173,8 +173,8 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<TimeSpan> list, TimeSpan value) =>
 			list.EqualRange(value, 0);
 
 		/// <summary>
@@ -186,8 +186,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<TimeSpan> list, TimeSpan value, [NonNegativeValue] int startIndex) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<TimeSpan> list, TimeSpan value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -200,9 +200,9 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange(
-			[NotNull, InstantHandle] this IList<TimeSpan> list,
+			[InstantHandle] this IList<TimeSpan> list,
 			TimeSpan value,
 			[NonNegativeValue] int startIndex,
 			[NonNegativeValue] int endIndex)
@@ -245,8 +245,8 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<DateTime> list, DateTime value) =>
 			list.EqualRange(value, 0);
 
 		/// <summary>
@@ -258,8 +258,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTime> list, DateTime value, [NonNegativeValue] int startIndex) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<DateTime> list, DateTime value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -272,9 +272,9 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange(
-			[NotNull, InstantHandle] this IList<DateTime> list,
+			[InstantHandle] this IList<DateTime> list,
 			DateTime value,
 			[NonNegativeValue] int startIndex,
 			[NonNegativeValue] int endIndex)
@@ -317,8 +317,8 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value) =>
 			list.EqualRange(value, 0);
 
 		/// <summary>
@@ -330,8 +330,8 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Range<int> EqualRange([NotNull, InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, [NonNegativeValue] int startIndex) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Range<int> EqualRange([InstantHandle] this IList<DateTimeOffset> list, DateTimeOffset value, [NonNegativeValue] int startIndex) =>
 			list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
@@ -344,9 +344,9 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange(
-			[NotNull, InstantHandle] this IList<DateTimeOffset> list,
+			[InstantHandle] this IList<DateTimeOffset> list,
 			DateTimeOffset value,
 			[NonNegativeValue] int startIndex,
 			[NonNegativeValue] int endIndex)

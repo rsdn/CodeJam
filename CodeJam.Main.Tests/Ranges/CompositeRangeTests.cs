@@ -25,7 +25,7 @@ namespace CodeJam.Ranges
 	{
 		#region Parse helpers
 		private static CompositeRange<T> ParseCompositeRange<T>(
-			[NotNull] string value,
+			string value,
 			Func<string, T> parseValueCallback)
 		{
 			if (value == RangeInternal.EmptyString)
@@ -45,7 +45,7 @@ namespace CodeJam.Ranges
 		}
 
 		private static CompositeRange<T, TKey> ParseCompositeRange<T, TKey>(
-			[NotNull] string value,
+			string value,
 			Func<string, T> parseValueCallback,
 			Func<string, TKey> parseKeyCallback)
 			where TKey : notnull
@@ -72,10 +72,10 @@ namespace CodeJam.Ranges
 		public static Range<int?> ParseRangeInt32(string value) =>
 			ParseRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture));
 
-		public static CompositeRange<double?> ParseCompositeRangeDouble([NotNull] string value) =>
+		public static CompositeRange<double?> ParseCompositeRangeDouble(string value) =>
 			ParseCompositeRange(value, s => (double?)double.Parse(s, CultureInfo.InvariantCulture));
 
-		public static CompositeRange<int?, string> ParseCompositeKeyedRangeInt32([NotNull] string value) =>
+		public static CompositeRange<int?, string> ParseCompositeKeyedRangeInt32(string value) =>
 			ParseCompositeRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture), s => s.IsNullOrEmpty() ? null! : s);
 		#endregion
 
@@ -135,7 +135,7 @@ namespace CodeJam.Ranges
 			"(-∞..+∞): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); (-∞..+∞); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
 			"(-∞..+∞): { (-∞..+∞); [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }")]
 		public static void TestCompositeRangeCreate(
-			[NotNull] string ranges, string expected)
+			string ranges, string expected)
 		{
 			var rnd = TestTools.GetTestRandom();
 

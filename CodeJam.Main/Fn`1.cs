@@ -16,56 +16,47 @@ namespace CodeJam
 		/// <summary>
 		/// Gets the function that always returns <c>true</c>.
 		/// </summary>
-		[NotNull]
 		public static Func<T, bool> True => TrueValue.Value;
 
 		/// <summary>
 		/// Gets the function that returns <c>false</c>.
 		/// </summary>
-		[NotNull]
 		public static Func<T, bool> False => FalseValue.Value;
 
 		/// <summary>
 		/// Gets the function that returns <c>true</c>.
 		/// </summary>
-		[NotNull]
 		public static Predicate<T> TruePredicate => TruePredicateValue.Value;
 
 		/// <summary>
 		/// Gets the function that always returns <c>false</c>.
 		/// </summary>
-		[NotNull]
 		public static Predicate<T> FalsePredicate => FalsePredicateValue.Value;
 
 		/// <summary>
 		/// Gets the function that returns the same object which was passed as parameter.
 		/// </summary>
-		[NotNull]
 		public static Func<T, T> Self => SelfValue.Value;
 
 		/// <summary>
 		/// Gets the function that returns the same object which was passed as parameter.
 		/// </summary>
-		[NotNull]
 		public static Converter<T, T> SelfConverter => SelfConverterValue.Value;
 
 		/// <summary>
 		/// Gets the function that returns <c>true</c> if an object is <c>null</c>.
 		/// </summary>
-		[NotNull]
 		public static Func<T, bool> IsNull => IsNullValue.Value;
 
 		/// <summary>
 		/// Gets the function that returns <c>true</c> if an object is not <c>null</c>.
 		/// </summary>
-		[NotNull]
 		public static Func<T, bool> IsNotNull => IsNotNullValue.Value;
 
 		#region Inner types
 		[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 		private sealed class Methods
 		{
-			[NotNull]
 			public static readonly Methods Instance = new();
 
 			public bool GetTrue(T value) => true;
@@ -80,7 +71,6 @@ namespace CodeJam
 			/// <summary>
 			/// The function that always returns <c>true</c>.
 			/// </summary>
-			[NotNull]
 			public static readonly Func<T, bool> Value = Methods.Instance.GetTrue;
 		}
 
@@ -89,7 +79,6 @@ namespace CodeJam
 			/// <summary>
 			/// The function that always returns <c>false</c>.
 			/// </summary>
-			[NotNull]
 			public static readonly Func<T, bool> Value = Methods.Instance.GetFalse;
 		}
 
@@ -98,7 +87,6 @@ namespace CodeJam
 			/// <summary>
 			/// The function that always returns <c>true</c>.
 			/// </summary>
-			[NotNull]
 			public static readonly Predicate<T> Value = Methods.Instance.GetTrue;
 		}
 
@@ -107,7 +95,6 @@ namespace CodeJam
 			/// <summary>
 			/// The function that always returns <c>false</c>.
 			/// </summary>
-			[NotNull]
 			public static readonly Predicate<T> Value = Methods.Instance.GetFalse;
 		}
 
@@ -116,7 +103,6 @@ namespace CodeJam
 			/// <summary>
 			/// The function that returns the same object which was passed as parameter.
 			/// </summary>
-			[NotNull]
 			public static readonly Func<T, T> Value = Methods.Instance.GetSelf;
 		}
 
@@ -125,7 +111,6 @@ namespace CodeJam
 			/// <summary>
 			/// The function that returns the same object which was passed as parameter.
 			/// </summary>
-			[NotNull]
 			public static readonly Converter<T, T> Value = Methods.Instance.GetSelf;
 		}
 
@@ -134,7 +119,6 @@ namespace CodeJam
 			/// <summary>
 			/// The function that returns <c>true</c> if an object is <c>null</c>.
 			/// </summary>
-			[NotNull]
 			public static readonly Func<T, bool> Value = Methods.Instance.GetIsNull;
 		}
 
@@ -143,7 +127,6 @@ namespace CodeJam
 			/// <summary>
 			/// The function that returns <c>true</c> if an object is not <c>null</c>.
 			/// </summary>
-			[NotNull]
 			public static readonly Func<T, bool> Value = Methods.Instance.GetIsNotNull;
 		}
 		#endregion

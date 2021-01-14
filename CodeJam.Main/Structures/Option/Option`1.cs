@@ -45,7 +45,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Instance of <see cref="Option{T}.Some"/>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static implicit operator Option<T>(T value) => new Some(value);
 
 		/// <summary>
@@ -53,8 +53,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="option"></param>
 		/// <returns>Value of <paramref name="option"/></returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static explicit operator T([NotNull] Option<T> option) => option.Value;
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static explicit operator T(Option<T> option) => option.Value;
 
 		/// <summary>
 		/// Equality operator.
@@ -62,9 +62,9 @@ namespace CodeJam
 		/// <param name="left">Left operand.</param>
 		/// <param name="right">Right operand.</param>
 		/// <returns><c>True</c>, if <paramref name="left"/> equals <paramref name="right"/>.</returns>
-		public static bool operator ==([NotNull] Option<T> left, [NotNull] Option<T> right)
+		public static bool operator ==(Option<T> left, Option<T> right)
 		{
-			Code.NotNull(left,  nameof(left));
+			Code.NotNull(left, nameof(left));
 			Code.NotNull(right, nameof(right));
 
 			return left.Equals(right);
@@ -76,9 +76,9 @@ namespace CodeJam
 		/// <param name="left">Left operand.</param>
 		/// <param name="right">Right operand.</param>
 		/// <returns><c>True</c>, if <paramref name="left"/> not equals <paramref name="right"/>.</returns>
-		public static bool operator !=([NotNull] Option<T> left, [NotNull] Option<T> right)
+		public static bool operator !=(Option<T> left, Option<T> right)
 		{
-			Code.NotNull(left,  nameof(left));
+			Code.NotNull(left, nameof(left));
 			Code.NotNull(right, nameof(right));
 
 			return !left.Equals(right);
@@ -149,7 +149,6 @@ namespace CodeJam
 		/// </summary>
 		public sealed class None : Option<T>
 		{
-			[NotNull]
 			internal static readonly None Instance = new();
 
 			private None() { }

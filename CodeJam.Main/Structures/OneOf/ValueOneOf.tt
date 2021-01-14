@@ -6,15 +6,23 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-<#for (var i = 2; i <= 8; i++) {
-	var types = string.Join(", ", Enumerable.Range(1, i).Select(j => $"T{j}"));#>
+<#
+	for (var i = 2; i <= 8; i++)
+	{
+		var types = string.Join(", ", Enumerable.Range(1, i).Select(j => $"T{j}"));
+#>
 	/// <summary>
-	/// Value type tagged union for <#=i#> types.
+	/// Value type tagged union for <#= i #> types.
 	/// </summary>
-<#	for (var k = 1; k <= i; k++){#>
-	/// <typeparam name="T<#=k#>">Type of case <#=k#></typeparam>
-<#	}#>
-	public struct ValueOneOf<<#=types#>> : IOneOf<<#=types#>>, IEquatable<ValueOneOf<<#=types#>>>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
+	/// <typeparam name="T<#= k #>">Type of case <#= k #></typeparam>
+<#
+		}
+#>
+	public struct ValueOneOf<<#= types #>> : IOneOf<<#= types #>>, IEquatable<ValueOneOf<<#= types #>>>
 	{
 		private Cases _curCase;
 		private object _value;
@@ -27,65 +35,90 @@ namespace CodeJam
 
 		private enum Cases
 		{
-<#	for (var k = 1; k <= i; k++){#>
-			Case<#=k#>,
-<#	}#>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
+			Case<#= k #>,
+<#
+		}
+#>
 		}
 
-<#	for (var k = 1; k <= i; k++){#>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
 		/// <inheritdoc />
-		public bool IsCase<#=k#> => _curCase == Cases.Case<#=k#>;
+		public bool IsCase<#= k #> => _curCase == Cases.Case<#= k #>;
 
 		/// <summary>
-		/// Creates instance of <see cref="OneOf{<#=types#>}"/> for value of type <typeparamref name="T<#=k#>"/>.
+		/// Creates instance of <see cref="OneOf{<#= types #>}"/> for value of type <typeparamref name="T<#= k #>"/>.
 		/// </summary>
-		/// <param name="value">Value of type <typeparamref name="T<#=k#>"/> to create instance from.</param>
-		/// <returns>Value of <see cref="ValueOneOf{<#=types#>}"/>.</returns>
-		public static ValueOneOf<<#=types#>> Create([NotNull] T<#=k#> value)
+		/// <param name="value">Value of type <typeparamref name="T<#= k #>"/> to create instance from.</param>
+		/// <returns>Value of <see cref="ValueOneOf{<#= types #>}"/>.</returns>
+		public static ValueOneOf<<#= types #>> Create(T<#= k #> value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
-			return new ValueOneOf<<#=types#>>(value, Cases.Case<#=k#>);
+			return new ValueOneOf<<#= types #>>(value, Cases.Case<#= k #>);
 		}
 
 		/// <summary>
 		/// Implicit cast operator.
 		/// </summary>
 		/// <param name="value">The parameter.</param>
-		/// <returns>Instance of <see cref="ValueOneOf{<#=types#>}"/> for value of type <typeparamref name="T<#=k#>"/>.</returns>
-		public static implicit operator ValueOneOf<<#=types#>>(T<#=k#> value) => Create(value);
+		/// <returns>Instance of <see cref="ValueOneOf{<#= types #>}"/> for value of type <typeparamref name="T<#= k #>"/>.</returns>
+		public static implicit operator ValueOneOf<<#= types #>>(T<#= k #> value) => Create(value);
 
-<#	}#>
+<#
+		}
+#>
 
 		/// <inheritdoc />
-		public TResult GetValue<TResult>(<#=List(i, j => $"Func<T{j}, TResult> case{j}Selector")#>)
+		public TResult GetValue<TResult>(<#= List(i, j => $"Func<T{j}, TResult> case{j}Selector") #>)
 		{
 			switch (_curCase)
 			{
-<#	for (var k = 1; k <= i; k++){#>
-				case Cases.Case<#=k#> : return case<#=k#>Selector((T<#=k#>)_value);
-<#	}#>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
+				case Cases.Case<#= k #> : return case<#= k #>Selector((T<#= k #>)_value);
+<#
+		}
+#>
 				default: throw CodeExceptions.InvalidOperation("Wrong state");
 			}
 		}
 
 		/// <inheritdoc />
-		public void Do(<#=List(i, j => $"Action<T{j}> case{j}Action")#>)
+		public void Do(<#= List(i, j => $"Action<T{j}> case{j}Action") #>)
 		{
-<#	for (var k = 1; k <= i; k++){#>
-			Code.NotNull(case<#=k#>Action, nameof (case<#=k#>Action));
-<#	}#>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
+			Code.NotNull(case<#= k #>Action, nameof (case<#= k #>Action));
+<#
+		}
+#>
 			switch (_curCase)
 			{
-<#	for (var k = 1; k <= i; k++){#>
-				case Cases.Case<#=k#> : case<#=k#>Action((T<#=k#>)_value); break;
-<#	}#>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
+				case Cases.Case<#= k #> : case<#= k #>Action((T<#= k #>)_value); break;
+<#
+		}
+#>
 				default: throw CodeExceptions.InvalidOperation("Wrong state");
 			}
 		}
 
 		/// <inheritdoc />
-		public bool Equals(ValueOneOf<<#=types#>> other)
+		public bool Equals(ValueOneOf<<#= types #>> other)
 		{
 			return Equals(_value, other._value);
 		}
@@ -94,7 +127,7 @@ namespace CodeJam
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
-			return obj is ValueOneOf<<#=types#>> && Equals((ValueOneOf<<#=types#>>)obj);
+			return obj is ValueOneOf<<#= types #>> && Equals((ValueOneOf<<#= types #>>)obj);
 		}
 
 		/// <summary>
@@ -103,7 +136,7 @@ namespace CodeJam
 		/// <param name="left">Left parameter.</param>
 		/// <param name="right">Right parameter</param>
 		/// <returns><c>true</c> if <paramref name="left"/> equals to <paramref name="right"/></returns>
-		public static bool operator ==(ValueOneOf<<#=types#>> left, ValueOneOf<<#=types#>> right)
+		public static bool operator ==(ValueOneOf<<#= types #>> left, ValueOneOf<<#= types #>> right)
 		{
 			return left.Equals(right);
 		}
@@ -114,7 +147,7 @@ namespace CodeJam
 		/// <param name="left">Left parameter.</param>
 		/// <param name="right">Right parameter</param>
 		/// <returns><c>true</c> if <paramref name="left"/> not equals to <paramref name="right"/></returns>
-		public static bool operator !=(ValueOneOf<<#=types#>> left, ValueOneOf<<#=types#>> right)
+		public static bool operator !=(ValueOneOf<<#= types #>> left, ValueOneOf<<#= types #>> right)
 		{
 			return !left.Equals(right);
 		}
@@ -123,5 +156,7 @@ namespace CodeJam
 		public override int GetHashCode() => _value.GetHashCode();
 	}
 
-<#}#>
+<#
+	}
+#>
 }

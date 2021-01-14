@@ -8,15 +8,17 @@ using System.Threading;
 
 using CodeJam.Collections;
 using CodeJam.Reflection;
+
 // ReSharper disable once RedundantUsingDirective
 using JetBrains.Annotations;
 
 using static CodeJam.Targeting.MethodImplOptionsEx;
-
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using EnumEx = System.Enum;
+
 #else
 using EnumEx = System.EnumEx;
+
 #endif
 
 namespace CodeJam
@@ -27,7 +29,6 @@ namespace CodeJam
 	[PublicAPI]
 	public static partial class EnumHelper
 	{
-		[NotNull]
 		private static readonly ILazyDictionary<Type, EnumValues> _enumValuesCache = LazyDictionary.Create(
 			(Type enumType) => new EnumValues(enumType.ToNullableUnderlying()),
 			LazyThreadSafetyMode.ExecutionAndPublication);
@@ -38,7 +39,7 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <returns>An array that contains the values of the constants in enumType.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TEnum[] GetValues<TEnum>()
 			where TEnum : struct, Enum =>
 				MetaHolder<TEnum>.GetNameValues(false).Values.ToArray();
@@ -49,7 +50,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
 		/// <returns>A string array of the names of the constants in enumType.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string[] GetNames<TEnum>(bool ignoreCase = false)
 			where TEnum : struct, Enum =>
 				MetaHolder<TEnum>.GetNameValues(ignoreCase).Keys.ToArray();
@@ -58,7 +59,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
 		/// <returns>Returns a dictionary containing the enum names and their values.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IReadOnlyDictionary<string, TEnum> GetNameValues<TEnum>(bool ignoreCase = false)
 			where TEnum : struct, Enum =>
 				MetaHolder<TEnum>.GetNameValues(ignoreCase);
@@ -66,22 +67,22 @@ namespace CodeJam
 		/// <summary>Gets enum values collection that contains information about enum type and its values.</summary>
 		/// <typeparam name="TEnum">Enum type</typeparam>
 		/// <returns>The enum values collection.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static EnumValues GetEnumValues<TEnum>()
 			where TEnum : struct, Enum =>
-			_enumValuesCache[typeof(TEnum)];
+				_enumValuesCache[typeof(TEnum)];
 
 		/// <summary>Returns enum values collection that contains information about enum type and its values.</summary>
 		/// <param name="enumType">Type of the enum.</param>
 		/// <returns>The enum values collection.</returns>
-		[Pure, NotNull]
-		public static EnumValues GetEnumValues([NotNull] Type enumType) => _enumValuesCache[enumType];
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static EnumValues GetEnumValues(Type enumType) => _enumValuesCache[enumType];
 
 		/// <summary>Gets metadata about enum value.</summary>
 		/// <typeparam name="TEnum">Enum type</typeparam>
 		/// <param name="value">Enum value.</param>
 		/// <returns>The enum values collection.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static EnumValue GetEnumValue<TEnum>(TEnum value)
 			where TEnum : struct, Enum => GetEnumValues<TEnum>().GetByValue(value);
 
@@ -91,7 +92,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The enum value.</param>
 		/// <returns><see cref="FieldInfo"/> corresponding to <paramref name="value"/>.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static FieldInfo GetField<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
 				GetEnumValue(value).UnderlyingField;
@@ -102,7 +103,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">Enum type</typeparam>
 		/// <param name="value">The enum value.</param>
 		/// <returns>The name of the enum value.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string GetName<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
 				GetEnumValue(value).Name;
@@ -117,7 +118,7 @@ namespace CodeJam
 		/// Returns description of enum value specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
 		/// specified.
 		/// </remarks>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string GetDisplayName<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
 				GetEnumValue(value).GetDisplayName();
@@ -132,7 +133,7 @@ namespace CodeJam
 		/// Returns description of enum value specified by <see cref="DisplayAttribute"/>, or <c>null</c> if no attribute
 		/// specified.
 		/// </remarks>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string? GetDescription<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
 				GetEnumValue(value).Description;
@@ -144,9 +145,9 @@ namespace CodeJam
 		/// <param name="name">The name.</param>
 		/// <param name="result">The parsed value.</param>
 		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public static bool TryParse<TEnum>([NotNull] string name, out TEnum result)
+		public static bool TryParse<TEnum>(string name, out TEnum result)
 			where TEnum : struct, Enum =>
 				TryParse(name, false, out result);
 
@@ -156,9 +157,9 @@ namespace CodeJam
 		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
 		/// <param name="result">The parsed value.</param>
 		/// <returns><c>true</c>, if parsing was successful; <c>false</c> otherwise.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public static bool TryParse<TEnum>([NotNull] string name, bool ignoreCase, out TEnum result)
+		public static bool TryParse<TEnum>(string name, bool ignoreCase, out TEnum result)
 			where TEnum : struct, Enum =>
 				MetaHolder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out result) ||
 					EnumEx.TryParse(name, ignoreCase, out result);
@@ -168,9 +169,9 @@ namespace CodeJam
 		/// <param name="name">The name.</param>
 		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
 		/// <returns>Parsed value, if parsing was successful; <c>null</c> otherwise.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public static TEnum? TryParse<TEnum>([NotNull] string name, bool ignoreCase = false)
+		public static TEnum? TryParse<TEnum>(string name, bool ignoreCase = false)
 			where TEnum : struct, Enum =>
 				TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
 
@@ -179,9 +180,9 @@ namespace CodeJam
 		/// <param name="name">The name.</param>
 		/// <param name="ignoreCase">If set to <c>true</c> the case of the name will be ignored.</param>
 		/// <returns>Parsed value.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public static TEnum Parse<TEnum>([NotNull] string name, bool ignoreCase = false)
+		public static TEnum Parse<TEnum>(string name, bool ignoreCase = false)
 			where TEnum : struct, Enum
 		{
 			if (MetaHolder<TEnum>.GetNameValues(ignoreCase).TryGetValue(name, out var result))
@@ -192,7 +193,7 @@ namespace CodeJam
 		/// <summary>Determines whether the enum has flags modifier.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <returns>True, if the enum is flags enum</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsFlagsEnum<TEnum>()
 			where TEnum : struct, Enum =>
@@ -210,7 +211,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value to check.</param>
 		/// <returns>True, if enum defines the value.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsDefined<TEnum>(TEnum value)
 			where TEnum : struct, Enum =>
@@ -220,9 +221,9 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">String representation of value to check.</param>
 		/// <returns>True, if enum defines the value.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public static bool IsDefined<TEnum>([NotNull] string value)
+		public static bool IsDefined<TEnum>(string value)
 			where TEnum : struct, Enum =>
 				TryParse<TEnum>(value, out var parsed) && IsDefined(parsed);
 
@@ -230,20 +231,20 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="flags">The flags to check.</param>
 		/// <returns>True, if enum defines all bits of the flags combination.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool AreFlagsDefined<TEnum>(TEnum flags)
 			where TEnum : struct, Enum =>
 				IsDefined(flags)
-				|| MetaHolder<TEnum>.IsFlagsEnum && OpHolder<TEnum>.IsFlagSetCallback(MetaHolder<TEnum>.ValuesMask, flags);
+					|| MetaHolder<TEnum>.IsFlagsEnum && OpHolder<TEnum>.IsFlagSetCallback(MetaHolder<TEnum>.ValuesMask, flags);
 
 		/// <summary>Determines whether all bits of the flags combination are defined.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">String representation of value to check.</param>
 		/// <returns>True, if enum defines the value.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public static bool AreFlagsDefined<TEnum>([NotNull] string value)
+		public static bool AreFlagsDefined<TEnum>(string value)
 			where TEnum : struct, Enum =>
 				TryParse<TEnum>(value, out var parsed) && AreFlagsDefined(parsed);
 
@@ -258,7 +259,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <returns>All declared values that match specified flag mask.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TEnum[] GetDefinedFlags<TEnum>(TEnum value)
 			where TEnum : struct, Enum
 		{
@@ -294,7 +295,7 @@ namespace CodeJam
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <returns>Combination of flags that represents specified enum value.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TEnum[] ToFlags<TEnum>(this TEnum value)
 			where TEnum : struct, Enum
 		{
@@ -323,7 +324,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns><c>true</c> if the value includes all bits of the flag or the flag is zero.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsFlagSet<TEnum>(this TEnum value, TEnum flag)
 			where TEnum : struct, Enum =>
@@ -334,7 +335,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns><c>true</c> if the value does not include all bits of the flag.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsAnyFlagUnset<TEnum>(this TEnum value, TEnum flag)
 			where TEnum : struct, Enum =>
@@ -345,7 +346,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns><c>true</c> if the value includes any bit of the flags or the flag is zero.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsAnyFlagSet<TEnum>(this TEnum value, TEnum flags)
 			where TEnum : struct, Enum =>
@@ -356,7 +357,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns><c>true</c> if the value does not include any bit of the flags.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static bool IsFlagUnset<TEnum>(this TEnum value, TEnum flags)
 			where TEnum : struct, Enum =>
@@ -369,7 +370,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns>Bitwise combination of the flag and the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag)
 			where TEnum : struct, Enum =>
@@ -380,7 +381,7 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns>The bits of the value excluding the ones from the flag.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum ClearFlag<TEnum>(this TEnum value, TEnum flag)
 			where TEnum : struct, Enum =>
@@ -395,7 +396,7 @@ namespace CodeJam
 		/// Bitwise combination of the flag and the value if the <paramref name="enabled"/> is <c>true</c>;
 		/// otherwise, the result is the bits of the value excluding the ones from the flag.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum SetFlag<TEnum>(this TEnum value, TEnum flag, bool enabled)
 			where TEnum : struct, Enum =>

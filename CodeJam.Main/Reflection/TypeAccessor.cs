@@ -16,12 +16,11 @@ namespace CodeJam.Reflection
 	public abstract class TypeAccessor
 	{
 		#region Protected emit helpers
-
 		/// <summary>
 		/// Adds <see cref="MemberAccessor"/>.
 		/// </summary>
 		/// <param name="member">Instance of <see cref="MemberAccessor"/>.</param>
-		protected void AddMember([NotNull] MemberAccessor member)
+		protected void AddMember(MemberAccessor member)
 		{
 			Code.NotNull(member, nameof(member));
 
@@ -29,39 +28,32 @@ namespace CodeJam.Reflection
 
 			_membersByName[member.MemberInfo.Name] = member;
 		}
-
 		#endregion
 
 		#region CreateInstance
-
 		/// <summary>
 		/// Creates an instance of the accessed type.
 		/// </summary>
 		/// <returns>An instance of the accessed type.</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[DebuggerStepThrough]
 		public virtual object CreateInstance() =>
 			throw new InvalidOperationException($"The '{Type.Name}' type must have public default or init constructor.");
 		#endregion
 
 		#region Public Members
-
 		/// <summary>
 		/// Type to access.
 		/// </summary>
-		[NotNull]
 		public abstract Type Type { get; }
 
 		/// <summary>
 		/// Type members.
 		/// </summary>
-		[NotNull, ItemNotNull]
 		public List<MemberAccessor> Members { get; } = new();
-
 		#endregion
 
 		#region Items
-		[NotNull]
 		private readonly ConcurrentDictionary<string, MemberAccessor> _membersByName =
 			new();
 
@@ -70,27 +62,24 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="memberName">Member name.</param>
 		/// <returns>Instance of <see cref="MemberAccessor"/>.</returns>
-		[NotNull]
-		public MemberAccessor this[[NotNull] string memberName] =>
-			_membersByName.GetOrAdd(memberName, name =>
-			{
-				var ma = new MemberAccessor(this, name);
-				Members.Add(ma);
-				return ma;
-			});
+		public MemberAccessor this[string memberName] =>
+			_membersByName.GetOrAdd(
+				memberName, name =>
+				{
+					var ma = new MemberAccessor(this, name);
+					Members.Add(ma);
+					return ma;
+				});
 
 		/// <summary>
 		/// Returns <see cref="MemberAccessor"/> by index.
 		/// </summary>
 		/// <param name="index">Member index.</param>
 		/// <returns>Instance of <see cref="MemberAccessor"/>.</returns>
-		[NotNull]
 		public MemberAccessor this[[NonNegativeValue] int index] => Members[index];
-
 		#endregion
 
 		#region Static Members
-		[NotNull]
 		private static readonly ConcurrentDictionary<Type, TypeAccessor> _accessors =
 			new();
 
@@ -99,8 +88,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to access.</param>
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
-		public static TypeAccessor GetAccessor([NotNull] Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static TypeAccessor GetAccessor(Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			if (_accessors.TryGetValue(type, out var accessor))
@@ -122,7 +111,7 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <typeparam name="T">Type to access.</typeparam>
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TypeAccessor<T> GetAccessor<T>()
 			where T : notnull
 		{
@@ -131,8 +120,8 @@ namespace CodeJam.Reflection
 
 			return (TypeAccessor<T>)(_accessors[typeof(T)] = new TypeAccessor<T>());
 		}
-
 		#endregion
 	}
 }
+
 #endif

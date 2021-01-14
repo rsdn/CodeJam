@@ -64,8 +64,8 @@ namespace CodeJam.Ranges
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		/// <returns>A new range boundary.</returns>
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[MethodImpl(AggressiveInlining)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[MethodImpl(AggressiveInlining)]
 		public static RangeBoundaryFrom<T> AdjustAndCreate(T? value, RangeBoundaryFromKind boundaryKind)
 		{
 			DebugCode.AssertArgument(
@@ -103,8 +103,8 @@ namespace CodeJam.Ranges
 		/// <param name="value">The value to check.</param>
 		/// <returns><c>true</c> if it is safe to pass the value as a boundary constructor parameter.</returns>
 		// DONTTOUCH: DO NOT make internal. Helper method for custom range implementations.
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[MethodImpl(AggressiveInlining)]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[MethodImpl(AggressiveInlining)]
 		public static bool IsValid(T? value)
 		{
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
@@ -124,8 +124,8 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Formattable logic
-		[JetBrains.Annotations.NotNull]
-		private static readonly Func<T, string?, IFormatProvider?, string?> _formattableCallback = CreateFormattableCallback<T>();
+		private static readonly Func<T, string?, IFormatProvider?, string?> _formattableCallback =
+			CreateFormattableCallback<T>();
 		#endregion
 
 		#endregion
@@ -134,6 +134,7 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
 		[AllowNull]
 		private T _value;
+
 		private RangeBoundaryFromKind _kind;
 
 		/// <summary>Creates a new range boundary.</summary>
@@ -208,7 +209,7 @@ namespace CodeJam.Ranges
 		/// <summary>The kind of the boundary.</summary>
 		/// <value>The kind of the boundary.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
-		public RangeBoundaryFromKind Kind => _kind;
+			public RangeBoundaryFromKind Kind => _kind;
 
 		/// <summary>The boundary == ∅.</summary>
 		/// <value><c>true</c> if the boundary is empty; otherwise, <c>false</c>.</value>
@@ -266,7 +267,7 @@ namespace CodeJam.Ranges
 		/// The value of the boundary or the default(T) if <see cref="HasValue"/> property equals to <c>false</c>.
 		/// </summary>
 		/// <returns>he value of the boundary or default(T).</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public T? GetValueOrDefault() => _value;
 
@@ -275,7 +276,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="defaultValue">The default value.</param>
 		/// <returns>Value of the boundary or <paramref name="defaultValue"/>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public T? GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
 		#endregion
@@ -291,7 +292,7 @@ namespace CodeJam.Ranges
 		/// before calling the method.
 		/// </summary>
 		/// <returns>Complementation for the boundary.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryTo<T> GetComplementation() =>
 			RangeBoundaryTo<T>.AdjustAndCreate(
 				_value,
@@ -300,13 +301,13 @@ namespace CodeJam.Ranges
 					RangeBoundaryFromKind.Inclusive => RangeBoundaryToKind.Exclusive,
 					RangeBoundaryFromKind.Exclusive => RangeBoundaryToKind.Inclusive,
 					_ => throw CodeExceptions.UnexpectedValue(
-							$"Cannot get complementation for the boundary '{this}' as it has no value.")
-				});
+						$"Cannot get complementation for the boundary '{this}' as it has no value.")
+					});
 
 		/// <summary>Checks that the boundary is complementation for specified boundary.</summary>
 		/// <param name="other">Another boundary.</param>
 		/// <returns><c>True</c>, if the boundary is complementation for specified boundary.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public bool IsComplementationFor(RangeBoundaryTo<T> other) => HasValue && GetComplementation() == other;
 
 		/// <summary>
@@ -315,8 +316,8 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public RangeBoundaryFrom<T> WithValue([JetBrains.Annotations.NotNull, InstantHandle] Func<T, T> newValueSelector)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public RangeBoundaryFrom<T> WithValue([InstantHandle] Func<T, T> newValueSelector)
 		{
 			if (HasValue)
 			{
@@ -335,8 +336,8 @@ namespace CodeJam.Ranges
 		/// <typeparam name="T2">The new type of the range value</typeparam>
 		/// <param name="newValueSelector">Callback to obtain a new value for the boundary. Used if the boundary has a value.</param>
 		/// <returns>Range boundary with the same kind but with a new value (if the current boundary has one).</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public RangeBoundaryFrom<T2> WithValue<T2>([JetBrains.Annotations.NotNull, InstantHandle] Func<T, T2> newValueSelector)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public RangeBoundaryFrom<T2> WithValue<T2>([InstantHandle] Func<T, T2> newValueSelector)
 		{
 			if (HasValue)
 			{
@@ -357,7 +358,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// Range boundary with exclusive boundary kind or the original one if the boundary has no value.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryFrom<T> ToExclusive() => IsInclusiveBoundary ? Range.BoundaryFromExclusive(_value) : this;
 
 		/// <summary>
@@ -367,7 +368,7 @@ namespace CodeJam.Ranges
 		/// <returns>
 		/// Range boundary with inclusive boundary kind or the original one if the boundary has no value.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryFrom<T> ToInclusive() => IsExclusiveBoundary ? Range.BoundaryFrom(_value) : this;
 		#endregion
 
@@ -378,7 +379,7 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if the current boundary is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public bool Equals(RangeBoundaryFrom<T> other) => _kind == other._kind && _equalsFunc(_value, other._value);
 
@@ -388,12 +389,12 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if <paramref name="obj"/> and the current boundary are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public override bool Equals(object? obj) => obj is RangeBoundaryFrom<T> other && Equals(other);
 
 		/// <summary>Returns the hash code for the current boundary.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
 		public override int GetHashCode() =>
 			HasValue ? HashCode.Combine(_value!.GetHashCode(), (int)_kind) : (int)_kind;
@@ -412,7 +413,7 @@ namespace CodeJam.Ranges
 		/// * Zero This object is equal to <paramref name="other"/>.
 		/// * Greater than zero This object is greater than <paramref name="other"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(RangeBoundaryFrom<T> other)
 		{
@@ -449,7 +450,7 @@ namespace CodeJam.Ranges
 		/// * Zero This object is equal to <paramref name="other"/>.
 		/// * Greater than zero This object is greater than <paramref name="other"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo(RangeBoundaryTo<T> other)
 		{
@@ -491,7 +492,7 @@ namespace CodeJam.Ranges
 		/// </returns>
 		// DONTTOUCH. Any change will break the performance or the correctness of the comparison.
 		//   Please create issue at first
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public int CompareTo([AllowNull] T other) => CompareTo(Range.GetCompareToBoundary(other));
 		#endregion
@@ -509,14 +510,14 @@ namespace CodeJam.Ranges
 		/// * Zero This object is equal to <paramref name="obj"/>.
 		/// * Greater than zero This object is greater than <paramref name="obj"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		int IComparable.CompareTo(object? obj) =>
 			obj switch
 			{
 				RangeBoundaryFrom<T> rbf => CompareTo(rbf),
 				RangeBoundaryTo<T> rbt => CompareTo(rbt),
 				_ => CompareTo((T?)obj!) // https://github.com/dotnet/roslyn/issues/34976
-			};
+				};
 		#endregion
 
 		#endregion
@@ -524,7 +525,7 @@ namespace CodeJam.Ranges
 		#region ToString
 		/// <summary> Returns string representation of the boundary. </summary>
 		/// <returns> The string representation of the boundary. </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public override string ToString() =>
 			_kind switch
 			{
@@ -533,7 +534,7 @@ namespace CodeJam.Ranges
 				RangeBoundaryFromKind.Inclusive => FromInclusiveString + _value,
 				RangeBoundaryFromKind.Exclusive => FromExclusiveString + _value,
 				_ => EmptyString
-			};
+				};
 
 		/// <summary>
 		/// Returns string representation of the boundary using the specified format string.
@@ -541,7 +542,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="format">The format string</param>
 		/// <returns> The string representation of the boundary. </returns>
-		[Pure, JetBrains.Annotations.NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
@@ -551,7 +552,7 @@ namespace CodeJam.Ranges
 		/// <param name="format">The format string</param>
 		/// <param name="formatProvider">The format provider</param>
 		/// <returns> The string representation of the boundary. </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string? format, IFormatProvider? formatProvider) =>
 			_kind switch
 			{
@@ -560,7 +561,7 @@ namespace CodeJam.Ranges
 				RangeBoundaryFromKind.Inclusive => FromInclusiveString + _formattableCallback(_value, format, formatProvider),
 				RangeBoundaryFromKind.Exclusive => FromExclusiveString + _formattableCallback(_value, format, formatProvider),
 				_ => EmptyString
-			};
+				};
 		#endregion
 	}
 }

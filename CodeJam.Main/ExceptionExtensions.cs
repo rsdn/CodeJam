@@ -23,8 +23,7 @@ namespace CodeJam
 		/// <param name="exception">Exception to process.</param>
 		/// <param name="stringBuilder"><see cref="StringBuilder"/> instance.</param>
 		/// <returns>Detailed exception text.</returns>
-		[NotNull]
-		public static StringBuilder ToDiagnosticString([NotNull] this Exception exception, [NotNull] StringBuilder stringBuilder)
+		public static StringBuilder ToDiagnosticString(this Exception exception, StringBuilder stringBuilder)
 		{
 			var writer = new StringWriter(stringBuilder);
 			ToDiagnosticString(exception, writer, stringBuilder.Length == 0);
@@ -41,7 +40,7 @@ namespace CodeJam
 		/// <returns>Detailed exception text.</returns>
 		public static void ToDiagnosticString(
 			this Exception? exception,
-			[NotNull] TextWriter writer,
+			TextWriter writer,
 			bool fromNewLine = true)
 		{
 			Code.NotNull(writer, nameof(writer));
@@ -81,7 +80,7 @@ namespace CodeJam
 							writer.Write(fex.GetFusionLog());
 						break;
 
-					case AggregateException aex :
+					case AggregateException aex:
 						var foundInnerException = false;
 
 						foreach (var e in aex.InnerExceptions)
@@ -111,10 +110,9 @@ namespace CodeJam
 		/// <param name="writer"><see cref="TextWriter"/> instance.</param>
 		/// <param name="fromNewLine">If <c>true</c> - do not inject separator line from start.</param>
 		/// <returns>Detailed exception text.</returns>
-		[NotNull]
 		public static Task ToDiagnosticStringAsync(
 			this Exception? exception,
-			[NotNull] TextWriter writer,
+			TextWriter writer,
 			bool fromNewLine = true)
 		{
 			Code.NotNull(writer, nameof(writer));
@@ -122,10 +120,9 @@ namespace CodeJam
 			return ToDiagnosticStringImplAsync(exception, writer, fromNewLine);
 		}
 
-		[NotNull]
 		private static async Task ToDiagnosticStringImplAsync(
 			this Exception? exception,
-			[NotNull] TextWriter writer,
+			TextWriter writer,
 			bool fromNewLine = true)
 		{
 			// ReSharper disable once PossibleNullReferenceException
@@ -191,8 +188,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="exception">Exception to process.</param>
 		/// <returns>Detailed exception text.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string ToDiagnosticString(this Exception? exception) =>
 			exception == null ? "" : exception.ToDiagnosticString(new StringBuilder()).ToString();
 	}

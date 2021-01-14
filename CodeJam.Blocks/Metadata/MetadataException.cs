@@ -25,9 +25,7 @@ namespace CodeJam.Metadata
 		/// property of the new instance such as "A Build Type exception has occurred."
 		/// </remarks>
 		public MetadataException()
-			: base("A Metadata exception has occurred.")
-		{
-		}
+			: base("A Metadata exception has occurred.") { }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MetadataException"/> class
@@ -37,9 +35,7 @@ namespace CodeJam.Metadata
 		/// exception is thrown.</param>
 		/// <seealso cref="Exception.Message"/>
 		public MetadataException(string message)
-			: base(message)
-		{
-		}
+			: base(message) { }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MetadataException"/> class
@@ -52,9 +48,7 @@ namespace CodeJam.Metadata
 		/// <seealso cref="Exception.Message"/>
 		/// <seealso cref="Exception.InnerException"/>
 		public MetadataException(string message, Exception innerException)
-			: base(message, innerException)
-		{
-		}
+			: base(message, innerException) { }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MetadataException"/> class
@@ -63,10 +57,8 @@ namespace CodeJam.Metadata
 		/// <param name="innerException">The InnerException, if any, that threw
 		/// the current exception.</param>
 		/// <seealso cref="Exception.InnerException"/>
-		public MetadataException([NotNull] Exception innerException)
-			: base(innerException.Message, innerException)
-		{
-		}
+		public MetadataException(Exception innerException)
+			: base(innerException.Message, innerException) { }
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 		/// <summary>
@@ -78,11 +70,10 @@ namespace CodeJam.Metadata
 		/// destination.</param>
 		/// <remarks>This constructor is called during deserialization to
 		/// reconstitute the exception object transmitted over a stream.</remarks>
-		protected MetadataException([NotNull] SerializationInfo info, StreamingContext context)
-			: base(info, context)
-		{
-		}
+		protected MetadataException(SerializationInfo info, StreamingContext context)
+			: base(info, context) { }
 #endif
 	}
 }
+
 #endif

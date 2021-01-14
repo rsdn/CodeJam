@@ -22,9 +22,8 @@ namespace CodeJam.IO
 		/// <param name="stream">The stream to read.</param>
 		/// <param name="encoding">The character encoding to use.</param>
 		/// <param name="leaveOpen">true to leave the stream open after the <see cref="StreamReader" /> object is disposed; otherwise, false.</param>
-		[NotNull]
 		public static StreamReader ToStreamReader(
-			[NotNull] this Stream stream,
+			this Stream stream,
 			Encoding? encoding = null,
 			bool leaveOpen = false) =>
 				new(
@@ -40,9 +39,8 @@ namespace CodeJam.IO
 		/// <param name="stream">The stream to read.</param>
 		/// <param name="encoding">The character encoding to use.</param>
 		/// <param name="leaveOpen">true to leave the stream open after the <see cref="BinaryReader" /> object is disposed; otherwise, false.</param>
-		[NotNull]
 		public static BinaryReader ToBinaryReader(
-			[NotNull] this Stream stream,
+			this Stream stream,
 			Encoding? encoding = null,
 			bool leaveOpen = false) =>
 				new(stream, encoding ?? Encoding.UTF8, leaveOpen);
@@ -53,9 +51,8 @@ namespace CodeJam.IO
 		/// <param name="stream">The stream to write.</param>
 		/// <param name="encoding">The character encoding to use.</param>
 		/// <param name="leaveOpen">true to leave the stream open after the <see cref="StreamWriter" /> object is disposed; otherwise, false.</param>
-		[NotNull]
 		public static StreamWriter ToStreamWriter(
-			[NotNull] this Stream stream,
+			this Stream stream,
 			Encoding? encoding = null,
 			bool leaveOpen = false) =>
 				new(stream, encoding ?? Encoding.UTF8, _defaultBufferSize, leaveOpen);
@@ -66,9 +63,8 @@ namespace CodeJam.IO
 		/// <param name="stream">The stream to write.</param>
 		/// <param name="encoding">The character encoding to use.</param>
 		/// <param name="leaveOpen">true to leave the stream open after the <see cref="BinaryWriter" /> object is disposed; otherwise, false.</param>
-		[NotNull]
 		public static BinaryWriter ToBinaryWriter(
-			[NotNull] this Stream stream,
+			this Stream stream,
 			Encoding? encoding = null,
 			bool leaveOpen = false) =>
 				new(stream, encoding ?? Encoding.UTF8, leaveOpen);
@@ -78,8 +74,7 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="stream">The stream to read.</param>
 		/// <param name="encoding">The character encoding to use.</param>
-		[NotNull]
-		public static string ReadAsString([NotNull] this Stream stream, Encoding? encoding = null)
+		public static string ReadAsString(this Stream stream, Encoding? encoding = null)
 		{
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))
@@ -93,9 +88,8 @@ namespace CodeJam.IO
 		/// </summary>
 		/// <param name="stream">The stream to read.</param>
 		/// <param name="encoding">The character encoding to use.</param>
-		[NotNull]
 		public static async Task<string> ReadAsStringAsync(
-			[NotNull] this Stream stream,
+			this Stream stream,
 			Encoding? encoding = null)
 		{
 			// DO NOT dispose the reader
@@ -109,8 +103,7 @@ namespace CodeJam.IO
 		/// Returns content of the stream as a byte array.
 		/// </summary>
 		/// <param name="stream">The stream to read.</param>
-		[NotNull]
-		public static byte[] ReadAsByteArray([NotNull] this Stream stream)
+		public static byte[] ReadAsByteArray(this Stream stream)
 		{
 			// DO NOT dispose the reader
 			using (var reader = stream.ToBinaryReader(null, true))
@@ -121,4 +114,5 @@ namespace CodeJam.IO
 		}
 	}
 }
+
 #endif

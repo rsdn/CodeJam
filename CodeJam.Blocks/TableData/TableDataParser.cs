@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using JetBrains.Annotations;
@@ -19,9 +18,8 @@ namespace CodeJam.TableData
 		/// <param name="parser">Instance of specific parser.</param>
 		/// <param name="text">Text to parse</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
-		[JetBrains.Annotations.NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<DataLine> Parse([JetBrains.Annotations.NotNull, InstantHandle] this Parser parser, [JetBrains.Annotations.NotNull] string text)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<DataLine> Parse([InstantHandle] this Parser parser, string text)
 		{
 			Code.NotNull(text, nameof(text));
 
@@ -34,9 +32,8 @@ namespace CodeJam.TableData
 		/// <param name="parser">Instance of specific parser.</param>
 		/// <param name="reader">Text to parse</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
-		[JetBrains.Annotations.NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<DataLine> Parse([JetBrains.Annotations.NotNull, InstantHandle] this Parser parser, [JetBrains.Annotations.NotNull] TextReader reader)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<DataLine> Parse([InstantHandle] this Parser parser, TextReader reader)
 		{
 			Code.NotNull(parser, nameof(parser));
 			Code.NotNull(reader, nameof(reader));
@@ -44,8 +41,7 @@ namespace CodeJam.TableData
 			return ParseCore(parser, reader);
 		}
 
-		[JetBrains.Annotations.NotNull]
-		private static IEnumerable<DataLine> ParseCore([JetBrains.Annotations.NotNull] Parser parser, [JetBrains.Annotations.NotNull] TextReader reader)
+		private static IEnumerable<DataLine> ParseCore(Parser parser, TextReader reader)
 		{
 			var lineNum = 1;
 			while (true)
@@ -68,6 +64,5 @@ namespace CodeJam.TableData
 	/// <returns>
 	/// Null, if end of file reached, string[0] if line contains no valued, or array of values.
 	/// </returns>
-	[return: MaybeNull]
-	public delegate string[] Parser([JetBrains.Annotations.NotNull] TextReader reader, ref int lineNum);
+	public delegate string[]? Parser(TextReader reader, ref int lineNum);
 }

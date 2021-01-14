@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
@@ -11,6 +12,5 @@ namespace CodeJam.Collections
 	/// </summary>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	internal class NamespaceDoc
-	{}
+	internal class NamespaceDoc { }
 }

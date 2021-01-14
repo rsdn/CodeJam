@@ -33,13 +33,12 @@ namespace CodeJam.Mapping
 		{
 			[MemberNotNull("From")]
 			[MemberNotNull("To")]
-			public MapHelper<TFrom,TTo> Map(bool action, [JetBrains.Annotations.NotNull] Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
+			public MapHelper<TFrom,TTo> Map(bool action, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 				=> Map(action, new TFrom(), setter);
 
-			[JetBrains.Annotations.NotNull]
 			[MemberNotNull("From")]
 			[MemberNotNull("To")]
-			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, [JetBrains.Annotations.NotNull] Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
+			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 			{
 				var mapper = setter(new MapperBuilder<TFrom,TTo>()).GetMapper();
 

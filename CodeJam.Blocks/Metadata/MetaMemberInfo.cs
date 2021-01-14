@@ -12,20 +12,18 @@ namespace CodeJam.Metadata
 	internal class MetaMemberInfo
 	{
 		public MetaMemberInfo(
-			[NotNull] string name,
-			[NotNull, ItemNotNull] params AttributeInfo[] attributes)
+			string name,
+			params AttributeInfo[] attributes)
 		{
-			Name        = name;
+			Name = name;
 			_attributes = attributes;
 		}
 
 		public readonly string Name;
 
-		[NotNull, ItemNotNull]
 		private readonly AttributeInfo[] _attributes;
 
-		[NotNull, ItemNotNull]
-		public IEnumerable<AttributeInfo> GetAttribute([NotNull] Type type)
+		public IEnumerable<AttributeInfo> GetAttribute(Type type)
 		{
 			var attrs = _attributes
 				.Where(a => a.Name == type.FullName)
@@ -40,4 +38,5 @@ namespace CodeJam.Metadata
 		}
 	}
 }
+
 #endif

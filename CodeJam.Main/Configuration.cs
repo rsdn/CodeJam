@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading;
+
 // ReSharper disable once RedundantUsingDirective
 using System.Threading.Tasks;
 
@@ -11,6 +13,7 @@ using CodeJam.Threading;
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
+
 namespace CodeJam.Internal
 {
 	/// <summary>
@@ -29,12 +32,10 @@ namespace CodeJam.Internal
 		#endregion
 
 		#region Logging
-		[NotNull, ItemNotNull]
 		private static readonly Lazy<TraceSource> _codeTraceSource = new(
 			() => CreateTraceSource(typeof(Code).Namespace + "." + nameof(CodeTraceSource)));
 
-		[NotNull]
-		private static TraceSource CreateTraceSource([NotNull] string sourceName) =>
+		private static TraceSource CreateTraceSource(string sourceName) =>
 			new(sourceName) { Switch = { Level = SourceLevels.Information } };
 
 		private static TraceSource? _customCodeTraceSource;
@@ -49,7 +50,6 @@ namespace CodeJam.Internal
 
 		/// <summary>Returns trace source for code exceptions.</summary>
 		/// <value>The code trace source.</value>
-		[NotNull]
 		public static TraceSource CodeTraceSource => _customCodeTraceSource ?? _codeTraceSource.Value;
 
 		private static readonly string _assertionFailedMessageWithStack =
@@ -63,8 +63,8 @@ namespace CodeJam.Internal
 		/// <typeparam name="TException">The type of the exception.</typeparam>
 		/// <param name="exception">The exception.</param>
 		/// <returns>The original exception.</returns>
-		[NotNull, MustUseReturnValue]
-		public static TException LogToCodeTraceSourceBeforeThrow<TException>([NotNull] this TException exception)
+		[MustUseReturnValue]
+		public static TException LogToCodeTraceSourceBeforeThrow<TException>(this TException exception)
 			where TException : Exception
 		{
 			CodeTraceSource.TraceEvent(
@@ -86,8 +86,7 @@ namespace CodeJam.Internal
 		/// <returns>
 		/// The original exception.
 		/// </returns>
-		[NotNull]
-		public static TException LogToCodeTraceSourceOnCatch<TException>([NotNull] this TException exception, bool safe)
+		public static TException LogToCodeTraceSourceOnCatch<TException>(this TException exception, bool safe)
 			where TException : Exception
 		{
 			if (safe)
@@ -148,7 +147,6 @@ namespace CodeJam.Internal
 			}
 		}
 
-		[NotNull]
 		private static readonly Action<Action> _tempDataRetryCallback = TempDataRetry;
 
 		private static Action<Action>? _customTempDataRetryCallback;
@@ -164,7 +162,6 @@ namespace CodeJam.Internal
 		/// <summary>Returns retry callback for <see cref="CodeJam.IO.TempData"/> disposal.</summary>
 		/// <value>The retry callback for <see cref="CodeJam.IO.TempData"/> disposal.</value>
 		public static Action<Action> TempDataRetryCallback => _customTempDataRetryCallback ?? _tempDataRetryCallback;
-
 		#endregion
 	}
 }

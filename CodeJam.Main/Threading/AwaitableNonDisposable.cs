@@ -27,14 +27,14 @@ namespace CodeJam.Threading
 		/// <summary>
 		/// The underlying task.
 		/// </summary>
-		[NotNull] private readonly Task<T> _task;
+		private readonly Task<T> _task;
 
 		/// <summary>
 		/// Initializes a new awaitable wrapper around the specified task.
 		/// </summary>
 		/// <param name="task">The underlying task to wrap. This may not be <c>null</c>.</param>
 		[MethodImpl(AggressiveInlining)]
-		public AwaitableNonDisposable([NotNull] Task<T> task)
+		public AwaitableNonDisposable(Task<T> task)
 		{
 			Code.NotNull(task, nameof(task));
 
@@ -45,7 +45,6 @@ namespace CodeJam.Threading
 		/// Returns the underlying task.
 		/// </summary>
 		/// <returns>Underlying task.</returns>
-		[NotNull]
 		[MethodImpl(AggressiveInlining)]
 		public Task<T> AsTask() => _task;
 
@@ -54,7 +53,6 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="source">The awaitable wrapper.</param>
 		/// <returns>Underlying task</returns>
-		[NotNull]
 		[MethodImpl(AggressiveInlining)]
 		public static implicit operator Task<T>(AwaitableNonDisposable<T> source) => source.AsTask();
 

@@ -17,9 +17,8 @@ namespace CodeJam.Ranges
 		where TKey : notnull
 	{
 		#region Helpers
-		[NotNull]
 		private static IEnumerable<Range<T>> MergeRangesNoKeyCore(
-			[NotNull] IEnumerable<Range<T, TKey>> sortedRanges)
+			IEnumerable<Range<T, TKey>> sortedRanges)
 		{
 			var temp = Range<T>.Empty;
 			foreach (var range in sortedRanges)
@@ -50,7 +49,6 @@ namespace CodeJam.Ranges
 		#region ICompositeRange<T>
 		/// <summary>Returns a sequence of merged subranges. Should be used for operations over the ranges.</summary>
 		/// <returns>A sequence of merged subranges</returns>
-		[NotNull]
 		internal IEnumerable<Range<T>> GetMergedRanges() => _hasRangesToMerge
 			? MergeRangesNoKeyCore(SubRanges)
 			: SubRanges.Select(r => r.WithoutKey());
@@ -59,7 +57,7 @@ namespace CodeJam.Ranges
 		#region Operations
 		/// <summary>Returns simplified composite range. Adjacent ranges with same keys will be merged.</summary>
 		/// <returns>Simplified composite range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T, TKey> Merge()
 		{
 			if (IsMerged)
@@ -84,20 +82,20 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey2">The type of the new key.</typeparam>
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key)
 			where TKey2 : notnull =>
-			IsEmpty
-				? CompositeRange<T, TKey2>.Empty
-				: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
+				IsEmpty
+					? CompositeRange<T, TKey2>.Empty
+					: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
 
 		/// <summary>Creates a new composite range with the key specified.</summary>
 		/// <typeparam name="TKey2">The type of the new key.</typeparam>
 		/// <param name="keySelector">Callback to obtain a value for the range key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T, TKey2> WithKeys<TKey2>(
-			[NotNull, InstantHandle] Func<TKey, TKey2> keySelector)
+			[InstantHandle] Func<TKey, TKey2> keySelector)
 			where TKey2 : notnull =>
 				IsEmpty
 					? CompositeRange<T, TKey2>.Empty
@@ -105,7 +103,7 @@ namespace CodeJam.Ranges
 
 		/// <summary>Removes keys from the composite range.</summary>
 		/// <returns>A new composite range without associated keys.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T> WithoutKeys() =>
 			IsEmpty
 				? CompositeRange<T>.Empty

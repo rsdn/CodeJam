@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using JetBrains.Annotations;
-using JBNotNullAttribute = JetBrains.Annotations.NotNullAttribute;
 
 // ReSharper disable once CheckNamespace
 namespace CodeJam.UseCases.TempDataSamples
@@ -138,9 +137,9 @@ namespace CodeJam.UseCases.TempDataSamples
 	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 	public class TempData : IDisposable
 	{
-		[JBNotNull] public static TempData CreateFile() => new();
-		[JBNotNull] public static TempData CreateFile(bool throwOnDisposeFailure) => new();
-		[JBNotNull] public static TempData CreateFile([JBNotNull] Action<TempData, Exception> deleteFallback) => new();
+		public static TempData CreateFile() => new();
+		public static TempData CreateFile(bool throwOnDisposeFailure) => new();
+		public static TempData CreateFile(Action<TempData, Exception> deleteFallback) => new();
 
 		public string FileName => null!;
 

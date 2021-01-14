@@ -20,7 +20,7 @@ namespace CodeJam.Collections
 	{
 		/// <summary>Initializes a new instance of the <see cref="OwnedCollectionBase{TOwner, TItem}"/> class.</summary>
 		/// <param name="owner">The owner for the collection.</param>
-		protected OwnedCollectionBase([NotNull] TOwner owner)
+		protected OwnedCollectionBase(TOwner owner)
 		{
 			Code.NotNull(owner, nameof(owner));
 
@@ -30,13 +30,12 @@ namespace CodeJam.Collections
 		#region Copy this into OwnedCollectionBase<TKey, TItem, TOwner>
 		/// <summary>Gets owner for the collection.</summary>
 		/// <value>The owner for the collection.</value>
-		[NotNull]
 		protected TOwner Owner { get; }
 
 		/// <summary>Gets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
 		/// <returns>Owner of the item.</returns>
-		protected abstract TOwner? GetOwner([NotNull] TItem item);
+		protected abstract TOwner? GetOwner(TItem item);
 
 		/// <summary>
 		/// Sets the owner of the item.
@@ -44,7 +43,7 @@ namespace CodeJam.Collections
 		/// <param name="item">The item.</param>
 		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected abstract void SetOwner([NotNull] TItem item, int index, TOwner? owner);
+		protected abstract void SetOwner(TItem item, int index, TOwner? owner);
 
 		/// <summary>
 		/// Validates item to be inserted.
@@ -141,7 +140,6 @@ namespace CodeJam.Collections
 			base.SetItem(index, item);
 			SetOwner(item, index, Owner);
 		}
-
 		#endregion
 	}
 
@@ -161,7 +159,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="owner">The owner for the collection.</param>
 		/// <param name="comparer">The comparer.</param>
-		protected OwnedCollectionBase([NotNull] TOwner owner, IEqualityComparer<TKey>? comparer = null)
+		protected OwnedCollectionBase(TOwner owner, IEqualityComparer<TKey>? comparer = null)
 			: base(comparer)
 		{
 			Code.NotNull(owner, nameof(owner));
@@ -172,7 +170,6 @@ namespace CodeJam.Collections
 		/// <summary>When implemented in a derived class, extracts the key from the specified element.</summary>
 		/// <param name="item">The element from which to extract the key.</param>
 		/// <returns>The key for the specified element.</returns>
-		[NotNull]
 		protected sealed override TKey GetKeyForItem(TItem item)
 		{
 			Code.NotNull(item, nameof(item));
@@ -187,19 +184,17 @@ namespace CodeJam.Collections
 		/// <summary>Gets a key for the item.</summary>
 		/// <param name="item">The item.</param>
 		/// <returns>Key for the item.</returns>
-		[NotNull]
-		protected abstract TKey GetKey([NotNull] TItem item);
+		protected abstract TKey GetKey(TItem item);
 
 		#region Copied from OwnedCollectionBase<TOwner, TItem>
 		/// <summary>Gets owner for the collection.</summary>
 		/// <value>The owner for the collection.</value>
-		[NotNull]
 		protected TOwner Owner { get; }
 
 		/// <summary>Gets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
 		/// <returns>Owner of the item.</returns>
-		protected abstract TOwner? GetOwner([NotNull] TItem item);
+		protected abstract TOwner? GetOwner(TItem item);
 
 		/// <summary>
 		/// Sets the owner of the item.
@@ -207,7 +202,7 @@ namespace CodeJam.Collections
 		/// <param name="item">The item.</param>
 		/// <param name="index">The item index.</param>
 		/// <param name="owner">The owner of the item.</param>
-		protected abstract void SetOwner([NotNull] TItem item, int index, TOwner? owner);
+		protected abstract void SetOwner(TItem item, int index, TOwner? owner);
 
 		/// <summary>
 		/// Validates item to be inserted.
@@ -304,7 +299,6 @@ namespace CodeJam.Collections
 			base.SetItem(index, item);
 			SetOwner(item, index, Owner);
 		}
-
 		#endregion
 	}
 }

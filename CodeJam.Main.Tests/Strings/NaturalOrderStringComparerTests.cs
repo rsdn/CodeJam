@@ -137,8 +137,7 @@ namespace CodeJam.Strings
 			Assert.AreEqual(expected, actual);
 		}
 
-		[NotNull, ItemNotNull]
-		private static List<string> LoadTestData([NotNull] string resourceName)
+		private static List<string> LoadTestData(string resourceName)
 		{
 			var assembly = typeof(NaturalOrderStringComparerTests).GetAssembly();
 			var list = new List<string>();

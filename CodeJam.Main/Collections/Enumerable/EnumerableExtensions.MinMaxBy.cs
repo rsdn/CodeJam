@@ -8,7 +8,6 @@ namespace CodeJam.Collections
 {
 	partial class EnumerableExtensions
 	{
-		[JetBrains.Annotations.NotNull]
 		private static Exception NoElementsException() => new InvalidOperationException("Collection has no elements");
 
 		#region Min
@@ -22,8 +21,8 @@ namespace CodeJam.Collections
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[return:MaybeNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
+		[return: MaybeNull]
 		public static TSource MinBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector) =>
@@ -43,11 +42,11 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[return:MaybeNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource, TValue>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
+			[InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] Func<TSource, TValue> selector,
 			TSource? defaultValue = default) =>
 				MinByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
@@ -62,11 +61,11 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MinBy<TSource, TValue>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
+			[InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer)
 		{
 			Code.NotNull(source, nameof(source));
@@ -136,11 +135,11 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[return:MaybeNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
+		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource, TValue>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
+			[InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer,
 			TSource? defaultValue = default)
 		{
@@ -208,11 +207,11 @@ namespace CodeJam.Collections
 		/// <param name="source">A sequence of values to determine the maximum value of.</param>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MaxBy<TSource, TValue>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector) => MaxBy(source, selector, Comparer<TValue>.Default);
+			[InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] Func<TSource, TValue> selector) => MaxBy(source, selector, Comparer<TValue>.Default);
 
 		/// <summary>
 		/// Invokes a <paramref name="selector"/> on each element of a <paramref name="source"/>
@@ -227,11 +226,11 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[return:MaybeNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource, TValue>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
+			[InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] Func<TSource, TValue> selector,
 			TSource? defaultValue = default) =>
 				MaxByOrDefault(source, selector, Comparer<TValue>.Default, defaultValue);
 
@@ -245,11 +244,11 @@ namespace CodeJam.Collections
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <param name="comparer">The <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MaxBy<TSource, TValue>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
+			[InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer)
 		{
 			Code.NotNull(source, nameof(source));
@@ -317,11 +316,11 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[return:MaybeNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
+		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource, TValue>(
-			[JetBrains.Annotations.NotNull, InstantHandle] this IEnumerable<TSource> source,
-			[JetBrains.Annotations.NotNull, InstantHandle] Func<TSource, TValue> selector,
+			[InstantHandle] this IEnumerable<TSource> source,
+			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer,
 			TSource? defaultValue = default)
 		{

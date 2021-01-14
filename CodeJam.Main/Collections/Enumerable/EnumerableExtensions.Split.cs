@@ -16,8 +16,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A sequence of chunks of the specified size.
 		/// </returns>
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
-		public static IEnumerable<T[]> Split<T>([NotNull] this IEnumerable<T> source, int size)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IEnumerable<T[]> Split<T>(this IEnumerable<T> source, int size)
 		{
 			if (source == null)
 				throw new ArgumentNullException(nameof(source));
@@ -28,16 +28,15 @@ namespace CodeJam.Collections
 			return SplitImpl(source, size);
 		}
 
-		[NotNull, Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
-		private static IEnumerable<T[]> SplitImpl<T>([NotNull] IEnumerable<T> source, int size)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		private static IEnumerable<T[]> SplitImpl<T>(IEnumerable<T> source, int size)
 		{
 			using var enumerator = source.GetEnumerator();
 			while (enumerator.MoveNext())
 				yield return SplitSequence(enumerator, size);
 		}
 
-		[NotNull]
-		private static T[] SplitSequence<T>([NotNull] IEnumerator<T> enumerator, int size)
+		private static T[] SplitSequence<T>(IEnumerator<T> enumerator, int size)
 		{
 			var count = 0;
 			var items = new T[size];
@@ -45,14 +44,12 @@ namespace CodeJam.Collections
 			do
 			{
 				items[count++] = enumerator.Current;
-			}
-			while (count < size && enumerator.MoveNext());
+			} while (count < size && enumerator.MoveNext());
 
 			if (count < size)
 				Array.Resize(ref items, count);
 
 			return items;
 		}
-
 	}
 }

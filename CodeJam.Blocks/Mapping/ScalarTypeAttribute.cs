@@ -31,7 +31,7 @@ namespace CodeJam.Mapping
 		public ScalarTypeAttribute([AllowNull] string configuration)
 		{
 			Configuration = configuration;
-			IsScalar      = true;
+			IsScalar = true;
 		}
 
 		/// <summary>
@@ -42,7 +42,7 @@ namespace CodeJam.Mapping
 		public ScalarTypeAttribute([AllowNull] string configuration, bool isScalar)
 		{
 			Configuration = configuration;
-			IsScalar      = isScalar;
+			IsScalar = isScalar;
 		}
 
 		/// <summary>
@@ -56,4 +56,5 @@ namespace CodeJam.Mapping
 		public bool IsScalar { get; set; }
 	}
 }
+
 #endif

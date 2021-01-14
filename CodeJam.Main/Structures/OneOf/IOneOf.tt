@@ -6,42 +6,67 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-<#for (var i = 2; i <= 8; i++){
-	var types = List(i, j => $"T{j}");#>
+<#
+	for (var i = 2; i <= 8; i++)
+	{
+		var types = List(i, j => $"T{j}");
+#>
 	/// <summary>
-	/// Common interface for <see cref="OneOf{<#=types#>}"/> and <see cref="ValueOneOf{<#=types#>}"/>.
+	/// Common interface for <see cref="OneOf{<#= types #>}"/> and <see cref="ValueOneOf{<#= types #>}"/>.
 	/// </summary>
-<#	for (var k = 1; k <= i; k++){#>
-	/// <typeparam name="T<#=k#>">Type of case <#=k#></typeparam>
-<#	}#>
-	public interface IOneOf<<#=types#>>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
+	/// <typeparam name="T<#= k #>">Type of case <#= k #></typeparam>
+<#
+		}
+#>
+	public interface IOneOf<<#= types #>>
 	{
 		/// <summary>
 		/// Calls func for actual type argument and returns calculated value.
 		/// </summary>
 		/// <typeparam name="TResult">Result type</typeparam>
-<#	for (var k = 1; k <= i; k++){#>
-		/// <param name="case<#=k#>Selector">Calculation function for <typeparamref name="T<#=k#>"/></param>
-<#	}#>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
+		/// <param name="case<#= k #>Selector">Calculation function for <typeparamref name="T<#= k #>"/></param>
+<#
+		}
+#>
 		/// <returns>Calculated value.</returns>
-		TResult GetValue<TResult>(<#=List(i, j => $"[NotNull] Func<T{j}, TResult> case{j}Selector")#>);
+		TResult GetValue<TResult>(<#= List(i, j => $"Func<T{j}, TResult> case{j}Selector") #>);
 
 		/// <summary>
 		/// Calls action for actual type argument.
 		/// </summary>
-<#	for (var k = 1; k <= i; k++){#>
-		/// <param name="case<#=k#>Action">Action for <typeparamref name="T<#=k#>"/></param>
-<#	}#>
-		void Do(<#=List(i, j => $"[NotNull] Action<T{j}> case{j}Action")#>);
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
+		/// <param name="case<#= k #>Action">Action for <typeparamref name="T<#= k #>"/></param>
+<#
+		}
+#>
+		void Do(<#= List(i, j => $"Action<T{j}> case{j}Action") #>);
 
-<#	for (var k = 1; k <= i; k++){#>
+<#
+		for (var k = 1; k <= i; k++)
+		{
+#>
 		/// <summary>
-		/// Returns <c>true</c> if class contains value of type <typeparamref name="T<#=k#>"/>.
+		/// Returns <c>true</c> if class contains value of type <typeparamref name="T<#= k #>"/>.
 		/// </summary>
-		bool IsCase<#=k#> { get; }
+		bool IsCase<#= k #> { get; }
 
-<#	}#>
+<#
+		}
+#>
 	}
 
-<#}#>
+<#
+	}
+#>
 }

@@ -50,7 +50,7 @@ namespace CodeJam.Collections
 		[TestCase(new[] { 1.0, 2, 3, 4, 5, 6 }, 1)]
 		[TestCase(new[] { -1.0, -1, -1 }, -1)]
 		[TestCase(new[] { -1.0, double.NaN, -1 }, double.NaN)]
-		public void MinOrDefault([NotNull] double[] source, double expected)
+		public void MinOrDefault(double[] source, double expected)
 		{
 			var rnd = TestTools.GetTestRandom();
 			var comparer = Comparer<double>.Default;
@@ -80,7 +80,7 @@ namespace CodeJam.Collections
 		[TestCase(new[] { 1.0, 2, 3, 4, 5, 6 }, 1)]
 		[TestCase(new[] { -1.0, -1, -1 }, -1)]
 		[TestCase(new[] { -1, double.NaN, -1 }, double.NaN)]
-		public void MinOrDefaultNullable([NotNull] double[] source, double expected)
+		public void MinOrDefaultNullable(double[] source, double expected)
 		{
 			var rnd = TestTools.GetTestRandom();
 			var comparer = Comparer<double?>.Default;
@@ -114,7 +114,7 @@ namespace CodeJam.Collections
 		[TestCase(new[] { "A", "B", "C", "D", "E" }, "A")]
 		[TestCase(new string?[] { null, null, null }, null)]
 		[TestCase(new[] { null, null, "A", null }, "A")]
-		public void MinOrDefaultString([NotNull] string[] source, [NotNull] string expected)
+		public void MinOrDefaultString(string[] source, string expected)
 		{
 			var rnd = TestTools.GetTestRandom();
 			var comparer = Comparer<string>.Default;

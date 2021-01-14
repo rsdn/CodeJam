@@ -11,29 +11,36 @@ namespace CodeJam
 {
 	partial class Algorithms
 	{
-<#for (var i = 2; i <= 7; i++)
-	GenerateMethod(i);#>
+<#
+	for (var i = 2; i <= 7; i++)
+		GenerateMethod(i);
+#>
 	}
 }
 <#+
-private void GenerateMethod(int argCount)
-{
-	var typeArgs = List(argCount, i => "TArg" + i);
-	var args = List(argCount, i => "arg" + i);#>
+	private void GenerateMethod(int argCount)
+	{
+		var typeArgs = List(argCount, i => "TArg" + i);
+		var args = List(argCount, i => "arg" + i);
+#>
 		/// <summary>
 		/// Caches function value for specific arguments.
 		/// </summary>
 		/// <param name="func">Function to memoize.</param>
 		/// <param name="threadSafe">If true - returns thread safe implementation</param>
-<#+for (var i = 1; i <= argCount; i++) {#>
-		/// <typeparam name="TArg<#=i#>">Type of argument <#=i#></typeparam>
-<#+}#>
+<#+
+		for (var i = 1; i <= argCount; i++)
+		{
+#>
+		/// <typeparam name="TArg<#= i #>">Type of argument <#= i #></typeparam>
+<#+
+		}
+#>
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
-		[NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Func<<#=typeArgs#>, TResult> Memoize<<#=typeArgs#>, TResult>(
-				[NotNull] this Func<<#=typeArgs#>, TResult> func,
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Func<<#= typeArgs #>, TResult> Memoize<<#= typeArgs #>, TResult>(
+				this Func<<#= typeArgs #>, TResult> func,
 				bool threadSafe = false) =>
 			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
 
@@ -42,22 +49,28 @@ private void GenerateMethod(int argCount)
 		/// </summary>
 		/// <param name="func">Function to memoize.</param>
 		/// <param name="threadSafety">One of the enumeration values that specifies the thread safety mode.</param>
-<#+for (var i = 1; i <= argCount; i++) {#>
-		/// <typeparam name="TArg<#=i#>">Type of argument <#=i#></typeparam>
-<#+}#>
+<#+
+		for (var i = 1; i <= argCount; i++)
+		{
+#>
+		/// <typeparam name="TArg<#= i #>">Type of argument <#= i #></typeparam>
+<#+
+		}
+#>
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
-		[NotNull]
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static Func<<#=typeArgs#>, TResult> Memoize<<#=typeArgs#>, TResult>(
-			[NotNull] this Func<<#=typeArgs#>, TResult> func,
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Func<<#= typeArgs #>, TResult> Memoize<<#= typeArgs #>, TResult>(
+			this Func<<#= typeArgs #>, TResult> func,
 			LazyThreadSafetyMode threadSafety)
 		{
 			var map =
-				LazyDictionary.Create<(<#=typeArgs#>), TResult>(
-					key => func(<#=List(argCount, i => "key.Item" + i)#>),
+				LazyDictionary.Create<(<#= typeArgs #>), TResult>(
+					key => func(<#= List(argCount, i => "key.Item" + i) #>),
 					threadSafety);
-			return (<#=args#>) => map[(<#=args#>)];
+			return (<#= args #>) => map[(<#= args #>)];
 		}
 
-<#+}#>
+<#+
+	}
+#>

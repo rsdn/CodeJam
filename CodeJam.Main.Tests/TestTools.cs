@@ -15,12 +15,10 @@ namespace CodeJam
 {
 	public static class TestTools
 	{
-		[NotNull]
 		public static Random GetTestRandom([CallerMemberName] string memberName = "") =>
 			GetTestRandom(new Random().Next(), memberName);
 
-		[NotNull]
-		[MethodImpl(MethodImplOptions.NoInlining)]
+				[MethodImpl(MethodImplOptions.NoInlining)]
 		public static Random GetTestRandom(int seed, [CallerMemberName] string? memberName = "")
 		{
 #if TARGETS_NET || NETCOREAPP20_OR_GREATER
@@ -33,12 +31,12 @@ namespace CodeJam
 			return new Random(seed);
 		}
 
-		[NotNull, LinqTunnel]
-		public static IEnumerable<T> Shuffle<T>([NotNull] this IEnumerable<T> source, [NotNull] Random rnd) =>
+		[LinqTunnel]
+		public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rnd) =>
 			source.OrderBy(i => rnd.Next());
 
-		[NotNull, LinqTunnel]
-		public static IEnumerable<Holder<T>> Wrap<T>([NotNull] this IEnumerable<T> source) =>
+		[LinqTunnel]
+		public static IEnumerable<Holder<T>> Wrap<T>(this IEnumerable<T> source) =>
 			source.Select(i => new Holder<T>(i));
 
 		public static void PrintQuirks()
@@ -54,7 +52,7 @@ namespace CodeJam
 			PrintProps("System.AppContextSwitches");
 		}
 
-		private static void PrintProps([NotNull] string typeName)
+		private static void PrintProps(string typeName)
 		{
 			var type = typeof(int).GetAssembly().GetType(typeName);
 			if (type == null)
@@ -71,7 +69,7 @@ namespace CodeJam
 			}
 		}
 
-		public static void WaitForResult([NotNull] this Task source)
+		public static void WaitForResult(this Task source)
 		{
 #if NET45_OR_GREATER || TARGETS_NETCOREAPP
 			source.GetAwaiter().GetResult();
@@ -88,7 +86,7 @@ namespace CodeJam
 #endif
 		}
 
-		public static T WaitForResult<T>([NotNull] this Task<T> source)
+		public static T WaitForResult<T>(this Task<T> source)
 		{
 #if NET45_OR_GREATER || TARGETS_NETCOREAPP
 			return source.GetAwaiter().GetResult();

@@ -10,7 +10,7 @@ namespace CodeJam.Ranges
 	public static class RangeTestHelper
 	{
 		#region Parse helpers
-		private static RangeBoundaryFrom<T> ParseBoundaryFromCore<T>([NotNull] string value, [NotNull] Func<string, T> parseValueCallback)
+		private static RangeBoundaryFrom<T> ParseBoundaryFromCore<T>(string value, Func<string, T> parseValueCallback)
 		{
 			if (value == RangeInternal.EmptyString)
 				return RangeBoundaryFrom<T>.Empty;
@@ -37,7 +37,7 @@ namespace CodeJam.Ranges
 		}
 
 		private static RangeBoundaryTo<T> ParseBoundaryToCore<T>(
-			[NotNull] string value, [NotNull] Func<string, T> parseValueCallback)
+			string value, Func<string, T> parseValueCallback)
 		{
 			if (value == RangeInternal.EmptyString)
 				return RangeBoundaryTo<T>.Empty;
@@ -63,7 +63,7 @@ namespace CodeJam.Ranges
 			return new RangeBoundaryTo<T>(parseValueCallback(valuePart), kind);
 		}
 
-		public static Range<T> ParseRange<T>([NotNull] string value, [NotNull] Func<string, T> parseValueCallback)
+		public static Range<T> ParseRange<T>(string value, Func<string, T> parseValueCallback)
 		{
 			if (value == RangeInternal.EmptyString)
 				return Range<T>.Empty;
@@ -76,9 +76,9 @@ namespace CodeJam.Ranges
 		}
 
 		public static Range<T, TKey> ParseRange<T, TKey>(
-			[NotNull] string value,
-			[NotNull] Func<string, T> parseValueCallback,
-			[NotNull] Func<string, TKey> parseKeyCallback)
+			string value,
+			Func<string, T> parseValueCallback,
+			Func<string, TKey> parseKeyCallback)
 		{
 			var keyAndRange = value
 				.Substring(RangeInternal.KeyPrefixString.Length)
@@ -95,10 +95,10 @@ namespace CodeJam.Ranges
 				parseKeyCallback(keyAndRange[0]));
 		}
 
-		public static Range<double?> ParseRangeDouble([NotNull] string value) =>
+		public static Range<double?> ParseRangeDouble(string value) =>
 			ParseRange(value, s => (double?)double.Parse(s, CultureInfo.InvariantCulture));
 
-		public static Range<int?, string> ParseKeyedRangeInt32([NotNull] string value) =>
+		public static Range<int?, string> ParseKeyedRangeInt32(string value) =>
 			ParseRange(value, s => (int?)int.Parse(s, CultureInfo.InvariantCulture), s => s.IsNullOrEmpty() ? null : s)!;
 		#endregion
 	}

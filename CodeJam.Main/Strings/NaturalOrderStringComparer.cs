@@ -42,7 +42,6 @@ namespace CodeJam.Strings
 		/// A <see cref="NaturalOrderStringComparer"/> object
 		/// that performs a string comparison using a "natural order" algorithm.
 		/// </returns>
-		[NotNull]
 		public static readonly NaturalOrderStringComparer Comparer = new(false);
 
 		/// <summary>
@@ -53,7 +52,6 @@ namespace CodeJam.Strings
 		/// A <see cref="NaturalOrderStringComparer"/> object
 		/// that performs a case-insensitive string comparison using a "natural order" algorithm.
 		/// </returns>
-		[NotNull]
 		public static readonly NaturalOrderStringComparer IgnoreCaseComparer = new(true);
 
 		/// <summary>
@@ -62,7 +60,6 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// A <see cref="Comparison{T}"/> delegate that performs a string comparison using a "natural order" algorithm.
 		/// </returns>
-		[NotNull]
 		public static readonly Comparison<string> Comparison = (a, b) => Compare(a, b, false);
 
 		/// <summary>
@@ -73,7 +70,6 @@ namespace CodeJam.Strings
 		/// A <see cref="Comparison{T}"/> delegate that performs a case-insensitive
 		/// string comparison using a "natural order" algorithm.
 		/// </returns>
-		[NotNull]
 		public static readonly Comparison<string> IgnoreCaseComparison = (a, b) => Compare(a, b, true);
 
 		/// <summary>
@@ -98,7 +94,7 @@ namespace CodeJam.Strings
 		/// Zero <paramref name="a"/> equals <paramref name="b"/>.
 		/// Greater than zero <paramref name="a"/> is greater than <paramref name="b"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int Compare(string? a, string? b) => Compare(a, b, false);
 
 		/// <summary>
@@ -114,7 +110,7 @@ namespace CodeJam.Strings
 		/// Zero <paramref name="a"/> equals <paramref name="b"/>.
 		/// Greater than zero <paramref name="a"/> is greater than <paramref name="b"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int Compare(string? a, string? b, bool ignoreCase)
 		{
 			if (a == b)
@@ -186,7 +182,7 @@ namespace CodeJam.Strings
 			// value wins, but we can't know that it will until we've scanned
 			// both numbers to know that they have the same magnitude, so we
 			// remember it in BIAS.
-			for (; ; pa++, pb++)
+			for (;; pa++, pb++)
 			{
 				var ca = CharAt(a, pa);
 				var cb = CharAt(b, pb);
@@ -232,7 +228,7 @@ namespace CodeJam.Strings
 			return bias;
 		}
 
-		private static int SkipLeadingZeroesAndWhitespaces([NotNull] string text, [NonNegativeValue] int index)
+		private static int SkipLeadingZeroesAndWhitespaces(string text, [NonNegativeValue] int index)
 		{
 			while ((uint)index < (uint)text.Length && (text[index] == '0' || text[index].IsWhiteSpace()))
 				index++;
@@ -240,7 +236,8 @@ namespace CodeJam.Strings
 			return index;
 		}
 
-		private static char CharAt([NotNull] string text, [NonNegativeValue] int index) => (uint)index < (uint)text.Length ? text[index] : char.MinValue;
+		private static char CharAt(string text, [NonNegativeValue] int index)
+			=> (uint)index < (uint)text.Length ? text[index] : char.MinValue;
 
 		#region Implementation of the IComparer<string>
 		/// <summary>

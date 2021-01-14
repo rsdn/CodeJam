@@ -100,7 +100,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void GenericNotDefault<T>(
 			[NoEnumeration, AllowNull] T arg,
-			[JetBrains.Annotations.NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (Operators<T>.AreEqual(arg, default))
 				throw CodeExceptions.ArgumentDefault(argName, typeof(T));

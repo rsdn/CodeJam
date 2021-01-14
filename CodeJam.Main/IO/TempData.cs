@@ -29,7 +29,7 @@ namespace CodeJam.IO
 			/// <summary>Checks that the path is valid.</summary>
 			/// <param name="path">The path.</param>
 			[Conditional(DebugCode.DebugCondition)]
-			protected static void DebugAssertValidPath([NotNull] string path) =>
+			protected static void DebugAssertValidPath(string path) =>
 				// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 				System.IO.Path.GetFullPath(path);
 
@@ -41,7 +41,7 @@ namespace CodeJam.IO
 
 			/// <summary>Initializes a new instance of the <see cref="TempBase"/> class.</summary>
 			/// <param name="path">The path.</param>
-			protected TempBase([NotNull] string path)
+			protected TempBase(string path)
 			{
 				Code.NotNullNorEmpty(path, nameof(path));
 				DebugAssertValidPath(path);
@@ -51,7 +51,6 @@ namespace CodeJam.IO
 
 			/// <summary>Temp path.</summary>
 			/// <value>The path.</value>
-			[NotNull]
 			public string Path
 			{
 				get
@@ -124,11 +123,10 @@ namespace CodeJam.IO
 
 			/// <summary>Initializes a new instance of the <see cref="TempDirectory"/> class.</summary>
 			/// <param name="path">The path.</param>
-			internal TempDirectory([NotNull] string path) : base(path) { }
+			internal TempDirectory(string path) : base(path) { }
 
 			/// <summary>DirectoryInfo object</summary>
 			/// <value>The DirectoryInfo object.</value>
-			[NotNull]
 			public DirectoryInfo Info
 			{
 				get
@@ -161,11 +159,10 @@ namespace CodeJam.IO
 
 			/// <summary>Initialize instance.</summary>
 			/// <param name="path">The path.</param>
-			internal TempFile([NotNull] string path) : base(path) { }
+			internal TempFile(string path) : base(path) { }
 
 			/// <summary>FileInfo object</summary>
 			/// <value>The FileInfo object.</value>
-			[NotNull]
 			public FileInfo Info
 			{
 				get
@@ -192,28 +189,27 @@ namespace CodeJam.IO
 		/// <summary>Returns a random name for a temp file or directory.</summary>
 		/// <returns>A random name</returns>
 		/// <remarks>The resulting name is a local name (does not include a base path)</remarks>
-		[NotNull] public static string GetTempName() => GetTempName(null);
+		public static string GetTempName() => GetTempName(null);
 
 		/// <summary>Returns a random name for a temp file or directory.</summary>
 		/// <param name="extension">The extension for thew filename.</param>
 		/// <returns>A random name</returns>
 		/// <remarks>The resulting name is a local name (does not include a base path)</remarks>
-		[NotNull] public static string GetTempName(string? extension) => Guid.NewGuid() + (extension ?? ".tmp");
+		public static string GetTempName(string? extension) => Guid.NewGuid() + (extension ?? ".tmp");
 
 		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
 		/// <returns>Temp directory to be freed on dispose.</returns>
-		[NotNull] public static TempDirectory CreateDirectory() => CreateDirectory(null, null);
+		public static TempDirectory CreateDirectory() => CreateDirectory(null, null);
 
 		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
 		/// <param name="dirPath">The dir path.</param>
 		/// <returns>Temp directory to be freed on dispose.</returns>
-		[NotNull] public static TempDirectory CreateDirectory(string? dirPath) => CreateDirectory(dirPath, null);
+		public static TempDirectory CreateDirectory(string? dirPath) => CreateDirectory(dirPath, null);
 
 		/// <summary>Creates temp directory and returns <see cref="IDisposable"/> to free it.</summary>
 		/// <param name="dirPath">The dir path.</param>
 		/// <param name="directoryName">Name of the temp directory.</param>
 		/// <returns>Temp directory to be freed on dispose.</returns>
-		[NotNull]
 		public static TempDirectory CreateDirectory(string? dirPath, string? directoryName)
 		{
 			dirPath ??= Path.GetTempPath();
@@ -233,14 +229,13 @@ namespace CodeJam.IO
 		/// <summary>Creates temp file and return disposable handle.</summary>
 		/// <param name="dirPath">The dir path.</param>
 		/// <returns>Temp file to be freed on dispose.</returns>
-		[NotNull] public static TempFile CreateFile(string? dirPath) => CreateFile(dirPath, null);
+		public static TempFile CreateFile(string? dirPath) => CreateFile(dirPath, null);
 
 		/// <summary>Creates temp file and return disposable handle.</summary>
 		/// <param name="dirPath">The dir path.</param>
 		/// <param name="fileName">Name of the temp file.</param>
 		/// <returns>Temp file to be freed on dispose.</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="dirPath"/> is null.</exception>
-		[NotNull]
 		public static TempFile CreateFile(string? dirPath, string? fileName)
 		{
 			dirPath ??= Path.GetTempPath();
@@ -258,14 +253,12 @@ namespace CodeJam.IO
 
 		/// <summary>Creates stream and returns disposable handler.</summary>
 		/// <returns>Temp stream to be freed on dispose.</returns>
-		[NotNull]
 		public static FileStream CreateFileStream() =>
 			CreateFileStream(null, null, FileAccess.ReadWrite);
 
 		/// <summary>Creates stream and returns disposable handler.</summary>
 		/// <param name="fileAccess">The file access.</param>
 		/// <returns>Temp stream to be freed on dispose.</returns>
-		[NotNull]
 		public static FileStream CreateFileStream(FileAccess fileAccess) =>
 			CreateFileStream(null, null, fileAccess);
 
@@ -274,7 +267,6 @@ namespace CodeJam.IO
 		/// <param name="fileName">Name of the temp file.</param>
 		/// <param name="fileAccess">The file access.</param>
 		/// <returns>Temp stream to be freed on dispose.</returns>
-		[NotNull]
 		public static FileStream CreateFileStream(
 			string? dirPath,
 			string? fileName = null,

@@ -13,12 +13,12 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public CmdLineNode(
-			[NotNull] string text,
+			string text,
 			[NonNegativeValue] int position,
 			[NonNegativeValue] int length,
-			[NotNull] QuotedOrNonquotedValueNode programName,
-			[NotNull, ItemNotNull] CommandNode[] commands,
-			[NotNull, ItemNotNull] OptionNode[] options) : base(text, position, length)
+			QuotedOrNonquotedValueNode programName,
+			CommandNode[] commands,
+			OptionNode[] options) : base(text, position, length)
 		{
 			if (programName == null)
 				throw new ArgumentNullException(nameof(programName));
@@ -34,19 +34,16 @@ namespace CodeJam.CmdLine
 		///<summary>
 		/// Program name node.
 		///</summary>
-		[NotNull]
-		public QuotedOrNonquotedValueNode ProgramName { get; }
+				public QuotedOrNonquotedValueNode ProgramName { get; }
 
 		/// <summary>
 		/// Commands.
 		/// </summary>
-		[NotNull, ItemNotNull]
 		public CommandNode[] Commands { get; }
 
 		/// <summary>
 		/// Options.
 		/// </summary>
-		[NotNull, ItemNotNull]
 		public OptionNode[] Options { get; }
 	}
 }

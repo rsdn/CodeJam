@@ -18,7 +18,6 @@ namespace CodeJam.Services
 		[AllowNull]
 		private readonly IServiceProvider _parentProvider;
 
-		[JetBrains.Annotations.NotNull]
 		private readonly ConcurrentDictionary<Type, IServiceBag> _services =
 			new();
 
@@ -42,7 +41,7 @@ namespace CodeJam.Services
 		/// </param>
 		public ServiceContainer(bool publishSelf = true) : this(null, publishSelf) { }
 
-		private void ConcealService([JetBrains.Annotations.NotNull] Type serviceType)
+		private void ConcealService(Type serviceType)
 		{
 			if (!_services.TryRemove(serviceType, out var bag))
 				throw new ArgumentException($"Service with type '{serviceType}' not registered.");
@@ -53,7 +52,7 @@ namespace CodeJam.Services
 		/// <returns>A service object of type <paramref name="serviceType" />.-or- null if there is no service object of type <paramref name="serviceType" />.</returns>
 		/// <param name="serviceType">An object that specifies the type of service object to get. </param>
 		[return: MaybeNull]
-		public object GetService([JetBrains.Annotations.NotNull] Type serviceType)
+		public object GetService(Type serviceType)
 		{
 			Code.NotNull(serviceType, nameof(serviceType));
 
@@ -138,12 +137,11 @@ namespace CodeJam.Services
 
 		private class FactoryBag : IServiceBag
 		{
-			[JetBrains.Annotations.NotNull]
 			private readonly Func<IServicePublisher, object> _factory;
 			private object? _instance;
 
 			/// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-			public FactoryBag([JetBrains.Annotations.NotNull] Func<IServicePublisher, object> factory) => _factory = factory;
+			public FactoryBag(Func<IServicePublisher, object> factory) => _factory = factory;
 
 			#region Overrides of ServiceBag
 			public object GetInstance(IServicePublisher publisher, Type serviceType)

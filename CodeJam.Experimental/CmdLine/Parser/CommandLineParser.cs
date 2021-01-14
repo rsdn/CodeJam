@@ -24,15 +24,13 @@ namespace CodeJam.CmdLine
 		/// </summary>
 		private const char _quota = '"';
 
-		[JetBrains.Annotations.NotNull]
-		private static ParseResult<T> CreateResult<T>([JetBrains.Annotations.NotNull] T result, [JetBrains.Annotations.NotNull] ICharInput inputRest) =>
+		private static ParseResult<T> CreateResult<T>(T result, ICharInput inputRest) =>
 			new(result, inputRest);
 
 		/// <summary>
 		/// Parse command line.
 		/// </summary>
-		[JetBrains.Annotations.NotNull]
-		public static CmdLineNode ParseCommandLine([JetBrains.Annotations.NotNull] string source)
+		public static CmdLineNode ParseCommandLine(string source)
 		{
 			Code.NotNull(source, nameof(source));
 
@@ -66,8 +64,7 @@ namespace CodeJam.CmdLine
 					opts.ToArray());
 		}
 
-		[JetBrains.Annotations.NotNull]
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedValue([JetBrains.Annotations.NotNull] ICharInput input)
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedValue(ICharInput input)
 		{
 			var startPos = input.Position;
 			input = input.ConsumeChar(_quota);
@@ -79,8 +76,7 @@ namespace CodeJam.CmdLine
 					input);
 		}
 
-		[JetBrains.Annotations.NotNull]
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseNonquotedValue([JetBrains.Annotations.NotNull] ICharInput input)
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseNonquotedValue(ICharInput input)
 		{
 			var res = input.ConsumeWhileNonSpace();
 			return
@@ -89,14 +85,13 @@ namespace CodeJam.CmdLine
 					res.InputRest);
 		}
 
-		[JetBrains.Annotations.NotNull]
-		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedOrNonquotedValue([JetBrains.Annotations.NotNull] ICharInput input) =>
+		private static ParseResult<QuotedOrNonquotedValueNode> ParseQuotedOrNonquotedValue(ICharInput input) =>
 			input.Current == _quota ? ParseQuotedValue(input) : ParseNonquotedValue(input);
 
 		#region Commands and options
 		private static bool IsOptionPrefix(char prefixChar) => prefixChar == '/' || prefixChar == '-';
 
-		private static ParseResult<CommandOrOption>? ParseCommandOrOption([JetBrains.Annotations.NotNull] ICharInput input)
+		private static ParseResult<CommandOrOption>? ParseCommandOrOption(ICharInput input)
 		{
 			input = input.ConsumeSpaces();
 			if (IsOptionPrefix(input.Current))
@@ -110,7 +105,7 @@ namespace CodeJam.CmdLine
 					? null
 					: new ParseResult<CommandOrOption>(new CommandOrOption(command.Result), command.InputRest);
 		}
-		private static ParseResult<CommandNode>? ParseCommand([JetBrains.Annotations.NotNull] ICharInput input)
+		private static ParseResult<CommandNode>? ParseCommand(ICharInput input)
 		{
 			var res = input.ConsumeWhileNonSpace();
 			if (input.IsEof())
@@ -121,8 +116,7 @@ namespace CodeJam.CmdLine
 					res.InputRest);
 		}
 
-		[JetBrains.Annotations.NotNull]
-		private static ParseResult<OptionNode> ParseOption([JetBrains.Annotations.NotNull] ICharInput input)
+		private static ParseResult<OptionNode> ParseOption(ICharInput input)
 		{
 			var startPos = input.Position;
 
@@ -182,9 +176,9 @@ namespace CodeJam.CmdLine
 				Option = option;
 			}
 
-			[DisallowNull] public OptionNode? Option { get; }
+			[DisallowNull] public OptionNode? Option { get; } = null!;
 
-			[DisallowNull] public CommandNode? Command { get; }
+			[DisallowNull] public CommandNode? Command { get; } = null!;
 		}
 		#endregion
 	}

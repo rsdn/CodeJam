@@ -15,14 +15,14 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
-		public OptionRule([NotNull] string name, string description = "") : this(name, description, OptionType.Valueless)
+		public OptionRule(string name, string description = "") : this(name, description, OptionType.Valueless)
 		{}
 
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionRule(
-			[NotNull] string name,
+			string name,
 			OptionType type)
 			: this(name, "", type)
 		{}
@@ -31,7 +31,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionRule(
-			[NotNull] string name,
+			string name,
 			OptionType type,
 			bool required)
 			: this(name, "", type, required)
@@ -41,7 +41,7 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionRule(
-			[NotNull] string name,
+			string name,
 			string description,
 			OptionType type,
 			bool required = false) : this(name, description, type, required, new string[0])
@@ -51,21 +51,21 @@ namespace CodeJam.CmdLine
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionRule(
-			[NotNull] string name,
+			string name,
 			OptionType type,
 			bool required,
-			[NotNull] params string[] dependOnCommands) : this(name, "", type, required, dependOnCommands)
+			params string[] dependOnCommands) : this(name, "", type, required, dependOnCommands)
 		{}
 
 		/// <summary>
 		/// Initializes a new instance.
 		/// </summary>
 		public OptionRule(
-			[NotNull] string name,
+			string name,
 			string description,
 			OptionType type,
 			bool required,
-			[NotNull] params string[] dependOnCommands)
+			params string[] dependOnCommands)
 		{
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
@@ -84,7 +84,6 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// Option name.
 		/// </summary>
-		[NotNull]
 		public string Name { get; }
 
 		/// <summary>
@@ -105,7 +104,6 @@ namespace CodeJam.CmdLine
 		/// <summary>
 		/// List of command names, that option depend on.
 		/// </summary>
-		[NotNull]
 		public string[] DependOnCommands { get; }
 	}
 }

@@ -31,9 +31,8 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Mapping value.
 		/// </summary>
-		[NotNull]
-		[ItemNotNull]
 		public MapValueAttribute[] MapValues { get; }
 	}
 }
+
 #endif

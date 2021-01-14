@@ -398,7 +398,7 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange{T}(ref T, T, T)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static T Initialize<T>(ref T target, [NotNull] T value)
+		public static T Initialize<T>(ref T target, T value)
 			where T : class =>
 			Initialize(ref target, value, default(T));
 

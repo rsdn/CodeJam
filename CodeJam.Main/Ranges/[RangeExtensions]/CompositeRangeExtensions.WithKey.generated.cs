@@ -26,7 +26,7 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="range">The range.</param>
 		/// <returns>A new composite range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(this Range<T, TKey> range) =>
 			new CompositeRange<T, TKey>(range);
 
@@ -35,8 +35,8 @@ namespace CodeJam.Ranges
 		/// <typeparam name="TKey">The type of the range key</typeparam>
 		/// <param name="ranges">The ranges.</param>
 		/// <returns>A new composite range.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>([NotNull] this IEnumerable<Range<T, TKey>> ranges) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(this IEnumerable<Range<T, TKey>> ranges) =>
 			new CompositeRange<T, TKey>(ranges);
 		#endregion
 	}

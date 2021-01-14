@@ -26,7 +26,6 @@ namespace CodeJam.Mapping.Examples
 			public DateTime? Field1;
 		}
 
-		[NotNull]
 		private static readonly Mapper<Class1, Class2> _class1ToClass2Mapper =
 			Map.GetMapper<Class1, Class2>(
 				m =>

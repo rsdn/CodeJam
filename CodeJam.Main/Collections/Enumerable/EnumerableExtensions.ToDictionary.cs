@@ -13,8 +13,10 @@ namespace CodeJam.Collections
 	{
 		/// <summary>An exception will be thrown.</summary>
 		Throw,
+
 		/// <summary>The first item in lookup wins.</summary>
 		FirstWins,
+
 		/// <summary>The last item in lookup wins.</summary>
 		LastWins
 	}
@@ -31,7 +33,7 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">A function to extract a key from each element.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, TKey> keySelector,
@@ -50,7 +52,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">An <see cref="IEqualityComparer{T}"/> to compare keys.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Dictionary<TKey, T> ToDictionary<T, TKey>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, TKey> keySelector,
@@ -71,7 +73,7 @@ namespace CodeJam.Collections
 		/// <param name="elementSelector">A transform function to produce a result element value from each element.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Dictionary<TKey, TElement> ToDictionary<T, TKey, TElement>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, TKey> keySelector,
@@ -94,7 +96,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">An equality comparer to compare keys.</param>
 		/// <param name="duplicateHandling">Policy for duplicate handling.</param>
 		/// <returns>A <see cref="Dictionary{TKey,TValue}"/> that contains keys and values.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Dictionary<TKey, TElement> ToDictionary<T, TKey, TElement>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, TKey> keySelector,
@@ -103,7 +105,8 @@ namespace CodeJam.Collections
 			DictionaryDuplicate duplicateHandling)
 			where TKey : notnull
 		{
-			Code.InRange((int)duplicateHandling, nameof(duplicateHandling), (int)DictionaryDuplicate.Throw, (int)DictionaryDuplicate.LastWins);
+			Code.InRange(
+				(int)duplicateHandling, nameof(duplicateHandling), (int)DictionaryDuplicate.Throw, (int)DictionaryDuplicate.LastWins);
 
 			if (duplicateHandling == DictionaryDuplicate.Throw)
 			{

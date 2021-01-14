@@ -43,7 +43,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2}"/>.</returns>
-		public static ValueOneOf<T1, T2> Create([NotNull] T1 value)
+		public static ValueOneOf<T1, T2> Create(T1 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -65,7 +65,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2}"/>.</returns>
-		public static ValueOneOf<T1, T2> Create([NotNull] T2 value)
+		public static ValueOneOf<T1, T2> Create(T2 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -175,7 +175,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3> Create([NotNull] T1 value)
+		public static ValueOneOf<T1, T2, T3> Create(T1 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -197,7 +197,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3> Create([NotNull] T2 value)
+		public static ValueOneOf<T1, T2, T3> Create(T2 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -219,7 +219,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3> Create([NotNull] T3 value)
+		public static ValueOneOf<T1, T2, T3> Create(T3 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -334,7 +334,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4> Create([NotNull] T1 value)
+		public static ValueOneOf<T1, T2, T3, T4> Create(T1 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -356,7 +356,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4> Create([NotNull] T2 value)
+		public static ValueOneOf<T1, T2, T3, T4> Create(T2 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -378,7 +378,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4> Create([NotNull] T3 value)
+		public static ValueOneOf<T1, T2, T3, T4> Create(T3 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -400,7 +400,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4> Create([NotNull] T4 value)
+		public static ValueOneOf<T1, T2, T3, T4> Create(T4 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -520,7 +520,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T1 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T1 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -542,7 +542,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T2 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T2 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -564,7 +564,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T3 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T3 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -586,7 +586,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T4 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T4 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -608,7 +608,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5> Create([NotNull] T5 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T5 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -733,7 +733,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T1 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T1 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -755,7 +755,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T2 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T2 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -777,7 +777,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T3 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T3 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -799,7 +799,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T4 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T4 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -821,7 +821,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T5 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T5 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -843,7 +843,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T6 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T6 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -973,7 +973,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T1 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T1 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -995,7 +995,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T2 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T2 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1017,7 +1017,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T3 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T3 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1039,7 +1039,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T4 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T4 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1061,7 +1061,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T5 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T5 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1083,7 +1083,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T6 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T6 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1105,7 +1105,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T7"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T7 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T7 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1240,7 +1240,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T1 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T1 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1262,7 +1262,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T2 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T2 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1284,7 +1284,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T3 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T3 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1306,7 +1306,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T4 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T4 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1328,7 +1328,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T5 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T5 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1350,7 +1350,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T6 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T6 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1372,7 +1372,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T7"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T7 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T7 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));
@@ -1394,7 +1394,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T8"/> to create instance from.</param>
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T8 value)
+		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T8 value)
 		{
 			if (value == null)
 				throw CodeExceptions.ArgumentNull(nameof (value));

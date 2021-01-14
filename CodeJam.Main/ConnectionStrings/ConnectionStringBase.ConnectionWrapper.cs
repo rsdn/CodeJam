@@ -76,10 +76,8 @@ namespace CodeJam.ConnectionStrings
 					ConnectionString = connectionString;
 			}
 
-			[JetBrains.Annotations.NotNull]
 			public IReadOnlyDictionary<string, KeywordDescriptor> Keywords => _keywordsCache(_descriptorType);
 
-			[JetBrains.Annotations.NotNull]
 			public new string ConnectionString
 			{
 				get => base.ConnectionString;
@@ -100,7 +98,7 @@ namespace CodeJam.ConnectionStrings
 			}
 
 			/// <returns></returns>
-			[JetBrains.Annotations.NotNull, MustUseReturnValue]
+			[MustUseReturnValue]
 			public string GetBrowsableConnectionString(bool includeNonBrowsable = false)
 			{
 				var builder = new StringBuilder();
@@ -163,7 +161,7 @@ namespace CodeJam.ConnectionStrings
 #endif
 							Uri x => x.ToString(),
 							_ => value
-						};
+							};
 					}
 				}
 			}

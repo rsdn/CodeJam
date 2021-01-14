@@ -7,7 +7,8 @@ namespace CodeJam.Mapping
 {
 	internal interface IGenericInfoProvider
 	{
-		void SetInfo([NotNull] MappingSchema mappingSchema);
+		void SetInfo(MappingSchema mappingSchema);
 	}
 }
+
 #endif

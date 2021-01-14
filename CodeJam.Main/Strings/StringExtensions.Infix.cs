@@ -4,11 +4,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 using JetBrains.Annotations;
-
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using StringEx = System.String;
+
 #else
 using StringEx = System.StringEx;
+
 #endif
 
 namespace CodeJam.Strings
@@ -20,7 +21,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns><c>true</c> if <paramref name="str"/> is null or empty; otherwise, <c>false</c>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool IsNullOrEmpty([NotNullWhen(false)] this string? str)
 		{
 			// DONTTOUCH: Do not remove return statements
@@ -37,8 +38,8 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns><c>true</c> if <paramref name="str"/> is not null nor empty; otherwise, <c>false</c>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		public static bool NotNullNorEmpty([NotNullWhen(true)]this string? str) => !str.IsNullOrEmpty();
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool NotNullNorEmpty([NotNullWhen(true)] this string? str) => !str.IsNullOrEmpty();
 
 		/// <summary>
 		/// Infix form of string.IsNullOrWhiteSpace.
@@ -47,21 +48,22 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// <c>true</c> if <paramref name="str"/> is null, empty or contains only whitespaces; otherwise <c>false</c>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		// ReSharper disable once BuiltInTypeReferenceStyle
 		public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? str) =>
-			StringEx.IsNullOrWhiteSpace(str
+			StringEx.IsNullOrWhiteSpace(
+				str
 #if LESSTHAN_NET47
-			!
+					!
 #endif
-			);
+				);
 
 		/// <summary>
 		/// Returns an empty string for null value.
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>The string or <see cref="string.Empty"/> if the string is <c>null</c>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string EmptyIfNull(this string? str) => str ?? string.Empty;
 
 		/// <summary>
@@ -69,7 +71,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>The string or <c>null</c> if the string is empty.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string? NullIfEmpty(this string? str) => str.IsNullOrEmpty() ? null : str;
 
 		/// <summary>
@@ -77,8 +79,8 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>The string or <c>null</c> if the string is empty.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
-		[return:NotNullIfNotNull("str")]
+		[Pure, System.Diagnostics.Contracts.Pure]
+		[return: NotNullIfNotNull("str")]
 		public static string? NullIfWhiteSpace(this string? str) => str.IsNullOrWhiteSpace() ? null : str;
 
 		/// <summary>
@@ -89,13 +91,13 @@ namespace CodeJam.Strings
 		/// <c>true</c> if <paramref name="str"/> is not null, nor empty or contains not only whitespaces;
 		/// otherwise <c>false</c>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		// ReSharper disable once BuiltInTypeReferenceStyle
 		public static bool NotNullNorWhiteSpace([NotNullWhen(true)] this string? str) =>
 			!StringEx.IsNullOrWhiteSpace(
 				str
 #if LESSTHAN_NET47
-				!
+					!
 #endif
 				);
 
@@ -108,7 +110,7 @@ namespace CodeJam.Strings
 		/// A copy of <paramref name="format"/> in which any format items are replaced by the string representation of
 		/// <paramref name="arg"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[StringFormatMethod("format")]
 		public static string FormatWith(this string format, object? arg) => string.Format(format, arg);
 
@@ -122,7 +124,7 @@ namespace CodeJam.Strings
 		/// A copy of <paramref name="format"/> in which format items are replaced by the string representations
 		/// of <paramref name="arg0"/> and <paramref name="arg1"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[StringFormatMethod("format")]
 		public static string FormatWith(this string format, object? arg0, object? arg1) =>
 			string.Format(format, arg0, arg1);
@@ -138,7 +140,7 @@ namespace CodeJam.Strings
 		/// A copy of <paramref name="format"/> in which the format items have been replaced by the string representations
 		/// of <paramref name="arg0"/>, <paramref name="arg1"/>, and <paramref name="arg2"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[StringFormatMethod("format")]
 		public static string FormatWith(this string format, object? arg0, object? arg1, object? arg2) =>
 			string.Format(format, arg0, arg1, arg2);
@@ -153,7 +155,7 @@ namespace CodeJam.Strings
 		/// A copy of format in which the format items have been replaced by the string representation of the corresponding
 		/// objects in args
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[StringFormatMethod("format")]
 		public static string FormatWith(this string format, params object[] args) =>
 			string.Format(format, args);
@@ -174,7 +176,7 @@ namespace CodeJam.Strings
 		/// string.
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string Join(this string[] values, string? separator) =>
 			string.Join(separator, values);
 
@@ -195,13 +197,13 @@ namespace CodeJam.Strings
 		/// string.
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string Join([InstantHandle] this IEnumerable<string> values, string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join(
 				separator
 #if LESSTHAN_NET47
-				!
+					!
 #endif
 				,
 				values);
@@ -220,13 +222,13 @@ namespace CodeJam.Strings
 		/// string.
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string Join<T>([InstantHandle] this IEnumerable<T> values, string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join(
 				separator
 #if LESSTHAN_NET47
-				!
+					!
 #endif
 				,
 				values);
@@ -240,7 +242,7 @@ namespace CodeJam.Strings
 		/// A string that consists of the members of <paramref name="values"/>.
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string Join<T>([InstantHandle] this IEnumerable<T> values) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join("", values);
@@ -250,7 +252,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>Length of the <paramref name="str"/> or 0, if <paramref name="str"/> is null.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int Length(this string? str) => str?.Length ?? 0;
 
 		/// <summary>
@@ -258,7 +260,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string to convert.</param>
 		/// <returns>An array of bytes that is equivalent to <paramref name="str"/>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static byte[] FromBase64(this string str) => Convert.FromBase64String(str);
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES
@@ -272,7 +274,7 @@ namespace CodeJam.Strings
 		/// or <see cref="Base64FormattingOptions.None"/> to not insert line breaks.
 		/// </param>
 		/// <returns>The string representation in base 64 of the elements in <paramref name="data"/>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string ToBase64(this byte[] data, Base64FormattingOptions options) =>
 			Convert.ToBase64String(data, options);
 #endif
@@ -283,7 +285,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="data">an array of bytes.</param>
 		/// <returns>The string representation in base 64 of the elements in <paramref name="data"/>.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string ToBase64(this byte[] data) =>
 			Convert.ToBase64String(data);
 
@@ -293,7 +295,7 @@ namespace CodeJam.Strings
 		/// <param name="str">The string containing the characters to encode.</param>
 		/// <param name="encoding">Encoding to convert.</param>
 		/// <returns>A byte array containing the results of encoding the specified set of characters.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static byte[] ToBytes(this string str, Encoding encoding)
 		{
 			Code.NotNull(str, nameof(str));
@@ -307,7 +309,7 @@ namespace CodeJam.Strings
 		/// </summary>
 		/// <param name="str">The string containing the characters to encode.</param>
 		/// <returns>A byte array containing the results of encoding the specified set of characters.</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static byte[] ToBytes(this string str) => ToBytes(str, Encoding.UTF8);
 	}
 }

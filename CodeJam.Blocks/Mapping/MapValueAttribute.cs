@@ -9,15 +9,14 @@ namespace CodeJam.Mapping
 	/// <summary>
 	/// Uses to define <seealso cref="MapValue"/> for enumtype.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Field, AllowMultiple=true)]
+	[AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 	[PublicAPI]
 	public class MapValueAttribute : Attribute
 	{
 		/// <summary>
 		/// Creates an instance of <see cref="MapValueAttribute"/> attribute.
 		/// </summary>
-		public MapValueAttribute()
-		{}
+		public MapValueAttribute() { }
 
 		/// <summary>
 		/// Creates an instance of <see cref="MapValueAttribute"/> attribute.
@@ -33,7 +32,7 @@ namespace CodeJam.Mapping
 		public MapValueAttribute([AllowNull] string? configuration, [AllowNull] object? value)
 		{
 			Configuration = configuration;
-			Value         = value;
+			Value = value;
 		}
 
 		/// <summary>
@@ -43,7 +42,7 @@ namespace CodeJam.Mapping
 		/// <param name="isDefault"><i>true</i> if dmefault.</param>
 		public MapValueAttribute([AllowNull] object value, bool isDefault)
 		{
-			Value     = value;
+			Value = value;
 			IsDefault = isDefault;
 		}
 
@@ -56,8 +55,8 @@ namespace CodeJam.Mapping
 		public MapValueAttribute([AllowNull] string? configuration, [AllowNull] object? value, bool isDefault)
 		{
 			Configuration = configuration;
-			Value         = value;
-			IsDefault     = isDefault;
+			Value = value;
+			IsDefault = isDefault;
 		}
 
 		/// <summary>
@@ -76,4 +75,5 @@ namespace CodeJam.Mapping
 		public bool IsDefault { get; set; }
 	}
 }
+
 #endif

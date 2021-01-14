@@ -24,12 +24,12 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value)
+			[InstantHandle] this IList<TElement> list,
+			TValue value)
 			where TElement : IComparable<TValue> =>
-			list.EqualRange(value, 0);
+				list.EqualRange(value, 0);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -45,13 +45,13 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NonNegativeValue] int startIndex)
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[NonNegativeValue] int startIndex)
 			where TElement : IComparable<TValue> =>
-			list.EqualRange(value, startIndex, list.Count);
+				list.EqualRange(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -68,12 +68,12 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
-		[Pure][System.Diagnostics.Contracts.Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
-				[NotNull, ItemNotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NonNegativeValue] int startIndex,
-				[NonNegativeValue] int endIndex)
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex)
 			where TElement : IComparable<TValue>
 		{
 			Code.NotNull(list, nameof(list));
@@ -86,7 +86,8 @@ namespace CodeJam
 			{
 				var median = startIndex + (endIndex - startIndex) / 2;
 				var compareResult = list[median].CompareTo(value);
-				switch (compareResult) {
+				switch (compareResult)
+				{
 					case < 0:
 						startIndex = median + 1;
 						upperBoundStartIndex = startIndex;
