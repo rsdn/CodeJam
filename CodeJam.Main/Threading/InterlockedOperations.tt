@@ -31,13 +31,12 @@ namespace CodeJam.Threading
 
 	private void EmitOverloadsFor(string typeName, bool forRefTypes)
 	{
-		var t = typeName;
+		var t = forRefTypes ? typeName + "?" : typeName;
 		var tXmlDoc = forRefTypes?
 			"\r\n\t\t/// <typeparam name=\"" + typeName + "\">Type of value.</typeparam>" :
 			"";
 		var tXmlT = forRefTypes? "{" + typeName + "}" : "";
 		var tT = forRefTypes? "<" + typeName + ">" : "";
-		var tNotNull = forRefTypes? "[NotNull] " + typeName : typeName;
 		var tWhere = forRefTypes? "\r\n\t\t\twhere " + typeName + " : class" : "";
 #>
 		/// <summary>
@@ -52,7 +51,7 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange<#=tXmlT#>(ref <#=t#>, <#=t#>, <#=t#>)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static <#=t#> Initialize<#=tT#>(ref <#=t#> target, <#=tNotNull#> value)<#=tWhere#> =>
+		public static <#=t#> Initialize<#=tT#>(ref <#=t#> target, <#=t#> value)<#=tWhere#> =>
 			Initialize(ref target, value, default(<#=t#>));
 
 		/// <summary>
