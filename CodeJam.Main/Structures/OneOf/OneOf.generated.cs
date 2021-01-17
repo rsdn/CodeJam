@@ -85,7 +85,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -95,8 +95,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2}"/>.</returns>
 		public static OneOf<T1, T2> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -125,7 +123,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -135,8 +133,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2}"/>.</returns>
 		public static OneOf<T1, T2> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -224,7 +220,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -234,8 +230,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
 		public static OneOf<T1, T2, T3> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -265,7 +259,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -275,8 +269,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
 		public static OneOf<T1, T2, T3> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -306,7 +298,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -316,8 +308,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
 		public static OneOf<T1, T2, T3> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -410,7 +400,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -420,8 +410,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -452,7 +440,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -462,8 +450,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -494,7 +480,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -504,8 +490,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -536,7 +520,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -546,8 +530,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -645,7 +627,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -655,8 +637,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -688,7 +668,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -698,8 +678,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -731,7 +709,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -741,8 +719,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -774,7 +750,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -784,8 +760,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -817,7 +791,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case5);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -827,8 +801,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case5(value);
 		}
 
@@ -931,7 +903,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -941,8 +913,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -975,7 +945,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -985,8 +955,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -1019,7 +987,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1029,8 +997,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -1063,7 +1029,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1073,8 +1039,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -1107,7 +1071,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case5);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1117,8 +1081,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case5(value);
 		}
 
@@ -1151,7 +1113,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case6);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1161,8 +1123,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case6(value);
 		}
 
@@ -1270,7 +1230,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1280,8 +1240,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -1315,7 +1273,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1325,8 +1283,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -1360,7 +1316,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1370,8 +1326,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -1405,7 +1359,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1415,8 +1369,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -1450,7 +1402,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case5);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1460,8 +1412,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case5(value);
 		}
 
@@ -1495,7 +1445,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case6);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1505,8 +1455,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case6(value);
 		}
 
@@ -1540,7 +1488,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case7);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1550,8 +1498,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T7 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case7(value);
 		}
 
@@ -1664,7 +1610,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1674,8 +1620,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -1710,7 +1654,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1720,8 +1664,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -1756,7 +1698,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1766,8 +1708,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -1802,7 +1742,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1812,8 +1752,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -1848,7 +1786,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case5);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1858,8 +1796,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case5(value);
 		}
 
@@ -1894,7 +1830,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case6);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1904,8 +1840,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case6(value);
 		}
 
@@ -1940,7 +1874,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case7);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1950,8 +1884,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T7 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case7(value);
 		}
 
@@ -1986,7 +1918,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case8);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1996,8 +1928,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T8 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case8(value);
 		}
 

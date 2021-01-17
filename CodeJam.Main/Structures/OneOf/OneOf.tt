@@ -101,7 +101,7 @@ namespace CodeJam
 
 			public override bool Equals(OneOf<<#= types #>>? other) => Equals(other as Case<#= k #>);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -111,8 +111,6 @@ namespace CodeJam
 		/// <returns>Value of <see cref="OneOf{<#= types #>}"/>.</returns>
 		public static OneOf<<#= types #>> Create(T<#= k #> value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case<#= k #>(value);
 		}
 
