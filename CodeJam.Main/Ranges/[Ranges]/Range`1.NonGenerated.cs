@@ -25,26 +25,37 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region IRangeFactory members
+
+#pragma warning disable IDE0051 // Remove unused private members
+
 		[MethodImpl(AggressiveInlining)]
-		private Range<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		private static Range<T> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new(from, to);
 
 		[MethodImpl(AggressiveInlining)]
-		private Range<T> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		private static Range<T> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			Range.TryCreate(from, to);
 
 		[MethodImpl(AggressiveInlining)]
 		[Obsolete(SkipsArgValidationObsolete)]
-		private Range<T> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		private static Range<T> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new(from, to, UnsafeOverload.SkipsArgValidation);
 
 		[MethodImpl(AggressiveInlining)]
-		private Range<T2> CreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		private static Range<T2> CreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
 			new(from, to);
 
 		[MethodImpl(AggressiveInlining)]
-		private Range<T2> TryCreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		private static Range<T2> TryCreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
 			Range.TryCreate(from, to);
+
+#pragma warning restore IDE0051 // Remove unused private members
+
 		#endregion
 
 		#region IEquatable<Range<T>>

@@ -38,25 +38,36 @@ namespace CodeJam.Ranges
 		/// <summary>The value associated with the range.</summary>
 		/// <value>The value of the range key.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
-		public TKey? Key => _key;
+		public TKey Key => _key;
 
 		#region IRangeFactory members
+
+#pragma warning disable IDE0051 // Remove unused private members
+
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new(from, to, _key);
 
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T, TKey> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			Range.TryCreate(from, to, _key);
 
 		[MethodImpl(AggressiveInlining)]
 		[Obsolete(SkipsArgValidationObsolete)]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T, TKey> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new(from, to, _key, UnsafeOverload.SkipsArgValidation);
 
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T2, TKey> CreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
 			new(from, to, _key);
 
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T2, TKey> TryCreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
 			Range.TryCreate(from, to, _key);
+
+#pragma warning restore IDE0051 // Remove unused private members
+
 		#endregion
 
 		#region Operations
