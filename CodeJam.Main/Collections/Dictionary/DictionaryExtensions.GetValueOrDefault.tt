@@ -26,7 +26,7 @@ namespace CodeJam.Collections
 		var methodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("Header"));
 		foreach (var type in types)
 		{
-		    var nullKeyConstraint = type.Name == "IDictionary" || type.Name == "IReadOnlyDictionary" ? "" : "where TKey: notnull";
+		    var nullKeyConstraint = "where TKey: notnull";
 #>
 		#region <#= type.Name #><TKey, TValue> overloads
 <#
@@ -56,7 +56,7 @@ namespace CodeJam.Collections.Backported
 		var backportedMethodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("BackportedHeader"));
 		foreach (var type in types)
 		{
-		    var nullKeyConstraint = type.Name == "IDictionary" || type.Name == "IReadOnlyDictionary" ? "" : "where TKey: notnull";
+		    var nullKeyConstraint = "where TKey: notnull";
 #>
 		#region <#= type.Name #><TKey, TValue> overloads
 <#

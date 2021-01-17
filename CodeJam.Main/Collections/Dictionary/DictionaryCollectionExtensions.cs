@@ -24,6 +24,7 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, ICollection<TValue>> dict,
 			TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
