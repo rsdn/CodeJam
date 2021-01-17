@@ -124,7 +124,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Formattable logic
-		private static readonly Func<T, string?, IFormatProvider?, string?> _formattableCallback =
+		private static readonly Func<T?, string?, IFormatProvider?, string?> _formattableCallback =
 			CreateFormattableCallback<T>();
 		#endregion
 
