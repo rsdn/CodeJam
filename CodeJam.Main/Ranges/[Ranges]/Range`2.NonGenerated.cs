@@ -38,7 +38,7 @@ namespace CodeJam.Ranges
 		/// <summary>The value associated with the range.</summary>
 		/// <value>The value of the range key.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
-		public TKey? Key => _key;
+		public TKey Key => _key;
 
 		#region IRangeFactory members
 		private Range<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
