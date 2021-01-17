@@ -67,5 +67,9 @@ dotnet_diagnostic.cs8656.severity=error
 dotnet_diagnostic.cs8667.severity=error
 dotnet_diagnostic.cs8714.severity=error
 
+# Remove unnecessary suppression
+dotnet_diagnostic.ide0079.severity=none
+dotnet_remove_unnecessary_suppression_exclusions=ide0079
+
 [*.ttinclude]
 insert_final_newline = false
