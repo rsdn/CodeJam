@@ -95,7 +95,7 @@ namespace CodeJam.Mapping
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static T? GetValue<T>()
 		{
-			if (_defaultValues.TryGetValue(typeof(T), out var value))
+			if (_defaultValues.TryGetValue(typeof(T), out var value) && value != null)
 				return (T)value;
 
 			_defaultValues[typeof(T)] = default(T);
