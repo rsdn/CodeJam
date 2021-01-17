@@ -50,7 +50,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void TestEnum<#=op.Name#>() =>
-			Assert.AreEqual(<#=op.Sign#>NullableEnumA.Value, EnumOp.<#=op.Name#>(NullableEnumA.Value));
+			Assert.AreEqual(<#=op.Sign#>NullableEnumA!.Value, EnumOp.<#=op.Name#>(NullableEnumA.Value));
 
 		[Test]
 		public void TestNullableEnum<#=op.Name#>()
@@ -83,7 +83,7 @@ namespace CodeJam.Arithmetic
 		[Test]
 		public void TestEnum<#=op.Name#>() =>
 			Assert.AreEqual(
-				NullableEnumA.Value <#=op.Sign#> NullableEnumB.Value,
+				NullableEnumA!.Value <#=op.Sign#> NullableEnumB!.Value,
 				EnumOp.<#=op.Name#>(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]

@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 
 using NUnit.Framework;
@@ -39,7 +42,7 @@ namespace CodeJam.Arithmetic
 
 		[Test]
 		public void TestEnumOnesComplement() =>
-			Assert.AreEqual(~NullableEnumA.Value, EnumOp.OnesComplement(NullableEnumA.Value));
+			Assert.AreEqual(~NullableEnumA!.Value, EnumOp.OnesComplement(NullableEnumA.Value));
 
 		[Test]
 		public void TestNullableEnumOnesComplement()
@@ -58,7 +61,7 @@ namespace CodeJam.Arithmetic
 		[Test]
 		public void TestEnumAreEqual() =>
 			Assert.AreEqual(
-				NullableEnumA.Value == NullableEnumB.Value,
+				NullableEnumA!.Value == NullableEnumB!.Value,
 				EnumOp.AreEqual(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
@@ -79,7 +82,7 @@ namespace CodeJam.Arithmetic
 		[Test]
 		public void TestEnumAreNotEqual() =>
 			Assert.AreEqual(
-				NullableEnumA.Value != NullableEnumB.Value,
+				NullableEnumA!.Value != NullableEnumB!.Value,
 				EnumOp.AreNotEqual(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
@@ -171,7 +174,7 @@ namespace CodeJam.Arithmetic
 		[Test]
 		public void TestEnumXor() =>
 			Assert.AreEqual(
-				NullableEnumA.Value ^ NullableEnumB.Value,
+				NullableEnumA!.Value ^ NullableEnumB!.Value,
 				EnumOp.Xor(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
@@ -189,7 +192,7 @@ namespace CodeJam.Arithmetic
 		[Test]
 		public void TestEnumBitwiseAnd() =>
 			Assert.AreEqual(
-				NullableEnumA.Value & NullableEnumB.Value,
+				NullableEnumA!.Value & NullableEnumB!.Value,
 				EnumOp.BitwiseAnd(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
@@ -207,7 +210,7 @@ namespace CodeJam.Arithmetic
 		[Test]
 		public void TestEnumBitwiseOr() =>
 			Assert.AreEqual(
-				NullableEnumA.Value | NullableEnumB.Value,
+				NullableEnumA!.Value | NullableEnumB!.Value,
 				EnumOp.BitwiseOr(NullableEnumA.Value, NullableEnumB.Value));
 
 		[Test]
