@@ -16,7 +16,7 @@ namespace CodeJam.Collections
 		/// <param name="keySelector">The grouping key selector.</param>
 		/// <returns>Grouped items with grouping key.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<IGrouping<TKey?, T>> GroupWhileEquals<T, TKey>(
+		public static IEnumerable<IGrouping<TKey, T>> GroupWhileEquals<T, TKey>(
 			this IEnumerable<T> source,
 			Func<T, TKey> keySelector) =>
 				GroupWhileEquals(source, keySelector, null);
@@ -29,7 +29,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Grouped items with grouping key.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<IGrouping<TKey?, T>> GroupWhileEquals<T, TKey>(
+		public static IEnumerable<IGrouping<TKey, T>> GroupWhileEquals<T, TKey>(
 			this IEnumerable<T> source,
 			Func<T, TKey> keySelector,
 			IEqualityComparer<TKey>? comparer)
@@ -41,7 +41,7 @@ namespace CodeJam.Collections
 		}
 
 		[Pure, System.Diagnostics.Contracts.Pure]
-		private static IEnumerable<IGrouping<TKey?, T>> GroupWhileCore<T, TKey>(
+		private static IEnumerable<IGrouping<TKey, T>> GroupWhileCore<T, TKey>(
 			IEnumerable<T> source,
 			Func<T, TKey> keySelector,
 			IEqualityComparer<TKey>? comparer)
@@ -60,7 +60,7 @@ namespace CodeJam.Collections
 #endif
 					, newKey))
 				{
-					yield return new Grouping<TKey?, T>(key, groupingList.ToArray());
+					yield return new Grouping<TKey, T>(key!, groupingList.ToArray());
 					groupingList.Clear();
 				}
 				key = newKey;
@@ -69,7 +69,7 @@ namespace CodeJam.Collections
 
 			if (groupingList.Count > 0)
 			{
-				yield return new Grouping<TKey?, T>(key, groupingList.ToArray());
+				yield return new Grouping<TKey, T>(key!, groupingList.ToArray());
 			}
 		}
 		#endregion
@@ -84,7 +84,7 @@ namespace CodeJam.Collections
 		/// <param name="itemSelector">The item selector.</param>
 		/// <returns>Grouped items with grouping key.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<IGrouping<TKey?, TItem>> GroupWhileEquals<T, TItem, TKey>(
+		public static IEnumerable<IGrouping<TKey, TItem>> GroupWhileEquals<T, TItem, TKey>(
 			this IEnumerable<T> source,
 			Func<T, TKey> keySelector,
 			Func<T, TItem> itemSelector) =>
@@ -99,7 +99,7 @@ namespace CodeJam.Collections
 		/// <param name="itemSelector">The item selector.</param>
 		/// <param name="comparer">The comparer.</param>
 		/// <returns>Grouped items with grouping key.</returns>
-		public static IEnumerable<IGrouping<TKey?, TItem>> GroupWhileEquals<T, TItem, TKey>(
+		public static IEnumerable<IGrouping<TKey, TItem>> GroupWhileEquals<T, TItem, TKey>(
 			this IEnumerable<T> source,
 			Func<T, TKey> keySelector,
 			Func<T, TItem> itemSelector,
@@ -112,7 +112,7 @@ namespace CodeJam.Collections
 			return GroupWhileCore(source, keySelector, itemSelector, comparer);
 		}
 
-		private static IEnumerable<IGrouping<TKey?, TItem>> GroupWhileCore<T, TItem, TKey>(
+		private static IEnumerable<IGrouping<TKey, TItem>> GroupWhileCore<T, TItem, TKey>(
 			IEnumerable<T> source,
 			Func<T, TKey> keySelector,
 			Func<T, TItem> itemSelector,
@@ -134,7 +134,7 @@ namespace CodeJam.Collections
 					,
 					newKey))
 				{
-					yield return new Grouping<TKey?, TItem>(key, groupingList.ToArray());
+					yield return new Grouping<TKey, TItem>(key!, groupingList.ToArray());
 					groupingList.Clear();
 				}
 				key = newKey;
@@ -143,7 +143,7 @@ namespace CodeJam.Collections
 
 			if (groupingList.Count > 0)
 			{
-				yield return new Grouping<TKey?, TItem>(key, groupingList.ToArray());
+				yield return new Grouping<TKey, TItem>(key!, groupingList.ToArray());
 			}
 		}
 		#endregion

@@ -214,7 +214,7 @@ namespace CodeJam.Ranges
 		/// <param name="key">The value of the range key</param>
 		/// <returns>A new range or empty range if the boundaries forms invalid range.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
-		public static Range<T, TKey> TryCreate<T, TKey>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey? key) =>
+		public static Range<T, TKey> TryCreate<T, TKey>(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key) =>
 			IsValid(from, to)
 #pragma warning disable 618 // Validation not required: IsValid() called.
 				? new Range<T, TKey>(from, to, key, SkipsArgValidation)

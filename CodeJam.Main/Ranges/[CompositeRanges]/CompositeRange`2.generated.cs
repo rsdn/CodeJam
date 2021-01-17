@@ -137,7 +137,7 @@ namespace CodeJam.Ranges
 		public static readonly CompositeRange<T, TKey> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly CompositeRange<T, TKey> Infinite = new(Range<T, TKey>.Infinite);
+		public static readonly CompositeRange<T, TKey?> Infinite = new(Range<T, TKey?>.Infinite);
 		#endregion
 
 		#endregion

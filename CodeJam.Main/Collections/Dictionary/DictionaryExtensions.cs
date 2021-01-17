@@ -28,7 +28,6 @@ namespace CodeJam.Collections
 		[CollectionAccess(CollectionAccessType.Read | CollectionAccessType.UpdatedContent)]
 		public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
 			where TValue : new()
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
@@ -57,7 +56,6 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			TValue value)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
@@ -86,7 +84,6 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> valueFactory)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
@@ -116,7 +113,6 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> valueFactory)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
@@ -129,7 +125,6 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> valueFactory)
-			where TKey : notnull
 		{
 			if (!dictionary.TryGetValue(key, out var result))
 			{
@@ -162,7 +157,6 @@ namespace CodeJam.Collections
 			TKey key,
 			TValue addValue,
 			[InstantHandle] Func<TKey, TValue, TValue> updateValueFactory)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
@@ -200,7 +194,6 @@ namespace CodeJam.Collections
 			TKey key,
 			TValue addValue,
 			[InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
@@ -214,7 +207,6 @@ namespace CodeJam.Collections
 			TKey key,
 			TValue addValue,
 			[InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
-			where TKey : notnull
 		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
@@ -249,7 +241,6 @@ namespace CodeJam.Collections
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> addValueFactory,
 			[InstantHandle] Func<TKey, TValue, TValue> updateValueFactory)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(addValueFactory, nameof(addValueFactory));
@@ -289,7 +280,6 @@ namespace CodeJam.Collections
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> addValueFactory,
 			[InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(addValueFactory, nameof(addValueFactory));
@@ -304,7 +294,6 @@ namespace CodeJam.Collections
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> addValueFactory,
 			[InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
-			where TKey : notnull
 		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
@@ -333,7 +322,6 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> valueFactory)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
@@ -365,7 +353,6 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> valueFactory)
-			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
@@ -378,7 +365,6 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> valueFactory)
-			where TKey : notnull
 		{
 			if (dictionary.ContainsKey(key))
 			{

@@ -14,7 +14,6 @@ namespace CodeJam.Ranges
 {
 	/// <summary>Describes a range of the values.</summary>
 	public partial struct CompositeRange<T, TKey>
-		where TKey : notnull
 	{
 		#region Helpers
 		private static IEnumerable<Range<T>> MergeRangesNoKeyCore(
@@ -83,8 +82,7 @@ namespace CodeJam.Ranges
 		/// <param name="key">The value of the new key.</param>
 		/// <returns>A new composite range with the key specified.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key)
-			where TKey2 : notnull =>
+		public CompositeRange<T, TKey2> WithKeys<TKey2>(TKey2 key) =>
 				IsEmpty
 					? CompositeRange<T, TKey2>.Empty
 					: SubRanges.Select(s => s.WithKey(key)).ToCompositeRange();
@@ -95,9 +93,8 @@ namespace CodeJam.Ranges
 		/// <returns>A new composite range with the key specified.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public CompositeRange<T, TKey2> WithKeys<TKey2>(
-			[InstantHandle] Func<TKey?, TKey2> keySelector)
-			where TKey2 : notnull =>
-				IsEmpty
+			[InstantHandle] Func<TKey?, TKey2> keySelector) =>
+		IsEmpty
 					? CompositeRange<T, TKey2>.Empty
 					: SubRanges.Select(s => s.WithKey(keySelector(s.Key))).ToCompositeRange();
 
@@ -136,7 +133,8 @@ namespace CodeJam.Ranges
 				return false;
 
 			var previousRange = Range<T>.Empty;
-			var keys = new Dictionary<TKey, int>();
+			IDictionary<(TKey, int), int> keys = new Dictionary<(TKey, int), int>();
+
 			var nullKeysCount = 0;
 
 			for (var i = 0; i < _ranges.Count; i++)
@@ -161,13 +159,13 @@ namespace CodeJam.Ranges
 				if (key == null)
 					nullKeysCount++;
 				else
-					keys[key] = keys.GetValueOrDefault(key) + 1;
+					keys[(key, 0)] = keys.GetValueOrDefault((key, 0)) + 1;
 
 				var otherKey = otherRanges[i].Key;
 				if (otherKey == null)
 					nullKeysCount--;
 				else
-					keys[otherKey] = keys.GetValueOrDefault(otherKey) - 1;
+					keys[(otherKey, 0)] = keys.GetValueOrDefault((otherKey, 0)) - 1;
 
 				previousRange = currentWithoutKey;
 			}

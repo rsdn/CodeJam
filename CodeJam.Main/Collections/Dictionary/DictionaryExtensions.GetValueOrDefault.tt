@@ -26,12 +26,13 @@ namespace CodeJam.Collections
 		var methodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("Header"));
 		foreach (var type in types)
 		{
+		    var nullKeyConstraint = type.Name == "IDictionary" || type.Name == "IReadOnlyDictionary" ? "" : "where TKey: notnull";
 #>
 		#region <#= type.Name #><TKey, TValue> overloads
 <#
 			for (var i = 1; i <= methodCount; i++)
 			{
-				self.GetMethod("Header" + i, flags).Invoke(this, new object[] { type.Name });
+				self.GetMethod("Header" + i, flags).Invoke(this, new object[] { type.Name, nullKeyConstraint });
 				self.GetMethod((type.Conflict ? "Conflict" : "") + "Body" + i, flags).Invoke(this, new object[] { });
 			}
 #>
@@ -55,12 +56,13 @@ namespace CodeJam.Collections.Backported
 		var backportedMethodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("BackportedHeader"));
 		foreach (var type in types)
 		{
+		    var nullKeyConstraint = type.Name == "IDictionary" || type.Name == "IReadOnlyDictionary" ? "" : "where TKey: notnull";
 #>
 		#region <#= type.Name #><TKey, TValue> overloads
 <#
 			for (var i = 1; i <= backportedMethodCount; i++)
 			{
-				self.GetMethod("BackportedHeader" + i, flags).Invoke(this, new object[] { type.Name });
+				self.GetMethod("BackportedHeader" + i, flags).Invoke(this, new object[] { type.Name, nullKeyConstraint });
 				self.GetMethod("Backported" + (type.Conflict ? "Conflict" : "") + "Body" + i, flags).Invoke(this, new object[] { });
 			}
 #>
@@ -72,7 +74,7 @@ namespace CodeJam.Collections.Backported
 	}
 }
 <#+
-	private void BackportedHeader1(string type)
+	private void BackportedHeader1(string type, string nullKeyConstraint)
 	{
 #>
 		/// <summary>
@@ -92,7 +94,7 @@ namespace CodeJam.Collections.Backported
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			this <#= type #><TKey, TValue> dictionary,
 			TKey key)
-			where TKey: notnull =>
+			<#= nullKeyConstraint #> =>
 <#+
 	}
 
@@ -114,7 +116,7 @@ namespace CodeJam.Collections.Backported
 #>
 
 <#+
-	private void BackportedHeader2(string type)
+	private void BackportedHeader2(string type, string nullKeyConstraint)
 	{
 #>
 		/// <summary>
@@ -136,7 +138,7 @@ namespace CodeJam.Collections.Backported
 			this <#= type #><TKey, TValue> dictionary,
 			TKey key,
 			TValue? defaultValue)
-		where TKey: notnull
+		<#= nullKeyConstraint #>
 <#+
 	}
 
@@ -167,7 +169,7 @@ namespace CodeJam.Collections.Backported
 #>
 
 <#+
-	private void Header1(string type)
+	private void Header1(string type, string nullKeyConstraint)
 	{
 #>
 		/// <summary>
@@ -190,7 +192,7 @@ namespace CodeJam.Collections.Backported
 				this <#= type #><TKey, TValue> dictionary,
 				TKey key,
 				[InstantHandle] Func<TKey, TValue, TResult> resultSelector)
-				where TKey: notnull =>
+				<#= nullKeyConstraint #> =>
 <#+
 	}
 
@@ -212,7 +214,7 @@ namespace CodeJam.Collections.Backported
 #>
 
 <#+
-	private void Header2(string type)
+	private void Header2(string type, string nullKeyConstraint)
 	{
 #>
 		/// <summary>
@@ -237,7 +239,7 @@ namespace CodeJam.Collections.Backported
 			TKey key,
 			[InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			TResult? defaultValue)
-			where TKey: notnull
+			<#= nullKeyConstraint #>
 <#+
 	}
 
@@ -270,7 +272,7 @@ namespace CodeJam.Collections.Backported
 #>
 
 <#+
-	private void Header3(string type)
+	private void Header3(string type, string nullKeyConstraint)
 	{
 #>
 		/// <summary>
@@ -292,7 +294,7 @@ namespace CodeJam.Collections.Backported
 			this <#= type #><TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> defaultValueFactory)
-			where TKey: notnull
+			<#= nullKeyConstraint #>
 <#+
 	}
 
@@ -325,7 +327,7 @@ namespace CodeJam.Collections.Backported
 #>
 
 <#+
-	private void Header4(string type)
+	private void Header4(string type, string nullKeyConstraint)
 	{
 #>
 		/// <summary>
@@ -350,7 +352,7 @@ namespace CodeJam.Collections.Backported
 			TKey key,
 			[InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[InstantHandle] Func<TKey, TResult> defaultValueFactory)
-			where TKey: notnull
+			<#= nullKeyConstraint #>
 <#+
 	}
 
