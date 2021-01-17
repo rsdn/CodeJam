@@ -37,7 +37,7 @@ namespace CodeJam.Threading
 			"";
 		var tXmlT = forRefTypes? "{" + typeName + "}" : "";
 		var tT = forRefTypes? "<" + typeName + ">" : "";
-		var tWhere = forRefTypes? "\r\n\t\t\twhere " + typeName + " : class" : "";
+		var tWhere = forRefTypes? "\r\n\t\t\twhere " + typeName + " : class?" : "";
 #>
 		/// <summary>
 		/// Initialize the value referenced by <paramref name="target"/> in a thread-safe manner.
@@ -48,7 +48,7 @@ namespace CodeJam.Threading
 		/// <returns>
 		/// The new value referenced by <paramref name="target"/>.
 		/// Note that this is nearly always more useful than the usual
-		/// return from <see cref="Interlocked.CompareExchange<#=tXmlT#>(ref <#=t#>, <#=t#>, <#=t#>)"/>
+		/// return from <see cref="Interlocked.CompareExchange<#=tXmlT#>(ref <#=typeName#>, <#=typeName#>, <#=typeName#>)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
 		public static <#=t#> Initialize<#=tT#>(ref <#=t#> target, <#=t#> value)<#=tWhere#> =>
@@ -65,7 +65,7 @@ namespace CodeJam.Threading
 		/// <returns>
 		/// The new value referenced by <paramref name="target"/>.
 		/// Note that this is nearly always more useful than the usual
-		/// return from <see cref="Interlocked.CompareExchange<#=tXmlT#>(ref <#=t#>, <#=t#>, <#=t#>)"/>
+		/// return from <see cref="Interlocked.CompareExchange<#=tXmlT#>(ref <#=typeName#>, <#=typeName#>, <#=typeName#>)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
 		public static <#=t#> Initialize<#=tT#>(ref <#=t#> target, <#=t#> initializedValue, <#=t#> uninitializedValue)<#=tWhere#>

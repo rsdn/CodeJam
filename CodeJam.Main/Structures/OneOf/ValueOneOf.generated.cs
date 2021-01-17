@@ -10,6 +10,7 @@
 #nullable enable
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -107,13 +108,13 @@ namespace CodeJam
 		}
 
 		/// <inheritdoc />
-		public bool Equals(ValueOneOf<T1, T2> other)
+		public bool Equals([AllowNull] ValueOneOf<T1, T2> other)
 		{
 			return Equals(_value, other._value);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals([AllowNull] object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is ValueOneOf<T1, T2> && Equals((ValueOneOf<T1, T2>)obj);
@@ -264,13 +265,13 @@ namespace CodeJam
 		}
 
 		/// <inheritdoc />
-		public bool Equals(ValueOneOf<T1, T2, T3> other)
+		public bool Equals([AllowNull] ValueOneOf<T1, T2, T3> other)
 		{
 			return Equals(_value, other._value);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals([AllowNull] object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is ValueOneOf<T1, T2, T3> && Equals((ValueOneOf<T1, T2, T3>)obj);
@@ -448,13 +449,13 @@ namespace CodeJam
 		}
 
 		/// <inheritdoc />
-		public bool Equals(ValueOneOf<T1, T2, T3, T4> other)
+		public bool Equals([AllowNull] ValueOneOf<T1, T2, T3, T4> other)
 		{
 			return Equals(_value, other._value);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals([AllowNull] object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is ValueOneOf<T1, T2, T3, T4> && Equals((ValueOneOf<T1, T2, T3, T4>)obj);
@@ -659,13 +660,13 @@ namespace CodeJam
 		}
 
 		/// <inheritdoc />
-		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5> other)
+		public bool Equals([AllowNull] ValueOneOf<T1, T2, T3, T4, T5> other)
 		{
 			return Equals(_value, other._value);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals([AllowNull] object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is ValueOneOf<T1, T2, T3, T4, T5> && Equals((ValueOneOf<T1, T2, T3, T4, T5>)obj);
@@ -897,13 +898,13 @@ namespace CodeJam
 		}
 
 		/// <inheritdoc />
-		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6> other)
+		public bool Equals([AllowNull] ValueOneOf<T1, T2, T3, T4, T5, T6> other)
 		{
 			return Equals(_value, other._value);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals([AllowNull] object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is ValueOneOf<T1, T2, T3, T4, T5, T6> && Equals((ValueOneOf<T1, T2, T3, T4, T5, T6>)obj);
@@ -1162,13 +1163,13 @@ namespace CodeJam
 		}
 
 		/// <inheritdoc />
-		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6, T7> other)
+		public bool Equals([AllowNull] ValueOneOf<T1, T2, T3, T4, T5, T6, T7> other)
 		{
 			return Equals(_value, other._value);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals([AllowNull] object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is ValueOneOf<T1, T2, T3, T4, T5, T6, T7> && Equals((ValueOneOf<T1, T2, T3, T4, T5, T6, T7>)obj);
@@ -1454,13 +1455,13 @@ namespace CodeJam
 		}
 
 		/// <inheritdoc />
-		public bool Equals(ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> other)
+		public bool Equals([AllowNull] ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> other)
 		{
 			return Equals(_value, other._value);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals([AllowNull] object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> && Equals((ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>)obj);
