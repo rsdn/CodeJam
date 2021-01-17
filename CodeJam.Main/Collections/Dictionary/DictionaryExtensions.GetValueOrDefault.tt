@@ -13,26 +13,50 @@ namespace CodeJam.Collections
 	{
 <#
 	// ReSharper disable UnusedMember.Local
+	const string nullConstraint = "			where TKey : notnull";
+	const string core3NullConstraint = @"#if NETCOREAPP3_1
+			where TKey: notnull
+#endif
+		";
 		var types =
 			new[]
 			{
-				new { Name = "IDictionary", Conflict = false },
-				new { Name = "IReadOnlyDictionary", Conflict = false },
-				new { Name = "Dictionary", Conflict = false },
-				new { Name = "ConcurrentDictionary", Conflict = false }
+				new
+				{
+					Name = "IDictionary",
+					Conflict = false,
+					Constraint = core3NullConstraint
+				},
+				new
+				{
+					Name = "IReadOnlyDictionary",
+					Conflict = false,
+					Constraint = core3NullConstraint
+				},
+				new
+				{
+					Name = "Dictionary",
+					Conflict = false,
+					Constraint = nullConstraint
+				},
+				new
+				{
+					Name = "ConcurrentDictionary",
+					Conflict = false,
+					Constraint = nullConstraint
+				}
 			};
 		var self = GetType();
 		const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
 		var methodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("Header"));
 		foreach (var type in types)
 		{
-		    var nullKeyConstraint = "where TKey: notnull";
 #>
 		#region <#= type.Name #><TKey, TValue> overloads
 <#
 			for (var i = 1; i <= methodCount; i++)
 			{
-				self.GetMethod("Header" + i, flags).Invoke(this, new object[] { type.Name, nullKeyConstraint });
+				self.GetMethod("Header" + i, flags).Invoke(this, new object[] { type.Name, type.Constraint });
 				self.GetMethod((type.Conflict ? "Conflict" : "") + "Body" + i, flags).Invoke(this, new object[] { });
 			}
 #>
@@ -56,13 +80,12 @@ namespace CodeJam.Collections.Backported
 		var backportedMethodCount = self.GetMethods(flags).Count(m => m.Name.StartsWith("BackportedHeader"));
 		foreach (var type in types)
 		{
-		    var nullKeyConstraint = "where TKey: notnull";
 #>
 		#region <#= type.Name #><TKey, TValue> overloads
 <#
 			for (var i = 1; i <= backportedMethodCount; i++)
 			{
-				self.GetMethod("BackportedHeader" + i, flags).Invoke(this, new object[] { type.Name, nullKeyConstraint });
+				self.GetMethod("BackportedHeader" + i, flags).Invoke(this, new object[] { type.Name, type.Constraint });
 				self.GetMethod("Backported" + (type.Conflict ? "Conflict" : "") + "Body" + i, flags).Invoke(this, new object[] { });
 			}
 #>
@@ -94,7 +117,7 @@ namespace CodeJam.Collections.Backported
 		public static TValue? GetValueOrDefault<TKey, TValue>(
 			this <#= type #><TKey, TValue> dictionary,
 			TKey key)
-			<#= nullKeyConstraint #> =>
+<#= nullKeyConstraint #> =>
 <#+
 	}
 
@@ -138,7 +161,7 @@ namespace CodeJam.Collections.Backported
 			this <#= type #><TKey, TValue> dictionary,
 			TKey key,
 			TValue? defaultValue)
-		<#= nullKeyConstraint #>
+<#= nullKeyConstraint #>
 <#+
 	}
 
@@ -192,7 +215,7 @@ namespace CodeJam.Collections.Backported
 				this <#= type #><TKey, TValue> dictionary,
 				TKey key,
 				[InstantHandle] Func<TKey, TValue, TResult> resultSelector)
-				<#= nullKeyConstraint #> =>
+<#= nullKeyConstraint #> =>
 <#+
 	}
 
@@ -239,7 +262,7 @@ namespace CodeJam.Collections.Backported
 			TKey key,
 			[InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			TResult? defaultValue)
-			<#= nullKeyConstraint #>
+<#= nullKeyConstraint #>
 <#+
 	}
 
@@ -294,14 +317,14 @@ namespace CodeJam.Collections.Backported
 			this <#= type #><TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> defaultValueFactory)
-			<#= nullKeyConstraint #>
+<#= nullKeyConstraint #>
 <#+
 	}
 
 	private void Body3()
 	{
 #>
-		{
+ 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
@@ -352,7 +375,7 @@ namespace CodeJam.Collections.Backported
 			TKey key,
 			[InstantHandle] Func<TKey, TValue, TResult> resultSelector,
 			[InstantHandle] Func<TKey, TResult> defaultValueFactory)
-			<#= nullKeyConstraint #>
+<#= nullKeyConstraint #>
 <#+
 	}
 

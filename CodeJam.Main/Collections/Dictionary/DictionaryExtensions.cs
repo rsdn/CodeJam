@@ -27,7 +27,9 @@ namespace CodeJam.Collections
 		/// </returns>
 		[CollectionAccess(CollectionAccessType.Read | CollectionAccessType.UpdatedContent)]
 		public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 			where TValue : new()
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
@@ -57,7 +59,9 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			TValue value)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
@@ -86,7 +90,9 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> valueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
@@ -116,7 +122,9 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> valueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
@@ -129,7 +137,9 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> valueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			if (!dictionary.TryGetValue(key, out var result))
 			{
@@ -162,7 +172,9 @@ namespace CodeJam.Collections
 			TKey key,
 			TValue addValue,
 			[InstantHandle] Func<TKey, TValue, TValue> updateValueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
@@ -200,7 +212,9 @@ namespace CodeJam.Collections
 			TKey key,
 			TValue addValue,
 			[InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(updateValueFactory, nameof(updateValueFactory));
@@ -214,7 +228,9 @@ namespace CodeJam.Collections
 			TKey key,
 			TValue addValue,
 			[InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
@@ -249,7 +265,9 @@ namespace CodeJam.Collections
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> addValueFactory,
 			[InstantHandle] Func<TKey, TValue, TValue> updateValueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(addValueFactory, nameof(addValueFactory));
@@ -289,7 +307,9 @@ namespace CodeJam.Collections
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> addValueFactory,
 			[InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(addValueFactory, nameof(addValueFactory));
@@ -304,7 +324,9 @@ namespace CodeJam.Collections
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> addValueFactory,
 			[InstantHandle] Func<TKey, TValue, Task<TValue>> updateValueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			if (dictionary.TryGetValue(key, out var result))
 			{
@@ -333,7 +355,9 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> valueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
@@ -365,7 +389,9 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> valueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(valueFactory, nameof(valueFactory));
@@ -378,7 +404,9 @@ namespace CodeJam.Collections
 			this IDictionary<TKey, TValue> dictionary,
 			TKey key,
 			[InstantHandle] Func<TKey, Task<TValue>> valueFactory)
+#if NETCOREAPP3_1
 			where TKey : notnull
+#endif
 		{
 			if (dictionary.ContainsKey(key))
 			{
