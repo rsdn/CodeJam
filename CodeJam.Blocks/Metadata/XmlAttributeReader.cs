@@ -103,19 +103,19 @@ namespace CodeJam.Metadata
 			var attrs = el.Elements().Where(e => e.Name.LocalName != exclude).Select(
 				a =>
 				{
-					var aname = a.Name.LocalName;
+					var aName = a.Name.LocalName;
 					var values = a.Elements().Select(
 						e =>
 						{
 							var name = e.Name.LocalName;
-							var value = e.Attribute("Value");
-							var type = e.Attribute("Type");
+							var value = e.Attribute(XName.Get("Value"));
+							var type = e.Attribute(XName.Get("Type"));
 
 							if (value == null)
 								throw new MetadataException(
 									memberName != null
-										? $"'{fileName}': Element <Type Name='{typeName}'><Member Name='{memberName}'><'{aname}'><{name} /> has to have 'Value' attribute."
-										: $"'{fileName}': Element <Type Name='{typeName}'><'{aname}'><{name} /> has to have 'Value' attribute.");
+										? $"'{fileName}': Element <Type Name='{typeName}'><Member Name='{memberName}'><'{aName}'><{name} /> has to have 'Value' attribute."
+										: $"'{fileName}': Element <Type Name='{typeName}'><'{aName}'><{name} /> has to have 'Value' attribute.");
 
 							var val =
 								type != null
@@ -125,7 +125,7 @@ namespace CodeJam.Metadata
 							return Tuple.Create(name, val);
 						});
 
-					return new AttributeInfo(aname, values.ToDictionary(v => v.Item1, v => v.Item2));
+					return new AttributeInfo(aName, values.ToDictionary(v => v.Item1, v => v.Item2));
 				});
 
 			return attrs.ToArray();
@@ -143,28 +143,28 @@ namespace CodeJam.Metadata
 					.Select(
 						t =>
 						{
-							var aname = t.Attribute("Name");
+							var aName = t.Attribute(XName.Get("Name"));
 
-							if (aname == null)
+							if (aName == null)
 								throw new MetadataException($"'{fileName}': Element 'Type' has to have 'Name' attribute.");
 
-							var tname = aname.Value;
+							var tName = aName.Value;
 
 							var members = t.Elements().Where(e => e.Name.LocalName == "Member").Select(
 								m =>
 								{
-									var maname = m.Attribute("Name");
+									var maName = m.Attribute(XName.Get("Name"));
 
-									if (maname == null)
+									if (maName == null)
 										throw new MetadataException(
-											$"'{fileName}': Element <Type Name='{tname}'><Member /> has to have 'Name' attribute.");
+											$"'{fileName}': Element <Type Name='{tName}'><Member /> has to have 'Name' attribute.");
 
-									var mname = maname.Value;
+									var mName = maName.Value;
 
-									return new MetaMemberInfo(mname, GetAttrs(fileName, m, null, tname, mname));
+									return new MetaMemberInfo(mName, GetAttrs(fileName, m, null, tName, mName));
 								});
 
-							return new MetaTypeInfo(tname, members.ToDictionary(m => m.Name), GetAttrs(fileName, t, "Member", tname, null));
+							return new MetaTypeInfo(tName, members.ToDictionary(m => m.Name), GetAttrs(fileName, t, "Member", tName, null));
 						})
 					.ToDictionary(t => t.Name);
 		}

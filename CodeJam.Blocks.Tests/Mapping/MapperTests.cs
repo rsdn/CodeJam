@@ -566,7 +566,7 @@ namespace CodeJam.Mapping
 			Assert.That(mapper.To!.Arr![1], Is.Not.Null);
 			Assert.That(mapper.To!.Arr![2], Is.Not.Null);
 			Assert.That(mapper.To!.Arr![0], Is.Not.SameAs(mapper.To!.Arr[1]));
-			Assert.That(mapper.To!.Arr![0], Is.SameAs(mapper.To.Arr[2]));
+			Assert.That(mapper.To!.Arr![0], Is.SameAs(mapper.To!.Arr[2]));
 		}
 
 		private class Class20 { public Source Class1 = new(); public Source? Class2; }

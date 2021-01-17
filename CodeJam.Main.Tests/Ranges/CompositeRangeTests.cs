@@ -90,7 +90,7 @@ namespace CodeJam.Ranges
 
 			AreEqual(range.ToInvariantString(), "[2..9]: { 'Key1':[2..2]; 'Key2':[5..7); 'Key2':(8..9] }");
 			AreEqual(
-				range.SubRanges.Select(r => r.Key).Distinct().Join(";"),
+				range.SubRanges.Select(r => r.Key!).Distinct().Join(";"),
 				"Key1;Key2");
 
 			AreEqual(

@@ -105,7 +105,7 @@ namespace CodeJam.Threading
 
 			async Task Op(int num)
 			{
-				using (await asyncLock.AcquireAsync())
+				using (await asyncLock!.AcquireAsync())
 				{
 					Assert.IsFalse(opActive);
 					opActive = true;

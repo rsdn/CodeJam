@@ -79,7 +79,7 @@ namespace CodeJam.TableData
 			TextWriter writer,
 			IEnumerable<string[]> data,
 			int[] widths,
-			[AllowNull] string indent = null)
+			string? indent = null)
 		{
 			Code.NotNull(writer, nameof(writer));
 			Code.NotNull(data, nameof(writer));

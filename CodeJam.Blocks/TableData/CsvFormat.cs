@@ -272,7 +272,7 @@ namespace CodeJam.TableData
 		public static void Print(
 			TextWriter writer,
 			IEnumerable<string[]> data,
-			[AllowNull] string indent = null,
+			string? indent = null,
 			bool allowEscaping = true)
 		{
 			Code.NotNull(writer, nameof(writer));

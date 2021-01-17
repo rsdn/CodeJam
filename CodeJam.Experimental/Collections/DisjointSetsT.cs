@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -54,7 +53,7 @@ namespace CodeJam.Collections
 		public class Node : BasicNode
 		{
 			/// <summary>The node data</summary>
-			[DisallowNull] public T? Value;
+			public T Value = default!;
 		}
 	}
 }
