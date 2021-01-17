@@ -67,6 +67,12 @@ dotnet_diagnostic.cs8656.severity=error
 dotnet_diagnostic.cs8667.severity=error
 dotnet_diagnostic.cs8714.severity=error
 
+# Substring can be simplified
+dotnet_diagnostic.ide0057.severity=none
+
+# 'using' statement can be simplified
+dotnet_diagnostic.ide0063.severity=none
+
 # Remove unnecessary suppression
 dotnet_diagnostic.ide0079.severity=none
 dotnet_remove_unnecessary_suppression_exclusions=ide0079
