@@ -51,16 +51,12 @@ namespace CodeJam.Metadata
 			_ = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
 		}
 
-#pragma warning disable 649
-
 		class TableAttribute : Attribute
 		{
 			public TableAttribute(string name) => Name = name;
 
 			public string Name;
 		}
-
-#pragma warning restore 649
 
 		public class ColumnAttribute : Attribute
 		{
