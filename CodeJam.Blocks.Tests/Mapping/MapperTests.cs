@@ -214,17 +214,17 @@ namespace CodeJam.Mapping
 			var src  = new Source();
 			var sw   = new Stopwatch();
 
-			map.Map(src);
-			map.Map(src, null!);
-			map.Map(src, null!, null);
-			map.GetMapperEx()(src);
-			map.GetMapper()(src, null!, null);
+			_ = map.Map(src);
+			_ = map.Map(src, null!);
+			_ = map.Map(src, null!, null);
+			_ = map.GetMapperEx()(src);
+			_ = map.GetMapper()(src, null!, null);
 
 			const int n = 1000000;
 
 			for (var i = 0; i < n; i++)
 			{
-				sw.Start(); map.Map(src); sw.Stop();
+				sw.Start(); _ = map.Map(src); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);
@@ -233,7 +233,7 @@ namespace CodeJam.Mapping
 
 			for (var i = 0; i < n; i++)
 			{
-				sw.Start(); map.Map(src, null!); sw.Stop();
+				sw.Start(); _ = map.Map(src, null!); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);
@@ -242,7 +242,7 @@ namespace CodeJam.Mapping
 
 			for (var i = 0; i < n; i++)
 			{
-				sw.Start(); map.Map(src, null!, null); sw.Stop();
+				sw.Start(); _ = map.Map(src, null!, null); sw.Stop();
 			}
 
 			Console.WriteLine(sw.Elapsed);

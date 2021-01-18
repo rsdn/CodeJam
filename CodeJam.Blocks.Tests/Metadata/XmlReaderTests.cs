@@ -51,13 +51,15 @@ namespace CodeJam.Metadata
 			_ = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
 		}
 
-		class TableAttribute : Attribute
+		[AttributeUsage(AttributeTargets.All)]
+		public class TableAttribute : Attribute
 		{
 			public TableAttribute(string name) => Name = name;
 
 			public string Name;
 		}
 
+		[AttributeUsage(AttributeTargets.All)]
 		public class ColumnAttribute : Attribute
 		{
 			public ColumnAttribute(string name) => Name = name;
