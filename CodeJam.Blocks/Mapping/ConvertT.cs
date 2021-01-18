@@ -22,8 +22,8 @@ namespace CodeJam.Mapping
 			Init();
 		}
 
-		[MemberNotNull("_expression")]
-		[MemberNotNull("_lambda")]
+		[MemberNotNull(nameof(_expression))]
+		[MemberNotNull(nameof(_lambda))]
 		private static void Init()
 		{
 			var expr = ConvertBuilder.GetConverter(null, typeof(TFrom), typeof(TTo));

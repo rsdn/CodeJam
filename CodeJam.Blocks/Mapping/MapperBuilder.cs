@@ -117,6 +117,7 @@ namespace CodeJam.Mapping
 		/// <param name="memberName">Type member name.</param>
 		/// <param name="mapName">Mapping name.</param>
 		/// <returns>Returns this mapper.</returns>
+		[MemberNotNull(nameof(FromMappingDictionary))]
 		public MapperBuilder<TFrom, TTo> FromMapping(Type type, string memberName, string mapName)
 		{
 			Code.NotNull(type, nameof(type));
@@ -199,6 +200,7 @@ namespace CodeJam.Mapping
 		/// <param name="memberName">Type member name.</param>
 		/// <param name="mapName">Mapping name.</param>
 		/// <returns>Returns this mapper.</returns>
+		[MemberNotNull(nameof(ToMappingDictionary))]
 		public MapperBuilder<TFrom, TTo> ToMapping(Type type, string memberName, string mapName)
 		{
 			if (ToMappingDictionary == null)
@@ -344,7 +346,7 @@ namespace CodeJam.Mapping
 		/// This example shows how to explicitly convert one value to another.
 		/// <code source="CodeJam.Blocks.Tests\Mapping\Examples\MapMemberTests.cs" region="Example" lang="C#"/>
 		/// </example>
-		[MemberNotNull("MemberMappers")]
+		[MemberNotNull(nameof(MemberMappers))]
 		public MapperBuilder<TFrom, TTo> MapMember<T>(Expression<Func<TTo, T>> toMember, Expression<Func<TFrom, T>> setter)
 		{
 			if (MemberMappers == null)
