@@ -2,9 +2,10 @@
 using System.Reflection;
 
 using CodeJam.Reflection;
+#if LESSTHAN_NET50 || TARGETS_NET || TARGETS_NETSTANDARD
 using CodeJam.Targeting;
 
-using JetBrains.Annotations;
+#endif
 
 namespace CodeJam.Ranges
 {
@@ -40,7 +41,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		[Obsolete(SkipsArgValidationObsolete)]
 #pragma warning disable 618 // The warning is transitive: the constant is marked as obsolete.
-		internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
+			internal const UnsafeOverload SkipsArgValidation = UnsafeOverload.SkipsArgValidation;
 #pragma warning restore 618
 		#endregion
 
@@ -65,19 +66,17 @@ namespace CodeJam.Ranges
 		/// <summary>Creates formattable callback for arbitrary type.</summary>
 		/// <typeparam name="T">Type of the formattable object.</typeparam>
 		/// <returns>The format callback. Returns <c>null</c> if the first arg is <c>null</c>.</returns>
-		[NotNull]
-		internal static Func<T, string, IFormatProvider, string> CreateFormattableCallback<T>()
+		internal static Func<T?, string?, IFormatProvider?, string?> CreateFormattableCallback<T>()
 		{
 			const BindingFlags bf = BindingFlags.Static | BindingFlags.NonPublic;
 			if (typeof(IFormattable).IsAssignableFrom(typeof(T)))
 			{
-				// ReSharper disable once PossibleNullReferenceException
 				var method = typeof(RangeInternal)
-					.GetMethod(nameof(Format), bf)
+					.GetMethod(nameof(Format), bf)!
 					.MakeGenericMethod(typeof(T));
 
 				// no boxing for IFormatProvider
-				var res = method.CreateDelegate<Func<T, string, IFormatProvider, string>>();
+				var res = method.CreateDelegate<Func<T?, string?, IFormatProvider?, string?>>();
 
 				DebugCode.BugIf(res == null, "res == null");
 				return res;
@@ -86,11 +85,11 @@ namespace CodeJam.Ranges
 			{
 				// ReSharper disable once PossibleNullReferenceException
 				var method = typeof(RangeInternal)
-					.GetMethod(nameof(FormatNullable), bf)
+					.GetMethod(nameof(FormatNullable), bf)!
 					.MakeGenericMethod(typeof(T).ToNullableUnderlying());
 
 				// no boxing for IFormatProvider
-				var res = method.CreateDelegate<Func<T, string, IFormatProvider, string>>();
+				var res = method.CreateDelegate<Func<T?, string?, IFormatProvider?, string?>>();
 
 				DebugCode.BugIf(res == null, "res == null");
 				return res;
@@ -99,10 +98,11 @@ namespace CodeJam.Ranges
 			return (value, _, _) => value?.ToString();
 		}
 
-		private static string Format<T>(T value, string format, IFormatProvider formatProvider) where T : IFormattable =>
-			value?.ToString(format, formatProvider);
+		private static string? Format<T>(T? value, string? format, IFormatProvider? formatProvider)
+			where T : IFormattable =>
+				value?.ToString(format, formatProvider);
 
-		private static string FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
+		private static string? FormatNullable<T>(T? value, string format, IFormatProvider formatProvider)
 			where T : struct, IFormattable =>
 				value?.ToString(format, formatProvider);
 	}

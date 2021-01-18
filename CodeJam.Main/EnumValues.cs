@@ -19,8 +19,7 @@ namespace CodeJam
 	[PublicAPI]
 	public class EnumValues : IReadOnlyCollection<EnumValue>
 	{
-		[NotNull, ItemNotNull]
-		private static EnumValue[] GetValues([NotNull] Type enumType)
+		private static EnumValue[] GetValues(Type enumType)
 		{
 			var result = new List<EnumValue>();
 			var actualType = enumType.ToNullableUnderlying();
@@ -48,18 +47,16 @@ namespace CodeJam
 		}
 
 		#region Fields & .ctor
-		[NotNull]
-		[ItemNotNull]
 		private readonly EnumValue[] _values;
 
-		[NotNull] private readonly IDictionary<string, EnumValue> _valuesByName;
-		[NotNull] private readonly IDictionary<string, EnumValue> _valuesByNameIgnoreCase;
-		[NotNull] private readonly IDictionary<Enum, EnumValue> _valuesByValue;
-		[NotNull] private readonly IDictionary<string, EnumValue> _valuesByDisplayName;
+		private readonly IDictionary<string, EnumValue> _valuesByName;
+		private readonly IDictionary<string, EnumValue> _valuesByNameIgnoreCase;
+		private readonly IDictionary<Enum, EnumValue> _valuesByValue;
+		private readonly IDictionary<string, EnumValue> _valuesByDisplayName;
 
 		/// <summary>Initializes a new instance of the <see cref="EnumValues" /> class.</summary>
 		/// <param name="enumType">Type of the enum.</param>
-		internal EnumValues([NotNull] Type enumType)
+		internal EnumValues(Type enumType)
 		{
 			Code.NotNull(enumType, nameof(enumType));
 			if (!enumType.GetIsEnum())
@@ -83,7 +80,7 @@ namespace CodeJam
 			_valuesByDisplayName = _values
 				.Where(f => f.DisplayName != null)
 				.ToDictionary(
-					f => f.DisplayName,
+					f => f.DisplayName!,
 					InvariantCultureStringComparer.CompareCase,
 					DictionaryDuplicate.FirstWins);
 		}
@@ -91,12 +88,10 @@ namespace CodeJam
 
 		/// <summary>Gets the type of the enum.</summary>
 		/// <value>The type of the enum.</value>
-		[NotNull]
 		public Type EnumType { get; }
 
 		/// <summary>Gets the name of the enum.</summary>
 		/// <value>The name of the enum.</value>
-		[NotNull]
 		public string EnumName => EnumType.Name;
 
 		/// <summary>Determines whether the specified enum name is defined.</summary>
@@ -104,8 +99,8 @@ namespace CodeJam
 		/// <returns>
 		///   <c>true</c> if the specified enum name is defined; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
-		public bool IsDefined([NotNull] string name) => _valuesByName.ContainsKey(name);
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public bool IsDefined(string name) => _valuesByName.ContainsKey(name);
 
 		/// <summary>Determines whether the specified enum name is defined.</summary>
 		/// <param name="name">The name to check.</param>
@@ -113,8 +108,8 @@ namespace CodeJam
 		/// <returns>
 		///   <c>true</c> if the specified enum name is defined; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
-		public bool IsDefined([NotNull] string name, bool ignoreCase)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public bool IsDefined(string name, bool ignoreCase)
 		{
 			var lookup = ignoreCase ? _valuesByNameIgnoreCase : _valuesByName;
 			return lookup.ContainsKey(name);
@@ -123,15 +118,15 @@ namespace CodeJam
 		/// <summary>Tries to get enum field by its name.</summary>
 		/// <param name="name">Name of the enum field.</param>
 		/// <returns>Enum field with matching name.</returns>
-		[Pure, NotNull]
-		public EnumValue GetByName([NotNull] string name) => _valuesByName[name];
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public EnumValue GetByName(string name) => _valuesByName[name];
 
 		/// <summary>Tries to get enum field by its name.</summary>
 		/// <param name="name">Name of the enum field.</param>
 		/// <param name="ignoreCase">if set to <c>true</c> the casing will be ignored.</param>
 		/// <returns>Enum field with matching name.</returns>
-		[Pure, NotNull]
-		public EnumValue GetByName([NotNull] string name, bool ignoreCase)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public EnumValue GetByName(string name, bool ignoreCase)
 		{
 			var lookup = ignoreCase ? _valuesByNameIgnoreCase : _valuesByName;
 			return lookup[name];
@@ -140,14 +135,14 @@ namespace CodeJam
 		/// <summary>Tries to get enum field by its value.</summary>
 		/// <param name="value">Value of the enum field.</param>
 		/// <returns>Enum field with matching value.</returns>
-		[Pure, NotNull]
-		public EnumValue GetByValue([NotNull] Enum value) => _valuesByValue[value];
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public EnumValue GetByValue(Enum value) => _valuesByValue[value];
 
 		/// <summary>Gets enum field by its display name.</summary>
 		/// <param name="displayName">Name of the enum field.</param>
 		/// <returns>Enum field with matching display name.</returns>
-		[Pure, NotNull]
-		public EnumValue GetByDisplayName([NotNull] string displayName) => _valuesByDisplayName[displayName];
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public EnumValue GetByDisplayName(string displayName) => _valuesByDisplayName[displayName];
 
 		#region IReadOnlyCollection<EnumValue>
 		/// <summary>Gets the count.</summary>

@@ -25,9 +25,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="module">Assembly.</param>
 		/// <returns>Path to <paramref name="module"/>.</returns>
-		[NotNull]
-		[Pure]
-		public static string GetModulePath([NotNull] this Module module)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static string GetModulePath(this Module module)
 		{
 			Code.NotNull(module, nameof(module));
 
@@ -37,7 +36,7 @@ namespace CodeJam.Reflection
 				? assemblyPath
 				: System.IO.Path.Combine(
 					// ReSharper disable once AssignNullToNotNullAttribute
-					System.IO.Path.GetDirectoryName(assemblyPath),
+					System.IO.Path.GetDirectoryName(assemblyPath) ?? "",
 					module.Name);
 		}
 #endif
@@ -53,9 +52,8 @@ namespace CodeJam.Reflection
 		/// </example>
 		/// <param name="type">The type to get the name for.</param>
 		/// <returns>The short form of assembly qualified type name.</returns>
-		[NotNull]
-		[Pure]
-		public static string GetShortAssemblyQualifiedName([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static string GetShortAssemblyQualifiedName(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -65,7 +63,7 @@ namespace CodeJam.Reflection
 
 				var index = -1;
 
-				var assemblyFullName = t.GetAssembly().FullName;
+				var assemblyFullName = t.GetAssembly().FullName ?? throw new InvalidOperationException("Assembly has no name.");
 
 				while (true)
 				{
@@ -110,7 +108,7 @@ namespace CodeJam.Reflection
 			{
 				DebugCode.AssertState(t.IsArray || t.IsPointer || t.IsByRef, "Invalid type");
 
-				Write(sb, t.GetElementType());
+				Write(sb, t.GetElementType()!); // Always not null for array, pointer or byref
 
 				if (t.IsArray)
 				{
@@ -176,8 +174,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// A value indicating whether the <paramref name="type"/> can be instantiated.
 		/// </returns>
-		[Pure]
-		public static bool IsInstantiable([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsInstantiable(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			return !(type.GetIsAbstract() || type.GetIsInterface() || type.IsArray || type.GetContainsGenericParameters());
@@ -190,8 +188,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// A value indicating whether the <paramref name="type"/> is declared static.
 		/// </returns>
-		[Pure]
-		public static bool IsStatic([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsStatic(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			return type.GetIsClass() && type.GetIsAbstract() && type.GetIsSealed();
@@ -204,8 +202,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// A value indicating whether the <paramref name="type"/> is Nullable&#60;&#62;.
 		/// </returns>
-		[Pure]
-		public static bool IsNullable([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsNullable(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			return type.GetIsGenericType() && type.GetGenericTypeDefinition() == typeof(Nullable<>);
@@ -216,8 +214,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is numeric.</returns>
-		[Pure]
-		public static bool IsNumeric([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsNumeric(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			while (true) // tail recursion expanded
@@ -237,9 +235,12 @@ namespace CodeJam.Reflection
 					case TypeCode.Double:
 						return true;
 					case TypeCode.Object:
-						type = Nullable.GetUnderlyingType(type);
-						if (type != null)
+						var underlyingType = Nullable.GetUnderlyingType(type);
+						if (underlyingType != null)
+						{
+							type = underlyingType;
 							continue;
+						}
 						return false;
 					default:
 						return false;
@@ -273,8 +274,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is integer type.</returns>
-		[Pure]
-		public static bool IsInteger([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsInteger(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 			while (true) // tail recursion expanded
@@ -291,9 +292,12 @@ namespace CodeJam.Reflection
 					case TypeCode.UInt64:
 						return true;
 					case TypeCode.Object:
-						type = Nullable.GetUnderlyingType(type);
-						if (type != null)
+						var underlyingType = Nullable.GetUnderlyingType(type);
+						if (underlyingType != null)
+						{
+							type = underlyingType;
 							continue;
+						}
 						return false;
 					default:
 						return false;
@@ -324,8 +328,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type" /> is nullable numeric.</returns>
-		[Pure]
-		public static bool IsNullableNumeric([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsNullableNumeric(this Type type)
 		{
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.IsNumeric();
@@ -336,8 +340,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is nullable integer type.</returns>
-		[Pure]
-		public static bool IsNullableInteger([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsNullableInteger(this Type type)
 		{
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.IsInteger();
@@ -348,8 +352,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is nullable enum type.</returns>
-		[Pure]
-		public static bool IsNullableEnum([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsNullableEnum(this Type type)
 		{
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.GetIsEnum();
@@ -366,8 +370,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		/// true if the <paramref name="type"/> derives from <paramref name="check"/>; otherwise, false.
 		/// </returns>
-		[Pure]
-		public static bool IsSubClass([NotNull] this Type type, [NotNull] Type check)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsSubClass(this Type type, Type check)
 		{
 			Code.NotNull(type, nameof(type));
 			Code.NotNull(check, nameof(check));
@@ -391,10 +395,12 @@ namespace CodeJam.Reflection
 						return true;
 				}
 
-				type = type.GetBaseType();
+				var baseType = type.GetBaseType();
 
-				if (type == null)
+				if (baseType == null)
 					return false;
+
+				type = baseType;
 
 				if (type == check)
 					return true;
@@ -406,9 +412,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="delegateType">Type of delegate</param>
 		/// <returns>Array of <see cref="ParameterInfo"/>.</returns>
-		[NotNull]
-		[Pure]
-		public static ParameterInfo[] GetDelegateParams([NotNull] Type delegateType)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static ParameterInfo[] GetDelegateParams(Type delegateType)
 		{
 			Code.NotNull(delegateType, nameof(delegateType));
 
@@ -428,9 +433,8 @@ namespace CodeJam.Reflection
 		/// <item>Otherwise, the type itself.</item>
 		/// </list>
 		/// </returns>
-		[NotNull]
-		[Pure]
-		public static Type ToUnderlying([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Type ToUnderlying(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -447,9 +451,8 @@ namespace CodeJam.Reflection
 		/// if the type parameter is a closed generic nullable type.</item>
 		/// </list>
 		/// </returns>
-		[NotNull]
-		[Pure]
-		public static Type ToNullableUnderlying([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Type ToNullableUnderlying(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -465,9 +468,8 @@ namespace CodeJam.Reflection
 		/// <item>Otherwise, the type itself.</item>
 		/// </list>
 		/// </returns>
-		[NotNull]
-		[Pure]
-		public static Type ToEnumUnderlying([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Type ToEnumUnderlying(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -487,9 +489,8 @@ namespace CodeJam.Reflection
 		/// <item>If the member is an event, returns <see cref="EventInfo.EventHandlerType"/>.</item>
 		/// </list>
 		/// </returns>
-		[Pure]
-		[NotNull]
-		public static Type GetMemberType([NotNull] this MemberInfo memberInfo)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Type GetMemberType(this MemberInfo memberInfo)
 		{
 			Code.NotNull(memberInfo, nameof(memberInfo));
 
@@ -501,9 +502,11 @@ namespace CodeJam.Reflection
 				MethodInfo methodInfo => methodInfo.ReturnType,
 				ConstructorInfo constructorInfo => constructorInfo.DeclaringType,
 				EventInfo eventInfo => eventInfo.EventHandlerType,
-				_ => throw new InvalidOperationException()
-			};
+				_ => throw new InvalidOperationException("Invalid member type.")
+				}
+				?? throw new InvalidOperationException("Member has no type");
 		}
+
 		/// <summary>
 		/// Returns default constructor.
 		/// </summary>
@@ -511,9 +514,11 @@ namespace CodeJam.Reflection
 		/// <param name="exceptionIfNotExists">if true, throws an exception if type does not exists default constructor.
 		/// Otherwise returns null.</param>
 		/// <returns>Returns <see cref="ConstructorInfo"/> or null.</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[ContractAnnotation("exceptionIfNotExists:true => notnull; exceptionIfNotExists:false => canbenull")]
-		public static ConstructorInfo GetDefaultConstructor([NotNull] this Type type, bool exceptionIfNotExists = false)
+		public static ConstructorInfo? GetDefaultConstructor(
+			this Type type,
+			bool exceptionIfNotExists = false)
 		{
 			Code.NotNull(type, nameof(type));
 			var info = type.GetConstructor(
@@ -536,10 +541,9 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to get item type.</param>
 		/// <returns>Returns item type or null.</returns>
-		[CanBeNull]
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[ContractAnnotation("type:null => null")]
-		public static Type GetItemType([CanBeNull] this Type type)
+		public static Type? GetItemType(this Type? type)
 		{
 			while (true)
 			{
@@ -577,8 +581,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is an anonymous type.</returns>
-		[Pure]
-		public static bool IsAnonymous([NotNull] this Type type)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsAnonymous(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -594,8 +598,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <typeparamref name="TAttribute"/> is defined on <paramref name="type"/></returns>
-		[Pure]
-		public static bool IsDefined<TAttribute>([NotNull] this Type type) where TAttribute : Attribute
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsDefined<TAttribute>(this Type type) where TAttribute : Attribute
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -607,8 +611,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <typeparamref name="TAttribute"/> is defined on <paramref name="member"/></returns>
-		[Pure]
-		public static bool IsDefined<TAttribute>([NotNull] this MemberInfo member) where TAttribute : Attribute
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsDefined<TAttribute>(this MemberInfo member) where TAttribute : Attribute
 		{
 			Code.NotNull(member, nameof(member));
 
@@ -620,16 +624,16 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is generated by compiler.</returns>
-		[Pure]
-		public static bool IsCompilerGenerated([NotNull] this Type type) => type.IsDefined<CompilerGeneratedAttribute>();
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsCompilerGenerated(this Type type) => type.IsDefined<CompilerGeneratedAttribute>();
 
 		/// <summary>
 		/// Checks if <paramref name="member"/> is is compiler generated member.
 		/// </summary>
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <paramref name="member"/> is generated by compiler.</returns>
-		[Pure]
-		public static bool IsCompilerGenerated([NotNull] this MemberInfo member) => member.IsDefined<CompilerGeneratedAttribute>();
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsCompilerGenerated(this MemberInfo member) => member.IsDefined<CompilerGeneratedAttribute>();
 
 #if NET35_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 		/// <summary>
@@ -637,8 +641,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <paramref name="member"/> is generated by compiler.</returns>
-		[Pure]
-		public static bool IsRequired([NotNull] this MemberInfo member) => member.IsDefined<RequiredAttribute>();
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsRequired(this MemberInfo member) => member.IsDefined<RequiredAttribute>();
 #endif
 
 		/// <summary>
@@ -648,8 +652,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is browsable.</returns>
-		[Pure]
-		public static bool IsBrowsable([NotNull] this Type type) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsBrowsable(this Type type) =>
 			type.GetCustomAttribute<BrowsableAttribute>()?.Browsable ?? true;
 
 		/// <summary>
@@ -659,8 +663,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <paramref name="member"/> is browsable.</returns>
-		[Pure]
-		public static bool IsBrowsable([NotNull] this MemberInfo member) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsBrowsable(this MemberInfo member) =>
 			member.GetCustomAttribute<BrowsableAttribute>()?.Browsable ?? true;
 
 		/// <summary>
@@ -671,8 +675,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		///   <c>true</c> if instance of <typeparamref name="T"/> can be assigned to instance of current type; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
-		public static bool IsAssignableFrom<T>([NotNull] this Type type) => type.IsAssignableFrom(typeof(T));
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsAssignableFrom<T>(this Type type) => type.IsAssignableFrom(typeof(T));
 
 		/// <summary>
 		/// Determines whether instance of current type can be assigned to instance of <typeparamref name="T"/>.
@@ -682,8 +686,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		///   <c>true</c> if instance of current type can be assigned to instance of <typeparamref name="T"/>; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
-		public static bool IsAssignableTo<T>([NotNull] this Type type) => typeof(T).IsAssignableFrom(type);
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsAssignableTo<T>(this Type type) => typeof(T).IsAssignableFrom(type);
 
 		/// <summary>
 		/// Determines whether instance of current type can be assigned to instance of <paramref name="targetType"/>.
@@ -693,8 +697,8 @@ namespace CodeJam.Reflection
 		/// <returns>
 		///   <c>true</c> if instance of current type can be assigned to instance of <paramref name="targetType"/>; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
-		public static bool IsAssignableTo([NotNull] this Type type, Type targetType)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsAssignableTo(this Type type, Type targetType)
 		{
 			Code.NotNull(targetType, nameof(targetType));
 			return targetType.IsAssignableFrom(type);

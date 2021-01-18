@@ -8,8 +8,6 @@ using System.Runtime.CompilerServices;
 
 using CodeJam.Targeting;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 // ReSharper disable NUnit.IncorrectArgumentType
@@ -19,7 +17,7 @@ namespace CodeJam.Reflection
 	[TestFixture(Category = "Reflection")]
 	public partial class ReflectionExtensionsTest
 	{
-		private static object[] _source =
+		private static readonly object[] _source =
 		{
 			new object[] {typeof(List<int>), "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib"},
 			new object[] {typeof(List<>), "System.Collections.Generic.List`1, mscorlib"},
@@ -110,7 +108,7 @@ namespace CodeJam.Reflection
 #endif
 
 		[TestCaseSource(nameof(_source))]
-		public void GetShortAssemblyQualifiedNameTest([NotNull] Type type, [NotNull] string expected)
+		public void GetShortAssemblyQualifiedNameTest(Type type, string expected)
 		{
 #if TARGETS_NETCOREAPP
 			expected = expected.Replace("mscorlib", "System.Private.CoreLib");
@@ -134,7 +132,7 @@ namespace CodeJam.Reflection
 #if NET40_OR_GREATER || TARGETS_NETCOREAPP
 		[TestCase(typeof(IList<>), typeof(ISet<>), ExpectedResult = false)]
 #endif
-		public bool IsSubClassTest([NotNull] Type type, [NotNull] Type check) => type.IsSubClass(check);
+		public bool IsSubClassTest(Type type, Type check) => type.IsSubClass(check);
 
 		[TestCase(typeof(int), ExpectedResult = true)]
 		[TestCase(typeof(List<int>), ExpectedResult = true)]
@@ -143,14 +141,14 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(IList), ExpectedResult = false)]
 		[TestCase(typeof(ReflectionExtensions), ExpectedResult = false)]
 		[TestCase(typeof(KeyedCollection<int, int>), ExpectedResult = false)]
-		public bool IsInstantiableTypeTest([NotNull] Type type) => type.IsInstantiable();
+		public bool IsInstantiableTypeTest(Type type) => type.IsInstantiable();
 
 		[TestCase(typeof(int), ExpectedResult = false)]
 		[TestCase(typeof(int?), ExpectedResult = true)]
 		[TestCase(typeof(string), ExpectedResult = false)]
 		[TestCase(typeof(double), ExpectedResult = false)]
 		[TestCase(typeof(double?), ExpectedResult = true)]
-		public bool IsIsNullableTypeTest([NotNull] Type type) => type.IsNullable();
+		public bool IsIsNullableTypeTest(Type type) => type.IsNullable();
 
 		[TestCase(typeof(sbyte), ExpectedResult = true)]
 		[TestCase(typeof(byte), ExpectedResult = true)]
@@ -170,7 +168,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(AttributeTargets), ExpectedResult = true)]
 		[TestCase(typeof(int?), ExpectedResult = true)]
 		[TestCase(typeof(DateTime?), ExpectedResult = false)]
-		public bool IsInteger([NotNull] Type type) => type.IsInteger();
+		public bool IsInteger(Type type) => type.IsInteger();
 
 		[TestCase(typeof(sbyte), ExpectedResult = true)]
 		[TestCase(typeof(byte), ExpectedResult = true)]
@@ -190,7 +188,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(AttributeTargets), ExpectedResult = true)]
 		[TestCase(typeof(int?), ExpectedResult = true)]
 		[TestCase(typeof(DateTime?), ExpectedResult = false)]
-		public bool IsNumeric([NotNull] Type type) => type.IsNumeric();
+		public bool IsNumeric(Type type) => type.IsNumeric();
 
 		[TestCase(typeof(sbyte?), ExpectedResult = true)]
 		[TestCase(typeof(byte?), ExpectedResult = true)]
@@ -217,7 +215,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(object), ExpectedResult = false)]
 		[TestCase(typeof(AttributeTargets), ExpectedResult = false)]
 		[TestCase(typeof(AttributeTargets?), ExpectedResult = true)]
-		public bool IsNullableInteger([NotNull] Type type) => type.IsNullableInteger();
+		public bool IsNullableInteger(Type type) => type.IsNullableInteger();
 
 		[TestCase(typeof(sbyte?), ExpectedResult = true)]
 		[TestCase(typeof(byte?), ExpectedResult = true)]
@@ -247,7 +245,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(object), ExpectedResult = false)]
 		[TestCase(typeof(AttributeTargets), ExpectedResult = false)]
 		[TestCase(typeof(AttributeTargets?), ExpectedResult = true)]
-		public bool IsNullableNumeric([NotNull] Type type) => type.IsNullableNumeric();
+		public bool IsNullableNumeric(Type type) => type.IsNullableNumeric();
 
 		[TestCase(typeof(sbyte), ExpectedResult = false)]
 		[TestCase(typeof(byte), ExpectedResult = false)]
@@ -268,13 +266,13 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(ConsoleColor), ExpectedResult = false)]
 		[TestCase(typeof(AttributeTargets?), ExpectedResult = true)]
 		[TestCase(typeof(ConsoleColor?), ExpectedResult = true)]
-		public bool IsNullableEnum([NotNull] Type type) => type.IsNullableEnum();
+		public bool IsNullableEnum(Type type) => type.IsNullableEnum();
 
 		[TestCase(typeof(AttributeTargets), ExpectedResult = typeof(int))]
 		[TestCase(typeof(int?), ExpectedResult = typeof(int))]
 		[TestCase(typeof(AttributeTargets?), ExpectedResult = typeof(int))]
 		[TestCase(typeof(string), ExpectedResult = typeof(string))]
-		public Type ToUnderlying([NotNull] Type type) => type.ToUnderlying();
+		public Type ToUnderlying(Type type) => type.ToUnderlying();
 
 		[CompilerGenerated, Browsable(false)]
 		private class NotAnonymousType<T> : List<T>
@@ -292,7 +290,7 @@ namespace CodeJam.Reflection
 		{
 			private static Func<int> GetCompilerGeneratedClosure(int arg) => () => arg;
 
-			public TestCompilerGeneratedCaseAttribute() : base(GetCompilerGeneratedClosure(0).Target.GetType())
+			public TestCompilerGeneratedCaseAttribute() : base(GetCompilerGeneratedClosure(0).Target!.GetType())
 			{
 			}
 		}
@@ -302,20 +300,20 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(NotAnonymousType<int>), ExpectedResult = false)]
 		[TestCase(typeof(DateTime?), ExpectedResult = false)]
 		[TestCase(typeof(DateTime), ExpectedResult = false)]
-		public bool IsAnonymous([NotNull] Type type) => type.IsAnonymous();
+		public bool IsAnonymous(Type type) => type.IsAnonymous();
 
 		[TestAnonymousCase(ExpectedResult = true)]
 		[TestCompilerGeneratedCase(ExpectedResult = true)]
 		[TestCase(typeof(NotAnonymousType<int>), ExpectedResult = true)]
 		[TestCase(typeof(DateTime?), ExpectedResult = false)]
 		[TestCase(typeof(DateTime), ExpectedResult = false)]
-		public bool IsCompilerGenerated([NotNull] Type type) => type.IsCompilerGenerated();
+		public bool IsCompilerGenerated(Type type) => type.IsCompilerGenerated();
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER
 		[TestCase(typeof(NotAnonymousType<int>), ExpectedResult = false)]
 		[TestCase(typeof(DateTime?), ExpectedResult = true)]
 		[TestCase(typeof(DateTime), ExpectedResult = true)]
-		public bool IsBrowsable([NotNull] Type type) => type.IsBrowsable();
+		public bool IsBrowsable(Type type) => type.IsBrowsable();
 #endif
 
 		[TestCase(typeof(int), typeof(object), ExpectedResult = true)]
@@ -324,7 +322,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(int), typeof(int?), ExpectedResult = true)]
 		[TestCase(typeof(int), typeof(long), ExpectedResult = false)]
 		[TestCase(typeof(Stream), typeof(FileStream), ExpectedResult = false)]
-		public bool CanBeAssignedTo([NotNull] Type type, [NotNull] Type targetType) => type.IsAssignableTo(targetType);
+		public bool CanBeAssignedTo(Type type, Type targetType) => type.IsAssignableTo(targetType);
 
 		#region Inner types
 		private class A

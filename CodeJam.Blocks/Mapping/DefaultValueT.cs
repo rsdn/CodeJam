@@ -12,16 +12,17 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public static class DefaultValue<T>
 	{
-		private static T _value = DefaultValue.GetValue<T>();
+		private static T? _value = DefaultValue.GetValue<T>();
 
 		/// <summary>
 		/// Gets default value for provided <see cref="Type"/>.
 		/// </summary>
-		public static T Value
+		public static T? Value
 		{
 			get => _value;
 			set => DefaultValue.SetValue(_value = value);
 		}
 	}
 }
+
 #endif

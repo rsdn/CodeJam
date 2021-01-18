@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CodeJam
+﻿namespace CodeJam
 {
 	/// <summary>Debug-time assertions class. Common constants</summary>
 	static partial class DebugCode

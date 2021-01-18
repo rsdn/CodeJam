@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 using System.Linq.Expressions;
 
@@ -14,6 +17,7 @@ using JetBrains.Annotations;
 
 using static CodeJam.Arithmetic.OperatorsFactory;
 
+#nullable enable
 namespace CodeJam.Arithmetic
 {
 	/// <summary>
@@ -24,7 +28,6 @@ namespace CodeJam.Arithmetic
 	{
 		#region Unary
 		/// <summary>Gets an arithmetic negation operation function, such as (-a).</summary>
-		[NotNull]
 		public static Func<T, T> UnaryMinus => UnaryMinusHelper.LazyValue.Value;
 
 		/// <summary>
@@ -44,8 +47,7 @@ namespace CodeJam.Arithmetic
 
 		#region Comparison
 		/// <summary>Gets an equality comparison function, such as (a == b) in C#.</summary>
-		[NotNull]
-		public static Func<T, T, bool> AreEqual => AreEqualHelper.LazyValue.Value;
+		public static Func<T?, T?, bool> AreEqual => AreEqualHelper.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -53,16 +55,15 @@ namespace CodeJam.Arithmetic
 		private static class AreEqualHelper
 		{
 			/// <summary>Gets the operator factory.</summary>
-			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+			public static readonly Lazy<Func<T?, T?, bool>> LazyValue = new (Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.Equal);
+			private static Func<T?, T?, bool> Factory() => ComparisonOperator<T>(ExpressionType.Equal);
 		}
 
 		/// <summary>Gets an inequality comparison function, such as (a != b) in C#.</summary>
-		[NotNull]
-		public static Func<T, T, bool> AreNotEqual => AreNotEqualHelper.LazyValue.Value;
+		public static Func<T?, T?, bool> AreNotEqual => AreNotEqualHelper.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -70,16 +71,15 @@ namespace CodeJam.Arithmetic
 		private static class AreNotEqualHelper
 		{
 			/// <summary>Gets the operator factory.</summary>
-			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+			public static readonly Lazy<Func<T?, T?, bool>> LazyValue = new (Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.NotEqual);
+			private static Func<T?, T?, bool> Factory() => ComparisonOperator<T>(ExpressionType.NotEqual);
 		}
 
 		/// <summary>Gets a "greater than" comparison function, such as (a > b).</summary>
-		[NotNull]
-		public static Func<T, T, bool> GreaterThan => GreaterThanHelper.LazyValue.Value;
+		public static Func<T?, T?, bool> GreaterThan => GreaterThanHelper.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -87,16 +87,15 @@ namespace CodeJam.Arithmetic
 		private static class GreaterThanHelper
 		{
 			/// <summary>Gets the operator factory.</summary>
-			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+			public static readonly Lazy<Func<T?, T?, bool>> LazyValue = new (Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.GreaterThan);
+			private static Func<T?, T?, bool> Factory() => ComparisonOperator<T>(ExpressionType.GreaterThan);
 		}
 
 		/// <summary>Gets a "greater than or equal to" comparison function, such as (a >= b).</summary>
-		[NotNull]
-		public static Func<T, T, bool> GreaterThanOrEqual => GreaterThanOrEqualHelper.LazyValue.Value;
+		public static Func<T?, T?, bool> GreaterThanOrEqual => GreaterThanOrEqualHelper.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -104,16 +103,15 @@ namespace CodeJam.Arithmetic
 		private static class GreaterThanOrEqualHelper
 		{
 			/// <summary>Gets the operator factory.</summary>
-			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+			public static readonly Lazy<Func<T?, T?, bool>> LazyValue = new (Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.GreaterThanOrEqual);
+			private static Func<T?, T?, bool> Factory() => ComparisonOperator<T>(ExpressionType.GreaterThanOrEqual);
 		}
 
 		/// <summary>Gets a "less than" comparison function, such as (a &lt; b).</summary>
-		[NotNull]
-		public static Func<T, T, bool> LessThan => LessThanHelper.LazyValue.Value;
+		public static Func<T?, T?, bool> LessThan => LessThanHelper.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -121,16 +119,15 @@ namespace CodeJam.Arithmetic
 		private static class LessThanHelper
 		{
 			/// <summary>Gets the operator factory.</summary>
-			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+			public static readonly Lazy<Func<T?, T?, bool>> LazyValue = new (Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.LessThan);
+			private static Func<T?, T?, bool> Factory() => ComparisonOperator<T>(ExpressionType.LessThan);
 		}
 
 		/// <summary>Gets a "less than or equal to" comparison function, such as (a &lt;= b).</summary>
-		[NotNull]
-		public static Func<T, T, bool> LessThanOrEqual => LessThanOrEqualHelper.LazyValue.Value;
+		public static Func<T?, T?, bool> LessThanOrEqual => LessThanOrEqualHelper.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
@@ -138,17 +135,16 @@ namespace CodeJam.Arithmetic
 		private static class LessThanOrEqualHelper
 		{
 			/// <summary>Gets the operator factory.</summary>
-			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+			public static readonly Lazy<Func<T?, T?, bool>> LazyValue = new (Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.LessThanOrEqual);
+			private static Func<T?, T?, bool> Factory() => ComparisonOperator<T>(ExpressionType.LessThanOrEqual);
 		}
 		#endregion
 
 		#region Binary
 		/// <summary>Gets an addition operation function, such as a + b, without overflow checking, for numeric operands.</summary>
-		[NotNull]
 		public static Func<T, T, T> Plus => PlusHelper.LazyValue.Value;
 
 		/// <summary>
@@ -165,7 +161,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets a subtraction operation function, such as (a - b), without overflow checking, for numeric operands.</summary>
-		[NotNull]
 		public static Func<T, T, T> Minus => MinusHelper.LazyValue.Value;
 
 		/// <summary>
@@ -182,7 +177,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets a multiplication operation function, such as (a * b), without overflow checking, for numeric operands.</summary>
-		[NotNull]
 		public static Func<T, T, T> Mul => MulHelper.LazyValue.Value;
 
 		/// <summary>
@@ -199,7 +193,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets a division operation function, such as (a / b), for numeric operands.</summary>
-		[NotNull]
 		public static Func<T, T, T> Div => DivHelper.LazyValue.Value;
 
 		/// <summary>
@@ -216,7 +209,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets an arithmetic remainder operation function, such as (a % b) in C#.</summary>
-		[NotNull]
 		public static Func<T, T, T> Modulo => ModuloHelper.LazyValue.Value;
 
 		/// <summary>
@@ -233,7 +225,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets a bitwise or logical XOR operation function, such as (a ^ b) in C#.</summary>
-		[NotNull]
 		public static Func<T, T, T> Xor => XorHelper.LazyValue.Value;
 
 		/// <summary>
@@ -250,7 +241,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets a bitwise or logical AND operation function, such as (a &amp; b) in C#.</summary>
-		[NotNull]
 		public static Func<T, T, T> BitwiseAnd => BitwiseAndHelper.LazyValue.Value;
 
 		/// <summary>
@@ -267,7 +257,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets a bitwise or logical OR operation function, such as (a | b) in C#.</summary>
-		[NotNull]
 		public static Func<T, T, T> BitwiseOr => BitwiseOrHelper.LazyValue.Value;
 
 		/// <summary>
@@ -284,7 +273,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets a bitwise left-shift operation function, such as (a &lt;&lt; b).</summary>
-		[NotNull]
 		public static Func<T, T, T> LeftShift => LeftShiftHelper.LazyValue.Value;
 
 		/// <summary>
@@ -301,7 +289,6 @@ namespace CodeJam.Arithmetic
 		}
 
 		/// <summary>Gets a bitwise right-shift operation function, such as (a >> b).</summary>
-		[NotNull]
 		public static Func<T, T, T> RightShift => RightShiftHelper.LazyValue.Value;
 
 		/// <summary>

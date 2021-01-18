@@ -21,8 +21,8 @@ namespace CodeJam.Threading
 		/// The <see cref="IDisposable"/> object that reduce the recursion count for read mode, and exits read mode if the
 		/// resulting count is 0 (zero).
 		/// </returns>
-		[Pure]
-		public static ReadLockScope GetReadLock([NotNull] this ReaderWriterLockSlim readerWriterLock)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static ReadLockScope GetReadLock(this ReaderWriterLockSlim readerWriterLock)
 		{
 			readerWriterLock.EnterReadLock();
 			return new ReadLockScope(readerWriterLock);
@@ -36,8 +36,8 @@ namespace CodeJam.Threading
 		/// The <see cref="IDisposable"/> object that reduce the recursion count for write mode, and exits write mode if the
 		/// resulting count is 0 (zero).
 		/// </returns>
-		[Pure]
-		public static WriteLockScope GetWriteLock([NotNull] this ReaderWriterLockSlim readerWriterLock)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static WriteLockScope GetWriteLock(this ReaderWriterLockSlim readerWriterLock)
 		{
 			readerWriterLock.EnterWriteLock();
 			return new WriteLockScope(readerWriterLock);
@@ -51,8 +51,8 @@ namespace CodeJam.Threading
 		/// The <see cref="IDisposable"/> object that reduce the recursion count for upgradeable mode, and exits upgradeable
 		/// mode if the resulting count is 0 (zero).
 		/// </returns>
-		[Pure]
-		public static UpgradeableReadLockScope GetUpgradeableReadLock([NotNull] this ReaderWriterLockSlim readerWriterLock)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static UpgradeableReadLockScope GetUpgradeableReadLock(this ReaderWriterLockSlim readerWriterLock)
 		{
 			readerWriterLock.EnterUpgradeableReadLock();
 			return new UpgradeableReadLockScope(readerWriterLock);
@@ -65,15 +65,14 @@ namespace CodeJam.Threading
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public struct ReadLockScope : IDisposable
 		{
-			[CanBeNull]
-			private ReaderWriterLockSlim _readerWriterLock;
+			private ReaderWriterLockSlim? _readerWriterLock;
 
 			/// <summary>
 			/// Initializes a new instance of the <see cref="ReadLockScope"/> class.
 			/// </summary>
 			/// <param name="readerWriterLock">The <see cref="ReaderWriterLockSlim"/> instance.</param>
 			[DebuggerStepThrough]
-			internal ReadLockScope([NotNull] ReaderWriterLockSlim readerWriterLock)
+			internal ReadLockScope(ReaderWriterLockSlim readerWriterLock)
 			{
 				Code.NotNull(readerWriterLock, nameof(readerWriterLock));
 				_readerWriterLock = readerWriterLock;
@@ -98,15 +97,14 @@ namespace CodeJam.Threading
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public struct WriteLockScope : IDisposable
 		{
-			[CanBeNull]
-			private ReaderWriterLockSlim _readerWriterLock;
+			private ReaderWriterLockSlim? _readerWriterLock;
 
 			/// <summary>
 			/// Initializes a new instance of the <see cref="WriteLockScope"/> class.
 			/// </summary>
 			/// <param name="readerWriterLock">The <see cref="ReaderWriterLockSlim"/> instance.</param>
 			[DebuggerStepThrough]
-			internal WriteLockScope([NotNull] ReaderWriterLockSlim readerWriterLock)
+			internal WriteLockScope(ReaderWriterLockSlim readerWriterLock)
 			{
 				Code.NotNull(readerWriterLock, nameof(readerWriterLock));
 				_readerWriterLock = readerWriterLock;
@@ -131,15 +129,14 @@ namespace CodeJam.Threading
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public struct UpgradeableReadLockScope : IDisposable
 		{
-			[CanBeNull]
-			private ReaderWriterLockSlim _readerWriterLock;
+			private ReaderWriterLockSlim? _readerWriterLock;
 
 			/// <summary>
 			/// Initializes a new instance of the <see cref="UpgradeableReadLockScope"/> class.
 			/// </summary>
 			/// <param name="readerWriterLock">The <see cref="ReaderWriterLockSlim"/> instance.</param>
 			[DebuggerStepThrough]
-			public UpgradeableReadLockScope([NotNull] ReaderWriterLockSlim readerWriterLock)
+			public UpgradeableReadLockScope(ReaderWriterLockSlim readerWriterLock)
 			{
 				Code.NotNull(readerWriterLock, nameof(readerWriterLock));
 				_readerWriterLock = readerWriterLock;

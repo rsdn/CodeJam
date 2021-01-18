@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -22,7 +23,7 @@ namespace CodeJam.Reflection
 	public class MemberAccessor
 	{
 		// ReSharper disable once NotNullMemberIsNotInitialized
-		internal MemberAccessor([NotNull] TypeAccessor typeAccessor, [NotNull] string memberName)
+		internal MemberAccessor(TypeAccessor typeAccessor, string memberName)
 		{
 			TypeAccessor = typeAccessor;
 
@@ -36,23 +37,24 @@ namespace CodeJam.Reflection
 				HasGetter = true;
 				HasSetter = true;
 
-				var members  = memberName.Split('.');
+				var members = memberName.Split('.');
 				var objParam = Expression.Parameter(TypeAccessor.Type, "obj");
-				var expr     = (Expression)objParam;
-				var infos    = members.Select(m =>
-				{
-					expr = Expression.PropertyOrField(expr, m);
-					return new
+				var expr = (Expression)objParam;
+				var infos = members.Select(
+					m =>
 					{
-						member = ((MemberExpression)expr).Member,
-						type   = expr.Type
-					};
-				}).ToArray();
+						expr = Expression.PropertyOrField(expr, m);
+						return new
+						{
+							member = ((MemberExpression)expr).Member,
+							type = expr.Type
+						};
+					}).ToArray();
 
 				var lastInfo = infos[infos.Length - 1];
 
 				MemberInfo = lastInfo.member;
-				Type       = lastInfo.type;
+				Type = lastInfo.type;
 
 				var checkNull = infos.Take(infos.Length - 1).Any(info => info.type.GetIsClass() || info.type.IsNullable());
 
@@ -77,7 +79,9 @@ namespace CodeJam.Reflection
 								{
 									var local = Expression.Variable(next.Type);
 
-									return Expression.Block(new[] { local }, Expression.Assign(local, next) as Expression, Expression.IfThen(Expression.NotEqual(local, Expression.Constant(null)), MakeGetter(local, i + 1)));
+									return Expression.Block(
+										new[] { local }, Expression.Assign(local, next) as Expression,
+										Expression.IfThen(Expression.NotEqual(local, Expression.Constant(null)), MakeGetter(local, i + 1)));
 								}
 
 								ex = next;
@@ -112,7 +116,7 @@ namespace CodeJam.Reflection
 					{
 						if (checkNull)
 						{
-							var vars  = new List<ParameterExpression>();
+							var vars = new List<ParameterExpression>();
 							var exprs = new List<Expression>();
 
 							void MakeSetter(Expression ex, int i)
@@ -135,7 +139,10 @@ namespace CodeJam.Reflection
 											vars.Add(local);
 
 											exprs.Add(Expression.Assign(local, next));
-											exprs.Add(Expression.IfThen(Expression.Equal(local, Expression.Constant(null)), Expression.Block(Expression.Assign(local, Expression.New(local.Type)), Expression.Assign(next, local))));
+											exprs.Add(
+												Expression.IfThen(
+													Expression.Equal(local, Expression.Constant(null)),
+													Expression.Block(Expression.Assign(local, Expression.New(local.Type)), Expression.Assign(next, local))));
 
 											ex = local;
 											i += 1;
@@ -180,7 +187,7 @@ namespace CodeJam.Reflection
 		}
 
 		// ReSharper disable once NotNullMemberIsNotInitialized
-		internal MemberAccessor([NotNull] TypeAccessor typeAccessor, [NotNull] MemberInfo memberInfo)
+		internal MemberAccessor(TypeAccessor typeAccessor, MemberInfo memberInfo)
 		{
 			TypeAccessor = typeAccessor;
 
@@ -188,7 +195,7 @@ namespace CodeJam.Reflection
 			SetExpressions();
 		}
 
-		private void SetSimple([NotNull] MemberInfo memberInfo)
+		private void SetSimple(MemberInfo memberInfo)
 		{
 			MemberInfo = memberInfo;
 			var propertyInfo = MemberInfo as PropertyInfo;
@@ -206,7 +213,7 @@ namespace CodeJam.Reflection
 				HasSetter = !((FieldInfo)memberInfo).IsInitOnly;
 			}
 
-			var objParam   = Expression.Parameter(TypeAccessor.Type, "obj");
+			var objParam = Expression.Parameter(TypeAccessor.Type, "obj");
 			var valueParam = Expression.Parameter(Type, "value");
 
 			GetterExpression =
@@ -234,17 +241,17 @@ namespace CodeJam.Reflection
 
 		private void SetExpressions()
 		{
-			var objParam   = Expression.Parameter(typeof(object), "obj");
+			var objParam = Expression.Parameter(typeof(object), "obj");
 			var getterExpr = GetterExpression.ReplaceParameters(Expression.Convert(objParam, TypeAccessor.Type));
-			var getter     = Expression.Lambda<Func<object,object>>(Expression.Convert(getterExpr, typeof(object)), objParam);
+			var getter = Expression.Lambda<Func<object, object>>(Expression.Convert(getterExpr, typeof(object)), objParam);
 
 			Getter = getter.Compile();
 
 			var valueParam = Expression.Parameter(typeof(object), "value");
 			var setterExpr = SetterExpression.ReplaceParameters(
-				Expression.Convert(objParam,   TypeAccessor.Type),
+				Expression.Convert(objParam, TypeAccessor.Type),
 				Expression.Convert(valueParam, Type));
-			var setter = Expression.Lambda<Action<object,object>>(setterExpr, objParam, valueParam);
+			var setter = Expression.Lambda<Action<object, object>>(setterExpr, objParam, valueParam);
 
 			Setter = setter.Compile();
 		}
@@ -252,10 +259,9 @@ namespace CodeJam.Reflection
 		private const FieldAttributes _enumField =
 			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
 
-		[NotNull]
-		private static readonly ConcurrentDictionary<Type, object> _defaultValues = new();
+		private static readonly ConcurrentDictionary<Type, object?> _defaultValues = new();
 
-		private object GetDefaultValue([NotNull] Type type)
+		private object? GetDefaultValue(Type type)
 		{
 			if (_defaultValues.TryGetValue(type, out var value))
 				return value;
@@ -277,10 +283,11 @@ namespace CodeJam.Reflection
 			return value;
 		}
 
+		[return: MaybeNull]
 		private static T GetDefaultValue<T>()
 		{
 			if (_defaultValues.TryGetValue(typeof(T), out var value))
-				return (T)value;
+				return value == null ? default : (T)value;
 
 			_defaultValues[typeof(T)] = default(T);
 
@@ -288,17 +295,14 @@ namespace CodeJam.Reflection
 		}
 
 		#region Public Properties
-
 		/// <summary>
 		/// Member <see cref="MemberInfo"/>.
 		/// </summary>
-		[NotNull]
-		public MemberInfo MemberInfo { get; private set; }
+		public MemberInfo MemberInfo { get; private set; } = null!;
 
 		/// <summary>
 		/// Parent <see cref="TypeAccessor"/>.
 		/// </summary>
-		[NotNull]
 		public TypeAccessor TypeAccessor { get; private set; }
 
 		/// <summary>
@@ -314,7 +318,7 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Member <see cref="Type"/>.
 		/// </summary>
-		[NotNull] public Type Type { get; private set; }
+		public Type Type { get; private set; } = null!;
 
 		/// <summary>
 		/// True, if the member is complex.
@@ -324,22 +328,22 @@ namespace CodeJam.Reflection
 		/// <summary>
 		/// Getter expression of the member.
 		/// </summary>
-		[NotNull] public LambdaExpression GetterExpression { get; private set; }
+		public LambdaExpression GetterExpression { get; private set; } = null!;
 
 		/// <summary>
 		/// Setter expression of the member.
 		/// </summary>
-		[NotNull] public LambdaExpression SetterExpression { get; private set; }
+		public LambdaExpression SetterExpression { get; private set; } = null!;
 
 		/// <summary>
 		/// Member getter function.
 		/// </summary>
-		[NotNull] public Func<object, object> Getter { get; private set; }
+		public Func<object, object> Getter { get; private set; } = null!;
 
 		/// <summary>
 		/// Member setter action.
 		/// </summary>
-		[NotNull] public Action<object, object> Setter { get; private set; }
+		public Action<object, object> Setter { get; private set; } = null!;
 
 		/// <summary>
 		/// Member name.
@@ -359,8 +363,8 @@ namespace CodeJam.Reflection
 		/// <param name="o">Object to access.</param>
 		/// <param name="value">Value to set.</param>
 		public void SetValue(object o, object value) => Setter(o, value);
-
 		#endregion
 	}
 }
+
 #endif

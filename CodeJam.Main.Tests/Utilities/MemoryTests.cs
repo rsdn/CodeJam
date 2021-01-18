@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using JetBrains.Annotations;
 
@@ -55,7 +54,6 @@ namespace CodeJam.Utilities
 			}
 		}
 
-		[NotNull]
-		private static byte[] CreateByteArray([NonNegativeValue] int length) => Enumerable.Range(0, length).Select(n => unchecked ((byte)n)).ToArray();
+				private static byte[] CreateByteArray([NonNegativeValue] int length) => Enumerable.Range(0, length).Select(n => unchecked ((byte)n)).ToArray();
 	}
 }

@@ -48,10 +48,11 @@ namespace CodeJam
 		/// <returns><paramref name="arg"/></returns>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static ArgumentAssertion<IEnumerable<T>> ItemNotNull<T>(this ArgumentAssertion<IEnumerable<T>> arg) where T : class
+		public static ArgumentAssertion<IEnumerable<T>> ItemNotNull<T>(this ArgumentAssertion<IEnumerable<T?>> arg)
+			where T : class
 		{
 			Code.ItemNotNull(arg.Argument, arg.ArgumentName);
-			return arg;
+			return arg!;
 		}
 
 		/// <summary>
@@ -130,7 +131,7 @@ namespace CodeJam
 		public static ArgumentAssertion<T> Assert<T>(
 			this ArgumentAssertion<T> arg,
 			bool condition,
-			[NotNull] string message)
+			string message)
 		{
 			Code.AssertArgument(condition, arg.ArgumentName, message);
 			return arg;
@@ -149,8 +150,8 @@ namespace CodeJam
 		public static ArgumentAssertion<T> Assert<T>(
 			this ArgumentAssertion<T> arg,
 			bool condition,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 		{
 			Code.AssertArgument(condition, arg.ArgumentName, messageFormat, args);
 			return arg;

@@ -18,7 +18,7 @@ namespace CodeJam.Metadata
 			var rd    = new AttributeReader();
 			var attrs = rd.GetAttributes<TestFixtureAttribute>(typeof(AttributeReaderTests));
 
-			Assert.NotNull (attrs);
+			NAssert.NotNull(attrs);
 			Assert.AreEqual(1, attrs.Length);
 			Assert.AreEqual(null, attrs[0].Description);
 		}
@@ -29,7 +29,7 @@ namespace CodeJam.Metadata
 		public void FieldAttribute()
 		{
 			var rd    = new AttributeReader();
-			var attrs = rd.GetAttributes<MapValueAttribute>(InfoOf.Member<AttributeReaderTests>(a => a.Field1));
+			var attrs = rd.GetAttributes<MapValueAttribute>(InfoOf.Member<AttributeReaderTests>(a => a.Field1)!);
 
 			Assert.AreEqual(0, attrs.Length);
 		}
@@ -41,9 +41,9 @@ namespace CodeJam.Metadata
 		public void PropertyAttribute()
 		{
 			var rd    = new AttributeReader();
-			var attrs = rd.GetAttributes<MapValueAttribute>(InfoOf.Member<AttributeReaderTests>(a => a.Property1));
+			var attrs = rd.GetAttributes<MapValueAttribute>(InfoOf.Member<AttributeReaderTests>(a => a.Property1)!);
 
-			Assert.NotNull (attrs);
+			NAssert.NotNull(attrs);
 			Assert.AreEqual(1, attrs.Length);
 			Assert.AreEqual("TestName", attrs[0].Value);
 		}

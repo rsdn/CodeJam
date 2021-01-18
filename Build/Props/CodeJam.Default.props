@@ -7,6 +7,12 @@
 		<DelaySign>False</DelaySign>
 		<AssemblyOriginatorKeyFile>..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<!-- <AnalysisLevel>latest</AnalysisLevel> -->
+    	<!-- <EnableNETAnalyzers>true</EnableNETAnalyzers> -->
+		<!-- <AnalysisMode>AllEnabledByDefault</AnalysisMode> -->
+
 		<Version>4.0.0.0</Version>
 		<PackageVersion>4.0.0-beta1</PackageVersion>
 		<PackageOutputPath>..\_Results</PackageOutputPath>

@@ -7,8 +7,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
-// ReSharper disable once RedundantUsingDirective
-using JetBrains.Annotations;
 
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
@@ -22,19 +20,16 @@ namespace CodeJam
 		private static class OpHolder<TEnum>
 			where TEnum : struct, Enum
 		{
-			[NotNull]
-			public static Func<TEnum, TEnum, bool> AreEqualCallback { get; } = OperatorsFactory.ComparisonOperator<TEnum>(ExpressionType.Equal);
+			public static Func<TEnum, TEnum, bool> AreEqualCallback { get; } =
+				OperatorsFactory.ComparisonOperator<TEnum>(ExpressionType.Equal);
 
-			[NotNull]
 			public static Func<TEnum, TEnum, bool> IsFlagSetCallback { get; } = OperatorsFactory.IsFlagSetOperator<TEnum>();
 
-			[NotNull]
-			public static Func<TEnum, TEnum, bool> IsAnyFlagSetCallback { get; } = OperatorsFactory.IsAnyFlagSetOperator<TEnum>();
+			public static Func<TEnum, TEnum, bool> IsAnyFlagSetCallback { get; } = OperatorsFactory.IsAnyFlagSetOperator<TEnum>()
+				;
 
-			[NotNull]
 			public static Func<TEnum, TEnum, TEnum> SetFlagCallback { get; } = OperatorsFactory.SetFlagOperator<TEnum>();
 
-			[NotNull]
 			public static Func<TEnum, TEnum, TEnum> ClearFlagCallback { get; } = OperatorsFactory.ClearFlagOperator<TEnum>();
 		}
 
@@ -44,7 +39,6 @@ namespace CodeJam
 			#region Init helpers
 			private static bool IsFlagsEnumCore() => typeof(TEnum).GetTypeInfo().GetCustomAttribute<FlagsAttribute>() != null;
 
-			[NotNull]
 			private static TEnum[] GetValuesCore() => (TEnum[])Enum.GetValues(typeof(TEnum));
 
 			private static IReadOnlyCollection<TEnum> GetValuesSetCore() =>
@@ -65,7 +59,6 @@ namespace CodeJam
 				return result;
 			}
 
-			[NotNull]
 			private static IReadOnlyDictionary<string, TEnum> GetNameValuesCore(bool ignoreCase)
 			{
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
@@ -94,26 +87,24 @@ namespace CodeJam
 					.Distinct()
 					.ToArray();
 
-			private static ulong ToUInt64(object value)
-			{
-				switch (Convert.GetTypeCode(value))
+			private static ulong ToUInt64(object value) =>
+				Convert.GetTypeCode(value) switch
 				{
-					case TypeCode.Boolean:
-					case TypeCode.Char:
-					case TypeCode.Byte:
-					case TypeCode.UInt16:
-					case TypeCode.UInt32:
-					case TypeCode.UInt64:
-						return Convert.ToUInt64(value, CultureInfo.InvariantCulture);
-					case TypeCode.SByte:
-					case TypeCode.Int16:
-					case TypeCode.Int32:
-					case TypeCode.Int64:
-						return unchecked((ulong)Convert.ToInt64(value, CultureInfo.InvariantCulture));
-					default:
-						throw CodeExceptions.UnexpectedArgumentValue(nameof(value), value);
-				}
-			}
+					TypeCode.Boolean or
+						TypeCode.Char or
+						TypeCode.Byte or
+						TypeCode.UInt16 or
+						TypeCode.UInt32 or
+						TypeCode.UInt64 =>
+						Convert.ToUInt64(value, CultureInfo.InvariantCulture),
+					TypeCode.SByte or
+						TypeCode.Int16 or
+						TypeCode.Int32 or
+						TypeCode.Int64 =>
+						unchecked((ulong)Convert.ToInt64(value, CultureInfo.InvariantCulture)),
+					_ =>
+						throw CodeExceptions.UnexpectedArgumentValue(nameof(value), value)
+				};
 
 			// NB: simple implementation here
 			// as result of method call is cached.
@@ -156,30 +147,24 @@ namespace CodeJam
 			#endregion
 
 			#region Cached values
-
-			[NotNull]
 			private static readonly IReadOnlyDictionary<string, TEnum> _nameValues = GetNameValuesCore(ignoreCase: false);
 
-			[NotNull]
-			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(ignoreCase: true);
+			private static readonly IReadOnlyDictionary<string, TEnum> _nameValuesIgnoreCase = GetNameValuesCore(
+				ignoreCase: true);
 
 			// ReSharper disable once StaticMemberInGenericType // result depends on TEnum
 			public static bool IsFlagsEnum { get; } = IsFlagsEnumCore();
 
 			public static TEnum ValuesMask { get; } = GetValuesMaskCore();
 
-			[NotNull]
 			public static IReadOnlyCollection<TEnum> ValuesSet { get; } = GetValuesSetCore();
 
-			[NotNull]
 			[MethodImpl(AggressiveInlining)]
 			public static IReadOnlyDictionary<string, TEnum> GetNameValues(bool ignoreCase) =>
 				ignoreCase ? _nameValuesIgnoreCase : _nameValues;
 
-			[NotNull]
 			public static TEnum[] NonDefaultFlags { get; } = GetNonDefaultFlagsCore();
 
-			[NotNull]
 			public static TEnum[] NonDefaultUniqueFlags { get; } = GetNonDefaultUniqueFlagsCore();
 			#endregion
 		}

@@ -2,15 +2,15 @@
 using System.Threading;
 
 using JetBrains.Annotations;
-
 #if !(NETCOREAPP20_OR_GREATER || NETSTANDARD21_OR_GREATER)
 using CodeJam.Dates;
 #endif
-
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using TaskEx = System.Threading.Tasks.Task;
+
 #else
 using TaskEx = System.Threading.Tasks.TaskEx;
+
 #endif
 
 namespace CodeJam.Threading

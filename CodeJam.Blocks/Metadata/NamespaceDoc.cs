@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+
 using System.Runtime.CompilerServices;
 
 namespace CodeJam.Metadata
@@ -12,6 +13,5 @@ namespace CodeJam.Metadata
 	/// </example>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	internal class NamespaceDoc
-	{ }
+	internal class NamespaceDoc { }
 }

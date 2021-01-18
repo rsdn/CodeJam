@@ -13,6 +13,7 @@ namespace CodeJam.Collections
 	/// <typeparam name="TKey">The type of the key.</typeparam>
 	[PublicAPI]
 	public sealed class KeyEqualityComparer<T, TKey> : IEqualityComparer<T>
+		where TKey : notnull
 	{
 		/// <summary>
 		/// Gets the function to extract the key for each element.
@@ -20,8 +21,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// The function to extract the key for each element.
 		/// </returns>
-		[NotNull]
-		public Func<T, TKey> KeySelector { get; }
+		public Func<T?, TKey> KeySelector { get; }
 
 		/// <summary>
 		/// Gets the equality comparer to use to compare the keys.
@@ -29,16 +29,15 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// The equality comparer to use to compare the keys.
 		/// </returns>
-		[NotNull]
 		public IEqualityComparer<TKey> Comparer { get; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="KeyEqualityComparer{T,TKey}"/>.
 		/// </summary>
 		/// <param name="keySelector">The function to extract the key for each element.</param>
-		public KeyEqualityComparer([NotNull] Func<T, TKey> keySelector)
+		public KeyEqualityComparer(Func<T?, TKey> keySelector)
 		{
-			Code.NotNull(keySelector, nameof (keySelector));
+			Code.NotNull(keySelector, nameof(keySelector));
 
 			KeySelector = keySelector;
 			Comparer = EqualityComparer<TKey>.Default;
@@ -49,7 +48,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="keySelector">The function to extract the key for each element.</param>
 		/// <param name="comparer">The equality comparer to use to compare the keys.</param>
-		public KeyEqualityComparer([NotNull] Func<T, TKey> keySelector, IEqualityComparer<TKey> comparer)
+		public KeyEqualityComparer(Func<T?, TKey> keySelector, IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(keySelector, nameof(keySelector));
 
@@ -65,7 +64,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// true if the specified objects are equal; otherwise, false.
 		/// </returns>
-		public bool Equals(T x, T y) =>
+		public bool Equals(T? x, T? y) =>
 			Comparer.Equals(KeySelector(x), KeySelector(y));
 
 		/// <summary>

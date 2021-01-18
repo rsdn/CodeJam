@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
-
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using TaskEx = System.Threading.Tasks.Task;
+
 #else
 using TaskEx = System.Threading.Tasks.TaskEx;
+
 #endif
 
 namespace CodeJam.Threading
@@ -25,7 +26,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="token1">Parent token1.</param>
 		/// <param name="token2">Parent token2.</param>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CancellationTokenSource CreateCancellation(CancellationToken token1, CancellationToken token2) =>
 			CancellationTokenSource.CreateLinkedTokenSource(token1, token2);
 
@@ -33,7 +34,7 @@ namespace CodeJam.Threading
 		/// Creates derived cancellation.
 		/// </summary>
 		/// <param name="cancellations">Parent cancellations.</param>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CancellationTokenSource CreateCancellation(params CancellationToken[] cancellations) =>
 			CancellationTokenSource.CreateLinkedTokenSource(cancellations);
 
@@ -43,7 +44,7 @@ namespace CodeJam.Threading
 		/// <param name="timeout">The timeout.</param>
 		/// <param name="token1">Parent token1.</param>
 		/// <param name="token2">Parent token2.</param>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CancellationTokenSource CreateCancellation(
 			TimeSpan timeout,
 			CancellationToken token1,
@@ -60,7 +61,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="timeout">The timeout.</param>
 		/// <param name="cancellations">Parent cancellations.</param>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CancellationTokenSource CreateCancellation(
 			TimeSpan timeout,
 			params CancellationToken[] cancellations)
@@ -77,7 +78,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="cancellationTokenSource">The cancellation token source.</param>
 		/// <returns></returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IDisposable CancellationScope(
 			this CancellationTokenSource cancellationTokenSource) =>
 				Disposable.Create(cancellationTokenSource.Cancel);
@@ -96,9 +97,7 @@ namespace CodeJam.Threading
 			{
 				await TaskEx.Delay(TimeoutHelper.InfiniteTimeSpan, cancellationToken).ConfigureAwait(false);
 			}
-			catch (OperationCanceledException)
-			{
-			}
+			catch (OperationCanceledException) { }
 		}
 
 		/// <summary>
@@ -117,9 +116,7 @@ namespace CodeJam.Threading
 				await TaskEx.Delay(timeout, cancellationToken).ConfigureAwait(false);
 				throw new TimeoutException($"Wait for cancellation timed out in {timeout}");
 			}
-			catch (OperationCanceledException)
-			{
-			}
+			catch (OperationCanceledException) { }
 		}
 
 		/// <summary>

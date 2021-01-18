@@ -4,14 +4,13 @@ using System.Linq;
 using CodeJam.Collections;
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 namespace CodeJam.Ranges
 {
 	public class IntervalTreeTests
 	{
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static List<Range<int, string>> IntersectNaive(CompositeRange<int, string> rangeA, Range<int> overlap)
 		{
 			var result = new List<Range<int, string>>();
@@ -29,12 +28,12 @@ namespace CodeJam.Ranges
 
 		private const int Count = 1000;
 
-		private readonly CompositeRange<int, string> _sameStartRanges;
-		private readonly CompositeRange<int, string> _sameEndRanges;
-		private readonly CompositeRange<int, string> _nonOverlappingRanges;
-		private readonly CompositeRange<int, string> _overlappingRanges;
+		private static readonly CompositeRange<int, string> _sameStartRanges;
+		private static readonly CompositeRange<int, string> _sameEndRanges;
+		private static readonly CompositeRange<int, string> _nonOverlappingRanges;
+		private static readonly CompositeRange<int, string> _overlappingRanges;
 
-		public IntervalTreeTests()
+		static IntervalTreeTests()
 		{
 			_sameStartRanges = Enumerable.Range(0, Count)
 				.ToCompositeRange(i => 0, i => 2 * i, i => i.ToString());
@@ -74,7 +73,7 @@ namespace CodeJam.Ranges
 			}
 		}
 
-		private static void AssertSameOverlap(CompositeRange<int, string> ranges, [NotNull] IntervalTree<int, string> tree, Range<int> overlapRange) =>
+		private static void AssertSameOverlap(CompositeRange<int, string> ranges, IntervalTree<int, string> tree, Range<int> overlapRange) =>
 			Assert.AreEqual(
 				ranges.SubRanges.Where(r => r.HasIntersection(overlapRange)).Join(";"),
 				tree.Intersect(overlapRange).Join(";"));

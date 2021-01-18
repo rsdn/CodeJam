@@ -17,6 +17,7 @@ namespace CodeJam.Reflection
 	/// <typeparam name="T">Type to access.</typeparam>
 	[PublicAPI]
 	public class TypeAccessor<T> : TypeAccessor
+		where T : notnull
 	{
 		static TypeAccessor()
 		{
@@ -26,8 +27,8 @@ namespace CodeJam.Reflection
 
 			if (type.GetIsValueType())
 			{
-				CreateInstanceExpression = () => default;
-				_createInstance          = () => default;
+				CreateInstanceExpression = () => default!;
+				_createInstance = () => default!;
 			}
 			else
 			{
@@ -38,7 +39,7 @@ namespace CodeJam.Reflection
 					Expression<Func<T>> mi;
 
 					if (type.GetIsAbstract()) mi = () => ThrowAbstractException();
-					else                 mi = () => ThrowException();
+					else mi = () => ThrowException();
 
 					var body = Expression.Call(null, ((MethodCallExpression)mi.Body).Method);
 
@@ -95,7 +96,6 @@ namespace CodeJam.Reflection
 			throw new InvalidOperationException($"Cant create an instance of abstract class '{typeof(T).FullName}'.");
 
 		// ReSharper disable once StaticMemberInGenericType
-		[NotNull, ItemNotNull]
 		private static readonly List<MemberInfo> _members = new();
 
 		internal TypeAccessor()
@@ -109,7 +109,6 @@ namespace CodeJam.Reflection
 		/// </summary>
 		public static Expression<Func<T>> CreateInstanceExpression { get; }
 
-		[NotNull]
 		private static readonly Func<T> _createInstance;
 
 		/// <summary>
@@ -122,7 +121,6 @@ namespace CodeJam.Reflection
 		/// Creates an instance of <see cref="TypeAccessor"/>.
 		/// </summary>
 		/// <returns>Instance of <see cref="TypeAccessor"/>.</returns>
-		[NotNull]
 		public T Create() => _createInstance();
 
 		/// <summary>
@@ -137,4 +135,5 @@ namespace CodeJam.Reflection
 		public static TypeAccessor<T> GetAccessor() => GetAccessor<T>();
 	}
 }
+
 #endif

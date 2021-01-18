@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using JetBrains.Annotations;
+﻿using System.Collections.Generic;
 
 namespace CodeJam.Ranges
 {
@@ -44,7 +41,7 @@ namespace CodeJam.Ranges
 		///// <param name="value">The value.</param>
 		///// <returns>Index of the inserted item.</returns>
 		//internal static int InsertInSortedList<T>(
-		//	[NotNull] List<T> sortedList,
+		//	List<T> sortedList,
 		//	T value) =>
 		//		InsertInSortedList(sortedList, value, Comparer<T>.Default, false);
 
@@ -55,7 +52,7 @@ namespace CodeJam.Ranges
 		///// <param name="comparer">The comparer.</param>
 		///// <returns>Index of the inserted item.</returns>
 		//internal static int InsertInSortedList<T>(
-		//	[NotNull] List<T> sortedList,
+		//	List<T> sortedList,
 		//	T value,
 		//	IComparer<T> comparer) =>
 		//		InsertInSortedList(sortedList, value, comparer, false);
@@ -67,7 +64,7 @@ namespace CodeJam.Ranges
 		///// <param name="skipDuplicates">If set to <c>true</c> duplicates are not inserted.</param>
 		///// <returns>Index of the inserted item (or existing one if <paramref name="skipDuplicates"/> is set to <c>true</c>).</returns>
 		//internal static int InsertInSortedList<T>(
-		//	[NotNull] List<T> sortedList,
+		//	List<T> sortedList,
 		//	T value,
 		//	bool skipDuplicates) =>
 		//		InsertInSortedList(sortedList, value, null, skipDuplicates);
@@ -83,21 +80,28 @@ namespace CodeJam.Ranges
 		/// </returns>
 		// ReSharper disable once UnusedMethodReturnValue.Global
 		internal static int InsertInSortedList<T>(
-			[NotNull] List<T> sortedList,
-			[CanBeNull] T value,
-			[CanBeNull] IComparer<T> comparer,
+			List<T> sortedList,
+			T? value,
+			IComparer<T>? comparer,
 			bool skipDuplicates)
 		{
+#pragma warning disable CS8604
 			var insertIndex = sortedList.BinarySearch(value, comparer);
+			// Bug in MS code markup. value can be null for ref types.
+#pragma warning restore CS8604
 
 			if (insertIndex < 0)
 			{
 				insertIndex = ~insertIndex;
-				sortedList.Insert(insertIndex, value);
+#pragma warning disable CS8604
+				sortedList.Insert(insertIndex, value); // Bug in MS code markup. value can be nul for ref types
+#pragma warning restore CS8604
 			}
 			else if (!skipDuplicates)
 			{
-				sortedList.Insert(insertIndex, value);
+#pragma warning disable CS8604
+				sortedList.Insert(insertIndex, value); // Bug in MS code markup. value can be nul for ref types
+#pragma warning restore CS8604
 			}
 			return insertIndex;
 		}

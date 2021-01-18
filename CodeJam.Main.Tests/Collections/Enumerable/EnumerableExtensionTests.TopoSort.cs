@@ -4,8 +4,6 @@ using System.Linq;
 
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 namespace CodeJam.Collections
@@ -39,7 +37,7 @@ namespace CodeJam.Collections
 			var items = GetDepStructure(source, out deps);
 
 			// Perform sort
-			return items.TopoSort(i => deps[i], v => v.Value).Join(", ");
+			return items.TopoSort(i => deps[i], v => v!.Value).Join(", ");
 		}
 
 		[TestCase(arg: new[] { "a:a" })]
@@ -106,9 +104,8 @@ namespace CodeJam.Collections
 						.ToArray());
 		}
 
-		[NotNull, ItemNotNull]
 		private static ICollection<string> GetDepStructure(
-			[NotNull, ItemNotNull] IEnumerable<string> source, out Dictionary<string, string[]> deps)
+			IEnumerable<string> source, out Dictionary<string, string[]> deps)
 		{
 			var items = new HashSet<string>();
 			deps = new Dictionary<string, string[]>();
@@ -126,14 +123,14 @@ namespace CodeJam.Collections
 			return items;
 		}
 
-		private static IEnumerable<Holder> GetDepStructure([NotNull] IEnumerable<string> source, out Dictionary<Holder, Holder[]> deps)
+		private static IEnumerable<Holder> GetDepStructure(IEnumerable<string> source, out Dictionary<Holder, Holder[]> deps)
 		{
 			Dictionary<string, string[]> innerDeps;
 			var items = GetDepStructure(source, out innerDeps);
 			deps = innerDeps.ToDictionary(
 				kv => new Holder(kv.Key),
 				kv => kv.Value.Select(v => new Holder(v)).ToArray(),
-				new KeyEqualityComparer<Holder, string>(v => v.Value));
+				new KeyEqualityComparer<Holder, string>(v => v!.Value));
 
 			return items.Select(v => new Holder(v));
 		}

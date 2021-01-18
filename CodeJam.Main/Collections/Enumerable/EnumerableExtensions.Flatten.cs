@@ -16,10 +16,10 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A flat sequence of elements produced from the elements in the source hierarchy.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<T> Flatten<T>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, IEnumerable<T>> childrenSelector)
+			this IEnumerable<T> source,
+			Func<T, IEnumerable<T>> childrenSelector)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(childrenSelector, nameof(childrenSelector));
@@ -27,10 +27,10 @@ namespace CodeJam.Collections
 			return FlattenImpl(source, childrenSelector);
 		}
 
-		[NotNull, Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		private static IEnumerable<T> FlattenImpl<T>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, IEnumerable<T>> childrenSelector)
+			this IEnumerable<T> source,
+			Func<T, IEnumerable<T>> childrenSelector)
 		{
 			foreach (var root in source)
 			{
@@ -42,7 +42,7 @@ namespace CodeJam.Collections
 
 					yield return currentNode.Item;
 
-					Node<T> tmpList = null;
+					Node<T>? tmpList = null;
 					foreach (var childItem in childrenSelector(currentNode.Item))
 						tmpList = new Node<T>(childItem, tmpList);
 
@@ -58,9 +58,9 @@ namespace CodeJam.Collections
 		private sealed class Node<T>
 		{
 			public readonly T Item;
-			public readonly Node<T> Next;
+			public readonly Node<T>? Next;
 
-			public Node(T item, Node<T> next)
+			public Node(T item, Node<T>? next)
 			{
 				Item = item;
 				Next = next;

@@ -81,8 +81,7 @@ namespace CodeJam.Ranges
 		/// <param name="from">Boundary From.</param>
 		/// <param name="to">Boundary To.</param>
 		public Range(T from, T to) :
-			this(Range.BoundaryFrom(from), Range.BoundaryTo(to))
-		{ }
+			this(Range.BoundaryFrom(from), Range.BoundaryTo(to)) { }
 
 		/// <summary>
 		/// Creates instance of <seealso cref="Range{T}"/>

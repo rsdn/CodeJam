@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+
+using SDC = System.Diagnostics.CodeAnalysis;
+
 using System.Linq;
 using System.Runtime.CompilerServices;
 
 using CodeJam.Arithmetic;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
-
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using StringEx = System.String;
 #else
 using StringEx = System.StringEx;
 #endif
-
 using static CodeJam.Targeting.MethodImplOptionsEx;
+
 // ReSharper disable BuiltInTypeReferenceStyleForMemberAccess
 
 namespace CodeJam
@@ -31,10 +35,10 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void NotNull<T>(
-			[CanBeNull, NoEnumeration] T arg,
-			[NotNull, InvokerParameterName] string argName) where T : class
+			[AllowNull, SDC.NotNull, NoEnumeration] T? arg,
+			[InvokerParameterName] string argName)
+			where T : class
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
@@ -51,10 +55,9 @@ namespace CodeJam
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void GenericNotNull<T>(
-			[CanBeNull, NoEnumeration] T arg,
-			[NotNull, InvokerParameterName] string argName)
+			[AllowNull, SDC.NotNull, NoEnumeration] T? arg,
+			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
@@ -65,7 +68,7 @@ namespace CodeJam
 		/// <param name="argName">The name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void NotDefault(Guid arg, [NotNull, InvokerParameterName] string argName)
+		public static void NotDefault(Guid arg, [InvokerParameterName] string argName)
 		{
 			if (arg == Guid.Empty)
 				throw CodeExceptions.ArgumentDefault(argName, typeof(Guid));
@@ -82,8 +85,8 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void GenericNotDefault<T>(
-			[CanBeNull, NoEnumeration] T arg,
-			[NotNull, InvokerParameterName] string argName)
+			[NoEnumeration, AllowNull] T arg,
+			[InvokerParameterName] string argName)
 		{
 			if (Operators<T>.AreEqual(arg, default))
 				throw CodeExceptions.ArgumentDefault(argName, typeof(T));
@@ -95,10 +98,9 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void NotNull<T>(
-			[CanBeNull] T? arg,
-			[NotNull, InvokerParameterName] string argName) where T : struct
+			[SDC.NotNull] T? arg,
+			[InvokerParameterName] string argName) where T : struct
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
@@ -112,10 +114,9 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty<T>(
-			[CanBeNull, InstantHandle] IEnumerable<T> arg,
-			[NotNull, InvokerParameterName] string argName)
+			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T>? arg,
+			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
@@ -131,10 +132,9 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty<T>(
-			[CanBeNull] ICollection<T> arg,
-			[NotNull, InvokerParameterName] string argName)
+			[AllowNull, SDC.NotNull] ICollection<T>? arg,
+			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
@@ -150,10 +150,9 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty<T>(
-			[CanBeNull] T[] arg,
-			[NotNull, InvokerParameterName] string argName)
+			[AllowNull, SDC.NotNull] T?[]? arg,
+			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
@@ -166,12 +165,11 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorEmpty(
-			[CanBeNull] string arg,
-			[NotNull, InvokerParameterName] string argName)
+			[AllowNull, SDC.NotNull] string? arg,
+			[InvokerParameterName] string argName)
 		{
-			if (string.IsNullOrEmpty(arg))
+			if (arg.IsNullOrEmpty())
 				throw CodeExceptions.ArgumentNullOrEmpty(argName);
 		}
 
@@ -180,12 +178,11 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullNorWhiteSpace(
-			[CanBeNull] string arg,
-			[NotNull, InvokerParameterName] string argName)
+			[AllowNull, SDC.NotNull] string? arg,
+			[InvokerParameterName] string argName)
 		{
-			if (StringEx.IsNullOrWhiteSpace(arg))
+			if (arg.IsNullOrWhiteSpace())
 				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
 		}
 
@@ -195,10 +192,9 @@ namespace CodeJam
 		/// <param name="argName">Name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("arg: null => halt")]
 		public static void NotNullAndItemNotNull<T>(
-			[CanBeNull, InstantHandle] IEnumerable<T> arg,
-			[NotNull, InvokerParameterName] string argName) where T : class
+			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T?>? arg,
+			[InvokerParameterName] string argName) where T : class
 		{
 			if (arg == null)
 				throw CodeExceptions.ArgumentNull(argName);
@@ -212,8 +208,8 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ItemNotNull<T>(
-			[NotNull, InstantHandle] IEnumerable<T> arg,
-			[NotNull, InvokerParameterName] string argName) where T : class
+			[InstantHandle] IEnumerable<T?> arg,
+			[InvokerParameterName] string argName) where T : class
 		{
 			foreach (var item in arg)
 				if (item == null)
@@ -226,11 +222,10 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("condition: false => halt")]
 		public static void AssertArgument(
-			bool condition,
-			[NotNull, InvokerParameterName] string argName,
-			[NotNull] string message)
+			[DoesNotReturnIf(false)] bool condition,
+			[InvokerParameterName] string argName,
+			string message)
 		{
 			if (!condition)
 				throw CodeExceptions.Argument(argName, message);
@@ -243,12 +238,11 @@ namespace CodeJam
 		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
-		[ContractAnnotation("condition: false => halt")]
 		public static void AssertArgument(
-			bool condition,
-			[NotNull, InvokerParameterName] string argName,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[DoesNotReturnIf(false)] bool condition,
+			[InvokerParameterName] string argName,
+			string messageFormat,
+			params object[]? args)
 		{
 			if (!condition)
 				throw CodeExceptions.Argument(argName, messageFormat, args);
@@ -265,7 +259,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void InRange(
 			int value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			int fromValue,
 			int toValue)
 		{
@@ -282,7 +276,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void InRange(
 			double value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			double fromValue,
 			double toValue)
 		{
@@ -300,16 +294,15 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void InRange<T>(
-			[NotNull] T value,
-			[NotNull, InvokerParameterName] string argName,
-			[NotNull] T fromValue,
-			[NotNull] T toValue)
+			[DisallowNull] T value,
+			[DisallowNull, InvokerParameterName] string argName,
+			[DisallowNull] T fromValue,
+			[DisallowNull] T toValue)
 		{
 			// DONTTOUCH: handles the NaN values
 			if (!(Operators<T>.GreaterThanOrEqual(value, fromValue) && Operators<T>.LessThanOrEqual(value, toValue)))
 				throw CodeExceptions.ArgumentOutOfRange(argName, value, fromValue, toValue);
 		}
-
 		#endregion
 
 		#region Argument validation - valid count
@@ -318,7 +311,7 @@ namespace CodeJam
 		/// <param name="argName">The name of the argument.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void ValidCount([NonNegativeValue] int count, [NotNull, InvokerParameterName] string argName) =>
+		public static void ValidCount(int count, [InvokerParameterName] string argName) =>
 			InRange(count, argName, 0, int.MaxValue);
 
 		/// <summary>Asserts if the passed value is not a valid count.</summary>
@@ -328,10 +321,10 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidCount(
-			[NonNegativeValue] int count,
-			[NotNull, InvokerParameterName] string argName,
-			[NonNegativeValue] int length) =>
-			InRange(count, argName, 0, length);
+			int count,
+			[InvokerParameterName] string argName,
+			int length) =>
+				InRange(count, argName, 0, length);
 		#endregion
 
 		#region Argument validation - valid index
@@ -342,7 +335,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void ValidIndex(
 			int index,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 		{
 			if (index < 0)
 				throw CodeExceptions.IndexOutOfRange(argName, index, 0, int.MaxValue);
@@ -356,8 +349,8 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void ValidIndex(
 			int index,
-			[NotNull, InvokerParameterName] string argName,
-			[NonNegativeValue] int length)
+			[InvokerParameterName] string argName,
+			int length)
 		{
 			if (index < 0 || index >= length)
 				throw CodeExceptions.IndexOutOfRange(argName, index, 0, length);
@@ -373,10 +366,10 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void ValidIndexPair(
 			int fromIndex,
-			[NotNull, InvokerParameterName] string fromIndexName,
-			[NonNegativeValue] int toIndex,
-			[NotNull, InvokerParameterName] string toIndexName,
-			[NonNegativeValue] int length)
+			[InvokerParameterName] string fromIndexName,
+			int toIndex,
+			[InvokerParameterName] string toIndexName,
+			int length)
 		{
 			ValidIndex(fromIndex, fromIndexName, length);
 
@@ -393,11 +386,11 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ValidIndexAndCount(
-			[NonNegativeValue] int startIndex,
-			[NotNull, InvokerParameterName] string startIndexName,
-			[NonNegativeValue] int count,
-			[NotNull, InvokerParameterName] string countName,
-			[NonNegativeValue] int length)
+			int startIndex,
+			[InvokerParameterName] string startIndexName,
+			int count,
+			[InvokerParameterName] string countName,
+			int length)
 		{
 			ValidIndex(startIndex, startIndexName, length);
 
@@ -411,10 +404,9 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		[ContractAnnotation("condition: false => halt")]
 		public static void AssertState(
-			bool condition,
-			[NotNull] string message)
+			[DoesNotReturnIf(false)] bool condition,
+			string message)
 		{
 			if (!condition)
 				throw CodeExceptions.InvalidOperation(message);
@@ -426,11 +418,10 @@ namespace CodeJam
 		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
-		[ContractAnnotation("condition: false => halt")]
 		public static void AssertState(
-			bool condition,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[DoesNotReturnIf(false)] bool condition,
+			string messageFormat,
+			params object[]? args)
 		{
 			if (!condition)
 				throw CodeExceptions.InvalidOperation(messageFormat, args);
@@ -445,8 +436,8 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("condition: true => halt")]
 		public static void BugIf(
-			bool condition,
-			[NotNull] string message)
+			[DoesNotReturnIf(true)] bool condition,
+			string message)
 		{
 			if (condition)
 				throw CodeExceptions.InvalidOperation(message);
@@ -458,11 +449,10 @@ namespace CodeJam
 		/// <param name="args">The arguments.</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod, StringFormatMethod("messageFormat")]
-		[ContractAnnotation("condition: true => halt")]
 		public static void BugIf(
-			bool condition,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[DoesNotReturnIf(true)] bool condition,
+			string messageFormat,
+			params object[]? args)
 		{
 			if (condition)
 				throw CodeExceptions.InvalidOperation(messageFormat, args);

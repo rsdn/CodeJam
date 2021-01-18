@@ -3,7 +3,6 @@ using System.Collections.Generic;
 #if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
 using System.Threading.Tasks;
 #endif
-
 using CodeJam.Internal;
 
 using JetBrains.Annotations;
@@ -17,9 +16,9 @@ namespace CodeJam
 		/// <summary>Invokes the dispose for each item in the <paramref name="disposables"/>.</summary>
 		/// <param name="disposables">The multiple <see cref="IDisposable"/> instances.</param>
 		/// <exception cref="AggregateException"></exception>
-		public static void DisposeAll([NotNull, ItemNotNull, InstantHandle] this IEnumerable<IDisposable> disposables)
+		public static void DisposeAll([InstantHandle] this IEnumerable<IDisposable> disposables)
 		{
-			List<Exception> exceptions = null;
+			List<Exception>? exceptions = null;
 
 			foreach (var item in disposables)
 			{
@@ -42,8 +41,8 @@ namespace CodeJam
 		/// <param name="disposables">The multiple <see cref="IDisposable"/> instances.</param>
 		/// <param name="exceptionHandler">The exception handler.</param>
 		public static void DisposeAll(
-			[NotNull, ItemNotNull, InstantHandle] this IEnumerable<IDisposable> disposables,
-			[NotNull, InstantHandle] Func<Exception, bool> exceptionHandler)
+			[InstantHandle] this IEnumerable<IDisposable> disposables,
+			[InstantHandle] Func<Exception, bool> exceptionHandler)
 		{
 			foreach (var item in disposables)
 			{
@@ -63,7 +62,7 @@ namespace CodeJam
 		/// Calls DisposeAsync if <paramref name="disposable"/> implements <see cref="IAsyncDisposable"/>, otherwise
 		/// calls <see cref="IDisposable.Dispose"/>
 		/// </summary>
-		public static ValueTask DisposeAsync([NotNull] this IDisposable disposable)
+		public static ValueTask DisposeAsync(this IDisposable disposable)
 		{
 			Code.NotNull(disposable, nameof(disposable));
 			if (disposable is IAsyncDisposable asyncDisposable)

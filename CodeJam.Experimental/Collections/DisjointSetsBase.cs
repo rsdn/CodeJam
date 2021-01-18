@@ -11,7 +11,6 @@ namespace CodeJam.Collections
 	public class DisjointSetsBase<T> where T : BasicNode
 	{
 		/// <summary>All nodes</summary>
-		[NotNull, ItemNotNull]
 		protected readonly List<T> Nodes = new();
 
 		/// <summary>Creates an empty base</summary>

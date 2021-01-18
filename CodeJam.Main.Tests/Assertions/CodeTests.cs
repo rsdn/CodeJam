@@ -204,12 +204,12 @@ namespace CodeJam.Assertions
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(2, "arg00", 4, 2));
 			Assert.Throws<ArgumentOutOfRangeException>(
 				() => Code.InRange<double?>(2, "arg00", double.PositiveInfinity, double.NegativeInfinity));
-			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(null, "arg00", 4, 2));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(null!, "arg00", 4, 2));
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(double.NaN, "arg00", 4, 2));
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(2, "arg00", double.NaN, 2));
 			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(2, "arg00", 2, double.NaN));
-			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 2, null));
-			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", null, 4));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 2, null!));
+			Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", null!, 4));
 
 			var ex = Assert.Throws<ArgumentOutOfRangeException>(() => Code.InRange<double?>(3.0, "arg00", 0, 1));
 			Assert.That(ex.Message, Does.Contain("arg00"));
@@ -243,7 +243,7 @@ namespace CodeJam.Assertions
 			Assert.DoesNotThrow(() => Code.InRange("c", "arg00", "c", "c"));
 			Assert.DoesNotThrow(() => Code.InRange("c", "arg00", "b", "c"));
 			Assert.DoesNotThrow(() => Code.InRange("c", "arg00", "c", "d"));
-			Assert.DoesNotThrow(() => Code.InRange("c", "arg00", null, "eee"));
+			Assert.DoesNotThrow(() => Code.InRange("c", "arg00", null!, "eee"));
 		}
 
 		[Test]
@@ -409,7 +409,7 @@ namespace CodeJam.Assertions
 			// anything disposable
 			var checkingObject = Enumerable.Empty<string>().GetEnumerator();
 			var checkingObjectName = checkingObject.GetType().FullName;
-			object nullValue = null;
+			object? nullValue = null;
 			object notNullValue = "";
 
 			var ex = Assert.Throws<ObjectDisposedException>(

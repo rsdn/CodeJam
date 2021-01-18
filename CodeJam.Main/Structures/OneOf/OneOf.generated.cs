@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
 using System;
 
 using JetBrains.Annotations;
@@ -33,10 +35,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2> other);
+		public abstract bool Equals(OneOf<T1, T2>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -81,9 +83,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -91,10 +93,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2}"/>.</returns>
-		public static OneOf<T1, T2> Create([NotNull] T1 value)
+		public static OneOf<T1, T2> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -121,9 +121,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -131,10 +131,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2}"/>.</returns>
-		public static OneOf<T1, T2> Create([NotNull] T2 value)
+		public static OneOf<T1, T2> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -171,10 +169,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3> other);
+		public abstract bool Equals(OneOf<T1, T2, T3>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -220,9 +218,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -230,10 +228,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
-		public static OneOf<T1, T2, T3> Create([NotNull] T1 value)
+		public static OneOf<T1, T2, T3> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -261,9 +257,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -271,10 +267,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
-		public static OneOf<T1, T2, T3> Create([NotNull] T2 value)
+		public static OneOf<T1, T2, T3> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -302,9 +296,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -312,10 +306,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3}"/>.</returns>
-		public static OneOf<T1, T2, T3> Create([NotNull] T3 value)
+		public static OneOf<T1, T2, T3> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -356,10 +348,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -406,9 +398,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -416,10 +408,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4> Create([NotNull] T1 value)
+		public static OneOf<T1, T2, T3, T4> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -448,9 +438,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -458,10 +448,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4> Create([NotNull] T2 value)
+		public static OneOf<T1, T2, T3, T4> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -490,9 +478,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -500,10 +488,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4> Create([NotNull] T3 value)
+		public static OneOf<T1, T2, T3, T4> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -532,9 +518,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -542,10 +528,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4> Create([NotNull] T4 value)
+		public static OneOf<T1, T2, T3, T4> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -590,10 +574,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -641,9 +625,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -651,10 +635,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T1 value)
+		public static OneOf<T1, T2, T3, T4, T5> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -684,9 +666,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -694,10 +676,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T2 value)
+		public static OneOf<T1, T2, T3, T4, T5> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -727,9 +707,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -737,10 +717,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T3 value)
+		public static OneOf<T1, T2, T3, T4, T5> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -770,9 +748,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -780,10 +758,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T4 value)
+		public static OneOf<T1, T2, T3, T4, T5> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -813,9 +789,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action) => case5Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5> other) => Equals(other as Case5);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5>? other) => Equals(other as Case5);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -823,10 +799,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5> Create([NotNull] T5 value)
+		public static OneOf<T1, T2, T3, T4, T5> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case5(value);
 		}
 
@@ -875,10 +849,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -927,9 +901,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -937,10 +911,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T1 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -971,9 +943,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -981,10 +953,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T2 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -1015,9 +985,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1025,10 +995,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T3 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -1059,9 +1027,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1069,10 +1037,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T4 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -1103,9 +1069,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case5Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case5);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case5);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1113,10 +1079,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T5 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case5(value);
 		}
 
@@ -1147,9 +1111,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action) => case6Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6> other) => Equals(other as Case6);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6>? other) => Equals(other as Case6);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1157,10 +1121,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6> Create([NotNull] T6 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case6(value);
 		}
 
@@ -1213,10 +1175,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -1266,9 +1228,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1276,10 +1238,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T1 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -1311,9 +1271,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1321,10 +1281,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T2 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -1356,9 +1314,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1366,10 +1324,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T3 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -1401,9 +1357,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1411,10 +1367,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T4 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -1446,9 +1400,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case5Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case5);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case5);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1456,10 +1410,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T5 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case5(value);
 		}
 
@@ -1491,9 +1443,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case6Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case6);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case6);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1501,10 +1453,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T6 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case6(value);
 		}
 
@@ -1536,9 +1486,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action) => case7Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7> other) => Equals(other as Case7);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7>? other) => Equals(other as Case7);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1546,10 +1496,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T7"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create([NotNull] T7 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7> Create(T7 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case7(value);
 		}
 
@@ -1606,10 +1554,10 @@ namespace CodeJam
 		public abstract void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action);
 
 		/// <inheritdoc />
-		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other);
+		public abstract bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other);
 
 		/// <inheritdoc />
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
@@ -1660,9 +1608,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case1Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case1);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case1);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1670,10 +1618,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T1"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T1 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case1(value);
 		}
 
@@ -1706,9 +1652,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case2Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case2);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case2);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1716,10 +1662,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T2"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T2 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case2(value);
 		}
 
@@ -1752,9 +1696,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case3Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case3);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case3);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1762,10 +1706,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T3"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T3 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case3(value);
 		}
 
@@ -1798,9 +1740,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case4Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case4);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case4);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1808,10 +1750,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T4"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T4 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case4(value);
 		}
 
@@ -1844,9 +1784,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case5Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case5);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case5);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1854,10 +1794,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T5"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T5 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case5(value);
 		}
 
@@ -1890,9 +1828,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case6Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case6);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case6);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1900,10 +1838,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T6"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T6 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case6(value);
 		}
 
@@ -1936,9 +1872,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case7Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case7);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case7);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1946,10 +1882,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T7"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T7 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T7 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case7(value);
 		}
 
@@ -1982,9 +1916,9 @@ namespace CodeJam
 
 			public override void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action) => case8Action(_value);
 
-			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8> other) => Equals(other as Case8);
+			public override bool Equals(OneOf<T1, T2, T3, T4, T5, T6, T7, T8>? other) => Equals(other as Case8);
 
-			public override int GetHashCode() => _value.GetHashCode();
+			public override int GetHashCode() => _value != null ? _value.GetHashCode() : 0;
 		}
 
 		/// <summary>
@@ -1992,10 +1926,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value of type <typeparamref name="T8"/> to create instance from.</param>
 		/// <returns>Value of <see cref="OneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
-		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create([NotNull] T8 value)
+		public static OneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T8 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
 			return new Case8(value);
 		}
 

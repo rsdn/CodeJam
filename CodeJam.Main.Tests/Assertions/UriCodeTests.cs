@@ -19,7 +19,7 @@ namespace CodeJam.Assertions
 			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedUri("", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
-			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedUri(null, "arg00"));
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedUri(null!, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
 			Assert.DoesNotThrow(() => UriCode.IsWellFormedUri("maybe/uri", "arg00"));
@@ -63,7 +63,7 @@ namespace CodeJam.Assertions
 			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedAbsoluteUri("", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
-			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedAbsoluteUri(null, "arg00"));
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedAbsoluteUri(null!, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
 
@@ -84,7 +84,7 @@ namespace CodeJam.Assertions
 			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedRelativeUri("", "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
-			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedRelativeUri(null, "arg00"));
+			ex = Assert.Throws<ArgumentException>(() => UriCode.IsWellFormedRelativeUri(null!, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 
 			Assert.DoesNotThrow(() => UriCode.IsWellFormedRelativeUri("/some/uri", "arg00"));

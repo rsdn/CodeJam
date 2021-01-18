@@ -3,35 +3,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-
-using JetBrains.Annotations;
 
 namespace CodeJam.Metadata
 {
 	using Mapping;
+
 	using Reflection;
 
 	internal class AttributeInfo
 	{
-		public AttributeInfo([NotNull] string name, [NotNull] Dictionary<string,object> values)
+		public AttributeInfo(string name, Dictionary<string, object> values)
 		{
-			Name    = name;
+			Name = name;
 			_values = values;
 		}
 
-		[NotNull] public readonly string Name;
+		public readonly string Name;
 
-		[NotNull] private readonly Dictionary<string,object> _values;
+		private readonly Dictionary<string, object> _values;
 
-		private Func<Attribute> _func;
+		private Func<Attribute>? _func;
 
-		public Attribute MakeAttribute([NotNull] Type type)
+		public Attribute MakeAttribute(Type type)
 		{
 			if (_func == null)
 			{
 				var ctors = type.GetConstructors();
-				var ctor  = ctors.FirstOrDefault(c => c.GetParameters().Length == 0);
+				var ctor = ctors.FirstOrDefault(c => c.GetParameters().Length == 0);
 
 				if (ctor != null)
 				{
@@ -42,7 +40,7 @@ namespace CodeJam.Metadata
 								_values.Select(k =>
 								{
 									var member = type.GetMember(k.Key)[0];
-									var mtype  = member.GetMemberType();
+									var mtype = member.GetMemberType();
 
 									return Expression.Bind(
 										member,
@@ -62,4 +60,5 @@ namespace CodeJam.Metadata
 		}
 	}
 }
+
 #endif

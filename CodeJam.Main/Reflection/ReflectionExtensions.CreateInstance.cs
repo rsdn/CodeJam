@@ -9,17 +9,18 @@ namespace CodeJam.Reflection
 {
 	public partial class ReflectionExtensions
 	{
-		private static bool GetHasDefaultValue([NotNull] this ParameterInfo prm) =>
+		private static bool GetHasDefaultValue(this ParameterInfo prm) =>
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			prm.HasDefaultValue;
 #else
 			(prm.Attributes & ParameterAttributes.HasDefault) == ParameterAttributes.HasDefault;
 #endif
 
-		private static bool IsConstructorSuitable([NotNull] ConstructorInfo ctor, [NotNull, ItemNotNull] ParamInfo[] parameters)
+		private static bool IsConstructorSuitable(ConstructorInfo ctor, ParamInfo[] parameters)
 		{
 			var ctorParameters = ctor.GetParameters();
-			var ctorMap = ctorParameters.ToDictionary(p => p.Name);
+			var ctorMap = ctorParameters.ToDictionary(
+				p => p.Name ?? throw new InvalidOperationException("Ctor parameter has no name"));
 			foreach (var parameter in parameters)
 			{
 				if (!parameter.Required)
@@ -35,7 +36,7 @@ namespace CodeJam.Reflection
 			{
 				if (parameter.GetHasDefaultValue())
 					continue;
-				if (!argsMap.Contains(parameter.Name))
+				if (!argsMap.Contains(parameter.Name!)) // already checked for nullability above
 					return false;
 			}
 
@@ -50,9 +51,8 @@ namespace CodeJam.Reflection
 		/// <returns>Instance of type</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="type"/> is null</exception>
 		/// <exception cref="ArgumentException">No suitable constructors found</exception>
-		[NotNull]
-		[Pure]
-		public static object CreateInstance([NotNull] this Type type, [NotNull, ItemNotNull] params ParamInfo[] parameters)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static object CreateInstance(this Type type, params ParamInfo[] parameters)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -66,7 +66,12 @@ namespace CodeJam.Reflection
 			var values =
 				ctor
 					.GetParameters()
-					.Select(p => parametersMap.TryGetValue(p.Name, out var result) ? result : p.DefaultValue)
+					.Select(
+						p => parametersMap.TryGetValue(
+							p.Name ?? throw new InvalidOperationException("Ctor parameter has no name."),
+							out var result)
+							? result
+							: p.DefaultValue)
 					.ToArray();
 			// ReSharper disable once AssignNullToNotNullAttribute
 			return ctor.Invoke(values);

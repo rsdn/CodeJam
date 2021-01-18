@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
 using System;
 
 using JetBrains.Annotations;
@@ -27,14 +29,14 @@ namespace CodeJam
 		/// <param name="case1Selector">Calculation function for <typeparamref name="T1"/></param>
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <returns>Calculated value.</returns>
-		TResult GetValue<TResult>([NotNull] Func<T1, TResult> case1Selector, [NotNull] Func<T2, TResult> case2Selector);
+		TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector);
 
 		/// <summary>
 		/// Calls action for actual type argument.
 		/// </summary>
 		/// <param name="case1Action">Action for <typeparamref name="T1"/></param>
 		/// <param name="case2Action">Action for <typeparamref name="T2"/></param>
-		void Do([NotNull] Action<T1> case1Action, [NotNull] Action<T2> case2Action);
+		void Do(Action<T1> case1Action, Action<T2> case2Action);
 
 		/// <summary>
 		/// Returns <c>true</c> if class contains value of type <typeparamref name="T1"/>.
@@ -64,7 +66,7 @@ namespace CodeJam
 		/// <param name="case2Selector">Calculation function for <typeparamref name="T2"/></param>
 		/// <param name="case3Selector">Calculation function for <typeparamref name="T3"/></param>
 		/// <returns>Calculated value.</returns>
-		TResult GetValue<TResult>([NotNull] Func<T1, TResult> case1Selector, [NotNull] Func<T2, TResult> case2Selector, [NotNull] Func<T3, TResult> case3Selector);
+		TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector);
 
 		/// <summary>
 		/// Calls action for actual type argument.
@@ -72,7 +74,7 @@ namespace CodeJam
 		/// <param name="case1Action">Action for <typeparamref name="T1"/></param>
 		/// <param name="case2Action">Action for <typeparamref name="T2"/></param>
 		/// <param name="case3Action">Action for <typeparamref name="T3"/></param>
-		void Do([NotNull] Action<T1> case1Action, [NotNull] Action<T2> case2Action, [NotNull] Action<T3> case3Action);
+		void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action);
 
 		/// <summary>
 		/// Returns <c>true</c> if class contains value of type <typeparamref name="T1"/>.
@@ -109,7 +111,7 @@ namespace CodeJam
 		/// <param name="case3Selector">Calculation function for <typeparamref name="T3"/></param>
 		/// <param name="case4Selector">Calculation function for <typeparamref name="T4"/></param>
 		/// <returns>Calculated value.</returns>
-		TResult GetValue<TResult>([NotNull] Func<T1, TResult> case1Selector, [NotNull] Func<T2, TResult> case2Selector, [NotNull] Func<T3, TResult> case3Selector, [NotNull] Func<T4, TResult> case4Selector);
+		TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector);
 
 		/// <summary>
 		/// Calls action for actual type argument.
@@ -118,7 +120,7 @@ namespace CodeJam
 		/// <param name="case2Action">Action for <typeparamref name="T2"/></param>
 		/// <param name="case3Action">Action for <typeparamref name="T3"/></param>
 		/// <param name="case4Action">Action for <typeparamref name="T4"/></param>
-		void Do([NotNull] Action<T1> case1Action, [NotNull] Action<T2> case2Action, [NotNull] Action<T3> case3Action, [NotNull] Action<T4> case4Action);
+		void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action);
 
 		/// <summary>
 		/// Returns <c>true</c> if class contains value of type <typeparamref name="T1"/>.
@@ -162,7 +164,7 @@ namespace CodeJam
 		/// <param name="case4Selector">Calculation function for <typeparamref name="T4"/></param>
 		/// <param name="case5Selector">Calculation function for <typeparamref name="T5"/></param>
 		/// <returns>Calculated value.</returns>
-		TResult GetValue<TResult>([NotNull] Func<T1, TResult> case1Selector, [NotNull] Func<T2, TResult> case2Selector, [NotNull] Func<T3, TResult> case3Selector, [NotNull] Func<T4, TResult> case4Selector, [NotNull] Func<T5, TResult> case5Selector);
+		TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector);
 
 		/// <summary>
 		/// Calls action for actual type argument.
@@ -172,7 +174,7 @@ namespace CodeJam
 		/// <param name="case3Action">Action for <typeparamref name="T3"/></param>
 		/// <param name="case4Action">Action for <typeparamref name="T4"/></param>
 		/// <param name="case5Action">Action for <typeparamref name="T5"/></param>
-		void Do([NotNull] Action<T1> case1Action, [NotNull] Action<T2> case2Action, [NotNull] Action<T3> case3Action, [NotNull] Action<T4> case4Action, [NotNull] Action<T5> case5Action);
+		void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action);
 
 		/// <summary>
 		/// Returns <c>true</c> if class contains value of type <typeparamref name="T1"/>.
@@ -223,7 +225,7 @@ namespace CodeJam
 		/// <param name="case5Selector">Calculation function for <typeparamref name="T5"/></param>
 		/// <param name="case6Selector">Calculation function for <typeparamref name="T6"/></param>
 		/// <returns>Calculated value.</returns>
-		TResult GetValue<TResult>([NotNull] Func<T1, TResult> case1Selector, [NotNull] Func<T2, TResult> case2Selector, [NotNull] Func<T3, TResult> case3Selector, [NotNull] Func<T4, TResult> case4Selector, [NotNull] Func<T5, TResult> case5Selector, [NotNull] Func<T6, TResult> case6Selector);
+		TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector);
 
 		/// <summary>
 		/// Calls action for actual type argument.
@@ -234,7 +236,7 @@ namespace CodeJam
 		/// <param name="case4Action">Action for <typeparamref name="T4"/></param>
 		/// <param name="case5Action">Action for <typeparamref name="T5"/></param>
 		/// <param name="case6Action">Action for <typeparamref name="T6"/></param>
-		void Do([NotNull] Action<T1> case1Action, [NotNull] Action<T2> case2Action, [NotNull] Action<T3> case3Action, [NotNull] Action<T4> case4Action, [NotNull] Action<T5> case5Action, [NotNull] Action<T6> case6Action);
+		void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action);
 
 		/// <summary>
 		/// Returns <c>true</c> if class contains value of type <typeparamref name="T1"/>.
@@ -292,7 +294,7 @@ namespace CodeJam
 		/// <param name="case6Selector">Calculation function for <typeparamref name="T6"/></param>
 		/// <param name="case7Selector">Calculation function for <typeparamref name="T7"/></param>
 		/// <returns>Calculated value.</returns>
-		TResult GetValue<TResult>([NotNull] Func<T1, TResult> case1Selector, [NotNull] Func<T2, TResult> case2Selector, [NotNull] Func<T3, TResult> case3Selector, [NotNull] Func<T4, TResult> case4Selector, [NotNull] Func<T5, TResult> case5Selector, [NotNull] Func<T6, TResult> case6Selector, [NotNull] Func<T7, TResult> case7Selector);
+		TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector);
 
 		/// <summary>
 		/// Calls action for actual type argument.
@@ -304,7 +306,7 @@ namespace CodeJam
 		/// <param name="case5Action">Action for <typeparamref name="T5"/></param>
 		/// <param name="case6Action">Action for <typeparamref name="T6"/></param>
 		/// <param name="case7Action">Action for <typeparamref name="T7"/></param>
-		void Do([NotNull] Action<T1> case1Action, [NotNull] Action<T2> case2Action, [NotNull] Action<T3> case3Action, [NotNull] Action<T4> case4Action, [NotNull] Action<T5> case5Action, [NotNull] Action<T6> case6Action, [NotNull] Action<T7> case7Action);
+		void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action);
 
 		/// <summary>
 		/// Returns <c>true</c> if class contains value of type <typeparamref name="T1"/>.
@@ -369,7 +371,7 @@ namespace CodeJam
 		/// <param name="case7Selector">Calculation function for <typeparamref name="T7"/></param>
 		/// <param name="case8Selector">Calculation function for <typeparamref name="T8"/></param>
 		/// <returns>Calculated value.</returns>
-		TResult GetValue<TResult>([NotNull] Func<T1, TResult> case1Selector, [NotNull] Func<T2, TResult> case2Selector, [NotNull] Func<T3, TResult> case3Selector, [NotNull] Func<T4, TResult> case4Selector, [NotNull] Func<T5, TResult> case5Selector, [NotNull] Func<T6, TResult> case6Selector, [NotNull] Func<T7, TResult> case7Selector, [NotNull] Func<T8, TResult> case8Selector);
+		TResult GetValue<TResult>(Func<T1, TResult> case1Selector, Func<T2, TResult> case2Selector, Func<T3, TResult> case3Selector, Func<T4, TResult> case4Selector, Func<T5, TResult> case5Selector, Func<T6, TResult> case6Selector, Func<T7, TResult> case7Selector, Func<T8, TResult> case8Selector);
 
 		/// <summary>
 		/// Calls action for actual type argument.
@@ -382,7 +384,7 @@ namespace CodeJam
 		/// <param name="case6Action">Action for <typeparamref name="T6"/></param>
 		/// <param name="case7Action">Action for <typeparamref name="T7"/></param>
 		/// <param name="case8Action">Action for <typeparamref name="T8"/></param>
-		void Do([NotNull] Action<T1> case1Action, [NotNull] Action<T2> case2Action, [NotNull] Action<T3> case3Action, [NotNull] Action<T4> case4Action, [NotNull] Action<T5> case5Action, [NotNull] Action<T6> case6Action, [NotNull] Action<T7> case7Action, [NotNull] Action<T8> case8Action);
+		void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action);
 
 		/// <summary>
 		/// Returns <c>true</c> if class contains value of type <typeparamref name="T1"/>.

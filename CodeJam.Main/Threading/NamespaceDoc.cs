@@ -1,5 +1,5 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Threading
@@ -9,6 +9,5 @@ namespace CodeJam.Threading
 	/// </summary>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	internal class NamespaceDoc
-	{ }
+	internal class NamespaceDoc { }
 }

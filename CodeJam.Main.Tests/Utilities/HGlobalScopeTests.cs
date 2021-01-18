@@ -13,7 +13,7 @@ namespace CodeJam.Utilities
 			using (var h = HGlobal.Create(sizeof(int)))
 			{
 				Assert.AreEqual(sizeof(int), h.Length);
-				Assert.NotNull(h.Data);
+				NAssert.NotNull(h.Data);
 
 				Marshal.WriteInt32(h.Data, 100);
 				Assert.AreEqual(100, Marshal.ReadInt32(h.Data));

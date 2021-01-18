@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 using CodeJam.Ranges;
 
-using JetBrains.Annotations;
-
 using Range = CodeJam.Ranges.Range;
 
 namespace CodeJam.Dates
@@ -69,7 +67,7 @@ namespace CodeJam.Dates
 		private static int DifferenceInMonths(DateTime startDate, DateTime endDate) =>
 			// ReSharper disable once ArrangeRedundantParentheses
 			(endDate.Month - startDate.Month) +
-			(endDate.Year - startDate.Year) * 12;
+				(endDate.Year - startDate.Year) * 12;
 
 		/// <summary>Returns count of days between two dates.</summary>
 		/// <param name="range">The date range.</param>
@@ -95,7 +93,6 @@ namespace CodeJam.Dates
 		/// <summary>Returns first days in range.</summary>
 		/// <param name="range">The date range.</param>
 		/// <returns>First days of months in range</returns>
-		[NotNull]
 		public static IEnumerable<DateTime> DaysBetween(this Range<DateTime> range)
 		{
 			range = range.MakeInclusive();
@@ -115,7 +112,6 @@ namespace CodeJam.Dates
 		/// <summary>Returns first days of months in range.</summary>
 		/// <param name="range">The date range.</param>
 		/// <returns>First days of months in range</returns>
-		[NotNull]
 		public static IEnumerable<DateTime> MonthsBetween(this Range<DateTime> range)
 		{
 			range = range.MakeInclusive();
@@ -138,7 +134,6 @@ namespace CodeJam.Dates
 		/// <summary>Returns first days of years in range.</summary>
 		/// <param name="range">The date range.</param>
 		/// <returns>First days of years in range</returns>
-		[NotNull]
 		public static IEnumerable<DateTime> YearsBetween(this Range<DateTime> range)
 		{
 			range = range.MakeInclusive();
@@ -161,7 +156,6 @@ namespace CodeJam.Dates
 		/// <summary>Splits the range by months.</summary>
 		/// <param name="range">The date range.</param>
 		/// <returns>Ranges split by first day of months in range.</returns>
-		[NotNull]
 		public static IEnumerable<Range<DateTime>> SplitByMonths(this Range<DateTime> range)
 		{
 			if (range.IsEmpty)
@@ -183,7 +177,6 @@ namespace CodeJam.Dates
 		/// <summary>Splits the range by years.</summary>
 		/// <param name="range">The date range.</param>
 		/// <returns>Ranges split by first day of years in range.</returns>
-		[NotNull]
 		public static IEnumerable<Range<DateTime>> SplitByYears(this Range<DateTime> range)
 		{
 			if (range.IsEmpty)

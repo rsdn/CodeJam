@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -68,17 +69,15 @@ namespace CodeJam.ConnectionStrings
 
 			private readonly Type _descriptorType;
 
-			public StringBuilderWrapper(string connectionString, Type descriptorType)
+			public StringBuilderWrapper(string? connectionString, Type descriptorType)
 			{
 				_descriptorType = descriptorType;
 				if (connectionString != null)
 					ConnectionString = connectionString;
 			}
 
-			[NotNull]
 			public IReadOnlyDictionary<string, KeywordDescriptor> Keywords => _keywordsCache(_descriptorType);
 
-			[NotNull]
 			public new string ConnectionString
 			{
 				get => base.ConnectionString;
@@ -99,7 +98,7 @@ namespace CodeJam.ConnectionStrings
 			}
 
 			/// <returns></returns>
-			[NotNull, MustUseReturnValue]
+			[MustUseReturnValue]
 			public string GetBrowsableConnectionString(bool includeNonBrowsable = false)
 			{
 				var builder = new StringBuilder();
@@ -120,26 +119,32 @@ namespace CodeJam.ConnectionStrings
 				return builder.ToString();
 			}
 
-			public string GetStringValue(string keyword) => (string)this[keyword];
+			public string? GetStringValue(string keyword)
+			{
+				TryGetValue(keyword, out var value);
+				return (string?)value;
+			}
 
-			public bool TryGetStringValue(string keyword, out string value)
+			public bool TryGetStringValue(string keyword, [MaybeNullWhen(false)] out string value)
 			{
 				value = GetStringValue(keyword);
 				return value != null;
 			}
 
 			#region Use only allowed keywords
-			/// <inheritdoc />
+			public override bool TryGetValue(string keyword,
+#if NETCOREAPP30_OR_GREATER
+				[MaybeNullWhen(false)]
+#endif
+				out object value) =>
+				base.TryGetValue(keyword, out value);
+
+			[AllowNull]
 			public override object this[string keyword]
 			{
 				get
 				{
-					if (Keywords.ContainsKey(keyword))
-					{
-						TryGetValue(keyword, out var value);
-						return value;
-					}
-					return base[keyword]; // exception for not supported keyword.
+					return base[keyword];
 				}
 				set
 				{
@@ -156,7 +161,7 @@ namespace CodeJam.ConnectionStrings
 #endif
 							Uri x => x.ToString(),
 							_ => value
-						};
+							};
 					}
 				}
 			}

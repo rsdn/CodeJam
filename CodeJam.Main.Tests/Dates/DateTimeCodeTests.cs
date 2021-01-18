@@ -50,7 +50,6 @@ namespace CodeJam.Dates
 			Assert.DoesNotThrow(() => DebugDateTimeCode.DateOnly(dateTimeNow.Date, "arg00"));
 		}
 
-
 		[Test]
 		public void TestIsUtcAssertion()
 		{
@@ -87,7 +86,8 @@ namespace CodeJam.Dates
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("argument should be a date without time component"));
 
-			ex = Assert.Throws<ArgumentException>(() => DateTimeCode.IsUtcAndDateOnly(dateTimeOffsetNow.ToUniversalTime(), "arg00"));
+			ex =
+				Assert.Throws<ArgumentException>(() => DateTimeCode.IsUtcAndDateOnly(dateTimeOffsetNow.ToUniversalTime(), "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("argument should be a date without time component"));
 

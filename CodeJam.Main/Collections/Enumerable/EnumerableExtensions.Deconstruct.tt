@@ -19,54 +19,89 @@ namespace CodeJam.Collections
 	}
 }
 
-<#+ private void WriteDeconstructMethod(int numOfParams) {#>
+<#+
+	private void WriteDeconstructMethod(int numOfParams)
+	{
+#>
 		/// <summary>
-		/// Deconstructs <#=numOfParams#> item<#=numOfParams > 1 ? "s" : ""#> of the <paramref name="array"/>.
+		/// Deconstructs <#= numOfParams #> item<#= numOfParams > 1 ? "s" : "" #> of the <paramref name="array"/>.
 		/// </summary>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
-			[NotNull] this T[] array<#+ for (var i = 1; i <= numOfParams; i++) {#>,
-			out T item<#=i#><#+ } #>)
+			this T[] array<#+
+		for (var i = 1; i <= numOfParams; i++)
+		{
+#>,
+			out T item<#= i #><#+
+		}
+#>)
 		{
 			Code.NotNull(array, nameof (array));
-			Code.AssertArgument(array.Length >= <#=numOfParams#>, nameof (array), _arrayTooShortMsg);
+			Code.AssertArgument(array.Length >= <#= numOfParams #>, nameof (array), _arrayTooShortMsg);
 
-<#+for (var i = 1; i <= numOfParams; i++) {#>
-			item<#=i#> = array[<#=i-1#>];
-<#+ } #>
+<#+
+		for (var i = 1; i <= numOfParams; i++)
+		{
+#>
+			item<#= i #> = array[<#= i - 1 #>];
+<#+
+		}
+#>
 		}
 
 		/// <summary>
-		/// Deconstructs <#=numOfParams#> items of the <paramref name="list"/>.
+		/// Deconstructs <#= numOfParams #> items of the <paramref name="list"/>.
 		/// </summary>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
-			[NotNull] this IList<T> list<#+ for (var i = 1; i <= numOfParams; i++) {#>,
-			out T item<#=i#><#+ } #>)
+			this IList<T> list<#+
+		for (var i = 1; i <= numOfParams; i++)
+		{
+#>,
+			out T item<#= i #><#+
+		}
+#>)
 		{
 			Code.NotNull(list, nameof (list));
-			Code.AssertArgument(list.Count >= <#=numOfParams#>, nameof (list), _listTooShortMsg);
+			Code.AssertArgument(list.Count >= <#= numOfParams #>, nameof (list), _listTooShortMsg);
 
-<#+for (var i = 1; i <= numOfParams; i++) {#>
-			item<#=i#> = list[<#=i-1#>];
-<#+ } #>
+<#+
+		for (var i = 1; i <= numOfParams; i++)
+		{
+#>
+			item<#= i #> = list[<#= i - 1 #>];
+<#+
+		}
+#>
 		}
 
 		/// <summary>
-		/// Deconstructs <#=numOfParams#> items of the <paramref name="enumerable"/>.
+		/// Deconstructs <#= numOfParams #> items of the <paramref name="enumerable"/>.
 		/// </summary>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static void Deconstruct<T>(
-			[NotNull] this IEnumerable<T> enumerable<#+ for (var i = 1; i <= numOfParams; i++) {#>,
-			out T item<#=i#><#+ } #>)
+			this IEnumerable<T> enumerable<#+
+		for (var i = 1; i <= numOfParams; i++)
+		{
+#>,
+			out T item<#= i #><#+
+		}
+#>)
 		{
 			Code.NotNull(enumerable, nameof (enumerable));
 
 			using var enumerator = enumerable.GetEnumerator();
-<#+for (var i = 1; i <= numOfParams; i++) {#>
+<#+
+		for (var i = 1; i <= numOfParams; i++)
+		{
+#>
 			Code.AssertArgument(enumerator.MoveNext(), nameof (enumerable), _enumTooShortMsg);
-			item<#=i#> = enumerator.Current;
-<#+ } #>
+			item<#= i #> = enumerator.Current;
+<#+
+		}
+#>
 		}
 
-<#+ } #>
+<#+
+	}
+#>

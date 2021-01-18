@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
 using System;
 using System.Threading;
 
@@ -387,20 +389,20 @@ namespace CodeJam.Threading
 		#region Generic overloads
 		/// <summary>
 		/// Initialize the value referenced by <paramref name="target"/> in a thread-safe manner.
-		/// The value is changed to <paramref name="value"/> only if the current value is default(T).
+		/// The value is changed to <paramref name="value"/> only if the current value is default(T?).
 		/// </summary>
 		/// <typeparam name="T">Type of value.</typeparam>
 		/// <param name="target">Reference to the target location.</param>
-		/// <param name="value">The value to use if the target is equal to default(T).</param>
+		/// <param name="value">The value to use if the target is equal to default(T?).</param>
 		/// <returns>
 		/// The new value referenced by <paramref name="target"/>.
 		/// Note that this is nearly always more useful than the usual
 		/// return from <see cref="Interlocked.CompareExchange{T}(ref T, T, T)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static T Initialize<T>(ref T target, [NotNull] T value)
-			where T : class =>
-			Initialize(ref target, value, default(T));
+		public static T? Initialize<T>(ref T? target, T? value)
+			where T : class? =>
+			Initialize(ref target, value, default(T?));
 
 		/// <summary>
 		/// Initialize the value referenced by <paramref name="target"/> in a thread-safe manner.
@@ -417,8 +419,8 @@ namespace CodeJam.Threading
 		/// return from <see cref="Interlocked.CompareExchange{T}(ref T, T, T)"/>
 		/// because it saves another read to <paramref name="target"/>.
 		/// </returns>
-		public static T Initialize<T>(ref T target, T initializedValue, T uninitializedValue)
-			where T : class
+		public static T? Initialize<T>(ref T? target, T? initializedValue, T? uninitializedValue)
+			where T : class?
 		{
 			DebugCode.AssertArgument(
 				initializedValue != uninitializedValue,
@@ -440,10 +442,10 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static T Update<T>(ref T value, Func<T, T> updateCallback)
-			where T : class
+		public static T? Update<T>(ref T? value, Func<T?, T?> updateCallback)
+			where T : class?
 		{
-			T oldState, newState;
+			T? oldState, newState;
 			do
 			{
 				oldState = value;
@@ -467,10 +469,10 @@ namespace CodeJam.Threading
 		/// Uses the same approach that used by c# compiler in event subscription methods
 		/// </remarks>
 		// BASEDON: https://github.com/dotnet/roslyn/blob/56f605c41915317ccdb925f66974ee52282609e7/src/Compilers/Core/Portable/InternalUtilities/ThreadSafeFlagOperations.cs
-		public static T Update<T>(ref T value, T newValue, Func<T, T, T> updateCallback)
-			where T : class
+		public static T? Update<T>(ref T? value, T? newValue, Func<T?, T?, T?> updateCallback)
+			where T : class?
 		{
-			T oldState, newState;
+			T? oldState, newState;
 			do
 			{
 				oldState = value;

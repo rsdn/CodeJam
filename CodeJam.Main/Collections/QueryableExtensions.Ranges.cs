@@ -58,11 +58,11 @@ namespace CodeJam.Collections
 		/// <param name="toValueSelector">To value selector.</param>
 		/// <param name="range">The range.</param>
 		/// <returns>Intersection</returns>
-		[NotNull, Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
-			[NotNull] this IQueryable<T> source,
-			[NotNull] Expression<Func<T, object>> fromValueSelector,
-			[NotNull] Expression<Func<T, object>> toValueSelector,
+			this IQueryable<T> source,
+			Expression<Func<T?, object>> fromValueSelector,
+			Expression<Func<T?, object>> toValueSelector,
 			Range<TValue> range) =>
 				Intersect(source, fromValueSelector, toValueSelector, range, QueryRangeBoundaries.InfiniteBoth);
 
@@ -75,11 +75,11 @@ namespace CodeJam.Collections
 		/// <param name="range">The range.</param>
 		/// <param name="rangeBoundaries">The range boundaries.</param>
 		/// <returns>Intersection</returns>
-		[NotNull, Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
-			[NotNull] this IQueryable<T> source,
-			[NotNull] Expression<Func<T, object>> fromValueSelector,
-			[NotNull] Expression<Func<T, object>> toValueSelector,
+			this IQueryable<T> source,
+			Expression<Func<T?, object>> fromValueSelector,
+			Expression<Func<T?, object>> toValueSelector,
 			Range<TValue> range,
 			QueryRangeBoundaries rangeBoundaries)
 		{
@@ -93,8 +93,8 @@ namespace CodeJam.Collections
 			if (range.IsEmpty)
 				return source.Where(Lambda<Func<T, bool>>(FalseExpression(), Parameter(typeof(T))));
 
-			Expression<Func<T, bool>> fromIsInfinite = null;
-			Expression<Func<T, bool>> toIsInfinite = null;
+			Expression<Func<T, bool>>? fromIsInfinite = null;
+			Expression<Func<T, bool>>? toIsInfinite = null;
 			if (rangeBoundaries != QueryRangeBoundaries.FiniteBoth)
 			{
 				var eParam = fromValueSelector.Parameters.FirstOrDefault()
@@ -127,13 +127,13 @@ namespace CodeJam.Collections
 		/// <param name="toInfinityPredicate">To infinity predicate.</param>
 		/// <param name="range">The range.</param>
 		/// <returns>Intersection</returns>
-		[NotNull, Pure, LinqTunnel]
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IQueryable<T> Intersect<T, TValue>(
-			[NotNull] this IQueryable<T> source,
-			[NotNull] Expression<Func<T, object>> fromValueSelector,
-			[NotNull] Expression<Func<T, object>> toValueSelector,
-			[CanBeNull] Expression<Func<T, bool>> fromInfinityPredicate,
-			[CanBeNull] Expression<Func<T, bool>> toInfinityPredicate,
+			this IQueryable<T> source,
+			Expression<Func<T?, object>> fromValueSelector,
+			Expression<Func<T?, object>> toValueSelector,
+			Expression<Func<T, bool>>? fromInfinityPredicate,
+			Expression<Func<T, bool>>? toInfinityPredicate,
 			Range<TValue> range)
 		{
 			Code.NotNull(source, nameof(source));
@@ -195,4 +195,5 @@ namespace CodeJam.Collections
 		}
 	}
 }
+
 #endif

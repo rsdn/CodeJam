@@ -12,7 +12,6 @@ namespace CodeJam.Collections
 	public static class DictionaryCollectionExtensions
 	{
 		#region List
-
 		/// <summary>
 		/// Add value to values list of given <paramref name="key"/>
 		/// </summary>
@@ -22,9 +21,10 @@ namespace CodeJam.Collections
 		/// <param name="key">The key</param>
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateList<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, ICollection<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, ICollection<TValue>> dict,
+			TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -41,9 +41,10 @@ namespace CodeJam.Collections
 		/// <param name="key">The key</param>
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateList<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, IList<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, IList<TValue>> dict,
+			TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -60,20 +61,19 @@ namespace CodeJam.Collections
 		/// <param name="key">The key</param>
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateList<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, List<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, List<TValue>> dict,
+			TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
 
 			dict.GetOrAdd(key, _ => new List<TValue>()).Add(value);
 		}
-
 		#endregion
 
 		#region HashSet
-
 		/// <summary>
 		/// Add value to values set of given <paramref name="key"/>
 		/// </summary>
@@ -83,9 +83,10 @@ namespace CodeJam.Collections
 		/// <param name="key">The key</param>
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateHashSet<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, ICollection<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, ICollection<TValue>> dict,
+			TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -102,9 +103,10 @@ namespace CodeJam.Collections
 		/// <param name="key">The key</param>
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateHashSet<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, ISet<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, ISet<TValue>> dict,
+			TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -127,20 +129,19 @@ namespace CodeJam.Collections
 		/// <param name="key">The key</param>
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		public static void AddOrCreateHashSet<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, HashSet<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, HashSet<TValue>> dict,
+			TKey key,
 			TValue value)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
 
 			dict.GetOrAdd(key, _ => new HashSet<TValue>()).Add(value);
 		}
-
 		#endregion
 
 		#region Collection
-
 		/// <summary>
 		/// Add value to values set of given <paramref name="key"/>
 		/// </summary>
@@ -151,10 +152,11 @@ namespace CodeJam.Collections
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		/// <param name="createCollection">Create collection callback, called when key has no value.</param>
 		public static void AddOrCreateCollection<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, ICollection<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, ICollection<TValue>> dict,
+			TKey key,
 			TValue value,
-			[NotNull] Func<ICollection<TValue>> createCollection)
+			Func<ICollection<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -173,10 +175,11 @@ namespace CodeJam.Collections
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		/// <param name="createCollection">Create collection callback, called when key has no value.</param>
 		public static void AddOrCreateCollection<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, ISet<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, ISet<TValue>> dict,
+			TKey key,
 			TValue value,
-			[NotNull] Func<ISet<TValue>> createCollection)
+			Func<ISet<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -195,10 +198,11 @@ namespace CodeJam.Collections
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		/// <param name="createCollection">Create collection callback, called when key has no value.</param>
 		public static void AddOrCreateCollection<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, IList<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, IList<TValue>> dict,
+			TKey key,
 			TValue value,
-			[NotNull] Func<IList<TValue>> createCollection)
+			Func<IList<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -217,10 +221,11 @@ namespace CodeJam.Collections
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		/// <param name="createCollection">Create collection callback, called when key has no value.</param>
 		public static void AddOrCreateCollection<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, List<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, List<TValue>> dict,
+			TKey key,
 			TValue value,
-			[NotNull] Func<List<TValue>> createCollection)
+			Func<List<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -239,10 +244,11 @@ namespace CodeJam.Collections
 		/// <param name="value">The value to be added to the collection mapped by the <paramref name="key"/></param>
 		/// <param name="createCollection">Create collection callback, called when key has no value.</param>
 		public static void AddOrCreateCollection<TKey, TValue>(
-			[NotNull] this IDictionary<TKey, HashSet<TValue>> dict,
-			[NotNull] TKey key,
+			this IDictionary<TKey, HashSet<TValue>> dict,
+			TKey key,
 			TValue value,
-			[NotNull] Func<HashSet<TValue>> createCollection)
+			Func<HashSet<TValue>> createCollection)
+			where TKey : notnull
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 			if (key == null) throw new ArgumentNullException(nameof(key));
@@ -250,7 +256,6 @@ namespace CodeJam.Collections
 
 			dict.GetOrAdd(key, _ => createCollection()).Add(value);
 		}
-
 		#endregion
 	}
 }

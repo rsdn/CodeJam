@@ -1,5 +1,5 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Strings
@@ -10,6 +10,5 @@ namespace CodeJam.Strings
 	/// </summary>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	internal class NamespaceDoc
-	{}
+	internal class NamespaceDoc { }
 }

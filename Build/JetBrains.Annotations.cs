@@ -21,9 +21,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 using System;
+
 // ReSharper disable InheritdocConsiderUsage
 
+#pragma warning disable IDE0079
 #pragma warning disable 1591
+#pragma warning disable CS8618
+#pragma warning disable CS0618
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -49,6 +53,7 @@ namespace JetBrains.Annotations
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
     AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
     AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
+  [Obsolete("Use C# NRT markup")]
 internal sealed class CanBeNullAttribute : Attribute { }
 
   /// <summary>
@@ -63,6 +68,7 @@ internal sealed class CanBeNullAttribute : Attribute { }
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
     AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
     AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
+  [Obsolete("Use C# NRT markup")]
 internal sealed class NotNullAttribute : Attribute { }
 
   /// <summary>
@@ -82,6 +88,7 @@ internal sealed class NotNullAttribute : Attribute { }
   [AttributeUsage(
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
     AttributeTargets.Delegate | AttributeTargets.Field)]
+  [Obsolete("Use C# NRT markup")]
 internal sealed class ItemNotNullAttribute : Attribute { }
 
   /// <summary>
@@ -102,6 +109,7 @@ internal sealed class ItemNotNullAttribute : Attribute { }
   [AttributeUsage(
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
     AttributeTargets.Delegate | AttributeTargets.Field)]
+  [Obsolete("Use C# NRT markup")]
 internal sealed class ItemCanBeNullAttribute : Attribute { }
 
   /// <summary>
@@ -293,7 +301,7 @@ internal sealed class NotifyPropertyChangedInvocatorAttribute : Attribute
       ParameterName = parameterName;
     }
 
-    [CanBeNull] public string ParameterName { get; }
+    public string? ParameterName { get; }
   }
 
   /// <summary>
@@ -534,7 +542,7 @@ internal sealed class PublicAPIAttribute : Attribute
       Comment = comment;
     }
 
-    [CanBeNull] public string Comment { get; }
+    public string? Comment { get; }
   }
 
   /// <summary>
@@ -580,7 +588,7 @@ internal sealed class MustUseReturnValueAttribute : Attribute
       Justification = justification;
     }
 
-    [CanBeNull] public string Justification { get; }
+    public string? Justification { get; }
   }
 
   /// <summary>
@@ -617,7 +625,7 @@ internal sealed class PathReferenceAttribute : Attribute
       BasePath = basePath;
     }
 
-    [CanBeNull] public string BasePath { get; }
+    public string? BasePath { get; }
   }
 
   /// <summary>
@@ -681,7 +689,7 @@ internal sealed class MacroAttribute : Attribute
     /// Allows specifying a macro that will be executed for a <see cref="SourceTemplateAttribute">source template</see>
     /// parameter when the template is expanded.
     /// </summary>
-    [CanBeNull] public string Expression { get; set; }
+    public string? Expression { get; set; }
 
     /// <summary>
     /// Allows specifying which occurrence of the target parameter becomes editable when the template is deployed.
@@ -697,7 +705,7 @@ internal sealed class MacroAttribute : Attribute
     /// Identifies the target parameter of a <see cref="SourceTemplateAttribute">source template</see> if the
     /// <see cref="MacroAttribute"/> is applied on a template method.
     /// </summary>
-    [CanBeNull] public string Target { get; set; }
+    public string? Target { get; set; }
   }
 
   [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -782,7 +790,7 @@ internal sealed class AspMvcActionAttribute : Attribute
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -800,7 +808,7 @@ internal sealed class AspMvcAreaAttribute : Attribute
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -819,7 +827,7 @@ internal sealed class AspMvcControllerAttribute : Attribute
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -922,7 +930,7 @@ internal sealed class HtmlElementAttributesAttribute : Attribute
       Name = name;
     }
 
-    [CanBeNull] public string Name { get; }
+    public string? Name { get; }
   }
 
   [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
@@ -1216,7 +1224,7 @@ internal sealed class RazorPageBaseTypeAttribute : Attribute
       }
 
       [NotNull] public string BaseType { get; }
-      [CanBeNull] public string PageName { get; }
+      public string? PageName { get; }
   }
 
   [AttributeUsage(AttributeTargets.Method)]

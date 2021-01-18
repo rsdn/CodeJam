@@ -45,8 +45,8 @@ namespace CodeJam
 	}
 }
 <#+
-private void GenerateMethods(string type, bool useMath)
-{
+	private void GenerateMethods(string type, bool useMath)
+	{
 #>
 		/// <summary>
 		/// Compares two values and returns minimal one.
@@ -54,12 +54,15 @@ private void GenerateMethods(string type, bool useMath)
 		/// <param name="value1">Value 1.</param>
 		/// <param name="value2">Value 2.</param>
 		/// <returns>Minimal value.</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public static <#=type#> Min(<#=type#> value1, <#=type#> value2) =>
-<#+ if (useMath) #>
+		public static <#= type #> Min(<#= type #> value1, <#= type #> value2) =>
+<#+
+		if (useMath)
+#>
 			Math.Min(value1, value2);
-<#+ else #>
+<#+ else
+#>
 			value1 <= value2 ? value1 : value2;
 <#+ #>
 
@@ -69,13 +72,16 @@ private void GenerateMethods(string type, bool useMath)
 		/// <param name="value1">Value 1.</param>
 		/// <param name="value2">Value 2.</param>
 		/// <returns>Minimal value.</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public static <#=type#> Max(<#=type#> value1, <#=type#> value2) =>
-<#+ if (useMath) #>
+		public static <#= type #> Max(<#= type #> value1, <#= type #> value2) =>
+<#+
+		if (useMath)
+#>
 			Math.Max(value1, value2);
-<#+ else #>
+<#+ else
+#>
 			value1 >= value2 ? value1 : value2;
 <#+
-}
+	}
 #>

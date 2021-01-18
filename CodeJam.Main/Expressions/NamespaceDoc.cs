@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
@@ -11,6 +10,5 @@ namespace CodeJam.Expressions
 	/// </summary>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	internal class NamespaceDoc
-	{}
+	internal class NamespaceDoc { }
 }

@@ -18,7 +18,7 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="predicate">The predicate</param>
 		/// <returns>The partition point</returns>
-		public static int PartitionPoint<T>([NotNull] this IList<T> list, [NotNull] Predicate<T> predicate) =>
+		public static int PartitionPoint<T>(this IList<T> list, Predicate<T> predicate) =>
 			PartitionPoint(list, 0, list.Count, predicate);
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="predicate">The predicate</param>
 		/// <returns>The partition point</returns>
-		public static int PartitionPoint<T>([NotNull] this IList<T> list, [NonNegativeValue] int startIndex, [NotNull] Predicate<T> predicate) =>
+		public static int PartitionPoint<T>(this IList<T> list, [NonNegativeValue] int startIndex, Predicate<T> predicate) =>
 			PartitionPoint(list, startIndex, list.Count, predicate);
 
 		/// <summary>
@@ -49,7 +49,8 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <param name="predicate">The predicate</param>
 		/// <returns>The partition point</returns>
-		public static int PartitionPoint<T>([NotNull] this IList<T> list, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex, [NotNull] Predicate<T> predicate)
+		public static int PartitionPoint<T>(
+			this IList<T> list, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex, Predicate<T> predicate)
 		{
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			while (startIndex < endIndex)

@@ -17,27 +17,26 @@ namespace CodeJam.Mapping
 	[PublicAPI]
 	public static class DefaultValue
 	{
-		[NotNull]
-		private static readonly ConcurrentDictionary<Type,object> _defaultValues = new()
+		private static readonly ConcurrentDictionary<Type, object?> _defaultValues = new()
 		{
-			[typeof(int)]            = default(int),
-			[typeof(uint)]           = default(uint),
-			[typeof(byte)]           = default(byte),
-			[typeof(char)]           = default(char),
-			[typeof(bool)]           = default(bool),
-			[typeof(sbyte)]          = default(sbyte),
-			[typeof(short)]          = default(short),
-			[typeof(long)]           = default(long),
-			[typeof(ushort)]         = default(ushort),
-			[typeof(ulong)]          = default(ulong),
-			[typeof(float)]          = default(float),
-			[typeof(double)]         = default(double),
-			[typeof(decimal)]        = default(decimal),
-			[typeof(DateTime)]       = default(DateTime),
-			[typeof(TimeSpan)]       = default(TimeSpan),
+			[typeof(int)] = default(int),
+			[typeof(uint)] = default(uint),
+			[typeof(byte)] = default(byte),
+			[typeof(char)] = default(char),
+			[typeof(bool)] = default(bool),
+			[typeof(sbyte)] = default(sbyte),
+			[typeof(short)] = default(short),
+			[typeof(long)] = default(long),
+			[typeof(ushort)] = default(ushort),
+			[typeof(ulong)] = default(ulong),
+			[typeof(float)] = default(float),
+			[typeof(double)] = default(double),
+			[typeof(decimal)] = default(decimal),
+			[typeof(DateTime)] = default(DateTime),
+			[typeof(TimeSpan)] = default(TimeSpan),
 			[typeof(DateTimeOffset)] = default(DateTimeOffset),
-			[typeof(Guid)]           = default(Guid),
-			[typeof(string)]         = default(string)
+			[typeof(Guid)] = default(Guid),
+			[typeof(string)] = default(string)
 		};
 
 		/// <summary>
@@ -46,8 +45,8 @@ namespace CodeJam.Mapping
 		/// <param name="type"><see cref="Type"/> to get default value.</param>
 		/// <param name="mappingSchema">An instance of <see cref="MappingSchema"/>.</param>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
-		[Pure]
-		public static object GetValue([NotNull] Type type, MappingSchema mappingSchema = null)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static object? GetValue(Type type, MappingSchema? mappingSchema = null)
 		{
 			Code.NotNull(type, nameof(type));
 
@@ -93,10 +92,10 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <typeparam name="T">Type to get default value.</typeparam>
 		/// <returns>Default value of the provided <see cref="Type"/></returns>
-		[Pure]
-		public static T GetValue<T>()
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static T? GetValue<T>()
 		{
-			if (_defaultValues.TryGetValue(typeof(T), out var value))
+			if (_defaultValues.TryGetValue(typeof(T), out var value) && value != null)
 				return (T)value;
 
 			_defaultValues[typeof(T)] = default(T);
@@ -109,8 +108,9 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <typeparam name="T">Type to set default value for.</typeparam>
 		/// <param name="value">Value to set.</param>
-		public static void SetValue<T>(T value)
+		public static void SetValue<T>(T? value)
 			=> _defaultValues[typeof(T)] = value;
 	}
 }
+
 #endif

@@ -5,15 +5,11 @@ using System.Runtime.CompilerServices;
 using System.Linq;
 
 using CodeJam.Collections;
-
-using JetBrains.Annotations;
-
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
 using ParameterModifierEx = System.Reflection.ParameterModifier;
 #else
 using ParameterModifierEx = System.Object;
 #endif
-
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam.Targeting
@@ -23,9 +19,8 @@ namespace CodeJam.Targeting
 	/// </summary>
 	internal static class TypeExtensions
 	{
-		[NotNull]
 		[MethodImpl(AggressiveInlining)]
-		public static Assembly GetAssembly([NotNull] this Type type) =>
+		public static Assembly GetAssembly(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.Assembly;
 #else
@@ -33,7 +28,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsSealed([NotNull] this Type type) =>
+		public static bool GetIsSealed(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsSealed;
 #else
@@ -41,7 +36,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsAbstract([NotNull] this Type type) =>
+		public static bool GetIsAbstract(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsAbstract;
 #else
@@ -49,7 +44,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsEnum([NotNull] this Type type) =>
+		public static bool GetIsEnum(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsEnum;
 #else
@@ -57,7 +52,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsClass([NotNull] this Type type) =>
+		public static bool GetIsClass(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsClass;
 #else
@@ -65,7 +60,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsPrimitive([NotNull] this Type type) =>
+		public static bool GetIsPrimitive(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsPrimitive;
 #else
@@ -73,7 +68,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsPublic([NotNull] this Type type) =>
+		public static bool GetIsPublic(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsPublic;
 #else
@@ -81,7 +76,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsGenericType([NotNull] this Type type) =>
+		public static bool GetIsGenericType(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsGenericType;
 #else
@@ -89,7 +84,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsGenericTypeDefinition([NotNull] this Type type) =>
+		public static bool GetIsGenericTypeDefinition(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsGenericTypeDefinition;
 #else
@@ -97,16 +92,15 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsInterface([NotNull] this Type type) =>
+		public static bool GetIsInterface(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsInterface;
 #else
 			type.GetTypeInfo().IsInterface;
 #endif
 
-		[CanBeNull]
 		[MethodImpl(AggressiveInlining)]
-		public static Type GetBaseType([NotNull] this Type type) =>
+		public static Type? GetBaseType(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.BaseType;
 #else
@@ -114,7 +108,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsValueType([NotNull] this Type type) =>
+		public static bool GetIsValueType(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsValueType;
 #else
@@ -122,7 +116,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetContainsGenericParameters([NotNull] this Type type) =>
+		public static bool GetContainsGenericParameters(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.ContainsGenericParameters;
 #else
@@ -130,7 +124,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsDefined([NotNull] this Type type, [NotNull] Type attributeType, bool inherit) =>
+		public static bool GetIsDefined(this Type type, Type attributeType, bool inherit) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			Attribute.IsDefined(type, attributeType, inherit);
 #else
@@ -138,7 +132,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		public static bool GetIsArray([NotNull] this Type type) =>
+		public static bool GetIsArray(this Type type) =>
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			type.IsArray;
 #else
@@ -146,8 +140,8 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
-		private static object GetCustomAttributeWithInterfaceSupport(
-			[NotNull] this Type type, Type attributeType, bool inherit)
+		private static object? GetCustomAttributeWithInterfaceSupport(
+			this Type type, Type attributeType, bool inherit)
 		{
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			return type.GetCustomAttribute(attributeType, inherit);
@@ -173,13 +167,13 @@ namespace CodeJam.Targeting
 		}
 
 		[MethodImpl(AggressiveInlining)]
-		public static T GetCustomAttributeWithInterfaceSupport<T>([NotNull] this Type type, bool inherit)
+		public static T? GetCustomAttributeWithInterfaceSupport<T>(this Type type, bool inherit)
 			where T : class =>
-				(T)GetCustomAttributeWithInterfaceSupport(type, typeof(T), inherit);
+				(T?)GetCustomAttributeWithInterfaceSupport(type, typeof(T), inherit);
 
 		[MethodImpl(AggressiveInlining)]
 		private static IEnumerable<Attribute> GetCustomAttributesWithInterfaceSupport(
-			[NotNull] this Type type, Type attributeType, bool inherit)
+			this Type type, Type attributeType, bool inherit)
 		{
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			return type
@@ -200,7 +194,7 @@ namespace CodeJam.Targeting
 		}
 
 		[MethodImpl(AggressiveInlining)]
-		public static IEnumerable<T> GetCustomAttributesWithInterfaceSupport<T>([NotNull] this Type type, bool inherit)
+		public static IEnumerable<T> GetCustomAttributesWithInterfaceSupport<T>(this Type type, bool inherit)
 			where T : class =>
 				type.GetCustomAttributesWithInterfaceSupport(typeof(T), inherit)
 					.Cast<T>();
@@ -208,7 +202,7 @@ namespace CodeJam.Targeting
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
 		[MethodImpl(AggressiveInlining)]
 		public static object[] GetCustomAttributesWithInterfaceSupport(
-			[NotNull] this ICustomAttributeProvider attributeProvider, Type attributeType, bool inherit)
+			this ICustomAttributeProvider attributeProvider, Type attributeType, bool inherit)
 		{
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 			return attributeProvider.GetCustomAttributes(attributeType, inherit);
@@ -227,7 +221,7 @@ namespace CodeJam.Targeting
 
 		[MethodImpl(AggressiveInlining)]
 		public static T[] GetCustomAttributesWithInterfaceSupport<T>(
-			[NotNull] this ICustomAttributeProvider attributeProvider, bool inherit)
+			this ICustomAttributeProvider attributeProvider, bool inherit)
 			where T : class
 		{
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER

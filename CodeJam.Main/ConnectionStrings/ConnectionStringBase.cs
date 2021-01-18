@@ -6,6 +6,9 @@ using System.Linq;
 
 using JetBrains.Annotations;
 
+using AllowNullAttribute = System.Diagnostics.CodeAnalysis.AllowNullAttribute;
+using MaybeNullWhenAttribute = System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute;
+
 namespace CodeJam.ConnectionStrings
 {
 	/// <summary>
@@ -56,19 +59,19 @@ namespace CodeJam.ConnectionStrings
 
 		/// <summary>Initializes a new instance of the <see cref="ConnectionStringBase" /> class.</summary>
 		/// <param name="connectionString">The connection string.</param>
-		protected ConnectionStringBase([CanBeNull] string connectionString) =>
+		protected ConnectionStringBase(string? connectionString)
+		{
 			_wrapper = new StringBuilderWrapper(connectionString, GetType());
+		}
 
 		/// <summary>
 		/// Gets all supported keywords for current connection.
 		/// </summary>
-		[NotNull]
 		protected IReadOnlyDictionary<string, KeywordDescriptor> Keywords => _wrapper.Keywords;
 
 		/// <summary>
 		/// Gets or sets the connection string associated with the <see cref="T:System.Data.Common.DbConnectionStringBuilder" />.
 		/// </summary>
-		[NotNull]
 		public string ConnectionString
 		{
 			get => _wrapper.ConnectionString;
@@ -78,13 +81,13 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
 		/// <returns>Value for the keyword</returns>
-		[CanBeNull, MustUseReturnValue]
-		protected string TryGetValue(string keyword) => _wrapper.GetStringValue(keyword);
+		[MustUseReturnValue]
+		protected string? TryGetValue(string keyword) => _wrapper.GetStringValue(keyword);
 
 		/// <summary>Set value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
 		/// <param name="value">The value.</param>
-		protected void SetValue(string keyword, object value) => _wrapper[keyword] = value;
+		protected void SetValue(string keyword, object? value) => _wrapper[keyword] = value;
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
@@ -96,21 +99,21 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
 		/// <returns>Value for the keyword</returns>
-		[CanBeNull, MustUseReturnValue]
+		[MustUseReturnValue]
 		protected int? TryGetInt32Value(string keyword) =>
 			_wrapper.TryGetValue(keyword, out var item) ? Convert.ToInt32(item) : default(int?);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
 		/// <returns>Value for the keyword</returns>
-		[CanBeNull, MustUseReturnValue]
+		[MustUseReturnValue]
 		protected long? TryGetInt64Value(string keyword) =>
 			_wrapper.TryGetValue(keyword, out var item) ? Convert.ToInt64(item) : default(long?);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">Name of keyword</param>
 		/// <returns>Value for the keyword</returns>
-		[CanBeNull, MustUseReturnValue]
+		[MustUseReturnValue]
 		protected DateTimeOffset? TryGetDateTimeOffsetValue(string keyword) =>
 			_wrapper.TryGetStringValue(keyword, out var item)
 				? DateTimeOffset.Parse(item, CultureInfo.InvariantCulture, DateTimeStyles.None)
@@ -119,22 +122,22 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">The value for the keyword.</param>
 		/// <returns>Value for the keyword</returns>
-		[CanBeNull, MustUseReturnValue]
+		[MustUseReturnValue]
 		protected Guid? TryGetGuidValue(string keyword) =>
 			_wrapper.TryGetStringValue(keyword, out var item) ? new Guid(item) : default(Guid?);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">The value for the keyword.</param>
 		/// <returns>Value for the keyword</returns>
-		[CanBeNull, MustUseReturnValue]
+		[MustUseReturnValue]
 		protected TimeSpan? TryGetTimeSpanValue(string keyword) =>
 			_wrapper.TryGetStringValue(keyword, out var item) ? TimeSpan.Parse(item) : default(TimeSpan?);
 
 		/// <summary>Gets the value for the keyword.</summary>
 		/// <param name="keyword">The value for the keyword.</param>
 		/// <returns>Value for the keyword.</returns>
-		[CanBeNull, MustUseReturnValue]
-		protected Uri TryGetUriValue(string keyword) =>
+		[MustUseReturnValue]
+		protected Uri? TryGetUriValue(string keyword) =>
 			_wrapper.TryGetStringValue(keyword, out var item) ? new Uri(item) : null;
 
 		/// <summary>
@@ -149,7 +152,7 @@ namespace CodeJam.ConnectionStrings
 		/// </summary>
 		/// <param name="includeNonBrowsable">If set to <c>true</c>, non browsable values will be .</param>
 		/// <returns>Browsable connection string</returns>
-		[NotNull, MustUseReturnValue]
+		[MustUseReturnValue]
 		public string GetBrowsableConnectionString(bool includeNonBrowsable = false) =>
 			_wrapper.GetBrowsableConnectionString(includeNonBrowsable);
 
@@ -221,9 +224,16 @@ namespace CodeJam.ConnectionStrings
 		public bool Remove(string key) => _wrapper.Remove(key);
 
 		/// <inheritdoc />
-		public bool TryGetValue(string key, out object value) => _wrapper.TryGetValue(key, out value);
+		public bool TryGetValue(
+			string key,
+#if NETCOREAPP30_OR_GREATER
+			[MaybeNullWhen(false)]
+#endif
+			out object value) =>
+			_wrapper.TryGetValue(key, out value);
 
 		/// <inheritdoc />
+		[AllowNull]
 		public object this[string key]
 		{
 			get => _wrapper[key];

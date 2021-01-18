@@ -3,21 +3,18 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-using JetBrains.Annotations;
-
 namespace CodeJam.Metadata
 {
 	internal class AttributeReader : IMetadataReader
 	{
-		[NotNull]
-		public T[] GetAttributes<T>([NotNull] Type type, bool inherit = true)
+		public T[] GetAttributes<T>(Type type, bool inherit = true)
 			where T : Attribute =>
-			type.GetTypeInfo().GetCustomAttributes<T>(inherit).ToArray();
+				type.GetTypeInfo().GetCustomAttributes<T>(inherit).ToArray();
 
-		[NotNull]
-		public T[] GetAttributes<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
+		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute =>
-			memberInfo.GetCustomAttributes<T>(inherit).ToArray();
+				memberInfo.GetCustomAttributes<T>(inherit).ToArray();
 	}
 }
+
 #endif

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using CodeJam.Ranges;
@@ -15,9 +14,10 @@ namespace CodeJam.Collections
 	/// <typeparam name="TKey">Type of key.</typeparam>
 	[PublicAPI]
 	public class IntervalTree<T, TKey>
+		where TKey : notnull
 	{
-		[NotNull] private readonly Range<T, TKey>[] _sortedRanges;
-		[NotNull] private readonly int[] _treeIndexes;
+		private readonly Range<T, TKey>[] _sortedRanges;
+		private readonly int[] _treeIndexes;
 
 		/// <summary>
 		/// Initialize instance.
@@ -66,7 +66,7 @@ namespace CodeJam.Collections
 			else
 			{
 				DebugCode.BugIf(
-					middleIndex != startIndex + (endIndex-startIndex) / 2,
+					middleIndex != startIndex + (endIndex - startIndex) / 2,
 					"middleIndex != startIndex + (endIndex-startIndex) / 2");
 
 				var newMiddleA = startIndex + (middleIndex - 1 - startIndex) / 2;
@@ -78,16 +78,16 @@ namespace CodeJam.Collections
 			}
 		}
 
-		private int MaxToIndex([NonNegativeValue] int indexA, [NonNegativeValue] int indexB) => _sortedRanges[indexA].To >= _sortedRanges[indexB].To
-			? indexA
-			: indexB;
+		private int MaxToIndex([NonNegativeValue] int indexA, [NonNegativeValue] int indexB)
+			=> _sortedRanges[indexA].To >= _sortedRanges[indexB].To
+				? indexA
+				: indexB;
 
 		/// <summary>
 		/// Find intersection between specified range and source.
 		/// </summary>
 		/// <param name="intersection">Range for intersection test.</param>
 		/// <returns>List of intersected ranges.</returns>
-		[NotNull]
 		public List<Range<T, TKey>> Intersect(Range<T> intersection)
 		{
 			var result = new List<Range<T, TKey>>();
@@ -95,7 +95,9 @@ namespace CodeJam.Collections
 			return result;
 		}
 
-		private void Intersect([NonNegativeValue] int startIndex, int middleIndex, [NonNegativeValue] int endIndex, Range<T> intersection, [NotNull] List<Range<T, TKey>> result)
+		private void Intersect(
+			[NonNegativeValue] int startIndex, int middleIndex, [NonNegativeValue] int endIndex, Range<T> intersection,
+			List<Range<T, TKey>> result)
 		{
 			while (true)
 			{

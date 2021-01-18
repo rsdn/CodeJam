@@ -32,22 +32,26 @@ namespace CodeJam
 #>
 	}
 }<#+
-
 	private void EmitAction(int argCount)
 	{
-		var typeList = argCount == 0?
-			"" :
-			"<" + List(argCount, n => "T" + n, ", ") + ">";
+		var typeList = argCount == 0
+			? ""
+			: "<" + List(argCount, n => "T" + n, ", ") + ">";
 #>
 		/// <summary>Helper for type inference from the lambda callback.</summary>
-<#+		for (var i = 1; i <= argCount; i++) {#>
-		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
-<#+		}#>
+<#+
+		for (var i = 1; i <= argCount; i++)
+		{
+#>
+		/// <typeparam name="T<#= i #>">The type of argument #<#= i #>.</typeparam>
+<#+
+		}
+#>
 		/// <param name="action">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure, NotNull]
-		public static Action<#=typeList#> Action<#=typeList#>(
-			[NotNull] Action<#=typeList#> action)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Action<#= typeList #> Action<#= typeList #>(
+			Action<#= typeList #> action)
 		{
 			Code.NotNull(action, nameof(action));
 			return action;
@@ -57,19 +61,25 @@ namespace CodeJam
 
 	private void EmitFunc(int argCount)
 	{
-		var typeList = argCount == 0?
-			"<TResult>" :
-			"<" + List(argCount, n => "T" + n, ", ") + ", TResult" + ">";#>
+		var typeList = argCount == 0
+			? "<TResult>"
+			: "<" + List(argCount, n => "T" + n, ", ") + ", TResult" + ">";
+#>
 		/// <summary>Helper for type inference from the lambda callback.</summary>
-<#+		for (var i = 1; i <= argCount; i++) {#>
-		/// <typeparam name="T<#=i#>">The type of argument #<#=i#>.</typeparam>
-<#+		}#>
+<#+
+		for (var i = 1; i <= argCount; i++)
+		{
+#>
+		/// <typeparam name="T<#= i #>">The type of argument #<#= i #>.</typeparam>
+<#+
+		}
+#>
 		/// <typeparam name="TResult">The result type.</typeparam>
 		/// <param name="func">The lambda callback.</param>
 		/// <returns>The lambda callback passed.</returns>
-		[Pure, NotNull]
-		public static Func<#=typeList#> Func<#=typeList#>(
-			[NotNull] Func<#=typeList#> func)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Func<#= typeList #> Func<#= typeList #>(
+			Func<#= typeList #> func)
 		{
 			Code.NotNull(func, nameof(func));
 			return func;

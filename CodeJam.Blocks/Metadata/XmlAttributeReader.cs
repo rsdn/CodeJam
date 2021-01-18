@@ -13,6 +13,7 @@ using JetBrains.Annotations;
 namespace CodeJam.Metadata
 {
 	using Collections;
+
 	using Mapping;
 
 	/// <summary>
@@ -21,28 +22,26 @@ namespace CodeJam.Metadata
 	[PublicAPI]
 	public class XmlAttributeReader : IMetadataReader
 	{
-		[NotNull]
 		private readonly Dictionary<string, MetaTypeInfo> _types;
 
 		/// <summary>
 		/// Reads metadata from provided XML file or from calling assembly resource.
 		/// </summary>
 		/// <param name="xmlFile">Metadata file name.</param>
-		public XmlAttributeReader([NotNull] string xmlFile)
-			: this(xmlFile, Assembly.GetCallingAssembly())
-		{ }
+		public XmlAttributeReader(string xmlFile)
+			: this(xmlFile, Assembly.GetCallingAssembly()) { }
 
 		/// <summary>
 		/// Reads metadata from provided XML file or from provided assembly resource.
 		/// </summary>
 		/// <param name="xmlFile">Metadata file name.</param>
 		/// <param name="assembly">Assembly to get resource stream.</param>
-		public XmlAttributeReader([NotNull] string xmlFile, [NotNull] Assembly assembly)
+		public XmlAttributeReader(string xmlFile, Assembly assembly)
 		{
 			Code.NotNull(xmlFile, nameof(xmlFile));
 			Code.NotNull(assembly, nameof(assembly));
 
-			StreamReader streamReader = null;
+			StreamReader? streamReader = null;
 
 			try
 			{
@@ -52,14 +51,14 @@ namespace CodeJam.Metadata
 				}
 				else
 				{
-					var combinePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, xmlFile);
+					var combinePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, xmlFile);
 
 					if (File.Exists(combinePath))
 						streamReader = File.OpenText(combinePath);
 				}
 
 				var embedded = streamReader == null;
-				var stream = embedded ? assembly.GetManifestResourceStream(xmlFile) : streamReader.BaseStream;
+				var stream = embedded ? assembly.GetManifestResourceStream(xmlFile) : streamReader!.BaseStream;
 
 				if (embedded && stream == null)
 				{
@@ -86,53 +85,53 @@ namespace CodeJam.Metadata
 		/// </summary>
 		/// <param name="xmlDocStream">Stream to read metadata.</param>
 		/// <exception cref="ArgumentNullException"></exception>
-		public XmlAttributeReader([NotNull] Stream xmlDocStream)
+		public XmlAttributeReader(Stream xmlDocStream)
 		{
 			Code.NotNull(xmlDocStream, nameof(xmlDocStream));
 
 			_types = LoadStream(xmlDocStream, "");
 		}
 
-		[NotNull, ItemNotNull]
 		private static AttributeInfo[] GetAttrs(
-			[NotNull] string fileName,
+			string fileName,
 			// ReSharper disable once SuggestBaseTypeForParameter
-			[NotNull] XElement el,
-			string exclude,
+			XElement el,
+			string? exclude,
 			string typeName,
-			string memberName)
+			string? memberName)
 		{
-			var attrs = el.Elements().Where(e => e.Name.LocalName != exclude).Select(a =>
-			{
-				var aname = a.Name.LocalName;
-				var values = a.Elements().Select(e =>
+			var attrs = el.Elements().Where(e => e.Name.LocalName != exclude).Select(
+				a =>
 				{
-					var name = e.Name.LocalName;
-					var value = e.Attribute("Value");
-					var type = e.Attribute("Type");
+					var aName = a.Name.LocalName;
+					var values = a.Elements().Select(
+						e =>
+						{
+							var name = e.Name.LocalName;
+							var value = e.Attribute(XName.Get("Value"));
+							var type = e.Attribute(XName.Get("Type"));
 
-					if (value == null)
-						throw new MetadataException(
-							memberName != null
-								? $"'{fileName}': Element <Type Name='{typeName}'><Member Name='{memberName}'><'{aname}'><{name} /> has to have 'Value' attribute."
-								: $"'{fileName}': Element <Type Name='{typeName}'><'{aname}'><{name} /> has to have 'Value' attribute.");
+							if (value == null)
+								throw new MetadataException(
+									memberName != null
+										? $"'{fileName}': Element <Type Name='{typeName}'><Member Name='{memberName}'><'{aName}'><{name} /> has to have 'Value' attribute."
+										: $"'{fileName}': Element <Type Name='{typeName}'><'{aName}'><{name} /> has to have 'Value' attribute.");
 
-					var val =
-						type != null ?
-							Converter.ChangeType(value.Value, Type.GetType(type.Value, true)) :
-							value.Value;
+							var val =
+								type != null
+									? Converter.ChangeType(value.Value, Type.GetType(type.Value, true)!)
+									: value.Value;
 
-					return Tuple.Create(name, val);
+							return Tuple.Create(name, val);
+						});
+
+					return new AttributeInfo(aName, values.ToDictionary(v => v.Item1, v => v.Item2));
 				});
-
-				return new AttributeInfo(aname, values.ToDictionary(v => v.Item1, v => v.Item2));
-			});
 
 			return attrs.ToArray();
 		}
 
-		[NotNull]
-		private static Dictionary<string, MetaTypeInfo> LoadStream([NotNull] Stream xmlDocStream, [NotNull] string fileName)
+		private static Dictionary<string, MetaTypeInfo> LoadStream(Stream xmlDocStream, string fileName)
 		{
 			var doc = XDocument.Load(new StreamReader(xmlDocStream));
 
@@ -175,8 +174,7 @@ namespace CodeJam.Metadata
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
-		[NotNull, ItemNotNull]
-		public T[] GetAttributes<T>([NotNull] Type type, bool inherit = true)
+		public T[] GetAttributes<T>(Type type, bool inherit = true)
 			where T : Attribute
 		{
 			Code.AssertState(type.FullName != null, "type.FullName != null");
@@ -193,8 +191,7 @@ namespace CodeJam.Metadata
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>Array of custom attributes.</returns>
-		[NotNull, ItemNotNull]
-		public T[] GetAttributes<T>([NotNull] MemberInfo memberInfo, bool inherit = true)
+		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
 			var type = memberInfo.DeclaringType;
@@ -215,4 +212,5 @@ namespace CodeJam.Metadata
 		}
 	}
 }
+
 #endif

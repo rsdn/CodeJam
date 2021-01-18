@@ -285,14 +285,14 @@ namespace CodeJam.Ranges
 			AreEqual(range.Clamp(double.PositiveInfinity), double.PositiveInfinity);
 
 			range = Range.Create(emptyFrom, emptyTo);
-			Throws<ArgumentException>(() => range.Clamp(double.NegativeInfinity));
-			Throws<ArgumentException>(() => range.Clamp(1));
-			Throws<ArgumentException>(() => range.Clamp(double.PositiveInfinity));
+			Throws<InvalidOperationException>(() => range.Clamp(double.NegativeInfinity));
+			Throws<InvalidOperationException>(() => range.Clamp(1));
+			Throws<InvalidOperationException>(() => range.Clamp(double.PositiveInfinity));
 
 			range = Range.CreateExclusive(1.0, 2.0);
-			Throws<ArgumentException>(() => range.Clamp(double.NegativeInfinity));
-			Throws<ArgumentException>(() => range.Clamp(1.5));
-			Throws<ArgumentException>(() => range.Clamp(double.PositiveInfinity));
+			Throws<InvalidOperationException>(() => range.Clamp(double.NegativeInfinity));
+			Throws<InvalidOperationException>(() => range.Clamp(1.5));
+			Throws<InvalidOperationException>(() => range.Clamp(double.PositiveInfinity));
 		}
 
 		[Test]

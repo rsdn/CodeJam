@@ -89,7 +89,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 <#=escapedOp#> boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <#=op.Sign#>(RangeBoundary<#=kind#><T> boundary1, T boundary2) =>
+		public static bool operator <#=op.Sign#>(RangeBoundary<#=kind#><T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) <#=op.Sign#> 0;
 
 		/// <summary>Implements the operator <#=escapedOp#>.</summary>
@@ -97,7 +97,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 <#=escapedOp#> boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <#=op.Sign#>(T boundary1, RangeBoundary<#=kind#><T> boundary2) =>
+		public static bool operator <#=op.Sign#>(T? boundary1, RangeBoundary<#=kind#><T> boundary2) =>
 			boundary2.CompareTo(boundary1) <#=invertedOp#> 0;
 <#+
 	}

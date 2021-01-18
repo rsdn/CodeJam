@@ -47,7 +47,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Instance of <see cref="ValueOption"/>.</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static implicit operator ValueOption<T>(T value) => new(value);
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="option"></param>
 		/// <returns>Value of <paramref name="option"/></returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static explicit operator T(ValueOption<T> option) => option.Value;
 
 		/// <summary>
@@ -85,17 +85,22 @@ namespace CodeJam
 		/// <summary>Indicates whether this instance and a specified object are equal.</summary>
 		/// <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false. </returns>
 		/// <param name="obj">The object to compare with the current instance. </param>
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
-			if (ReferenceEquals(null, obj)) return false;
+			if (obj is null)
+				return false;
 			// ReSharper disable once MergeCastWithTypeCheck
-			return obj is ValueOption<T> && Equals((ValueOption<T>)obj);
+			return obj is ValueOption<T> option && Equals(option);
 		}
 
 		/// <summary>Returns the hash code for this instance.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
 		public override int GetHashCode() =>
-			HashCode.Combine(HasValue.GetHashCode(), EqualityComparer<T>.Default.GetHashCode(_value));
+			HashCode.Combine(
+				HasValue.GetHashCode(),
+				_value != null
+					? EqualityComparer<T>.Default.GetHashCode(_value)
+					: 0);
 		#endregion
 
 		/// <summary>Returns the fully qualified type name of this instance.</summary>

@@ -18,12 +18,12 @@ namespace CodeJam.Collections
 		static SuffixTreeEncoder()
 		{
 			var typeInfo = typeof(SuffixTreeBase);
-			_getRootMethod = typeInfo.GetProperty("Root", BindingFlags.Instance | BindingFlags.NonPublic).GetGetMethod(true);
-			_getRoot = tree => (Node)_getRootMethod.Invoke(tree, null);
-			_getNodeMethod = typeInfo.GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic);
-			_getNode = (tree, index) => (Node)_getNodeMethod.Invoke(tree, new object[] { index });
-			_getDataMethod = typeInfo.GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic).GetGetMethod(true);
-			_getData = tree => (string)_getDataMethod.Invoke(tree, null);
+			_getRootMethod = typeInfo.GetProperty("Root", BindingFlags.Instance | BindingFlags.NonPublic)!.GetGetMethod(true)!;
+			_getRoot = tree => (Node)_getRootMethod.Invoke(tree, null)!;
+			_getNodeMethod = typeInfo.GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic)!;
+			_getNode = (tree, index) => (Node)_getNodeMethod.Invoke(tree, new object[] { index })!;
+			_getDataMethod = typeInfo.GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic)!.GetGetMethod(true)!;
+			_getData = tree => (string)_getDataMethod.Invoke(tree, null)!;
 		}
 
 		public static string Encode<T>(T tree) where T : SuffixTreeBase

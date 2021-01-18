@@ -1,80 +1,73 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
 using CodeJam.Collections;
-#if (NET46_OR_GREATER && !NET472_OR_GREATER) || (NETSTANDARD16_OR_GREATER && !NETSTANDARD21_OR_GREATER)
-using CodeJam.Collections.Backported;
-#endif
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
 
-using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
-
 using static System.Linq.Expressions.Expression;
+
+using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
 // ReSharper disable TailRecursiveCall
 
 namespace CodeJam.Mapping
 {
 	using Expressions;
+
 	using Reflection;
 
 	internal class ExpressionBuilder
 	{
 		private class BuilderData
 		{
-			public BuilderData(ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers) => MemberMappers = memberMappers;
+			public BuilderData(ValueTuple<MemberInfo[], LambdaExpression>[] memberMappers) => MemberMappers = memberMappers;
 
-			public readonly ValueTuple<MemberInfo[],LambdaExpression>[]           MemberMappers;
-			[NotNull]
-			public readonly Dictionary<ValueTuple<Type,Type>,ParameterExpression> Mappers     = new();
-			[NotNull]
-			public readonly HashSet<ValueTuple<Type,Type>>                        MapperTypes = new();
-			[NotNull, ItemNotNull]
-			public readonly List<ParameterExpression>                             Locals      = new();
-			[NotNull, ItemNotNull]
-			public readonly List<Expression>                                      Expressions = new();
+			public readonly ValueTuple<MemberInfo[], LambdaExpression>[] MemberMappers;
+			public readonly Dictionary<ValueTuple<Type, Type>, ParameterExpression> Mappers = new();
+			public readonly HashSet<ValueTuple<Type, Type>> MapperTypes = new();
 
-			public ParameterExpression LocalDic;
+			public readonly List<ParameterExpression> Locals = new();
 
-			public int  NameCounter;
-			public int  RestartCounter;
+			public readonly List<Expression> Expressions = new();
+
+			public ParameterExpression? LocalDic;
+
+			public int NameCounter;
+			public int RestartCounter;
 
 			public bool IsRestart => RestartCounter > 10;
 		}
 
-		public ExpressionBuilder([NotNull] IMapperBuilder mapperBuilder, ValueTuple<MemberInfo[],LambdaExpression>[] memberMappers)
+		public ExpressionBuilder(IMapperBuilder mapperBuilder, ValueTuple<MemberInfo[], LambdaExpression>[] memberMappers)
 			: this(mapperBuilder, new BuilderData(memberMappers)) =>
-			_processCrossReferences = mapperBuilder.ProcessCrossReferences == true;
+				_processCrossReferences = mapperBuilder.ProcessCrossReferences == true;
 
-		private ExpressionBuilder([NotNull] IMapperBuilder mapperBuilder, [NotNull] BuilderData data)
+		private ExpressionBuilder(IMapperBuilder mapperBuilder, BuilderData data)
 		{
-			_mapperBuilder          = mapperBuilder;
-			_data                   = data;
-			_fromType               = mapperBuilder.FromType;
-			_toType                 = mapperBuilder.ToType;
+			_mapperBuilder = mapperBuilder;
+			_data = data;
+			_fromType = mapperBuilder.FromType;
+			_toType = mapperBuilder.ToType;
 			_processCrossReferences = true;
 		}
 
-		[NotNull]
-		private readonly IMapperBuilder   _mapperBuilder;
-		[NotNull]
-		private readonly Type             _fromType;
-		[NotNull]
-		private readonly Type             _toType;
-		[NotNull]
-		private readonly BuilderData      _data;
-		private readonly bool             _processCrossReferences;
+		private readonly IMapperBuilder _mapperBuilder;
+		private readonly Type _fromType;
+		private readonly Type _toType;
+		private readonly BuilderData _data;
+		private readonly bool _processCrossReferences;
 
 		#region GetExpressionEx
-
-		[CanBeNull]
-		public LambdaExpression GetExpressionEx()
+		[return: MaybeNull]
+		public LambdaExpression? GetExpressionEx()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 				return _mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType);
@@ -85,19 +78,22 @@ namespace CodeJam.Mapping
 
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 			{
-				expr = GetExpressionExImpl(pFrom, _toType);
+				expr = GetExpressionExImpl(pFrom, _toType)!;
 			}
 			else if (_processCrossReferences)
 			{
-				_data.LocalDic = Parameter(typeof(IDictionary<object,object>), "ldic" + ++_data.NameCounter);
+				var localDic = Parameter(typeof(IDictionary<object, object>), "ldic" + ++_data.NameCounter);
+				_data.LocalDic = localDic;
 				_data.Locals.Add(_data.LocalDic);
-				_data.Expressions.Add(Assign(_data.LocalDic, New(InfoOf.Constructor(() => new Dictionary<object,object>()))));
+				_data.Expressions.Add(Assign(localDic, New(InfoOf.Constructor(() => new Dictionary<object, object>())!)));
 
-				expr = new MappingImpl(this, pFrom, Constant(_mapperBuilder.MappingSchema.GetDefaultValue(_toType), _toType)).GetExpression();
+				expr =
+					new MappingImpl(this, pFrom, Constant(_mapperBuilder.MappingSchema.GetDefaultValue(_toType), _toType))
+						.GetExpression();
 			}
 			else
 			{
-				expr = GetExpressionExImpl(pFrom, _toType);
+				expr = GetExpressionExImpl(pFrom, _toType)!;
 			}
 
 			if (_data.IsRestart)
@@ -107,16 +103,15 @@ namespace CodeJam.Mapping
 			}
 
 			var l = Lambda(
-				_data.Locals.Count > 0 || _data.Expressions.Count > 0 ?
-					Block(_data.Locals, _data.Expressions.Concat(expr)) :
-					expr,
+				_data.Locals.Count > 0 || _data.Expressions.Count > 0
+					? Block(_data.Locals, _data.Expressions.Concat(expr))
+					: expr,
 				pFrom);
 
 			return l;
 		}
 
-		[CanBeNull]
-		private LambdaExpression GetExpressionExInner()
+		private LambdaExpression? GetExpressionExInner()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 				return _mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType);
@@ -127,18 +122,19 @@ namespace CodeJam.Mapping
 			if (_data.IsRestart)
 				return null;
 
-			var l = Lambda(expr, pFrom);
+			Debug.Assert(expr != null);
+			var l = Lambda(expr!, pFrom);
 
 			return l;
 		}
 
-		[CanBeNull]
-		private Expression GetExpressionExImpl([NotNull] Expression fromExpression, [NotNull] Type toType)
+		[return: MaybeNull]
+		private Expression GetExpressionExImpl(Expression fromExpression, Type toType)
 		{
 			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
-			var toAccessor   = TypeAccessor.GetAccessor(toType);
-			var binds        = new List<MemberAssignment>();
-			var key          = new ValueTuple<Type,Type>(fromExpression.Type, toType);
+			var toAccessor = TypeAccessor.GetAccessor(toType);
+			var binds = new List<MemberAssignment>();
+			var key = new ValueTuple<Type, Type>(fromExpression.Type, toType);
 
 			if (_data.MapperTypes.Contains(key))
 			{
@@ -188,21 +184,23 @@ namespace CodeJam.Mapping
 					!mapDic.TryGetValue(toMember.Name, out var toName))
 					toName = toMember.Name;
 
-				var fromMember = fromAccessor.Members.FirstOrDefault(mi =>
-				{
-					if (_mapperBuilder.FromMappingDictionary == null ||
-						!_mapperBuilder.FromMappingDictionary.TryGetValue(fromExpression.Type, out mapDic) ||
-						!mapDic.TryGetValue(mi.Name, out var fromName))
-						fromName = mi.Name;
-					return fromName == toName;
-				});
+				var fromMember = fromAccessor.Members.FirstOrDefault(
+					mi =>
+					{
+						if (_mapperBuilder.FromMappingDictionary == null ||
+							!_mapperBuilder.FromMappingDictionary.TryGetValue(fromExpression.Type, out mapDic) ||
+							!mapDic.TryGetValue(mi.Name, out var fromName))
+							fromName = mi.Name;
+						return fromName == toName;
+					});
 
 				if (fromMember == null || !fromMember.HasGetter)
 					continue;
 
 				var getter = fromMember.GetterExpression;
 
-				if (_mapperBuilder.MappingSchema.IsScalarType(fromMember.Type) || _mapperBuilder.MappingSchema.IsScalarType(toMember.Type))
+				if (_mapperBuilder.MappingSchema.IsScalarType(fromMember.Type)
+					|| _mapperBuilder.MappingSchema.IsScalarType(toMember.Type))
 				{
 					binds.Add(BuildAssignment(getter, fromExpression, fromMember.Type, toMember));
 				}
@@ -213,15 +211,15 @@ namespace CodeJam.Mapping
 				else
 				{
 					var getValue = getter.ReplaceParameters(fromExpression);
-					var exExpr   = GetExpressionExImpl(getValue, toMember.Type);
+					var exExpr = GetExpressionExImpl(getValue, toMember.Type);
 
 					if (_data.IsRestart)
 						return null;
 
-					var expr     = Condition(
+					var expr = Condition(
 						Equal(getValue, Constant(_mapperBuilder.MappingSchema.GetDefaultValue(getValue.Type), getValue.Type)),
 						Constant(_mapperBuilder.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type),
-						exExpr);
+						exExpr!);
 
 					binds.Add(Bind(toMember.MemberInfo, expr));
 				}
@@ -242,8 +240,7 @@ namespace CodeJam.Mapping
 			return initExpression;
 		}
 
-		[NotNull]
-		private static NewExpression GetNewExpression([NotNull] Type originalType)
+		private static NewExpression GetNewExpression(Type originalType)
 		{
 			var type = originalType;
 
@@ -260,13 +257,14 @@ namespace CodeJam.Mapping
 			return New(type);
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
+		[return: NotNullIfNotNull("expr")]
 		[ContractAnnotation("expr:null => null; expr:notnull => notnull")]
-		private static Expression Convert([CanBeNull] Expression expr, [NotNull] Type toType) =>
+		private static Expression Convert([AllowNull] Expression expr, Type toType) =>
 			expr == null ? null : expr.Type == toType ? expr : Expression.Convert(expr, toType);
 
-		[CanBeNull]
-		private Expression BuildCollectionMapper([NotNull] Expression fromExpression, [NotNull] Type toType)
+		[return: MaybeNull]
+		private Expression BuildCollectionMapper(Expression fromExpression, Type toType)
 		{
 			var fromType = fromExpression.Type;
 
@@ -276,12 +274,12 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[CanBeNull]
-		private Expression ConvertCollection([NotNull] Expression fromExpression, [NotNull] Type toType)
+		[return: MaybeNull]
+		private Expression ConvertCollection(Expression fromExpression, Type toType)
 		{
-			var fromType     = fromExpression.Type;
-			var fromItemType = fromType.GetItemType();
-			var toItemType   = toType.  GetItemType();
+			var fromType = fromExpression.Type;
+			var fromItemType = fromType.GetItemType()!;
+			var toItemType = toType.GetItemType()!;
 
 			if (toType.GetIsGenericType() && !toType.GetIsGenericTypeDefinition())
 			{
@@ -303,40 +301,37 @@ namespace CodeJam.Mapping
 		}
 
 		private MemberAssignment BuildAssignment(
-			[NotNull] LambdaExpression getter,
-			[NotNull] Expression fromExpression,
-			[NotNull] Type fromMemberType,
-			[NotNull] MemberAccessor toMember)
+			LambdaExpression getter,
+			Expression fromExpression,
+			Type fromMemberType,
+			MemberAccessor toMember)
 		{
 			var getValue = getter.ReplaceParameters(fromExpression);
-			var expr     = _mapperBuilder.MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
-			var convert  = expr.ReplaceParameters(getValue);
+			var expr = _mapperBuilder.MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
+			var convert = expr!.ReplaceParameters(getValue);
 
 			return Bind(toMember.MemberInfo, convert);
 		}
-
 		#endregion
 
 		#region GetExpression
-
-		[NotNull]
 		public LambdaExpression GetExpression()
 		{
 			var pFrom = Parameter(_fromType, "from");
-			var pTo   = Parameter(_toType,   "to");
-			var pDic  = Parameter(typeof(IDictionary<object,object>), "dic" + ++_data.NameCounter);
+			var pTo = Parameter(_toType, "to");
+			var pDic = Parameter(typeof(IDictionary<object, object>), "dic" + ++_data.NameCounter);
 
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 			{
 				return Lambda(
-					_mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType).ReplaceParameters(pFrom),
+					_mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType)!.ReplaceParameters(pFrom),
 					pFrom,
 					pTo,
 					pDic);
 			}
 
-			_data.LocalDic = Parameter(typeof(IDictionary<object,object>), "ldic" + ++_data.NameCounter);
-			_data.Locals.     Add(_data.LocalDic);
+			_data.LocalDic = Parameter(typeof(IDictionary<object, object>), "ldic" + ++_data.NameCounter);
+			_data.Locals.Add(_data.LocalDic);
 			_data.Expressions.Add(Assign(_data.LocalDic, pDic));
 
 			var expr = new MappingImpl(this, pFrom, pTo).GetExpression();
@@ -349,12 +344,12 @@ namespace CodeJam.Mapping
 		private LambdaExpression GetExpressionInner()
 		{
 			var pFrom = Parameter(_fromType, "from");
-			var pTo   = Parameter(_toType,   "to");
+			var pTo = Parameter(_toType, "to");
 
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 			{
 				return Lambda(
-					_mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType).ReplaceParameters(pFrom),
+					_mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType)!.ReplaceParameters(pFrom),
 					pFrom,
 					pTo);
 			}
@@ -369,28 +364,31 @@ namespace CodeJam.Mapping
 		private class MappingImpl
 		{
 			public MappingImpl(
-				[NotNull] ExpressionBuilder builder,
-				[NotNull] Expression        fromExpression,
-				[NotNull] Expression        toExpression)
+				ExpressionBuilder builder,
+				Expression fromExpression,
+				Expression toExpression)
 			{
-				_builder        = builder;
+				_builder = builder;
 				_fromExpression = fromExpression;
-				_toExpression   = toExpression;
-				_localObject    = Parameter(_toExpression.Type, "obj" + ++_builder._data.NameCounter);
-				_fromAccessor   = TypeAccessor.GetAccessor(_fromExpression.Type);
-				_toAccessor     = TypeAccessor.GetAccessor(_toExpression.  Type);
-				_cacheMapper    = _builder._mapperBuilder.ProcessCrossReferences != false;
+				_toExpression = toExpression;
+				_localObject = Parameter(_toExpression.Type, "obj" + ++_builder._data.NameCounter);
+				_fromAccessor = TypeAccessor.GetAccessor(_fromExpression.Type);
+				_toAccessor = TypeAccessor.GetAccessor(_toExpression.Type);
+				_cacheMapper = _builder._mapperBuilder.ProcessCrossReferences != false;
 			}
 
-			[NotNull] private readonly ExpressionBuilder         _builder;
-			[NotNull] private readonly Expression                _fromExpression;
-			[NotNull] private readonly Expression                _toExpression;
-			[NotNull] private readonly ParameterExpression       _localObject;
-			[NotNull] private readonly TypeAccessor              _fromAccessor;
-			[NotNull] private readonly TypeAccessor              _toAccessor;
-			[NotNull, ItemNotNull] private readonly List<Expression>          _expressions = new();
-			[NotNull, ItemNotNull] private readonly List<ParameterExpression> _locals      = new();
-			private readonly bool                      _cacheMapper;
+			private readonly ExpressionBuilder _builder;
+			private readonly Expression _fromExpression;
+			private readonly Expression _toExpression;
+			private readonly ParameterExpression _localObject;
+			private readonly TypeAccessor _fromAccessor;
+			private readonly TypeAccessor _toAccessor;
+
+			private readonly List<Expression> _expressions = new();
+
+			private readonly List<ParameterExpression> _locals = new();
+
+			private readonly bool _cacheMapper;
 
 			//private Type _actualLocalObjectType;
 
@@ -404,23 +402,24 @@ namespace CodeJam.Mapping
 
 					//_actualLocalObjectType = newLocalObjectExpr.Type;
 
-					_expressions.Add(Assign(
-						_localObject,
-						Condition(
-							Equal(
-								_toExpression,
-								Constant(
-									_builder._mapperBuilder.MappingSchema.GetDefaultValue(_toExpression.Type),
-									_toExpression.Type)),
-							Convert(newLocalObjectExpr, _toExpression.Type),
-							_toExpression)));
+					_expressions.Add(
+						Assign(
+							_localObject,
+							Condition(
+								Equal(
+									_toExpression,
+									Constant(
+										_builder._mapperBuilder.MappingSchema.GetDefaultValue(_toExpression.Type),
+										_toExpression.Type)),
+								Convert(newLocalObjectExpr, _toExpression.Type)!,
+								_toExpression)));
 
 					if (_cacheMapper)
 					{
 						_expressions.Add(
 							Call(
-								InfoOf.Method(() => Add(null, null, null)),
-								_builder._data.LocalDic,
+								InfoOf.Method(() => Add(null!, null!, null!)),
+								_builder._data.LocalDic!,
 								_fromExpression,
 								_localObject));
 					}
@@ -437,8 +436,8 @@ namespace CodeJam.Mapping
 					expr = Expression.Convert(
 						Coalesce(
 							Call(
-								InfoOf<IDictionary<object,object>>.Method(_ => GetValue(null, null)),
-								_builder._data.LocalDic,
+								InfoOf<IDictionary<object, object>>.Method(_ => GetValue(null!, null!)),
+								_builder._data.LocalDic!,
 								_fromExpression),
 							expr),
 						_toExpression.Type);
@@ -478,14 +477,15 @@ namespace CodeJam.Mapping
 						!mapDic.TryGetValue(toMember.Name, out var toName))
 						toName = toMember.Name;
 
-					var fromMember = _fromAccessor.Members.FirstOrDefault(mi =>
-					{
-						if (_builder._mapperBuilder.FromMappingDictionary == null ||
-							!_builder._mapperBuilder.FromMappingDictionary.TryGetValue(_fromExpression.Type, out mapDic) ||
-							!mapDic.TryGetValue(mi.Name, out var fromName))
-							fromName = mi.Name;
-						return fromName == toName;
-					});
+					var fromMember = _fromAccessor.Members.FirstOrDefault(
+						mi =>
+						{
+							if (_builder._mapperBuilder.FromMappingDictionary == null ||
+								!_builder._mapperBuilder.FromMappingDictionary.TryGetValue(_fromExpression.Type, out mapDic) ||
+								!mapDic.TryGetValue(mi.Name, out var fromName))
+								fromName = mi.Name;
+							return fromName == toName;
+						});
 
 					if (fromMember == null || !fromMember.HasGetter)
 						continue;
@@ -504,7 +504,7 @@ namespace CodeJam.Mapping
 					else
 					{
 						var getValue = getter.ReplaceParameters(_fromExpression);
-						var expr     = IfThenElse(
+						var expr = IfThenElse(
 							// if (from == null)
 							Equal(getValue, Constant(_builder._mapperBuilder.MappingSchema.GetDefaultValue(getValue.Type), getValue.Type)),
 							//   localObject = null;
@@ -512,9 +512,9 @@ namespace CodeJam.Mapping
 								_localObject,
 								Constant(_builder._mapperBuilder.MappingSchema.GetDefaultValue(toMember.Type), toMember.Type)),
 							// else
-							toMember.HasGetter ?
-								setter.ReplaceParameters(_localObject, BuildClassMapper(getValue, toMember)) :
-								setter.ReplaceParameters(_localObject, _builder.GetExpressionExImpl(getValue, toMember.Type)));
+							toMember.HasGetter
+								? setter.ReplaceParameters(_localObject, BuildClassMapper(getValue, toMember))
+								: setter.ReplaceParameters(_localObject, _builder.GetExpressionExImpl(getValue, toMember.Type)!));
 
 						_expressions.Add(expr);
 					}
@@ -524,12 +524,12 @@ namespace CodeJam.Mapping
 			[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
 			private Expression BuildClassMapper(Expression getValue, MemberAccessor toMember)
 			{
-				var key   = ValueTuple.Create(_fromExpression.Type, toMember.Type);
+				var key = ValueTuple.Create(_fromExpression.Type, toMember.Type);
 				var pFrom = Parameter(getValue.Type, "pFrom");
-				var pTo   = Parameter(toMember.Type, "pTo");
+				var pTo = Parameter(toMember.Type, "pTo");
 				var toObj = toMember.GetterExpression.ReplaceParameters(_localObject);
 
-				ParameterExpression nullPrm = null;
+				ParameterExpression? nullPrm = null;
 
 				if (_cacheMapper)
 				{
@@ -545,7 +545,7 @@ namespace CodeJam.Mapping
 							pTo).Type);
 
 					_builder._data.Mappers.Add(key, nullPrm);
-					_builder._data.Locals. Add(nullPrm);
+					_builder._data.Locals.Add(nullPrm);
 				}
 
 				var expr = new MappingImpl(_builder, _cacheMapper ? pFrom : getValue, _cacheMapper ? pTo : toObj).GetExpression();
@@ -554,7 +554,7 @@ namespace CodeJam.Mapping
 				{
 					var lex = Lambda(expr, pFrom, pTo);
 
-					_builder._data.Expressions.Add(Assign(nullPrm, lex));
+					_builder._data.Expressions.Add(Assign(nullPrm!, lex));
 
 					expr = Invoke(nullPrm, getValue, toObj);
 				}
@@ -565,14 +565,14 @@ namespace CodeJam.Mapping
 			private bool BuildArrayMapper()
 			{
 				var fromType = _fromExpression.Type;
-				var toType   = _localObject.Type;
+				var toType = _localObject.Type;
 
 				if (toType.IsArray && fromType.IsSubClass(typeof(IEnumerable<>)))
 				{
-					var fromItemType = fromType.GetItemType();
-					var toItemType   = toType.  GetItemType();
+					var fromItemType = fromType.GetItemType()!;
+					var toItemType = toType.GetItemType()!;
 
-					var expr = ToArray(_builder, _fromExpression, fromItemType, toItemType);
+					var expr = ToArray(_builder, _fromExpression, fromItemType, toItemType)!;
 
 					_expressions.Add(Assign(_localObject, expr));
 
@@ -585,7 +585,7 @@ namespace CodeJam.Mapping
 			private bool BuildListMapper()
 			{
 				var fromListType = _fromExpression.Type;
-				var toListType   = _localObject.Type;
+				var toListType = _localObject.Type;
 
 				if (!toListType.IsSubClass(typeof(IEnumerable<>)) || !fromListType.IsSubClass(typeof(IEnumerable<>)))
 					return false;
@@ -595,15 +595,15 @@ namespace CodeJam.Mapping
 				if (clearMethodInfo != null)
 					_expressions.Add(Call(_localObject, clearMethodInfo));
 
-				var fromItemType = fromListType.GetItemType();
-				var toItemType   = toListType.  GetItemType();
+				var fromItemType = fromListType.GetItemType()!;
+				var toItemType = toListType.GetItemType()!;
 
 				var addRangeMethodInfo = toListType.GetMethod("AddRange");
 
 				if (addRangeMethodInfo != null)
 				{
 					var selectExpr = Select(_builder, _fromExpression, fromItemType, toItemType);
-					_expressions.Add(Call(_localObject, addRangeMethodInfo, selectExpr));
+					_expressions.Add(Call(_localObject, addRangeMethodInfo, selectExpr!));
 				}
 				else if (toListType.GetIsGenericType() && !toListType.GetIsGenericTypeDefinition())
 				{
@@ -612,11 +612,11 @@ namespace CodeJam.Mapping
 						var selectExpr = Select(
 							_builder,
 							_fromExpression, fromItemType,
-							toItemType);
+							toItemType)!;
 
 						_expressions.Add(
 							Call(
-								InfoOf.Method(() => ((ICollection<int>)null).AddRange((IEnumerable<int>)null))
+								InfoOf.Method(() => ((ICollection<int>?)null!).AddRange((IEnumerable<int>)null!))
 									.GetGenericMethodDefinition()
 									.MakeGenericMethod(toItemType),
 								_localObject,
@@ -627,7 +627,7 @@ namespace CodeJam.Mapping
 						_expressions.Add(
 							Assign(
 								_localObject,
-								_builder.ConvertCollection(_fromExpression, toListType)));
+								_builder.ConvertCollection(_fromExpression, toListType)!));
 					}
 				}
 				else
@@ -639,105 +639,103 @@ namespace CodeJam.Mapping
 			}
 
 			private Expression BuildAssignment(
-				[NotNull] LambdaExpression getter,
-				[NotNull] LambdaExpression setter,
-				[NotNull] Type fromMemberType,
-				[NotNull] Expression toExpression,
+				LambdaExpression getter,
+				LambdaExpression setter,
+				Type fromMemberType,
+				Expression toExpression,
 				MemberAccessor toMember)
 			{
 				var getValue = getter.ReplaceParameters(_fromExpression);
-				var expr     = _builder._mapperBuilder.MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
-				var convert  = expr.ReplaceParameters(getValue);
+				var expr = _builder._mapperBuilder.MappingSchema.GetConvertExpression(fromMemberType, toMember.Type);
+				var convert = expr!.ReplaceParameters(getValue);
 
 				return setter.ReplaceParameters(toExpression, convert);
 			}
 		}
-
 		#endregion
 
-		private static object GetValue(IDictionary<object,object> dic, object key) =>
+		private static object? GetValue(IDictionary<object, object>? dic, object key) =>
 			dic != null && dic.TryGetValue(key, out var result) ? result : null;
 
-		private static void Add(IDictionary<object,object> dic, object key, object value)
+		private static void Add(IDictionary<object, object>? dic, object? key, object value)
 		{
 			if (key != null && dic != null)
 				dic[key] = value;
 		}
 
-		[NotNull]
-		private static IMapperBuilder GetBuilder<TFrom,TTo>([NotNull] IMapperBuilder builder) =>
-			new MapperBuilder<TFrom,TTo>
+		private static IMapperBuilder GetBuilder<TFrom, TTo>(IMapperBuilder builder) =>
+			new MapperBuilder<TFrom, TTo>
 			{
-				MappingSchema          = builder.MappingSchema,
-				MemberMappers          = builder.MemberMappers,
-				FromMappingDictionary  = builder.FromMappingDictionary,
-				ToMappingDictionary    = builder.ToMappingDictionary,
-				MemberFilter           = builder.MemberFilter,
+				MappingSchema = builder.MappingSchema,
+				MemberMappers = builder.MemberMappers,
+				FromMappingDictionary = builder.FromMappingDictionary,
+				ToMappingDictionary = builder.ToMappingDictionary,
+				MemberFilter = builder.MemberFilter,
 				ProcessCrossReferences = builder.ProcessCrossReferences,
-				DeepCopy               = builder.DeepCopy
+				DeepCopy = builder.DeepCopy
 			};
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private static Expression ToList(
-			[NotNull] ExpressionBuilder builder,
+			ExpressionBuilder builder,
 			Expression fromExpression,
-			[NotNull] Type fromItemType,
-			[NotNull] Type toItemType)
+			Type fromItemType,
+			Type toItemType)
 		{
-			var toListInfo = InfoOf.Method(() => Enumerable.ToList<int>(null)).GetGenericMethodDefinition();
-			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
+			var toListInfo = InfoOf.Method(() => Enumerable.ToList<int>(null!)).GetGenericMethodDefinition();
+			var expr = Select(builder, fromExpression, fromItemType, toItemType);
 
 			if (builder._data.IsRestart)
 				return null;
 
-			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
+			return Call(toListInfo.MakeGenericMethod(toItemType), expr!);
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private static Expression ToHashSet(
-			[NotNull] ExpressionBuilder builder,
+			ExpressionBuilder builder,
 			Expression fromExpression,
-			[NotNull] Type fromItemType,
-			[NotNull] Type toItemType)
+			Type fromItemType,
+			Type toItemType)
 		{
 			var toListInfo = InfoOf.Method(() => Array<int>.Empty.ToHashSet()).GetGenericMethodDefinition();
-			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
+			var expr = Select(builder, fromExpression, fromItemType, toItemType);
 
 			if (builder._data.IsRestart)
 				return null;
 
-			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
+			return Call(toListInfo.MakeGenericMethod(toItemType), expr!);
 		}
 
-		[CanBeNull]
-		private static Expression ToArray(
-			[NotNull] ExpressionBuilder builder,
+		[return: MaybeNull]
+		private static Expression? ToArray(
+			ExpressionBuilder builder,
 			Expression fromExpression,
-			[NotNull] Type fromItemType,
-			[NotNull] Type toItemType)
+			Type fromItemType,
+			Type toItemType)
 		{
-			var toListInfo = InfoOf.Method(() => Enumerable.ToArray<int>(null)).GetGenericMethodDefinition();
-			var expr       = Select(builder, fromExpression, fromItemType, toItemType);
+			var toListInfo = InfoOf.Method(() => Enumerable.ToArray<int>(null!)).GetGenericMethodDefinition();
+			var expr = Select(builder, fromExpression, fromItemType, toItemType);
 
 			if (builder._data.IsRestart)
 				return null;
 
-			return Call(toListInfo.MakeGenericMethod(toItemType), expr);
+			return Call(toListInfo.MakeGenericMethod(toItemType), expr!);
 		}
 
-		[CanBeNull]
+		[return: MaybeNull]
 		private static Expression Select(
-			[NotNull] ExpressionBuilder builder,
+			ExpressionBuilder builder,
 			Expression getValue,
-			[NotNull] Type fromItemType,
-			[NotNull] Type toItemType)
+			Type fromItemType,
+			Type toItemType)
 		{
-			var getBuilderInfo = InfoOf.Method(() => GetBuilder<int,int>(null)).               GetGenericMethodDefinition();
-			var selectInfo     = InfoOf.Method(() => Enumerable.Select<int,int>(null, _ => _)).GetGenericMethodDefinition();
-			var itemBuilder    =
+			var getBuilderInfo = InfoOf.Method(() => GetBuilder<int, int>(null!)).GetGenericMethodDefinition();
+			var selectInfo = InfoOf.Method(() => Enumerable.Select<int, int>(null!, _ => _)).GetGenericMethodDefinition();
+			var itemBuilder =
 				(IMapperBuilder)getBuilderInfo
 					.MakeGenericMethod(fromItemType, toItemType)
-					.Invoke(null, new object[] { builder._mapperBuilder });
+					.Invoke(null, new object[] { builder._mapperBuilder })!;
 
 			var expr = getValue;
 
@@ -749,11 +747,11 @@ namespace CodeJam.Mapping
 
 				if (builder._data.LocalDic == null)
 				{
-					selector = selectorBuilder.GetExpressionExInner();
+					selector = selectorBuilder.GetExpressionExInner()!;
 				}
 				else
 				{
-					var p  = Parameter(fromItemType);
+					var p = Parameter(fromItemType);
 					var ex = selectorBuilder.GetExpressionInner();
 
 					selector = Lambda(
@@ -771,4 +769,5 @@ namespace CodeJam.Mapping
 		}
 	}
 }
+
 #endif

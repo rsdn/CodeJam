@@ -20,20 +20,15 @@ namespace CodeJam
 #endif
 	{
 		/// <summary>
-		/// Internal pointer.
-		/// </summary>
-		private IntPtr _ptr;
-
-		/// <summary>
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.
 		/// </summary>
 		/// <param name="cb">The required number of bytes in memory.</param>
 #if LESSTHAN_NET50
-		[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+			[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
 #endif
 		internal HGlobalScope([NonNegativeValue] int cb)
 		{
-			_ptr = Marshal.AllocHGlobal(cb);
+			Data = Marshal.AllocHGlobal(cb);
 
 			Length = cb;
 		}
@@ -63,17 +58,17 @@ namespace CodeJam
 		/// <summary>
 		/// Pointer to data.
 		/// </summary>
-		public IntPtr Data => _ptr;
+		public IntPtr Data { get; private set; }
 
 		/// <summary>
 		/// Internal Dispose method.
 		/// </summary>
 		private void DisposeInternal()
 		{
-			if (_ptr != IntPtr.Zero)
+			if (Data != IntPtr.Zero)
 			{
-				Marshal.FreeHGlobal(_ptr);
-				_ptr = IntPtr.Zero;
+				Marshal.FreeHGlobal(Data);
+				Data = IntPtr.Zero;
 			}
 		}
 	}

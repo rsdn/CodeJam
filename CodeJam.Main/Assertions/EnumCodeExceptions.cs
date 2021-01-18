@@ -19,9 +19,9 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentNotDefined<TEnum>(
-			[NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			TEnum value)
 			where TEnum : struct, Enum
 		{
@@ -42,9 +42,9 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentException ArgumentFlagSet<TEnum>(
-			[NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			TEnum value, TEnum flag)
 			where TEnum : struct, Enum
 		{
@@ -61,9 +61,9 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentException ArgumentAnyFlagUnset<TEnum>(
-			[NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			TEnum value, TEnum flags)
 			where TEnum : struct, Enum
 		{
@@ -80,9 +80,9 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flags">The bitwise combinations of the flags.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentException ArgumentAnyFlagSet<TEnum>(
-			[NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			TEnum value, TEnum flags)
 			where TEnum : struct, Enum
 		{
@@ -99,9 +99,9 @@ namespace CodeJam
 		/// <param name="value">The value.</param>
 		/// <param name="flag">The flag.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentException ArgumentFlagUnset<TEnum>(
-			[NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			TEnum value, TEnum flag)
 			where TEnum : struct, Enum
 		{

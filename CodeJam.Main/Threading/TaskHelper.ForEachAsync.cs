@@ -5,11 +5,9 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using TaskEx = System.Threading.Tasks.Task;
+
 #else
 using TaskEx = System.Threading.Tasks.TaskEx;
 
@@ -55,7 +53,7 @@ namespace CodeJam.Threading
 		/// Otherwise, uses <see cref="Environment.ProcessorCount"/> as fallback value.
 		/// </summary>
 #endif
-		public static int GetMaxDegreeOfParallelism([NotNull] this TaskScheduler scheduler, int value)
+			public static int GetMaxDegreeOfParallelism(this TaskScheduler scheduler, int value)
 		{
 			Code.NotNull(scheduler, nameof(scheduler));
 
@@ -79,9 +77,9 @@ namespace CodeJam.Threading
 		/// </param>
 		/// <param name="cancellation">The cancellation.</param>
 		// BASEDON https://stackoverflow.com/a/25877042
-		public static async Task ForEachAsync<T>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, CancellationToken, Task> callback,
+			public static async Task ForEachAsync<T>(
+			this IEnumerable<T> source,
+			Func<T, CancellationToken, Task> callback,
 			int maxDegreeOfParallelism = 0,
 			CancellationToken cancellation = default)
 		{
@@ -138,10 +136,9 @@ namespace CodeJam.Threading
 		/// <param name="maxDegreeOfParallelism">The maximum degree of parallelism. If zero or negative, default scheduler value is used.
 		/// See <see cref="GetMaxDegreeOfParallelism" /> documentation for more details.</param>
 		/// <param name="cancellation">The cancellation.</param>
-		[ItemNotNull]
 		public static async Task<TResult[]> ForEachAsync<T, TResult>(
-			[NotNull] this IEnumerable<T> source,
-			[NotNull] Func<T, CancellationToken, Task<TResult>> callback,
+			this IEnumerable<T> source,
+			Func<T, CancellationToken, Task<TResult>> callback,
 			int maxDegreeOfParallelism = 0,
 			CancellationToken cancellation = default)
 		{
@@ -171,7 +168,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="source">The task that may throw <see cref="AggregateException"/>.</param>
 		// BASEDON https://stackoverflow.com/a/18315625
-		public static async Task WithAggregateException([NotNull] this Task source)
+			public static async Task WithAggregateException(this Task source)
 		{
 			Code.NotNull(source, nameof(source));
 			try
@@ -193,7 +190,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="source">The task that may throw <see cref="AggregateException"/>.</param>
 		// BASEDON https://stackoverflow.com/a/18315625
-		public static async Task<T> WithAggregateException<T>([NotNull] this Task<T> source)
+			public static async Task<T> WithAggregateException<T>(this Task<T> source)
 		{
 			Code.NotNull(source, nameof(source));
 			try

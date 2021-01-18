@@ -18,9 +18,8 @@ namespace CodeJam.Collections
 		/// <param name="start">Start value.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<T> Create<T>(T start, [NotNull] Func<T, T> next)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<T?> Create<T>(T? start, Func<T?, T?> next)
 		{
 			Code.NotNull(next, nameof(next));
 
@@ -42,12 +41,11 @@ namespace CodeJam.Collections
 		/// <param name="next">Next element factory.</param>
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<TResult> Create<T, TResult>(
-			T start,
-			[NotNull] Func<T, T> next,
-			[NotNull] Func<T, TResult> resultSelector)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<TResult?> Create<T, TResult>(
+			T? start,
+			Func<T?, T?> next,
+			Func<T?, TResult?> resultSelector)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -69,12 +67,11 @@ namespace CodeJam.Collections
 		/// <param name="predicate">A function to test each element for a condition.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<T> Create<T>(T start, [NotNull] Func<T, bool> predicate, [NotNull] Func<T, T> next)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<T?> Create<T>(T? start, Func<T?, bool> predicate, Func<T?, T?> next)
 		{
 			Code.NotNull(next, nameof(next));
-			Code.NotNull(predicate, nameof (predicate));
+			Code.NotNull(predicate, nameof(predicate));
 
 			var cur = start;
 			while (predicate(cur))
@@ -94,13 +91,12 @@ namespace CodeJam.Collections
 		/// <param name="next">Next element factory.</param>
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<TResult> Create<T, TResult>(
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<TResult?> Create<T, TResult>(
 			T start,
-			[NotNull] Func<T, bool> predicate,
-			[NotNull] Func<T, T> next,
-			[NotNull] Func<T, TResult> resultSelector)
+			Func<T?, bool> predicate,
+			Func<T?, T?> next,
+			Func<T?, TResult?> resultSelector)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof(predicate));
@@ -121,10 +117,9 @@ namespace CodeJam.Collections
 		/// <param name="start">Start value.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<T> CreateWhileNotNull<T>(T start, [NotNull] Func<T, T> next)
-			where T: class
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<T> CreateWhileNotNull<T>(T? start, Func<T, T?> next)
+			where T : class
 		{
 			Code.NotNull(next, nameof(next));
 
@@ -145,12 +140,11 @@ namespace CodeJam.Collections
 		/// <param name="next">Next element factory.</param>
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<TResult> CreateWhileNotNull<T, TResult>(
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<TResult?> CreateWhileNotNull<T, TResult>(
 			T start,
-			[NotNull] Func<T, T> next,
-			[NotNull] Func<T, TResult> resultSelector)
+			Func<T?, T?> next,
+			Func<T?, TResult?> resultSelector)
 			where T : class
 		{
 			Code.NotNull(next, nameof(next));
@@ -170,9 +164,8 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of element.</typeparam>
 		/// <param name="element">Element instance to create sequence from.</param>
 		/// <returns>Single element sequence</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<T> CreateSingle<T>(T element)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<T?> CreateSingle<T>(T? element)
 		{
 			return new[] { element };
 		}
@@ -183,9 +176,8 @@ namespace CodeJam.Collections
 		/// <typeparam name="T">The type of element.</typeparam>
 		/// <param name="elementFactory">Element factory.</param>
 		/// <returns>Single element sequence</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<T> CreateSingle<T>([NotNull] Func<T> elementFactory)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<T?> CreateSingle<T>(Func<T?> elementFactory)
 		{
 			yield return elementFactory();
 		}
@@ -202,8 +194,7 @@ namespace CodeJam.Collections
 		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
 		/// </param>
 		/// <returns>Infinite random sequence.</returns>
-		[NotNull]
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<int> Random(int minValue, int maxValue, int seed)
 		{
 			var rnd = new Random(seed);
@@ -220,8 +211,7 @@ namespace CodeJam.Collections
 		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
 		/// </param>
 		/// <returns>Infinite random sequence.</returns>
-		[NotNull]
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<int> Random(int minValue, int maxValue)
 		{
 			var rnd = new Random();
@@ -237,8 +227,7 @@ namespace CodeJam.Collections
 		/// The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.
 		/// </param>
 		/// <returns>Infinite random sequence.</returns>
-		[NotNull]
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<int> Random(int maxValue = int.MaxValue) => Random(0, maxValue);
 	}
 }

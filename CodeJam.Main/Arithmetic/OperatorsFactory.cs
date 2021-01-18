@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
+
 using CodeJam.Collections;
 using CodeJam.Internal;
 using CodeJam.Reflection;
@@ -20,8 +20,7 @@ namespace CodeJam.Arithmetic
 	public static class OperatorsFactory
 	{
 		#region Helpers
-		[NotNull]
-		private static Type GetOperandType([NotNull] Type argType)
+		private static Type GetOperandType(Type argType)
 		{
 			var temp = argType;
 
@@ -46,8 +45,8 @@ namespace CodeJam.Arithmetic
 		}
 
 		// ReSharper disable once SuggestBaseTypeForParameter
-		[NotNull]
-		private static Expression PrepareOperand([NotNull] ParameterExpression arg)
+
+		private static Expression PrepareOperand(ParameterExpression arg)
 		{
 			var argType = arg.Type;
 			var operandType = GetOperandType(argType);
@@ -57,22 +56,20 @@ namespace CodeJam.Arithmetic
 				: Convert(arg, operandType);
 		}
 
-		[NotNull]
 		private static Expression PrepareResult(
-			[NotNull] Expression body,
-			[NotNull] Type argType,
-			[NotNull] Type resultType) =>
-			argType == resultType && body.Type != resultType
-				? Convert(body, resultType)
-				: body;
+			Expression body,
+			Type argType,
+			Type resultType) =>
+				argType == resultType && body.Type != resultType
+					? Convert(body, resultType)
+					: body;
 
-		[NotNull]
 		private static TDelegate CompileOperatorCore<TDelegate>(
-			[NotNull, InstantHandle] Func<Expression[], Expression> expressionFactory,
-			[NotNull, InstantHandle] Func<Exception, Exception> exceptionFactory,
-			[NotNull] string methodName,
-			[NotNull] Type resultType,
-			[NotNull, ItemNotNull] params ParameterExpression[] args)
+			[InstantHandle] Func<Expression[], Expression> expressionFactory,
+			[InstantHandle] Func<Exception, Exception> exceptionFactory,
+			string methodName,
+			Type resultType,
+			params ParameterExpression[] args)
 		{
 			var expressionArgs = args.ConvertAll(PrepareOperand);
 
@@ -102,20 +99,16 @@ namespace CodeJam.Arithmetic
 			}
 		}
 
-		[NotNull]
-		private static NotSupportedException FieldNotSupported([NotNull]Type type, string fieldName, Exception ex) =>
+		private static NotSupportedException FieldNotSupported(Type type, string fieldName, Exception? ex) =>
 			new($"The type {type.Name} has no field {fieldName} defined.", ex);
 
-		[NotNull]
-		private static NotSupportedException MethodNotSupported([NotNull] Type type, string methodName, Exception ex) =>
+		private static NotSupportedException MethodNotSupported(Type type, string methodName, Exception? ex) =>
 			new($"The type {type.Name} has no method {methodName} defined.", ex);
 
-		[NotNull]
 		private static NotSupportedException NotSupported<T>(ExpressionType operatorType, Exception ex) =>
 			new($"The type {typeof(T).Name} has no operator {operatorType} defined.", ex);
 
-		[CanBeNull]
-		private static FieldInfo TryGetOpField<T>([NotNull] string fieldName)
+		private static FieldInfo? TryGetOpField<T>(string fieldName)
 		{
 			var t = typeof(T).ToNullableUnderlying();
 
@@ -127,17 +120,17 @@ namespace CodeJam.Arithmetic
 			// ReSharper restore ArrangeRedundantParentheses
 		}
 
-		[NotNull]
 		private static Func<T, TResult> GetUnaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
 			CompileOperatorCore<Func<T, TResult>>(
-				// ReSharper disable once AssignNullToNotNullAttribute
+				// Bug in MS code - MakeUnary actually allows null in type parameters (see documentation)
+#pragma warning disable 8625
 				args => MakeUnary(operatorType, args[0], null),
+#pragma warning restore 8625
 				ex => NotSupported<T>(operatorType, ex),
 				operatorType.ToString(),
 				typeof(TResult),
 				Parameter(typeof(T), "arg1"));
 
-		[NotNull]
 		private static Func<T, T, TResult> GetBinaryOperatorCore<T, TResult>(ExpressionType operatorType) =>
 			CompileOperatorCore<Func<T, T, TResult>>(
 				args => MakeBinary(operatorType, args[0], args[1]),
@@ -165,15 +158,13 @@ namespace CodeJam.Arithmetic
 		/// <returns>
 		/// The NaN value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.
 		/// </returns>
-		[NotNull]
 		public static T GetNaN<T>()
 		{
 			var field = TryGetOpField<T>(nameof(double.NaN));
 			if (field == null)
 				throw FieldNotSupported(typeof(T), nameof(double.NaN), null);
 
-			// ReSharper disable once AssignNullToNotNullAttribute
-			return (T)field.GetValue(null);
+			return (T)field.GetValue(null)!;
 		}
 
 		/// <summary>Determines whether the type has negative infinity value.</summary>
@@ -192,14 +183,13 @@ namespace CodeJam.Arithmetic
 		/// <returns>
 		/// The negative infinity value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.
 		/// </returns>
-		[NotNull]
 		public static T GetNegativeInfinity<T>()
 		{
 			var field = TryGetOpField<T>(nameof(double.NegativeInfinity));
 			if (field == null)
 				throw FieldNotSupported(typeof(T), nameof(double.NegativeInfinity), null);
 
-			return ((T)field.GetValue(null))!;
+			return (T)field.GetValue(null)!;
 		}
 
 		/// <summary>Determines whether the type has positive infinity value.</summary>
@@ -218,14 +208,13 @@ namespace CodeJam.Arithmetic
 		/// <returns>
 		/// The positive infinity value or <seealso cref="NotSupportedException"/> if the type has no corresponding value.
 		/// </returns>
-		[NotNull]
 		public static T GetPositiveInfinity<T>()
 		{
 			var field = TryGetOpField<T>(nameof(double.PositiveInfinity));
 			if (field == null)
 				throw FieldNotSupported(typeof(T), nameof(double.PositiveInfinity), null);
 
-			return ((T)field.GetValue(null))!;
+			return (T)field.GetValue(null)!;
 		}
 		#endregion
 
@@ -234,7 +223,6 @@ namespace CodeJam.Arithmetic
 		/// <typeparam name="T">The type of the operand</typeparam>
 		/// <param name="operatorType">Type of the operator.</param>
 		/// <returns>Callback for the operator</returns>
-		[NotNull]
 		public static Func<T, T> UnaryOperator<T>(ExpressionType operatorType) =>
 			GetUnaryOperatorCore<T, T>(operatorType);
 
@@ -242,7 +230,6 @@ namespace CodeJam.Arithmetic
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <param name="operatorType">Type of the operator.</param>
 		/// <returns>Callback for the operator</returns>
-		[NotNull]
 		public static Func<T, T, T> BinaryOperator<T>(ExpressionType operatorType) =>
 			GetBinaryOperatorCore<T, T>(operatorType);
 		#endregion
@@ -252,15 +239,14 @@ namespace CodeJam.Arithmetic
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for the comparison</returns>
 		/// <exception cref="System.NotSupportedException">Type does not implement IComparable nor IComparable{T} interface</exception>
-		[NotNull]
-		public static Func<T, T, int> Comparison<T>()
+		public static Func<T?, T?, int> Comparison<T>()
 		{
 			var t = typeof(T);
 
 			// Recommendation from https://msdn.microsoft.com/en-us/library/azhsac5f.aspx
 			// For string comparisons, the StringComparer class is recommended over Comparer<String>
 			if (t == typeof(string))
-				return (Func<T, T, int>)(object)(Func<string, string, int>)string.CompareOrdinal;
+				return (Func<T?, T?, int>)(object)(Func<string?, string?, int>)string.CompareOrdinal;
 
 			if (t.GetIsEnum())
 				return EnumComparison<T>(false);
@@ -275,13 +261,15 @@ namespace CodeJam.Arithmetic
 				!typeof(IComparable).IsAssignableFrom(t))
 				throw new NotSupportedException("Type does not implement IComparable nor IComparable<T> interface");
 
-			return Comparer<T>.Default.Compare;
+			return Comparer<T>.Default.Compare
+#if LESSTHAN_NET50 || TARGETS_NET || TARGETS_NETSTANDARD
+				! // No NRT markup in targets early than NET Core 3, incompatible [AllowNull] markup in NET Core 3
+#endif
+				;
 		}
 
 		#region Enum comparison
-
-		[NotNull]
-		private static Func<T, T, int> EnumComparison<T>(bool nullable)
+		private static Func<T?, T?, int> EnumComparison<T>(bool nullable)
 		{
 			var underlyingType = typeof(T);
 			if (nullable)
@@ -309,15 +297,16 @@ namespace CodeJam.Arithmetic
 			}
 			catch (Exception ex)
 			{
-				Debug.Assert(compareMethod.DeclaringType != null, "compareMethod.DeclaringType");
-				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
+				var declType = compareMethod.DeclaringType;
+				DebugCode.AssertState(declType != null, "compareMethod.DeclaringType");
+				throw MethodNotSupported(declType, compareMethod.Name, ex);
 			}
 
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 			const string compareToName = nameof(int.CompareTo);
-			var result = Lambda<Func<T, T, int>>(body, compareToName, new[] { argA, argB });
+			var result = Lambda<Func<T?, T?, int>>(body, compareToName, new[] { argA, argB });
 #else
-			var result = Lambda<Func<T, T, int>>(body, new[] { argA, argB });
+			var result = Lambda<Func<T?, T?, int>>(body, new[] { argA, argB });
 #endif
 			try
 			{
@@ -325,20 +314,21 @@ namespace CodeJam.Arithmetic
 			}
 			catch (Exception ex)
 			{
-				Debug.Assert(compareMethod.DeclaringType != null, "compareMethod.DeclaringType");
-				throw MethodNotSupported(compareMethod.DeclaringType, compareMethod.Name, ex);
+				var declType = compareMethod.DeclaringType;
+				DebugCode.AssertState(declType != null, "compareMethod.DeclaringType");
+				throw MethodNotSupported(declType, compareMethod.Name, ex);
 			}
 		}
 
 		[SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
 		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-		[NotNull]
 		private static MethodCallExpression BuildEnumComparisonCore(
-			[NotNull] MethodInfo compareMethod,
+			MethodInfo compareMethod,
 			ParameterExpression argA,
 			ParameterExpression argB)
 		{
 			var underlyingType = compareMethod.DeclaringType;
+			Code.BugIf(underlyingType == null, "underlyingType == null");
 
 			// (a,b)=> a_Underlying.CompareTo(b_Underlying)
 			return Call(
@@ -349,13 +339,13 @@ namespace CodeJam.Arithmetic
 
 		[SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
 		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-		[NotNull]
 		private static Expression BuildNullableEnumComparisonCore<T>(
-			[NotNull] MethodInfo compareMethod,
+			MethodInfo compareMethod,
 			ParameterExpression argA,
 			ParameterExpression argB)
 		{
 			var underlyingType = compareMethod.DeclaringType;
+			Code.BugIf(underlyingType == null, "underlyingType == null");
 			var nullConst = Constant(null, typeof(T));
 
 			// (b == null ? 0 : -1)
@@ -389,8 +379,7 @@ namespace CodeJam.Arithmetic
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <param name="comparisonType">Type of the comparison operator.</param>
 		/// <returns>Callback for the compare operator</returns>
-		[NotNull]
-		public static Func<T, T, bool> ComparisonOperator<T>(ExpressionType comparisonType)
+		public static Func<T?, T?, bool> ComparisonOperator<T>(ExpressionType comparisonType)
 		{
 			switch (comparisonType)
 			{
@@ -408,7 +397,7 @@ namespace CodeJam.Arithmetic
 
 			try
 			{
-				return GetBinaryOperatorCore<T, bool>(comparisonType);
+				return GetBinaryOperatorCore<T?, bool>(comparisonType);
 			}
 			catch (NotSupportedException ex)
 			{
@@ -417,21 +406,32 @@ namespace CodeJam.Arithmetic
 			return GetComparerComparison<T>(comparisonType);
 		}
 
-		[NotNull]
-		private static Func<T, T, bool> GetComparerComparison<T>(ExpressionType comparisonType)
+		private static Func<T?, T?, bool> GetComparerComparison<T>(ExpressionType comparisonType)
 		{
 			// ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
 			switch (comparisonType)
 			{
 				case ExpressionType.Equal:
 					var equalityComparer = EqualityComparer<T>.Default;
-					return (a, b) => equalityComparer.Equals(a, b);
+					return (a, b) => equalityComparer.Equals(
+#if NETCOREAPP30_OR_GREATER
+						a, b
+#else
+						a!, b! // No NRT markup in older targets
+#endif
+						);
 				case ExpressionType.NotEqual:
 					equalityComparer = EqualityComparer<T>.Default;
-					return (a, b) => !equalityComparer.Equals(a, b);
+					return (a, b) => !equalityComparer.Equals(
+#if NETCOREAPP30_OR_GREATER
+						a, b
+#else
+						a!, b! // No NRT markup in older targets
+#endif
+						);
 			}
 
-			var comparison = Comparison<T>();
+			var comparison = Comparison<T?>();
 			return comparisonType switch
 			{
 				ExpressionType.GreaterThan => (a, b) => comparison(a, b) > 0,
@@ -439,7 +439,7 @@ namespace CodeJam.Arithmetic
 				ExpressionType.LessThan => (a, b) => comparison(a, b) < 0,
 				ExpressionType.LessThanOrEqual => (a, b) => comparison(a, b) <= 0,
 				_ => throw CodeExceptions.UnexpectedArgumentValue(nameof(comparisonType), comparisonType)
-			};
+				};
 		}
 		#endregion
 
@@ -447,7 +447,6 @@ namespace CodeJam.Arithmetic
 		/// <summary>Emits code for (value &amp; flag) == flag check.</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for (value &amp; flag) == flag check</returns>
-		[NotNull]
 		public static Func<T, T, bool> IsFlagSetOperator<T>() =>
 			CompileOperatorCore<Func<T, T, bool>>(
 				args => Equal(And(args[0], args[1]), args[1]),
@@ -460,7 +459,6 @@ namespace CodeJam.Arithmetic
 		/// <summary>Emits code for (flag == 0) || ((value &amp; flag) != 0) check.</summary>
 		/// <typeparam name="T">The type of the operands</typeparam>
 		/// <returns>Callback for (flag == 0) || ((value &amp; flag) != 0) check</returns>
-		[NotNull]
 		public static Func<T, T, bool> IsAnyFlagSetOperator<T>()
 		{
 			var zero = Convert(Constant(0), GetOperandType(typeof(T)));

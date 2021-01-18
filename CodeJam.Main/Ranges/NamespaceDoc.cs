@@ -1,5 +1,5 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Ranges
@@ -12,6 +12,5 @@ namespace CodeJam.Ranges
 	/// </example>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	internal class NamespaceDoc
-	{ }
+	internal class NamespaceDoc { }
 }

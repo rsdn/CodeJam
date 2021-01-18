@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
 using NUnit.Framework;
 
 using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
+
+#pragma warning disable IDE0060 // Remove unused parameter
 
 namespace CodeJam.Arithmetic
 {
@@ -36,12 +39,12 @@ namespace CodeJam.Arithmetic
 			// ReSharper disable once RedundantDefaultMemberInitializer
 			public static readonly StructComparable PositiveInfinity = new();
 
-			public int CompareTo(object obj) => 0;
+			public int CompareTo([AllowNull] object obj) => 0;
 		}
 
 		private class ClassGenericComparable : IComparable<ClassGenericComparable>
 		{
-			public int CompareTo(ClassGenericComparable other) => 0;
+			public int CompareTo([AllowNull] ClassGenericComparable other) => 0;
 		}
 
 		private class ClassComparable2 : IComparable, IComparable<ClassComparable2>
@@ -49,13 +52,13 @@ namespace CodeJam.Arithmetic
 			public bool NonGenericCalled { get; set; }
 			public bool GenericCalled { get; set; }
 
-			public int CompareTo(object obj)
+			public int CompareTo([AllowNull] object obj)
 			{
 				NonGenericCalled = true;
 				return 0;
 			}
 
-			public int CompareTo(ClassComparable2 other)
+			public int CompareTo([AllowNull] ClassComparable2 other)
 			{
 				GenericCalled = true;
 				return 0;
@@ -79,7 +82,7 @@ namespace CodeJam.Arithmetic
 			public static bool OpCalled { get; set; }
 			public static bool GenericCalled { get; set; }
 
-			public int CompareTo(ClassOperatorsComparable other)
+			public int CompareTo([AllowNull] ClassOperatorsComparable other)
 			{
 				GenericCalled = true;
 				return 0;
@@ -111,34 +114,34 @@ namespace CodeJam.Arithmetic
 			B
 		}
 
-		private static void AssertOperator<T>([NotNull] Func<T> opGetter) =>
+		private static void AssertOperator<T>(Func<T> opGetter) =>
 			Assert.DoesNotThrow(() => opGetter());
 
-		private static void AssertNoOperator<T>([NotNull] Func<T> opGetter) =>
+		private static void AssertNoOperator<T>(Func<T> opGetter) =>
 			Assert.Throws<NotSupportedException>(() => opGetter());
 
 		private static int NormalizeComparison(int value) =>
 			value < 0 ? -1 : (value > 0 ? 1 : 0);
 
-		private static void AssertComparison<T>(T value1, T value2)
+		private static void AssertComparison<T>(T? value1, T? value2)
 		{
 			var comparer = Comparer<T>.Default;
 			var compare = Operators<T>.Compare;
 
 			Assert.AreEqual(
-				NormalizeComparison(comparer.Compare(value1, value2)),
+				NormalizeComparison(comparer.Compare(value1!, value2!)),
 				NormalizeComparison(compare(value1, value2)));
 
 			Assert.AreEqual(
-				NormalizeComparison(comparer.Compare(value2, value1)),
+				NormalizeComparison(comparer.Compare(value2!, value1!)),
 				NormalizeComparison(compare(value2, value1)));
 
 			Assert.AreEqual(
-				NormalizeComparison(comparer.Compare(value1, value1)),
+				NormalizeComparison(comparer.Compare(value1!, value1!)),
 				NormalizeComparison(compare(value1, value1)));
 
 			Assert.AreEqual(
-				NormalizeComparison(comparer.Compare(value2, value2)),
+				NormalizeComparison(comparer.Compare(value2!, value2!)),
 				NormalizeComparison(compare(value2, value2)));
 		}
 
@@ -276,6 +279,7 @@ namespace CodeJam.Arithmetic
 
 			// Proof: IComparable<T> has higher precedence than IComparable
 			// ReSharper disable once UseObjectOrCollectionInitializer
+#pragma warning disable IDE0017 // Simplify object initialization
 			var obj2 = new ClassComparable2();
 			obj2.NonGenericCalled = false;
 			obj2.GenericCalled = false;
@@ -284,6 +288,7 @@ namespace CodeJam.Arithmetic
 				new ClassComparable2());
 			Assert.IsFalse(obj2.NonGenericCalled);
 			Assert.IsTrue(obj2.GenericCalled);
+#pragma warning restore IDE0017 // Simplify object initialization
 
 			// Proof: IComparable<T>  called for Compare method
 			obj2.NonGenericCalled = false;
@@ -301,7 +306,7 @@ namespace CodeJam.Arithmetic
 		public void Test02NullableComparisonOperators()
 		{
 			Assert.AreNotEqual(
-				Comparer<object>.Default.Compare(1, null) > 0,
+				Comparer<object>.Default.Compare(1, null!) > 0,
 				Operators<int?>.GreaterThan(1, null));
 
 

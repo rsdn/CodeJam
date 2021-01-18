@@ -28,4 +28,5 @@ namespace CodeJam.Metadata
 		T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true) where T : Attribute;
 	}
 }
+
 #endif

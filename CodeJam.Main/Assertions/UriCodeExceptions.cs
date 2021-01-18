@@ -18,9 +18,9 @@ namespace CodeJam
 		/// <param name="uri">The URI being checked.</param>
 		/// <param name="uriKind">Expected kind of the URI.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException" />.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentException ArgumentNotWellFormedUri(
-			[NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			string uri,
 			UriKind uriKind)
 		{

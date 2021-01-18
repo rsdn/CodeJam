@@ -51,7 +51,7 @@ namespace CodeJam.Mapping
 			var ms1 = new MappingSchema();
 			var ms2 = new MappingSchema(ms1);
 
-			ms1.SetConvertExpression<int?,int>(i => i.Value * 2);
+			ms1.SetConvertExpression<int?,int>(i => i!.Value * 2);
 			ms2.SetDefaultValue(typeof(int), -1);
 
 			var c1 = ms1.GetConverter<int?,int>();
@@ -275,11 +275,11 @@ namespace CodeJam.Mapping
 				InfoOf.Field<AttrTest>(a => a.Field1),
 				a => a.Configuration);
 
-			Assert.That(attrs.Length,   Is.EqualTo(4));
-			Assert.That(attrs[0].Value, Is.EqualTo(2));
-			Assert.That(attrs[1].Value, Is.EqualTo(30));
-			Assert.That(attrs[2].Value, Is.EqualTo(3));
-			Assert.That(attrs[3].Value, Is.EqualTo(1));
+			Assert.That(attrs!.Length,   Is.EqualTo(4));
+			Assert.That(attrs![0].Value, Is.EqualTo(2));
+			Assert.That(attrs![1].Value, Is.EqualTo(30));
+			Assert.That(attrs![2].Value, Is.EqualTo(3));
+			Assert.That(attrs![3].Value, Is.EqualTo(1));
 		}
 
 		[Test]
@@ -349,7 +349,7 @@ namespace CodeJam.Mapping
 		{
 			var schema = new MappingSchema("2");
 			Assert.That(schema.GetDefaultValue(typeof(Enum1?)), Is.Null);
-			var mapType = ConvertBuilder.GetDefaultMappingFromEnumType(schema, typeof(Enum1?));
+			var mapType = ConvertBuilder.GetDefaultMappingFromEnumType(schema, typeof(Enum1?))!;
 			Assert.That(mapType, Is.EqualTo(typeof(int?)));
 			var convertedValue = Converter.ChangeType(null, mapType, schema);
 			Assert.IsNull(convertedValue);

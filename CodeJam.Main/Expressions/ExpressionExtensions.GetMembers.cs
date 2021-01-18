@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 using CodeJam.Reflection;
 #endif
-
 using JetBrains.Annotations;
 
 namespace CodeJam.Expressions
@@ -16,7 +14,11 @@ namespace CodeJam.Expressions
 	/// <see cref="Expression"/> Extensions.
 	/// </summary>
 	[PublicAPI]
-	public static partial class ExpressionExtensions
+	public static
+#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
+		partial
+#endif
+		class ExpressionExtensions
 	{
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/>.
@@ -25,8 +27,8 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static MemberExpression GetMemberExpression([NotNull] this LambdaExpression expression)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MemberExpression GetMemberExpression(this LambdaExpression expression)
 		{
 			var body = expression.Body;
 			return body is UnaryExpression unary
@@ -41,7 +43,7 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static MemberExpression GetMemberExpression(this Expression expression)
 		{
 			var body = expression is LambdaExpression lambda
@@ -58,10 +60,10 @@ namespace CodeJam.Expressions
 		/// </summary>
 		/// <param name="expression">The expression to analyze.</param>
 		/// <returns>
-		/// The <see cref="MemberInfo"/> instance.
+		/// The <see cref="MemberInfo"/> instance. For value types, the method returns null for the default constructor.
 		/// </returns>
-		[NotNull, Pure]
-		public static MemberInfo GetMemberInfo([NotNull] this LambdaExpression expression)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MemberInfo? GetMemberInfo(this LambdaExpression expression)
 		{
 			Code.NotNull(expression, nameof(expression));
 
@@ -69,13 +71,12 @@ namespace CodeJam.Expressions
 			if (body is UnaryExpression unary)
 				body = unary.Operand;
 
-			return
-				body.NodeType switch
-				{
-					ExpressionType.MemberAccess => ((MemberExpression)body).Member,
-					ExpressionType.Call => ((MethodCallExpression)body).Method,
-					_ => ((NewExpression)body).Constructor
-				};
+			return body.NodeType switch
+			{
+				ExpressionType.MemberAccess => ((MemberExpression)body).Member,
+				ExpressionType.Call => ((MethodCallExpression)body).Method,
+				_ => ((NewExpression)body).Constructor
+			};
 		}
 
 		/// <summary>
@@ -85,8 +86,8 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="PropertyInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static PropertyInfo GetProperty([NotNull] this LambdaExpression expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static PropertyInfo GetProperty(this LambdaExpression expression) =>
 			(PropertyInfo)GetMemberExpression(expression).Member;
 
 		/// <summary>
@@ -96,8 +97,8 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="FieldInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static FieldInfo GetField([NotNull] this LambdaExpression expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static FieldInfo GetField(this LambdaExpression expression) =>
 			(FieldInfo)GetMemberExpression(expression).Member;
 
 		/// <summary>
@@ -107,9 +108,16 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="ConstructorInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static ConstructorInfo GetConstructor([NotNull] this LambdaExpression expression) =>
-			(ConstructorInfo)GetMemberInfo(expression);
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static ConstructorInfo? GetConstructor(this LambdaExpression expression)
+		{
+			var memberInfo = GetMemberInfo(expression);
+			if (memberInfo == null)
+				return null;
+			return memberInfo is ConstructorInfo ctor
+				? ctor
+				: throw CodeExceptions.Argument(nameof(expression), "Expression is not constructor call.");
+		}
 
 		/// <summary>
 		/// Returns the method.
@@ -118,25 +126,38 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static MethodInfo GetMethod([NotNull] this LambdaExpression expression)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MethodInfo GetMethod(this LambdaExpression expression)
 		{
 			var info = GetMemberInfo(expression);
-			return
-				info is PropertyInfo propertyInfo
-					? propertyInfo.GetGetMethod(true)
-					: (MethodInfo)info;
+
+			if (info is PropertyInfo propertyInfo)
+			{
+				if (propertyInfo.GetGetMethod(true) is { } getMethodInfo)
+				{
+					return getMethodInfo;
+				}
+
+				throw CodeExceptions.Argument(nameof(expression), "Expression is not property get method.");
+			}
+
+			if (info is MethodInfo methodInfo)
+			{
+				return methodInfo;
+			}
+
+			throw CodeExceptions.Argument(nameof(expression), "Expression is not method call.");
 		}
 
 		/// <summary>
-		/// Returns a name of the property.
-		/// </summary>
-		/// <param name="expression">The expression to analyze.</param>
-		/// <returns>
-		/// A name of the property.
-		/// </returns>
-		[NotNull, Pure]
-		public static string GetPropertyName([NotNull] this LambdaExpression expression) =>
+	/// Returns a name of the property.
+	/// </summary>
+	/// <param name="expression">The expression to analyze.</param>
+	/// <returns>
+	/// A name of the property.
+	/// </returns>
+	[Pure, System.Diagnostics.Contracts.Pure]
+		public static string GetPropertyName(this LambdaExpression expression) =>
 			GetMemberExpression(expression).Member.Name;
 
 		/// <summary>
@@ -146,8 +167,8 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// A composed name of the property.
 		/// </returns>
-		[NotNull, Pure]
-		public static string GetFullPropertyName([NotNull] this LambdaExpression expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static string GetFullPropertyName(this LambdaExpression expression) =>
 			GetFullPropertyNameImpl(GetMemberExpression(expression));
 
 		/// <summary>
@@ -157,15 +178,19 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// A name of the method.
 		/// </returns>
-		[NotNull, Pure]
-		public static string GetMethodName([NotNull] this LambdaExpression expression) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static string GetMethodName(this LambdaExpression expression) =>
 			GetMethod(expression).Name;
 
-		[NotNull]
-		private static string GetFullPropertyNameImpl([NotNull] MemberExpression expression)
+		private static string GetFullPropertyNameImpl(MemberExpression expression)
 		{
 			var name = expression.Member.Name;
-			while ((expression = expression.Expression as MemberExpression) != null)
+
+#pragma warning disable IDE0019 // Use pattern matching
+			var curExpr = expression;
+#pragma warning restore IDE0019 // Use pattern matching
+
+			while ((curExpr = curExpr.Expression as MemberExpression) != null)
 				name = expression.Member.Name + "." + name;
 
 			return name;
@@ -178,8 +203,8 @@ namespace CodeJam.Expressions
 		/// <returns>
 		/// The <see cref="MemberInfo"/> instance.
 		/// </returns>
-		[NotNull, Pure]
-		public static MemberInfo[] GetMembersInfo([NotNull] this LambdaExpression expression)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static MemberInfo[] GetMembersInfo(this LambdaExpression expression)
 		{
 			Code.NotNull(expression, nameof(expression));
 
@@ -190,74 +215,76 @@ namespace CodeJam.Expressions
 			return GetMembers(body).Reverse().ToArray();
 		}
 
-		[NotNull, ItemNotNull]
-		private static IEnumerable<MemberInfo> GetMembers([NotNull] Expression expression, bool passIndexer = true)
+		private static IEnumerable<MemberInfo> GetMembers(Expression expression, bool passIndexer = true)
 		{
-			MemberInfo lastMember = null;
+			Code.NotNull(expression, nameof(expression));
 
-			for (; ; )
+			MemberInfo? lastMember = null;
+
+			for (;;)
 			{
-				switch (expression.NodeType)
+				switch (expression)
 				{
-					case ExpressionType.Parameter:
+					case {NodeType: ExpressionType.Parameter }:
 						if (lastMember == null)
 							goto default;
 						yield break;
 
-					case ExpressionType.Call:
+					case MethodCallExpression mce:
+					{
+						if (lastMember == null)
+							goto default;
+
+						var expr = mce.Object;
+
+						if (expr == null)
 						{
-							if (lastMember == null)
+							if (mce.Arguments.Count == 0)
 								goto default;
 
-							var cExpr = (MethodCallExpression)expression;
-							var expr = cExpr.Object;
+							expr = mce.Arguments[0];
+						}
 
-							if (expr == null)
-							{
-								if (cExpr.Arguments.Count == 0)
-									goto default;
-
-								expr = cExpr.Arguments[0];
-							}
-
-							if (expr.NodeType != ExpressionType.MemberAccess)
-								goto default;
+						if (expr.NodeType != ExpressionType.MemberAccess)
+							goto default;
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
-							var member = ((MemberExpression)expr).Member;
-							var memberType = member.GetMemberType();
+						var member = ((MemberExpression)expr).Member;
+						var memberType = member.GetMemberType();
 
-							if (lastMember.ReflectedType != memberType.GetItemType())
-								goto default;
+						if (lastMember.ReflectedType != memberType.GetItemType())
+							goto default;
 #endif
 
-							expression = expr;
+						expression = expr;
 
+						break;
+					}
+
+					case MemberExpression me:
+					{
+						var member = lastMember = me.Member;
+
+						yield return member;
+
+						expression = me.Expression
+							?? throw CodeExceptions.Argument(
+								nameof(expression),
+								"Invalid expression, MemberExpression.Member is null.");
+
+						break;
+					}
+
+					case BinaryExpression{NodeType: ExpressionType.ArrayIndex } be:
+					{
+						if (passIndexer)
+						{
+							expression = be.Left;
 							break;
 						}
 
-					case ExpressionType.MemberAccess:
-						{
-							var mExpr = (MemberExpression)expression;
-							var member = lastMember = mExpr.Member;
-
-							yield return member;
-
-							expression = mExpr.Expression;
-
-							break;
-						}
-
-					case ExpressionType.ArrayIndex:
-						{
-							if (passIndexer)
-							{
-								expression = ((BinaryExpression)expression).Left;
-								break;
-							}
-
-							goto default;
-						}
+						goto default;
+					}
 
 					default:
 						throw new InvalidOperationException($"Expression '{expression}' is not an association.");

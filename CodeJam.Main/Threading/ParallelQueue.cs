@@ -11,14 +11,13 @@ namespace CodeJam.Threading
 	[PublicAPI]
 	internal sealed class ParallelQueue : IDisposable
 	{
-		[NotNull, ItemNotNull]
-		private readonly BlockingCollection<Action> _queue = new();
-		[NotNull, ItemNotNull]
+		private readonly BlockingCollection<Action?> _queue = new();
+
 		private readonly List<Exception> _exceptions = new();
-		[NotNull, ItemNotNull]
+
 		private readonly Thread[] _workers;
 
-		public ParallelQueue([NonNegativeValue] int workerCount, string name = null)
+		public ParallelQueue(int workerCount, string? name = null)
 		{
 			_workers = new Thread[Math.Max(1, workerCount)];
 
@@ -45,7 +44,7 @@ namespace CodeJam.Threading
 				throw new AggregateException(_exceptions[0].Message, _exceptions);
 		}
 
-		public void EnqueueItem([NotNull] Action item)
+		public void EnqueueItem(Action item)
 		{
 			Code.NotNull(item, nameof(item));
 
@@ -77,4 +76,5 @@ namespace CodeJam.Threading
 		}
 	}
 }
+
 #endif

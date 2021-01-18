@@ -22,9 +22,8 @@ namespace CodeJam.TableData
 		/// </summary>
 		/// <param name="widths">Array of column widths</param>
 		/// <returns>Parser to use with <see cref="TableDataParser.Parse(Parser,string)"/></returns>
-		[Pure]
-		[NotNull]
-		public static Parser CreateParser([NotNull] int[] widths)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Parser CreateParser(int[] widths)
 		{
 			Code.NotNull(widths, nameof(widths));
 			Code.AssertArgument(widths.Length > 0, nameof(widths), "At least one column must be specified");
@@ -39,13 +38,11 @@ namespace CodeJam.TableData
 		/// <param name="reader">Text to parse</param>
 		/// <param name="widths">Array of column widths</param>
 		/// <returns>Enumeration of <see cref="DataLine" /> contained parsed data.</returns>
-		[Pure]
-		[NotNull]
-		public static IEnumerable<DataLine> Parse([NotNull] TextReader reader, [NotNull] int[] widths) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IEnumerable<DataLine> Parse(TextReader reader, int[] widths) =>
 			CreateParser(widths).Parse(reader);
 
-		[CanBeNull]
-		private static string[] Parse([NotNull] TextReader reader, ref int lineNum, [NotNull] int[] widths)
+		private static string[]? Parse(TextReader reader, ref int lineNum, int[] widths)
 		{
 			var line = reader.ReadLine();
 			if (line == null)
@@ -78,13 +75,13 @@ namespace CodeJam.TableData
 		/// <param name="widths">Array of column widths</param>
 		/// <param name="indent">The indent.</param>
 		public static void Print(
-			[NotNull] TextWriter writer,
-			[NotNull, ItemNotNull] IEnumerable<string[]> data,
-			[NotNull] int[] widths,
-			[CanBeNull] string indent = null)
+			TextWriter writer,
+			IEnumerable<string[]> data,
+			int[] widths,
+			string? indent = null)
 		{
-			Code.NotNull(writer, nameof (writer));
-			Code.NotNull(data, nameof (writer));
+			Code.NotNull(writer, nameof(writer));
+			Code.NotNull(data, nameof(writer));
 			Code.NotNull(widths, nameof(widths));
 			Code.AssertArgument(widths.Length > 0, nameof(widths), "At least one column must be specified");
 			Code.AssertArgument(widths.All(w => w > 0), nameof(widths), "Column width must be greater than 0");

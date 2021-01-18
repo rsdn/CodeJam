@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 
 using static CodeJam.Arithmetic.OperatorsFactory;
 
+#nullable enable
 namespace CodeJam.Arithmetic
 {
 	/// <summary>
@@ -38,27 +39,25 @@ namespace CodeJam.Arithmetic
 #>
 	}
 }<#+
-
 	private void EmitUnary(OpInfo op)
 	{
 		if (op.Type == ExpressionType.OnesComplement)
 			return;
 #>
-		/// <summary>Gets <#=ToLower(op.Comment)#></summary>
-		[NotNull]
-		public static Func<T, T> <#=op.Name#> => <#=op.HelperClass#>.LazyValue.Value;
+		/// <summary>Gets <#= ToLower(op.Comment) #></summary>
+		public static Func<T, T> <#= op.Name #> => <#= op.HelperClass #>.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
 		/// </summary>
-		private static class <#=op.HelperClass#>
+		private static class <#= op.HelperClass #>
 		{
 			/// <summary>Gets the operator factory.</summary>
 			public static readonly Lazy<Func<T, T>> LazyValue = new Lazy<Func<T, T>>(Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T> Factory() => UnaryOperator<T>(ExpressionType.<#=op.Type#>);
+			private static Func<T, T> Factory() => UnaryOperator<T>(ExpressionType.<#= op.Type #>);
 		}
 <#+
 	}
@@ -66,21 +65,20 @@ namespace CodeJam.Arithmetic
 	private void EmitComparison(OpInfo op)
 	{
 #>
-		/// <summary>Gets <#=ToLower(op.Comment)#></summary>
-		[NotNull]
-		public static Func<T, T, bool> <#=op.Name#> => <#=op.HelperClass#>.LazyValue.Value;
+		/// <summary>Gets <#= ToLower(op.Comment) #></summary>
+		public static Func<T?, T?, bool> <#= op.Name #> => <#= op.HelperClass #>.LazyValue.Value;
 
 		/// <summary>
 		/// The helper class.
 		/// </summary>
-		private static class <#=op.HelperClass#>
+		private static class <#= op.HelperClass #>
 		{
 			/// <summary>Gets the operator factory.</summary>
-			public static readonly Lazy<Func<T, T, bool>> LazyValue = new Lazy<Func<T, T, bool>>(Factory, _lazyMode);
+			public static readonly Lazy<Func<T?, T?, bool>> LazyValue = new (Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, bool> Factory() => ComparisonOperator<T>(ExpressionType.<#=op.Type#>);
+			private static Func<T?, T?, bool> Factory() => ComparisonOperator<T>(ExpressionType.<#= op.Type #>);
 		}
 <#+
 	}
@@ -88,21 +86,20 @@ namespace CodeJam.Arithmetic
 	private void EmitBinary(OpInfo op)
 	{
 #>
-		/// <summary>Gets <#=ToLower(op.Comment)#></summary>
-		[NotNull]
-		public static Func<T, T, T> <#=op.Name#> => <#=op.HelperClass#>.LazyValue.Value;
+		/// <summary>Gets <#= ToLower(op.Comment) #></summary>
+		public static Func<T, T, T> <#= op.Name #> => <#= op.HelperClass #>.LazyValue.Value;
 
 		/// <summary>
 		/// Represents the helper class.
 		/// </summary>
-		private static class <#=op.HelperClass#>
+		private static class <#= op.HelperClass #>
 		{
 			/// <summary>Gets the operator factory.</summary>
 			public static readonly Lazy<Func<T, T, T>> LazyValue = new Lazy<Func<T, T, T>>(Factory, _lazyMode);
 
 			/// <summary>Returns the operator function.</summary>
 			/// <returns>The operator function.</returns>
-			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.<#=op.Type#>);
+			private static Func<T, T, T> Factory() => BinaryOperator<T>(ExpressionType.<#= op.Type #>);
 		}
 <#+
 	}

@@ -12,7 +12,6 @@ namespace CodeJam.Parsing
 			return reader;
 		}
 
-		[NotNull]
 		public static Parser SpecificChar(char chr) =>
 			rdr =>
 			{

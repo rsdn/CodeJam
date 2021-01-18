@@ -19,7 +19,10 @@ using static NUnit.Framework.Assert;
 // ReSharper disable ArgumentsStyleLiteral
 // ReSharper disable EventNeverSubscribedTo.Local
 // ReSharper disable AccessToStaticMemberViaDerivedType
+
 #pragma warning disable 67
+#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable CA1822 // Mark members as static
 
 [assembly: ReflectionExtensionsTest.SI("A"), ReflectionExtensionsTest.SN("A")]
 [assembly: ReflectionExtensionsTest.MI("A"), ReflectionExtensionsTest.MN("A")]
@@ -55,21 +58,21 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(T1.T2), "T2.M:SI; T2:SI; A:SI")]
 		[TestCase(typeof(T1.T3), "T3.M:SI; T3:SI; A:SI")]
 		[TestCase(typeof(T1.T3.T4), "T4.M:SI; T4:SI; T3:SI; A:SI")]
-		public static void TestMetadataAttributesSimple([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestMetadataAttributesSimple(Type type, string expected) =>
 			TestCore<SIAttribute>(type, expected, AttributesSource.All, SearchMode.MetadataAttributes);
 		#endregion
 
 		#region Test combinations
 		[TestCase(typeof(T1), "A:SI,SN,MI,MN; A+:MI,MN")]
-		public static void TestAssemblyMetadataAttributes([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestAssemblyMetadataAttributes(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.Assembly, SearchMode.MetadataAttributes);
 
 		[TestCase(typeof(T1), "A:SI,SN,MI,MN; A+:MI,MN")]
-		public static void TestAssemblyMetadataAttributesSingleLevel([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestAssemblyMetadataAttributesSingleLevel(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.Assembly, SearchMode.MetadataAttributesSingleLevel);
 
 		[TestCase(typeof(T1), "A:SI,SN,MI,MN; A+:MI,MN")]
-		public static void TestAssemblyAttributes([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestAssemblyAttributes(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.Assembly, SearchMode.Attributes);
 
 		[TestCase(typeof(T1), "T1:SI,SN,MI,MN,MI,MN; A:SI,SN,MI,MN; A+:MI,MN")]
@@ -79,7 +82,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(T1.T3.T4),
 			"T4:SI,SN,MI,MN,MI,MN; T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN"
 			)]
-		public static void TestTypeMetadataAttributes([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestTypeMetadataAttributes(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.Type, SearchMode.MetadataAttributes);
 
 		[TestCase(typeof(T1), "T1:SI,SN,MI,MN,MI,MN")]
@@ -87,7 +90,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(T1.T3.T2), "T2:SI,SN,MI,MN,MI,MN; T1:MI,MI")]
 		[TestCase(typeof(T1.T3), "T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI")]
 		[TestCase(typeof(T1.T3.T4), "T4:SI,SN,MI,MN,MI,MN")]
-		public static void TestTypeMetadataAttributesSingleLevel([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestTypeMetadataAttributesSingleLevel(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.Type, SearchMode.MetadataAttributesSingleLevel);
 
 		[TestCase(typeof(T1), "T1:SI,SN,MI,MN,MI,MN")]
@@ -95,7 +98,7 @@ namespace CodeJam.Reflection
 		[TestCase(typeof(T1.T3.T2), "T2:SI,SN,MI,MN,MI,MN; T1:MI,MI")]
 		[TestCase(typeof(T1.T3), "T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI")]
 		[TestCase(typeof(T1.T3.T4), "T4:SI,SN,MI,MN,MI,MN")]
-		public static void TestTypeAttributes([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestTypeAttributes(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.Type, SearchMode.Attributes);
 
 		[TestCase(typeof(T1), "T1.M:MI,MN,SI,SN,MI,MN; T1:SI,SN,MI,MN,MI,MN; A:SI,SN,MI,MN; A+:MI,MN")]
@@ -107,27 +110,27 @@ namespace CodeJam.Reflection
 			typeof(T1.T3.T4),
 			"T4.M:MI,MN,SI,SN; T4:SI,SN,MI,MN,MI,MN; T3:SI,SN,MI,MN,MI,MN; T0:MI,MI; T2:MI,MI; T1:MI,MI; A:SI,SN,MI,MN; A+:MI,MN"
 			)]
-		public static void TestMemberMetadataAttributes([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestMemberMetadataAttributes(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.All, SearchMode.MetadataAttributes);
 
 		[TestCase(typeof(T1), "T1.M:MI,MN,SI,SN,MI,MN")]
 		[TestCase(typeof(T1.T2), "T2.M:MI,MN,SI,SN,MI,MN")]
 		[TestCase(typeof(T1.T3), "T3.M:MI,MN,SI,SN,MI,MN; T2.M:MI,MI")]
 		[TestCase(typeof(T1.T3.T4), "T4.M:MI,MN,SI,SN")]
-		public static void TestMemberMetadataAttributesSingleLevel([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestMemberMetadataAttributesSingleLevel(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.All, SearchMode.MetadataAttributesSingleLevel);
 
 		[TestCase(typeof(T1), "T1.M:MI,MN,SI,SN,MI,MN")]
 		[TestCase(typeof(T1.T2), "T2.M:MI,MN,SI,SN,MI,MN")]
 		[TestCase(typeof(T1.T3), "T3.M:MI,MN,SI,SN,MI,MN; T2.M:MI,MI")]
 		[TestCase(typeof(T1.T3.T4), "T4.M:MI,MN,SI,SN")]
-		public static void TestMemberAttributes([NotNull] Type type, [NotNull] string expected) =>
+		public static void TestMemberAttributes(Type type, string expected) =>
 			TestCore<ITestInterface>(type, expected, AttributesSource.All, SearchMode.Attributes);
 		#endregion
 
 		#region Test logic
 		private static void TestCore<TAttribute>(
-			[NotNull] Type type, [NotNull] string expected, AttributesSource attributesSource, SearchMode searchMode)
+			Type type, string expected, AttributesSource attributesSource, SearchMode searchMode)
 			where TAttribute : class, ITestInterface
 		{
 			if (attributesSource != AttributesSource.All)
@@ -140,38 +143,31 @@ namespace CodeJam.Reflection
 			else
 			{
 				var bf = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
-				var result = GetAttributesString<TAttribute>(type.GetMethod("M", bf), searchMode);
+				var result = GetAttributesString<TAttribute>(type.GetMethod("M", bf)!, searchMode);
 				AreEqual(result, expected);
 
 				if (searchMode != SearchMode.Attributes) // default do not honor inherit flag for properties / events
 				{
-					result = GetAttributesString<TAttribute>(type.GetProperty("P", bf), searchMode);
+					result = GetAttributesString<TAttribute>(type.GetProperty("P", bf)!, searchMode);
 					AreEqual(result, expected.Replace(".M", ".P"));
 
-					result = GetAttributesString<TAttribute>(type.GetEvent("E", bf), searchMode);
+					result = GetAttributesString<TAttribute>(type.GetEvent("E", bf)!, searchMode);
 					AreEqual(result, expected.Replace(".M", ".E"));
 				}
 			}
 		}
 
-		private static string GetAttributesString<TAttribute>([NotNull] ICustomAttributeProvider source, SearchMode searchMode)
+		private static string GetAttributesString<TAttribute>(ICustomAttributeProvider source, SearchMode searchMode)
 			where TAttribute : class, ITestInterface
 		{
-			IEnumerable<TAttribute> attributes;
-			switch (searchMode)
-			{
-				case SearchMode.Attributes:
-					attributes = source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true);
-					break;
-				case SearchMode.MetadataAttributes:
-					attributes = source.GetMetadataAttributes<TAttribute>();
-					break;
-				case SearchMode.MetadataAttributesSingleLevel:
-					attributes = source.GetMetadataAttributes<TAttribute>(thisLevelOnly: true);
-					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null);
-			}
+			var attributes =
+				searchMode switch
+				{
+					SearchMode.Attributes => source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true),
+					SearchMode.MetadataAttributes => source.GetMetadataAttributes<TAttribute>(),
+					SearchMode.MetadataAttributesSingleLevel => source.GetMetadataAttributes<TAttribute>(thisLevelOnly: true),
+					_ => throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null)
+				};
 
 			return attributes
 				.GroupWhileEquals(
@@ -181,24 +177,17 @@ namespace CodeJam.Reflection
 				.Join("; ");
 		}
 
-		private static string GetAttributesString<TAttribute>([NotNull] Type source, SearchMode searchMode)
+		private static string GetAttributesString<TAttribute>(Type source, SearchMode searchMode)
 			where TAttribute : class, ITestInterface
 		{
-			IEnumerable<TAttribute> attributes;
-			switch (searchMode)
+			var attributes = searchMode switch
 			{
-				case SearchMode.Attributes:
-					attributes = source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true);
-					break;
-				case SearchMode.MetadataAttributes:
-					attributes = source.GetTypeInfo().GetMetadataAttributes<TAttribute>();
-					break;
-				case SearchMode.MetadataAttributesSingleLevel:
-					attributes = source.GetTypeInfo().GetMetadataAttributes<TAttribute>(thisLevelOnly: true);
-					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null);
-			}
+				SearchMode.Attributes => source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true),
+				SearchMode.MetadataAttributes => source.GetTypeInfo().GetMetadataAttributes<TAttribute>(),
+				SearchMode.MetadataAttributesSingleLevel =>
+					source.GetTypeInfo().GetMetadataAttributes<TAttribute>(thisLevelOnly: true),
+				_ => throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null)
+			};
 
 			return attributes
 				.GroupWhileEquals(
@@ -267,7 +256,7 @@ namespace CodeJam.Reflection
 				private int P => 0;
 
 				[SI("C.E")]
-				protected event EventHandler E;
+				protected event EventHandler? E;
 			}
 		}
 		#endregion
@@ -288,7 +277,7 @@ namespace CodeJam.Reflection
 
 			[MI("T1.E"), MN("T1.E"), SI("T1.E"), SN("T1.E")]
 			[MI("T1.E"), MN("T1.E")]
-			protected event EventHandler E;
+			protected event EventHandler? E;
 
 			[SI("T2"), SN("T2"), MI("T2"), MN("T2")]
 			[MI("T2"), MN("T2")]
@@ -296,15 +285,17 @@ namespace CodeJam.Reflection
 			{
 				[MI("T2.M"), MN("T2.M"), SI("T2.M"), SN("T2.M")]
 				[MI("T2.M"), MN("T2.M")]
-				public virtual new void M() { }
+				public new virtual void M() { }
 
 				[MI("T2.P"), MN("T2.P"), SI("T2.P"), SN("T2.P")]
 				[MI("T2.P"), MN("T2.P")]
-				protected virtual new int P => 0;
+				protected new virtual int P => 0;
 
 				[MI("T2.E"), MN("T2.E"), SI("T2.E"), SN("T2.E")]
 				[MI("T2.E"), MN("T2.E")]
-				protected virtual new event EventHandler E;
+#pragma warning disable CA1070
+				protected new virtual event EventHandler? E;
+#pragma warning restore CA1070
 			}
 
 			[SI("T3"), SN("T3"), MI("T3"), MN("T3")]
@@ -321,7 +312,7 @@ namespace CodeJam.Reflection
 
 				[MI("T3.E"), MN("T3.E"), SI("T3.E"), SN("T3.E")]
 				[MI("T3.E"), MN("T3.E")]
-				protected override event EventHandler E;
+				protected override event EventHandler? E;
 
 				[SI("T4"), SN("T4"), MI("T4"), MN("T4")]
 				[MI("T4"), MN("T4")]
@@ -336,7 +327,7 @@ namespace CodeJam.Reflection
 					internal static int P => 0;
 
 					[MI("T4.E"), MN("T4.E"), SI("T4.E"), SN("T4.E")]
-					private static event EventHandler E;
+					private static event EventHandler? E;
 				}
 			}
 		}

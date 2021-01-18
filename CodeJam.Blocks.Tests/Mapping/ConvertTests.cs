@@ -115,7 +115,7 @@ namespace CodeJam.Mapping
 		[Test]
 		public void ParseChar()
 		{
-			Assert.AreEqual('\0', ConvertTo<char>.From((string)null));
+			Assert.AreEqual('\0', ConvertTo<char>.From((string?)null));
 			Assert.AreEqual('\0', ConvertTo<char>.From(""));
 		}
 

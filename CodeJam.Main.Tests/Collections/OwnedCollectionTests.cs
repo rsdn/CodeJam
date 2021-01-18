@@ -23,7 +23,7 @@ namespace CodeJam.Collections
 		public class Item
 		{
 			public Guid Key { get; } = Guid.NewGuid();
-			public Owner Owner { get; set; }
+			public Owner? Owner { get; set; }
 		}
 
 		public class MyCollection : OwnedCollection<Owner, Item>
@@ -75,8 +75,8 @@ namespace CodeJam.Collections
 			AreEqual(owner1.KeyedItems[item2.Key], item2);
 
 			// Failures
-			Throws<ArgumentNullException>(() => owner1.Items.Add(null));
-			Throws<ArgumentNullException>(() => owner1.KeyedItems.Add(null));
+			Throws<ArgumentNullException>(() => owner1.Items.Add(null!));
+			Throws<ArgumentNullException>(() => owner1.KeyedItems.Add(null!));
 			Throws<ArgumentException>(() => owner1.Items.Add(item1));
 			Throws<ArgumentException>(() => owner1.Items.Add(item2));
 			Throws<ArgumentException>(() => owner1.KeyedItems.Add(item1));
@@ -136,8 +136,8 @@ namespace CodeJam.Collections
 			AreEqual(owner1.KeyedItems[item2.Key], item2);
 
 			// Failures
-			Throws<ArgumentNullException>(() => owner1.Items.Insert(0, null));
-			Throws<ArgumentNullException>(() => owner1.KeyedItems.Insert(0, null));
+			Throws<ArgumentNullException>(() => owner1.Items.Insert(0, null!));
+			Throws<ArgumentNullException>(() => owner1.KeyedItems.Insert(0, null!));
 			Throws<ArgumentException>(() => owner1.Items.Insert(0, item1));
 			Throws<ArgumentException>(() => owner1.Items.Insert(0, item2));
 			Throws<ArgumentException>(() => owner1.KeyedItems.Insert(0, item1));

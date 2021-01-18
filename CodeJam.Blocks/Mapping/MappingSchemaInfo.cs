@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Reflection;
 
 using CodeJam.Collections;
-
-using JetBrains.Annotations;
 
 namespace CodeJam.Mapping
 {
@@ -15,16 +13,15 @@ namespace CodeJam.Mapping
 
 	internal class MappingSchemaInfo
 	{
-		public MappingSchemaInfo(string configuration) => Configuration = configuration;
+		public MappingSchemaInfo(string? configuration) => Configuration = configuration;
 
-		public readonly string Configuration;
-		public IMetadataReader MetadataReader;
+		public readonly string? Configuration;
+		public IMetadataReader? MetadataReader;
 
 		#region Default Values
-		private volatile ConcurrentDictionary<Type,object> _defaultValues;
+		private volatile ConcurrentDictionary<Type, object>? _defaultValues;
 
-		[NotNull]
-		public Option<object> GetDefaultValue([NotNull] Type type)
+		public Option<object> GetDefaultValue(Type type)
 		{
 			if (_defaultValues == null)
 				return Option.None<object>();
@@ -32,22 +29,21 @@ namespace CodeJam.Mapping
 			return _defaultValues.TryGetValue(type, out var o) ? Option.Some(o) : Option.None<object>();
 		}
 
-		public void SetDefaultValue([NotNull] Type type, object value)
+		public void SetDefaultValue(Type type, object value)
 		{
 			if (_defaultValues == null)
 				lock (this)
 					if (_defaultValues == null)
-						_defaultValues = new ConcurrentDictionary<Type,object>();
+						_defaultValues = new ConcurrentDictionary<Type, object>();
 
 			_defaultValues[type] = value;
 		}
-
 		#endregion
 
 		#region GenericConvertProvider
-		private volatile ConcurrentDictionary<Type,List<Type[]>> _genericConvertProviders;
+		private volatile ConcurrentDictionary<Type, List<Type[]>>? _genericConvertProviders;
 
-		public bool InitGenericConvertProvider([NotNull, ItemNotNull] Type[] types)
+		public bool InitGenericConvertProvider(Type[] types)
 		{
 			var changed = false;
 
@@ -60,11 +56,11 @@ namespace CodeJam.Mapping
 
 						if (args.Length == types.Length)
 						{
-							if (type.Value.Aggregate(false, (cur,ts) => cur || ts.SequenceEqual(types)))
+							if (type.Value.Aggregate(false, (cur, ts) => cur || ts.SequenceEqual(types)))
 								continue;
 
-							var gtype    = type.Key.MakeGenericType(types);
-							var provider = (IGenericInfoProvider)Activator.CreateInstance(gtype);
+							var gtype = type.Key.MakeGenericType(types);
+							var provider = (IGenericInfoProvider)Activator.CreateInstance(gtype)!;
 
 							provider.SetInfo(new MappingSchema(this));
 
@@ -78,12 +74,12 @@ namespace CodeJam.Mapping
 			return changed;
 		}
 
-		public void SetGenericConvertProvider([NotNull] Type type)
+		public void SetGenericConvertProvider(Type type)
 		{
 			if (_genericConvertProviders == null)
 				lock (this)
 					if (_genericConvertProviders == null)
-						_genericConvertProviders = new ConcurrentDictionary<Type,List<Type[]>>();
+						_genericConvertProviders = new ConcurrentDictionary<Type, List<Type[]>>();
 
 			// ReSharper disable once InconsistentlySynchronizedField
 			_genericConvertProviders.AddOrUpdate(type, t => new List<Type[]>());
@@ -91,32 +87,29 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region ConvertInfo
-		private ConvertInfo _convertInfo;
+		private ConvertInfo? _convertInfo;
 
-		public void SetConvertInfo([NotNull] Type from, [NotNull] Type to, [NotNull] ConvertInfo.LambdaInfo expr)
+		public void SetConvertInfo(Type from, Type to, ConvertInfo.LambdaInfo expr)
 		{
 			if (_convertInfo == null)
 				_convertInfo = new ConvertInfo();
 			_convertInfo.Set(from, to, expr);
 		}
 
-		[CanBeNull]
-		public ConvertInfo.LambdaInfo GetConvertInfo([NotNull] Type from, [NotNull] Type to)
+		[return: MaybeNull]
+		public ConvertInfo.LambdaInfo GetConvertInfo(Type from, Type to)
 			=> _convertInfo?.Get(from, to);
 
-		private ConcurrentDictionary<object,Func<object,object>> _converters;
+		private ConcurrentDictionary<object, Func<object, object>>? _converters;
 
-		[NotNull]
-		public ConcurrentDictionary<object,Func<object,object>> Converters
-			=> _converters ?? (_converters = new ConcurrentDictionary<object,Func<object,object>>());
-
+		public ConcurrentDictionary<object, Func<object, object>> Converters
+			=> _converters ??= new ConcurrentDictionary<object, Func<object, object>>();
 		#endregion
 
 		#region Scalar Types
-		private volatile ConcurrentDictionary<Type,bool> _scalarTypes;
+		private volatile ConcurrentDictionary<Type, bool>? _scalarTypes;
 
-		[NotNull]
-		public Option<bool> GetScalarType([NotNull] Type type)
+		public Option<bool> GetScalarType(Type type)
 		{
 			if (_scalarTypes != null)
 			{
@@ -127,17 +120,17 @@ namespace CodeJam.Mapping
 			return Option.None<bool>();
 		}
 
-		public void SetScalarType([NotNull] Type type, bool isScalarType = true)
+		public void SetScalarType(Type type, bool isScalarType = true)
 		{
 			if (_scalarTypes == null)
 				lock (this)
 					if (_scalarTypes == null)
-						_scalarTypes = new ConcurrentDictionary<Type,bool>();
+						_scalarTypes = new ConcurrentDictionary<Type, bool>();
 
 			_scalarTypes[type] = isScalarType;
 		}
-
 		#endregion
 	}
 }
+
 #endif

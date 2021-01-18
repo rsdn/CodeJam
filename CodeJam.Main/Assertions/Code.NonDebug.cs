@@ -40,7 +40,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void DisposedIf<TDisposable>(
 			bool disposed,
-			[NotNull] TDisposable thisReference)
+			TDisposable thisReference)
 			where TDisposable : IDisposable
 		{
 			if (disposed)
@@ -56,8 +56,8 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void DisposedIf<TDisposable>(
 			bool disposed,
-			[NotNull] TDisposable thisReference,
-			[NotNull] string message)
+			TDisposable thisReference,
+			string message)
 			where TDisposable : IDisposable
 		{
 			if (disposed)
@@ -74,9 +74,9 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void DisposedIf<TDisposable>(
 			bool disposed,
-			[NotNull] TDisposable thisReference,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			TDisposable thisReference,
+			string messageFormat,
+			params object[]? args)
 			where TDisposable : IDisposable
 		{
 			if (disposed)
@@ -92,8 +92,8 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull, NoEnumeration] TResource resource,
-			[NotNull] TDisposable thisReference)
+			[System.Diagnostics.CodeAnalysis.NotNull, NoEnumeration] TResource? resource,
+			TDisposable thisReference)
 			where TResource : class
 			where TDisposable : IDisposable
 		{
@@ -111,9 +111,9 @@ namespace CodeJam
 		[AssertionMethod]
 		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull, NoEnumeration] TResource resource,
-			[NotNull] TDisposable thisReference,
-			[NotNull] string message)
+			[NoEnumeration] TResource? resource,
+			TDisposable thisReference,
+			string message)
 			where TResource : class
 			where TDisposable : IDisposable
 		{
@@ -132,10 +132,10 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		[ContractAnnotation("resource: null => halt")]
 		public static void DisposedIfNull<TResource, TDisposable>(
-			[CanBeNull, NoEnumeration] TResource resource,
-			[NotNull] TDisposable thisReference,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[NoEnumeration] TResource? resource,
+			TDisposable thisReference,
+			string messageFormat,
+			params object[]? args)
 			where TResource : class
 			where TDisposable : IDisposable
 		{

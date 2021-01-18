@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
+using CodeJam.Strings;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Reflection
@@ -20,8 +22,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="assembly">The assembly to check.</param>
 		/// <returns><c>true</c> if the assembly was build with optimizations disabled.</returns>
-		[Pure]
-		public static bool IsDebugAssembly([NotNull] this Assembly assembly)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool IsDebugAssembly(this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));
 			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
@@ -36,8 +38,8 @@ namespace CodeJam.Reflection
 		/// <returns>The manifest resource.</returns>
 		/// <exception cref="ArgumentNullException">The name parameter is null.</exception>
 		/// <exception cref="ArgumentException">Resource with specified name not found</exception>
-		[NotNull, Pure]
-		public static Stream GetRequiredResourceStream([NotNull] this Assembly assembly, [NotNull] string name)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static Stream GetRequiredResourceStream(this Assembly assembly, string name)
 		{
 			Code.NotNull(assembly, nameof(assembly));
 			Code.NotNullNorWhiteSpace(name, nameof(name));
@@ -67,9 +69,8 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="assembly">Assembly.</param>
 		/// <returns>Path to <paramref name="assembly"/>.</returns>
-		[NotNull]
-		[Pure]
-		public static string GetAssemblyPath([NotNull] this Assembly assembly)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static string GetAssemblyPath(this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));
 
@@ -78,11 +79,13 @@ namespace CodeJam.Reflection
 			//   If the assembly was loaded as a byte array, using an overload of the Load method that takes an array of bytes,
 			//   this property returns the location of the caller of the method, not the location of the loaded assembly.
 			// (c) https://msdn.microsoft.com/en-us/library/system.reflection.assembly.codebase(v=vs.110).aspx
-			if (string.IsNullOrEmpty(assembly.Location))
+			if (assembly.Location.IsNullOrEmpty())
 				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 
 #if LESSTHAN_NET50
 
+			if (assembly.CodeBase.IsNullOrEmpty())
+				throw CodeExceptions.Argument(nameof(assembly), $"Assembly {assembly} has no physical code base.");
 			var uri = new Uri(assembly.CodeBase);
 
 			if (uri.IsFile)
@@ -99,9 +102,7 @@ namespace CodeJam.Reflection
 		/// </summary>
 		/// <param name="assembly">Assembly.</param>
 		/// <returns>Folder part of path to <paramref name="assembly"/>.</returns>
-		[CanBeNull]
-		[Pure]
-		public static string GetAssemblyDirectory([NotNull] this Assembly assembly) =>
+		public static string? GetAssemblyDirectory(this Assembly assembly) =>
 			Path.GetDirectoryName(GetAssemblyPath(assembly));
 #endif
 	}

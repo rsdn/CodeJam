@@ -22,15 +22,14 @@ namespace CodeJam.Threading
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public struct AsyncLockScope : IDisposable
 		{
-			[CanBeNull]
-			private SemaphoreSlim _semaphore;
+			private SemaphoreSlim? _semaphore;
 
 			/// <summary>
 			/// Initializes a new instance of the <see cref="AsyncLockScope"/> class.
 			/// </summary>
 			/// <param name="semaphoreSlim">The <see cref="SemaphoreSlim"/> instance.</param>
 			[DebuggerStepThrough]
-			internal AsyncLockScope([NotNull] SemaphoreSlim semaphoreSlim)
+			internal AsyncLockScope(SemaphoreSlim semaphoreSlim)
 			{
 				Code.NotNull(semaphoreSlim, nameof(semaphoreSlim));
 				_semaphore = semaphoreSlim;
@@ -48,7 +47,6 @@ namespace CodeJam.Threading
 		}
 		#endregion
 
-		[NotNull]
 		private readonly SemaphoreSlim _semaphore = new(1, 1);
 
 		/// <summary>
@@ -82,7 +80,8 @@ namespace CodeJam.Threading
 		/// <returns>A task that returns the <see cref="AsyncLockScope"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(TimeSpan timeout) => AcquireAsync(timeout, CancellationToken.None);
+		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(TimeSpan timeout)
+			=> AcquireAsync(timeout, CancellationToken.None);
 
 		/// <summary>
 		/// Acquires async lock.
@@ -91,7 +90,8 @@ namespace CodeJam.Threading
 		/// <returns>A task that returns the <see cref="AsyncLockScope"/> to release the lock.</returns>
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(CancellationToken cancellation) => AcquireAsync(-1, cancellation);
+		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(CancellationToken cancellation)
+			=> AcquireAsync(-1, cancellation);
 
 		/// <summary>
 		/// Acquires async lock.
@@ -105,8 +105,9 @@ namespace CodeJam.Threading
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync([NonNegativeValue] int timeout, CancellationToken cancellation) =>
-			AcquireAsync(TimeSpan.FromMilliseconds(timeout), cancellation);
+		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(
+			[NonNegativeValue] int timeout, CancellationToken cancellation) =>
+				AcquireAsync(TimeSpan.FromMilliseconds(timeout), cancellation);
 
 		/// <summary>
 		/// Acquires async lock.
@@ -124,7 +125,6 @@ namespace CodeJam.Threading
 		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(TimeSpan timeout, CancellationToken cancellation) =>
 			AcquireAsyncImpl(timeout, cancellation);
 
-		[NotNull]
 		[MustUseReturnValue("Lock should be disposed")]
 		private async Task<AsyncLockScope> AcquireAsyncImpl(TimeSpan timeout, CancellationToken cancellation)
 		{

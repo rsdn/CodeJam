@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
 using CodeJam.Reflection;
 using CodeJam.Targeting;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
-using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
+#pragma warning disable IDE0060 // Remove unused parameter
 
 namespace CodeJam.Strings
 {
@@ -98,8 +97,8 @@ namespace CodeJam.Strings
 					"x10m.txt"
 				};
 
-			var actual = data.OrderBy(s => s, NaturalOrderStringComparer.Comparer).ToList();
-			DumpData(actual);
+			var actual = data.OrderBy(s => s, NaturalOrderStringComparer.Comparer!).ToList();
+			DumpData(actual!);
 
 			Assert.AreEqual(expected, actual);
 		}
@@ -137,8 +136,7 @@ namespace CodeJam.Strings
 			Assert.AreEqual(expected, actual);
 		}
 
-		[NotNull, ItemNotNull]
-		private static List<string> LoadTestData([NotNull] string resourceName)
+		private static List<string> LoadTestData(string resourceName)
 		{
 			var assembly = typeof(NaturalOrderStringComparerTests).GetAssembly();
 			var list = new List<string>();
@@ -146,7 +144,7 @@ namespace CodeJam.Strings
 			using (var stream = assembly.GetRequiredResourceStream(resourceName))
 			using (var reader = new StreamReader(stream))
 				while (!reader.EndOfStream)
-					list.Add(reader.ReadLine());
+					list.Add(reader.ReadLine()!);
 
 			return list;
 		}

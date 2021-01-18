@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Xml;
@@ -14,12 +15,11 @@ namespace CodeJam.Mapping
 	using Expressions;
 
 	/// <summary>
-	/// Provides data convertion functionality.
+	/// Provides data conversion functionality.
 	/// </summary>
 	[PublicAPI]
 	public static class Converter
 	{
-		[NotNull]
 		private static readonly ConcurrentDictionary<object, LambdaExpression> _expressions =
 			new();
 
@@ -41,35 +41,21 @@ namespace CodeJam.Mapping
 			SetConverter<string, bool>(v => v.Length == 1 ? ToBoolean(v[0]) : bool.Parse(v));
 		}
 
-		[NotNull]
-		private static XmlDocument CreateXmlDocument([NotNull] string str)
+		private static XmlDocument CreateXmlDocument(string str)
 		{
 			var xml = new XmlDocument();
 			xml.LoadXml(str);
 			return xml;
 		}
 
-		private static bool ToBoolean(char ch)
+		private static bool ToBoolean(char ch) => ch switch
 		{
-			switch (ch)
-			{
-				case '\x0': // Allow int <=> Char <=> Boolean
-				case '0':
-				case 'n':
-				case 'N':
-				case 'f':
-				case 'F': return false;
-
-				case '\x1': // Allow int <=> Char <=> Boolean
-				case '1':
-				case 'y':
-				case 'Y':
-				case 't':
-				case 'T': return true;
-			}
-
-			throw new InvalidCastException("Invalid cast from System.String to System.Bool");
-		}
+			// Allow int <=> Char <=> Boolean
+			'\x0' or '0' or 'n' or 'N' or 'f' or 'F' => false,
+			// Allow int <=> Char <=> Boolean
+			'\x1' or '1' or 'y' or 'Y' or 't' or 'T' => true,
+			_ => throw new InvalidCastException("Invalid cast from System.String to System.Bool"),
+		};
 
 		/// <summary>
 		/// Adds a custom converter from <i>TFrom</i> to <i>TTo</i> types.
@@ -80,14 +66,13 @@ namespace CodeJam.Mapping
 		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr)
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
 
-		[CanBeNull]
-		internal static LambdaExpression GetConverter([NotNull] Type from, [NotNull] Type to)
+		[return: MaybeNull]
+		internal static LambdaExpression GetConverter(Type from, Type to)
 		{
 			_expressions.TryGetValue(new { from, to }, out var l);
 			return l;
 		}
 
-		[NotNull]
 		private static readonly ConcurrentDictionary<object, Func<object, object>> _converters =
 			new();
 
@@ -98,14 +83,15 @@ namespace CodeJam.Mapping
 		/// <param name="conversionType">The type of object to return.</param>
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
-		public static object ChangeType([CanBeNull] object value, [NotNull] Type conversionType, MappingSchema mappingSchema = null)
+		[return: NotNullIfNotNull("value")]
+		public static object? ChangeType([AllowNull] object? value, Type conversionType, MappingSchema? mappingSchema = null)
 		{
 			Code.NotNull(conversionType, nameof(conversionType));
 
 			if (value == null || value is DBNull)
-				return mappingSchema == null ?
-					DefaultValue.GetValue(conversionType) :
-					mappingSchema.GetDefaultValue(conversionType);
+				return mappingSchema == null
+					? DefaultValue.GetValue(conversionType)
+					: mappingSchema.GetDefaultValue(conversionType);
 
 			if (value.GetType() == conversionType)
 				return value;
@@ -120,7 +106,7 @@ namespace CodeJam.Mapping
 			{
 				var li =
 					ConvertInfo.Default.Get(value.GetType(), to) ??
-					ConvertInfo.Default.Create(mappingSchema, value.GetType(), to);
+						ConvertInfo.Default.Create(mappingSchema, value.GetType(), to);
 
 				var b = li.CheckNullLambda.Body;
 				var ps = li.CheckNullLambda.Parameters;
@@ -128,12 +114,13 @@ namespace CodeJam.Mapping
 				var p = Expression.Parameter(typeof(object), "p");
 				var ex = Expression.Lambda<Func<object, object>>(
 					Expression.Convert(
-						b.Transform(e =>
-							e == ps[0] ?
-								Expression.Convert(p, e.Type) :
-							IsDefaultValuePlaceHolder(e) ?
-								new DefaultValueExpression(mappingSchema, e.Type) :
-								e),
+						b.Transform(
+							e =>
+								e == ps[0]
+									? Expression.Convert(p, e.Type)
+									: IsDefaultValuePlaceHolder(e)
+										? new DefaultValueExpression(mappingSchema, e.Type)
+										: e),
 						typeof(object)),
 					p);
 
@@ -147,8 +134,7 @@ namespace CodeJam.Mapping
 
 		private static class ExprHolder<T>
 		{
-			[NotNull]
-			public static readonly ConcurrentDictionary<Type, Func<object, T>> Converters =
+			public static readonly ConcurrentDictionary<Type, Func<object?, T>> Converters =
 				new();
 		}
 
@@ -159,12 +145,12 @@ namespace CodeJam.Mapping
 		/// <param name="value">An object to convert.</param>
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
-		public static T ChangeTypeTo<T>(object value, MappingSchema mappingSchema = null)
+		public static T? ChangeTypeTo<T>(object? value, MappingSchema? mappingSchema = null)
 		{
 			if (value == null || value is DBNull)
-				return mappingSchema == null ?
-					DefaultValue<T>.Value :
-					(T)mappingSchema.GetDefaultValue(typeof(T));
+				return mappingSchema == null
+					? DefaultValue<T>.Value
+					: (T)mappingSchema.GetDefaultValue(typeof(T))!;
 
 			if (value.GetType() == typeof(T))
 				return (T)value;
@@ -180,15 +166,16 @@ namespace CodeJam.Mapping
 
 				var p = Expression.Parameter(typeof(object), "p");
 				var ex = Expression.Lambda<Func<object, T>>(
-					b.Transform(e =>
-						e == ps[0] ?
-							Expression.Convert(p, e.Type) :
-							IsDefaultValuePlaceHolder(e) ?
-								new DefaultValueExpression(mappingSchema, e.Type) :
-								e),
+					b.Transform(
+						e =>
+							e == ps[0]
+								? Expression.Convert(p, e.Type)
+								: IsDefaultValuePlaceHolder(e)
+									? new DefaultValueExpression(mappingSchema, e.Type)
+									: e),
 					p);
 
-				l = ex.Compile();
+				l = ex.Compile()!;
 
 				ExprHolder<T>.Converters[from] = l;
 			}
@@ -198,8 +185,8 @@ namespace CodeJam.Mapping
 
 		internal static bool IsDefaultValuePlaceHolder(Expression expr) =>
 			expr is MemberExpression me
-					&& me.Member.Name == "Value"
-					&& me.Member.DeclaringType?.GetIsGenericType() == true
+				&& me.Member.Name == "Value"
+				&& me.Member.DeclaringType?.GetIsGenericType() == true
 				? me.Member.DeclaringType.GetGenericTypeDefinition() == typeof(DefaultValue<>)
 				: expr is DefaultValueExpression;
 
@@ -207,4 +194,5 @@ namespace CodeJam.Mapping
 		//			=> ConvertBuilder.GetDefaultMappingFromEnumType(mappingSchema, enumType);
 	}
 }
+
 #endif

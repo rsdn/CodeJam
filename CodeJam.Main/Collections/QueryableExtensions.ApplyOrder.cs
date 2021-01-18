@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Linq.Expressions;
 
 using CodeJam.Reflection;
@@ -19,8 +18,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IOrderedQueryable{TElement}"/> whose elements are sorted according to a key.
 		/// </returns>
-		[NotNull, Pure]
-		public static IOrderedQueryable<T> OrderBy<T>([NotNull] this IQueryable<T> source, [NotNull] string property) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string property) =>
 			ApplyOrder(source, property, nameof(OrderBy));
 
 		/// <summary>
@@ -32,9 +31,9 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IOrderedQueryable{TElement}"/> whose elements are sorted according to a key.
 		/// </returns>
-		[NotNull, Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IOrderedQueryable<T> OrderByDescending<T>(
-			[NotNull] this IQueryable<T> source, [NotNull] string property) =>
+			this IQueryable<T> source, string property) =>
 				ApplyOrder(source, property, nameof(OrderByDescending));
 
 		/// <summary>
@@ -46,8 +45,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IOrderedQueryable{TElement}"/> whose elements are sorted according to a key.
 		/// </returns>
-		[NotNull, Pure]
-		public static IOrderedQueryable<T> ThenBy<T>([NotNull] this IOrderedQueryable<T> source, [NotNull] string property) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static IOrderedQueryable<T> ThenBy<T>(this IOrderedQueryable<T> source, string property) =>
 			ApplyOrder(source, property, nameof(ThenBy));
 
 		/// <summary>
@@ -59,14 +58,14 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// An <see cref="IOrderedQueryable{TElement}"/> whose elements are sorted according to a key.
 		/// </returns>
-		[NotNull, Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IOrderedQueryable<T> ThenByDescending<T>(
-			[NotNull] this IOrderedQueryable<T> source,
-			[NotNull] string property) =>
-			ApplyOrder(source, property, nameof(ThenByDescending));
+			this IOrderedQueryable<T> source,
+			string property) =>
+				ApplyOrder(source, property, nameof(ThenByDescending));
 
-		[NotNull, Pure]
-		private static IOrderedQueryable<T> ApplyOrder<T>([NotNull] this IQueryable<T> source, [NotNull] string property, [NotNull] string method)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		private static IOrderedQueryable<T> ApplyOrder<T>(this IQueryable<T> source, string property, string method)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNullNorEmpty(property, nameof(property));

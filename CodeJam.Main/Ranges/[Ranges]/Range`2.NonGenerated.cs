@@ -18,9 +18,9 @@ namespace CodeJam.Ranges
 	public partial struct Range<T, TKey>
 	{
 		#region Static members
-		private static readonly Func<TKey, TKey, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
+		private static readonly Func<TKey?, TKey?, bool> _keyEqualityFunc = Operators<TKey>.AreEqual;
 
-		private static readonly Func<TKey, string, IFormatProvider, string> _formattableCallback =
+		private static readonly Func<TKey?, string?, IFormatProvider?, string?> _formattableCallback =
 			CreateFormattableCallback<TKey>();
 
 		#region Predefined values
@@ -28,7 +28,7 @@ namespace CodeJam.Ranges
 		public static readonly Range<T, TKey> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly Range<T, TKey> Infinite = new(
+		public static readonly Range<T, TKey?> Infinite = new(
 			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity,
 			default);
 		#endregion
@@ -41,28 +41,39 @@ namespace CodeJam.Ranges
 		public TKey Key => _key;
 
 		#region IRangeFactory members
+
+#pragma warning disable IDE0051 // Remove unused private members
+
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T, TKey> CreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new(from, to, _key);
 
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T, TKey> TryCreateRange(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			Range.TryCreate(from, to, _key);
 
 		[MethodImpl(AggressiveInlining)]
 		[Obsolete(SkipsArgValidationObsolete)]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T, TKey> CreateUnsafe(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to) =>
 			new(from, to, _key, UnsafeOverload.SkipsArgValidation);
 
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T2, TKey> CreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
 			new(from, to, _key);
 
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Range<T2, TKey> TryCreateRange<T2>(RangeBoundaryFrom<T2> from, RangeBoundaryTo<T2> to) =>
 			Range.TryCreate(from, to, _key);
+
+#pragma warning restore IDE0051 // Remove unused private members
+
 		#endregion
 
 		#region Operations
 		/// <summary>Creates a range without a range key.</summary>
 		/// <returns>A new range without a key.</returns>
-		[Pure, MethodImpl(AggressiveInlining)]
+		[Pure, System.Diagnostics.Contracts.Pure, MethodImpl(AggressiveInlining)]
 		public Range<T> WithoutKey() =>
 			Range.Create(From, To);
 		#endregion
@@ -74,7 +85,7 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if the current range is equal to the <paramref name="other"/> parameter;
 		/// otherwise, false.
 		/// </returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
 		public bool Equals(Range<T, TKey> other) =>
 			_from == other._from && _to == other._to && _keyEqualityFunc(_key, other._key);
@@ -85,12 +96,12 @@ namespace CodeJam.Ranges
 		/// <c>True</c> if <paramref name="obj"/> and the current range are the same type
 		/// and represent the same value; otherwise, false.
 		/// </returns>
-		[Pure]
-		public override bool Equals(object obj) => obj is Range<T, TKey> other && Equals(other);
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public override bool Equals(object? obj) => obj is Range<T, TKey> other && Equals(other);
 
 		/// <summary>Returns a hash code for the current range.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
 		public override int GetHashCode() =>
 			HashCode.Combine(
@@ -102,7 +113,7 @@ namespace CodeJam.Ranges
 		#region ToString
 		/// <summary>Returns string representation of the range.</summary>
 		/// <returns>The string representation of the range.</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public override string ToString() =>
 			KeyPrefixString + _key + KeySeparatorString +
 				(IsEmpty ? EmptyString : _from + SeparatorString + _to);
@@ -113,7 +124,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="format">The format string.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string format) => ToString(format, null);
 
 		/// <summary>
@@ -122,7 +133,7 @@ namespace CodeJam.Ranges
 		/// </summary>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(IFormatProvider formatProvider) => ToString(null, formatProvider);
 
 		/// <summary>
@@ -132,9 +143,9 @@ namespace CodeJam.Ranges
 		/// <param name="format">The format string.</param>
 		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation of the range.</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
-		public string ToString(string format, IFormatProvider formatProvider) =>
+		public string ToString(string? format, IFormatProvider? formatProvider) =>
 			KeyPrefixString + _formattableCallback(_key, null, formatProvider) + KeySeparatorString +
 				(IsEmpty
 					? EmptyString

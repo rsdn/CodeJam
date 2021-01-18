@@ -18,11 +18,11 @@ namespace CodeJam
 		/// <param name="displayName">Display name.</param>
 		/// <param name="description">Description</param>
 		internal EnumValue(
-			[NotNull] string name,
-			[NotNull] Enum value,
-			[NotNull] FieldInfo underlyingField,
-			[CanBeNull] string displayName,
-			[CanBeNull] string description)
+			string name,
+			Enum value,
+			FieldInfo underlyingField,
+			string? displayName,
+			string? description)
 		{
 			Code.NotNullNorEmpty(name, nameof(name));
 			Code.NotNull(value, nameof(value));
@@ -38,38 +38,32 @@ namespace CodeJam
 		/// <summary>
 		/// Gets enum element name.
 		/// </summary>
-		[NotNull]
 		public string Name { get; }
 
 		/// <summary>
 		/// Gets enum element value.
 		/// </summary>
-		[NotNull]
 		public Enum Value { get; }
 
 		/// <summary>
 		/// Gets enum underlying field.
 		/// </summary>
-		[NotNull]
 		public FieldInfo UnderlyingField { get; }
 
 		/// <summary>
 		/// Gets enum element display name.
 		/// </summary>
-		[CanBeNull]
-		public string DisplayName { get; }
-
+		public string? DisplayName { get; }
 
 		/// <summary>Gets enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</summary>
 		/// <returns>Enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string GetDisplayName() => DisplayName ?? Name;
 
 		/// <summary>
 		/// Enum element description.
 		/// </summary>
-		[CanBeNull]
-		public string Description { get; }
+		public string? Description { get; }
 
 		/// <inheritdoc/>
 		public override string ToString()

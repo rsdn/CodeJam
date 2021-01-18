@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+
 using JetBrains.Annotations;
 
 namespace CodeJam.Dates
@@ -13,6 +14,5 @@ namespace CodeJam.Dates
 	/// </example>
 	[UsedImplicitly]
 	[CompilerGenerated]
-	internal class NamespaceDoc
-	{ }
+	internal class NamespaceDoc { }
 }

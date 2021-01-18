@@ -23,10 +23,11 @@ namespace CodeJam.Threading
 		public void TestWaitForCancellation()
 		{
 			TaskEx.Run(() => TesWaitForCancellationCore()).Wait();
+			// ReSharper disable once RedundantAssertionStatement
 			Assert.IsTrue(true);
 		}
 
-		public async Task TesWaitForCancellationCore()
+		public static async Task TesWaitForCancellationCore()
 		{
 			// Empty cancellation case
 			Assert.Throws<ArgumentException>(
@@ -58,11 +59,12 @@ namespace CodeJam.Threading
 		public void TestWaitForCancellationTimeout()
 		{
 			TaskEx.Run(() => TestWaitForCancellationTimeoutCore()).Wait();
+			// ReSharper disable once RedundantAssertionStatement
 			Assert.IsTrue(true);
 		}
 
 		[SuppressMessage("ReSharper", "AccessToModifiedClosure")]
-		public async Task TestWaitForCancellationTimeoutCore()
+		public static async Task TestWaitForCancellationTimeoutCore()
 		{
 			// Empty cancellation case
 			Assert.Throws<ArgumentException>(

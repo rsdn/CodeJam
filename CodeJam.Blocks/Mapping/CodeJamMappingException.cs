@@ -25,8 +25,7 @@ namespace CodeJam.Mapping
 		/// property of the new instance such as "A Build Type exception has occurred."
 		/// </remarks>
 		public CodeJamMappingException()
-			: base("A Build Type exception has occurred.")
-		{ }
+			: base("A Build Type exception has occurred.") { }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamMappingException"/> class
@@ -36,8 +35,7 @@ namespace CodeJam.Mapping
 		/// exception is thrown.</param>
 		/// <seealso cref="Exception.Message"/>
 		public CodeJamMappingException(string message)
-			: base(message)
-		{ }
+			: base(message) { }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamMappingException"/> class
@@ -50,8 +48,7 @@ namespace CodeJam.Mapping
 		/// <seealso cref="Exception.Message"/>
 		/// <seealso cref="Exception.InnerException"/>
 		public CodeJamMappingException(string message, Exception innerException)
-			: base(message, innerException)
-		{ }
+			: base(message, innerException) { }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CodeJamMappingException"/> class
@@ -60,10 +57,8 @@ namespace CodeJam.Mapping
 		/// <param name="innerException">The InnerException, if any, that threw
 		/// the current exception.</param>
 		/// <seealso cref="Exception.InnerException"/>
-		public CodeJamMappingException([NotNull] Exception innerException)
-			: base(innerException.Message, innerException)
-		{
-		}
+		public CodeJamMappingException(Exception innerException)
+			: base(innerException.Message, innerException) { }
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 		/// <summary>
@@ -75,11 +70,10 @@ namespace CodeJam.Mapping
 		/// destination.</param>
 		/// <remarks>This constructor is called during deserialization to
 		/// reconstitute the exception object transmitted over a stream.</remarks>
-		protected CodeJamMappingException([NotNull] SerializationInfo info, StreamingContext context)
-			: base(info, context)
-		{
-		}
+		protected CodeJamMappingException(SerializationInfo info, StreamingContext context)
+			: base(info, context) { }
 #endif
 	}
 }
+
 #endif

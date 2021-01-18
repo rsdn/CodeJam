@@ -4,6 +4,7 @@ using System.Linq;
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
+
 namespace CodeJam.Collections.Backported
 {
 	/// <summary>
@@ -20,8 +21,8 @@ namespace CodeJam.Collections.Backported
 		/// <returns>
 		/// A <see cref="HashSet{T}"/> that contains elements from the input sequence.
 		/// </returns>
-		[Pure, NotNull]
-		public static HashSet<T> ToHashSet<T>([NotNull, InstantHandle] this IEnumerable<T> source) => new(source);
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static HashSet<T> ToHashSet<T>([InstantHandle] this IEnumerable<T> source) => new(source);
 
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/> with the specified equality comparer.
@@ -33,12 +34,11 @@ namespace CodeJam.Collections.Backported
 		/// <returns>
 		/// A <see cref="HashSet{T}"/> that contains elements from the input sequence.
 		/// </returns>
-		[Pure, NotNull]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static HashSet<T> ToHashSet<T>(
-			[NotNull, InstantHandle] this IEnumerable<T> source,
-			[NotNull] IEqualityComparer<T> comparer) =>
+			[InstantHandle] this IEnumerable<T> source,
+			IEqualityComparer<T> comparer) =>
 				new(source, comparer);
-
 
 		/// <summary>
 		/// Prepends specified <paramref name="element"/> to the collection start.
@@ -47,16 +47,16 @@ namespace CodeJam.Collections.Backported
 		/// <param name="source">The source enumerable.</param>
 		/// <param name="element">Element to prepend.</param>
 		/// <returns>Concatenated enumerable</returns>
-		[Pure, NotNull, LinqTunnel]
-		public static IEnumerable<T> Prepend<T>([NotNull] this IEnumerable<T> source, T element)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IEnumerable<T> Prepend<T>(this IEnumerable<T> source, T element)
 		{
 			Code.NotNull(source, nameof(source));
 
 			return PrependCore(source, element);
 		}
 
-		[Pure, NotNull, LinqTunnel]
-		private static IEnumerable<T> PrependCore<T>([NotNull] IEnumerable<T> source, T element)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		private static IEnumerable<T> PrependCore<T>(IEnumerable<T> source, T element)
 		{
 			yield return element;
 			foreach (var item in source)
@@ -75,8 +75,8 @@ namespace CodeJam.Collections.Backported
 		/// <returns>
 		/// An <see cref="IEnumerable{T}"/> that does not contains the specified number of elements from the end of the input sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
-		public static IEnumerable<T> SkipLast<T>([NotNull] this IEnumerable<T> source, [NonNegativeValue] int count = 1)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IEnumerable<T> SkipLast<T>(this IEnumerable<T> source, [NonNegativeValue] int count = 1)
 		{
 			Code.NotNull(source, nameof(source));
 
@@ -91,8 +91,7 @@ namespace CodeJam.Collections.Backported
 			return SkipLastImpl(source, count);
 		}
 
-		[NotNull]
-		private static IEnumerable<T> SkipLastImpl<T>([NotNull] IEnumerable<T> source, [NonNegativeValue] int count)
+		private static IEnumerable<T> SkipLastImpl<T>(IEnumerable<T> source, [NonNegativeValue] int count)
 		{
 			var queue = new Queue<T>(count);
 

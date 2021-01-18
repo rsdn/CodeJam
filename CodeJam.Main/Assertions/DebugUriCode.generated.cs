@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using static CodeJam.DebugCode;
 
 using System;
@@ -29,8 +32,8 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedUri(
-			[NotNull] string uri,
-			[NotNull, InvokerParameterName] string argName)
+			string uri,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.RelativeOrAbsolute))
@@ -43,8 +46,8 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedAbsoluteUri(
-			[NotNull] string uri,
-			[NotNull, InvokerParameterName] string argName)
+			string uri,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute))
@@ -57,8 +60,8 @@ namespace CodeJam
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedRelativeUri(
-			[NotNull] string uri,
-			[NotNull, InvokerParameterName] string argName)
+			string uri,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.Relative))

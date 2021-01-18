@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using static CodeJam.DebugCode;
 
 using System.Diagnostics;
@@ -29,8 +32,8 @@ namespace CodeJam.IO
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedPath(
-			[NotNull] string path,
-			[NotNull, InvokerParameterName] string argName)
+			string path,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsWellFormedPath(path))
@@ -43,8 +46,8 @@ namespace CodeJam.IO
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedAbsolutePath(
-			[NotNull] string path,
-			[NotNull, InvokerParameterName] string argName)
+			string path,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsWellFormedAbsolutePath(path))
@@ -57,8 +60,8 @@ namespace CodeJam.IO
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedRelativePath(
-			[NotNull] string path,
-			[NotNull, InvokerParameterName] string argName)
+			string path,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsWellFormedRelativePath(path))
@@ -71,8 +74,8 @@ namespace CodeJam.IO
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedContainerPath(
-			[NotNull] string path,
-			[NotNull, InvokerParameterName] string argName)
+			string path,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsWellFormedContainerPath(path))
@@ -85,8 +88,8 @@ namespace CodeJam.IO
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsFileName(
-			[NotNull] string path,
-			[NotNull, InvokerParameterName] string argName)
+			string path,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsFileName(path))
@@ -100,8 +103,8 @@ namespace CodeJam.IO
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void FileExists(
-			[NotNull] string filePath,
-			[NotNull, InvokerParameterName] string argName)
+			string filePath,
+			[InvokerParameterName] string argName)
 		{
 			Code.NotNull(filePath, argName);
 			if (!File.Exists(filePath))
@@ -116,8 +119,8 @@ namespace CodeJam.IO
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void DirectoryExists(
-			[NotNull] string directoryPath,
-			[NotNull, InvokerParameterName] string argName)
+			string directoryPath,
+			[InvokerParameterName] string argName)
 		{
 			if (!Directory.Exists(directoryPath))
 				throw File.Exists(directoryPath)
@@ -129,7 +132,7 @@ namespace CodeJam.IO
 		/// <param name="path">The path.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void PathIsFree([NotNull] string path)
+		public static void PathIsFree(string path)
 		{
 			if (Directory.Exists(path))
 				throw IoCodeExceptions.DirectoryExists(path);

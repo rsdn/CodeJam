@@ -19,12 +19,12 @@ namespace CodeJam
 		/// <param name="list">The sorted list</param>
 		/// <param name="value">The value to compare</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int LowerBound<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value)
+			[InstantHandle] this IList<TElement> list,
+			TValue value)
 			where TElement : IComparable<TValue> =>
-			list.LowerBound(value, 0);
+				list.LowerBound(value, 0);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] >= value
@@ -38,13 +38,13 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int LowerBound<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NonNegativeValue] int startIndex)
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[NonNegativeValue] int startIndex)
 			where TElement : IComparable<TValue> =>
-			list.LowerBound(value, startIndex, list.Count);
+				list.LowerBound(value, startIndex, list.Count);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] >= value
@@ -60,12 +60,12 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The lower bound for the value</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int LowerBound<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NonNegativeValue] int startIndex,
-				[NonNegativeValue] int endIndex)
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex)
 			where TElement : IComparable<TValue>
 		{
 			Code.NotNull(list, nameof(list));

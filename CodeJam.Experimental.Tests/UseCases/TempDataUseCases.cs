@@ -3,7 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using JetBrains.Annotations;
-using JBNotNullAttribute = JetBrains.Annotations.NotNullAttribute;
+
+#pragma warning disable IDE0060 // Remove unused parameter
+#pragma warning disable CA1822 // Mark members as static
 
 // ReSharper disable once CheckNamespace
 namespace CodeJam.UseCases.TempDataSamples
@@ -17,7 +19,7 @@ namespace CodeJam.UseCases.TempDataSamples
 			// weird one.
 
 			var fileName = "1.txt";
-			Exception deletedEx = null;
+			Exception? deletedEx = null;
 			try
 			{
 				File.Create(fileName).Close();
@@ -54,7 +56,7 @@ namespace CodeJam.UseCases.TempDataSamples
 		public void CaseC_LetItCrashHandle()
 		{
 			// BAD BAD BAD: we need to store fileName somewhere.
-			string fileName = null;
+			string? fileName = null;
 			try
 			{
 				using (var tempFile = TempData.CreateFile(throwOnDisposeFailure: true))
@@ -77,7 +79,7 @@ namespace CodeJam.UseCases.TempDataSamples
 
 				if (!tempFile.TryClose())
 				{
-					HandleDeleteFailure(tempFile.FileName, null); // no exception info available.
+					HandleDeleteFailure(tempFile.FileName!, null); // no exception info available.
 				}
 			}
 		}
@@ -131,18 +133,18 @@ namespace CodeJam.UseCases.TempDataSamples
 
 		private void Process(string tempFile) { }
 
-		private void HandleDeleteFailure(string fileName, Exception exception) { }
+		private void HandleDeleteFailure(string fileName, Exception? exception) { }
 	}
 
 	// Stub implementation. Unusable by design.
 	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-	public class TempData : IDisposable
+	public sealed class TempData : IDisposable
 	{
-		[JBNotNull] public static TempData CreateFile() => new();
-		[JBNotNull] public static TempData CreateFile(bool throwOnDisposeFailure) => new();
-		[JBNotNull] public static TempData CreateFile([JBNotNull] Action<TempData, Exception> deleteFallback) => new();
+		public static TempData CreateFile() => new();
+		public static TempData CreateFile(bool throwOnDisposeFailure) => new();
+		public static TempData CreateFile(Action<TempData, Exception> deleteFallback) => new();
 
-		public string FileName => null;
+		public string FileName => null!;
 
 		public void EnsureDelete()
 		{

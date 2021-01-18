@@ -5,6 +5,7 @@ using System.Globalization;
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
+
 using static CodeJam.Ranges.RangeTestHelper;
 
 namespace CodeJam.Ranges
@@ -77,10 +78,10 @@ namespace CodeJam.Ranges
 				Range<int?>.Empty);
 			AreEqual(
 				Range<int?, string>.Empty,
-				Range.TryCreate(value2, value1, (string)null));
+				Range.TryCreate(value2, value1, (string?)null));
 			AreEqual(
 				Range<int?, string>.Infinite,
-				Range.Create(empty, empty, (string)null));
+				Range.Create(empty, empty, (string?)null));
 			AreNotEqual(
 				Range<int?, string>.Empty,
 				Range.TryCreate(value2, value1, key));
@@ -236,8 +237,8 @@ namespace CodeJam.Ranges
 			AreEqual(Range.TryCreate(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty, key).ToString(), "'Hello!':∅");
 			AreEqual(Range.Create(empty, empty, key).ToString(), "'Hello!':(-∞..+∞)");
 			AreEqual(Range.TryCreate(empty, empty, key).ToString(), "'Hello!':(-∞..+∞)");
-			AreEqual(Range.Create(empty, empty, (string)null).ToString(), "'':(-∞..+∞)");
-			AreEqual(Range.TryCreate(empty, empty, (string)null).ToString(), "'':(-∞..+∞)");
+			AreEqual(Range.Create(empty, empty, (string?)null).ToString(), "'':(-∞..+∞)");
+			AreEqual(Range.TryCreate(empty, empty, (string?)null).ToString(), "'':(-∞..+∞)");
 			AreEqual(Range.Create(1, 1, key).ToString(), "'Hello!':[1..1]");
 			AreEqual(Range.TryCreate(1, 1, key).ToString(), "'Hello!':[1..1]");
 			AreEqual(Range.Create(1, 2, key).ToString(), "'Hello!':[1..2]");
@@ -258,10 +259,10 @@ namespace CodeJam.Ranges
 			AreEqual(Range.TryCreate(1.5, 2.5, 1.1).ToString("000.000", cultureRu), "'1,1':[001,500..002,500]");
 			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureEn), "'1.1':[001.500..002.500]");
 			AreEqual(Range.TryCreate(1.5, 2.5, 1.1).ToString("000.000", cultureEn), "'1.1':[001.500..002.500]");
-			AreEqual(Range.Create(1.5, 2.5, (string)null).ToString(null, cultureRu), "'':[1,5..2,5]");
-			AreEqual(Range.TryCreate(1.5, 2.5, (string)null).ToString(null, cultureRu), "'':[1,5..2,5]");
-			AreEqual(Range.Create(1.5, 2.5, (string)null).ToString(null, cultureEn), "'':[1.5..2.5]");
-			AreEqual(Range.TryCreate(1.5, 2.5, (string)null).ToString(null, cultureEn), "'':[1.5..2.5]");
+			AreEqual(Range.Create(1.5, 2.5, (string?)null).ToString(null, cultureRu), "'':[1,5..2,5]");
+			AreEqual(Range.TryCreate(1.5, 2.5, (string?)null).ToString(null, cultureRu), "'':[1,5..2,5]");
+			AreEqual(Range.Create(1.5, 2.5, (string?)null).ToString(null, cultureEn), "'':[1.5..2.5]");
+			AreEqual(Range.TryCreate(1.5, 2.5, (string?)null).ToString(null, cultureEn), "'':[1.5..2.5]");
 		}
 
 		[Test]

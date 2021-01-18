@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using JetBrains.Annotations;
 
@@ -26,8 +25,9 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A new sequence containing any elements sliced out from the source sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
-		public static IQueryable<T> Slice<T>([NotNull] this IQueryable<T> source, [NonNegativeValue] int startIndex, [NonNegativeValue] int count)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IQueryable<T> Slice<T>(
+			this IQueryable<T> source, [NonNegativeValue] int startIndex, [NonNegativeValue] int count)
 		{
 			if (startIndex > 0)
 				source = source.Skip(startIndex);
@@ -48,8 +48,8 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// A new sequence containing elements are at the specified <paramref name="pageIndex"/> from the source sequence.
 		/// </returns>
-		[NotNull, Pure, LinqTunnel]
-		public static IQueryable<T> Page<T>([NotNull] this IQueryable<T> source, int pageIndex, int pageSize)
+		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
+		public static IQueryable<T> Page<T>(this IQueryable<T> source, int pageIndex, int pageSize)
 		{
 			if (pageIndex > 1 && pageSize > 0)
 				source = source.Skip((pageIndex - 1) * pageSize);

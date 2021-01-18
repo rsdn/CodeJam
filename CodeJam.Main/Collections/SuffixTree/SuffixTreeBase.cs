@@ -20,13 +20,12 @@ namespace CodeJam.Collections
 		protected const int RootNodeIndex = 0;
 
 		/// <summary>Tree nodes</summary>
-		[NotNull]
 		private readonly List<Node> _nodes;
 
 		/// <summary>The root node</summary>
 		protected Node Root => _nodes[RootNodeIndex];
 		/// <summary>The comparer to compare edges of a node against a char</summary>
-		[NotNull] protected Func<int, char, int> EdgeComparer { get; }
+		protected Func<int, char, int> EdgeComparer { get; }
 
 		/// <summary>The matched edge and the matched length over this edge</summary>
 		private struct FindResult
@@ -63,7 +62,6 @@ namespace CodeJam.Collections
 		protected int NodesCount => _nodes.Count;
 
 		/// <summary>Concatenated input strings</summary>
-		[NotNull]
 		protected string InternalData { get; private set; }
 
 		/// <summary>String location</summary>
@@ -86,7 +84,6 @@ namespace CodeJam.Collections
 		}
 
 		/// <summary>List of locations of added strings inside the InternalData</summary>
-		[NotNull]
 		protected List<StringLocation> StringLocations { get; }
 
 		/// <summary>Constructs a base for a suffix tree</summary>
@@ -113,7 +110,7 @@ namespace CodeJam.Collections
 		/// The string to add
 		/// <remarks>The last string character should be unique among all added strings</remarks>
 		/// </param>
-		public void Add([NotNull] string data)
+		public void Add(string data)
 		{
 			Code.NotNull(data, nameof(data));
 			if (data.Length == 0)
@@ -131,14 +128,14 @@ namespace CodeJam.Collections
 		/// May return suffixes with the same value of the they are present in different source strings
 		/// </remarks>
 		/// <returns>The enumeration of all suffixes in lexicographical order</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public IEnumerable<Suffix> All() => AllFromNode(Root, 0);
 
 		/// <summary>Checks whether the suffix tree contains the given substring or not</summary>
 		/// <param name="substring">The substring to locate</param>
 		/// <returns>true if found, false otherwise</returns>
-		[Pure]
-		public bool Contains([NotNull] string substring)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public bool Contains(string substring)
 		{
 			Code.NotNull(substring, nameof(substring));
 			if (substring == string.Empty)
@@ -152,8 +149,8 @@ namespace CodeJam.Collections
 		/// <summary>Checks whether the suffix tree contains the given suffix or not</summary>
 		/// <param name="suffix">The suffix to locate</param>
 		/// <returns>true if found, false otherwise</returns>
-		[Pure]
-		public bool ContainsSuffix([NotNull] string suffix)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public bool ContainsSuffix(string suffix)
 		{
 			Code.NotNull(suffix, nameof(suffix));
 			if (suffix == string.Empty)
@@ -168,14 +165,14 @@ namespace CodeJam.Collections
 			if (edge.IsLeaf) // a terminal edge?
 				return true;
 			DebugCode.BugIf(edge.Children == null, "edge.Children == null");
-			return GetNode(edge.Children[0]).Length == 0; // has a child terminal edge of zero length
+			return GetNode(edge.Children![0]).Length == 0; // has a child terminal edge of zero length
 		}
 
 		/// <summary>Enumerates all suffixes starting with the given prefix</summary>
 		/// <param name="prefix">The prefix to find</param>
 		/// <returns>The enumeration of all suffixes with the given prefix in lexicographical order</returns>
-		[Pure]
-		public IEnumerable<Suffix> StartingWith([NotNull] string prefix)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public IEnumerable<Suffix> StartingWith(string prefix)
 		{
 			Code.NotNull(prefix, nameof(prefix));
 			if (prefix == string.Empty)
@@ -202,7 +199,7 @@ namespace CodeJam.Collections
 		/// May return suffixes with the same value of the they are present in different source strings
 		/// </remarks>
 		/// <returns>The enumeration of all suffixes in the subtree in lexicographical order</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private IEnumerable<Suffix> AllFromNode(Node node, int length)
 		{
 			DebugCode.AssertArgument(length >= 0, nameof(length), "The length should be non-negative");
@@ -217,10 +214,10 @@ namespace CodeJam.Collections
 
 			var branchStack = new Stack<BranchPoint>();
 			var branchPoint = new BranchPoint { Node = node, EdgeIndex = 0 };
-			for (; ; )
+			for (;;)
 			{
 				DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
-				var edge = GetNode(branchPoint.Node.Children[branchPoint.EdgeIndex]);
+				var edge = GetNode(branchPoint.Node.Children![branchPoint.EdgeIndex]);
 				var edgeLength = edge.Length;
 				length += edgeLength;
 				if (!edge.IsTerminal)
@@ -235,12 +232,12 @@ namespace CodeJam.Collections
 				yield return CreateSuffix(edge.End, length);
 
 				// Move to the next suffix branch
-				for (; ; )
+				for (;;)
 				{
 					length -= edgeLength;
 					var nextEdgeIndex = branchPoint.EdgeIndex + 1;
 					DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
-					if (nextEdgeIndex < branchPoint.Node.Children.Count)
+					if (nextEdgeIndex < branchPoint.Node.Children!.Count)
 					{
 						branchPoint.EdgeIndex = nextEdgeIndex;
 						break;
@@ -262,7 +259,7 @@ namespace CodeJam.Collections
 		/// <param name="end">The suffix end</param>
 		/// <param name="length">The suffix length</param>
 		/// <returns>The suffix</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private Suffix CreateSuffix([NonNegativeValue] int end, [NonNegativeValue] int length)
 		{
 			var sourceIndex = GetSourceIndexByEnd(end);
@@ -274,13 +271,13 @@ namespace CodeJam.Collections
 		/// <summary>Locates the branch corresponding to the given string</summary>
 		/// <param name="s">The string to find</param>
 		/// <returns>The last matched edge and the matched length over this edge or null if no match found</returns>
-		[Pure]
-		private ValueOption<FindResult> FindBranch([NotNull] string s)
+		[Pure, System.Diagnostics.Contracts.Pure]
+		private ValueOption<FindResult> FindBranch(string s)
 		{
 			DebugCode.AssertState(s.Length > 0, "The string length should be positive");
 			var currentNode = Root;
 			var offset = 0;
-			for (; ; )
+			for (;;)
 			{
 				var edgeIndex = FindEdge(currentNode, s[offset], out var edge);
 				if (edgeIndex == -1)
@@ -304,7 +301,7 @@ namespace CodeJam.Collections
 		/// <param name="c">The char to find</param>
 		/// <param name="edge">Te edge found</param>
 		/// <returns>The index of the edge or -1 if there is no edge starting with the given char</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		private int FindEdge(Node node, char c, out Node edge)
 		{
 			edge = default;
@@ -313,8 +310,8 @@ namespace CodeJam.Collections
 				return -1;
 			}
 			DebugCode.BugIf(node.Children == null, "node.Children == null");
-			var edgeIndex = node.Children.LowerBound(c, EdgeComparer);
-			if (edgeIndex == node.Children.Count)
+			var edgeIndex = node.Children!.LowerBound(c, EdgeComparer);
+			if (edgeIndex == node.Children!.Count)
 			{
 				return -1;
 			}
@@ -343,13 +340,13 @@ namespace CodeJam.Collections
 
 		/// <summary>Prints the tree structure to the string for the debugging purposes</summary>
 		/// <returns>The tree structure as a string</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public string Print()
 		{
 			var sb = new StringBuilder();
 			var currentIndex = RootNodeIndex;
 			var stack = new List<StringLocation>();
-			for (; ; )
+			for (;;)
 			{
 				PrintNodeWithPath(sb, currentIndex, stack);
 				var node = GetNode(currentIndex);
@@ -369,7 +366,7 @@ namespace CodeJam.Collections
 					if (nextChild >= 0)
 					{
 						DebugCode.BugIf(node.Children == null, "node.Children == null");
-						currentIndex = node.Children[nextChild];
+						currentIndex = node.Children![nextChild];
 						stack.Add(new StringLocation(t.Start, nextChild - 1));
 						break;
 					}
@@ -387,9 +384,9 @@ namespace CodeJam.Collections
 		/// <param name="nodeIndex">THe index of the node</param>
 		/// <param name="stack">The stack of nodes to process</param>
 		private void PrintNodeWithPath(
-			[NotNull] StringBuilder sb,
+			StringBuilder sb,
 			int nodeIndex,
-			[NotNull] IList<StringLocation> stack)
+			IList<StringLocation> stack)
 		{
 			if (stack.Count > 0)
 			{
@@ -413,7 +410,7 @@ namespace CodeJam.Collections
 		/// <summary>Prints a single node information</summary>
 		/// <param name="sb">The builder to print to</param>
 		/// <param name="nodeIndex">The node index</param>
-		protected virtual void AppendNodeText([NotNull] StringBuilder sb, [NonNegativeValue] int nodeIndex)
+		protected virtual void AppendNodeText(StringBuilder sb, [NonNegativeValue] int nodeIndex)
 		{
 			var n = GetNode(nodeIndex);
 			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.Length)})");
@@ -429,7 +426,7 @@ namespace CodeJam.Collections
 			/// <param name="end">An edge end offset</param>
 			/// <param name="terminal">Is the edge terminates the string or not</param>
 			/// <param name="children">A list of child nodes (edges)</param>
-			public Node([NonNegativeValue] int begin, int end, bool terminal, List<int> children = null)
+			public Node(int begin, int end, bool terminal, List<int>? children = null)
 			{
 				DebugCode.AssertArgument(end >= 0, nameof(end), "end should be nonnegative");
 				Begin = begin;
@@ -441,8 +438,7 @@ namespace CodeJam.Collections
 			/// A list of child nodes
 			/// <remarks>null for leaf nodes</remarks>
 			/// </summary>
-			[CanBeNull]
-			public List<int> Children { get; }
+			public List<int>? Children { get; }
 			/// <summary>Shows whether it is a leaf or an internal node</summary>
 			public bool IsLeaf => Children == null;
 			/// <summary>Shows whether it is a terminal (ending at a string end) node or not</summary>

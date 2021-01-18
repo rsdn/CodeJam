@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
@@ -17,7 +16,7 @@ namespace CodeJam.TableData
 		/// </summary>
 		/// <param name="lineNum">The line number.</param>
 		/// <param name="values">Line values.</param>
-		public DataLine(int lineNum, [NotNull, ItemNotNull] string[] values)
+		public DataLine(int lineNum, string[] values)
 		{
 			LineNum = lineNum;
 			Values = values;
@@ -31,8 +30,6 @@ namespace CodeJam.TableData
 		/// <summary>
 		/// Line values.
 		/// </summary>
-		[NotNull]
-		[ItemNotNull]
 		public string[] Values { get; }
 
 		#region Overrides of ValueType

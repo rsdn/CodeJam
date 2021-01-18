@@ -17,8 +17,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentNullException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentNullException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentNullException ArgumentNull([NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentNullException ArgumentNull([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentNullException(argumentName).LogToCodeTraceSourceBeforeThrow();
@@ -28,8 +28,8 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="type">Type of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException" />.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentDefault([NotNull, InvokerParameterName] string argumentName, [NotNull] Type type)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentDefault([InvokerParameterName] string argumentName, Type type)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -41,8 +41,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for null collection item.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentItemNull([NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentItemNull([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -56,8 +56,8 @@ namespace CodeJam
 		/// </summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/></returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentEmpty([NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentEmpty([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -69,8 +69,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for empty string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNullOrEmpty([NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNullOrEmpty([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -82,8 +82,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for empty (or whitespace) string.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentNullOrWhiteSpace([NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentNullOrWhiteSpace([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -98,9 +98,9 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange(
-			[NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			int value, int fromValue, int toValue)
 		{
 			BreakIfAttached();
@@ -117,9 +117,9 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange(
-			[NotNull, InvokerParameterName] string argumentName,
+			[InvokerParameterName] string argumentName,
 			double value, double fromValue, double toValue)
 		{
 			BreakIfAttached();
@@ -137,12 +137,12 @@ namespace CodeJam
 		/// <param name="fromValue">From value (inclusive).</param>
 		/// <param name="toValue">To value (inclusive).</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentOutOfRangeException ArgumentOutOfRange<T>(
-			[NotNull, InvokerParameterName] string argumentName,
-			[NotNull] T value,
-			[NotNull] T fromValue,
-			[NotNull] T toValue)
+			[InvokerParameterName] string argumentName,
+			T value,
+			T fromValue,
+			T toValue)
 		{
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
@@ -158,10 +158,10 @@ namespace CodeJam
 		/// <param name="startIndex">The start index.</param>
 		/// <param name="length">The length.</param>
 		/// <returns>Initialized instance of <see cref="IndexOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static IndexOutOfRangeException IndexOutOfRange(
-			[NotNull, InvokerParameterName] string argumentName,
-			int value, [NonNegativeValue] int startIndex, [NonNegativeValue] int length)
+			[InvokerParameterName] string argumentName,
+			int value, int startIndex, int length)
 		{
 			BreakIfAttached();
 			return new IndexOutOfRangeException(
@@ -173,9 +173,8 @@ namespace CodeJam
 		/// <summary>Creates <see cref="ArgumentException"/> for non-cancellable tokens.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ArgumentException ArgumentWaitCancellationRequired(
-			[NotNull, InvokerParameterName] string argumentName)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentException ArgumentWaitCancellationRequired([InvokerParameterName] string argumentName)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -191,12 +190,12 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static ArgumentException Argument(
-			[NotNull, InvokerParameterName] string argumentName,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			[InvokerParameterName] string argumentName,
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new ArgumentException(
@@ -209,11 +208,11 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static InvalidOperationException InvalidOperation(
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new InvalidOperationException(InvariantFormat(messageFormat, args))
@@ -224,11 +223,11 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="OverflowException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static OverflowException Overflow(
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new OverflowException(InvariantFormat(messageFormat, args))
@@ -241,11 +240,11 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="TimeoutException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static TimeoutException Timeout(
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new TimeoutException(InvariantFormat(messageFormat, args))
@@ -255,7 +254,7 @@ namespace CodeJam
 		/// <summary>Creates <see cref="TimeoutException" />.</summary>
 		/// <param name="timeout">The timeout.</param>
 		/// <returns>Initialized instance of <see cref="TimeoutException" />.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static TimeoutException Timeout(TimeSpan timeout)
 		{
 			BreakIfAttached();
@@ -272,10 +271,10 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
-			[NotNull, InvokerParameterName] string argumentName,
-			[CanBeNull] T value)
+			[InvokerParameterName] string argumentName,
+			T? value)
 		{
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
@@ -296,12 +295,13 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static ArgumentOutOfRangeException UnexpectedArgumentValue<T>(
-			[NotNull, InvokerParameterName] string argumentName,
-			[CanBeNull] T value,
-			[NotNull] string messageFormat, [CanBeNull] params object[] args)
+			[InvokerParameterName] string argumentName,
+			T? value,
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new ArgumentOutOfRangeException(
@@ -318,8 +318,8 @@ namespace CodeJam
 		/// <typeparam name="T">The type of the value. Auto-inferred.</typeparam>
 		/// <param name="value">The value.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static InvalidOperationException UnexpectedValue<T>([CanBeNull] T value)
+		[DebuggerHidden, MustUseReturnValue]
+		public static InvalidOperationException UnexpectedValue<T>(T? value)
 		{
 			BreakIfAttached();
 			var valueType = value?.GetType() ?? typeof(T);
@@ -335,10 +335,11 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="InvalidOperationException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static InvalidOperationException UnexpectedValue(
-			[NotNull] string messageFormat, [CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new InvalidOperationException(InvariantFormat(messageFormat, args))
@@ -348,8 +349,8 @@ namespace CodeJam
 		/// <summary>Throw this if the object is disposed.</summary>
 		/// <param name="typeofDisposedObject">The typeof disposed object.</param>
 		/// <returns>Initialized instance of <see cref="ObjectDisposedException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
-		public static ObjectDisposedException ObjectDisposed([CanBeNull] Type typeofDisposedObject)
+		[DebuggerHidden, MustUseReturnValue]
+		public static ObjectDisposedException ObjectDisposed(Type? typeofDisposedObject)
 		{
 			BreakIfAttached();
 			return new ObjectDisposedException(typeofDisposedObject?.FullName)
@@ -361,12 +362,12 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="ObjectDisposedException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static ObjectDisposedException ObjectDisposed(
-			[CanBeNull] Type typeofDisposedObject,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			Type? typeofDisposedObject,
+			string messageFormat,
+			params object[]? args)
 		{
 			BreakIfAttached();
 			return new ObjectDisposedException(
@@ -379,9 +380,9 @@ namespace CodeJam
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Initialized instance of <see cref="NotSupportedException"/>.</returns>
-		[DebuggerHidden, NotNull, MustUseReturnValue]
+		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
-		public static NotSupportedException Unreachable([NotNull] string messageFormat, [CanBeNull] params object[] args)
+		public static NotSupportedException Unreachable(string messageFormat, params object[]? args)
 		{
 			BreakIfAttached();
 			return new NotSupportedException(InvariantFormat(messageFormat, args))

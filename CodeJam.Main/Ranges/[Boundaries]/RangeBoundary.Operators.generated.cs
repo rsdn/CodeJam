@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using System;
 using System.Runtime.CompilerServices;
 
@@ -58,7 +61,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &gt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator >(RangeBoundaryFrom<T> boundary1, T boundary2) =>
+		public static bool operator >(RangeBoundaryFrom<T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) > 0;
 
 		/// <summary>Implements the operator &gt;.</summary>
@@ -66,7 +69,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &gt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator >(T boundary1, RangeBoundaryFrom<T> boundary2) =>
+		public static bool operator >(T? boundary1, RangeBoundaryFrom<T> boundary2) =>
 			boundary2.CompareTo(boundary1) < 0;
 
 		/// <summary>Implements the operator &gt;=.</summary>
@@ -90,7 +93,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &gt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator >=(RangeBoundaryFrom<T> boundary1, T boundary2) =>
+		public static bool operator >=(RangeBoundaryFrom<T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) >= 0;
 
 		/// <summary>Implements the operator &gt;=.</summary>
@@ -98,7 +101,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &gt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator >=(T boundary1, RangeBoundaryFrom<T> boundary2) =>
+		public static bool operator >=(T? boundary1, RangeBoundaryFrom<T> boundary2) =>
 			boundary2.CompareTo(boundary1) <= 0;
 
 		/// <summary>Implements the operator &lt;.</summary>
@@ -122,7 +125,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <(RangeBoundaryFrom<T> boundary1, T boundary2) =>
+		public static bool operator <(RangeBoundaryFrom<T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) < 0;
 
 		/// <summary>Implements the operator &lt;.</summary>
@@ -130,7 +133,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <(T boundary1, RangeBoundaryFrom<T> boundary2) =>
+		public static bool operator <(T? boundary1, RangeBoundaryFrom<T> boundary2) =>
 			boundary2.CompareTo(boundary1) > 0;
 
 		/// <summary>Implements the operator &lt;=.</summary>
@@ -154,7 +157,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <=(RangeBoundaryFrom<T> boundary1, T boundary2) =>
+		public static bool operator <=(RangeBoundaryFrom<T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) <= 0;
 
 		/// <summary>Implements the operator &lt;=.</summary>
@@ -162,7 +165,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <=(T boundary1, RangeBoundaryFrom<T> boundary2) =>
+		public static bool operator <=(T? boundary1, RangeBoundaryFrom<T> boundary2) =>
 			boundary2.CompareTo(boundary1) >= 0;
 		#endregion
 		#endregion
@@ -212,7 +215,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &gt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator >(RangeBoundaryTo<T> boundary1, T boundary2) =>
+		public static bool operator >(RangeBoundaryTo<T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) > 0;
 
 		/// <summary>Implements the operator &gt;.</summary>
@@ -220,7 +223,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &gt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator >(T boundary1, RangeBoundaryTo<T> boundary2) =>
+		public static bool operator >(T? boundary1, RangeBoundaryTo<T> boundary2) =>
 			boundary2.CompareTo(boundary1) < 0;
 
 		/// <summary>Implements the operator &gt;=.</summary>
@@ -244,7 +247,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &gt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator >=(RangeBoundaryTo<T> boundary1, T boundary2) =>
+		public static bool operator >=(RangeBoundaryTo<T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) >= 0;
 
 		/// <summary>Implements the operator &gt;=.</summary>
@@ -252,7 +255,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &gt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator >=(T boundary1, RangeBoundaryTo<T> boundary2) =>
+		public static bool operator >=(T? boundary1, RangeBoundaryTo<T> boundary2) =>
 			boundary2.CompareTo(boundary1) <= 0;
 
 		/// <summary>Implements the operator &lt;.</summary>
@@ -276,7 +279,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <(RangeBoundaryTo<T> boundary1, T boundary2) =>
+		public static bool operator <(RangeBoundaryTo<T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) < 0;
 
 		/// <summary>Implements the operator &lt;.</summary>
@@ -284,7 +287,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt; boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <(T boundary1, RangeBoundaryTo<T> boundary2) =>
+		public static bool operator <(T? boundary1, RangeBoundaryTo<T> boundary2) =>
 			boundary2.CompareTo(boundary1) > 0;
 
 		/// <summary>Implements the operator &lt;=.</summary>
@@ -308,7 +311,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The value of the boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <=(RangeBoundaryTo<T> boundary1, T boundary2) =>
+		public static bool operator <=(RangeBoundaryTo<T> boundary1, T? boundary2) =>
 			boundary1.CompareTo(boundary2) <= 0;
 
 		/// <summary>Implements the operator &lt;=.</summary>
@@ -316,7 +319,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundary2">The boundary2.</param>
 		/// <returns><c>True</c>, if boundary1 &lt;= boundary2.</returns>
 		[MethodImpl(AggressiveInlining)]
-		public static bool operator <=(T boundary1, RangeBoundaryTo<T> boundary2) =>
+		public static bool operator <=(T? boundary1, RangeBoundaryTo<T> boundary2) =>
 			boundary2.CompareTo(boundary1) >= 0;
 		#endregion
 		#endregion

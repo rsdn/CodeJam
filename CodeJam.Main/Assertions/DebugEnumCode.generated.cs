@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#nullable enable
+
+
 using static CodeJam.DebugCode;
 
 using System;
@@ -32,7 +35,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void Defined<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.IsDefined(value))
@@ -47,7 +50,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void FlagsDefined<TEnum>(
 			TEnum argFlags,
-			[NotNull, InvokerParameterName] string argName)
+			[InvokerParameterName] string argName)
 			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.AreFlagsDefined(argFlags))
@@ -65,7 +68,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void FlagSet<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			TEnum flag)
 			where TEnum : struct, Enum
 		{
@@ -82,7 +85,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void AnyFlagUnset<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			TEnum flags)
 			where TEnum : struct, Enum
 		{
@@ -99,7 +102,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void AnyFlagSet<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			TEnum flags)
 			where TEnum : struct, Enum
 		{
@@ -116,7 +119,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void FlagUnset<TEnum>(
 			TEnum value,
-			[NotNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			TEnum flag)
 			where TEnum : struct, Enum
 		{
@@ -133,12 +136,13 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void StateFlagSet<TEnum>(TEnum value, TEnum flag, [NotNull] string message)
+		public static void StateFlagSet<TEnum>(TEnum value, TEnum flag, string message)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagSet(flag))
 				throw CodeExceptions.InvalidOperation(message);
 		}
+
 		/// <summary>Asserts that the specified state flag is set.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="value">The value.</param>
@@ -149,8 +153,8 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void StateFlagSet<TEnum>(
 			TEnum value, TEnum flag,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagSet(flag))
@@ -164,7 +168,7 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void AnyStateFlagUnset<TEnum>(TEnum value, TEnum flags, [NotNull] string message)
+		public static void AnyStateFlagUnset<TEnum>(TEnum value, TEnum flags, string message)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagUnset(flags))
@@ -181,8 +185,8 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void AnyStateFlagUnset<TEnum>(
 			TEnum value, TEnum flags,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagUnset(flags))
@@ -196,7 +200,7 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void AnyStateFlagSet<TEnum>(TEnum value, TEnum flags, [NotNull] string message)
+		public static void AnyStateFlagSet<TEnum>(TEnum value, TEnum flags, string message)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagSet(flags))
@@ -213,8 +217,8 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void AnyStateFlagSet<TEnum>(
 			TEnum value, TEnum flags,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsAnyFlagSet(flags))
@@ -228,7 +232,7 @@ namespace CodeJam
 		/// <param name="message">The message.</param>
 		[Conditional(DebugCondition), DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void StateFlagUnset<TEnum>(TEnum value, TEnum flag, [NotNull] string message)
+		public static void StateFlagUnset<TEnum>(TEnum value, TEnum flag, string message)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagUnset(flag))
@@ -245,8 +249,8 @@ namespace CodeJam
 		[AssertionMethod, StringFormatMethod("messageFormat")]
 		public static void StateFlagUnset<TEnum>(
 			TEnum value, TEnum flag,
-			[NotNull] string messageFormat,
-			[CanBeNull] params object[] args)
+			string messageFormat,
+			params object[]? args)
 			where TEnum : struct, Enum
 		{
 			if (!value.IsFlagUnset(flag))

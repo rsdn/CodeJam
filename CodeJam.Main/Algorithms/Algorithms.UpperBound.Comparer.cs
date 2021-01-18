@@ -17,12 +17,12 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int UpperBound<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
-			list.UpperBound(value, 0, list.Count, comparer);
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[InstantHandle] Func<TElement, TValue, int> comparer) =>
+				list.UpperBound(value, 0, list.Count, comparer);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] > value
@@ -35,13 +35,13 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int UpperBound<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NonNegativeValue] int startIndex,
-				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer) =>
-			list.UpperBound(value, startIndex, list.Count, comparer);
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[NonNegativeValue] int startIndex,
+			[InstantHandle] Func<TElement, TValue, int> comparer) =>
+				list.UpperBound(value, startIndex, list.Count, comparer);
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] > value
@@ -55,13 +55,13 @@ namespace CodeJam
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The upper bound for the value</returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int UpperBound<TElement, TValue>(
-				[NotNull, InstantHandle] this IList<TElement> list,
-				TValue value,
-				[NonNegativeValue] int startIndex,
-				[NonNegativeValue] int endIndex,
-				[NotNull, InstantHandle] Func<TElement, TValue, int> comparer)
+			[InstantHandle] this IList<TElement> list,
+			TValue value,
+			[NonNegativeValue] int startIndex,
+			[NonNegativeValue] int endIndex,
+			[InstantHandle] Func<TElement, TValue, int> comparer)
 		{
 			Code.NotNull(list, nameof(list));
 			Code.NotNull(comparer, nameof(comparer));
@@ -83,11 +83,11 @@ namespace CodeJam
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The upper bound for the value</returns>
 		private static int UpperBoundCore<TElement, TValue>(
-			[NotNull] this IList<TElement> list,
+			this IList<TElement> list,
 			TValue value,
 			[NonNegativeValue] int startIndex,
 			[NonNegativeValue] int endIndex,
-			[NotNull] Func<TElement, TValue, int> comparer)
+			Func<TElement, TValue, int> comparer)
 		{
 			while (startIndex < endIndex)
 			{

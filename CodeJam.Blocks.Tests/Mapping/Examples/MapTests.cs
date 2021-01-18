@@ -18,12 +18,12 @@ namespace CodeJam.Mapping.Examples
 		private class Class1
 		{
 			public int Prop1 { get; set; }
-			public string Field1;
+			public string? Field1;
 		}
 
 		private class Class2
 		{
-			public string Prop1 { get; set; }
+			public string? Prop1 { get; set; }
 			public DateTime? Field1;
 		}
 
@@ -75,7 +75,7 @@ namespace CodeJam.Mapping.Examples
 
 			// Map Class1 to existing Class2.
 			//
-			_class1ToClass2Mapper.Map(
+			_ = _class1ToClass2Mapper.Map(
 				new Class1
 				{
 					Prop1 = 41,

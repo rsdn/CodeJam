@@ -19,13 +19,13 @@ namespace CodeJam
 		/// <typeparam name="TArg">Type of argument</typeparam>
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
-		[NotNull]
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
-				[NotNull] this Func<TArg, TResult> func,
-				IEqualityComparer<TArg> comparer,
-				bool threadSafe = false) =>
-			Memoize(func, comparer, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+			this Func<TArg, TResult> func,
+			IEqualityComparer<TArg> comparer,
+			bool threadSafe = false)
+			where TArg : notnull =>
+				Memoize(func, comparer, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
 
 		/// <summary>
 		/// Caches function value for specific argument.
@@ -36,12 +36,12 @@ namespace CodeJam
 		/// <typeparam name="TArg">Type of argument</typeparam>
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
-		[NotNull]
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
-			[NotNull] this Func<TArg, TResult> func,
-			[CanBeNull] IEqualityComparer<TArg> comparer,
+			this Func<TArg, TResult> func,
+			IEqualityComparer<TArg>? comparer,
 			LazyThreadSafetyMode threadSafety)
+			where TArg : notnull
 		{
 			var map = LazyDictionary.Create(func, comparer, threadSafety);
 			return arg => map[arg];
@@ -55,12 +55,12 @@ namespace CodeJam
 		/// <typeparam name="TArg">Type of argument</typeparam>
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
-		[NotNull]
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
-				[NotNull] this Func<TArg, TResult> func,
-				bool threadSafe = false) =>
-			Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
+			this Func<TArg, TResult> func,
+			bool threadSafe = false)
+			where TArg : notnull =>
+				Memoize(func, threadSafe ? LazyThreadSafetyMode.ExecutionAndPublication : LazyThreadSafetyMode.None);
 
 		/// <summary>
 		/// Caches function value for specific argument.
@@ -70,11 +70,11 @@ namespace CodeJam
 		/// <typeparam name="TArg">Type of argument</typeparam>
 		/// <typeparam name="TResult">Type of result</typeparam>
 		/// <returns>Memoized function</returns>
-		[NotNull]
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Func<TArg, TResult> Memoize<TArg, TResult>(
-				[NotNull] this Func<TArg, TResult> func,
-				LazyThreadSafetyMode threadSafety)
+			this Func<TArg, TResult> func,
+			LazyThreadSafetyMode threadSafety)
+			where TArg : notnull
 		{
 			var map = LazyDictionary.Create(func, threadSafety);
 			return arg => map[arg];

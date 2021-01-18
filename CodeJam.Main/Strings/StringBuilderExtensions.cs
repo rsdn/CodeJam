@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 using JetBrains.Annotations;
 
@@ -18,9 +17,9 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// <c>true</c> if <paramref name="value"/> is null or empty; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
- 		[ContractAnnotation("value:null => true")]
-		public static bool IsNullOrEmpty([CanBeNull] this StringBuilder value) =>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		[ContractAnnotation("value:null => true")]
+		public static bool IsNullOrEmpty(this StringBuilder? value) =>
 			value == null || value.Length == 0;
 
 		/// <summary>
@@ -30,9 +29,9 @@ namespace CodeJam.Strings
 		/// <returns>
 		/// <c>true</c> if <paramref name="value"/> is not null and not empty; otherwise, <c>false</c>.
 		/// </returns>
-		[Pure]
+		[Pure, System.Diagnostics.Contracts.Pure]
 		[ContractAnnotation("value:null => false")]
-		public static bool NotNullNorEmpty([CanBeNull] this StringBuilder value) =>
+		public static bool NotNullNorEmpty(this StringBuilder? value) =>
 			!IsNullOrEmpty(value);
 	}
 }

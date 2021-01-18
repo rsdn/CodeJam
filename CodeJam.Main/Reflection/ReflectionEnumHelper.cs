@@ -21,8 +21,7 @@ namespace CodeJam.Reflection
 		/// An object representing the public field with the specified enumeration value, if found;
 		/// otherwise, null.
 		/// </returns>
-		[CanBeNull]
-		public static FieldInfo GetField<TEnum>(TEnum value) where TEnum : struct, Enum
+		public static FieldInfo? GetField<TEnum>(TEnum value) where TEnum : struct, Enum
 		{
 			var type = typeof(TEnum);
 			var name = Enum.GetName(type, value);
@@ -35,14 +34,12 @@ namespace CodeJam.Reflection
 		/// <summary>Returns enum fields for enum type.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>
 		/// <returns>List of enum fields.</returns>
-		[NotNull]
 		public static FieldInfo[] GetFields<TEnum>() where TEnum : struct =>
 			GetFields(typeof(TEnum));
 
 		/// <summary>Returns enum fields for enum type.</summary>
 		/// <param name="enumType">Type of the enum.</param>
 		/// <returns>List of enum fields.</returns>
-		[NotNull]
 		public static FieldInfo[] GetFields(Type enumType)
 		{
 			if (!typeof(Enum).IsAssignableFrom(enumType))
