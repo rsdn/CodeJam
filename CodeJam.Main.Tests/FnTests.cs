@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using NUnit.Framework;
 
 // ReSharper disable once CheckNamespace

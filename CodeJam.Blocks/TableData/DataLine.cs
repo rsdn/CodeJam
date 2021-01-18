@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using CodeJam.Strings;
 
 using JetBrains.Annotations;

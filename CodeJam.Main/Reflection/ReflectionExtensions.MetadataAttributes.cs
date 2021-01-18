@@ -7,8 +7,6 @@ using System.Reflection;
 using CodeJam.Collections;
 using CodeJam.Targeting;
 
-using JetBrains.Annotations;
-
 // ReSharper disable once CheckNamespace
 
 namespace CodeJam.Reflection

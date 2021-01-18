@@ -84,6 +84,7 @@ namespace CodeJam.Mapping
 		/// <param name="source">Object to map.</param>
 		/// <param name="destination">Destination object.</param>
 		/// <returns>Destination object.</returns>
+		[Pure, System.Diagnostics.Contracts.Pure]
 		public TTo Map(TFrom source, TTo destination)
 			=> GetMapper()(source, destination, new Dictionary<object, object>());
 

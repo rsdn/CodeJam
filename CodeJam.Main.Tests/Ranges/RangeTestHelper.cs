@@ -3,8 +3,6 @@ using System.Globalization;
 
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 namespace CodeJam.Ranges
 {
 	public static class RangeTestHelper

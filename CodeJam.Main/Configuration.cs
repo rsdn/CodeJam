@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading;
 
 // ReSharper disable once RedundantUsingDirective
-using System.Threading.Tasks;
-
 using CodeJam.Threading;
 
 using JetBrains.Annotations;

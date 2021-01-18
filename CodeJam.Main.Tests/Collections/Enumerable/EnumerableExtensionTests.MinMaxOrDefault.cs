@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static NUnit.Framework.Assert;

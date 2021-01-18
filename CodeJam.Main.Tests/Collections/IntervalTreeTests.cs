@@ -4,8 +4,6 @@ using System.Linq;
 using CodeJam.Collections;
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 namespace CodeJam.Ranges
@@ -29,12 +27,12 @@ namespace CodeJam.Ranges
 
 		private const int Count = 1000;
 
-		private readonly CompositeRange<int, string> _sameStartRanges;
-		private readonly CompositeRange<int, string> _sameEndRanges;
-		private readonly CompositeRange<int, string> _nonOverlappingRanges;
-		private readonly CompositeRange<int, string> _overlappingRanges;
+		private static readonly CompositeRange<int, string> _sameStartRanges;
+		private static readonly CompositeRange<int, string> _sameEndRanges;
+		private static readonly CompositeRange<int, string> _nonOverlappingRanges;
+		private static readonly CompositeRange<int, string> _overlappingRanges;
 
-		public IntervalTreeTests()
+		static IntervalTreeTests()
 		{
 			_sameStartRanges = Enumerable.Range(0, Count)
 				.ToCompositeRange(i => 0, i => 2 * i, i => i.ToString());

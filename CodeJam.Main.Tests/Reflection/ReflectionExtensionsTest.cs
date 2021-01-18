@@ -8,8 +8,6 @@ using System.Runtime.CompilerServices;
 
 using CodeJam.Targeting;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 // ReSharper disable NUnit.IncorrectArgumentType

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 using CodeJam.Ranges;
 
-using JetBrains.Annotations;
-
 using Range = CodeJam.Ranges.Range;
 
 namespace CodeJam.Dates

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CodeJam.Strings
+﻿namespace CodeJam.Strings
 {
 	/// <summary>
 	/// String functions relative parameters origin

@@ -4,8 +4,6 @@ using System.Linq;
 
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;

@@ -1,10 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 
 using CodeJam.Strings;
-
-using JetBrains.Annotations;
 
 using NUnit.Framework;
 

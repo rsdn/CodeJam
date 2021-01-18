@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 #if NET45_OR_GREATER || TARGETS_NETCOREAPP
