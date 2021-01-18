@@ -143,7 +143,7 @@ namespace CodeJam.Metadata
 					.Select(
 						t =>
 						{
-							var aname = t.Attribute("Name");
+							var aname = t.Attribute(XName.Get("Name"));
 
 							if (aname == null)
 								throw new MetadataException($"'{fileName}': Element 'Type' has to have 'Name' attribute.");
@@ -152,7 +152,7 @@ namespace CodeJam.Metadata
 
 							var members = t.Elements().Where(e => e.Name.LocalName == "Member").Select(m =>
 							{
-								var maname = m.Attribute("Name");
+								var maname = m.Attribute(XName.Get("Name"));
 
 								if (maname == null)
 									throw new MetadataException($"'{fileName}': Element <Type Name='{tname}'><Member /> has to have 'Name' attribute.");
