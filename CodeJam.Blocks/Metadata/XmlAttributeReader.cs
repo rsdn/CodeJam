@@ -143,28 +143,26 @@ namespace CodeJam.Metadata
 					.Select(
 						t =>
 						{
-							var aName = t.Attribute(XName.Get("Name"));
+							var aname = t.Attribute("Name");
 
-							if (aName == null)
+							if (aname == null)
 								throw new MetadataException($"'{fileName}': Element 'Type' has to have 'Name' attribute.");
 
-							var tName = aName.Value;
+							var tname = aname.Value;
 
-							var members = t.Elements().Where(e => e.Name.LocalName == "Member").Select(
-								m =>
-								{
-									var maName = m.Attribute(XName.Get("Name"));
+							var members = t.Elements().Where(e => e.Name.LocalName == "Member").Select(m =>
+							{
+								var maname = m.Attribute("Name");
 
-									if (maName == null)
-										throw new MetadataException(
-											$"'{fileName}': Element <Type Name='{tName}'><Member /> has to have 'Name' attribute.");
+								if (maname == null)
+									throw new MetadataException($"'{fileName}': Element <Type Name='{tname}'><Member /> has to have 'Name' attribute.");
 
-									var mName = maName.Value;
+								var mname = maname.Value;
 
-									return new MetaMemberInfo(mName, GetAttrs(fileName, m, null, tName, mName));
-								});
+								return new MetaMemberInfo(mname, GetAttrs(fileName, m, null, tname, mname));
+							});
 
-							return new MetaTypeInfo(tName, members.ToDictionary(m => m.Name), GetAttrs(fileName, t, "Member", tName, null));
+							return new MetaTypeInfo(tname, members.ToDictionary(m => m.Name), GetAttrs(fileName, t, "Member", tname, null));
 						})
 					.ToDictionary(t => t.Name);
 		}

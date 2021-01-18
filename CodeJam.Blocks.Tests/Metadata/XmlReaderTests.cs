@@ -12,7 +12,7 @@ namespace CodeJam.Metadata
 {
 	public class XmlReaderTests
 	{
-		const string Data =
+		private const string _data =
 			@"<?xml version='1.0' encoding='utf-8' ?>
 			<Types>
 				<Type Name='MyType'>
@@ -48,28 +48,25 @@ namespace CodeJam.Metadata
 		[Test]
 		public void Parse()
 		{
-			_ = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
+			_ = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(_data)));
 		}
 
 		[AttributeUsage(AttributeTargets.All)]
 		public class TableAttribute : Attribute
 		{
-			public TableAttribute(string name) => Name = name;
-
-			public string Name;
+			public string? Name;
 		}
 
 		[AttributeUsage(AttributeTargets.All)]
 		public class ColumnAttribute : Attribute
 		{
-			public ColumnAttribute(string name) => Name = name;
-			public string Name;
+			public string? Name;
 		}
 
 		[Test]
 		public void TypeAttribute()
 		{
-			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
+			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(_data)));
 			var attrs = rd.GetAttributes<TableAttribute>(typeof(XmlReaderTests));
 
 			NAssert.NotNull(attrs);
@@ -82,7 +79,7 @@ namespace CodeJam.Metadata
 		[Test]
 		public void FieldAttribute()
 		{
-			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
+			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(_data)));
 			var attrs = rd.GetAttributes<ColumnAttribute>(InfoOf.Member<XmlReaderTests>(a => a.Field1)!);
 
 			NAssert.NotNull(attrs);
@@ -95,7 +92,7 @@ namespace CodeJam.Metadata
 		[Test]
 		public void PropertyAttribute()
 		{
-			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
+			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(_data)));
 
 			MappingSchema.Default.AddMetadataReader(rd);
 

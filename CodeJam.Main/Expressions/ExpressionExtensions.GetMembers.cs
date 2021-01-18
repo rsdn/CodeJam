@@ -71,16 +71,12 @@ namespace CodeJam.Expressions
 			if (body is UnaryExpression unary)
 				body = unary.Operand;
 
-			return
-				body switch
-				{
-					MemberExpression {Member:{} member} => member,
-					MethodCallExpression {Method:{} method} => method,
-					NewExpression ne => ne.Constructor,
-					_ => throw CodeExceptions.Argument(
-						nameof(expression),
-						$"Unsupported expression type '{expression.NodeType}' or expression is invalid.")
-					};
+			return body.NodeType switch
+			{
+				ExpressionType.MemberAccess => ((MemberExpression)body).Member,
+				ExpressionType.Call => ((MethodCallExpression)body).Method,
+				_ => ((NewExpression)body).Constructor
+			};
 		}
 
 		/// <summary>
@@ -131,23 +127,36 @@ namespace CodeJam.Expressions
 		/// The <see cref="MethodInfo"/> instance.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static MethodInfo GetMethod(this LambdaExpression expression) =>
-			GetMemberInfo(expression) switch
+		public static MethodInfo GetMethod(this LambdaExpression expression)
+		{
+			var info = GetMemberInfo(expression);
+
+			if (info is PropertyInfo propertyInfo)
 			{
-				PropertyInfo pi => pi.GetGetMethod(true)
-					?? throw CodeExceptions.Argument(nameof(expression), "Property has no get accessor."),
-				MethodInfo mi => mi,
-				_ => throw CodeExceptions.Argument(nameof(expression), "Expression is invalid.")
-				};
+				if (propertyInfo.GetGetMethod(true) is { } getMethodInfo)
+				{
+					return getMethodInfo;
+				}
+
+				throw CodeExceptions.Argument(nameof(expression), "Expression is not property get method.");
+			}
+
+			if (info is MethodInfo methodInfo)
+			{
+				return methodInfo;
+			}
+
+			throw CodeExceptions.Argument(nameof(expression), "Expression is not method call.");
+		}
 
 		/// <summary>
-		/// Returns a name of the property.
-		/// </summary>
-		/// <param name="expression">The expression to analyze.</param>
-		/// <returns>
-		/// A name of the property.
-		/// </returns>
-		[Pure, System.Diagnostics.Contracts.Pure]
+	/// Returns a name of the property.
+	/// </summary>
+	/// <param name="expression">The expression to analyze.</param>
+	/// <returns>
+	/// A name of the property.
+	/// </returns>
+	[Pure, System.Diagnostics.Contracts.Pure]
 		public static string GetPropertyName(this LambdaExpression expression) =>
 			GetMemberExpression(expression).Member.Name;
 

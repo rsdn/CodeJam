@@ -400,7 +400,9 @@ namespace CodeJam.Reflection
 				if (baseType == null)
 					return false;
 
-				if (baseType == check)
+				type = baseType;
+
+				if (type == check)
 					return true;
 			}
 		}

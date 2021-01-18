@@ -111,19 +111,18 @@ namespace CodeJam.Mapping
 			return l;
 		}
 
-		[return: MaybeNull]
-		private LambdaExpression GetExpressionExInner()
+		private LambdaExpression? GetExpressionExInner()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
 				return _mapperBuilder.MappingSchema.GetConvertExpression(_fromType, _toType);
 
 			var pFrom = Parameter(_fromType, "from");
-			var expr = GetExpressionExImpl(pFrom, _toType);
-			Debug.Assert(expr != null);
+			var expr  = GetExpressionExImpl(pFrom, _toType);
 
 			if (_data.IsRestart)
 				return null;
 
+			Debug.Assert(expr != null);
 			var l = Lambda(expr!, pFrom);
 
 			return l;

@@ -37,16 +37,15 @@ namespace CodeJam.Metadata
 						Expression.Convert(
 							Expression.MemberInit(
 								Expression.New(ctor),
-								_values.Select(
-									k =>
-									{
-										var member = type.GetMember(k.Key)[0];
-										var mtype = member.GetMemberType();
+								_values.Select(k =>
+								{
+									var member = type.GetMember(k.Key)[0];
+									var mtype = member.GetMemberType();
 
-										return Expression.Bind(
-											member,
-											Expression.Constant(Converter.ChangeType(k.Value, mtype), mtype));
-									})),
+									return Expression.Bind(
+										member,
+										Expression.Constant(Converter.ChangeType(k.Value, mtype), mtype));
+								})),
 							typeof(Attribute)));
 
 					_func = expr.Compile();

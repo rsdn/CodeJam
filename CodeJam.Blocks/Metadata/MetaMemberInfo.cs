@@ -5,8 +5,6 @@ using System.Linq;
 
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 namespace CodeJam.Metadata
 {
 	internal class MetaMemberInfo

@@ -3,8 +3,6 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-using JetBrains.Annotations;
-
 namespace CodeJam.Metadata
 {
 	internal class AttributeReader : IMetadataReader

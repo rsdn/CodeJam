@@ -1,8 +1,6 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 #pragma warning disable 649
