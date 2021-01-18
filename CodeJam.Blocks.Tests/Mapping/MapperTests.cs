@@ -31,29 +31,22 @@ namespace CodeJam.Mapping
 			where TFrom : new()
 			where TTo   : new()
 		{
-			[MemberNotNull("From")]
-			[MemberNotNull("To")]
 			public MapHelper<TFrom,TTo> Map(bool action, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 				=> Map(action, new TFrom(), setter);
 
-			[MemberNotNull("From")]
-			[MemberNotNull("To")]
 			public MapHelper<TFrom,TTo> Map(bool action, TFrom fromObj, Func<MapperBuilder<TFrom,TTo>,MapperBuilder<TFrom,TTo>> setter)
 			{
 				var mapper = setter(new MapperBuilder<TFrom,TTo>()).GetMapper();
 
-				From = fromObj!;
+				From = fromObj;
 
 				To = action ? mapper.Map(From, new TTo())! : mapper.Map(From)!;
 
 				return this;
 			}
 
-			[DisallowNull]
-			public TFrom? From = default!;
-
-			[DisallowNull]
-			public TTo? To = default!;
+			public TFrom From = default!;
+			public TTo To = default!;
 		}
 
 		private class TestMap {}
