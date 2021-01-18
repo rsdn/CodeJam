@@ -132,10 +132,14 @@ namespace CodeJam.Ranges
 
 		#region Fields & .ctor
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
+#pragma warning disable IDE0044
+
 		[AllowNull]
 		private T _value;
 
 		private RangeBoundaryFromKind _kind;
+
+#pragma warning restore IDE0044
 
 		/// <summary>Creates a new range boundary.</summary>
 		/// <param name="value">

@@ -35,7 +35,7 @@ namespace CodeJam
 			get
 			{
 				var some = this as Some;
-				Code.AssertState(!ReferenceEquals(some, null), "Option has no value.");
+				Code.AssertState(some is not null, "Option has no value.");
 				return some.Value;
 			}
 		}
@@ -90,15 +90,15 @@ namespace CodeJam
 		/// <param name="other">An object to compare with this object.</param>
 		public bool Equals(Option<T>? other)
 		{
-			if (ReferenceEquals(other, null))
+			if (other is null)
 				return false;
 
 			var otherSome = other as Some;
 
 			if (!(this is Some))
-				return ReferenceEquals(otherSome, null);
+				return otherSome is null;
 
-			if (ReferenceEquals(otherSome, null))
+			if (otherSome is null)
 				return false;
 
 			return EqualityComparer<T>.Default.Equals(Value, other.Value);
@@ -111,7 +111,7 @@ namespace CodeJam
 		/// </returns>
 		/// <param name="obj">The object to compare with the current instance. </param>
 		public override bool Equals(object? obj) =>
-			!ReferenceEquals(null, obj) && obj is Option<T> a && Equals(a);
+			obj is Option<T> a && Equals(a);
 
 		/// <summary>Returns the hash code for this instance.</summary>
 		/// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>

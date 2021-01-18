@@ -10,6 +10,7 @@ namespace CodeJam.Ranges
 {
 	public class IntervalTreeTests
 	{
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static List<Range<int, string>> IntersectNaive(CompositeRange<int, string> rangeA, Range<int> overlap)
 		{
 			var result = new List<Range<int, string>>();

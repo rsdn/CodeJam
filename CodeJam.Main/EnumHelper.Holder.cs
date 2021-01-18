@@ -87,26 +87,24 @@ namespace CodeJam
 					.Distinct()
 					.ToArray();
 
-			private static ulong ToUInt64(object value)
-			{
-				switch (Convert.GetTypeCode(value))
+			private static ulong ToUInt64(object value) =>
+				Convert.GetTypeCode(value) switch
 				{
-					case TypeCode.Boolean:
-					case TypeCode.Char:
-					case TypeCode.Byte:
-					case TypeCode.UInt16:
-					case TypeCode.UInt32:
-					case TypeCode.UInt64:
-						return Convert.ToUInt64(value, CultureInfo.InvariantCulture);
-					case TypeCode.SByte:
-					case TypeCode.Int16:
-					case TypeCode.Int32:
-					case TypeCode.Int64:
-						return unchecked((ulong)Convert.ToInt64(value, CultureInfo.InvariantCulture));
-					default:
-						throw CodeExceptions.UnexpectedArgumentValue(nameof(value), value);
-				}
-			}
+					TypeCode.Boolean or
+						TypeCode.Char or
+						TypeCode.Byte or
+						TypeCode.UInt16 or
+						TypeCode.UInt32 or
+						TypeCode.UInt64 =>
+						Convert.ToUInt64(value, CultureInfo.InvariantCulture),
+					TypeCode.SByte or
+						TypeCode.Int16 or
+						TypeCode.Int32 or
+						TypeCode.Int64 =>
+						unchecked((ulong)Convert.ToInt64(value, CultureInfo.InvariantCulture)),
+					_ =>
+						throw CodeExceptions.UnexpectedArgumentValue(nameof(value), value)
+				};
 
 			// NB: simple implementation here
 			// as result of method call is cached.

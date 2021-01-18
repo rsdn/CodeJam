@@ -6,6 +6,8 @@ using JetBrains.Annotations;
 
 using NUnit.Framework;
 
+#pragma warning disable CA1822 // Mark members as static
+
 namespace CodeJam.Reflection
 {
 	[TestFixture]

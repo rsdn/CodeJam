@@ -319,7 +319,7 @@ namespace CodeJam.Mapping
 					return expr;
 				}
 
-				if (fromTypeFields.Any(f => f.attrs.Count(a => a.Value != null) != 0))
+				if (fromTypeFields.Any(f => f.attrs.Any(a => a.Value != null)))
 				{
 					var field = fromTypeFields.First(f => f.attrs.Count == 0);
 
@@ -579,14 +579,12 @@ namespace CodeJam.Mapping
 			return ex;
 		}
 
-		[SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
 		public static ValueTuple<LambdaExpression, LambdaExpression?, bool> GetConverter(
 			[AllowNull] MappingSchema mappingSchema,
 			Type from,
 			Type to)
 		{
-			if (mappingSchema == null)
-				mappingSchema = MappingSchema.Default;
+			mappingSchema ??= MappingSchema.Default;
 
 			var p = Expression.Parameter(from, "p");
 			var nullLambda = null as LambdaExpression;

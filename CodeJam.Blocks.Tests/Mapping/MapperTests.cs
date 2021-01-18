@@ -16,8 +16,9 @@ using NUnit.Framework;
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
 // ReSharper disable NotAccessedField.Local
 
-#pragma warning disable 649
-#pragma warning disable 169
+#pragma warning disable CA1822 // Mark members as static
+#pragma warning disable CS0649
+#pragma warning disable CS0169
 
 namespace CodeJam.Mapping
 {

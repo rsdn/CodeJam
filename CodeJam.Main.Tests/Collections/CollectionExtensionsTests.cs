@@ -14,7 +14,7 @@ namespace CodeJam.Collections
 		[Test]
 		public static void TestNullOrEmpty()
 		{
-			var arr = new int[0];
+			var arr = Array<int>.Empty;
 			var list = new List<int>();
 			var dic = new Dictionary<int, string>();
 			var str = "";
@@ -60,7 +60,7 @@ namespace CodeJam.Collections
 		[Test]
 		public static void TestEmptyIfNull()
 		{
-			var arr = new int[0];
+			var arr = Array<int>.Empty;
 			var list = new List<int>();
 			var dic = new Dictionary<int, string>();
 			var str = "";
@@ -108,7 +108,7 @@ namespace CodeJam.Collections
 		[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 		public static void TestDefaultIfEmpty()
 		{
-			var arr = new int[0];
+			var arr = Array<int>.Empty;
 			var list = new List<int>();
 			var dic = new Dictionary<int, string>();
 			var enumerable = list.AsEnumerable();
