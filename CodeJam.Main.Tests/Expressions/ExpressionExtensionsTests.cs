@@ -15,8 +15,8 @@ namespace CodeJam.Expressions
 			if (e.NodeType == ExpressionType.Constant)
 			{
 				var ce = (ConstantExpression)e;
-				if (ce.Value is int)
-					return Expression.Constant((int)ce.Value * 2);
+				if (ce.Value is int value)
+					return Expression.Constant(value * 2);
 			}
 
 			if (e.NodeType == ExpressionType.Multiply)
@@ -64,12 +64,10 @@ namespace CodeJam.Expressions
 
 			expr = expr.Transform(ex =>
 			{
-				var ce = ex as ConstantExpression;
-
-				if (ce != null)
+				if (ex is ConstantExpression ce)
 				{
 					if (ce.Value is byte) return ex1;
-					if (ce.Value is int)  return ex2;
+					if (ce.Value is int) return ex2;
 					if (ce.Value!.ToString() == "$3$") return ex3;
 				}
 

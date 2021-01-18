@@ -20,7 +20,7 @@ namespace CodeJam
 			#region Implementation of IComparable
 			public int CompareTo([AllowNull] object obj)
 			{
-				if (!(obj is Comparable other)) return 1;
+				if (obj is not Comparable other) return 1;
 
 				return Value.CompareTo(other.Value);
 			}

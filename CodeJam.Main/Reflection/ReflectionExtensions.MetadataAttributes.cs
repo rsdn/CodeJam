@@ -195,16 +195,18 @@ namespace CodeJam.Reflection
 			var typesToCheck = Sequence.CreateWhileNotNull(type, t => t?.DeclaringType);
 			foreach (var typeToCheck in typesToCheck)
 			{
+#pragma warning disable IDE0007 // use 'var' instead of explicit type
 				Type[] inheritanceTypes = Sequence.Create(
 					typeToCheck,
 					t => t != null && !visited.Contains(t),
 					t => t?.GetBaseType())
 					.ToArray()!; // Always contains no nulls due to predicate
+#pragma warning restore IDE0007
 
 				if (inheritanceTypes.Length == 0)
 					continue;
 
-				visited.AddRange(inheritanceTypes!);
+				visited.AddRange(inheritanceTypes);
 
 				// ReSharper disable once CoVariantArrayConversion
 				var attributes = GetAttributesFromCandidates<TAttribute>(false, inheritanceTypes!);
@@ -260,7 +262,7 @@ namespace CodeJam.Reflection
 				method.IsVirtual &&
 				!_methodComparer.Equals(method, method.GetBaseDefinition());
 
-		private static Func<MemberInfo, MemberInfo[]> _getOverrideChainCache = Algorithms.Memoize(
+		private static readonly Func<MemberInfo, MemberInfo[]> _getOverrideChainCache = Algorithms.Memoize(
 			(MemberInfo m) => GetOverrideChainDispatch(m), true);
 
 		private const BindingFlags _thisTypeMembers =

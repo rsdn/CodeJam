@@ -75,7 +75,7 @@ namespace CodeJam.Mapping.Examples
 
 			// Map Class1 to existing Class2.
 			//
-			_class1ToClass2Mapper.Map(
+			_ = _class1ToClass2Mapper.Map(
 				new Class1
 				{
 					Prop1 = 41,

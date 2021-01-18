@@ -4,6 +4,9 @@ using System.IO;
 
 using JetBrains.Annotations;
 
+#pragma warning disable IDE0060 // Remove unused parameter
+#pragma warning disable CA1822 // Mark members as static
+
 // ReSharper disable once CheckNamespace
 namespace CodeJam.UseCases.TempDataSamples
 {
@@ -135,7 +138,7 @@ namespace CodeJam.UseCases.TempDataSamples
 
 	// Stub implementation. Unusable by design.
 	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-	public class TempData : IDisposable
+	public sealed class TempData : IDisposable
 	{
 		public static TempData CreateFile() => new();
 		public static TempData CreateFile(bool throwOnDisposeFailure) => new();

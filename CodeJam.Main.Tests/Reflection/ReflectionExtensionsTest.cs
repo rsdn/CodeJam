@@ -17,7 +17,7 @@ namespace CodeJam.Reflection
 	[TestFixture(Category = "Reflection")]
 	public partial class ReflectionExtensionsTest
 	{
-		private static object[] _source =
+		private static readonly object[] _source =
 		{
 			new object[] {typeof(List<int>), "System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib"},
 			new object[] {typeof(List<>), "System.Collections.Generic.List`1, mscorlib"},

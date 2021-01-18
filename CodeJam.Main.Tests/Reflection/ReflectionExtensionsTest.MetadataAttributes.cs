@@ -19,7 +19,10 @@ using static NUnit.Framework.Assert;
 // ReSharper disable ArgumentsStyleLiteral
 // ReSharper disable EventNeverSubscribedTo.Local
 // ReSharper disable AccessToStaticMemberViaDerivedType
+
 #pragma warning disable 67
+#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable CA1822 // Mark members as static
 
 [assembly: ReflectionExtensionsTest.SI("A"), ReflectionExtensionsTest.SN("A")]
 [assembly: ReflectionExtensionsTest.MI("A"), ReflectionExtensionsTest.MN("A")]
@@ -157,21 +160,14 @@ namespace CodeJam.Reflection
 		private static string GetAttributesString<TAttribute>(ICustomAttributeProvider source, SearchMode searchMode)
 			where TAttribute : class, ITestInterface
 		{
-			IEnumerable<TAttribute> attributes;
-			switch (searchMode)
-			{
-				case SearchMode.Attributes:
-					attributes = source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true);
-					break;
-				case SearchMode.MetadataAttributes:
-					attributes = source.GetMetadataAttributes<TAttribute>();
-					break;
-				case SearchMode.MetadataAttributesSingleLevel:
-					attributes = source.GetMetadataAttributes<TAttribute>(thisLevelOnly: true);
-					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null);
-			}
+			var attributes =
+				searchMode switch
+				{
+					SearchMode.Attributes => source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true),
+					SearchMode.MetadataAttributes => source.GetMetadataAttributes<TAttribute>(),
+					SearchMode.MetadataAttributesSingleLevel => source.GetMetadataAttributes<TAttribute>(thisLevelOnly: true),
+					_ => throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null)
+				};
 
 			return attributes
 				.GroupWhileEquals(
@@ -184,21 +180,14 @@ namespace CodeJam.Reflection
 		private static string GetAttributesString<TAttribute>(Type source, SearchMode searchMode)
 			where TAttribute : class, ITestInterface
 		{
-			IEnumerable<TAttribute> attributes;
-			switch (searchMode)
+			var attributes = searchMode switch
 			{
-				case SearchMode.Attributes:
-					attributes = source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true);
-					break;
-				case SearchMode.MetadataAttributes:
-					attributes = source.GetTypeInfo().GetMetadataAttributes<TAttribute>();
-					break;
-				case SearchMode.MetadataAttributesSingleLevel:
-					attributes = source.GetTypeInfo().GetMetadataAttributes<TAttribute>(thisLevelOnly: true);
-					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null);
-			}
+				SearchMode.Attributes => source.GetCustomAttributesWithInterfaceSupport<TAttribute>(true),
+				SearchMode.MetadataAttributes => source.GetTypeInfo().GetMetadataAttributes<TAttribute>(),
+				SearchMode.MetadataAttributesSingleLevel =>
+					source.GetTypeInfo().GetMetadataAttributes<TAttribute>(thisLevelOnly: true),
+				_ => throw new ArgumentOutOfRangeException(nameof(searchMode), searchMode, null)
+			};
 
 			return attributes
 				.GroupWhileEquals(
@@ -296,15 +285,17 @@ namespace CodeJam.Reflection
 			{
 				[MI("T2.M"), MN("T2.M"), SI("T2.M"), SN("T2.M")]
 				[MI("T2.M"), MN("T2.M")]
-				public virtual new void M() { }
+				public new virtual void M() { }
 
 				[MI("T2.P"), MN("T2.P"), SI("T2.P"), SN("T2.P")]
 				[MI("T2.P"), MN("T2.P")]
-				protected virtual new int P => 0;
+				protected new virtual int P => 0;
 
 				[MI("T2.E"), MN("T2.E"), SI("T2.E"), SN("T2.E")]
 				[MI("T2.E"), MN("T2.E")]
-				protected virtual new event EventHandler? E;
+#pragma warning disable CA1070
+				protected new virtual event EventHandler? E;
+#pragma warning restore CA1070
 			}
 
 			[SI("T3"), SN("T3"), MI("T3"), MN("T3")]

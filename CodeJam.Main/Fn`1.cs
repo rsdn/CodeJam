@@ -2,7 +2,7 @@
 
 using JetBrains.Annotations;
 
-using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
+// ReSharper disable MemberCanBeMadeStatic.Local
 
 namespace CodeJam
 {
@@ -54,16 +54,21 @@ namespace CodeJam
 		public static Func<T, bool> IsNotNull => IsNotNullValue.Value;
 
 		#region Inner types
-		[SuppressMessage("ReSharper", "MemberCanBeMadeStatic.Local")]
 		private sealed class Methods
 		{
 			public static readonly Methods Instance = new();
+
+#pragma warning disable CA1822 // Make static
+#pragma warning disable IDE0060 // Remove unused parameter
 
 			public bool GetTrue(T value) => true;
 			public bool GetFalse(T value) => false;
 			public T GetSelf(T value) => value;
 			public bool GetIsNull(T value) => value == null;
 			public bool GetIsNotNull(T value) => value != null;
+
+#pragma warning restore IDE0060
+#pragma warning restore CA1822
 		}
 
 		private static class TrueValue

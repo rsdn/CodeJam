@@ -124,6 +124,10 @@ namespace CodeJam.Collections
 			public string? Prop2 { get; set; }
 
 			private static int _n;
+
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
+			[UsedImplicitly]
 			private int _field = ++_n;
 		}
 

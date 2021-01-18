@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,15 +15,20 @@ using TaskEx = System.Threading.Tasks.TaskEx;
 using TaskEx = System.Threading.Tasks.Task;
 #endif
 
-using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
+#pragma warning disable CA1822 // Mark members as static
 
 namespace CodeJam.Threading
 {
 	[TestFixture]
 	public class AsyncLockTest
 	{
+#pragma warning disable CA1068 // Method should take CancellationToken as last
 		private static async Task<bool> TryTakeAndHold(
-			AsyncLock asyncLock, TimeSpan holdTime, CancellationToken cancellation = default(CancellationToken), Action? callback = null)
+			AsyncLock asyncLock,
+			TimeSpan holdTime,
+			CancellationToken cancellation = default,
+			Action? callback = null)
+#pragma warning restore CA1068
 		{
 			try
 			{
@@ -47,6 +53,7 @@ namespace CodeJam.Threading
 		public void LockCancellationTest()
 		{
 			TaskEx.Run(() => LockCancellationTestCore()).Wait();
+			// ReSharper disable once RedundantAssertionStatement
 			Assert.IsTrue(true);
 		}
 
@@ -89,6 +96,7 @@ namespace CodeJam.Threading
 		public void LockTest()
 		{
 			TaskEx.Run(() => LockTestCore()).Wait();
+			// ReSharper disable once RedundantAssertionStatement
 			Assert.IsTrue(true);
 		}
 

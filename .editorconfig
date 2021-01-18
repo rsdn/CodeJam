@@ -71,7 +71,8 @@ dotnet_diagnostic.cs8714.severity=error
 
 ### IDE Diagnostic ###
 
-# Substring can be simplified
+# Indexing can be simplified
+dotnet_diagnostic.ide0056.severity=none
 dotnet_diagnostic.ide0057.severity=none
 
 # 'using' statement can be simplified

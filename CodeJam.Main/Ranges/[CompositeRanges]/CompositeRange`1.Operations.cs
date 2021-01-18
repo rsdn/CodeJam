@@ -79,7 +79,7 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region Get intersections
-		private RangeIntersection<T> GetRangeIntersection(
+		private static RangeIntersection<T> GetRangeIntersection(
 			RangeBoundaryFrom<T> intersectionFrom, RangeBoundaryTo<T> intersectionTo,
 			IEnumerable<Range<T>> intersectionRanges) =>
 				new(

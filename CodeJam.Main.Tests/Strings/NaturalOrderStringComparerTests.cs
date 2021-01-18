@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -7,7 +8,7 @@ using CodeJam.Targeting;
 
 using NUnit.Framework;
 
-using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
+#pragma warning disable IDE0060 // Remove unused parameter
 
 namespace CodeJam.Strings
 {

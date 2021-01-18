@@ -87,10 +87,10 @@ namespace CodeJam
 		/// <param name="obj">The object to compare with the current instance. </param>
 		public override bool Equals(object? obj)
 		{
-			if (ReferenceEquals(null, obj))
+			if (obj is null)
 				return false;
 			// ReSharper disable once MergeCastWithTypeCheck
-			return obj is ValueOption<T> && Equals((ValueOption<T>)obj);
+			return obj is ValueOption<T> option && Equals(option);
 		}
 
 		/// <summary>Returns the hash code for this instance.</summary>

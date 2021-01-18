@@ -176,7 +176,11 @@ namespace CodeJam.Expressions
 		private static string GetFullPropertyNameImpl(MemberExpression expression)
 		{
 			var name = expression.Member.Name;
+
+#pragma warning disable IDE0019 // Use pattern matching
 			var curExpr = expression;
+#pragma warning restore IDE0019 // Use pattern matching
+
 			while ((curExpr = curExpr.Expression as MemberExpression) != null)
 				name = expression.Member.Name + "." + name;
 

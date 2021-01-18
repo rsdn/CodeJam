@@ -8,6 +8,8 @@ using NUnit.Framework;
 
 using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
 
+#pragma warning disable IDE0060 // Remove unused parameter
+
 namespace CodeJam.Arithmetic
 {
 	[TestFixture(Category = "Operators")]
@@ -277,6 +279,7 @@ namespace CodeJam.Arithmetic
 
 			// Proof: IComparable<T> has higher precedence than IComparable
 			// ReSharper disable once UseObjectOrCollectionInitializer
+#pragma warning disable IDE0017 // Simplify object initialization
 			var obj2 = new ClassComparable2();
 			obj2.NonGenericCalled = false;
 			obj2.GenericCalled = false;
@@ -285,6 +288,7 @@ namespace CodeJam.Arithmetic
 				new ClassComparable2());
 			Assert.IsFalse(obj2.NonGenericCalled);
 			Assert.IsTrue(obj2.GenericCalled);
+#pragma warning restore IDE0017 // Simplify object initialization
 
 			// Proof: IComparable<T>  called for Compare method
 			obj2.NonGenericCalled = false;

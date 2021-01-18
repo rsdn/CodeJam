@@ -148,6 +148,8 @@ namespace CodeJam.Mapping
 
 		#region GenericConvertProvider
 
+#pragma warning disable IDE0051 // Remove unused private members
+
 		// Should be public.
 		//
 		private void InitGenericConvertProvider<T>() => InitGenericConvertProvider(typeof(T));
@@ -162,6 +164,9 @@ namespace CodeJam.Mapping
 
 			Schemas[0].SetGenericConvertProvider(type);
 		}
+
+#pragma warning restore IDE0051
+
 		#endregion
 
 		#region Convert
@@ -798,7 +803,7 @@ namespace CodeJam.Mapping
 		/// <summary>
 		/// Default mapping schema.
 		/// </summary>
-		public static MappingSchema Default = new DefaultMappingSchema();
+		public static readonly MappingSchema Default = new DefaultMappingSchema();
 
 		private class DefaultMappingSchema : MappingSchema
 		{
