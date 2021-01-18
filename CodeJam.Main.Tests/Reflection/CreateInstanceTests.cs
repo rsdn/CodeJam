@@ -26,8 +26,8 @@ namespace CodeJam.Reflection
 		public string Test(Type type, string[] paramStrs)
 		{
 			var inst = type.CreateInstance(ParseParams(paramStrs));
-			Assert.IsNotNull(inst);
-			return inst!.ToString()!;
+			NAssert.NotNull(inst);
+			return inst.ToString()!;
 		}
 
 		private static ParamInfo[] ParseParams(IEnumerable<string> paramStrs) =>

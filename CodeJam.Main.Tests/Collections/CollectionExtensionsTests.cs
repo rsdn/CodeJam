@@ -66,27 +66,27 @@ namespace CodeJam.Collections
 			var str = "";
 
 			Assert.IsNull(arr.NullIfEmpty());
-			Assert.NotNull(arr.EmptyIfNull());
+			NAssert.NotNull(arr.EmptyIfNull());
 			Assert.IsNull(dic.NullIfEmpty());
-			Assert.NotNull(dic.EmptyIfNull());
+			NAssert.NotNull(dic.EmptyIfNull());
 			Assert.IsNull(list.NullIfEmpty());
-			Assert.NotNull(list.EmptyIfNull());
+			NAssert.NotNull(list.EmptyIfNull());
 			Assert.IsNull(str.NullIfEmpty());
-			Assert.NotNull(str.EmptyIfNull());
+			NAssert.NotNull(str.EmptyIfNull());
 
 			arr = new int[2];
 			list.Add(3);
 			dic.Add(1, "A");
 			str = "B";
 
-			Assert.NotNull(arr.NullIfEmpty());
-			Assert.NotNull(arr.EmptyIfNull());
-			Assert.NotNull(dic.NullIfEmpty());
-			Assert.NotNull(dic.EmptyIfNull());
-			Assert.NotNull(list.NullIfEmpty());
-			Assert.NotNull(list.EmptyIfNull());
-			Assert.NotNull(str.NullIfEmpty());
-			Assert.NotNull(str.EmptyIfNull());
+			NAssert.NotNull(arr.NullIfEmpty());
+			NAssert.NotNull(arr.EmptyIfNull());
+			NAssert.NotNull(dic.NullIfEmpty());
+			NAssert.NotNull(dic.EmptyIfNull());
+			NAssert.NotNull(list.NullIfEmpty());
+			NAssert.NotNull(list.EmptyIfNull());
+			NAssert.NotNull(str.NullIfEmpty());
+			NAssert.NotNull(str.EmptyIfNull());
 
 			arr = null;
 			list = null;
@@ -94,13 +94,13 @@ namespace CodeJam.Collections
 			str = null;
 
 			Assert.IsNull(arr.NullIfEmpty());
-			Assert.NotNull(arr.EmptyIfNull());
+			NAssert.NotNull(arr.EmptyIfNull());
 			Assert.IsNull(dic.NullIfEmpty());
-			Assert.NotNull(dic.EmptyIfNull());
+			NAssert.NotNull(dic.EmptyIfNull());
 			Assert.IsNull(list.NullIfEmpty());
-			Assert.NotNull(list.EmptyIfNull());
+			NAssert.NotNull(list.EmptyIfNull());
 			Assert.IsNull(str.NullIfEmpty());
-			Assert.NotNull(str.EmptyIfNull());
+			NAssert.NotNull(str.EmptyIfNull());
 		}
 
 		[Test]

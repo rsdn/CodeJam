@@ -34,7 +34,7 @@ namespace CodeJam.IO
 			var dir2 = TempData.CreateDirectory();
 			var dir2Path = dir2.Path;
 			Assert.AreNotEqual(s, dir2Path, "Path should not match");
-			Assert.IsNotNull(dir2.Info, "Info is null");
+			NAssert.NotNull(dir2.Info, "Info is null");
 			Assert.IsTrue(dir2.Info.Exists, "Directory should exist");
 			GC.KeepAlive(dir2);
 			return dir2Path;
@@ -77,7 +77,7 @@ namespace CodeJam.IO
 				{
 					dir2.SuppressDelete();
 					Assert.AreNotEqual(dirPath, dir2Path, "Path should not match");
-					Assert.IsNotNull(dir2.Info, "Info is null");
+					NAssert.NotNull(dir2.Info, "Info is null");
 					Assert.IsTrue(dir2.Info.Exists, "Directory should exist");
 					dir2.Dispose();
 					Assert.IsTrue(Directory.Exists(dir2Path), "Directory should exist");
@@ -99,7 +99,7 @@ namespace CodeJam.IO
 			{
 				dirPath = dir.Path;
 
-				Assert.IsNotNull(dir.Info, "Info is null");
+				NAssert.NotNull(dir.Info, "Info is null");
 				nestedDir = dir.Info.CreateSubdirectory("test.dir").FullName;
 
 				nestedFile = Path.Combine(dirPath, "test.tmp");
@@ -161,7 +161,7 @@ namespace CodeJam.IO
 			using (var dir = TempData.CreateFile(tempPath, dirName))
 			{
 				Assert.AreEqual(dir.Path, dirPath);
-				Assert.IsNotNull(dir.Info, "Info is null");
+				NAssert.NotNull(dir.Info, "Info is null");
 				Assert.IsTrue(dir.Info.Exists, "Directory should exist");
 			}
 			Assert.IsFalse(File.Exists(dirPath), "Directory should NOT exist");
@@ -169,7 +169,7 @@ namespace CodeJam.IO
 			using (var dir = TempData.CreateFile(null, dirName))
 			{
 				Assert.AreEqual(dir.Path, dirPath);
-				Assert.IsNotNull(dir.Info, "Info is null");
+				NAssert.NotNull(dir.Info, "Info is null");
 				Assert.IsTrue(dir.Info.Exists, "Directory should exist");
 			}
 			Assert.IsFalse(File.Exists(dirPath), "Directory should NOT exist");
@@ -181,7 +181,7 @@ namespace CodeJam.IO
 			var file2 = TempData.CreateFile();
 			var file2Path = file2.Path;
 			Assert.AreNotEqual(filePath, file2Path, "Path should not match");
-			Assert.IsNotNull(file2.Info, "Info is null");
+			NAssert.NotNull(file2.Info, "Info is null");
 			Assert.IsTrue(file2.Info.Exists, "File should exist");
 			GC.KeepAlive(file2);
 
@@ -225,7 +225,7 @@ namespace CodeJam.IO
 				{
 					file2.SuppressDelete();
 					Assert.AreNotEqual(filePath, file2Path, "Path should not match");
-					Assert.IsNotNull(file2.Info, "Info is null");
+					NAssert.NotNull(file2.Info, "Info is null");
 					Assert.IsTrue(file2.Info.Exists, "File should exist");
 					file2.Dispose();
 					Assert.IsTrue(File.Exists(file2Path), "File should exist");
@@ -245,7 +245,7 @@ namespace CodeJam.IO
 			{
 				filePath = file.Path;
 
-				Assert.IsNotNull(file.Info, "Info is null");
+				NAssert.NotNull(file.Info, "Info is null");
 				using (var textWriter = file.Info.AppendText())
 					textWriter.Write("O La La");
 
@@ -265,7 +265,7 @@ namespace CodeJam.IO
 			using (var file = TempData.CreateFile(tempPath, fileName))
 			{
 				Assert.AreEqual(file.Path, filePath);
-				Assert.IsNotNull(file.Info, "Info is null");
+				NAssert.NotNull(file.Info, "Info is null");
 				Assert.IsTrue(file.Info.Exists, "File should exist");
 			}
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
@@ -273,7 +273,7 @@ namespace CodeJam.IO
 			using (var file = TempData.CreateFile(null, fileName))
 			{
 				Assert.AreEqual(file.Path, filePath);
-				Assert.IsNotNull(file.Info, "Info is null");
+				NAssert.NotNull(file.Info, "Info is null");
 				Assert.IsTrue(file.Info.Exists, "File should exist");
 			}
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
@@ -290,7 +290,7 @@ namespace CodeJam.IO
 			using (var file = TempData.CreateFile(tempPath, fileName))
 			{
 				Assert.AreEqual(file.Path, filePath);
-				Assert.IsNotNull(file.Info, "Info is null");
+				NAssert.NotNull(file.Info, "Info is null");
 				Assert.IsTrue(file.Info.Exists, "File should exist");
 			}
 			Assert.IsFalse(File.Exists(filePath), "File should NOT exist");
@@ -325,7 +325,7 @@ namespace CodeJam.IO
 			using (var directory = TempData.CreateDirectory(tempPath, dirName))
 			{
 				Assert.AreEqual(directory.Path, dirPath);
-				Assert.IsNotNull(directory.Info, "Info is null");
+				NAssert.NotNull(directory.Info, "Info is null");
 				Assert.IsTrue(directory.Info.Exists, "Directory should exist");
 			}
 			Assert.IsFalse(File.Exists(dirPath), "Directory should NOT exist");
@@ -425,7 +425,7 @@ namespace CodeJam.IO
 			using (var file = new TempData.TempFile())
 			{
 				filePath = file.Path;
-				Assert.IsNotNull(file.Info, "Info is null");
+				NAssert.NotNull(file.Info, "Info is null");
 				Assert.IsFalse(file.Info.Exists, "File should not exist");
 
 				using (File.Create(filePath)) { }
@@ -444,7 +444,7 @@ namespace CodeJam.IO
 			using (var file = new TempData.TempFile(filePath))
 			{
 				Assert.AreEqual(filePath, file.Path);
-				Assert.IsNotNull(file.Info, "Info is null");
+				NAssert.NotNull(file.Info, "Info is null");
 				Assert.IsFalse(file.Info.Exists, "File should not exist");
 
 				using (File.Create(filePath)) { }

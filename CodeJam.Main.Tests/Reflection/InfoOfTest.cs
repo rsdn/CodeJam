@@ -79,10 +79,10 @@ namespace CodeJam.Reflection
 			var ctor3 = InfoOf<User>.Constructor(() => new User());
 			var ctor4 = Expression.New(typeof(User)).Constructor;
 
-			Assert.NotNull(ctor1, "#1");
-			Assert.NotNull(ctor2, "#2");
-			Assert.NotNull(ctor3, "#3");
-			Assert.NotNull(ctor4, "#4");
+			NAssert.NotNull(ctor1, "#1");
+			NAssert.NotNull(ctor2, "#2");
+			NAssert.NotNull(ctor3, "#3");
+			NAssert.NotNull(ctor4, "#4");
 
 			Assert.AreEqual(expected, ctor1);
 			Assert.AreEqual(expected, ctor2);

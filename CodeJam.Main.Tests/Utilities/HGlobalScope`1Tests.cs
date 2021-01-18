@@ -14,7 +14,7 @@ namespace CodeJam.Utilities
 			using (var h = HGlobal.Create<int>())
 			{
 				Assert.AreEqual(sizeof(int), h.Length);
-				Assert.NotNull(h.Data);
+				NAssert.NotNull(h.Data);
 
 				Marshal.WriteInt32(h.Data, 100);
 				Assert.AreEqual(100, h.Value);
@@ -27,7 +27,7 @@ namespace CodeJam.Utilities
 			using (var h = HGlobal.Create<int>(size))
 			{
 				Assert.AreEqual(size, h.Length);
-				Assert.NotNull(h.Data);
+				NAssert.NotNull(h.Data);
 
 				Marshal.WriteInt32(h.Data, 100);
 				Assert.AreEqual(100, h.Value);

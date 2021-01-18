@@ -74,7 +74,7 @@ namespace CodeJam.Metadata
 			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
 			var attrs = rd.GetAttributes<TableAttribute>(typeof(XmlReaderTests));
 
-			Assert.NotNull (attrs);
+			NAssert.NotNull(attrs);
 			Assert.AreEqual(1, attrs.Length);
 			Assert.AreEqual("TestName", attrs[0].Name);
 		}
@@ -87,7 +87,7 @@ namespace CodeJam.Metadata
 			var rd    = new XmlAttributeReader(new MemoryStream(Encoding.UTF8.GetBytes(Data)));
 			var attrs = rd.GetAttributes<ColumnAttribute>(InfoOf.Member<XmlReaderTests>(a => a.Field1)!);
 
-			Assert.NotNull (attrs);
+			NAssert.NotNull(attrs);
 			Assert.AreEqual(1, attrs.Length);
 			Assert.AreEqual("TestName", attrs[0].Name);
 		}
@@ -103,7 +103,7 @@ namespace CodeJam.Metadata
 
 			var attrs = MappingSchema.Default.GetAttributes<MapValueAttribute>(InfoOf.Member<XmlReaderTests>(a => a.Property1)!);
 
-			Assert.NotNull (attrs);
+			NAssert.NotNull(attrs);
 			Assert.AreEqual(1, attrs.Length);
 			Assert.AreEqual("TestName", attrs[0].Value);
 		}
