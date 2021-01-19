@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class QueryableExtensions
+	public partial class QueryableExtensions
 	{
 		/// <summary>
 		/// Sorts the elements of a sequence in ascending order according to a key.

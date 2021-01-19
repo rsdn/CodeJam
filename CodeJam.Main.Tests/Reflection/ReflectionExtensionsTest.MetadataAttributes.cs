@@ -22,6 +22,7 @@ using static NUnit.Framework.Assert;
 #pragma warning disable 67
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable CA1822 // Mark members as static
+#pragma warning disable CA1052 // Static holder types should be Static or NotInheritable
 
 [assembly: ReflectionExtensionsTest.SI("A"), ReflectionExtensionsTest.SN("A")]
 [assembly: ReflectionExtensionsTest.MI("A"), ReflectionExtensionsTest.MN("A")]

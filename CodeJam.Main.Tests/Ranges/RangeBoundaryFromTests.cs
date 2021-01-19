@@ -16,7 +16,7 @@ namespace CodeJam.Ranges
 	public class RangeBoundaryFromTests
 	{
 		[Test]
-		public static void TestBoundaryFromCreation()
+		public void TestBoundaryFromCreation()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -61,7 +61,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryNegativeInfinityValue()
+		public void TestBoundaryNegativeInfinityValue()
 		{
 			double? infOk = double.NegativeInfinity;
 			double? infFail = double.PositiveInfinity;
@@ -97,7 +97,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryFromProperties()
+		public void TestBoundaryFromProperties()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -153,7 +153,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryFromEquality()
+		public void TestBoundaryFromEquality()
 		{
 			double? value1 = 1;
 			double? value2 = 2;
@@ -194,7 +194,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryFromComplementation()
+		public void TestBoundaryFromComplementation()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -226,7 +226,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryFromWithValue()
+		public void TestBoundaryFromWithValue()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -250,7 +250,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryFromToExclusive()
+		public void TestBoundaryFromToExclusive()
 		{
 			int? value1 = 1;
 			int? empty = null;
@@ -275,7 +275,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryFromToInclusive()
+		public void TestBoundaryFromToInclusive()
 		{
 			int? value1 = 1;
 			int? empty = null;

@@ -52,6 +52,8 @@ namespace CodeJam
 		public static int PartitionPoint<T>(
 			this IList<T> list, [NonNegativeValue] int startIndex, [NonNegativeValue] int endIndex, Predicate<T> predicate)
 		{
+			Code.NotNull(list, nameof(list));
+
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			while (startIndex < endIndex)
 			{

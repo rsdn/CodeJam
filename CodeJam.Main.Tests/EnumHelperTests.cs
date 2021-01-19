@@ -18,6 +18,8 @@ using EnumEx = System.Enum;
 using EnumEx = System.EnumEx;
 #endif
 
+#pragma warning disable IDE1006 // Naming Styles
+
 namespace CodeJam
 {
 	[TestFixture(Category = "EnumHelper")]
@@ -254,6 +256,7 @@ namespace CodeJam
 			IsTrue(Abc.IsFlagUnset(D));
 		}
 
+#pragma warning disable CA2248 // Provide correct 'enum' argument to 'Enum.HasFlag'
 		[Test]
 		public static void TestIsFlagSetNoFlags()
 		{
@@ -287,6 +290,7 @@ namespace CodeJam
 			IsTrue(Efg.IsFlagUnset(NoFlags.H));
 			IsTrue(Efg.IsFlagUnset(NoFlagsUndef));
 		}
+#pragma warning restore CA2248 // Provide correct 'enum' argument to 'Enum.HasFlag'
 
 		[Test]
 		public static void TestToFlags()

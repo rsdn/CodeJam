@@ -181,7 +181,7 @@ namespace CodeJam
 		}
 
 		/// <summary>This test generates default templates for TargetFrameworks project property.</summary>
-		public void GenerateTargetFrameworks()
+		public static void GenerateTargetFrameworks()
 		{
 			WriteLine();
 			WriteLine("	<!-- Templates for <TargetFrameworks/> project property -->");
@@ -207,7 +207,7 @@ namespace CodeJam
 		}
 
 		/// <summary>This test generates conditional build constants for various FW monikers.</summary>
-		private void GenerateTargetingConstants()
+		private static void GenerateTargetingConstants()
 		{
 			GenerateTargetingConstants(".Net Framework", "TARGETS_NET", _netFrameworkMonikers);
 			GenerateTargetingConstants(".Net Standard", "TARGETS_NETSTANDARD", _netStandardMonikers);

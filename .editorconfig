@@ -8,125 +8,130 @@ trim_trailing_whitespace = true
 
 ### Code quality ###
 
-dotnet_code_quality.CA1062.null_check_validation_methods=CodeJam.Code.NotNull|CodeJam.Code.GenericNotNull|CodeJam.Code.NotNullNorEmpty|CodeJam.Code.NotNullNorWhiteSpace|CodeJam.Code.NotNullAndItemNotNull
+dotnet_code_quality.CA1062.null_check_validation_methods = CodeJam.Code.NotNull|CodeJam.Code.GenericNotNull|CodeJam.Code.NotNullNorEmpty|CodeJam.Code.NotNullNorWhiteSpace|CodeJam.Code.NotNullAndItemNotNull
 
 
 ### Compiler diagnostic ###
 
 # Do not declare static members on generic types
-dotnet_diagnostic.CA1000.severity=none
+dotnet_diagnostic.CA1000.severity = none
 # Use 'Collection', 'ReadOnlyCollection' or 'KeyedCollection'
-dotnet_diagnostic.CA1002.severity=none
+dotnet_diagnostic.CA1002.severity = none
 # Mark assemblies with CLSCompliant
-dotnet_diagnostic.CA1014.severity=none
+dotnet_diagnostic.CA1014.severity = none
 # Remove the property setter or reduce its accessibiliy because it corresponds to positional argument value
-dotnet_diagnostic.CA1019.severity=none
+dotnet_diagnostic.CA1019.severity = none
 # Use properties where appropriate
-dotnet_diagnostic.CA1024.severity=none
+dotnet_diagnostic.CA1024.severity = none
 # Enum storage should be Int32
-dotnet_diagnostic.CA1028.severity=none
+dotnet_diagnostic.CA1028.severity = none
 # Modify to catch a more specific allowed exception type, or rethrow the exceptoin
-dotnet_diagnostic.CA1031.severity=none
+dotnet_diagnostic.CA1031.severity = none
 # Make class sealed, implement the method non-explicitly, or implement a new method that exposes the functionality
-dotnet_diagnostic.CA1033.severity=none
+dotnet_diagnostic.CA1033.severity = none
 # Do not nest type. Alternatively, change its accessibility so that it is not externally visible.
-dotnet_diagnostic.CA1034.severity=none
+dotnet_diagnostic.CA1034.severity = none
 # Do not declare visible instance fields
-dotnet_diagnostic.CA1051.severity=none
+dotnet_diagnostic.CA1051.severity = none
 # Change the type of parameter to System.Uri
-dotnet_diagnostic.CA1054.severity=none
+dotnet_diagnostic.CA1054.severity = none
 # Rename type name to end in ''
-dotnet_diagnostic.CA1710.severity=none
+dotnet_diagnostic.CA1710.severity = none
 # Rename type name so that it does not end in ''
-dotnet_diagnostic.CA1711.severity=none
+dotnet_diagnostic.CA1711.severity = none
 # Rename type so that it is no longer conflicts with the reserved language keyword.
-dotnet_diagnostic.CA1716.severity=none
+dotnet_diagnostic.CA1716.severity = none
 # Identifiers should not contain type names
-dotnet_diagnostic.CA1720.severity=none
+dotnet_diagnostic.CA1720.severity = none
 # Avoid using cref tags with a prefix
-dotnet_diagnostic.CA1200.severity=none
+dotnet_diagnostic.CA1200.severity = none
 # Internal class that is never instatiated.
-dotnet_diagnostic.CA1812.severity=none
+dotnet_diagnostic.CA1812.severity = none
 # Properties should not return arrays
-dotnet_diagnostic.CA1819.severity=none
+dotnet_diagnostic.CA1819.severity = none
+# Avoid unnecessary zero-length array allocations.
+dotnet_diagnostic.CA1825.severity = none
+# Exception type is not sufficiently specific
+dotnet_diagnostic.CA2201.severity = none
 # Provide a method named as an alternative for operator op_Explicit, op_Implicit
-dotnet_diagnostic.CA2225.severity=none
+dotnet_diagnostic.CA2225.severity = none
+# Change to be read-only by removing the property setter
+dotnet_diagnostic.CA2227.severity = none
 # Random is an insecure random number generator.
-dotnet_diagnostic.CA5394.severity=none
+dotnet_diagnostic.CA5394.severity = none
 
 # Nullability as error
-dotnet_diagnostic.CS8600.severity=error
-dotnet_diagnostic.CS8601.severity=error
-dotnet_diagnostic.CS8602.severity=error
-dotnet_diagnostic.CS8603.severity=error
-dotnet_diagnostic.CS8604.severity=error
-dotnet_diagnostic.CS8605.severity=error
-dotnet_diagnostic.CS8606.severity=error
-dotnet_diagnostic.CS8607.severity=error
-dotnet_diagnostic.CS8608.severity=error
-dotnet_diagnostic.CS8609.severity=error
-dotnet_diagnostic.CS8610.severity=error
-dotnet_diagnostic.CS8611.severity=error
-dotnet_diagnostic.CS8612.severity=error
-dotnet_diagnostic.CS8613.severity=error
-dotnet_diagnostic.CS8614.severity=error
-dotnet_diagnostic.CS8615.severity=error
-dotnet_diagnostic.CS8616.severity=error
-dotnet_diagnostic.CS8617.severity=error
-dotnet_diagnostic.CS8618.severity=error
-dotnet_diagnostic.CS8619.severity=error
-dotnet_diagnostic.CS8620.severity=error
-dotnet_diagnostic.CS8621.severity=error
-dotnet_diagnostic.CS8622.severity=error
-dotnet_diagnostic.CS8623.severity=error
-dotnet_diagnostic.CS8624.severity=error
-dotnet_diagnostic.CS8625.severity=error
-dotnet_diagnostic.CS8626.severity=error
-dotnet_diagnostic.CS8627.severity=error
-dotnet_diagnostic.CS8628.severity=error
-dotnet_diagnostic.CS8629.severity=error
-dotnet_diagnostic.CS8630.severity=error
-dotnet_diagnostic.CS8631.severity=error
-dotnet_diagnostic.CS8632.severity=error
-dotnet_diagnostic.CS8633.severity=error
-dotnet_diagnostic.CS8634.severity=error
-dotnet_diagnostic.CS8635.severity=error
-dotnet_diagnostic.CS8636.severity=error
-dotnet_diagnostic.CS8637.severity=error
-dotnet_diagnostic.CS8638.severity=error
-dotnet_diagnostic.CS8639.severity=error
-dotnet_diagnostic.CS8640.severity=error
-dotnet_diagnostic.CS8641.severity=error
-dotnet_diagnostic.CS8642.severity=error
-dotnet_diagnostic.CS8643.severity=error
-dotnet_diagnostic.CS8644.severity=error
-dotnet_diagnostic.CS8645.severity=error
-dotnet_diagnostic.CS8646.severity=error
-dotnet_diagnostic.CS8647.severity=error
-dotnet_diagnostic.CS8648.severity=error
-dotnet_diagnostic.CS8649.severity=error
-dotnet_diagnostic.CS8650.severity=error
-dotnet_diagnostic.CS8651.severity=error
-dotnet_diagnostic.CS8652.severity=error
-dotnet_diagnostic.CS8653.severity=error
-dotnet_diagnostic.CS8654.severity=error
-dotnet_diagnostic.CS8655.severity=error
-dotnet_diagnostic.CS8656.severity=error
-dotnet_diagnostic.CS8667.severity=error
-dotnet_diagnostic.CS8714.severity=error
+dotnet_diagnostic.CS8600.severity = error
+dotnet_diagnostic.CS8601.severity = error
+dotnet_diagnostic.CS8602.severity = error
+dotnet_diagnostic.CS8603.severity = error
+dotnet_diagnostic.CS8604.severity = error
+dotnet_diagnostic.CS8605.severity = error
+dotnet_diagnostic.CS8606.severity = error
+dotnet_diagnostic.CS8607.severity = error
+dotnet_diagnostic.CS8608.severity = error
+dotnet_diagnostic.CS8609.severity = error
+dotnet_diagnostic.CS8610.severity = error
+dotnet_diagnostic.CS8611.severity = error
+dotnet_diagnostic.CS8612.severity = error
+dotnet_diagnostic.CS8613.severity = error
+dotnet_diagnostic.CS8614.severity = error
+dotnet_diagnostic.CS8615.severity = error
+dotnet_diagnostic.CS8616.severity = error
+dotnet_diagnostic.CS8617.severity = error
+dotnet_diagnostic.CS8618.severity = error
+dotnet_diagnostic.CS8619.severity = error
+dotnet_diagnostic.CS8620.severity = error
+dotnet_diagnostic.CS8621.severity = error
+dotnet_diagnostic.CS8622.severity = error
+dotnet_diagnostic.CS8623.severity = error
+dotnet_diagnostic.CS8624.severity = error
+dotnet_diagnostic.CS8625.severity = error
+dotnet_diagnostic.CS8626.severity = error
+dotnet_diagnostic.CS8627.severity = error
+dotnet_diagnostic.CS8628.severity = error
+dotnet_diagnostic.CS8629.severity = error
+dotnet_diagnostic.CS8630.severity = error
+dotnet_diagnostic.CS8631.severity = error
+dotnet_diagnostic.CS8632.severity = error
+dotnet_diagnostic.CS8633.severity = error
+dotnet_diagnostic.CS8634.severity = error
+dotnet_diagnostic.CS8635.severity = error
+dotnet_diagnostic.CS8636.severity = error
+dotnet_diagnostic.CS8637.severity = error
+dotnet_diagnostic.CS8638.severity = error
+dotnet_diagnostic.CS8639.severity = error
+dotnet_diagnostic.CS8640.severity = error
+dotnet_diagnostic.CS8641.severity = error
+dotnet_diagnostic.CS8642.severity = error
+dotnet_diagnostic.CS8643.severity = error
+dotnet_diagnostic.CS8644.severity = error
+dotnet_diagnostic.CS8645.severity = error
+dotnet_diagnostic.CS8646.severity = error
+dotnet_diagnostic.CS8647.severity = error
+dotnet_diagnostic.CS8648.severity = error
+dotnet_diagnostic.CS8649.severity = error
+dotnet_diagnostic.CS8650.severity = error
+dotnet_diagnostic.CS8651.severity = error
+dotnet_diagnostic.CS8652.severity = error
+dotnet_diagnostic.CS8653.severity = error
+dotnet_diagnostic.CS8654.severity = error
+dotnet_diagnostic.CS8655.severity = error
+dotnet_diagnostic.CS8656.severity = error
+dotnet_diagnostic.CS8667.severity = error
+dotnet_diagnostic.CS8714.severity = error
 
 ### IDE Diagnostic ###
 
 # Indexing can be simplified
-dotnet_diagnostic.ide0056.severity=none
-dotnet_diagnostic.ide0057.severity=none
+dotnet_diagnostic.IDE0056.severity = none
+dotnet_diagnostic.IDE0057.severity = none
 
 # 'using' statement can be simplified
-dotnet_diagnostic.ide0063.severity=none
+dotnet_diagnostic.IDE0063.severity = none
 
 # Remove unnecessary suppression
-dotnet_diagnostic.ide0079.severity=none
-dotnet_remove_unnecessary_suppression_exclusions=ide0079
+dotnet_diagnostic.IDE0079.severity = none
 
 ### Naming ###
 
@@ -141,124 +146,124 @@ dotnet_style_qualification_for_event = false:suggestion
 csharp_style_var_for_built_in_types = true:suggestion
 csharp_style_var_when_type_is_apparent = true:suggestion
 csharp_style_var_elsewhere = true:suggestion
-csharp_space_after_cast=false
+csharp_space_after_cast = false
 
 ### .NET Style ###
 
 dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
 dotnet_style_predefined_type_for_member_access = true:suggestion
-dotnet_naming_rule.private_constants_rule.severity=warning
-dotnet_naming_rule.private_constants_rule.style=lower_camel_case_style
-dotnet_naming_rule.private_constants_rule.symbols=private_constants_symbols
-dotnet_naming_rule.private_static_readonly_rule.severity=warning
-dotnet_naming_rule.private_static_readonly_rule.style=lower_camel_case_style
-dotnet_naming_rule.private_static_readonly_rule.symbols=private_static_readonly_symbols
-dotnet_naming_style.lower_camel_case_style.capitalization=camel_case
-dotnet_naming_style.lower_camel_case_style.required_prefix=_
-dotnet_naming_symbols.private_constants_symbols.applicable_accessibilities=private
-dotnet_naming_symbols.private_constants_symbols.applicable_kinds=field
-dotnet_naming_symbols.private_constants_symbols.required_modifiers=const
-dotnet_naming_symbols.private_static_readonly_symbols.applicable_accessibilities=private
-dotnet_naming_symbols.private_static_readonly_symbols.applicable_kinds=field
-dotnet_naming_symbols.private_static_readonly_symbols.required_modifiers=static,readonly
-dotnet_separate_import_directive_groups=true
-dotnet_style_parentheses_in_arithmetic_binary_operators=never_if_unnecessary:suggestion
-dotnet_style_parentheses_in_other_binary_operators=never_if_unnecessary:suggestion
-dotnet_style_parentheses_in_relational_binary_operators=never_if_unnecessary:suggestion
-dotnet_style_require_accessibility_modifiers=for_non_interface_members:suggestion
+dotnet_naming_rule.private_constants_rule.severity = warning
+dotnet_naming_rule.private_constants_rule.style = lower_camel_case_style
+dotnet_naming_rule.private_constants_rule.symbols = private_constants_symbols
+dotnet_naming_rule.private_static_readonly_rule.severity = warning
+dotnet_naming_rule.private_static_readonly_rule.style = lower_camel_case_style
+dotnet_naming_rule.private_static_readonly_rule.symbols = private_static_readonly_symbols
+dotnet_naming_style.lower_camel_case_style.capitalization = camel_case
+dotnet_naming_style.lower_camel_case_style.required_prefix = _
+dotnet_naming_symbols.private_constants_symbols.applicable_accessibilities = private
+dotnet_naming_symbols.private_constants_symbols.applicable_kinds = field
+dotnet_naming_symbols.private_constants_symbols.required_modifiers = const
+dotnet_naming_symbols.private_static_readonly_symbols.applicable_accessibilities = private
+dotnet_naming_symbols.private_static_readonly_symbols.applicable_kinds = field
+dotnet_naming_symbols.private_static_readonly_symbols.required_modifiers = static,readonly
+dotnet_separate_import_directive_groups = true
+dotnet_style_parentheses_in_arithmetic_binary_operators = never_if_unnecessary:suggestion
+dotnet_style_parentheses_in_other_binary_operators = never_if_unnecessary:suggestion
+dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:suggestion
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggestion
 
 ### ReSharper ###
-resharper_align_multiline_binary_expressions_chain=false
-resharper_apply_auto_detected_rules=false
-resharper_blank_lines_around_auto_property=0
-resharper_blank_lines_around_property=0
-resharper_braces_for_dowhile=not_required
-resharper_braces_for_fixed=not_required
-resharper_braces_for_lock=not_required
-resharper_braces_for_using=not_required
-resharper_constructor_or_destructor_body=expression_body
-resharper_csharp_blank_lines_inside_region=0
-resharper_csharp_empty_block_style=together_same_line
-resharper_csharp_keep_blank_lines_in_code=1
-resharper_csharp_keep_blank_lines_in_declarations=1
-resharper_csharp_wrap_after_declaration_lpar=true
-resharper_csharp_wrap_after_invocation_lpar=true
-resharper_csharp_wrap_before_binary_opsign=true
-resharper_csharp_wrap_before_first_type_parameter_constraint=true
-resharper_csharp_wrap_parameters_style=chop_if_long
-resharper_int_align_declaration_names=true
-resharper_keep_existing_expr_member_arrangement=false
-resharper_keep_existing_initializer_arrangement=false
-resharper_keep_existing_linebreaks=false
-resharper_local_function_body=expression_body
-resharper_method_or_operator_body=expression_body
-resharper_old_engine=true
-resharper_parentheses_non_obvious_operations=none, bitwise, bitwise_inclusive_or, range, bitwise_exclusive_or, shift, bitwise_and
-resharper_place_attribute_on_same_line=false
-resharper_place_simple_accessor_on_single_line=false
-resharper_space_after_cast=false
-resharper_space_within_single_line_array_initializer_braces=true
-resharper_wrap_text=false
-resharper_xmldoc_attribute_style=on_single_line
-resharper_xmldoc_blank_line_after_pi=false
-resharper_xmldoc_indent_child_elements=ZeroIndent
-resharper_xmldoc_indent_text=ZeroIndent
-resharper_xmldoc_linebreaks_inside_tags_for_elements_longer_than=100
-resharper_xmldoc_linebreaks_inside_tags_for_elements_with_child_elements=false
-resharper_xmldoc_pi_attributes_indent=single_indent
-resharper_xmldoc_pi_attribute_style=on_single_line
-resharper_xmldoc_space_before_self_closing=false
-resharper_xmldoc_wrap_around_elements=false
-resharper_xmldoc_wrap_tags_and_pi=false
+resharper_align_multiline_binary_expressions_chain = false
+resharper_apply_auto_detected_rules = false
+resharper_blank_lines_around_auto_property = 0
+resharper_blank_lines_around_property = 0
+resharper_braces_for_dowhile = not_required
+resharper_braces_for_fixed = not_required
+resharper_braces_for_lock = not_required
+resharper_braces_for_using = not_required
+resharper_constructor_or_destructor_body = expression_body
+resharper_csharp_blank_lines_inside_region = 0
+resharper_csharp_empty_block_style = together_same_line
+resharper_csharp_keep_blank_lines_in_code = 1
+resharper_csharp_keep_blank_lines_in_declarations = 1
+resharper_csharp_wrap_after_declaration_lpar = true
+resharper_csharp_wrap_after_invocation_lpar = true
+resharper_csharp_wrap_before_binary_opsign = true
+resharper_csharp_wrap_before_first_type_parameter_constraint = true
+resharper_csharp_wrap_parameters_style = chop_if_long
+resharper_int_align_declaration_names = true
+resharper_keep_existing_expr_member_arrangement = false
+resharper_keep_existing_initializer_arrangement = false
+resharper_keep_existing_linebreaks = false
+resharper_local_function_body = expression_body
+resharper_method_or_operator_body = expression_body
+resharper_old_engine = true
+resharper_parentheses_non_obvious_operations = none, bitwise, bitwise_inclusive_or, range, bitwise_exclusive_or, shift, bitwise_and
+resharper_place_attribute_on_same_line = false
+resharper_place_simple_accessor_on_single_line = false
+resharper_space_after_cast = false
+resharper_space_within_single_line_array_initializer_braces = true
+resharper_wrap_text = false
+resharper_xmldoc_attribute_style = on_single_line
+resharper_xmldoc_blank_line_after_pi = false
+resharper_xmldoc_indent_child_elements = ZeroIndent
+resharper_xmldoc_indent_text = ZeroIndent
+resharper_xmldoc_linebreaks_inside_tags_for_elements_longer_than = 100
+resharper_xmldoc_linebreaks_inside_tags_for_elements_with_child_elements = false
+resharper_xmldoc_pi_attributes_indent = single_indent
+resharper_xmldoc_pi_attribute_style = on_single_line
+resharper_xmldoc_space_before_self_closing = false
+resharper_xmldoc_wrap_around_elements = false
+resharper_xmldoc_wrap_tags_and_pi = false
 
 # ReSharper inspection severities
-resharper_arguments_style_literal_highlighting=none
-resharper_arrange_constructor_or_destructor_body_highlighting=suggestion
-resharper_arrange_local_function_body_highlighting=suggestion
-resharper_arrange_method_or_operator_body_highlighting=suggestion
-resharper_arrange_redundant_parentheses_highlighting=hint
-resharper_arrange_this_qualifier_highlighting=hint
-resharper_built_in_type_reference_style_for_member_access_highlighting=hint
-resharper_built_in_type_reference_style_highlighting=hint
-resharper_convert_closure_to_method_group_highlighting=hint
-resharper_convert_if_statement_to_return_statement_highlighting=none
-resharper_convert_to_auto_property_with_private_setter_highlighting=none
-resharper_convert_to_lambda_expression_when_possible_highlighting=suggestion
-resharper_convert_to_using_declaration_highlighting=none
-resharper_field_can_be_made_read_only_global_highlighting=warning
-resharper_invert_if_highlighting=none
-resharper_invocation_is_skipped_highlighting=none
-resharper_join_null_check_with_usage_highlighting=hint
-resharper_local_suppression_highlighting=none
-resharper_loop_can_be_converted_to_query_highlighting=none
-resharper_member_can_be_private_global_highlighting=warning
-resharper_missing_suppression_justification_highlighting=none
-resharper_parameter_only_used_for_precondition_check_local_highlighting=none
-resharper_redundant_argument_default_value_highlighting=none
-resharper_redundant_attribute_usage_property_highlighting=hint
-resharper_redundant_base_qualifier_highlighting=warning
-resharper_redundant_default_member_initializer_highlighting=none
-resharper_return_type_can_be_enumerable_global_highlighting=none
-resharper_suggest_base_type_for_parameter_highlighting=none
-resharper_suggest_var_or_type_built_in_types_highlighting=hint
-resharper_switch_expression_handles_some_known_enum_values_with_exception_in_default_highlighting=none
-resharper_tail_recursive_call_highlighting=warning
-resharper_unused_parameter_local_highlighting=hint
-resharper_use_index_from_end_expression_highlighting=none
-resharper_use_nameof_expression_highlighting=warning
+resharper_arguments_style_literal_highlighting = none
+resharper_arrange_constructor_or_destructor_body_highlighting = suggestion
+resharper_arrange_local_function_body_highlighting = suggestion
+resharper_arrange_method_or_operator_body_highlighting = suggestion
+resharper_arrange_redundant_parentheses_highlighting = hint
+resharper_arrange_this_qualifier_highlighting = hint
+resharper_built_in_type_reference_style_for_member_access_highlighting = hint
+resharper_built_in_type_reference_style_highlighting = hint
+resharper_convert_closure_to_method_group_highlighting = hint
+resharper_convert_if_statement_to_return_statement_highlighting = none
+resharper_convert_to_auto_property_with_private_setter_highlighting = none
+resharper_convert_to_lambda_expression_when_possible_highlighting = suggestion
+resharper_convert_to_using_declaration_highlighting = none
+resharper_field_can_be_made_read_only_global_highlighting = warning
+resharper_invert_if_highlighting = none
+resharper_invocation_is_skipped_highlighting = none
+resharper_join_null_check_with_usage_highlighting = hint
+resharper_local_suppression_highlighting = none
+resharper_loop_can_be_converted_to_query_highlighting = none
+resharper_member_can_be_private_global_highlighting = warning
+resharper_missing_suppression_justification_highlighting = none
+resharper_parameter_only_used_for_precondition_check_local_highlighting = none
+resharper_redundant_argument_default_value_highlighting = none
+resharper_redundant_attribute_usage_property_highlighting = hint
+resharper_redundant_base_qualifier_highlighting = warning
+resharper_redundant_default_member_initializer_highlighting = none
+resharper_return_type_can_be_enumerable_global_highlighting = none
+resharper_suggest_base_type_for_parameter_highlighting = none
+resharper_suggest_var_or_type_built_in_types_highlighting = hint
+resharper_switch_expression_handles_some_known_enum_values_with_exception_in_default_highlighting = none
+resharper_tail_recursive_call_highlighting = warning
+resharper_unused_parameter_local_highlighting = hint
+resharper_use_index_from_end_expression_highlighting = none
+resharper_use_nameof_expression_highlighting = warning
 
 [*.Tests/*.cs]
 # In externally visible method, validate parameter is non-null before using it.
-dotnet_diagnostic.CA1062.severity=none
+dotnet_diagnostic.CA1062.severity = none
 # Remove the underscors from member name.
-dotnet_diagnostic.CA1707.severity=none
+dotnet_diagnostic.CA1707.severity = none
 # Parameter is neer used.
-dotnet_diagnostic.CA1801.severity=none
-# Avoid unnecessary zero-length array allocations.
-dotnet_diagnostic.CA1825.severity=none
+dotnet_diagnostic.CA1801.severity = none
 
 # IDE0018: Inline variable declaration
 dotnet_diagnostic.IDE0018.severity = none
+# IDE0047: Remove unnecessary parentheses
+dotnet_diagnostic.IDE0047.severity = silent
 
 [*.ttinclude]
 insert_final_newline = false

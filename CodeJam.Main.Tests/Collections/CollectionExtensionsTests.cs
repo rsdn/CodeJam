@@ -7,12 +7,14 @@ using CodeJam.Strings;
 
 using NUnit.Framework;
 
+#pragma warning disable CA1508 // Avoid dead conditional code
+
 namespace CodeJam.Collections
 {
 	public class CollectionExtensionsTests
 	{
 		[Test]
-		public static void TestNullOrEmpty()
+		public void TestNullOrEmpty()
 		{
 			var arr = Array<int>.Empty;
 			var list = new List<int>();
@@ -58,7 +60,7 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
-		public static void TestEmptyIfNull()
+		public void TestEmptyIfNull()
 		{
 			var arr = Array<int>.Empty;
 			var list = new List<int>();
@@ -106,7 +108,7 @@ namespace CodeJam.Collections
 		[Test]
 		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
 		[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
-		public static void TestDefaultIfEmpty()
+		public void TestDefaultIfEmpty()
 		{
 			var arr = Array<int>.Empty;
 			var list = new List<int>();

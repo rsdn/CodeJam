@@ -28,8 +28,7 @@ namespace CodeJam
 				}
 				catch (Exception ex)
 				{
-					exceptions ??= new List<Exception>();
-					exceptions.Add(ex);
+					exceptions = new List<Exception> { ex };
 				}
 			}
 

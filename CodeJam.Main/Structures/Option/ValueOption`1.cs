@@ -104,7 +104,7 @@ namespace CodeJam
 		#endregion
 
 		/// <summary>Returns the fully qualified type name of this instance.</summary>
-		/// <returns>A <see cref="System.String" /> containing a fully qualified type name.</returns>
+		/// <returns>A <see cref="String" /> containing a fully qualified type name.</returns>
 		public override string ToString() => Option.ToString(this);
 	}
 }

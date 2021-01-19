@@ -28,7 +28,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void TestMinMaxTrivial()
+		public void TestMinMaxTrivial()
 		{
 			var c1 = 1M;
 			var c2 = 2M;
@@ -40,7 +40,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void TestMinMaxOverIComparable()
+		public void TestMinMaxOverIComparable()
 		{
 			var c1 = new Comparable(1);
 			var c2 = new Comparable(2);
@@ -52,7 +52,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void TestMinMaxOverNullable()
+		public void TestMinMaxOverNullable()
 		{
 			Comparable? c1 = new Comparable(1);
 			Comparable? cMinus1 = new Comparable(-1);
@@ -75,7 +75,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void TestMinMaxOverNullableEnum()
+		public void TestMinMaxOverNullableEnum()
 		{
 			ConsoleColor? c1 = (ConsoleColor)1;
 			ConsoleColor? cMinus1 = (ConsoleColor)(-1);

@@ -64,7 +64,7 @@ namespace CodeJam.Threading
 			var holdTime = TimeSpan.FromSeconds(2);
 			var delayTime = TimeSpan.FromMilliseconds(200);
 
-			var lock1Started = new ManualResetEventSlim(false);
+			using var lock1Started = new ManualResetEventSlim(false);
 
 			var lock1 = TryTakeAndHold(asyncLock, holdTime, callback: () => lock1Started.Set());
 			lock1Started.Wait();

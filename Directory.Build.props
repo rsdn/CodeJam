@@ -6,5 +6,6 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+		<NoWarn>$(NoWarn);CA1014</NoWarn>
 	</PropertyGroup>
 </Project>

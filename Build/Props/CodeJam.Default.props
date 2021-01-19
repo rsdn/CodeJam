@@ -6,6 +6,7 @@
 		<SignAssembly>True</SignAssembly>
 		<DelaySign>False</DelaySign>
 		<AssemblyOriginatorKeyFile>..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
+		<NoWarn>$(NoWarn);CA1014</NoWarn>
 
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
