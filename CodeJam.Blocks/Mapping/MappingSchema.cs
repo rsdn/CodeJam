@@ -58,7 +58,9 @@ namespace CodeJam.Mapping
 		{
 			var schemaInfo = new MappingSchemaInfo(configuration);
 
+#pragma warning disable CA1508 // Avoid dead conditional code
 			if (schemas == null || schemas.Length == 0)
+#pragma warning restore CA1508 // Avoid dead conditional code
 			{
 				Schemas = new[] { schemaInfo, Default.Schemas[0] };
 			}

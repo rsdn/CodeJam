@@ -217,10 +217,7 @@ namespace CodeJam.Strings
 		/// Trimmed <paramref name="str"/>, or original <paramref name="str"/> if suffix does not exists.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string TrimSuffix(this string str, string? suffix)
-		{
-			return TrimSuffix(str, suffix, StringComparer.CurrentCulture);
-		}
+		public static string TrimSuffix(this string str, string? suffix) => TrimSuffix(str, suffix, StringComparer.CurrentCulture);
 
 		private static readonly string[] _sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB" };
 
@@ -230,10 +227,7 @@ namespace CodeJam.Strings
 		/// <param name="value">Value to represent.</param>
 		/// <returns>Value as size in bytes</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string ToByteSizeString(this long value)
-		{
-			return ToByteSizeString(value, null);
-		}
+		public static string ToByteSizeString(this long value) => ToByteSizeString(value, null);
 
 		/// <summary>
 		/// Returns size in bytes string representation.
@@ -241,10 +235,7 @@ namespace CodeJam.Strings
 		/// <param name="value">Value to represent.</param>
 		/// <returns>Value as size in bytes</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string ToByteSizeString(this int value)
-		{
-			return ToByteSizeString(value, null);
-		}
+		public static string ToByteSizeString(this int value) => ToByteSizeString(value, null);
 
 		/// <summary>
 		/// Returns size in bytes string representation.
@@ -281,10 +272,7 @@ namespace CodeJam.Strings
 		/// <param name="provider">Format provider for number part of value</param>
 		/// <returns>Value as size in bytes</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string ToByteSizeString(this int value, IFormatProvider? provider)
-		{
-			return ToByteSizeString((long)value, provider);
-		}
+		public static string ToByteSizeString(this int value, IFormatProvider? provider) => ToByteSizeString((long)value, provider);
 
 		/// <summary>
 		/// Splits <paramref name="source"/> and returns whitespace trimmed parts.
@@ -397,10 +385,7 @@ namespace CodeJam.Strings
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string Unquote(this string arg)
-		{
-			return Unquote(arg, out _);
-		}
+		public static string Unquote(this string arg) => Unquote(arg, out _);
 
 		/// <summary>
 		/// Removes one set of leading and trailing double quote characters, if both are present.
@@ -411,10 +396,7 @@ namespace CodeJam.Strings
 		/// Unquoted <paramref name="arg"/>, if <paramref name="arg"/> is quoted, or <paramref name="arg"/> itself.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string Unquote(this string arg, out bool quoted)
-		{
-			return Unquote(arg, '"', out quoted);
-		}
+		public static string Unquote(this string arg, out bool quoted) => Unquote(arg, '"', out quoted);
 
 		/// <summary>
 		/// Removes one set of leading and trailing <paramref name="quotationChar"/>, if both are present.
@@ -464,10 +446,7 @@ namespace CodeJam.Strings
 		/// <param name="arg0">The object to format. </param>
 		/// <returns>A copy of <paramref name="format" /> in which any format items are replaced by the string representation of <paramref name="arg0" />.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string FormatInvariant(this string format, object arg0)
-		{
-			return string.Format(CultureInfo.InvariantCulture, format, arg0);
-		}
+		public static string FormatInvariant(this string format, object arg0) => string.Format(CultureInfo.InvariantCulture, format, arg0);
 
 		/// <summary>
 		/// Culture invariant version of <see cref="string.Format(string, object, object)"/>
@@ -477,10 +456,7 @@ namespace CodeJam.Strings
 		/// <param name="arg1">The second object to format. </param>
 		/// <returns>A copy of <paramref name="format" /> in which format items are replaced by the string representations of <paramref name="arg0" /> and <paramref name="arg1" />.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string FormatInvariant(this string format, object arg0, object arg1)
-		{
-			return string.Format(CultureInfo.InvariantCulture, format, arg0, arg1);
-		}
+		public static string FormatInvariant(this string format, object arg0, object arg1) => string.Format(CultureInfo.InvariantCulture, format, arg0, arg1);
 
 		/// <summary>
 		/// Culture invariant version of <see cref="string.Format(string, object, object, object)"/>
@@ -491,10 +467,7 @@ namespace CodeJam.Strings
 		/// <param name="arg2">The third object to format. </param>
 		/// <returns>A copy of <paramref name="format" /> in which the format items have been replaced by the string representations of <paramref name="arg0" />, <paramref name="arg1" />, and <paramref name="arg2" />.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string FormatInvariant(this string format, object arg0, object arg1, string arg2)
-		{
-			return string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2);
-		}
+		public static string FormatInvariant(this string format, object arg0, object arg1, string arg2) => string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2);
 
 		/// <summary>
 		/// Culture invariant version of <see cref="string.Format(string, object[])"/>
@@ -503,10 +476,7 @@ namespace CodeJam.Strings
 		/// <param name="args">An object array that contains zero or more objects to format. </param>
 		/// <returns>A copy of <paramref name="format" /> in which the format items have been replaced by the string representation of the corresponding objects in <paramref name="args" />.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string FormatInvariant(this string format, params object[] args)
-		{
-			return string.Format(CultureInfo.InvariantCulture, format, args);
-		}
+		public static string FormatInvariant(this string format, params object[] args) => string.Format(CultureInfo.InvariantCulture, format, args);
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER // PUBLIC_API_CHANGES
 		/// <summary>
@@ -625,6 +595,9 @@ namespace CodeJam.Strings
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int IndexOfInvariant(this string str, string value, [NonNegativeValue] int startIndex)
 		{
+			Code.NotNull(str, nameof(str));
+			Code.NotNull(value, nameof(value));
+
 			return str.IndexOf(value, startIndex, StringComparison.InvariantCulture);
 		}
 
@@ -642,6 +615,9 @@ namespace CodeJam.Strings
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int IndexOfOrdinal(this string str, string value, [NonNegativeValue] int startIndex)
 		{
+			Code.NotNull(str, nameof(str));
+			Code.NotNull(value, nameof(value));
+
 			return str.IndexOf(value, startIndex, StringComparison.Ordinal);
 		}
 
@@ -662,6 +638,9 @@ namespace CodeJam.Strings
 		public static int IndexOfInvariant(
 			this string str, string value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count)
 		{
+			Code.NotNull(str, nameof(str));
+			Code.NotNull(value, nameof(value));
+
 			return str.IndexOf(value, startIndex, count, StringComparison.InvariantCulture);
 		}
 
@@ -682,6 +661,9 @@ namespace CodeJam.Strings
 		public static int IndexOfOrdinal(
 			this string str, string value, [NonNegativeValue] int startIndex, [NonNegativeValue] int count)
 		{
+			Code.NotNull(str, nameof(str));
+			Code.NotNull(value, nameof(value));
+
 			return str.IndexOf(value, startIndex, count, StringComparison.Ordinal);
 		}
 
@@ -737,6 +719,9 @@ namespace CodeJam.Strings
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOfInvariant(this string str, string value, [NonNegativeValue] int startIndex)
 		{
+			Code.NotNull(str, nameof(str));
+			Code.NotNull(value, nameof(value));
+
 			return str.LastIndexOf(value, startIndex, StringComparison.InvariantCulture);
 		}
 
@@ -754,6 +739,9 @@ namespace CodeJam.Strings
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int LastIndexOfOrdinal(this string str, string value, [NonNegativeValue] int startIndex)
 		{
+			Code.NotNull(str, nameof(str));
+			Code.NotNull(value, nameof(value));
+
 			return str.LastIndexOf(value, startIndex, StringComparison.Ordinal);
 		}
 

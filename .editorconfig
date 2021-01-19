@@ -10,7 +10,6 @@ trim_trailing_whitespace = true
 
 dotnet_code_quality.CA1062.null_check_validation_methods = CodeJam.Code.NotNull|CodeJam.Code.GenericNotNull|CodeJam.Code.NotNullNorEmpty|CodeJam.Code.NotNullNorWhiteSpace|CodeJam.Code.NotNullAndItemNotNull|CodeJam.Code.ReturnIfNotNull
 
-
 ### Compiler diagnostic ###
 
 # Do not declare static members on generic types
@@ -43,6 +42,8 @@ dotnet_diagnostic.CA1711.severity = none
 dotnet_diagnostic.CA1716.severity = none
 # Identifiers should not contain type names
 dotnet_diagnostic.CA1720.severity = none
+# The property is confusing given the existence of method. Rename or remove one of these members.
+dotnet_diagnostic.CA1721.severity = none
 # Avoid using cref tags with a prefix
 dotnet_diagnostic.CA1200.severity = none
 # Internal class that is never instatiated.
@@ -252,18 +253,30 @@ resharper_unused_parameter_local_highlighting = hint
 resharper_use_index_from_end_expression_highlighting = none
 resharper_use_nameof_expression_highlighting = warning
 
-[*.Tests/*.cs]
+[*.Tests/**/*]
+### Compiler diagnostic ###
+
+# Comparable should define operator(s) '==, !=, <, <=, >, >=' and Equals since it implements IComparable
+dotnet_diagnostic.CA1036.severity = none
 # In externally visible method, validate parameter is non-null before using it.
-dotnet_diagnostic.CA1062.severity = silent
+dotnet_diagnostic.CA1062.severity = none
+# Remove or refactor the condition(s) to avoid dead code.
+dotnet_diagnostic.CA1508.severity = none
 # Remove the underscors from member name.
 dotnet_diagnostic.CA1707.severity = none
 # Parameter is neer used.
 dotnet_diagnostic.CA1801.severity = none
+# Avoid unsealed attributes
+dotnet_diagnostic.CA1813.severity = none
+# Comparable should override Equals
+dotnet_diagnostic.CA1815.severity = none
+
+### IDE Diagnostic ###
 
 # IDE0018: Inline variable declaration
 dotnet_diagnostic.IDE0018.severity = none
 # IDE0047: Remove unnecessary parentheses
-dotnet_diagnostic.IDE0047.severity = silent
+dotnet_diagnostic.IDE0047.severity = none
 
 [*.ttinclude]
 insert_final_newline = false

@@ -58,7 +58,7 @@ namespace CodeJam.Metadata
 		/// the current exception.</param>
 		/// <seealso cref="Exception.InnerException"/>
 		public MetadataException(Exception innerException)
-			: base(innerException.Message, innerException) { }
+			: base(Code.ReturnIfNotNull(innerException, nameof(innerException)).Message, innerException) { }
 
 #if TARGETS_NET || NETSTANDARD20_OR_GREATER || NETCOREAPP20_OR_GREATER
 		/// <summary>

@@ -348,6 +348,8 @@ namespace CodeJam.Collections
 		/// <param name="nodeIndex">Node index.</param>
 		protected override void AppendNodeText(StringBuilder sb, [NonNegativeValue] int nodeIndex)
 		{
+			Code.NotNull(sb, nameof(sb));
+
 			var n = GetNode(nodeIndex);
 			var nodeLink = _nodeLinks.IsValueCreated ? _nodeLinks.Value[nodeIndex] : InvalidNodeIndex;
 			var linkText = nodeLink != InvalidNodeIndex ? $" -> {nodeLink}" : string.Empty;

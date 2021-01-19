@@ -19,6 +19,7 @@ using EnumEx = System.EnumEx;
 #endif
 
 #pragma warning disable IDE1006 // Naming Styles
+#pragma warning disable CA1069 // Enums values should not be duplicated
 
 namespace CodeJam
 {

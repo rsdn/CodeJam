@@ -47,7 +47,7 @@ namespace CodeJam.TableData
 			var line = reader.ReadLine();
 			if (line == null)
 				return null;
-			if (line.IsNullOrWhiteSpace())
+			if (line.IsWhiteSpace())
 				return Array<string>.Empty;
 
 			var pos = 0;

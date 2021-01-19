@@ -71,8 +71,10 @@ namespace CodeJam.Metadata
 				if (stream == null)
 					throw new MetadataException($"Could not find file '{xmlFile}'.");
 				else
+#pragma warning disable CA1508 // Avoid dead conditional code
 					using (stream)
 						_types = LoadStream(stream, xmlFile);
+#pragma warning restore CA1508 // Avoid dead conditional code
 			}
 			finally
 			{

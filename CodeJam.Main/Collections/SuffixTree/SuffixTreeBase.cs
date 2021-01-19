@@ -414,6 +414,8 @@ namespace CodeJam.Collections
 		/// <param name="nodeIndex">The node index</param>
 		protected virtual void AppendNodeText(StringBuilder sb, [NonNegativeValue] int nodeIndex)
 		{
+			Code.NotNull(sb, nameof(sb));
+
 			var n = GetNode(nodeIndex);
 			sb.AppendLine($"({nodeIndex}, [{n.Begin}-{n.End}), {InternalData.Substring(n.Begin, n.Length)})");
 		}

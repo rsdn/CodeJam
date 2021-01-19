@@ -145,7 +145,12 @@ namespace CodeJam.ConnectionStrings
 		/// </summary>
 		/// <param name="other">The other connection string.</param>
 		/// <returns><c>true</c> if the connection information in both objects causes an equivalent connection string; otherwise <c>false</c>.</returns>
-		public bool EquivalentTo(ConnectionStringBase other) => _wrapper.EquivalentTo(other._wrapper);
+		public bool EquivalentTo(ConnectionStringBase other)
+		{
+			Code.NotNull(other, nameof(other));
+
+			return _wrapper.EquivalentTo(other._wrapper);
+		}
 
 		/// <summary>
 		/// Gets the browsable connection string.

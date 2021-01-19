@@ -251,7 +251,7 @@ namespace CodeJam.IO
 
 			// DONTTOUCH: File.Create() requires existing directory and the filePath may be a relative path.
 			Directory.CreateDirectory(Path.GetDirectoryName(filePath) ?? dirPath);
-			using (_ = File.Create(filePath)) { }
+			using (File.Create(filePath)) { }
 			return result;
 		}
 

@@ -54,7 +54,12 @@ namespace CodeJam
 		/// <param name="option"></param>
 		/// <returns>Value of <paramref name="option"/></returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static explicit operator T(Option<T> option) => option.Value;
+		public static explicit operator T(Option<T> option)
+		{
+			Code.NotNull(option, nameof(option));
+
+			return option.Value;
+		}
 
 		/// <summary>
 		/// Equality operator.

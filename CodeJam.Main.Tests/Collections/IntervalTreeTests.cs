@@ -6,6 +6,8 @@ using CodeJam.Strings;
 
 using NUnit.Framework;
 
+#pragma warning disable CA1810 // Initialize reference type static fields inline
+
 namespace CodeJam.Ranges
 {
 	public class IntervalTreeTests

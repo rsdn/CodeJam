@@ -7,8 +7,6 @@ using CodeJam.Strings;
 
 using NUnit.Framework;
 
-#pragma warning disable CA1508 // Avoid dead conditional code
-
 namespace CodeJam.Collections
 {
 	public class CollectionExtensionsTests
