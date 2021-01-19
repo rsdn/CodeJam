@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensionTests
+	public partial class EnumerableExtensionTests
 	{
 		[TestCase(arg: new[] { "a:b", "b:c", "c" }, ExpectedResult = "c, b, a")]
 		[TestCase(arg: new[] { "a:c", "b:c", "c" }, ExpectedResult = "c, a, b")]
@@ -18,8 +18,7 @@ namespace CodeJam.Collections
 		public string TopoSort(string[] source)
 		{
 			// Prepare dependency structure
-			Dictionary<string, string[]> deps;
-			var items = GetDepStructure(source, out deps);
+			var items = GetDepStructure(source, out Dictionary<string, string[]> deps);
 
 			// Perform sort
 			return items.TopoSort(i => deps[i]).Join(", ");
@@ -33,8 +32,7 @@ namespace CodeJam.Collections
 		public string TopoSortByKey(string[] source)
 		{
 			// Prepare dependency structure
-			Dictionary<Holder, Holder[]> deps;
-			var items = GetDepStructure(source, out deps);
+			var items = GetDepStructure(source, out Dictionary<Holder, Holder[]> deps);
 
 			// Perform sort
 			return items.TopoSort(i => deps[i], v => v!.Value).Join(", ");
@@ -46,8 +44,7 @@ namespace CodeJam.Collections
 		public void TopoSortCycle(string[] source)
 		{
 			// Prepare dependency structure
-			Dictionary<string, string[]> deps;
-			var items = GetDepStructure(source, out deps);
+			var items = GetDepStructure(source, out Dictionary<string, string[]> deps);
 
 			// Perform sort
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
@@ -67,8 +64,7 @@ namespace CodeJam.Collections
 		public string GroupTopoSort(string[] source)
 		{
 			// Prepare dependency structure
-			Dictionary<string, string[]> deps;
-			var items = GetDepStructure(source, out deps);
+			var items = GetDepStructure(source, out Dictionary<string, string[]> deps);
 
 			// Perform sort
 			var collSort =
@@ -92,8 +88,7 @@ namespace CodeJam.Collections
 		public void GroupTopoSortCycle(string[] source)
 		{
 			// Prepare dependency structure
-			Dictionary<string, string[]> deps;
-			var items = GetDepStructure(source, out deps);
+			var items = GetDepStructure(source, out Dictionary<string, string[]> deps);
 
 			// Perform sort
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
@@ -125,8 +120,7 @@ namespace CodeJam.Collections
 
 		private static IEnumerable<Holder> GetDepStructure(IEnumerable<string> source, out Dictionary<Holder, Holder[]> deps)
 		{
-			Dictionary<string, string[]> innerDeps;
-			var items = GetDepStructure(source, out innerDeps);
+			var items = GetDepStructure(source, out Dictionary<string, string[]> innerDeps);
 			deps = innerDeps.ToDictionary(
 				kv => new Holder(kv.Key),
 				kv => kv.Value.Select(v => new Holder(v)).ToArray(),

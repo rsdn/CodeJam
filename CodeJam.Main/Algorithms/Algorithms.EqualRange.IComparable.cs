@@ -45,6 +45,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
+#pragma warning disable CA1062 // Validate arguments of public methods
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
 			[InstantHandle] this IList<TElement> list,
@@ -52,6 +53,7 @@ namespace CodeJam
 			[NonNegativeValue] int startIndex)
 			where TElement : IComparable<TValue> =>
 				list.EqualRange(value, startIndex, list.Count);
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where

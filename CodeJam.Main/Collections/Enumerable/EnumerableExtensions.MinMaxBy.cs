@@ -61,6 +61,7 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
+#pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MinBy<TSource, TValue>(
@@ -120,6 +121,7 @@ namespace CodeJam.Collections
 
 			return item;
 		}
+#pragma warning restore CA1508 // Avoid dead conditional code
 
 		/// <summary>
 		/// Invokes a <paramref name="selector"/> on each element of a <paramref name="source"/>
@@ -135,6 +137,7 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
+#pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MinByOrDefault<TSource, TValue>(
@@ -195,6 +198,8 @@ namespace CodeJam.Collections
 
 			return item;
 		}
+#pragma warning restore CA1508 // Avoid dead conditional code
+
 		#endregion
 
 		#region Max
@@ -244,6 +249,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <param name="comparer">The <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
+#pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MaxBy<TSource, TValue>(
@@ -301,6 +307,7 @@ namespace CodeJam.Collections
 
 			return item;
 		}
+#pragma warning restore CA1508 // Avoid dead conditional code
 
 		/// <summary>
 		/// Invokes a <paramref name="selector"/> on each element of a <paramref name="source"/>
@@ -316,6 +323,7 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
+#pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[return: MaybeNull]
 		public static TSource MaxByOrDefault<TSource, TValue>(
@@ -378,4 +386,5 @@ namespace CodeJam.Collections
 		}
 		#endregion
 	}
+#pragma warning restore CA1508 // Avoid dead conditional code
 }

@@ -225,10 +225,10 @@ namespace CodeJam
 			WriteLine();
 			WriteLine($"	<!-- Monikers for {description} -->");
 
-			string templateBegin = @"	<PropertyGroup Condition=""'$(TargetFramework)' == '{0}' "">";
-			string template = @"		<DefineConstants>$(DefineConstants){0}</DefineConstants>";
-			string templateEnd = @"	</PropertyGroup>";
-			for (int monikerIndex = 0; monikerIndex < monikers.Length; monikerIndex++)
+			var templateBegin = @"	<PropertyGroup Condition=""'$(TargetFramework)' == '{0}' "">";
+			var template = @"		<DefineConstants>$(DefineConstants){0}</DefineConstants>";
+			var templateEnd = @"	</PropertyGroup>";
+			for (var monikerIndex = 0; monikerIndex < monikers.Length; monikerIndex++)
 			{
 				var target = monikers[monikerIndex];
 				var lessThanConstants = monikers

@@ -36,7 +36,7 @@ namespace CodeJam.TableData
 
 		#region Overrides of ValueType
 		/// <summary>Returns the fully qualified type name of this instance.</summary>
-		/// <returns>A <see cref="String" /> containing a fully qualified type name.</returns>
+		/// <returns>A <see cref="string" /> containing a fully qualified type name.</returns>
 		public override string ToString() => $"({LineNum}) {Values.Join(", ")}";
 		#endregion
 

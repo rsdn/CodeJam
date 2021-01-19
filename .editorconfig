@@ -8,7 +8,7 @@ trim_trailing_whitespace = true
 
 ### Code quality ###
 
-dotnet_code_quality.CA1062.null_check_validation_methods = CodeJam.Code.NotNull|CodeJam.Code.GenericNotNull|CodeJam.Code.NotNullNorEmpty|CodeJam.Code.NotNullNorWhiteSpace|CodeJam.Code.NotNullAndItemNotNull
+dotnet_code_quality.CA1062.null_check_validation_methods = CodeJam.Code.NotNull|CodeJam.Code.GenericNotNull|CodeJam.Code.NotNullNorEmpty|CodeJam.Code.NotNullNorWhiteSpace|CodeJam.Code.NotNullAndItemNotNull|CodeJam.Code.ReturnIfNotNull
 
 
 ### Compiler diagnostic ###
@@ -254,7 +254,7 @@ resharper_use_nameof_expression_highlighting = warning
 
 [*.Tests/*.cs]
 # In externally visible method, validate parameter is non-null before using it.
-dotnet_diagnostic.CA1062.severity = none
+dotnet_diagnostic.CA1062.severity = silent
 # Remove the underscors from member name.
 dotnet_diagnostic.CA1707.severity = none
 # Parameter is neer used.

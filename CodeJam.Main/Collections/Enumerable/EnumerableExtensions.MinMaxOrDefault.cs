@@ -21,6 +21,8 @@ namespace CodeJam.Collections
 			private static readonly Comparer<T> _comparer = Comparer<T>.Default;
 
 			#region Operators<T>
+#pragma warning disable CA1508 // Avoid dead conditional code
+
 			[MethodImpl(AggressiveInlining)]
 			[return: MaybeNull]
 			public static T MinOrDefault(IEnumerable<T> source, [AllowNull] T defaultValue)
@@ -188,6 +190,8 @@ namespace CodeJam.Collections
 				[AllowNull] T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
+				Code.NotNull(selector, nameof(selector));
+
 				comparer ??= _comparer;
 
 				using var enumerator = source.GetEnumerator();
@@ -237,6 +241,8 @@ namespace CodeJam.Collections
 				[AllowNull] T defaultValue)
 			{
 				Code.NotNull(source, nameof(source));
+				Code.NotNull(selector, nameof(selector));
+
 				comparer ??= _comparer;
 
 				using var enumerator = source.GetEnumerator();
@@ -252,8 +258,12 @@ namespace CodeJam.Collections
 				}
 				return result;
 			}
+#pragma warning restore CA1508 // Avoid dead conditional code
+
 			#endregion
 		}
+
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		#region MinOrDefault
 		/// <summary>Returns minimum item from the sequence or default value.</summary>
@@ -475,5 +485,8 @@ namespace CodeJam.Collections
 			T? defaultValue) =>
 				MinMaxOperators<T>.MaxOrDefault(source, selector, comparer, defaultValue);
 		#endregion
+
+#pragma warning restore CA1062 // Validate arguments of public methods
+
 	}
 }

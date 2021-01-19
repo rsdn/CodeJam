@@ -27,6 +27,8 @@ namespace CodeJam.TableData
 		/// <returns>Escaped value.</returns>
 		public static string EscapeValue(string value)
 		{
+			Code.NotNull(value, nameof(value));
+
 			StringBuilder? escaped = null;
 			for (var i = 0; i < value.Length; i++)
 			{

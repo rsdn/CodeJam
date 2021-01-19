@@ -24,6 +24,8 @@ namespace CodeJam.Threading
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static ReadLockScope GetReadLock(this ReaderWriterLockSlim readerWriterLock)
 		{
+			Code.NotNull(readerWriterLock, nameof(readerWriterLock));
+
 			readerWriterLock.EnterReadLock();
 			return new ReadLockScope(readerWriterLock);
 		}
@@ -39,6 +41,8 @@ namespace CodeJam.Threading
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static WriteLockScope GetWriteLock(this ReaderWriterLockSlim readerWriterLock)
 		{
+			Code.NotNull(readerWriterLock, nameof(readerWriterLock));
+
 			readerWriterLock.EnterWriteLock();
 			return new WriteLockScope(readerWriterLock);
 		}
@@ -54,6 +58,8 @@ namespace CodeJam.Threading
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static UpgradeableReadLockScope GetUpgradeableReadLock(this ReaderWriterLockSlim readerWriterLock)
 		{
+			Code.NotNull(readerWriterLock, nameof(readerWriterLock));
+
 			readerWriterLock.EnterUpgradeableReadLock();
 			return new UpgradeableReadLockScope(readerWriterLock);
 		}

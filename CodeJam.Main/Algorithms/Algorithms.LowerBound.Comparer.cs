@@ -17,12 +17,14 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The lower bound for the value</returns>
+#pragma warning disable CA1062 // Validate arguments of public methods
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int LowerBound<TElement, TValue>(
 			[InstantHandle] this IList<TElement> list,
 			TValue value,
 			[InstantHandle] Func<TElement, TValue, int> comparer) =>
 				list.LowerBound(value, 0, list.Count, comparer);
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, list.Count - 1] such that list[i] >= value
@@ -35,6 +37,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The lower bound for the value</returns>
+#pragma warning disable CA1062 // Validate arguments of public methods
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int LowerBound<TElement, TValue>(
 			[InstantHandle] this IList<TElement> list,
@@ -42,6 +45,7 @@ namespace CodeJam
 			[NonNegativeValue] int startIndex,
 			[InstantHandle] Func<TElement, TValue, int> comparer) =>
 				list.LowerBound(value, startIndex, list.Count, comparer);
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] >= value

@@ -213,6 +213,8 @@ namespace CodeJam
 			[InstantHandle] IEnumerable<T?> arg,
 			[InvokerParameterName] string argName) where T : class
 		{
+			NotNull(arg, nameof(arg));
+
 			foreach (var item in arg)
 				if (item == null)
 					throw CodeExceptions.ArgumentItemNull(argName);
@@ -248,6 +250,21 @@ namespace CodeJam
 		{
 			if (!condition)
 				throw CodeExceptions.Argument(argName, messageFormat, args);
+		}
+
+		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static T ReturnIfNotNull<T>(
+			[AllowNull, SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
+			[InvokerParameterName] string argName)
+			where T : class
+		{
+			Code.NotNull(arg, argName);
+			return arg;
 		}
 		#endregion
 

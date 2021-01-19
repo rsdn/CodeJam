@@ -128,6 +128,8 @@ namespace CodeJam.Collections
 			[InstantHandle] Func<TypeAccessor<T>,
 				IEnumerable<MemberAccessor>> membersToCompare)
 		{
+			Code.NotNull(membersToCompare, nameof(membersToCompare));
+
 			var members = membersToCompare(TypeAccessor<T>.GetAccessor()).ToList();
 			return new Comparer(GetEqualsFunc(members), GetGetHashCodeFunc(members));
 		}

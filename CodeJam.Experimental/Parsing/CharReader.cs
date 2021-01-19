@@ -44,7 +44,12 @@ namespace CodeJam.Parsing
 			return code;
 		}
 
-		public static CharReader Create(TextReader reader) => new(reader, Read(reader));
+		public static CharReader Create(TextReader reader)
+		{
+			Code.NotNull(reader, nameof(reader));
+
+			return new(reader, Read(reader));
+		}
 
 		public CharReader Next() => Create(_reader);
 

@@ -105,6 +105,8 @@ namespace CodeJam.IO
 		/// <param name="stream">The stream to read.</param>
 		public static byte[] ReadAsByteArray(this Stream stream)
 		{
+			Code.NotNull(stream, nameof(stream));
+
 			// DO NOT dispose the reader
 			using (var reader = stream.ToBinaryReader(null, true))
 			{

@@ -46,11 +46,13 @@ namespace CodeJam
 		/// <summary>
 		/// Dispose method to free all resources.
 		/// </summary>
+#pragma warning disable CA1063 // Implement IDisposable Correctly
 		public void Dispose()
 		{
 			DisposeInternal();
 			GC.SuppressFinalize(this);
 		}
+#pragma warning restore CA1063 // Implement IDisposable Correctly
 
 		/// <summary>
 		/// Length

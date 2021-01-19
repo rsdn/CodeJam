@@ -119,6 +119,8 @@ namespace CodeJam.Threading
 			int parallelCount,
 			string processName = "ParallelProcess")
 		{
+			Code.NotNull(source, nameof(source));
+			
 			using var queue = new ParallelQueue(parallelCount, processName + '_');
 			foreach (var action in source)
 			{
@@ -152,6 +154,8 @@ namespace CodeJam.Threading
 			[InstantHandle] Action<T> action,
 			string processName = "ParallelProcess")
 		{
+			Code.NotNull(source, nameof(source));
+
 			using var queue = new ParallelQueue(parallelCount, processName + '_');
 			foreach (var item in source)
 			{

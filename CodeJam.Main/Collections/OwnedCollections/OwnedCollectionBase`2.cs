@@ -28,9 +28,11 @@ namespace CodeJam.Collections
 		}
 
 		#region Copy this into OwnedCollectionBase<TKey, TItem, TOwner>
+#pragma warning disable CA1721 // Property names should not match get methods
 		/// <summary>Gets owner for the collection.</summary>
 		/// <value>The owner for the collection.</value>
 		protected TOwner Owner { get; }
+#pragma warning restore CA1721 // Property names should not match get methods
 
 		/// <summary>Gets the owner of the item.</summary>
 		/// <param name="item">The item.</param>
@@ -187,9 +189,11 @@ namespace CodeJam.Collections
 		protected abstract TKey GetKey(TItem item);
 
 		#region Copied from OwnedCollectionBase<TOwner, TItem>
+#pragma warning disable CA1721 // Property names should not match get methods
 		/// <summary>Gets owner for the collection.</summary>
 		/// <value>The owner for the collection.</value>
 		protected TOwner Owner { get; }
+#pragma warning restore CA1721 // Property names should not match get methods
 
 		/// <summary>Gets the owner of the item.</summary>
 		/// <param name="item">The item.</param>

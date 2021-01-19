@@ -70,6 +70,7 @@ namespace CodeJam.IO
 			}
 
 			/// <summary>Delete the temp file|directory</summary>
+#pragma warning disable CA1063 // Implement IDisposable Correctly
 			public void Dispose()
 			{
 				if (_path != null) // Fast check
@@ -80,11 +81,13 @@ namespace CodeJam.IO
 					GC.SuppressFinalize(this);
 				}
 			}
+#pragma warning restore CA1063 // Implement IDisposable Correctly
 
 			/// <summary>Dispose pattern implementation - overridable part</summary>
 			/// <param name="disposing">
 			/// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
 			/// </param>
+#pragma warning disable CA1063 // Implement IDisposable Correctly
 			protected void Dispose(bool disposing)
 			{
 				var path = Interlocked.Exchange(ref _path, null);
@@ -103,6 +106,7 @@ namespace CodeJam.IO
 						Interlocked.Exchange(ref _path, path);
 				}
 			}
+#pragma warning restore CA1063 // Implement IDisposable Correctly
 
 			/// <summary>Temp path disposal</summary>
 			/// <param name="path">The path.</param>
@@ -247,7 +251,7 @@ namespace CodeJam.IO
 
 			// DONTTOUCH: File.Create() requires existing directory and the filePath may be a relative path.
 			Directory.CreateDirectory(Path.GetDirectoryName(filePath) ?? dirPath);
-			using (File.Create(filePath)) { }
+			using (_ = File.Create(filePath)) { }
 			return result;
 		}
 

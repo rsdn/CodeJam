@@ -323,6 +323,8 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryFrom<T> WithValue([InstantHandle] Func<T, T> newValueSelector)
 		{
+			Code.NotNull(newValueSelector, nameof(newValueSelector));
+
 			if (HasValue)
 			{
 				var newValue = newValueSelector(_value);
@@ -343,6 +345,8 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryFrom<T2> WithValue<T2>([InstantHandle] Func<T, T2> newValueSelector)
 		{
+			Code.NotNull(newValueSelector, nameof(newValueSelector));
+
 			if (HasValue)
 			{
 				var newValue = newValueSelector(_value);
