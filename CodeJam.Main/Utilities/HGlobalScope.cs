@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
+#pragma warning disable CA1063 // Implement IDisposable Correctly
 	/// <summary>
 	/// Wraps <see cref="Marshal.AllocHGlobal(System.IntPtr)"/> and <see cref="Marshal.FreeHGlobal"/>.
 	/// </summary>
@@ -18,6 +19,7 @@ namespace CodeJam
 #else
 		IDisposable
 #endif
+#pragma warning restore CA1063 // Implement IDisposable Correctly
 	{
 		/// <summary>
 		/// Allocates memory from the unmanaged memory of the process by using the specified number of bytes.

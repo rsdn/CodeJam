@@ -50,15 +50,19 @@ namespace CodeJam
 		/// </summary>
 		public FieldInfo UnderlyingField { get; }
 
+#pragma warning disable CA1721 // Property names should not match get methods
 		/// <summary>
 		/// Gets enum element display name.
 		/// </summary>
 		public string? DisplayName { get; }
+#pragma warning restore CA1721 // Property names should not match get methods
 
 		/// <summary>Gets enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</summary>
 		/// <returns>Enum element display name or enum name if <see cref="DisplayName"/> is <c>null</c>.</returns>
+#pragma warning disable CA1024 // Use properties where appropriate
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public string GetDisplayName() => DisplayName ?? Name;
+#pragma warning restore CA1024 // Use properties where appropriate
 
 		/// <summary>
 		/// Enum element description.

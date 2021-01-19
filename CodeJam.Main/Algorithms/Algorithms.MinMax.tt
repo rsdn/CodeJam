@@ -9,7 +9,7 @@ using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 <#
 	var items = new[]

@@ -177,7 +177,7 @@ namespace CodeJam.TableData
 							throw new FormatException($"Unexpected char '{curChar.Char}' at line {lineNum} column {column}");
 
 						default:
-							throw new ArgumentOutOfRangeException();
+							throw new ArgumentOutOfRangeException($"State has unexpected value {state}");
 					}
 
 				curChar = curChar.Next();
@@ -283,7 +283,7 @@ namespace CodeJam.TableData
 					? (ITableDataFormatter)new CsvFormatter()
 					: new CsvNoEscapeFormatter();
 			var first = true;
-			var widths = new int[0];
+			var widths = Array.Empty<int>();
 			foreach (var line in data)
 			{
 				if (!first)

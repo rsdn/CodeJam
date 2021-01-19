@@ -117,7 +117,7 @@ namespace CodeJam.Threading
 		{
 			var tasks = Enumerable.Range(0, 20).ToArray();
 			var results = new ConcurrentBag<int>();
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 
 			var forEachTask = tasks.ForEachAsync(
 				(i, ct) =>

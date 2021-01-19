@@ -9,7 +9,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{2F2046CC-FB47-4318-B335-5A82B04B6C40}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net5.0;net472;net461;net45;net40;net35;netstandard2.1;netstandard2.0;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>net5.0</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 		<LangVersion>9</LangVersion>
@@ -78,6 +78,7 @@
 		<Compile Update="Algorithms\Algorithms.EqualRange.generated.cs">
 			<DependentUpon>Algorithms.EqualRange.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Collections\Enumerable\EnumerableExtensions.Deconstruct.generated.cs">
 			<AutoGen>True</AutoGen>
@@ -112,6 +113,7 @@
 		<Compile Update="Algorithms\Algorithms.LowerBound.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Algorithms.LowerBound.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Algorithms\Algorithms.LowerBound.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -120,6 +122,7 @@
 		<Compile Update="Algorithms\Algorithms.Memoize.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Algorithms.Memoize.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Algorithms\Algorithms.Memoize.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -128,6 +131,7 @@
 		<Compile Update="Algorithms\Algorithms.UpperBound.generated.cs">
 			<DependentUpon>Algorithms.UpperBound.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Algorithms\Algorithms.UpperBound.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>

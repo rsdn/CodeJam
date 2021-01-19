@@ -20,7 +20,7 @@ using Range = CodeJam.Ranges.Range;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 		#region float
 		/// <summary>

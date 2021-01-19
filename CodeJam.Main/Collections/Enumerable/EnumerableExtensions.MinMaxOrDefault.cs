@@ -11,7 +11,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public partial class EnumerableExtensions
 	{
 		private static class MinMaxOperators<T>
 		{

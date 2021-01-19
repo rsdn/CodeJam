@@ -9,7 +9,7 @@ using Range = CodeJam.Ranges.Range;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 		/// <summary>
 		/// Returns the tuple of [i, j] where

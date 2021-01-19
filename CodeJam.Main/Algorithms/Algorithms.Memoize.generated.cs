@@ -18,7 +18,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 		/// <summary>
 		/// Caches function value for specific arguments.

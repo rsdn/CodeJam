@@ -69,7 +69,7 @@ namespace CodeJam.Threading
 			var lock1 = TryTakeAndHold(asyncLock, holdTime, callback: () => lock1Started.Set());
 			lock1Started.Wait();
 
-			var cts2 = new CancellationTokenSource();
+			using var cts2 = new CancellationTokenSource();
 			var sw2 = Stopwatch.StartNew();
 			var lock2 = TryTakeAndHold(asyncLock, holdTime, cts2.Token);
 			await TaskEx.Delay(delayTime).ConfigureAwait(false);

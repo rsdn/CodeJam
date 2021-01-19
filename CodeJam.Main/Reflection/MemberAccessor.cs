@@ -261,7 +261,7 @@ namespace CodeJam.Reflection
 
 		private static readonly ConcurrentDictionary<Type, object?> _defaultValues = new();
 
-		private object? GetDefaultValue(Type type)
+		private static object? GetDefaultValue(Type type)
 		{
 			if (_defaultValues.TryGetValue(type, out var value))
 				return value;

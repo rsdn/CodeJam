@@ -618,9 +618,7 @@ namespace CodeJam.Mapping
 
 		public class RTest2
 		{
-#pragma warning disable CA1819 // Properties should not return arrays
 			public RTest2[]? Depends { get; set; }
-#pragma warning restore CA1819 // Properties should not return arrays
 		}
 
 		[Test]

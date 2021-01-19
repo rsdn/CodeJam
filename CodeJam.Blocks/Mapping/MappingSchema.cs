@@ -207,10 +207,13 @@ namespace CodeJam.Mapping
 		/// <param name="to">Type to convert to.</param>
 		/// <returns>Convert expression.</returns>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
-			[return: MaybeNull]
+		[return: MaybeNull]
 		protected internal virtual LambdaExpression TryGetConvertExpression(
-			Type from,  Type to)
+			Type from, Type to)
 		{
+			Code.NotNull(from, nameof(from));
+			Code.NotNull(to, nameof(to));
+
 			var li = GetConverter(from, to, false);
 			return li == null ? null : (LambdaExpression)ReduceDefaultValue(li.CheckNullLambda);
 		}
@@ -697,6 +700,8 @@ namespace CodeJam.Mapping
 		public T[] GetAttributes<T>(Type type, Func<T, string?> configGetter, bool inherit = true)
 			where T : Attribute
 		{
+			Code.NotNull(configGetter, nameof(configGetter));
+
 			var list = new List<T>();
 			var attrs = GetAttributes<T>(type, inherit);
 
@@ -719,6 +724,8 @@ namespace CodeJam.Mapping
 		public T[] GetAttributes<T>(MemberInfo memberInfo, Func<T, string?> configGetter, bool inherit = true)
 			where T : Attribute
 		{
+			Code.NotNull(configGetter, nameof(configGetter));
+
 			var list = new List<T>();
 			var attrs = GetAttributes<T>(memberInfo, inherit);
 

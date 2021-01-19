@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 		/// <summary>
 		/// Returns the minimum index i in the range [0, list.Count - 1] such that list[i] >= value

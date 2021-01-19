@@ -31,7 +31,9 @@ namespace CodeJam.IO
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static string CreateAndLeakTempDir(string s)
 		{
+#pragma warning disable CA2000 // Dispose objects before losing scope
 			var dir2 = TempData.CreateDirectory();
+#pragma warning restore CA2000 // Dispose objects before losing scope
 			var dir2Path = dir2.Path;
 			Assert.AreNotEqual(s, dir2Path, "Path should not match");
 			NAssert.NotNull(dir2.Info, "Info is null");
@@ -115,7 +117,7 @@ namespace CodeJam.IO
 		[Test]
 		public void TestRetryPolicy()
 		{
-			int disposeCallCount = 0;
+			var disposeCallCount = 0;
 			try
 			{
 				Configuration.SetTempDataRetryCallback(
@@ -178,7 +180,9 @@ namespace CodeJam.IO
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static string CreateAndLeakTempFile(string filePath)
 		{
+#pragma warning disable CA2000 // Dispose objects before losing scope
 			var file2 = TempData.CreateFile();
+#pragma warning restore CA2000 // Dispose objects before losing scope
 			var file2Path = file2.Path;
 			Assert.AreNotEqual(filePath, file2Path, "Path should not match");
 			NAssert.NotNull(file2.Info, "Info is null");
@@ -335,7 +339,9 @@ namespace CodeJam.IO
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static string CreateAndLeakTempStream(string filePath)
 		{
+#pragma warning disable CA2000 // Dispose objects before losing scope
 			var file2 = TempData.CreateFileStream();
+#pragma warning restore CA2000 // Dispose objects before losing scope
 			var file2Path = file2.Name;
 			Assert.AreNotEqual(filePath, file2Path, "Path should not match");
 			Assert.IsTrue(File.Exists(file2.Name), "FileStream should exist");

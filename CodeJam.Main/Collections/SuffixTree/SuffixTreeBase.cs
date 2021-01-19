@@ -83,8 +83,10 @@ namespace CodeJam.Collections
 			public readonly int Length;
 		}
 
+#pragma warning disable CA1002 // Do not expose generic lists
 		/// <summary>List of locations of added strings inside the InternalData</summary>
 		protected List<StringLocation> StringLocations { get; }
+#pragma warning restore CA1002 // Do not expose generic lists
 
 		/// <summary>Constructs a base for a suffix tree</summary>
 		protected SuffixTreeBase()
@@ -138,7 +140,7 @@ namespace CodeJam.Collections
 		public bool Contains(string substring)
 		{
 			Code.NotNull(substring, nameof(substring));
-			if (substring == string.Empty)
+			if (substring.Length == 0)
 			{
 				return true;
 			}
@@ -153,7 +155,7 @@ namespace CodeJam.Collections
 		public bool ContainsSuffix(string suffix)
 		{
 			Code.NotNull(suffix, nameof(suffix));
-			if (suffix == string.Empty)
+			if (suffix.Length == 0)
 				return true;
 			var r = FindBranch(suffix);
 			if (!r.HasValue)
@@ -175,7 +177,7 @@ namespace CodeJam.Collections
 		public IEnumerable<Suffix> StartingWith(string prefix)
 		{
 			Code.NotNull(prefix, nameof(prefix));
-			if (prefix == string.Empty)
+			if (prefix.Length == 0)
 			{
 				return All();
 			}
@@ -438,7 +440,10 @@ namespace CodeJam.Collections
 			/// A list of child nodes
 			/// <remarks>null for leaf nodes</remarks>
 			/// </summary>
+#pragma warning disable CA1002 // Do not expose generic lists
 			public List<int>? Children { get; }
+#pragma warning restore CA1002 // Do not expose generic lists
+
 			/// <summary>Shows whether it is a leaf or an internal node</summary>
 			public bool IsLeaf => Children == null;
 			/// <summary>Shows whether it is a terminal (ending at a string end) node or not</summary>

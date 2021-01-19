@@ -47,10 +47,13 @@ namespace CodeJam.Reflection
 		/// </summary>
 		public abstract Type Type { get; }
 
+#pragma warning disable CA1002 // Do not expose generic lists
 		/// <summary>
 		/// Type members.
 		/// </summary>
 		public List<MemberAccessor> Members { get; } = new();
+#pragma warning restore CA1002 // Do not expose generic lists
+
 		#endregion
 
 		#region Items

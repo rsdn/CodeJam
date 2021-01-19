@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 <#
 	for (var i = 2; i <= 7; i++)

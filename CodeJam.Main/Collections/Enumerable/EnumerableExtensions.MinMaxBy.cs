@@ -6,9 +6,9 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public partial class EnumerableExtensions
 	{
-		private static Exception NoElementsException() => new InvalidOperationException("Collection has no elements");
+		private static InvalidOperationException NoElementsException() => new("Collection has no elements");
 
 		#region Min
 		/// <summary>

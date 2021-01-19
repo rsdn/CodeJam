@@ -17,7 +17,7 @@ using TaskEx = System.Threading.Tasks.Task;
 
 namespace CodeJam.Threading
 {
-	partial class TaskHelperTests
+	public partial class TaskHelperTests
 	{
 		private enum SampleResult
 		{
@@ -157,7 +157,7 @@ namespace CodeJam.Threading
 		public void TestWaitTaskAsyncSuccess()
 		{
 			var task = TaskEx.FromResult(SampleResult.FromCallback);
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			cts.CancelAfter(_timeout10);
 			var taskWithTimeout = task.WaitTaskAsync(cts.Token);
 
@@ -241,7 +241,7 @@ namespace CodeJam.Threading
 				CancellationDelay = _timeout10
 			};
 
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			var task = sample.OnCallback(cts.Token).WithTimeout(
 				_timeout2,
 				sample.OnCancellation,
@@ -268,7 +268,7 @@ namespace CodeJam.Threading
 				CancellationDelay = _timeout10
 			};
 
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			var task = sample.OnCallback(cts.Token).WithTimeout(
 				_timeout1,
 				sample.OnCancellation,
@@ -314,7 +314,7 @@ namespace CodeJam.Threading
 		[Test]
 		public void TestRunWithTimeoutInfiniteSuccess()
 		{
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			cts.CancelAfter(_timeout10);
 			var taskWithTimeout = TaskHelper.RunWithTimeout(
 				ct => TaskEx.FromResult(SampleResult.FromCallback),
@@ -384,7 +384,7 @@ namespace CodeJam.Threading
 				CancellationDelay = _timeout10
 			};
 
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			var task = TaskHelper.RunWithTimeout(
 				sample.OnCallback,
 				_timeout2,
@@ -413,7 +413,7 @@ namespace CodeJam.Threading
 				CancellationDelay = _timeout10
 			};
 
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			var task = TaskHelper.RunWithTimeout(
 				sample.OnCallback,
 				TimeoutHelper.InfiniteTimeSpan,
@@ -442,7 +442,7 @@ namespace CodeJam.Threading
 				CancellationDelay = _timeout10
 			};
 
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			var task = TaskHelper.RunWithTimeout(
 				sample.OnCallback,
 				_timeout1,
@@ -473,7 +473,7 @@ namespace CodeJam.Threading
 				CancellationDelay = _timeout10
 			};
 
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			var task = TaskHelper.RunWithTimeout(
 				sample.OnCallback,
 				TimeoutHelper.InfiniteTimeSpan,

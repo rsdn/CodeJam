@@ -34,7 +34,7 @@ namespace CodeJam
 		public static void TestDisposableThrow()
 		{
 			var value = 0;
-			var disposable = Disposable.Create(
+			using var disposable = Disposable.Create(
 				() =>
 				{
 					value++;

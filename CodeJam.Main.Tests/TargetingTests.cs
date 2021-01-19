@@ -171,7 +171,7 @@ namespace CodeJam
 		}
 
 		/// <summary>This test generates conditional build constants default platform moniker.</summary>
-		private void GenerateDefaultPlatform()
+		private static void GenerateDefaultPlatform()
 		{
 			WriteLine($@"
 	<!-- We DO most development and testing on {_defaultFrameworkMoniker} target -->
@@ -195,7 +195,7 @@ namespace CodeJam
 			WriteLine("	</PropertyGroup>");
 		}
 
-		private void GenerateTargetFrameworks(string propertyName, string monikersRaw)
+		private static void GenerateTargetFrameworks(string propertyName, string monikersRaw)
 		{
 			var monikers = monikersRaw
 				.Split(new[] { "\r\n", ";" }, StringSplitOptions.RemoveEmptyEntries)
@@ -214,7 +214,7 @@ namespace CodeJam
 			GenerateTargetingConstants(".Net Core", "TARGETS_NETCOREAPP", _netCoreMonikers);
 		}
 
-		private void GenerateTargetingConstants(string description, string platform, string monikersRaw)
+		private static void GenerateTargetingConstants(string description, string platform, string monikersRaw)
 		{
 			var monikers = monikersRaw
 				.Split(new[] { "\r\n", ";" }, StringSplitOptions.RemoveEmptyEntries)
