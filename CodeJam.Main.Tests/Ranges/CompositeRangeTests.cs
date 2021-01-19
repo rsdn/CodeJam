@@ -6,8 +6,6 @@ using System.Linq;
 
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static CodeJam.Ranges.RangeTestHelper;

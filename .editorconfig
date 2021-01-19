@@ -8,6 +8,29 @@ trim_trailing_whitespace = true
 
 ### Compiler diagnostic ###
 
+# Code quality #
+
+# Do not declare static members on generic types
+dotnet_code_quality.ca1000.severity=none
+# Do not nest type. Alternatively, change its accessibility so that it is not externally visible.
+dotnet_code_quality.ca1034.severity=none
+# Do not declare visible instance fields
+dotnet_code_quality.ca1051.severity=none
+# Mark assemblies with CLSCompliant
+dotnet_code_quality.ca1014.severity=none
+# Rename type name to end in ''
+dotnet_code_quality.ca1710.severity=none
+# Rename type name so that it does not end in ''
+dotnet_code_quality.ca1711.severity=none
+# Avoid using cref tags with a prefix
+dotnet_code_quality.ca1200.severity=none
+
+dotnet_code_quality.ca1062.null_check_validation_methods=CodeJam.Code.NotNull
+dotnet_code_quality.ca1062.null_check_validation_methods=CodeJam.Code.GenericNotNull
+dotnet_code_quality.ca1062.null_check_validation_methods=CodeJam.Code.NotNullNorEmpty
+dotnet_code_quality.ca1062.null_check_validation_methods=CodeJam.Code.NotNullNorWhiteSpace
+dotnet_code_quality.ca1062.null_check_validation_methods=CodeJam.Code.NotNullAndItemNotNull
+
 # Nullability as error
 dotnet_diagnostic.cs8600.severity=error
 dotnet_diagnostic.cs8601.severity=error

@@ -25,7 +25,7 @@ namespace CodeJam
 		/// <returns>Detailed exception text.</returns>
 		public static StringBuilder ToDiagnosticString(this Exception exception, StringBuilder stringBuilder)
 		{
-			var writer = new StringWriter(stringBuilder);
+			using var writer = new StringWriter(stringBuilder);
 			ToDiagnosticString(exception, writer, stringBuilder.Length == 0);
 			writer.Flush();
 			return stringBuilder;

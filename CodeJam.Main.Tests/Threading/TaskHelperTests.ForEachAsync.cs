@@ -69,7 +69,7 @@ namespace CodeJam.Threading
 			TaskEx.Run(() => TestForEachAsyncCore()).Wait();
 		}
 
-		public async Task TestForEachAsyncCore()
+		public static async Task TestForEachAsyncCore()
 		{
 			var tasks = Enumerable.Range(0, 20).ToArray();
 

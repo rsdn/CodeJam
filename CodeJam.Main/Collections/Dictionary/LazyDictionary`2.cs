@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+
+#if NETCOREAPP30_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
+#endif
 
 using JetBrains.Annotations;
 
@@ -72,18 +75,18 @@ namespace CodeJam.Collections
 		/// </summary>
 		public void Clear() => _map.Clear();
 
-		#region Implementation of IEnumerable
+#region Implementation of IEnumerable
 		IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() =>
 			_map.GetEnumerator();
 
 		IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<KeyValuePair<TKey, TValue>>)this).GetEnumerator();
-		#endregion
+#endregion
 
-		#region Implementation of IReadOnlyCollection<out KeyValuePair<TKey,TValue>>
+#region Implementation of IReadOnlyCollection<out KeyValuePair<TKey,TValue>>
 		int IReadOnlyCollection<KeyValuePair<TKey, TValue>>.Count => _map.Count;
-		#endregion
+#endregion
 
-		#region Implementation of IReadOnlyDictionary<TKey,TValue>
+#region Implementation of IReadOnlyDictionary<TKey,TValue>
 		/// <summary>Determines whether the read-only dictionary contains an element that has the specified key.</summary>
 		/// <returns>true if the read-only dictionary contains an element that has the specified key; otherwise, false.</returns>
 		/// <param name="key">The key to locate.</param>
@@ -120,6 +123,6 @@ namespace CodeJam.Collections
 		/// <summary>Gets an enumerable collection that contains the values in the read-only dictionary.</summary>
 		/// <returns>An enumerable collection that contains the values in the read-only dictionary.</returns>
 		public IEnumerable<TValue> Values => _map.Values;
-		#endregion
+#endregion
 	}
 }

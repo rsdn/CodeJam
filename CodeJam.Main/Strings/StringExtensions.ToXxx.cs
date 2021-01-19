@@ -144,10 +144,10 @@ namespace CodeJam.Strings
 					: null;
 
 		/// <summary>
-		/// Creates a new <see cref="T:System.Uri" /> using the specified <see cref="T:System.String" /> instance
+		/// Creates a new <see cref="T:System.Uri" /> using the specified <see cref="System.String" /> instance
 		/// and a <see cref="T:System.UriKind" />.
 		/// </summary>
-		/// <param name="str">The <see cref="T:System.String" /> representing the <see cref="T:System.Uri" />.</param>
+		/// <param name="str">The <see cref="System.String" /> representing the <see cref="T:System.Uri" />.</param>
 		/// <param name="uriKind">The type of the Uri. DefaultValue is <see cref="UriKind.RelativeOrAbsolute"/>.</param>
 		/// <returns>Constructed <see cref="T:System.Uri" />.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]

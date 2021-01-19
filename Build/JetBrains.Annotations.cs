@@ -214,10 +214,12 @@ internal sealed class ValueRangeAttribute : Attribute
       To = to;
     }
 
+#pragma warning disable CA1019 // Define accessors for attribute arguments
     public ValueRangeAttribute(long value)
     {
       From = To = value;
     }
+#pragma warning restore CA1019 // Define accessors for attribute arguments
 
     public ValueRangeAttribute(ulong value)
     {

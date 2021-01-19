@@ -43,7 +43,7 @@ namespace CodeJam.Mapping
 
 		private static XmlDocument CreateXmlDocument(string str)
 		{
-			var xml = new XmlDocument();
+			var xml = new XmlDocument { XmlResolver = null! };
 			xml.LoadXml(str);
 			return xml;
 		}

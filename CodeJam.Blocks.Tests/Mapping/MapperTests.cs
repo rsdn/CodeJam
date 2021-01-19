@@ -342,7 +342,7 @@ namespace CodeJam.Mapping
 		}
 
 		private class Class5 { public Class1 Class1 = new(); public Class1? Class2; }
-		private class Class6 { public Class2 Class1 = new(); public Class2? Class2 = null; }
+		private class Class6 { public Class2 Class1 = new(); public Class2? Class2; }
 
 		[Test]
 		public void MapInnerObject2([Values(true,false)] bool useAction)
@@ -373,7 +373,7 @@ namespace CodeJam.Mapping
 		}
 
 		private class Class7  { public Class9?  Class; }
-		private class Class8  { public Class10? Class = null; }
+		private class Class8  { public Class10? Class; }
 		private class Class9  { public Class7  Class = new(); }
 		private class Class10 { public Class8  Class = new(); }
 
@@ -459,7 +459,7 @@ namespace CodeJam.Mapping
 		}
 
 		private class Class15 { public List<Class1> List = new() { new Class1(), new Class1() }; }
-		private class Class16 { public List<Class2>? List = null; }
+		private class Class16 { public List<Class2>? List; }
 
 		[Test]
 		public void ObjectList([Values(true,false)] bool useAction)
@@ -527,7 +527,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		private class Class18 { public Class9[]? Arr = null; }
+		private class Class18 { public Class9[]? Arr; }
 
 		[Test]
 		public void ObjectArray1([Values(true,false)] bool useAction)
@@ -563,7 +563,7 @@ namespace CodeJam.Mapping
 		}
 
 		private class Class20 { public Source Class1 = new(); public Source? Class2; }
-		private class Class21 { public Dest?  Class1 = null;         public Dest?   Class2 = null; }
+		private class Class21 { public Dest?  Class1;         public Dest?   Class2; }
 
 		[Test]
 		public void NoCrossRef([Values(true,false)] bool useAction)
@@ -618,7 +618,9 @@ namespace CodeJam.Mapping
 
 		public class RTest2
 		{
+#pragma warning disable CA1819 // Properties should not return arrays
 			public RTest2[]? Depends { get; set; }
+#pragma warning restore CA1819 // Properties should not return arrays
 		}
 
 		[Test]
