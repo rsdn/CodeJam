@@ -6,8 +6,6 @@ using System.Linq;
 
 using CodeJam.Strings;
 
-using JetBrains.Annotations;
-
 using NUnit.Framework;
 
 using static CodeJam.Ranges.RangeTestHelper;
@@ -107,35 +105,19 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"[1..2]: { [1..2] }",
-			"[1..2]: { [1..2] }")]
-		[TestCase(
-			"[1..2]: { [1..2]; [1..2]; [1..2] }",
-			"[1..2]: { [1..2]; [1..2]; [1..2] }")]
-		[TestCase(
-			"[1..3]: { [2..3]; [1..2]; [1..3]; ∅ }",
-			"[1..3]: { [1..2]; [1..3]; [2..3] }")]
-		[TestCase(
-			"[1..2]: { (1..2); (1..2]; [1..2); [1..2] }",
-			"[1..2]: { [1..2); [1..2]; (1..2); (1..2] }")]
-		[TestCase(
-			"(0..4): { [2..3]; [3..4); (0..1); [1..2] }",
-			"(0..4): { (0..1); [1..2]; [2..3]; [3..4) }")]
-		[TestCase(
-			"∅: { ∅; ∅; ∅; ∅ }",
-			"∅")]
-		[TestCase(
-			"(-∞..+∞): { (-∞..3]; [3..+∞); [1..5]; [4..5) }",
-			"(-∞..+∞): { (-∞..3]; [1..5]; [3..+∞); [4..5) }")]
-		[TestCase(
-			"[0..8): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
+		[TestCase("[1..2]: { [1..2] }", "[1..2]: { [1..2] }")]
+		[TestCase("[1..2]: { [1..2]; [1..2]; [1..2] }", "[1..2]: { [1..2]; [1..2]; [1..2] }")]
+		[TestCase("[1..3]: { [2..3]; [1..2]; [1..3]; ∅ }", "[1..3]: { [1..2]; [1..3]; [2..3] }")]
+		[TestCase("[1..2]: { (1..2); (1..2]; [1..2); [1..2] }", "[1..2]: { [1..2); [1..2]; (1..2); (1..2] }")]
+		[TestCase("(0..4): { [2..3]; [3..4); (0..1); [1..2] }", "(0..4): { (0..1); [1..2]; [2..3]; [3..4) }")]
+		[TestCase("∅: { ∅; ∅; ∅; ∅ }", "∅")]
+		[TestCase("(-∞..+∞): { (-∞..3]; [3..+∞); [1..5]; [4..5) }", "(-∞..+∞): { (-∞..3]; [1..5]; [3..+∞); [4..5) }")]
+		[TestCase("[0..8): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
 			"[0..8): { [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }")]
 		[TestCase(
 			"(-∞..+∞): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); (-∞..+∞); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
 			"(-∞..+∞): { (-∞..+∞); [0..6]; [1..2]; [1..2]; [3..4]; [3..5); [3..5]; (3..5); (3..5]; (4..6); [7..8) }")]
-		public static void TestCompositeRangeCreate(
-			string ranges, string expected)
+		public static void TestCompositeRangeCreate(string ranges, string expected)
 		{
 			var rnd = TestTools.GetTestRandom();
 
@@ -147,29 +129,17 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"[1..2]: { '':[1..2] }",
-			"[1..2]: { '':[1..2] }")]
-		[TestCase(
-			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }",
-			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }")]
-		[TestCase(
-			"[0..3]: { 'C':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3]; ' ':[0..1] }",
+		[TestCase("[1..2]: { '':[1..2] }", "[1..2]: { '':[1..2] }")]
+		[TestCase("[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }", "[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }")]
+		[TestCase("[0..3]: { 'C':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3]; ' ':[0..1] }",
 			"[0..3]: { ' ':[0..1]; 'C':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3] }")]
-		[TestCase(
-			"[1..3]: { 'A':[2..3]; 'B':[1..2]; 'C':[1..3]; 'D':∅ }",
-			"[1..3]: { 'B':[1..2]; 'C':[1..3]; 'A':[2..3] }")]
-		[TestCase(
-			"[1..2]: { 'A':(1..2); 'B':(1..2]; 'C':[1..2); 'D':[1..2] }",
+		[TestCase("[1..3]: { 'A':[2..3]; 'B':[1..2]; 'C':[1..3]; 'D':∅ }", "[1..3]: { 'B':[1..2]; 'C':[1..3]; 'A':[2..3] }")]
+		[TestCase("[1..2]: { 'A':(1..2); 'B':(1..2]; 'C':[1..2); 'D':[1..2] }",
 			"[1..2]: { 'C':[1..2); 'D':[1..2]; 'A':(1..2); 'B':(1..2] }")]
-		[TestCase(
-			"(0..4): { 'A':[2..3]; 'B':[3..4); 'C':(0..1); 'D':[1..2] }",
+		[TestCase("(0..4): { 'A':[2..3]; 'B':[3..4); 'C':(0..1); 'D':[1..2] }",
 			"(0..4): { 'C':(0..1); 'D':[1..2]; 'A':[2..3]; 'B':[3..4) }")]
-		[TestCase(
-			"∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }",
-			"∅")]
-		[TestCase(
-			"(-∞..+∞): { 'A':(-∞..3]; 'B':[3..+∞); 'C':[1..5]; 'D':[4..5) }",
+		[TestCase("∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }", "∅")]
+		[TestCase("(-∞..+∞): { 'A':(-∞..3]; 'B':[3..+∞); 'C':[1..5]; 'D':[4..5) }",
 			"(-∞..+∞): { 'A':(-∞..3]; 'C':[1..5]; 'B':[3..+∞); 'D':[4..5) }")]
 		[TestCase(
 			"[0..8): { 'A':[3..4]; 'B':[3..5); 'C':[0..6]; 'D':∅; 'E':∅; 'F':∅; 'G':[1..2]; 'H':(4..6); 'I':[7..8); 'J':[1..2]; 'K':[3..5]; 'L':(3..5); 'M':∅; 'N':∅; 'O':(3..5] }",
@@ -179,8 +149,7 @@ namespace CodeJam.Ranges
 			"(-∞..+∞): { 'A':[3..4]; 'B':[3..5); 'C':[0..6]; 'D':∅; 'E':∅; 'F':∅; 'G':[1..2]; 'H':(4..6); '':(-∞..+∞); 'I':[7..8); 'J':[1..2]; 'K':[3..5]; 'L':(3..5); 'M':∅; 'N':∅; 'O':(3..5] }",
 			"(-∞..+∞): { '':(-∞..+∞); 'C':[0..6]; 'G':[1..2]; 'J':[1..2]; 'A':[3..4]; 'B':[3..5); 'K':[3..5]; 'L':(3..5); 'O':(3..5]; 'H':(4..6); 'I':[7..8) }"
 			)]
-		public static void TestCompositeRangeCreateWithKey(
-			string ranges, string expected)
+		public static void TestCompositeRangeCreateWithKey(string ranges, string expected)
 		{
 			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
 			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), expected);
@@ -354,38 +323,14 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"[1..2]: { [1..2] }",
-			"[1..2]: { [1..2] }",
-			true)]
-		[TestCase(
-			"[1..2]: { [1..2] }",
-			"[1..3]: { [1..3] }",
-			false)]
-		[TestCase(
-			"[1..2]: { [1..2] }",
-			"[1..2]: { [1..2]; [1..2] }",
-			false)]
-		[TestCase(
-			"∅: { ∅; ∅; ∅; ∅ }",
-			"∅",
-			true)]
-		[TestCase(
-			"[1..5]: { [1..2]; [3..5] }",
-			"[1..5]: { [1..2]; [3..5] }",
-			true)]
-		[TestCase(
-			"[1..5]: { [1..2]; [3..5] }",
-			"[1..5]: { [1..2]; (3..5] }",
-			false)]
-		[TestCase(
-			"[1..2]: { [1..2] }",
-			"(-∞..+∞): { (-∞..+∞) }",
-			false)]
-		[TestCase(
-			"[1..5]: { [1..2]; [3..5] }",
-			"∅",
-			false)]
+		[TestCase("[1..2]: { [1..2] }", "[1..2]: { [1..2] }", true)]
+		[TestCase("[1..2]: { [1..2] }", "[1..3]: { [1..3] }", false)]
+		[TestCase("[1..2]: { [1..2] }", "[1..2]: { [1..2]; [1..2] }", false)]
+		[TestCase("∅: { ∅; ∅; ∅; ∅ }", "∅", true)]
+		[TestCase("[1..5]: { [1..2]; [3..5] }", "[1..5]: { [1..2]; [3..5] }", true)]
+		[TestCase("[1..5]: { [1..2]; [3..5] }", "[1..5]: { [1..2]; (3..5] }", false)]
+		[TestCase("[1..2]: { [1..2] }", "(-∞..+∞): { (-∞..+∞) }", false)]
+		[TestCase("[1..5]: { [1..2]; [3..5] }", "∅", false)]
 		public static void TestCompositeRangeEquality(string range1, string range2, bool expected)
 		{
 			var compositeRange1 = ParseCompositeRangeDouble(range1);
@@ -395,50 +340,19 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"[1..2]: { 'A':[1..2] }",
-			"[1..2]: { 'A':[1..2] }",
-			true)]
-		[TestCase(
-			"[1..2]: { 'A':[1..2] }",
-			"[1..2]: { 'B':[1..2] }",
-			false)]
-		[TestCase(
-			"[1..2]: { 'A':[1..2] }",
-			"[1..3]: { 'A':[1..3] }",
-			false)]
-		[TestCase(
-			"[1..2]: { 'A':[1..2] }",
-			"[1..2]: { 'A':[1..2]; 'A':[1..2] }",
-			false)]
-		[TestCase(
-			"[1..5]: { '':[1..2]; '':[3..5] }",
-			"[1..5]: { '':[1..2]; '':[3..5] }",
-			true)]
-		[TestCase(
-			"[1..5]: { '':[1..2]; '':[3..5] }",
-			"[1..5]: { '':[1..2]; '':(3..5] }",
-			false)]
-		[TestCase(
-			"[1..2]: { '':[1..2] }",
-			"(-∞..+∞): { 'A':(-∞..+∞) }",
-			false)]
-		[TestCase(
-			"∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }",
-			"∅",
-			true)]
-		[TestCase(
-			"[1..5]: { '':[1..2]; '':[3..5] }",
-			"∅",
-			false)]
-		[TestCase(
-			"[1..2]: { 'A':[1..2]; 'A':[1..2]; 'A':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }",
-			"[1..2]: { 'C':[1..2]; 'A':[1..2]; '':[1..2]; 'B':[1..2]; '':[1..2]; 'A':[1..2]; 'A':[1..2]; 'C':[1..2] }",
-			true)]
-		[TestCase(
-			"[1..2]: { 'A':[1..2]; 'A':[1..2]; 'A':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }",
-			"[1..2]: { 'A':[1..2]; 'A':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }",
-			false)]
+		[TestCase("[1..2]: { 'A':[1..2] }", "[1..2]: { 'A':[1..2] }", true)]
+		[TestCase("[1..2]: { 'A':[1..2] }", "[1..2]: { 'B':[1..2] }", false)]
+		[TestCase("[1..2]: { 'A':[1..2] }", "[1..3]: { 'A':[1..3] }", false)]
+		[TestCase("[1..2]: { 'A':[1..2] }", "[1..2]: { 'A':[1..2]; 'A':[1..2] }", false)]
+		[TestCase("[1..5]: { '':[1..2]; '':[3..5] }", "[1..5]: { '':[1..2]; '':[3..5] }", true)]
+		[TestCase("[1..5]: { '':[1..2]; '':[3..5] }", "[1..5]: { '':[1..2]; '':(3..5] }", false)]
+		[TestCase("[1..2]: { '':[1..2] }", "(-∞..+∞): { 'A':(-∞..+∞) }", false)]
+		[TestCase("∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }", "∅", true)]
+		[TestCase("[1..5]: { '':[1..2]; '':[3..5] }", "∅", false)]
+		[TestCase("[1..2]: { 'A':[1..2]; 'A':[1..2]; 'A':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }",
+			"[1..2]: { 'C':[1..2]; 'A':[1..2]; '':[1..2]; 'B':[1..2]; '':[1..2]; 'A':[1..2]; 'A':[1..2]; 'C':[1..2] }", true)]
+		[TestCase("[1..2]: { 'A':[1..2]; 'A':[1..2]; 'A':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }",
+			"[1..2]: { 'A':[1..2]; 'A':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; '':[1..2]; 'C':[1..2]; 'B':[1..2] }", false)]
 		[TestCase(
 			"[0..8): { '':[0..6]; 'A':[1..2]; 'B':[1..2]; 'B':[3..4]; 'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }",
 			"[0..8): { '':[0..6]; 'B':[1..2]; 'A':[1..2]; 'B':[3..4]; 'G':[3..5); 'C':[3..5]; 'H':(3..5); 'K':(3..5]; 'D':(4..6); 'F':[7..8) }",
@@ -468,32 +382,15 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"[1..2]: { [1..2] }",
-			"[1..2]: { [1..2] }")]
-		[TestCase(
-			"[1..2]: { [1..2]; [1..2]; [1..2] }",
-			"[1..2]: { [1..2] }")]
-		[TestCase(
-			"[1..3]: { [2..3]; [1..2]; [1..3]; ∅ }",
-			"[1..3]: { [1..3] }")]
-		[TestCase(
-			"[1..2]: { (1..2); (1..2]; [1..2); [1..2] }",
-			"[1..2]: { [1..2] }")]
-		[TestCase(
-			"(0..4): { [2..3); [3..4); (0..1); [1..2] }",
-			"(0..4): { (0..4) }")]
-		[TestCase(
-			"(0..4): { [2..3); (3..4); (0..1); [1..2] }",
-			"(0..4): { (0..3); (3..4) }")]
-		[TestCase(
-			"∅: { ∅; ∅; ∅; ∅ }",
-			"∅")]
-		[TestCase(
-			"(-∞..+∞): { (-∞..3]; [3..+∞); [1..5]; [4..5) }",
-			"(-∞..+∞): { (-∞..+∞) }")]
-		[TestCase(
-			"[0..8): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
+		[TestCase("[1..2]: { [1..2] }", "[1..2]: { [1..2] }")]
+		[TestCase("[1..2]: { [1..2]; [1..2]; [1..2] }", "[1..2]: { [1..2] }")]
+		[TestCase("[1..3]: { [2..3]; [1..2]; [1..3]; ∅ }", "[1..3]: { [1..3] }")]
+		[TestCase("[1..2]: { (1..2); (1..2]; [1..2); [1..2] }", "[1..2]: { [1..2] }")]
+		[TestCase("(0..4): { [2..3); [3..4); (0..1); [1..2] }", "(0..4): { (0..4) }")]
+		[TestCase("(0..4): { [2..3); (3..4); (0..1); [1..2] }", "(0..4): { (0..3); (3..4) }")]
+		[TestCase("∅: { ∅; ∅; ∅; ∅ }", "∅")]
+		[TestCase("(-∞..+∞): { (-∞..3]; [3..+∞); [1..5]; [4..5) }", "(-∞..+∞): { (-∞..+∞) }")]
+		[TestCase("[0..8): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
 			"[0..8): { [0..6]; [7..8) }")]
 		[TestCase(
 			"(-∞..+∞): { [3..4]; [3..5); [0..6]; ∅; ∅; ∅; [1..2]; (4..6); (-∞..+∞); [7..8); [1..2]; [3..5]; (3..5); ∅; ∅; (3..5] }",
@@ -505,44 +402,26 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"[1..2]: { '':[1..2] }",
-			"[1..2]: { '':[1..2] }")]
-		[TestCase(
-			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }",
-			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }")]
-		[TestCase(
-			"[1..2]: { 'A':[1..2]; 'B':[1..2]; 'A':[1..2] }",
-			"[1..2]: { 'A':[1..2]; 'B':[1..2] }")]
-		[TestCase(
-			"[0..3]: { 'C':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3]; ' ':[0..1] }",
+		[TestCase("[1..2]: { '':[1..2] }", "[1..2]: { '':[1..2] }")]
+		[TestCase("[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }", "[1..2]: { 'A':[1..2]; 'B':[1..2]; 'C':[1..2] }")]
+		[TestCase("[1..2]: { 'A':[1..2]; 'B':[1..2]; 'A':[1..2] }", "[1..2]: { 'A':[1..2]; 'B':[1..2] }")]
+		[TestCase("[0..3]: { 'C':[1..2]; 'B':[1..2]; 'C':[1..2]; 'B':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3]; ' ':[0..1] }",
 			"[0..3]: { ' ':[0..1]; 'C':[1..2]; 'B':[1..2]; 'A':[1..2]; ' ':[2..3] }")]
-		[TestCase(
-			"[1..3]: { 'A':[2..3]; 'A':[1..2); 'C':[1..3]; 'D':∅ }",
-			"[1..3]: { 'A':[1..3]; 'C':[1..3] }")]
-		[TestCase(
-			"[1..3]: { 'A':(2..3); 'A':[1..2); 'C':[1..3]; 'D':∅ }",
-			"[1..3]: { 'A':[1..2); 'C':[1..3]; 'A':(2..3) }")]
-		[TestCase(
-			"[1..2]: { 'A':(1..2); 'B':(1..2]; 'C':[1..2); 'D':[1..2] }",
+		[TestCase("[1..3]: { 'A':[2..3]; 'A':[1..2); 'C':[1..3]; 'D':∅ }", "[1..3]: { 'A':[1..3]; 'C':[1..3] }")]
+		[TestCase("[1..3]: { 'A':(2..3); 'A':[1..2); 'C':[1..3]; 'D':∅ }", "[1..3]: { 'A':[1..2); 'C':[1..3]; 'A':(2..3) }")]
+		[TestCase("[1..2]: { 'A':(1..2); 'B':(1..2]; 'C':[1..2); 'D':[1..2] }",
 			"[1..2]: { 'C':[1..2); 'D':[1..2]; 'A':(1..2); 'B':(1..2] }")]
-		[TestCase(
-			"[1..2]: { 'A':(1..2); 'B':(1..2]; 'A':[1..2); 'C':[1..2] }",
+		[TestCase("[1..2]: { 'A':(1..2); 'B':(1..2]; 'A':[1..2); 'C':[1..2] }",
 			"[1..2]: { 'A':[1..2); 'C':[1..2]; 'B':(1..2] }")]
-		[TestCase(
-			"(0..4): { 'A':[2..3]; 'B':[3..4); 'C':(0..1); 'D':[1..2] }",
+		[TestCase("(0..4): { 'A':[2..3]; 'B':[3..4); 'C':(0..1); 'D':[1..2] }",
 			"(0..4): { 'C':(0..1); 'D':[1..2]; 'A':[2..3]; 'B':[3..4) }")]
-		[TestCase(
-			"∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }",
-			"∅")]
-		[TestCase(
-			"(-∞..+∞): { 'A':(-∞..3]; 'B':[3..+∞); 'C':[1..5]; 'D':[4..5) }",
+		[TestCase("∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }", "∅")]
+		[TestCase("(-∞..+∞): { 'A':(-∞..3]; 'B':[3..+∞); 'C':[1..5]; 'D':[4..5) }",
 			"(-∞..+∞): { 'A':(-∞..3]; 'C':[1..5]; 'B':[3..+∞); 'D':[4..5) }")]
 		[TestCase(
 			"[0..8): { 'A':[3..4]; 'B':[3..5); 'A':[0..6]; 'B':∅; 'A':∅; 'B':∅; 'A':[1..2]; 'B':(4..6); 'A':[7..8); 'B':[1..2]; 'A':[3..5]; 'B':(3..5); 'A':∅; 'B':∅; 'A':(3..5] }",
 			"[0..8): { 'A':[0..6]; 'B':[1..2]; 'B':[3..6); 'A':[7..8) }")]
-		public static void TestCompositeRangeMergeWithKey(
-			string ranges, string expected)
+		public static void TestCompositeRangeMergeWithKey(string ranges, string expected)
 		{
 			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
 			AreEqual(compositeRange.Merge().ToString(CultureInfo.InvariantCulture), expected);
@@ -551,40 +430,37 @@ namespace CodeJam.Ranges
 		[Test]
 		public static void TestCompositeRangeWithOrWithoutKeys()
 		{
-			var compositeRange = Enumerable
-				.Range(1, 2)
-				.ToCompositeRange(i => i - 1, i => i + 1);
-			AreEqual(compositeRange.ToString(), "[0..3]: { '1':[0..2]; '2':[1..3] }");
+			var compositeRange = Enumerable.Range(1, 2).ToCompositeRange(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), "[0..3]: { '1':[0..2]; '2':[1..3] }");
 
 			var compositeRange2 = compositeRange.WithKeys(i => "A" + i);
-			AreEqual(compositeRange2.ToString(), "[0..3]: { 'A1':[0..2]; 'A2':[1..3] }");
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "[0..3]: { 'A1':[0..2]; 'A2':[1..3] }");
 
 			var compositeRange3 = compositeRange2.WithoutKeys();
-			AreEqual(compositeRange3.ToString(), "[0..3]: { [0..2]; [1..3] }");
+			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "[0..3]: { [0..2]; [1..3] }");
 
 			var compositeRange4 = compositeRange3.WithKeys("A");
-			AreEqual(compositeRange4.ToString(), "[0..3]: { 'A':[0..2]; 'A':[1..3] }");
+			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "[0..3]: { 'A':[0..2]; 'A':[1..3] }");
 
 			var compositeRange5 = compositeRange4.WithKeys("B");
-			AreEqual(compositeRange5.ToString(), "[0..3]: { 'B':[0..2]; 'B':[1..3] }");
+			AreEqual(compositeRange5.ToString(CultureInfo.InvariantCulture), "[0..3]: { 'B':[0..2]; 'B':[1..3] }");
 		}
 
 		[Test]
 		public static void TestCompositeRangeWithValues()
 		{
-			var compositeRange = Enumerable
-				.Range(1, 2)
-				.ToCompositeRange(i => i - 1, i => i + 1);
-			AreEqual(compositeRange.ToString(), "[0..3]: { '1':[0..2]; '2':[1..3] }");
+			var compositeRange = Enumerable.Range(1, 2).ToCompositeRange(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), "[0..3]: { '1':[0..2]; '2':[1..3] }");
 
 			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
-			AreEqual(compositeRange2.ToString(), "[A0..A3]: { '1':[A0..A2]; '2':[A1..A3] }");
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "[A0..A3]: { '1':[A0..A2]; '2':[A1..A3] }");
 
 			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
-			AreEqual(compositeRange3.ToString(), "[A0..B3]: { '1':[A0..B2]; '2':[A1..B3] }");
+			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "[A0..B3]: { '1':[A0..B2]; '2':[A1..B3] }");
 
-			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1)));
-			AreEqual(compositeRange4.ToString(), "[0..3]: { [0..2]; [1..3] }");
+			var compositeRange4 =
+				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1), CultureInfo.InvariantCulture));
+			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "[0..3]: { [0..2]; [1..3] }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
 		}
@@ -592,40 +468,37 @@ namespace CodeJam.Ranges
 		[Test]
 		public static void TestCompositeRangeExclusiveWithOrWithoutKeys()
 		{
-			var compositeRange = Enumerable
-				.Range(1, 2)
-				.ToCompositeRangeExclusive(i => i - 1, i => i + 1);
-			AreEqual(compositeRange.ToString(), "(0..3): { '1':(0..2); '2':(1..3) }");
+			var compositeRange = Enumerable.Range(1, 2).ToCompositeRangeExclusive(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), "(0..3): { '1':(0..2); '2':(1..3) }");
 
 			var compositeRange2 = compositeRange.WithKeys(i => "A" + i);
-			AreEqual(compositeRange2.ToString(), "(0..3): { 'A1':(0..2); 'A2':(1..3) }");
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "(0..3): { 'A1':(0..2); 'A2':(1..3) }");
 
 			var compositeRange3 = compositeRange2.WithoutKeys();
-			AreEqual(compositeRange3.ToString(), "(0..3): { (0..2); (1..3) }");
+			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "(0..3): { (0..2); (1..3) }");
 
 			var compositeRange4 = compositeRange3.WithKeys("A");
-			AreEqual(compositeRange4.ToString(), "(0..3): { 'A':(0..2); 'A':(1..3) }");
+			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "(0..3): { 'A':(0..2); 'A':(1..3) }");
 
 			var compositeRange5 = compositeRange4.WithKeys("B");
-			AreEqual(compositeRange5.ToString(), "(0..3): { 'B':(0..2); 'B':(1..3) }");
+			AreEqual(compositeRange5.ToString(CultureInfo.InvariantCulture), "(0..3): { 'B':(0..2); 'B':(1..3) }");
 		}
 
 		[Test]
 		public static void TestCompositeRangeExclusiveWithValues()
 		{
-			var compositeRange = Enumerable
-				.Range(1, 2)
-				.ToCompositeRangeExclusive(i => i - 1, i => i + 1);
-			AreEqual(compositeRange.ToString(), "(0..3): { '1':(0..2); '2':(1..3) }");
+			var compositeRange = Enumerable.Range(1, 2).ToCompositeRangeExclusive(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), "(0..3): { '1':(0..2); '2':(1..3) }");
 
 			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
-			AreEqual(compositeRange2.ToString(), "(A0..A3): { '1':(A0..A2); '2':(A1..A3) }");
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "(A0..A3): { '1':(A0..A2); '2':(A1..A3) }");
 
 			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
-			AreEqual(compositeRange3.ToString(), "(A0..B3): { '1':(A0..B2); '2':(A1..B3) }");
+			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "(A0..B3): { '1':(A0..B2); '2':(A1..B3) }");
 
-			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1)));
-			AreEqual(compositeRange4.ToString(), "(0..3): { (0..2); (1..3) }");
+			var compositeRange4 =
+				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1), CultureInfo.InvariantCulture));
+			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "(0..3): { (0..2); (1..3) }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
 		}
@@ -633,40 +506,37 @@ namespace CodeJam.Ranges
 		[Test]
 		public static void TestCompositeRangeExclusiveFromWithOrWithoutKeys()
 		{
-			var compositeRange = Enumerable
-				.Range(1, 2)
-				.ToCompositeRangeExclusiveFrom(i => i - 1, i => i + 1);
-			AreEqual(compositeRange.ToString(), "(0..3]: { '1':(0..2]; '2':(1..3] }");
+			var compositeRange = Enumerable.Range(1, 2).ToCompositeRangeExclusiveFrom(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), "(0..3]: { '1':(0..2]; '2':(1..3] }");
 
 			var compositeRange2 = compositeRange.WithKeys(i => "A" + i);
-			AreEqual(compositeRange2.ToString(), "(0..3]: { 'A1':(0..2]; 'A2':(1..3] }");
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "(0..3]: { 'A1':(0..2]; 'A2':(1..3] }");
 
 			var compositeRange3 = compositeRange2.WithoutKeys();
-			AreEqual(compositeRange3.ToString(), "(0..3]: { (0..2]; (1..3] }");
+			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "(0..3]: { (0..2]; (1..3] }");
 
 			var compositeRange4 = compositeRange3.WithKeys("A");
-			AreEqual(compositeRange4.ToString(), "(0..3]: { 'A':(0..2]; 'A':(1..3] }");
+			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "(0..3]: { 'A':(0..2]; 'A':(1..3] }");
 
 			var compositeRange5 = compositeRange4.WithKeys("B");
-			AreEqual(compositeRange5.ToString(), "(0..3]: { 'B':(0..2]; 'B':(1..3] }");
+			AreEqual(compositeRange5.ToString(CultureInfo.InvariantCulture), "(0..3]: { 'B':(0..2]; 'B':(1..3] }");
 		}
 
 		[Test]
 		public static void TestCompositeRangeExclusiveFromWithValues()
 		{
-			var compositeRange = Enumerable
-				.Range(1, 2)
-				.ToCompositeRangeExclusiveFrom(i => i - 1, i => i + 1);
-			AreEqual(compositeRange.ToString(), "(0..3]: { '1':(0..2]; '2':(1..3] }");
+			var compositeRange = Enumerable.Range(1, 2).ToCompositeRangeExclusiveFrom(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), "(0..3]: { '1':(0..2]; '2':(1..3] }");
 
 			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
-			AreEqual(compositeRange2.ToString(), "(A0..A3]: { '1':(A0..A2]; '2':(A1..A3] }");
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "(A0..A3]: { '1':(A0..A2]; '2':(A1..A3] }");
 
 			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
-			AreEqual(compositeRange3.ToString(), "(A0..B3]: { '1':(A0..B2]; '2':(A1..B3] }");
+			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "(A0..B3]: { '1':(A0..B2]; '2':(A1..B3] }");
 
-			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1)));
-			AreEqual(compositeRange4.ToString(), "(0..3]: { (0..2]; (1..3] }");
+			var compositeRange4 =
+				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1), CultureInfo.InvariantCulture));
+			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "(0..3]: { (0..2]; (1..3] }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
 		}
@@ -674,60 +544,47 @@ namespace CodeJam.Ranges
 		[Test]
 		public static void TestCompositeRangeExclusiveToWithOrWithoutKeys()
 		{
-			var compositeRange = Enumerable
-				.Range(1, 2)
-				.ToCompositeRangeExclusiveTo(i => i - 1, i => i + 1);
-			AreEqual(compositeRange.ToString(), "[0..3): { '1':[0..2); '2':[1..3) }");
+			var compositeRange = Enumerable.Range(1, 2).ToCompositeRangeExclusiveTo(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), "[0..3): { '1':[0..2); '2':[1..3) }");
 
 			var compositeRange2 = compositeRange.WithKeys(i => "A" + i);
-			AreEqual(compositeRange2.ToString(), "[0..3): { 'A1':[0..2); 'A2':[1..3) }");
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "[0..3): { 'A1':[0..2); 'A2':[1..3) }");
 
 			var compositeRange3 = compositeRange2.WithoutKeys();
-			AreEqual(compositeRange3.ToString(), "[0..3): { [0..2); [1..3) }");
+			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "[0..3): { [0..2); [1..3) }");
 
 			var compositeRange4 = compositeRange3.WithKeys("A");
-			AreEqual(compositeRange4.ToString(), "[0..3): { 'A':[0..2); 'A':[1..3) }");
+			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "[0..3): { 'A':[0..2); 'A':[1..3) }");
 
 			var compositeRange5 = compositeRange4.WithKeys("B");
-			AreEqual(compositeRange5.ToString(), "[0..3): { 'B':[0..2); 'B':[1..3) }");
+			AreEqual(compositeRange5.ToString(CultureInfo.InvariantCulture), "[0..3): { 'B':[0..2); 'B':[1..3) }");
 		}
 
 		[Test]
 		public static void TestCompositeRangeExclusiveToWithValues()
 		{
-			var compositeRange = Enumerable
-				.Range(1, 2)
-				.ToCompositeRangeExclusiveTo(i => i - 1, i => i + 1);
-			AreEqual(compositeRange.ToString(), "[0..3): { '1':[0..2); '2':[1..3) }");
+			var compositeRange = Enumerable.Range(1, 2).ToCompositeRangeExclusiveTo(i => i - 1, i => i + 1);
+			AreEqual(compositeRange.ToString(CultureInfo.InvariantCulture), "[0..3): { '1':[0..2); '2':[1..3) }");
 
 			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
-			AreEqual(compositeRange2.ToString(), "[A0..A3): { '1':[A0..A2); '2':[A1..A3) }");
+			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "[A0..A3): { '1':[A0..A2); '2':[A1..A3) }");
 
 			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
-			AreEqual(compositeRange3.ToString(), "[A0..B3): { '1':[A0..B2); '2':[A1..B3) }");
+			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "[A0..B3): { '1':[A0..B2); '2':[A1..B3) }");
 
-			var compositeRange4 = compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1)));
-			AreEqual(compositeRange4.ToString(), "[0..3): { [0..2); [1..3) }");
+			var compositeRange4 =
+				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1), CultureInfo.InvariantCulture));
+			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "[0..3): { [0..2); [1..3) }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
 		}
 
 		[Test]
-		[TestCase(
-			"∅",
-			"(-∞..+∞): { (-∞..+∞) }")]
-		[TestCase(
-			"[1..2]: { '':[1..2] }",
-			"(-∞..+∞): { (-∞..1); (2..+∞) }")]
-		[TestCase(
-			"(0..2]: { 'A':(0..1); 'B':(1..2] }",
-			"(-∞..+∞): { (-∞..0]; [1..1]; (2..+∞) }")]
-		[TestCase(
-			"(0..2]: { 'A':(0..1); 'B':[1..2] }",
-			"(-∞..+∞): { (-∞..0]; (2..+∞) }")]
-		[TestCase(
-			"(0..2]: { 'A':(0..1); 'B':(1..2]; 'C':[1..2) }",
-			"(-∞..+∞): { (-∞..0]; (2..+∞) }")]
+		[TestCase("∅", "(-∞..+∞): { (-∞..+∞) }")]
+		[TestCase("[1..2]: { '':[1..2] }", "(-∞..+∞): { (-∞..1); (2..+∞) }")]
+		[TestCase("(0..2]: { 'A':(0..1); 'B':(1..2] }", "(-∞..+∞): { (-∞..0]; [1..1]; (2..+∞) }")]
+		[TestCase("(0..2]: { 'A':(0..1); 'B':[1..2] }", "(-∞..+∞): { (-∞..0]; (2..+∞) }")]
+		[TestCase("(0..2]: { 'A':(0..1); 'B':(1..2]; 'C':[1..2) }", "(-∞..+∞): { (-∞..0]; (2..+∞) }")]
 		public static void TestCompositeRangeComplementation(string ranges, string expected)
 		{
 			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
@@ -745,21 +602,11 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"[1..2]: { '':[1..2] }",
-			"[1..2]: { '':[1..2] }")]
-		[TestCase(
-			"(0..2]: { 'A':(0..1); 'B':(1..2]; 'C':[1..2) }",
-			"[1..2]: { 'C':[1..1]; 'B':[2..2] }")]
-		[TestCase(
-			"∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }",
-			"∅")]
-		[TestCase(
-			"(1..2): { '':(1..2) }",
-			"∅")]
-		[TestCase(
-			"(-∞..+∞): { 'A':(-∞..3); 'B':(3..+∞) }",
-			"(-∞..+∞): { 'A':(-∞..2]; 'B':[4..+∞) }")]
+		[TestCase("[1..2]: { '':[1..2] }", "[1..2]: { '':[1..2] }")]
+		[TestCase("(0..2]: { 'A':(0..1); 'B':(1..2]; 'C':[1..2) }", "[1..2]: { 'C':[1..1]; 'B':[2..2] }")]
+		[TestCase("∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }", "∅")]
+		[TestCase("(1..2): { '':(1..2) }", "∅")]
+		[TestCase("(-∞..+∞): { 'A':(-∞..3); 'B':(3..+∞) }", "(-∞..+∞): { 'A':(-∞..2]; 'B':[4..+∞) }")]
 		public static void TestCompositeRangeMakeInclusive(string ranges, string expected)
 		{
 			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
@@ -768,18 +615,10 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..2): { '':(1..2) }",
-			"(1..2): { '':(1..2) }")]
-		[TestCase(
-			"[0..2): { 'A':[0..0]; 'B':[1..1]; 'C':[1..2) }",
-			"(-1..2): { 'A':(-1..1); 'B':(0..2); 'C':(0..2) }")]
-		[TestCase(
-			"∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }",
-			"∅")]
-		[TestCase(
-			"(-∞..+∞): { 'A':(-∞..3]; 'B':[3..+∞) }",
-			"(-∞..+∞): { 'A':(-∞..4); 'B':(2..+∞) }")]
+		[TestCase("(1..2): { '':(1..2) }", "(1..2): { '':(1..2) }")]
+		[TestCase("[0..2): { 'A':[0..0]; 'B':[1..1]; 'C':[1..2) }", "(-1..2): { 'A':(-1..1); 'B':(0..2); 'C':(0..2) }")]
+		[TestCase("∅: { 'A':∅; 'B':∅; 'C':∅; 'D':∅ }", "∅")]
+		[TestCase("(-∞..+∞): { 'A':(-∞..3]; 'B':[3..+∞) }", "(-∞..+∞): { 'A':(-∞..4); 'B':(2..+∞) }")]
 		public static void TestCompositeRangeMakeExclusive(string ranges, string expected)
 		{
 			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
@@ -788,104 +627,71 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { (1..3) }",
-			"(-∞..1]: { ∅ } | (1..3): { (1..3) } | [3..+∞): { ∅ }")]
-		[TestCase(
-			"[1..3): { [1..2]; (1..3); [2..2] }",
-			"(-∞..1): { ∅ } | " +
-				"[1..1]: { [1..2] } | " +
-				"(1..2): { [1..2]; (1..3) } | " +
-				"[2..2]: { [1..2]; (1..3); [2..2] } | " +
-				"(2..3): { (1..3) } | " +
-				"[3..+∞): { ∅ }")]
-		[TestCase(
-			"(-∞..+∞): { (-∞..1]; (-∞..1]; [2..+∞); [2..+∞) }",
+		[TestCase("(1..3): { (1..3) }", "(-∞..1]: { ∅ } | (1..3): { (1..3) } | [3..+∞): { ∅ }")]
+		[TestCase("[1..3): { [1..2]; (1..3); [2..2] }",
+			"(-∞..1): { ∅ } | " + "[1..1]: { [1..2] } | " + "(1..2): { [1..2]; (1..3) } | "
+				+ "[2..2]: { [1..2]; (1..3); [2..2] } | " + "(2..3): { (1..3) } | " + "[3..+∞): { ∅ }")]
+		[TestCase("(-∞..+∞): { (-∞..1]; (-∞..1]; [2..+∞); [2..+∞) }",
 			"(-∞..1]: { (-∞..1]; (-∞..1] } | (1..2): { ∅ } | [2..+∞): { [2..+∞); [2..+∞) }")]
 		public static void TestCompositeRangeIntersections(string ranges, string expected)
 		{
 			var compositeRange = ParseCompositeRangeDouble(ranges);
-			var intersections = compositeRange.GetIntersections()
-				.Select(i => i.ToInvariantString()).Join(" | ");
+			var intersections = compositeRange.GetIntersections().Select(i => i.ToInvariantString()).Join(" | ");
 			AreEqual(intersections, expected);
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { 'A':(1..3) }",
-			"(-∞..1]: { ∅ } | (1..3): { 'A':(1..3) } | [3..+∞): { ∅ }")]
-		[TestCase(
-			"[1..3): { 'A':[1..2]; 'B':(1..3); 'C':[2..2] }",
-			"(-∞..1): { ∅ } | " +
-				"[1..1]: { 'A':[1..2] } | " +
-				"(1..2): { 'A':[1..2]; 'B':(1..3) } | " +
-				"[2..2]: { 'A':[1..2]; 'B':(1..3); 'C':[2..2] } | " +
-				"(2..3): { 'B':(1..3) } | " +
-				"[3..+∞): { ∅ }")]
-		[TestCase(
-			"(-∞..+∞): { 'A':(-∞..1]; 'B':(-∞..1]; 'A':[2..+∞); 'B':[2..+∞) }",
+		[TestCase("(1..3): { 'A':(1..3) }", "(-∞..1]: { ∅ } | (1..3): { 'A':(1..3) } | [3..+∞): { ∅ }")]
+		[TestCase("[1..3): { 'A':[1..2]; 'B':(1..3); 'C':[2..2] }",
+			"(-∞..1): { ∅ } | " + "[1..1]: { 'A':[1..2] } | " + "(1..2): { 'A':[1..2]; 'B':(1..3) } | "
+				+ "[2..2]: { 'A':[1..2]; 'B':(1..3); 'C':[2..2] } | " + "(2..3): { 'B':(1..3) } | " + "[3..+∞): { ∅ }")]
+		[TestCase("(-∞..+∞): { 'A':(-∞..1]; 'B':(-∞..1]; 'A':[2..+∞); 'B':[2..+∞) }",
 			"(-∞..1]: { 'A':(-∞..1]; 'B':(-∞..1] } | (1..2): { ∅ } | [2..+∞): { 'A':[2..+∞); 'B':[2..+∞) }")]
 		public static void TestCompositeRangeIntersectionsWithKeys(string ranges, string expected)
 		{
 			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
-			var intersections = compositeRange.GetIntersections()
-				.Select(i => i.ToInvariantString()).Join(" | ");
+			var intersections = compositeRange.GetIntersections().Select(i => i.ToInvariantString()).Join(" | ");
 			AreEqual(intersections, expected);
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { (1..3) }",
-			"(1..3)",
-			"(1..3): { (1..3) }")]
-		[TestCase(
-			"(1..3): { (1..3); (1..3); (1..3) }",
-			"(1..3)",
-			"(1..3): { (1..3); (1..3); (1..3) }")]
+		[TestCase("(1..3): { (1..3) }", "(1..3)", "(1..3): { (1..3) }")]
+		[TestCase("(1..3): { (1..3); (1..3); (1..3) }", "(1..3)", "(1..3): { (1..3); (1..3); (1..3) }")]
 		[TestCase("∅", "∅", "∅")]
 		[TestCase("∅", "(1..3)", "(1..3): { ∅ }")]
 		[TestCase("(1..3): { (1..3) }", "∅", "∅")]
-		[TestCase(
-			"(-∞..+∞): { (-∞..1]; [0..+∞) }",
-			"[0..2]",
-			"[0..2]: { (-∞..1]; [0..+∞) }")]
+		[TestCase("(-∞..+∞): { (-∞..1]; [0..+∞) }", "[0..2]", "[0..2]: { (-∞..1]; [0..+∞) }")]
 		public static void TestCompositeRangeIntersection(string ranges, string intersection, string expected)
 		{
 			var compositeRange = ParseCompositeRangeDouble(ranges);
 			var intersectionRange = ParseRangeDouble(intersection);
 
-			var intersectionText = compositeRange.GetIntersection(intersectionRange).ToString();
+			var intersectionText = compositeRange.GetIntersection(intersectionRange).ToString(CultureInfo.InvariantCulture);
 			AreEqual(intersectionText, expected);
 
-			intersectionText = compositeRange.GetIntersection(intersectionRange.WithKey(0)).ToString();
+			intersectionText = compositeRange.GetIntersection(intersectionRange.WithKey(0)).ToString(
+				CultureInfo.InvariantCulture);
 			AreEqual(intersectionText, expected);
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { 'A':(1..3) }",
-			"(1..3)",
-			"(1..3): { 'A':(1..3) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }",
-			"(1..3)",
-			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }")]
+		[TestCase("(1..3): { 'A':(1..3) }", "(1..3)", "(1..3): { 'A':(1..3) }")]
+		[TestCase("(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }", "(1..3)", "(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }"
+			)]
 		[TestCase("∅", "∅", "∅")]
 		[TestCase("∅", "(1..3)", "(1..3): { ∅ }")]
 		[TestCase("(1..3): { 'B':(1..3) }", "∅", "∅")]
-		[TestCase(
-			"(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }",
-			"[0..2]",
-			"[0..2]: { 'A':(-∞..1]; 'B':[0..+∞) }")]
+		[TestCase("(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }", "[0..2]", "[0..2]: { 'A':(-∞..1]; 'B':[0..+∞) }")]
 		public static void TestCompositeRangeIntersectionWithKey(string ranges, string intersection, string expected)
 		{
 			var compositeRange = ParseCompositeKeyedRangeInt32(ranges);
 			var intersectionRange = ParseRangeInt32(intersection);
 
-			var intersectionText = compositeRange.GetIntersection(intersectionRange).ToString();
+			var intersectionText = compositeRange.GetIntersection(intersectionRange).ToString(CultureInfo.InvariantCulture);
 			AreEqual(intersectionText, expected);
 
-			intersectionText = compositeRange.GetIntersection(intersectionRange.WithKey(0)).ToString();
+			intersectionText = compositeRange.GetIntersection(intersectionRange.WithKey(0)).ToString(
+				CultureInfo.InvariantCulture);
 			AreEqual(intersectionText, expected);
 		}
 
@@ -962,23 +768,11 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { (1..3) }",
-			"(1..3): { (1..3); (1..3) }",
-			"(1..3): { (1..3) }")]
+		[TestCase("(1..3): { (1..3) }", "(1..3): { (1..3); (1..3) }", "(1..3): { (1..3) }")]
 		[TestCase("∅", "∅", "∅")]
-		[TestCase(
-			"∅",
-			"(1..3): { (1..3) }",
-			"(1..3): { (1..3) }")]
-		[TestCase(
-			"(1..3): { (1..3) }",
-			"∅",
-			"(1..3): { (1..3) }")]
-		[TestCase(
-			"(-∞..+∞): { (-∞..1]; [2..+∞) }",
-			"[1..2]: { [1..2] }",
-			"(-∞..+∞): { (-∞..+∞) }")]
+		[TestCase("∅", "(1..3): { (1..3) }", "(1..3): { (1..3) }")]
+		[TestCase("(1..3): { (1..3) }", "∅", "(1..3): { (1..3) }")]
+		[TestCase("(-∞..+∞): { (-∞..1]; [2..+∞) }", "[1..2]: { [1..2] }", "(-∞..+∞): { (-∞..+∞) }")]
 		public static void TestCompositeRangeUnion(string ranges, string other, string expected)
 		{
 			var compositeRange1 = ParseCompositeRangeDouble(ranges);
@@ -989,26 +783,13 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { 'A':(1..3) }",
-			"(1..3): { 'B':(1..3) }",
-			"(1..3): { 'A':(1..3); 'B':(1..3) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }",
-			"(1..3): { 'A':(1..3); 'B':(1..3); 'B':(1..3) }",
+		[TestCase("(1..3): { 'A':(1..3) }", "(1..3): { 'B':(1..3) }", "(1..3): { 'A':(1..3); 'B':(1..3) }")]
+		[TestCase("(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }", "(1..3): { 'A':(1..3); 'B':(1..3); 'B':(1..3) }",
 			"(1..3): { 'A':(1..3); 'B':(1..3) }")]
 		[TestCase("∅", "∅", "∅")]
-		[TestCase(
-			"∅",
-			"(1..3): { 'B':(1..3) }",
-			"(1..3): { 'B':(1..3) }")]
-		[TestCase(
-			"(1..3): { 'B':(1..3) }",
-			"∅",
-			"(1..3): { 'B':(1..3) }")]
-		[TestCase(
-			"(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }",
-			"(-∞..+∞): { 'B':(-∞..1]; 'A':[0..+∞) }",
+		[TestCase("∅", "(1..3): { 'B':(1..3) }", "(1..3): { 'B':(1..3) }")]
+		[TestCase("(1..3): { 'B':(1..3) }", "∅", "(1..3): { 'B':(1..3) }")]
+		[TestCase("(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }", "(-∞..+∞): { 'B':(-∞..1]; 'A':[0..+∞) }",
 			"(-∞..+∞): { 'A':(-∞..+∞); 'B':(-∞..+∞) }")]
 		public static void TestCompositeRangeUnionWithKey(string ranges, string other, string expected)
 		{
@@ -1019,18 +800,9 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			null,
-			"(-∞..3): { (-∞..2]; (-∞..3); (2..3) }")]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			1,
-			"[1..3): { [1..2]; [1..3); (2..3) }")]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			2,
-			"(1..3): { (1..2]; (1..3); (2..3) }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", null, "(-∞..3): { (-∞..2]; (-∞..3); (2..3) }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", 1, "[1..3): { [1..2]; [1..3); (2..3) }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", 2, "(1..3): { (1..2]; (1..3); (2..3) }")]
 		[TestCase("∅", 1, "∅")]
 		[TestCase("∅", null, "∅")]
 		public static void TestCompositeRangeExtendFrom(string ranges, double? extendFrom, string expected)
@@ -1042,18 +814,10 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			null,
-			"(-∞..3): { 'A':(-∞..2]; 'B':(-∞..3); 'A':(2..3) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			1,
-			"[1..3): { 'A':[1..2]; 'B':[1..3); 'A':(2..3) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			2,
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", null, "(-∞..3): { 'A':(-∞..2]; 'B':(-∞..3); 'A':(2..3) }")
+		]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", 1, "[1..3): { 'A':[1..2]; 'B':[1..3); 'A':(2..3) }")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", 2, "(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
 		[TestCase("∅", 1, "∅")]
 		[TestCase("∅", null, "∅")]
 		public static void TestCompositeRangeExtendFromWithKey(string ranges, int? extendFrom, string expected)
@@ -1065,18 +829,9 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			null,
-			"(1..+∞): { (1..2]; (1..+∞); (2..+∞) }")]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			3,
-			"(1..3]: { (1..2]; (1..3]; (2..3] }")]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			2,
-			"(1..3): { (1..2]; (1..3); (2..3) }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", null, "(1..+∞): { (1..2]; (1..+∞); (2..+∞) }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", 3, "(1..3]: { (1..2]; (1..3]; (2..3] }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", 2, "(1..3): { (1..2]; (1..3); (2..3) }")]
 		[TestCase("∅", 1, "∅")]
 		[TestCase("∅", null, "∅")]
 		public static void TestCompositeRangeExtendTo(string ranges, double? extendTo, string expected)
@@ -1088,18 +843,10 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			null,
-			"(1..+∞): { 'A':(1..2]; 'B':(1..+∞); 'A':(2..+∞) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			3,
-			"(1..3]: { 'A':(1..2]; 'B':(1..3]; 'A':(2..3] }")]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			2,
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", null, "(1..+∞): { 'A':(1..2]; 'B':(1..+∞); 'A':(2..+∞) }")
+		]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", 3, "(1..3]: { 'A':(1..2]; 'B':(1..3]; 'A':(2..3] }")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", 2, "(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
 		[TestCase("∅", 1, "∅")]
 		[TestCase("∅", null, "∅")]
 		public static void TestCompositeRangeExtendToWithKey(string ranges, int? extendTo, string expected)
@@ -1111,27 +858,13 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { 'A':(1..3) }",
-			"(1..3): { 'B':(1..3) }",
-			"(1..3): { 'A':(1..3) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }",
-			"(1..3): { 'A':(1..3); 'B':(1..3); 'B':(1..3) }",
+		[TestCase("(1..3): { 'A':(1..3) }", "(1..3): { 'B':(1..3) }", "(1..3): { 'A':(1..3) }")]
+		[TestCase("(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }", "(1..3): { 'A':(1..3); 'B':(1..3); 'B':(1..3) }",
 			"(1..3): { 'A':(1..3); 'A':(1..3); 'B':(1..3) }")]
 		[TestCase("∅", "∅", "∅")]
-		[TestCase(
-			"∅",
-			"(1..3): { 'B':(1..3) }",
-			"∅")]
-		[TestCase(
-			"(1..3): { 'B':(1..3) }",
-			"∅",
-			"∅")]
-		[TestCase(
-			"(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }",
-			"[0..2]: { 'C':[0..2] }",
-			"[0..2]: { 'A':[0..1]; 'B':[0..2] }")]
+		[TestCase("∅", "(1..3): { 'B':(1..3) }", "∅")]
+		[TestCase("(1..3): { 'B':(1..3) }", "∅", "∅")]
+		[TestCase("(-∞..+∞): { 'A':(-∞..1]; 'B':[0..+∞) }", "[0..2]: { 'C':[0..2] }", "[0..2]: { 'A':[0..1]; 'B':[0..2] }")]
 		public static void TestCompositeRangeIntersect(string ranges, string other, string expected)
 		{
 			var compositeRange1 = ParseCompositeKeyedRangeInt32(ranges);
@@ -1141,25 +874,14 @@ namespace CodeJam.Ranges
 
 			AreEqual(compositeRange1.Intersect(compositeRange2).ToInvariantString(), expected);
 			AreEqual(compositeRange1.Intersect(compositeRange2A).ToInvariantString(), expected);
-			AreEqual(
-				compositeRange1.Intersect(compositeRange2A).WithoutKeys(),
-				compositeRange1A.Intersect(compositeRange2A));
+			AreEqual(compositeRange1.Intersect(compositeRange2A).WithoutKeys(), compositeRange1A.Intersect(compositeRange2A));
 		}
 
 
 		[Test]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			null,
-			"(1..3): { (1..2]; (1..3); (2..3) }")]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			2,
-			"[2..3): { [2..2]; [2..3); (2..3) }")]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			4,
-			"∅")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", null, "(1..3): { (1..2]; (1..3); (2..3) }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", 2, "[2..3): { [2..2]; [2..3); (2..3) }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", 4, "∅")]
 		[TestCase("∅", 1, "∅")]
 		[TestCase("∅", null, "∅")]
 		public static void TestCompositeRangeTrimFrom(string ranges, double? trimFrom, string expected)
@@ -1171,18 +893,9 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			null,
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			2,
-			"[2..3): { 'A':[2..2]; 'B':[2..3); 'A':(2..3) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			4,
-			"∅")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", null, "(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", 2, "[2..3): { 'A':[2..2]; 'B':[2..3); 'A':(2..3) }")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", 4, "∅")]
 		[TestCase("∅", 1, "∅")]
 		[TestCase("∅", null, "∅")]
 		public static void TestCompositeRangeTrimFromWithKey(string ranges, int? trimFrom, string expected)
@@ -1194,18 +907,9 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			null,
-			"(1..3): { (1..2]; (1..3); (2..3) }")]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			2,
-			"(1..2]: { (1..2]; (1..2] }")]
-		[TestCase(
-			"(1..3): { (1..2]; (1..3); (2..3) }",
-			1,
-			"∅")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", null, "(1..3): { (1..2]; (1..3); (2..3) }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", 2, "(1..2]: { (1..2]; (1..2] }")]
+		[TestCase("(1..3): { (1..2]; (1..3); (2..3) }", 1, "∅")]
 		[TestCase("∅", 1, "∅")]
 		[TestCase("∅", null, "∅")]
 		public static void TestCompositeRangeTrimTo(string ranges, double? trimTo, string expected)
@@ -1217,18 +921,9 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			null,
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			2,
-			"(1..2]: { 'A':(1..2]; 'B':(1..2] }")]
-		[TestCase(
-			"(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }",
-			1,
-			"∅")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", null, "(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", 2, "(1..2]: { 'A':(1..2]; 'B':(1..2] }")]
+		[TestCase("(1..3): { 'A':(1..2]; 'B':(1..3); 'A':(2..3) }", 1, "∅")]
 		[TestCase("∅", 1, "∅")]
 		[TestCase("∅", null, "∅")]
 		public static void TestCompositeRangeTrimToWithKey(string ranges, int? trimTo, string expected)
@@ -1240,12 +935,8 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"ADAFEF",
-			"[0..+∞): { 'A':[0..3); 'A':[0..3); 'D':[3..4); 'E':[4..5); 'F':[5..+∞); 'F':[5..+∞) }")]
-		[TestCase(
-			"ADD21",
-			"(-∞..+∞): { '2':(-∞..0); '1':(-∞..0); 'A':[0..3); 'D':[3..+∞); 'D':[3..+∞) }")]
+		[TestCase("ADAFEF", "[0..+∞): { 'A':[0..3); 'A':[0..3); 'D':[3..4); 'E':[4..5); 'F':[5..+∞); 'F':[5..+∞) }")]
+		[TestCase("ADD21", "(-∞..+∞): { '2':(-∞..0); '1':(-∞..0); 'A':[0..3); 'D':[3..+∞); 'D':[3..+∞) }")]
 		public static void TestCompositeRangeFrom(string chars, string expected)
 		{
 			var range = chars.ToCompositeRangeFrom(c => c < 'A' ? null : (int?)(c - 'A'));
@@ -1253,12 +944,8 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		[TestCase(
-			"ADAFEF",
-			"(-∞..5]: { 'A':(-∞..0]; 'A':(-∞..0]; 'D':(0..3]; 'E':(3..4]; 'F':(4..5]; 'F':(4..5] }")]
-		[TestCase(
-			"ADD21",
-			"(-∞..+∞): { 'A':(-∞..0]; 'D':(0..3]; 'D':(0..3]; '2':(3..+∞); '1':(3..+∞) }")]
+		[TestCase("ADAFEF", "(-∞..5]: { 'A':(-∞..0]; 'A':(-∞..0]; 'D':(0..3]; 'E':(3..4]; 'F':(4..5]; 'F':(4..5] }")]
+		[TestCase("ADD21", "(-∞..+∞): { 'A':(-∞..0]; 'D':(0..3]; 'D':(0..3]; '2':(3..+∞); '1':(3..+∞) }")]
 		public static void TestCompositeRangeTo(string chars, string expected)
 		{
 			var range = chars.ToCompositeRangeTo(c => c < 'A' ? null : (int?)(c - 'A'));
@@ -1267,4 +954,5 @@ namespace CodeJam.Ranges
 
 	}
 }
+
 #endif

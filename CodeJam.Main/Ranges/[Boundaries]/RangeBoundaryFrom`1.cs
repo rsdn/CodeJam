@@ -213,7 +213,7 @@ namespace CodeJam.Ranges
 		/// <summary>The kind of the boundary.</summary>
 		/// <value>The kind of the boundary.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
-			public RangeBoundaryFromKind Kind => _kind;
+		public RangeBoundaryFromKind Kind => _kind;
 
 		/// <summary>The boundary == ∅.</summary>
 		/// <value><c>true</c> if the boundary is empty; otherwise, <c>false</c>.</value>
@@ -323,6 +323,8 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryFrom<T> WithValue([InstantHandle] Func<T, T> newValueSelector)
 		{
+			Code.NotNull(newValueSelector, nameof(newValueSelector));
+
 			if (HasValue)
 			{
 				var newValue = newValueSelector(_value);
@@ -343,6 +345,8 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryFrom<T2> WithValue<T2>([InstantHandle] Func<T, T2> newValueSelector)
 		{
+			Code.NotNull(newValueSelector, nameof(newValueSelector));
+
 			if (HasValue)
 			{
 				var newValue = newValueSelector(_value);

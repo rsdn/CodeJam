@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -200,14 +201,14 @@ BooleanValue=true;
 			IsFalse(x.ContainsKey("IgnoredValue"));
 			IsFalse(x.TryGetValue("IgnoredValue", out var ignored));
 			IsNull(ignored);
-			var ex = Throws<ArgumentException>(() => x["IgnoredValue"].ToString());
+			var ex = Throws<ArgumentException>(() => _= x["IgnoredValue"].ToString());
 			That(ex.Message, Does.Contain("IgnoredValue"));
 
 			x = new DerivedConnectionString("IgnoredValue=123");
 			IsFalse(x.ContainsKey("IgnoredValue"));
 			IsFalse(x.TryGetValue("IgnoredValue", out ignored));
 			IsNull(ignored);
-			ex = Throws<ArgumentException>(() => x["IgnoredValue"].ToString());
+			ex = Throws<ArgumentException>(() => _ = x["IgnoredValue"].ToString());
 			That(ex.Message, Does.Contain("IgnoredValue"));
 		}
 
@@ -215,9 +216,9 @@ BooleanValue=true;
 		public void TestInvalidProperties()
 		{
 			var x = new DerivedConnectionString(@"BooleanValue=aaa;Int32Value=bbb;DateTimeOffsetValue=ccc");
-			Throws<FormatException>(() => x.BooleanValue.ToString());
-			Throws<FormatException>(() => x.Int32Value?.ToString());
-			Throws<FormatException>(() => x.DateTimeOffsetValue?.ToString());
+			Throws<FormatException>(() => x.BooleanValue.ToString(CultureInfo.InvariantCulture));
+			Throws<FormatException>(() => x.Int32Value?.ToString(CultureInfo.InvariantCulture));
+			Throws<FormatException>(() => x.DateTimeOffsetValue?.ToString(CultureInfo.InvariantCulture));
 		}
 
 		[Test]

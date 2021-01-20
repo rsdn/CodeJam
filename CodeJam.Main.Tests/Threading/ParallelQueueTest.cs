@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 
@@ -34,7 +35,7 @@ namespace CodeJam.Threading
 						Thread.Sleep(300);
 					}
 
-					return i.ToString();
+					return i.ToString(CultureInfo.InvariantCulture);
 				},
 				2,
 				s =>
@@ -46,7 +47,7 @@ namespace CodeJam.Threading
 						Thread.Sleep(300);
 					}
 				});
-			
+
 			Assert.That(Volatile.Read(ref _providerCount), Is.EqualTo(5));
 			Assert.That(Volatile.Read(ref _consumerCount), Is.EqualTo(2));
 		}

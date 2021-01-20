@@ -125,10 +125,12 @@ namespace CodeJam.Collections
 
 			private static int _n;
 
+#pragma warning disable CA1823 // Avoid unused private fields
 			[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 			[System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 			[UsedImplicitly]
 			private int _field = ++_n;
+#pragma warning restore CA1823 // Avoid unused private fields
 		}
 
 		[Test]
@@ -242,7 +244,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void DistinctByMember3Test()
 		{
-			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(ta => ta.Members.Where(m => m.Name.EndsWith("1")));
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(ta => ta.Members.Where(m => m.Name.EndsWith("1", StringComparison.Ordinal)));
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },

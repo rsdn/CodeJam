@@ -60,6 +60,7 @@ namespace CodeJam
 
 #pragma warning disable CA1822 // Make static
 #pragma warning disable IDE0060 // Remove unused parameter
+#pragma warning disable CA1801 // Review unused parameters
 
 			public bool GetTrue(T value) => true;
 			public bool GetFalse(T value) => false;
@@ -67,8 +68,9 @@ namespace CodeJam
 			public bool GetIsNull(T value) => value == null;
 			public bool GetIsNotNull(T value) => value != null;
 
-#pragma warning restore IDE0060
-#pragma warning restore CA1822
+#pragma warning restore CA1801 // Review unused parameters
+#pragma warning restore IDE0060 // Remove unused parameter
+#pragma warning restore CA1822 // Make static
 		}
 
 		private static class TrueValue

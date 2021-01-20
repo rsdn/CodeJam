@@ -15,6 +15,7 @@ namespace CodeJam.Collections
 	/// <summary>
 	/// Marks boundaries that should be checked for infinite (<c>null</c> values)
 	/// </summary>
+#pragma warning disable CA1008 // Enums should have zero value
 	[Flags]
 	public enum QueryRangeBoundaries
 	{
@@ -30,6 +31,7 @@ namespace CodeJam.Collections
 		/// <summary>Both boundaries are infinite</summary>
 		InfiniteBoth = InfinityFrom | InfinityTo
 	}
+#pragma warning restore CA1008 // Enums should have zero value
 
 	/// <summary>
 	/// Extension methods for <see cref="IQueryable"/>

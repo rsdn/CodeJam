@@ -71,6 +71,10 @@ namespace CodeJam.Arithmetic
 			Type resultType,
 			params ParameterExpression[] args)
 		{
+			Code.NotNull(expressionFactory, nameof(expressionFactory));
+			Code.NotNull(exceptionFactory, nameof(exceptionFactory));
+			Code.NotNull(methodName, nameof(methodName));
+
 			var expressionArgs = args.ConvertAll(PrepareOperand);
 
 			Expression body;
@@ -251,11 +255,13 @@ namespace CodeJam.Arithmetic
 			if (t.GetIsEnum())
 				return EnumComparison<T>(false);
 
+#pragma warning disable CA1508 // Avoid dead conditional code
 			if (t.IsNullableEnum())
 				return EnumComparison<T>(true);
 
 			if (t.IsNullable())
 				t = t.GetGenericArguments()[0];
+#pragma warning restore CA1508 // Avoid dead conditional code
 
 			if (!typeof(IComparable<T>).IsAssignableFrom(t) &&
 				!typeof(IComparable).IsAssignableFrom(t))

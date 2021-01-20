@@ -35,7 +35,7 @@ namespace CodeJam.Reflection
 					{
 						var parts = s.Split(':');
 						return
-							s.StartsWith("!")
+							s.StartsWith("!", StringComparison.Ordinal)
 								? Param(parts[0].Substring(1), parts[1], true)
 								: Param(parts[0], parts[1], false);
 					})

@@ -28,6 +28,7 @@ namespace CodeJam
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="type">Type of the argument.</param>
 		/// <returns>Initialized instance of <see cref="ArgumentException" />.</returns>
+#pragma warning disable CA1062 // Validate arguments of public methods
 		[DebuggerHidden, MustUseReturnValue]
 		public static ArgumentException ArgumentDefault([InvokerParameterName] string argumentName, Type type)
 		{
@@ -37,6 +38,7 @@ namespace CodeJam
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		/// <summary>Creates <see cref="ArgumentException"/> for null collection item.</summary>
 		/// <param name="argumentName">Name of the argument.</param>

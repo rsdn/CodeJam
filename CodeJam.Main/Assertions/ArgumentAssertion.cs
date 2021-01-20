@@ -1,4 +1,6 @@
-﻿namespace CodeJam
+﻿using System;
+
+namespace CodeJam
 {
 	/// <summary>
 	/// Builder type for argument assertions.

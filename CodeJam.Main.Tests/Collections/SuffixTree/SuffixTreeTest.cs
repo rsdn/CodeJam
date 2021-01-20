@@ -176,7 +176,7 @@ namespace CodeJam.Collections
 					var pos = 0;
 					for (; ; )
 					{
-						pos = s.IndexOf(prefix, pos);
+						pos = s.IndexOf(prefix, pos, StringComparison.Ordinal);
 						if (pos == -1)
 						{
 							break;

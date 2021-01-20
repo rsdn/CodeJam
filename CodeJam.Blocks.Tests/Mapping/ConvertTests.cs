@@ -21,11 +21,11 @@ namespace CodeJam.Mapping
 		[Test]
 		public void SetExpression()
 		{
-			Convert<int,string>.Lambda = i => (i * 2).ToString();
+			Convert<int,string>.Lambda = i => (i * 2).ToString(CultureInfo.InvariantCulture);
 
 			Assert.AreEqual("4", Convert<int,string>.From(2));
 
-			Convert<int,string>.Expression = i => (i * 3).ToString();
+			Convert<int,string>.Expression = i => (i * 3).ToString(CultureInfo.InvariantCulture);
 
 			Assert.AreEqual("9", Convert<int,string>.From(3));
 

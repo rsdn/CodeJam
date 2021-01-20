@@ -1,13 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 
 using CodeJam.Reflection;
+using CodeJam.Strings;
 
 using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class QueryableExtensions
+	public partial class QueryableExtensions
 	{
 		/// <summary>
 		/// Sorts the elements of a sequence in ascending order according to a key.
@@ -71,7 +73,7 @@ namespace CodeJam.Collections
 			Code.NotNullNorEmpty(property, nameof(property));
 
 			var parameter = Expression.Parameter(typeof(T), "p");
-			var member = property.IndexOf('.') == -1
+			var member = !property.ContainsOrdinal('.')
 				? Expression.PropertyOrField(parameter, property)
 				: property.Split('.').Aggregate((Expression)parameter, Expression.PropertyOrField);
 			var expression = Expression.Lambda(member, parameter);

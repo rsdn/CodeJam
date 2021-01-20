@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 
 using CodeJam.Strings;
@@ -12,7 +13,7 @@ namespace CodeJam.Collections
 	public class CollectionExtensionsTests
 	{
 		[Test]
-		public static void TestNullOrEmpty()
+		public void TestNullOrEmpty()
 		{
 			var arr = Array<int>.Empty;
 			var list = new List<int>();
@@ -58,7 +59,7 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
-		public static void TestEmptyIfNull()
+		public void TestEmptyIfNull()
 		{
 			var arr = Array<int>.Empty;
 			var list = new List<int>();
@@ -106,7 +107,7 @@ namespace CodeJam.Collections
 		[Test]
 		[SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
 		[SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
-		public static void TestDefaultIfEmpty()
+		public void TestDefaultIfEmpty()
 		{
 			var arr = Array<int>.Empty;
 			var list = new List<int>();
@@ -135,7 +136,7 @@ namespace CodeJam.Collections
 
 			Assert.Throws<ArgumentNullException>(() => arr!.DefaultIfEmpty(123).First());
 			Assert.Throws<ArgumentNullException>(() => list!.DefaultIfEmpty(123).First());
-			Assert.Throws<ArgumentNullException>(() => dic!.DefaultIfEmpty(123, "a").First().Key.ToString());
+			Assert.Throws<ArgumentNullException>(() => dic!.DefaultIfEmpty(123, "a").First().Key.ToString(CultureInfo.InvariantCulture));
 			Assert.Throws<ArgumentNullException>(() => enumerable!.DefaultIfEmpty(123).First());
 		}
 	}

@@ -105,6 +105,9 @@ namespace CodeJam.Collections
 			DictionaryDuplicate duplicateHandling)
 			where TKey : notnull
 		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(keySelector, nameof(keySelector));
+			Code.NotNull(elementSelector, nameof(elementSelector));
 			Code.InRange(
 				(int)duplicateHandling, nameof(duplicateHandling), (int)DictionaryDuplicate.Throw, (int)DictionaryDuplicate.LastWins);
 

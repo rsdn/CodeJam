@@ -80,8 +80,12 @@ namespace CodeJam.Threading
 		/// <returns></returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IDisposable CancellationScope(
-			this CancellationTokenSource cancellationTokenSource) =>
-				Disposable.Create(cancellationTokenSource.Cancel);
+			this CancellationTokenSource cancellationTokenSource)
+		{
+			Code.NotNull(cancellationTokenSource, nameof(cancellationTokenSource));
+
+			return Disposable.Create(cancellationTokenSource.Cancel);
+		}
 
 		/// <summary>
 		/// Allows to await for the cancellation without throwing a <see cref="TaskCanceledException"/>.

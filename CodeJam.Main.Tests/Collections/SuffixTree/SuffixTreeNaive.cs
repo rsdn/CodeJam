@@ -10,13 +10,13 @@ namespace CodeJam.Collections
 	[DebuggerDisplay("{Print()}")]
 	public class SuffixTreeNaive : SuffixTreeBase
 	{
-		protected override void BuildFor([NonNegativeValue] int start, [NonNegativeValue] int end)
+		protected override void BuildFor([NonNegativeValue] int begin, [NonNegativeValue] int end)
 		{
-			for (var i = end - 1; i >= start; --i)
+			for (var i = end - 1; i >= begin; --i)
 			{
 				var currentNodeIndex = RootNodeIndex;
 				var currentNode = Root;
-				var begin = i;
+				var intBegin = i;
 				for (;;)
 				{
 					var children = currentNode.Children;
@@ -41,23 +41,23 @@ namespace CodeJam.Collections
 					}
 					else
 					{
-						if (begin == end)
+						if (intBegin == end)
 						{
 							childIndex = 0;
 							forceNew = true;
 						}
 						else
 						{
-							childIndex = children.LowerBound(InternalData[begin], EdgeComparer);
+							childIndex = children.LowerBound(InternalData[intBegin], EdgeComparer);
 						}
 					}
 
 					if (forceNew
 						|| childIndex == children.Count
-						|| InternalData[GetNode(children[childIndex]).Begin] != InternalData[begin])
+						|| InternalData[GetNode(children[childIndex]).Begin] != InternalData[intBegin])
 					{
 						// add new child
-						var node = new Node(begin, end, true);
+						var node = new Node(intBegin, end, true);
 						var index = AddNode(node);
 						children.Insert(childIndex, index);
 						break;
@@ -69,13 +69,13 @@ namespace CodeJam.Collections
 					var childBegin = childNode.Begin;
 					var childEnd = childNode.End;
 					var diffIndex = childBegin + 1;
-					++begin;
+					++intBegin;
 					while (diffIndex < childEnd
-						&& begin < end
-						&& InternalData[diffIndex] == InternalData[begin])
+						&& intBegin < end
+						&& InternalData[diffIndex] == InternalData[intBegin])
 					{
 						++diffIndex;
-						++begin;
+						++intBegin;
 					}
 					if (diffIndex != childEnd)
 					{

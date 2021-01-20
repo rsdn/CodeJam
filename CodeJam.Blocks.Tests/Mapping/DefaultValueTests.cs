@@ -58,7 +58,7 @@ namespace CodeJam.Mapping
 			DefaultValue<int?>.Value = null;
 		}
 
-		enum Enum1
+		public enum Enum1
 		{
 			Value1,
 			Value2

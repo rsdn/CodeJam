@@ -8,9 +8,6 @@ namespace CodeJam.Collections
 {
 	public abstract class SuffixTreeEncoder : SuffixTreeBase
 	{
-		private static readonly MethodInfo _getRootMethod;
-		private static readonly MethodInfo _getNodeMethod;
-		private static readonly MethodInfo _getDataMethod;
 		private static readonly Func<SuffixTreeBase, Node> _getRoot;
 		private static readonly Func<SuffixTreeBase, int, Node> _getNode;
 		private static readonly Func<SuffixTreeBase, string> _getData;
@@ -18,12 +15,12 @@ namespace CodeJam.Collections
 		static SuffixTreeEncoder()
 		{
 			var typeInfo = typeof(SuffixTreeBase);
-			_getRootMethod = typeInfo.GetProperty("Root", BindingFlags.Instance | BindingFlags.NonPublic)!.GetGetMethod(true)!;
-			_getRoot = tree => (Node)_getRootMethod.Invoke(tree, null)!;
-			_getNodeMethod = typeInfo.GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic)!;
-			_getNode = (tree, index) => (Node)_getNodeMethod.Invoke(tree, new object[] { index })!;
-			_getDataMethod = typeInfo.GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic)!.GetGetMethod(true)!;
-			_getData = tree => (string)_getDataMethod.Invoke(tree, null)!;
+			var getRootMethod = typeInfo.GetProperty("Root", BindingFlags.Instance | BindingFlags.NonPublic)!.GetGetMethod(true)!;
+			_getRoot = tree => (Node)getRootMethod.Invoke(tree, null)!;
+			var getNodeMethod = typeInfo.GetMethod("GetNode", BindingFlags.Instance | BindingFlags.NonPublic)!;
+			_getNode = (tree, index) => (Node)getNodeMethod.Invoke(tree, new object[] { index })!;
+			var getDataMethod = typeInfo.GetProperty("InternalData", BindingFlags.Instance | BindingFlags.NonPublic)!.GetGetMethod(true)!;
+			_getData = tree => (string)getDataMethod.Invoke(tree, null)!;
 		}
 
 		public static string Encode<T>(T tree) where T : SuffixTreeBase

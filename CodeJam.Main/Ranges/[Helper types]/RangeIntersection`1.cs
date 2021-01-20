@@ -64,21 +64,7 @@ namespace CodeJam.Ranges
 		#region ToString
 		/// <summary>Returns string representation of the range intersection.</summary>
 		/// <returns>The string representation of the range intersection.</returns>
-		public override string ToString()
-		{
-			if (IntersectionRange.IsEmpty)
-				return RangeInternal.EmptyString;
-
-			var intersectionRangePart = IntersectionRange.ToString();
-			var rangesPart = IsEmpty
-				? RangeInternal.EmptyString
-				: Ranges.Select(element => element.ToString()).Join(SeparatorString);
-
-			return intersectionRangePart +
-				PrefixString +
-				rangesPart +
-				SuffixString;
-		}
+		public override string ToString() => ToString(null, null);
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.
@@ -108,6 +94,9 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
+			if (IntersectionRange.IsEmpty)
+				return RangeInternal.EmptyString;
+
 			var intersectionRangePart = IntersectionRange.ToString(format, formatProvider);
 			var rangesPart = IsEmpty
 				? RangeInternal.EmptyString

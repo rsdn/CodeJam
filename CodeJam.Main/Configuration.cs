@@ -52,9 +52,9 @@ namespace CodeJam.Internal
 		private static readonly string _assertionFailedMessageWithStack =
 			"Assertion failed: {0}" + Environment.NewLine + "{1}";
 
-		private static readonly string _exceptionCaughtMessage = "Exception caught safely: {0}";
+		private const string _exceptionCaughtMessage = "Exception caught safely: {0}";
 
-		private static readonly string _exceptionSwallowedMessage = "Exception swallowed: {0}";
+		private const string _exceptionSwallowedMessage = "Exception swallowed: {0}";
 
 		/// <summary>Logs the exception that will be thrown to the <see cref="CodeTraceSource"/>.</summary>
 		/// <typeparam name="TException">The type of the exception.</typeparam>

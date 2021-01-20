@@ -179,6 +179,8 @@ namespace CodeJam.Collections
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IEnumerable<T?> CreateSingle<T>(Func<T?> elementFactory)
 		{
+			Code.NotNull(elementFactory, nameof(elementFactory));
+
 			yield return elementFactory();
 		}
 

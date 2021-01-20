@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 using CodeJam.Strings;
@@ -171,7 +172,7 @@ namespace CodeJam
 		}
 
 		/// <summary>This test generates conditional build constants default platform moniker.</summary>
-		private void GenerateDefaultPlatform()
+		private static void GenerateDefaultPlatform()
 		{
 			WriteLine($@"
 	<!-- We DO most development and testing on {_defaultFrameworkMoniker} target -->
@@ -181,7 +182,7 @@ namespace CodeJam
 		}
 
 		/// <summary>This test generates default templates for TargetFrameworks project property.</summary>
-		public void GenerateTargetFrameworks()
+		public static void GenerateTargetFrameworks()
 		{
 			WriteLine();
 			WriteLine("	<!-- Templates for <TargetFrameworks/> project property -->");
@@ -195,7 +196,7 @@ namespace CodeJam
 			WriteLine("	</PropertyGroup>");
 		}
 
-		private void GenerateTargetFrameworks(string propertyName, string monikersRaw)
+		private static void GenerateTargetFrameworks(string propertyName, string monikersRaw)
 		{
 			var monikers = monikersRaw
 				.Split(new[] { "\r\n", ";" }, StringSplitOptions.RemoveEmptyEntries)
@@ -207,14 +208,14 @@ namespace CodeJam
 		}
 
 		/// <summary>This test generates conditional build constants for various FW monikers.</summary>
-		private void GenerateTargetingConstants()
+		private static void GenerateTargetingConstants()
 		{
 			GenerateTargetingConstants(".Net Framework", "TARGETS_NET", _netFrameworkMonikers);
 			GenerateTargetingConstants(".Net Standard", "TARGETS_NETSTANDARD", _netStandardMonikers);
 			GenerateTargetingConstants(".Net Core", "TARGETS_NETCOREAPP", _netCoreMonikers);
 		}
 
-		private void GenerateTargetingConstants(string description, string platform, string monikersRaw)
+		private static void GenerateTargetingConstants(string description, string platform, string monikersRaw)
 		{
 			var monikers = monikersRaw
 				.Split(new[] { "\r\n", ";" }, StringSplitOptions.RemoveEmptyEntries)
@@ -225,20 +226,20 @@ namespace CodeJam
 			WriteLine();
 			WriteLine($"	<!-- Monikers for {description} -->");
 
-			string templateBegin = @"	<PropertyGroup Condition=""'$(TargetFramework)' == '{0}' "">";
-			string template = @"		<DefineConstants>$(DefineConstants){0}</DefineConstants>";
-			string templateEnd = @"	</PropertyGroup>";
-			for (int monikerIndex = 0; monikerIndex < monikers.Length; monikerIndex++)
+			var templateBegin = @"	<PropertyGroup Condition=""'$(TargetFramework)' == '{0}' "">";
+			var template = @"		<DefineConstants>$(DefineConstants){0}</DefineConstants>";
+			var templateEnd = @"	</PropertyGroup>";
+			for (var monikerIndex = 0; monikerIndex < monikers.Length; monikerIndex++)
 			{
 				var target = monikers[monikerIndex];
 				var lessThanConstants = monikers
 					.Skip(1 + monikerIndex)
-					.Select(m => ";LESSTHAN_" + m.Replace(".", "").ToUpperInvariant())
+					.Select(m => ";LESSTHAN_" + m.ReplaceOrdinal(".", "").ToUpperInvariant())
 					.Join();
 
 				var notLessThanConstants = monikers
 					.Take(monikerIndex + 1)
-					.Select(m => ";" + m.Replace(".", "").ToUpperInvariant() + "_OR_GREATER")
+					.Select(m => ";" + m.ReplaceOrdinal(".", "").ToUpperInvariant() + "_OR_GREATER")
 					.Join();
 
 				WriteLine(templateBegin, target);

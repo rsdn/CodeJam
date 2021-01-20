@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 
 using CodeJam.Arithmetic;
@@ -17,6 +18,9 @@ using EnumEx = System.Enum;
 #else
 using EnumEx = System.EnumEx;
 #endif
+
+#pragma warning disable IDE1006 // Naming Styles
+#pragma warning disable CA1069 // Enums values should not be duplicated
 
 namespace CodeJam
 {
@@ -151,11 +155,9 @@ namespace CodeJam
 		[Test]
 		public void TestParse()
 		{
-			Flags result1;
-			Flags result2;
 			AreEqual(
-				EnumHelper.TryParse(nameof(Flags.A), out result1),
-				EnumEx.TryParse(nameof(Flags.A), out result2));
+				EnumHelper.TryParse(nameof(Flags.A), out Flags result1),
+				EnumEx.TryParse(nameof(Flags.A), out Flags result2));
 			AreEqual(result1, result2);
 			AreEqual(result1, EnumHelper.TryParse<Flags>(nameof(Flags.A)));
 
@@ -254,6 +256,7 @@ namespace CodeJam
 			IsTrue(Abc.IsFlagUnset(D));
 		}
 
+#pragma warning disable CA2248 // Provide correct 'enum' argument to 'Enum.HasFlag'
 		[Test]
 		public static void TestIsFlagSetNoFlags()
 		{
@@ -287,6 +290,7 @@ namespace CodeJam
 			IsTrue(Efg.IsFlagUnset(NoFlags.H));
 			IsTrue(Efg.IsFlagUnset(NoFlagsUndef));
 		}
+#pragma warning restore CA2248 // Provide correct 'enum' argument to 'Enum.HasFlag'
 
 		[Test]
 		public static void TestToFlags()
@@ -436,7 +440,7 @@ namespace CodeJam
 				EnumHelper.TryParse<NameDescEnum>(nameof(NameDescEnum.Field1)));
 			AreEqual(
 				NameDescEnum.Field1,
-				EnumHelper.TryParse<NameDescEnum>(long.MinValue.ToString()));
+				EnumHelper.TryParse<NameDescEnum>(long.MinValue.ToString(CultureInfo.InvariantCulture)));
 			AreEqual(
 				"Field2, Field3, Field1",
 				EnumHelper.GetNameValues<NameDescEnum>().Select(kvp => kvp.Key).Join(", "));

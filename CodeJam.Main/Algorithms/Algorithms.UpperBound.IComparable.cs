@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 		/// <summary>
 		/// Returns the minimum index i in the range [0, list.Count - 1] such that list[i] > value
@@ -38,6 +38,7 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="startIndex">The minimum index</param>
 		/// <returns>The upper bound for the value</returns>
+#pragma warning disable CA1062 // Validate arguments of public methods
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int UpperBound<TElement, TValue>(
 			[InstantHandle] this IList<TElement> list,
@@ -45,6 +46,7 @@ namespace CodeJam
 			[NonNegativeValue] int startIndex)
 			where TElement : IComparable<TValue> =>
 				list.UpperBound(value, startIndex, list.Count);
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] > value
@@ -60,6 +62,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="endIndex">The upper bound for the index (not included)</param>
 		/// <returns>The upper bound for the value</returns>
+#pragma warning disable CA1062 // Validate arguments of public methods
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static int UpperBound<TElement, TValue>(
 			[InstantHandle] this IList<TElement> list,
@@ -71,6 +74,7 @@ namespace CodeJam
 			ValidateIndicesRange(startIndex, endIndex, list.Count);
 			return UpperBoundCore(list, value, startIndex, endIndex);
 		}
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		/// <summary>
 		/// Returns the minimum index i in the range [startIndex, endIndex - 1] such that list[i] > value

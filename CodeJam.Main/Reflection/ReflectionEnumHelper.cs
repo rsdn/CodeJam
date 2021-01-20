@@ -42,6 +42,8 @@ namespace CodeJam.Reflection
 		/// <returns>List of enum fields.</returns>
 		public static FieldInfo[] GetFields(Type enumType)
 		{
+			Code.NotNull(enumType, nameof(enumType));
+
 			if (!typeof(Enum).IsAssignableFrom(enumType))
 				throw CodeExceptions.Argument(nameof(enumType), $"The {nameof(enumType)} should be derived from {typeof(Enum)}");
 

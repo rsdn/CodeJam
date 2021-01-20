@@ -52,7 +52,8 @@ namespace CodeJam
 #if NET45_OR_GREATER || TARGETS_NETCOREAPP
 		private static async Task<string> GetTextAsync(Exception ex)
 		{
-			var writer = new StringWriter();
+			// ReSharper disable once UseAwaitUsing
+			using var writer = new StringWriter();
 			await ex.ToDiagnosticStringAsync(writer).ConfigureAwait(false);
 			await writer.FlushAsync().ConfigureAwait(false);
 

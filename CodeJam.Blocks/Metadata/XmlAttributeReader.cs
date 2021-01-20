@@ -63,7 +63,7 @@ namespace CodeJam.Metadata
 				if (embedded && stream == null)
 				{
 					var names = assembly.GetManifestResourceNames();
-					var name = names.FirstOrDefault(n => n.EndsWith("." + xmlFile));
+					var name = names.FirstOrDefault(n => n.EndsWith("." + xmlFile, StringComparison.CurrentCulture));
 
 					stream = name != null ? assembly.GetManifestResourceStream(name) : null;
 				}
@@ -71,8 +71,10 @@ namespace CodeJam.Metadata
 				if (stream == null)
 					throw new MetadataException($"Could not find file '{xmlFile}'.");
 				else
+#pragma warning disable CA1508 // Avoid dead conditional code
 					using (stream)
 						_types = LoadStream(stream, xmlFile);
+#pragma warning restore CA1508 // Avoid dead conditional code
 			}
 			finally
 			{
@@ -133,7 +135,8 @@ namespace CodeJam.Metadata
 
 		private static Dictionary<string, MetaTypeInfo> LoadStream(Stream xmlDocStream, string fileName)
 		{
-			var doc = XDocument.Load(new StreamReader(xmlDocStream));
+			using var textReader = new StreamReader(xmlDocStream);
+			var doc = XDocument.Load(textReader);
 
 			return
 				doc
@@ -177,6 +180,8 @@ namespace CodeJam.Metadata
 		public T[] GetAttributes<T>(Type type, bool inherit = true)
 			where T : Attribute
 		{
+			Code.NotNull(type, nameof(type));
+
 			Code.AssertState(type.FullName != null, "type.FullName != null");
 			if (_types.TryGetValue(type.FullName, out var t) || _types.TryGetValue(type.Name, out t))
 				return t.GetAttribute(typeof(T)).Select(a => (T)a.MakeAttribute(typeof(T))).ToArray();
@@ -194,6 +199,8 @@ namespace CodeJam.Metadata
 		public T[] GetAttributes<T>(MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
+			Code.NotNull(memberInfo, nameof(memberInfo));
+
 			var type = memberInfo.DeclaringType;
 
 			DebugCode.AssertState(type != null, "type != null");

@@ -9,6 +9,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 using CodeJam.Expressions;
+using CodeJam.Strings;
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
@@ -27,7 +28,7 @@ namespace CodeJam.Reflection
 		{
 			TypeAccessor = typeAccessor;
 
-			if (memberName.IndexOf('.') < 0)
+			if (!memberName.ContainsOrdinal('.'))
 			{
 				SetSimple(Expression.PropertyOrField(Expression.Constant(null, typeAccessor.Type), memberName).Member);
 			}
@@ -256,12 +257,9 @@ namespace CodeJam.Reflection
 			Setter = setter.Compile();
 		}
 
-		private const FieldAttributes _enumField =
-			FieldAttributes.Public | FieldAttributes.Static | FieldAttributes.Literal;
-
 		private static readonly ConcurrentDictionary<Type, object?> _defaultValues = new();
 
-		private object? GetDefaultValue(Type type)
+		private static object? GetDefaultValue(Type type)
 		{
 			if (_defaultValues.TryGetValue(type, out var value))
 				return value;

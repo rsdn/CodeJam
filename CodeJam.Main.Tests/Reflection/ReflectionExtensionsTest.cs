@@ -111,7 +111,7 @@ namespace CodeJam.Reflection
 		public void GetShortAssemblyQualifiedNameTest(Type type, string expected)
 		{
 #if TARGETS_NETCOREAPP
-			expected = expected.Replace("mscorlib", "System.Private.CoreLib");
+			expected = expected.Replace("mscorlib", "System.Private.CoreLib", StringComparison.Ordinal);
 #endif
 			var qualifiedName = type.GetShortAssemblyQualifiedName();
 
@@ -279,14 +279,14 @@ namespace CodeJam.Reflection
 		{
 		}
 
-		private class TestAnonymousCaseAttribute : TestCaseAttribute
+		private sealed class TestAnonymousCaseAttribute : TestCaseAttribute
 		{
 			public TestAnonymousCaseAttribute() : base(new { Field = 0 }.GetType())
 			{
 			}
 		}
 
-		private class TestCompilerGeneratedCaseAttribute : TestCaseAttribute
+		private sealed class TestCompilerGeneratedCaseAttribute : TestCaseAttribute
 		{
 			private static Func<int> GetCompilerGeneratedClosure(int arg) => () => arg;
 

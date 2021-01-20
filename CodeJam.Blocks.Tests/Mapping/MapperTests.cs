@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 
 using CodeJam.Targeting;
@@ -177,12 +178,14 @@ namespace CodeJam.Mapping
 		[Test]
 		public void MapObjects1([Values(true,false)] bool useAction)
 		{
+#pragma warning disable CA1305 // Specify IFormatProvider
 			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
 				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
 				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
 				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14));
+#pragma warning restore CA1305 // Specify IFormatProvider
 
 			Assert.That(map.To!.Field1,             Is.EqualTo(1));
 			Assert.That(map.To!.Field3,             Is.EqualTo(2));
@@ -191,8 +194,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To!.Field7,             Is.EqualTo(map.From!.Field7));
 			Assert.That(map.To!.Field8,             Is.EqualTo(map.From!.Field8 ?? 0));
 			Assert.That(map.To!.Field9,             Is.EqualTo(map.From!.Field9 ?? 0));
-			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString()));
-			Assert.That(map.To!.Field11.ToString(), Is.EqualTo(map.From!.Field11));
+			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString(CultureInfo.InvariantCulture)));
+			Assert.That(map.To!.Field11.ToString(CultureInfo.InvariantCulture), Is.EqualTo(map.From!.Field11));
 			Assert.That(map.To!.Field12,            Is.EqualTo(12));
 			Assert.That(map.To!.Field13,            Is.EqualTo(13));
 			Assert.That(map.To!.Field14,            Is.EqualTo(14));
@@ -207,7 +210,7 @@ namespace CodeJam.Mapping
 			var map = new MapperBuilder<Source,Dest>()
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
-				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
+				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12, CultureInfo.InvariantCulture) : 12)
 				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
 				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14)
 				.GetMapper();
@@ -289,8 +292,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To!.Field7,             Is.EqualTo(map.From!.Field7));
 			Assert.That(map.To!.Field8,             Is.EqualTo(map.From!.Field8 ?? 0));
 			Assert.That(map.To!.Field9,             Is.EqualTo(map.From!.Field9 ?? 0));
-			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString()));
-			Assert.That(map.To!.Field11.ToString(), Is.EqualTo(map.From!.Field11));
+			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString(CultureInfo.InvariantCulture)));
+			Assert.That(map.To!.Field11.ToString(CultureInfo.InvariantCulture), Is.EqualTo(map.From!.Field11));
 			Assert.That(map.To!.Field15,            Is.EqualTo(Gender.Female));
 			Assert.That(map.To!.Field16,            Is.EqualTo("M"));
 			Assert.That(map.To!.Field17,            Is.EqualTo(Enum2.Value2));
@@ -342,7 +345,7 @@ namespace CodeJam.Mapping
 		}
 
 		private class Class5 { public Class1 Class1 = new(); public Class1? Class2; }
-		private class Class6 { public Class2 Class1 = new(); public Class2? Class2 = null; }
+		private class Class6 { public Class2 Class1 = new(); public Class2? Class2; }
 
 		[Test]
 		public void MapInnerObject2([Values(true,false)] bool useAction)
@@ -373,7 +376,7 @@ namespace CodeJam.Mapping
 		}
 
 		private class Class7  { public Class9?  Class; }
-		private class Class8  { public Class10? Class = null; }
+		private class Class8  { public Class10? Class; }
 		private class Class9  { public Class7  Class = new(); }
 		private class Class10 { public Class8  Class = new(); }
 
@@ -459,7 +462,7 @@ namespace CodeJam.Mapping
 		}
 
 		private class Class15 { public List<Class1> List = new() { new Class1(), new Class1() }; }
-		private class Class16 { public List<Class2>? List = null; }
+		private class Class16 { public List<Class2>? List; }
 
 		[Test]
 		public void ObjectList([Values(true,false)] bool useAction)
@@ -527,7 +530,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		private class Class18 { public Class9[]? Arr = null; }
+		private class Class18 { public Class9[]? Arr; }
 
 		[Test]
 		public void ObjectArray1([Values(true,false)] bool useAction)
@@ -563,7 +566,7 @@ namespace CodeJam.Mapping
 		}
 
 		private class Class20 { public Source Class1 = new(); public Source? Class2; }
-		private class Class21 { public Dest?  Class1 = null;         public Dest?   Class2 = null; }
+		private class Class21 { public Dest?  Class1;         public Dest?   Class2; }
 
 		[Test]
 		public void NoCrossRef([Values(true,false)] bool useAction)

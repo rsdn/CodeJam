@@ -9,7 +9,7 @@ using Range = CodeJam.Ranges.Range;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -22,12 +22,14 @@ namespace CodeJam
 		/// <param name="value">The value to compare</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
+#pragma warning disable CA1062 // Validate arguments of public methods
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
 			[InstantHandle] this IList<TElement> list,
 			TValue value,
 			[InstantHandle] Func<TElement, TValue, int> comparer) =>
 				EqualRange(list, value, 0, list.Count, comparer);
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where
@@ -41,6 +43,7 @@ namespace CodeJam
 		/// <param name="startIndex">The minimum index</param>
 		/// <param name="comparer">The function with the Comparer&lt;T&gt;.Compare semantics</param>
 		/// <returns>The tuple of lower bound and upper bound for the value</returns>
+#pragma warning disable CA1062 // Validate arguments of public methods
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Range<int> EqualRange<TElement, TValue>(
 			[InstantHandle] this IList<TElement> list,
@@ -48,6 +51,7 @@ namespace CodeJam
 			[NonNegativeValue] int startIndex,
 			[InstantHandle] Func<TElement, TValue, int> comparer) =>
 				EqualRange(list, value, startIndex, list.Count, comparer);
+#pragma warning restore CA1062 // Validate arguments of public methods
 
 		/// <summary>
 		/// Returns the tuple of [i, j] where

@@ -52,13 +52,13 @@ namespace CodeJam.Metadata
 		}
 
 		[AttributeUsage(AttributeTargets.All)]
-		public class TableAttribute : Attribute
+		public sealed class TableAttribute : Attribute
 		{
 			public string? Name;
 		}
 
 		[AttributeUsage(AttributeTargets.All)]
-		public class ColumnAttribute : Attribute
+		public sealed class ColumnAttribute : Attribute
 		{
 			public string? Name;
 		}

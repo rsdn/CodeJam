@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 using NUnit.Framework;
@@ -34,7 +35,7 @@ namespace CodeJam.Collections
 		[TestCase(new[] { 3, 1, 0, 4, 6 }, ExpectedResult = "0")]
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
 		public string MinByString(int[] source) =>
-			source.Select(v => new Item<string>(v.ToString())).MinBy(i => i.Value)?.Value!;
+			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MinBy(i => i.Value)?.Value!;
 
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string?[] { null, null })]
@@ -46,7 +47,7 @@ namespace CodeJam.Collections
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
 		[TestCase(new int[0], ExpectedResult = null)]
 		public string? MinByOrDefaultString(int[] source) =>
-			source.Select(v => new Item<string>(v.ToString())).MinByOrDefault(i => i.Value)?.Value;
+			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MinByOrDefault(i => i.Value)?.Value;
 
 		#endregion
 
@@ -54,7 +55,7 @@ namespace CodeJam.Collections
 		[TestCase(new[] { 3, 1, 8, 0, 6 }, ExpectedResult = "8")]
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
 		public string? MaxByString(int[] source) =>
-			source.Select(v => new Item<string>(v.ToString())).MaxBy(i => i.Value)!.Value;
+			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MaxBy(i => i.Value)!.Value;
 
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string?[] { null, null })]
@@ -66,7 +67,7 @@ namespace CodeJam.Collections
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
 		[TestCase(new int[0], ExpectedResult = null)]
 		public string? MaxByOrDefaultString(int[] source) =>
-			source.Select(v => new Item<string>(v.ToString())).MaxByOrDefault(i => i.Value)?.Value;
+			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MaxByOrDefault(i => i.Value)?.Value;
 		#endregion
 
 		#region Item class

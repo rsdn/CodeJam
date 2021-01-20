@@ -111,8 +111,12 @@ namespace CodeJam
 		/// <param name="defaultValue">Default value.</param>
 		/// <returns>Value, or <paramref name="defaultValue"/> if <paramref name="option"/> has no value.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static T? GetValueOrDefault<T>(this IOption<T> option, T defaultValue = default) =>
-			option.HasValue ? option.Value : defaultValue;
+		public static T? GetValueOrDefault<T>(this IOption<T> option, T defaultValue = default)
+		{
+			Code.NotNull(option, nameof(option));
+
+			return option.HasValue ? option.Value : defaultValue;
+		}
 
 		/// <summary>
 		/// Converts <paramref name="option"/> value to another option with <paramref name="selectFunc"/>.

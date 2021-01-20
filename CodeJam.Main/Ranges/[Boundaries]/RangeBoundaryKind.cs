@@ -30,9 +30,10 @@ namespace CodeJam.Ranges
 		PositiveInfinity = 0x20
 	}
 
+#pragma warning disable CA1027 // Mark enums with FlagsAttribute
 	/// <summary>The kind of From range boundary.</summary>
 	// DONTTOUCH: The values and the order of the members is important.
-		// DONTTOUCH: DO NOT mark as [Flags]. This is single-value enum.
+	// DONTTOUCH: DO NOT mark as [Flags]. This is single-value enum.
 	public enum RangeBoundaryFromKind : byte
 	{
 		/// <summary>Empty,                    '∅'.</summary>
@@ -50,7 +51,7 @@ namespace CodeJam.Ranges
 
 	/// <summary>The kind of To range boundary.</summary>
 	// DONTTOUCH: The values and the order of the members is important.
-		// DONTTOUCH: DO NOT mark as [Flags]. This is single-value enum.
+	// DONTTOUCH: DO NOT mark as [Flags]. This is single-value enum.
 	public enum RangeBoundaryToKind : byte
 	{
 		/// <summary>Empty,                    '∅'.</summary>
@@ -65,4 +66,5 @@ namespace CodeJam.Ranges
 		/// <summary>PositiveInfinity,         '??,+∞)',  no To limit.</summary>
 		Infinite = RangeBoundaryKindOrdering.PositiveInfinity
 	}
+#pragma warning restore CA1027 // Mark enums with FlagsAttribute
 }

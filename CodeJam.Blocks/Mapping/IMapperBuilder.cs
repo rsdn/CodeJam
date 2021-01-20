@@ -40,6 +40,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		Func<MemberAccessor, bool> MemberFilter { get; set; }
 
+#pragma warning disable CA2227 // Collection properties should be read only
 		/// <summary>
 		/// Defines member name mapping for source types.
 		/// </summary>
@@ -54,6 +55,7 @@ namespace CodeJam.Mapping
 		/// Member mappers.
 		/// </summary>
 		List<MemberMapper>? MemberMappers { get; set; }
+#pragma warning restore CA2227 // Collection properties should be read only
 
 		/// <summary>
 		/// If true, processes object cross references.

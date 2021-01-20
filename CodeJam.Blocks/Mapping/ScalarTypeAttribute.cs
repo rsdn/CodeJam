@@ -9,9 +9,11 @@ namespace CodeJam.Mapping
 	/// <summary>
 	/// Defines target type as scalar type.
 	/// </summary>
+#pragma warning disable CA1813 // Avoid unsealed attributes
 	[PublicAPI]
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
 	public class ScalarTypeAttribute : Attribute
+#pragma warning restore CA1813 // Avoid unsealed attributes
 	{
 		/// <summary>
 		/// Defines target type as scalar type.

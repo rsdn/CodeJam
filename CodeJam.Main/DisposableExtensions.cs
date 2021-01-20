@@ -18,6 +18,8 @@ namespace CodeJam
 		/// <exception cref="AggregateException"></exception>
 		public static void DisposeAll([InstantHandle] this IEnumerable<IDisposable> disposables)
 		{
+			Code.NotNull(disposables, nameof(disposables));
+
 			List<Exception>? exceptions = null;
 
 			foreach (var item in disposables)
@@ -28,12 +30,12 @@ namespace CodeJam
 				}
 				catch (Exception ex)
 				{
-					exceptions ??= new List<Exception>();
-					exceptions.Add(ex);
+					exceptions = new List<Exception> { ex };
 				}
 			}
 
 			if (exceptions != null)
+				// ReSharper disable once UnthrowableException
 				throw new AggregateException(exceptions);
 		}
 
@@ -44,6 +46,9 @@ namespace CodeJam
 			[InstantHandle] this IEnumerable<IDisposable> disposables,
 			[InstantHandle] Func<Exception, bool> exceptionHandler)
 		{
+			Code.NotNull(disposables, nameof(disposables));
+			Code.NotNull(exceptionHandler, nameof(exceptionHandler));
+
 			foreach (var item in disposables)
 			{
 				try

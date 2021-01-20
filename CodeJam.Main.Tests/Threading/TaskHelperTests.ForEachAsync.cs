@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,13 +70,15 @@ namespace CodeJam.Threading
 			TaskEx.Run(() => TestForEachAsyncCore()).Wait();
 		}
 
-		public async Task TestForEachAsyncCore()
+		public static async Task TestForEachAsyncCore()
 		{
 			var tasks = Enumerable.Range(0, 20).ToArray();
 
-			var result = await tasks.ForEachAsync((i, ct) => TaskEx.FromResult(i.ToString()), 4).ConfigureAwait(false);
+			var result = await tasks
+				.ForEachAsync((i, ct) => TaskEx.FromResult(i.ToString(CultureInfo.InvariantCulture)), 4)
+				.ConfigureAwait(false);
 
-			CollectionAssert.AreEquivalent(result, tasks.Select(t => t.ToString()));
+			CollectionAssert.AreEquivalent(result, tasks.Select(t => t.ToString(CultureInfo.InvariantCulture)));
 		}
 
 		[Test]
@@ -117,7 +120,7 @@ namespace CodeJam.Threading
 		{
 			var tasks = Enumerable.Range(0, 20).ToArray();
 			var results = new ConcurrentBag<int>();
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 
 			var forEachTask = tasks.ForEachAsync(
 				(i, ct) =>

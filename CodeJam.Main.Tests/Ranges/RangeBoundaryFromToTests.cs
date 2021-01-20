@@ -4,6 +4,8 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
+#pragma warning disable CA1305 // Specify IFormatProvider
+
 namespace CodeJam.Ranges
 {
 	[TestFixture(Category = "Ranges")]
@@ -13,7 +15,7 @@ namespace CodeJam.Ranges
 	public class RangeBoundaryFromToTests
 	{
 		[Test]
-		public static void TestBoundaryToString()
+		public void TestBoundaryToString()
 		{
 			int? value1 = 1;
 
@@ -33,7 +35,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryKindComparison()
+		public void TestBoundaryKindComparison()
 		{
 			int? value1 = 1;
 
@@ -83,7 +85,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryValueComparison()
+		public void TestBoundaryValueComparison()
 		{
 			int? value1 = 1;
 			int? value2 = 2;
@@ -115,7 +117,7 @@ namespace CodeJam.Ranges
 		}
 
 		[Test]
-		public static void TestBoundaryRawValueComparison()
+		public void TestBoundaryRawValueComparison()
 		{
 			int? value1 = 1;
 			int? value2 = 2;

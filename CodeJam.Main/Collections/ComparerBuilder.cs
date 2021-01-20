@@ -1,12 +1,8 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
-
-// ReSharper disable once RedundantUsingDirective
-using System.Reflection;
 
 using JetBrains.Annotations;
 
@@ -132,6 +128,8 @@ namespace CodeJam.Collections
 			[InstantHandle] Func<TypeAccessor<T>,
 				IEnumerable<MemberAccessor>> membersToCompare)
 		{
+			Code.NotNull(membersToCompare, nameof(membersToCompare));
+
 			var members = membersToCompare(TypeAccessor<T>.GetAccessor()).ToList();
 			return new Comparer(GetEqualsFunc(members), GetGetHashCodeFunc(members));
 		}

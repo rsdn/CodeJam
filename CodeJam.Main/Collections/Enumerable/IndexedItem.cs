@@ -10,8 +10,7 @@ namespace CodeJam.Collections
 	/// </summary>
 	/// <typeparam name="T">Type of item.</typeparam>
 	[PublicAPI]
-	public struct IndexedItem<T>
-		: IEquatable<IndexedItem<T>>
+	public struct IndexedItem<T> : IEquatable<IndexedItem<T>>
 		where T : notnull
 	{
 		/// <summary>
@@ -129,7 +128,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="left">Left operand</param>
 		/// <param name="right">Right operand</param>
-		/// <returns>True? if operands equals</returns>
+		/// <returns>True if operands equals</returns>
 		public static bool operator ==(IndexedItem<T> left, IndexedItem<T> right) => left.Equals(right);
 
 		/// <summary>
@@ -137,7 +136,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="left">Left operand</param>
 		/// <param name="right">Right operand</param>
-		/// <returns>True? if operands equals</returns>
+		/// <returns>True if operands not equal</returns>
 		public static bool operator !=(IndexedItem<T> left, IndexedItem<T> right) => !left.Equals(right);
 		#endregion
 	}

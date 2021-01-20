@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES. TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -56,7 +57,7 @@ namespace CodeJam.Reflection
 			foreach (var memberInfo in type.GetMembers(BindingFlags.Instance | BindingFlags.Public))
 			{
 				if (memberInfo is FieldInfo ||
-					memberInfo is PropertyInfo p && p.GetIndexParameters().Length == 0)
+					(memberInfo is PropertyInfo p && p.GetIndexParameters().Length == 0))
 				{
 					_members.Add(memberInfo);
 				}

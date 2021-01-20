@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 using CodeJam.Strings;
@@ -31,7 +32,7 @@ namespace CodeJam.Collections
 		public void GroupWhileToString(string input, string expected)
 		{
 			var data = input.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
-			var grouping = data.GroupWhileEquals(i => i / 10, i => i.ToString());
+			var grouping = data.GroupWhileEquals(i => i / 10, i => i.ToString(CultureInfo.InvariantCulture));
 			var result = grouping.Select(g => g.Join(",")).Join("|");
 			Assert.AreEqual(result, expected);
 		}

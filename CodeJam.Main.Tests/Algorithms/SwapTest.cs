@@ -7,7 +7,7 @@ namespace CodeJam
 	public class SwapTest
 	{
 		[Test]
-		public static void TestValueTypeSwap()
+		public void TestValueTypeSwap()
 		{
 			var value1 = 10;
 			var value2 = 20;
@@ -17,7 +17,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void TestRefTypeSwap1()
+		public void TestRefTypeSwap1()
 		{
 			var value1 = new object();
 			var value2 = new object();
@@ -29,7 +29,7 @@ namespace CodeJam
 		}
 
 		[Test]
-		public static void TestRefTypeSwap2()
+		public void TestRefTypeSwap2()
 		{
 			// test self swap
 			var value1 = new object();

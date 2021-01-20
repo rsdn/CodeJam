@@ -19,8 +19,8 @@ namespace CodeJam.Ranges
 	[SuppressMessage("ReSharper", "HeapView.DelegateAllocation")]
 	public static partial class RangeTests
 	{
-		private const char RangeKey = '_';
-		private const string RangeKey2 = ">";
+		private const char _rangeKey = '_';
+		private const string _rangeKey2 = ">";
 
 		[Test]
 		public static void TestRangeCreate()
@@ -218,41 +218,41 @@ namespace CodeJam.Ranges
 			int? empty = null;
 			var key = "Hello!";
 
-			AreEqual(Range<int>.Empty.ToString(), "∅");
-			AreEqual(Range<int>.Infinite.ToString(), "(-∞..+∞)");
-			AreEqual(Range.Create(1, 1).ToString(), "[1..1]");
-			AreEqual(Range.TryCreate(1, 1).ToString(), "[1..1]");
-			AreEqual(Range.Create(1, 2).ToString(), "[1..2]");
-			AreEqual(Range.TryCreate(1, 2).ToString(), "[1..2]");
-			AreEqual(Range.CreateExclusive(1, 2).ToString(), "(1..2)");
-			AreEqual(Range.TryCreateExclusive(1, 2).ToString(), "(1..2)");
-			AreEqual(Range.CreateExclusiveFrom(1, 2).ToString(), "(1..2]");
-			AreEqual(Range.TryCreateExclusiveFrom(1, 2).ToString(), "(1..2]");
-			AreEqual(Range.CreateExclusiveTo(1, 2).ToString(), "[1..2)");
-			AreEqual(Range.TryCreateExclusiveTo(1, 2).ToString(), "[1..2)");
-			AreEqual(Range.CreateExclusive(value1, empty).ToString("000"), "(001..+∞)");
-			AreEqual(Range.TryCreateExclusive(value1, empty).ToString("000"), "(001..+∞)");
+			AreEqual(Range<int>.Empty.ToString(CultureInfo.InvariantCulture), "∅");
+			AreEqual(Range<int>.Infinite.ToString(CultureInfo.InvariantCulture), "(-∞..+∞)");
+			AreEqual(Range.Create(1, 1).ToString(CultureInfo.InvariantCulture), "[1..1]");
+			AreEqual(Range.TryCreate(1, 1).ToString(CultureInfo.InvariantCulture), "[1..1]");
+			AreEqual(Range.Create(1, 2).ToString(CultureInfo.InvariantCulture), "[1..2]");
+			AreEqual(Range.TryCreate(1, 2).ToString(CultureInfo.InvariantCulture), "[1..2]");
+			AreEqual(Range.CreateExclusive(1, 2).ToString(CultureInfo.InvariantCulture), "(1..2)");
+			AreEqual(Range.TryCreateExclusive(1, 2).ToString(CultureInfo.InvariantCulture), "(1..2)");
+			AreEqual(Range.CreateExclusiveFrom(1, 2).ToString(CultureInfo.InvariantCulture), "(1..2]");
+			AreEqual(Range.TryCreateExclusiveFrom(1, 2).ToString(CultureInfo.InvariantCulture), "(1..2]");
+			AreEqual(Range.CreateExclusiveTo(1, 2).ToString(CultureInfo.InvariantCulture), "[1..2)");
+			AreEqual(Range.TryCreateExclusiveTo(1, 2).ToString(CultureInfo.InvariantCulture), "[1..2)");
+			AreEqual(Range.CreateExclusive(value1, empty).ToString("000", CultureInfo.InvariantCulture), "(001..+∞)");
+			AreEqual(Range.TryCreateExclusive(value1, empty).ToString("000", CultureInfo.InvariantCulture), "(001..+∞)");
 
-			AreEqual(Range.Create(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty, key).ToString(), "'Hello!':∅");
-			AreEqual(Range.TryCreate(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty, key).ToString(), "'Hello!':∅");
-			AreEqual(Range.Create(empty, empty, key).ToString(), "'Hello!':(-∞..+∞)");
-			AreEqual(Range.TryCreate(empty, empty, key).ToString(), "'Hello!':(-∞..+∞)");
-			AreEqual(Range.Create(empty, empty, (string?)null).ToString(), "'':(-∞..+∞)");
-			AreEqual(Range.TryCreate(empty, empty, (string?)null).ToString(), "'':(-∞..+∞)");
-			AreEqual(Range.Create(1, 1, key).ToString(), "'Hello!':[1..1]");
-			AreEqual(Range.TryCreate(1, 1, key).ToString(), "'Hello!':[1..1]");
-			AreEqual(Range.Create(1, 2, key).ToString(), "'Hello!':[1..2]");
-			AreEqual(Range.TryCreate(1, 2, key).ToString(), "'Hello!':[1..2]");
-			AreEqual(Range.CreateExclusive(1, 2, key).ToString(), "'Hello!':(1..2)");
-			AreEqual(Range.TryCreateExclusive(1, 2, key).ToString(), "'Hello!':(1..2)");
-			AreEqual(Range.CreateExclusiveFrom(1, 2, key).ToString(), "'Hello!':(1..2]");
-			AreEqual(Range.TryCreateExclusiveFrom(1, 2, key).ToString(), "'Hello!':(1..2]");
-			AreEqual(Range.CreateExclusiveTo(1, 2, key).ToString(), "'Hello!':[1..2)");
-			AreEqual(Range.TryCreateExclusiveTo(1, 2, key).ToString(), "'Hello!':[1..2)");
-			AreEqual(Range.CreateExclusive(value1, empty, 3).ToString("000"), "'3':(001..+∞)");
-			AreEqual(Range.TryCreateExclusive(value1, empty, 3).ToString("000"), "'3':(001..+∞)");
-			AreEqual(Range.Create((int?)1, null, key).ToString(), "'Hello!':[1..+∞)");
-			AreEqual(Range.TryCreate((int?)1, null, key).ToString(), "'Hello!':[1..+∞)");
+			AreEqual(Range.Create(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty, key).ToString(CultureInfo.InvariantCulture), "'Hello!':∅");
+			AreEqual(Range.TryCreate(RangeBoundaryFrom<int?>.Empty, RangeBoundaryTo<int?>.Empty, key).ToString(CultureInfo.InvariantCulture), "'Hello!':∅");
+			AreEqual(Range.Create(empty, empty, key).ToString(CultureInfo.InvariantCulture), "'Hello!':(-∞..+∞)");
+			AreEqual(Range.TryCreate(empty, empty, key).ToString(CultureInfo.InvariantCulture), "'Hello!':(-∞..+∞)");
+			AreEqual(Range.Create(empty, empty, (string?)null).ToString(CultureInfo.InvariantCulture), "'':(-∞..+∞)");
+			AreEqual(Range.TryCreate(empty, empty, (string?)null).ToString(CultureInfo.InvariantCulture), "'':(-∞..+∞)");
+			AreEqual(Range.Create(1, 1, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..1]");
+			AreEqual(Range.TryCreate(1, 1, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..1]");
+			AreEqual(Range.Create(1, 2, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..2]");
+			AreEqual(Range.TryCreate(1, 2, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..2]");
+			AreEqual(Range.CreateExclusive(1, 2, key).ToString(CultureInfo.InvariantCulture), "'Hello!':(1..2)");
+			AreEqual(Range.TryCreateExclusive(1, 2, key).ToString(CultureInfo.InvariantCulture), "'Hello!':(1..2)");
+			AreEqual(Range.CreateExclusiveFrom(1, 2, key).ToString(CultureInfo.InvariantCulture), "'Hello!':(1..2]");
+			AreEqual(Range.TryCreateExclusiveFrom(1, 2, key).ToString(CultureInfo.InvariantCulture), "'Hello!':(1..2]");
+			AreEqual(Range.CreateExclusiveTo(1, 2, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..2)");
+			AreEqual(Range.TryCreateExclusiveTo(1, 2, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..2)");
+			AreEqual(Range.CreateExclusive(value1, empty, 3).ToString("000", CultureInfo.InvariantCulture), "'3':(001..+∞)");
+			AreEqual(Range.TryCreateExclusive(value1, empty, 3).ToString("000", CultureInfo.InvariantCulture), "'3':(001..+∞)");
+			AreEqual(Range.Create((int?)1, null, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..+∞)");
+			AreEqual(Range.TryCreate((int?)1, null, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..+∞)");
 			var cultureRu = new CultureInfo("ru-RU");
 			var cultureEn = new CultureInfo("en-US");
 			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureRu), "'1,1':[001,500..002,500]");
@@ -274,45 +274,45 @@ namespace CodeJam.Ranges
 
 			var range = Range.Create(value1, empty).WithKey("A");
 
-			AreEqual(range.ToString(), "'A':[1..+∞)");
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), "'A':[1..+∞)");
 			AreNotEqual(range.Key, key);
 
 			var prevRange = range.WithKey(key);
 
 			range = prevRange;
-			AreEqual(range.ToString(), "'Hello!':[1..+∞)");
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), "'Hello!':[1..+∞)");
 			AreEqual(range.Key, key);
 			AreEqual(range, prevRange);
 
 			range = range.Intersect(1, 2);
-			AreEqual(range.ToString(), "'Hello!':[1..2]");
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), "'Hello!':[1..2]");
 			AreEqual(range.Key, key);
 			AreNotEqual(range, prevRange);
 
 			range = range.Union(4, 8);
-			AreEqual(range.ToString(), "'Hello!':[1..8]");
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), "'Hello!':[1..8]");
 			AreEqual(range.Key, key);
 			AreNotEqual(range, prevRange);
 
 			range = range.Intersect(10, 20);
-			AreEqual(range.ToString(), "'Hello!':∅");
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), "'Hello!':∅");
 			AreEqual(range.Key, key);
 			AreNotEqual(range, prevRange);
 
 			range = range.Union(null, null);
-			AreEqual(range.ToString(), "'Hello!':(-∞..+∞)");
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), "'Hello!':(-∞..+∞)");
 			AreEqual(range.Key, key);
 			AreNotEqual(range, prevRange);
 
 			range = range.TrimFrom(1);
-			AreEqual(range.ToString(), "'Hello!':[1..+∞)");
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), "'Hello!':[1..+∞)");
 			AreEqual(range.Key, key);
 			AreEqual(range, prevRange);
 
 			range = Range.Create(value1, value1)
 				.WithKey("B")
 				.Intersect(range);
-			AreEqual(range.ToString(), "'B':[1..1]");
+			AreEqual(range.ToString(CultureInfo.InvariantCulture), "'B':[1..1]");
 			AreNotEqual(range.Key, key);
 			AreNotEqual(range, prevRange);
 		}

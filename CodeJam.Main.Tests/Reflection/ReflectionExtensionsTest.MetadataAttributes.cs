@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -20,9 +19,11 @@ using static NUnit.Framework.Assert;
 // ReSharper disable EventNeverSubscribedTo.Local
 // ReSharper disable AccessToStaticMemberViaDerivedType
 
-#pragma warning disable 67
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CS0067
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable CA1822 // Mark members as static
+#pragma warning disable CA1052 // Static holder types should be Static or NotInheritable
 
 [assembly: ReflectionExtensionsTest.SI("A"), ReflectionExtensionsTest.SN("A")]
 [assembly: ReflectionExtensionsTest.MI("A"), ReflectionExtensionsTest.MN("A")]
@@ -149,10 +150,10 @@ namespace CodeJam.Reflection
 				if (searchMode != SearchMode.Attributes) // default do not honor inherit flag for properties / events
 				{
 					result = GetAttributesString<TAttribute>(type.GetProperty("P", bf)!, searchMode);
-					AreEqual(result, expected.Replace(".M", ".P"));
+					AreEqual(result, expected.ReplaceOrdinal(".M", ".P"));
 
 					result = GetAttributesString<TAttribute>(type.GetEvent("E", bf)!, searchMode);
-					AreEqual(result, expected.Replace(".M", ".E"));
+					AreEqual(result, expected.ReplaceOrdinal(".M", ".E"));
 				}
 			}
 		}
@@ -172,7 +173,7 @@ namespace CodeJam.Reflection
 			return attributes
 				.GroupWhileEquals(
 					a => a.Origin,
-					a => a.GetType().Name.Split('+').Last().Replace("Attribute", ""))
+					a => a.GetType().Name.Split('+').Last().ReplaceOrdinal("Attribute", ""))
 				.Select(g => g.Key + ":" + g.Join(","))
 				.Join("; ");
 		}
@@ -192,7 +193,7 @@ namespace CodeJam.Reflection
 			return attributes
 				.GroupWhileEquals(
 					a => a.Origin,
-					a => a.GetType().Name.Split('+').Last().Replace("Attribute", ""))
+					a => a.GetType().Name.Split('+').Last().ReplaceOrdinal("Attribute", ""))
 				.Select(g => g.Key + ":" + g.Join(","))
 				.Join("; ");
 		}

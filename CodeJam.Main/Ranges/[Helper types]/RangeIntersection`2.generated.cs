@@ -121,6 +121,9 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
+			if (IntersectionRange.IsEmpty)
+				return RangeInternal.EmptyString;
+
 			var intersectionRangePart = IntersectionRange.ToString(format, formatProvider);
 			var rangesPart = IsEmpty
 				? RangeInternal.EmptyString

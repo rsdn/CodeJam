@@ -170,6 +170,7 @@ namespace CodeJam.Collections
 		public static T[] DefaultIfEmpty<T>(this T[] array, T defaultValue)
 		{
 			Code.NotNull(array, nameof(array));
+
 			return array.Length == 0
 				? new[] { defaultValue }
 				: array;
@@ -186,6 +187,7 @@ namespace CodeJam.Collections
 		public static List<T> DefaultIfEmpty<T>(this List<T> collection, T defaultValue)
 		{
 			Code.NotNull(collection, nameof(collection));
+
 			return collection.Count == 0
 				? new List<T> { defaultValue }
 				: collection;
@@ -210,6 +212,7 @@ namespace CodeJam.Collections
 			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
+
 			return dictionary.Count == 0
 				? new Dictionary<TKey, TValue> { { defaultKey, defaultValue } }
 				: dictionary;
@@ -236,6 +239,7 @@ namespace CodeJam.Collections
 			where TKey : notnull
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
+
 			return dictionary.Count == 0
 				? new Dictionary<TKey, TValue>(comparer) { { defaultKey, defaultValue } }
 				: dictionary;
@@ -249,6 +253,9 @@ namespace CodeJam.Collections
 		/// <param name="items">The items to add to the collection.</param>
 		public static void AddRange<T>(this ICollection<T> source, params T[] items)
 		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(items, nameof(items));
+
 			foreach (var item in items)
 				source.Add(item);
 		}
@@ -261,6 +268,9 @@ namespace CodeJam.Collections
 		/// <param name="items">The items to add to the collection.</param>
 		public static void AddRange<T>(this ICollection<T> source, IList<T> items)
 		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(items, nameof(items));
+
 			for (int i = 0, count = items.Count; i < count; i++)
 				source.Add(items[i]);
 		}
@@ -273,6 +283,9 @@ namespace CodeJam.Collections
 		/// <param name="items">The items to add to the collection.</param>
 		public static void AddRange<T>(this ICollection<T> source, [InstantHandle] IEnumerable<T> items)
 		{
+			Code.NotNull(source, nameof(source));
+			Code.NotNull(items, nameof(items));
+
 			foreach (var item in items)
 				source.Add(item);
 		}

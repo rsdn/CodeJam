@@ -17,12 +17,12 @@ namespace CodeJam.Ranges
 
 			RangeBoundaryFromKind kind;
 			string valuePart;
-			if (value.StartsWith(RangeInternal.FromInclusiveString))
+			if (value.StartsWith(RangeInternal.FromInclusiveString, StringComparison.Ordinal))
 			{
 				kind = RangeBoundaryFromKind.Inclusive;
 				valuePart = value.Substring(RangeInternal.FromInclusiveString.Length);
 			}
-			else if (value.StartsWith(RangeInternal.FromExclusiveString))
+			else if (value.StartsWith(RangeInternal.FromExclusiveString, StringComparison.Ordinal))
 			{
 				kind = RangeBoundaryFromKind.Exclusive;
 				valuePart = value.Substring(RangeInternal.FromExclusiveString.Length);
@@ -44,12 +44,12 @@ namespace CodeJam.Ranges
 
 			RangeBoundaryToKind kind;
 			string valuePart;
-			if (value.EndsWith(RangeInternal.ToInclusiveString))
+			if (value.EndsWith(RangeInternal.ToInclusiveString, StringComparison.Ordinal))
 			{
 				kind = RangeBoundaryToKind.Inclusive;
 				valuePart = value.Substring(0, value.Length - RangeInternal.ToInclusiveString.Length);
 			}
-			else if (value.EndsWith(RangeInternal.ToExclusiveString))
+			else if (value.EndsWith(RangeInternal.ToExclusiveString, StringComparison.Ordinal))
 			{
 				kind = RangeBoundaryToKind.Exclusive;
 				valuePart = value.Substring(0, value.Length - RangeInternal.ToExclusiveString.Length);

@@ -9,7 +9,7 @@ namespace CodeJam.Collections
 	public class DictionaryExtensionsTest
 	{
 		[Test]
-		public static void GetOrAdd()
+		public void GetOrAdd()
 		{
 			var dic = new Dictionary<int, string>();
 
@@ -41,7 +41,7 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
-		public static void GetOrAddNew()
+		public void GetOrAddNew()
 		{
 			var dic = new Dictionary<int, A>();
 			var v1 = dic.GetOrAdd(1);
@@ -64,7 +64,7 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
-		public static void GetOrAddLazy()
+		public void GetOrAddLazy()
 		{
 			var dic = new Dictionary<int, string>();
 			var calls = 0;
@@ -93,7 +93,7 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
-		public static void AddOrUpdate()
+		public void AddOrUpdate()
 		{
 			var dic = new Dictionary<int, string>();
 
@@ -109,7 +109,7 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
-		public static void AddOrUpdateLazy()
+		public void AddOrUpdateLazy()
 		{
 			var dic = new Dictionary<int, string>();
 			var addCalls = 0;

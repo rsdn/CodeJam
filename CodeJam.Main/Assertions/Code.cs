@@ -13,6 +13,8 @@ using CodeJam.Arithmetic;
 using CodeJam.Strings;
 
 using JetBrains.Annotations;
+
+using Microsoft.VisualStudio;
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using StringEx = System.String;
 #else
@@ -36,7 +38,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
-			[AllowNull, SDC.NotNull, NoEnumeration] T? arg,
+			[AllowNull, SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
 			[InvokerParameterName] string argName)
 			where T : class
 		{
@@ -56,7 +58,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void GenericNotNull<T>(
-			[AllowNull, SDC.NotNull, NoEnumeration] T? arg,
+			[AllowNull, SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -99,7 +101,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
-			[SDC.NotNull] T? arg,
+			[SDC.NotNull, ValidatedNotNull] T? arg,
 			[InvokerParameterName] string argName) where T : struct
 		{
 			if (arg == null)
@@ -115,7 +117,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T>? arg,
+			[AllowNull, SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T>? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -133,7 +135,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, SDC.NotNull] ICollection<T>? arg,
+			[AllowNull, SDC.NotNull, ValidatedNotNull] ICollection<T>? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -151,7 +153,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, SDC.NotNull] T?[]? arg,
+			[AllowNull, SDC.NotNull, ValidatedNotNull] T?[]? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -166,7 +168,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty(
-			[AllowNull, SDC.NotNull] string? arg,
+			[AllowNull, SDC.NotNull, ValidatedNotNull] string? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrEmpty())
@@ -179,7 +181,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorWhiteSpace(
-			[AllowNull, SDC.NotNull] string? arg,
+			[AllowNull, SDC.NotNull, ValidatedNotNull] string? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrWhiteSpace())
@@ -193,7 +195,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullAndItemNotNull<T>(
-			[AllowNull, SDC.NotNull, InstantHandle] IEnumerable<T?>? arg,
+			[AllowNull, SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
 			[InvokerParameterName] string argName) where T : class
 		{
 			if (arg == null)
@@ -211,6 +213,8 @@ namespace CodeJam
 			[InstantHandle] IEnumerable<T?> arg,
 			[InvokerParameterName] string argName) where T : class
 		{
+			NotNull(arg, nameof(arg));
+
 			foreach (var item in arg)
 				if (item == null)
 					throw CodeExceptions.ArgumentItemNull(argName);
@@ -246,6 +250,21 @@ namespace CodeJam
 		{
 			if (!condition)
 				throw CodeExceptions.Argument(argName, messageFormat, args);
+		}
+
+		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
+		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
+		/// <param name="arg">The argument.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static T ReturnIfNotNull<T>(
+			[AllowNull, SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
+			[InvokerParameterName] string argName)
+			where T : class
+		{
+			Code.NotNull(arg, argName);
+			return arg;
 		}
 		#endregion
 

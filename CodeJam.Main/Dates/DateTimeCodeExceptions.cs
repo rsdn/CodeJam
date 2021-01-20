@@ -7,6 +7,8 @@ using JetBrains.Annotations;
 
 using static CodeJam.Internal.CodeExceptionsHelper;
 
+#pragma warning disable CA1801 // Review unused parameters
+
 namespace CodeJam.Dates
 {
 	/// <summary>Exception factory class</summary>

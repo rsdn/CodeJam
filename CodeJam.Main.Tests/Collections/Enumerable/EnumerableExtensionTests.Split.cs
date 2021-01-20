@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensionTests
+	public partial class EnumerableExtensionTests
 	{
 		[TestCase(1)]
 		[TestCase(3)]

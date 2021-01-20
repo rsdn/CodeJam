@@ -73,12 +73,12 @@ namespace CodeJam.Ranges
 		public static void TestRangeWithKey()
 		{
 			var range = Range.Create(1, 2);
-			AreEqual(range.WithKey(RangeKey2), Range.Create(1, 2, RangeKey2));
-			AreEqual(range.WithKey(RangeKey2).WithoutKey(), new Range<int>(1, 2));
+			AreEqual(range.WithKey(_rangeKey2), Range.Create(1, 2, _rangeKey2));
+			AreEqual(range.WithKey(_rangeKey2).WithoutKey(), new Range<int>(1, 2));
 
 			var toInf = (double?)double.PositiveInfinity;
 			var range2 = Range.CreateExclusive(1, toInf);
-			AreEqual(range2.WithKey(RangeKey2).Key, RangeKey2);
+			AreEqual(range2.WithKey(_rangeKey2).Key, _rangeKey2);
 		}
 
 		[Test]
@@ -165,7 +165,7 @@ namespace CodeJam.Ranges
 			range = Range.Create(emptyFrom, emptyTo);
 			IsTrue(range.Contains(range));
 			IsFalse(range.Contains(1, 2));
-			IsTrue(range.Contains(Range.Create(emptyFrom, emptyTo, RangeKey2)));
+			IsTrue(range.Contains(Range.Create(emptyFrom, emptyTo, _rangeKey2)));
 			IsFalse(range.Contains(1, null));
 			IsTrue(range.Contains(Range<double?>.Empty));
 			IsFalse(range.Contains(Range<double?>.Infinite));
@@ -178,7 +178,7 @@ namespace CodeJam.Ranges
 
 			range = Range.CreateExclusive(empty, empty);
 			IsTrue(range.Contains(range));
-			IsTrue(range.Contains(Range.CreateExclusive(empty, empty, RangeKey2)));
+			IsTrue(range.Contains(Range.CreateExclusive(empty, empty, _rangeKey2)));
 			IsTrue(range.Contains(1, 2));
 			IsTrue(range.Contains(1, null));
 			IsFalse(range.Contains(Range<double?>.Empty));
@@ -191,7 +191,7 @@ namespace CodeJam.Ranges
 				() => range.Contains(double.PositiveInfinity, double.NegativeInfinity));
 
 			range = Range.CreateExclusive(value1, value2);
-			IsTrue(range.Contains(Range.CreateExclusive(value1, value2, RangeKey2)));
+			IsTrue(range.Contains(Range.CreateExclusive(value1, value2, _rangeKey2)));
 			IsFalse(range.Contains(1, 2));
 			IsTrue(range.Contains(1.5, 1.5));
 			IsFalse(range.Contains(1.5, 2));
@@ -210,7 +210,7 @@ namespace CodeJam.Ranges
 			var range = Range.Create(value1, value2);
 			IsTrue(range.HasIntersection(range));
 			IsTrue(range.HasIntersection(1, 2));
-			IsTrue(range.HasIntersection(Range.CreateExclusive(value1, value2, RangeKey2)));
+			IsTrue(range.HasIntersection(Range.CreateExclusive(value1, value2, _rangeKey2)));
 			IsTrue(range.HasIntersection(1, null));
 			IsFalse(range.HasIntersection(Range<double?>.Empty));
 			IsTrue(range.HasIntersection(Range<double?>.Infinite));
@@ -230,7 +230,7 @@ namespace CodeJam.Ranges
 			range = Range.Create(emptyFrom, emptyTo);
 			IsTrue(range.HasIntersection(range));
 			IsFalse(range.HasIntersection(1, 2));
-			IsTrue(range.HasIntersection(Range.Create(emptyFrom, emptyTo, RangeKey2)));
+			IsTrue(range.HasIntersection(Range.Create(emptyFrom, emptyTo, _rangeKey2)));
 			IsFalse(range.HasIntersection(1, null));
 			IsTrue(range.HasIntersection(Range<double?>.Empty));
 			IsFalse(range.HasIntersection(Range<double?>.Infinite));
@@ -243,7 +243,7 @@ namespace CodeJam.Ranges
 
 			range = Range.CreateExclusive(empty, empty);
 			IsTrue(range.HasIntersection(range));
-			IsTrue(range.HasIntersection(Range.CreateExclusive(empty, empty, RangeKey2)));
+			IsTrue(range.HasIntersection(Range.CreateExclusive(empty, empty, _rangeKey2)));
 			IsTrue(range.HasIntersection(1, 2));
 			IsTrue(range.HasIntersection(1, null));
 			IsFalse(range.HasIntersection(Range<double?>.Empty));
@@ -256,7 +256,7 @@ namespace CodeJam.Ranges
 				() => range.HasIntersection(double.PositiveInfinity, double.NegativeInfinity));
 
 			range = Range.CreateExclusive(value1, value2);
-			IsTrue(range.HasIntersection(Range.CreateExclusive(value1, value2, RangeKey2)));
+			IsTrue(range.HasIntersection(Range.CreateExclusive(value1, value2, _rangeKey2)));
 			IsTrue(range.HasIntersection(1, 2));
 			IsTrue(range.HasIntersection(1.5, 1.5));
 			IsTrue(range.HasIntersection(1.5, 2));
@@ -316,9 +316,9 @@ namespace CodeJam.Ranges
 			IsFalse(range.StartsAfter(2));
 			IsFalse(range.StartsAfter(3));
 
-			IsTrue(range.StartsAfter(Range.Create(empty, 0, RangeKey2)));
-			IsTrue(range.StartsAfter(Range.CreateExclusiveTo(empty, 1, RangeKey2)));
-			IsFalse(range.StartsAfter(Range.Create(empty, 1, RangeKey2)));
+			IsTrue(range.StartsAfter(Range.Create(empty, 0, _rangeKey2)));
+			IsTrue(range.StartsAfter(Range.CreateExclusiveTo(empty, 1, _rangeKey2)));
+			IsFalse(range.StartsAfter(Range.Create(empty, 1, _rangeKey2)));
 
 			range = Range.Create(emptyFrom, emptyTo);
 			IsFalse(range.StartsAfter(null));
@@ -378,9 +378,9 @@ namespace CodeJam.Ranges
 			IsFalse(range.EndsBefore(2));
 			IsTrue(range.EndsBefore(3));
 
-			IsFalse(range.EndsBefore(Range.Create(2, empty, RangeKey2)));
-			IsTrue(range.EndsBefore(Range.CreateExclusiveFrom(2, empty, RangeKey2)));
-			IsTrue(range.EndsBefore(Range.Create(3, empty, RangeKey2)));
+			IsFalse(range.EndsBefore(Range.Create(2, empty, _rangeKey2)));
+			IsTrue(range.EndsBefore(Range.CreateExclusiveFrom(2, empty, _rangeKey2)));
+			IsTrue(range.EndsBefore(Range.Create(3, empty, _rangeKey2)));
 
 			range = Range.Create(emptyFrom, emptyTo);
 			IsFalse(range.EndsBefore(null));

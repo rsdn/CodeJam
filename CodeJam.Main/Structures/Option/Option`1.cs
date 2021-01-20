@@ -54,7 +54,12 @@ namespace CodeJam
 		/// <param name="option"></param>
 		/// <returns>Value of <paramref name="option"/></returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static explicit operator T(Option<T> option) => option.Value;
+		public static explicit operator T(Option<T> option)
+		{
+			Code.NotNull(option, nameof(option));
+
+			return option.Value;
+		}
 
 		/// <summary>
 		/// Equality operator.
@@ -119,7 +124,7 @@ namespace CodeJam
 		#endregion
 
 		/// <summary>Returns the fully qualified type name of this instance.</summary>
-		/// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
+		/// <returns>A <see cref="string" /> containing a fully qualified type name.</returns>
 		public override string ToString() => Option.ToString(this);
 
 		#region Some&None classes

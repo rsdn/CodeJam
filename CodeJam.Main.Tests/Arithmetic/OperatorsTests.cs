@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 using JetBrains.Annotations;
 
@@ -444,9 +445,9 @@ namespace CodeJam.Arithmetic
 			Assert.AreEqual(Operators<float>.NegativeInfinity, float.NegativeInfinity);
 			Assert.AreEqual(Operators<float>.PositiveInfinity, float.PositiveInfinity);
 			Assert.AreEqual(Operators<float>.NaN, float.NaN);
-			Assert.Throws<NotSupportedException>(() => Operators<int>.NaN.ToString());
-			Assert.Throws<NotSupportedException>(() => Operators<int>.NegativeInfinity.ToString());
-			Assert.Throws<NotSupportedException>(() => Operators<int>.PositiveInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<int>.NaN.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<int>.NegativeInfinity.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<int>.PositiveInfinity.ToString(CultureInfo.InvariantCulture));
 
 			Assert.AreEqual(Operators<double?>.NaN, double.NaN);
 			Assert.AreEqual(Operators<double?>.NegativeInfinity, double.NegativeInfinity);

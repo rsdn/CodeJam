@@ -17,7 +17,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.ConnectionStrings
 {
-	partial class ConnectionStringBase
+	public partial class ConnectionStringBase
 	{
 		private class StringBuilderWrapper : DbConnectionStringBuilder
 		{

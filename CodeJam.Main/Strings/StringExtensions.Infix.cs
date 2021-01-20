@@ -12,9 +12,11 @@ using StringEx = System.StringEx;
 
 #endif
 
+#pragma warning disable CA1305 // Specify IFormatProvider
+
 namespace CodeJam.Strings
 {
-	static partial class StringExtensions
+	public static partial class StringExtensions
 	{
 		/// <summary>
 		/// Infix form of <see cref="string.IsNullOrEmpty"/>.

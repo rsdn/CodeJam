@@ -20,8 +20,8 @@ namespace CodeJam.Assertions
 		[Test]
 		public void TestLogging()
 		{
-			var logWriter = new StringWriter();
-			var listener = new TextWriterTraceListener(logWriter)
+			using var logWriter = new StringWriter();
+			using var listener = new TextWriterTraceListener(logWriter)
 			{
 				TraceOutputOptions = TraceOptions.None
 			};

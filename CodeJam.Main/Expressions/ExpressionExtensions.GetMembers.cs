@@ -30,6 +30,8 @@ namespace CodeJam.Expressions
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static MemberExpression GetMemberExpression(this LambdaExpression expression)
 		{
+			Code.NotNull(expression, nameof(expression));
+
 			var body = expression.Body;
 			return body is UnaryExpression unary
 				? (MemberExpression)unary.Operand

@@ -36,7 +36,7 @@ namespace CodeJam.Threading
 					.WaitForResult());
 
 			// No cancellation case
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			var delayTask = TaskEx.Delay(TimeSpan.FromMilliseconds(500), CancellationToken.None);
 			var waitForCancellationTask = cts.Token.WaitForCancellationAsync();
 			var completedTask = await TaskEx.WhenAny(
@@ -74,7 +74,7 @@ namespace CodeJam.Threading
 
 			// No cancellation case
 			var neverTimeout = TimeSpan.FromDays(1);
-			var cts = new CancellationTokenSource();
+			using var cts = new CancellationTokenSource();
 			var waitForCancellationTask = cts.Token.WaitForCancellationAsync(neverTimeout);
 			var delayTask = TaskEx.Delay(TimeSpan.FromMilliseconds(500), CancellationToken.None);
 			var completedTask = await TaskEx.WhenAny(

@@ -54,8 +54,8 @@ namespace CodeJam.Ranges
 		/// <param name="to">Boundary To.</param>
 		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to)
 		{
-			bool fromEmpty = from.IsEmpty;
-			bool toEmpty = to.IsEmpty;
+			var fromEmpty = from.IsEmpty;
+			var toEmpty = to.IsEmpty;
 			if (fromEmpty != toEmpty)
 			{
 				throw CodeExceptions.Argument(

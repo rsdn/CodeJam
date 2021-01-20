@@ -1,5 +1,6 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
+using System.Globalization;
 
 using NUnit.Framework;
 
@@ -24,10 +25,12 @@ namespace CodeJam.Mapping.Examples
 			public DateTime? Field1;
 		}
 
+#pragma warning disable CA1305 // Specify IFormatProvider
 		private static readonly Mapper<Class1, Class2> _class1ToClass2Mapper =
 			Map.GetMapper<Class1, Class2>(
 				m =>
 					m.MapMember(c2 => c2.Field1, c1 => DateTime.Parse(c1.Field1!).AddDays(1)));
+#pragma warning restore CA1305 // Specify IFormatProvider
 
 		[Test]
 		public void Test1()

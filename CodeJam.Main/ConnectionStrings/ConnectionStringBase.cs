@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
 using JetBrains.Annotations;
 
-using AllowNullAttribute = System.Diagnostics.CodeAnalysis.AllowNullAttribute;
-using MaybeNullWhenAttribute = System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute;
+#pragma warning disable CA1305 // Specify IFormatProvider
 
 namespace CodeJam.ConnectionStrings
 {
@@ -60,9 +60,7 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>Initializes a new instance of the <see cref="ConnectionStringBase" /> class.</summary>
 		/// <param name="connectionString">The connection string.</param>
 		protected ConnectionStringBase(string? connectionString)
-		{
-			_wrapper = new StringBuilderWrapper(connectionString, GetType());
-		}
+			=> _wrapper = new StringBuilderWrapper(connectionString, GetType());
 
 		/// <summary>
 		/// Gets all supported keywords for current connection.
@@ -145,7 +143,12 @@ namespace CodeJam.ConnectionStrings
 		/// </summary>
 		/// <param name="other">The other connection string.</param>
 		/// <returns><c>true</c> if the connection information in both objects causes an equivalent connection string; otherwise <c>false</c>.</returns>
-		public bool EquivalentTo(ConnectionStringBase other) => _wrapper.EquivalentTo(other._wrapper);
+		public bool EquivalentTo(ConnectionStringBase other)
+		{
+			Code.NotNull(other, nameof(other));
+
+			return _wrapper.EquivalentTo(other._wrapper);
+		}
 
 		/// <summary>
 		/// Gets the browsable connection string.

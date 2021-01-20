@@ -18,7 +18,7 @@ using static CodeJam.Targeting.MethodImplOptionsEx;
 
 namespace CodeJam
 {
-	partial class Algorithms
+	public partial class Algorithms
 	{
 		#region byte
 		/// <summary>

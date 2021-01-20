@@ -6,12 +6,13 @@
 		<SignAssembly>True</SignAssembly>
 		<DelaySign>False</DelaySign>
 		<AssemblyOriginatorKeyFile>..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
+		<NoWarn>$(NoWarn);CA1014</NoWarn>
 
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
-		<!-- <AnalysisLevel>latest</AnalysisLevel> -->
-    	<!-- <EnableNETAnalyzers>true</EnableNETAnalyzers> -->
-		<!-- <AnalysisMode>AllEnabledByDefault</AnalysisMode> -->
+		<AnalysisLevel>latest</AnalysisLevel>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 
 		<Version>4.0.0.0</Version>
 		<PackageVersion>4.0.0-beta1</PackageVersion>

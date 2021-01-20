@@ -26,6 +26,8 @@ using System.Collections.Generic;
 
 using JetBrains.Annotations;
 
+#pragma warning disable CA1304 // Specify CultureInfo
+
 namespace CodeJam.Strings
 {
 	/// <summary>

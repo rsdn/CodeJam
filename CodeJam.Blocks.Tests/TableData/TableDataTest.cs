@@ -54,7 +54,7 @@ namespace CodeJam.TableData
 		public string PrintCsv(string source)
 		{
 			var data = CsvFormat.CreateParser(true).Parse(source);
-			var result = new StringWriter();
+			using var result = new StringWriter();
 			CsvFormat.Print(result, data.Select(l => l.Values), "  ");
 			return result.ToString();
 		}
@@ -78,7 +78,7 @@ namespace CodeJam.TableData
 		[TestCase("  a b\r\n  c d", new[] { 3, 2 }, ExpectedResult = "a  b \r\nc  d ")]
 		public string PrintFixedWidth(string source, int[] widths)
 		{
-			var res = new StringWriter();
+			using var res = new StringWriter();
 			FixedWidthFormat.Print(
 				res,
 				FixedWidthFormat.CreateParser(widths).Parse(source).Select(dl => dl.Values),

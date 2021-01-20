@@ -166,6 +166,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void DeconstructEnumerable()
 		{
+#pragma warning disable CA1508 // Avoid dead conditional code
 			IEnumerable<int> array = new[] { 1, 2, 3, 4, 5 };
 			Assert.IsTrue(array is (1, _, _, _, _));
 			Assert.IsFalse(array is (2, _, _, _, _));
@@ -181,6 +182,7 @@ namespace CodeJam.Collections
 				{
 					var b = array is (1, _, _, _, _, _);
 				});
+#pragma warning restore CA1508 // Avoid dead conditional code
 		}
 
 		[Test]

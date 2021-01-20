@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensionTests
+	public partial class EnumerableExtensionTests
 	{
 		[TestCase(new[] {3, 1, 8, 0, 6}, ExpectedResult = "1, 8, 0")]
 		[TestCase(new[] {3, 1, 8},       ExpectedResult = "1, 8")]
