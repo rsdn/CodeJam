@@ -207,8 +207,10 @@ namespace CodeJam.Mapping
 						dic["+" + lv] = val;
 				}
 
+#pragma warning disable CA1308 // Normalize strings to uppercase
 				for (var i = 0; i < values.Length; i++)
-					dic[names[i].ToUpperInvariant()] = values.GetValue(i);
+					dic[names[i].ToLowerInvariant()] = values.GetValue(i);
+#pragma warning restore CA1308 // Normalize strings to uppercase
 
 				for (var i = 0; i < values.Length; i++)
 					dic[names[i]] = values.GetValue(i);

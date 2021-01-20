@@ -178,12 +178,14 @@ namespace CodeJam.Mapping
 		[Test]
 		public void MapObjects1([Values(true,false)] bool useAction)
 		{
+#pragma warning disable CA1305 // Specify IFormatProvider
 			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
-				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12, CultureInfo.InvariantCulture) : 12)
+				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
 				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
 				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14));
+#pragma warning restore CA1305 // Specify IFormatProvider
 
 			Assert.That(map.To!.Field1,             Is.EqualTo(1));
 			Assert.That(map.To!.Field3,             Is.EqualTo(2));
