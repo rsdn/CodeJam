@@ -43,9 +43,11 @@ namespace CodeJam.Mapping
 
 		private static XmlDocument CreateXmlDocument(string str)
 		{
+#pragma warning disable CA3075 // Unsafe overload of 'LoadXml' method
 			var xml = new XmlDocument { XmlResolver = null! };
 			xml.LoadXml(str);
 			return xml;
+#pragma warning restore CA3075 // Unsafe overload of 'LoadXml' method
 		}
 
 		private static bool ToBoolean(char ch) => ch switch

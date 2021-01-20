@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 using CodeJam.Strings;
@@ -233,12 +234,12 @@ namespace CodeJam
 				var target = monikers[monikerIndex];
 				var lessThanConstants = monikers
 					.Skip(1 + monikerIndex)
-					.Select(m => ";LESSTHAN_" + m.Replace(".", "", StringComparison.Ordinal).ToUpperInvariant())
+					.Select(m => ";LESSTHAN_" + m.ReplaceOrdinal(".", "").ToUpperInvariant())
 					.Join();
 
 				var notLessThanConstants = monikers
 					.Take(monikerIndex + 1)
-					.Select(m => ";" + m.Replace(".", "", StringComparison.Ordinal).ToUpperInvariant() + "_OR_GREATER")
+					.Select(m => ";" + m.ReplaceOrdinal(".", "").ToUpperInvariant() + "_OR_GREATER")
 					.Join();
 
 				WriteLine(templateBegin, target);

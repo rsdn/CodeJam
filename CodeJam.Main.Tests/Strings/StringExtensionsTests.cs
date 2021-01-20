@@ -341,6 +341,8 @@ namespace CodeJam.Strings
 		[TestCase("abcxyzdzxyzabc", "d", "abc", ExpectedResult = "xyzzxyz")]
 		public string Remove(string str, string remove1, string remove2) => str.Remove(remove1, remove2);
 
+#if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
+
 		[TestCase("abcxyzdzxyzabc", "dz", "abc", ExpectedResult = "xyzxyz")]
 		[TestCase("abcxyzdzxyzabc", "z", "abc", ExpectedResult = "xydxy")]
 		[TestCase("abcxyzdzxyzabc", "d", "abc", ExpectedResult = "xyzzxyz")]
@@ -357,5 +359,7 @@ namespace CodeJam.Strings
 		[TestCase("abcxyzdzxyzabC", "d", "abc", ExpectedResult = "xyzzxyz")]
 		public string RemoveInvariantCultureCaseInsensitive(string str, string remove1, string remove2)
 			=> str.Remove(true, CultureInfo.GetCultureInfo(""), remove1, remove2);
+#endif
+
 	}
 }

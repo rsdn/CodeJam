@@ -285,7 +285,7 @@ namespace CodeJam.TableData
 					? (ITableDataFormatter)new CsvFormatter()
 					: new CsvNoEscapeFormatter();
 			var first = true;
-			var widths = Array.Empty<int>();
+			var widths = Array<int>.Empty;
 			foreach (var line in data)
 			{
 				if (!first)

@@ -71,6 +71,10 @@ namespace CodeJam.Arithmetic
 			Type resultType,
 			params ParameterExpression[] args)
 		{
+			Code.NotNull(expressionFactory, nameof(expressionFactory));
+			Code.NotNull(exceptionFactory, nameof(exceptionFactory));
+			Code.NotNull(methodName, nameof(methodName));
+
 			var expressionArgs = args.ConvertAll(PrepareOperand);
 
 			Expression body;

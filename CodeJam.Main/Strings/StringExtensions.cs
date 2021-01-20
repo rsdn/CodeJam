@@ -441,6 +441,8 @@ namespace CodeJam.Strings
 		}
 #pragma warning restore CA1307 // Specify StringComparison for clarity
 
+#if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
+
 		/// <summary>
 		/// Removes substring from provided strings.
 		/// </summary>
@@ -479,6 +481,8 @@ namespace CodeJam.Strings
 
 			return str;
 		}
+
+#endif
 
 		/// <summary>
 		/// Culture invariant version of <see cref="string.Format(string, object)"/>
@@ -849,5 +853,33 @@ namespace CodeJam.Strings
 		}
 
 #endif
+
+		#region Internal API
+
+		/// <summary>
+		/// Replace value using ordinal comparison if target framework supports it.
+		/// </summary>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		internal static string ReplaceOrdinal(this string str, string oldValue, string newValue) =>
+#if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
+			str.Replace(oldValue, newValue, StringComparison.Ordinal)
+#else
+			str.Replace(oldValue, newValue)
+#endif
+			;
+
+		/// <summary>
+		/// Contains value in struct.
+		/// </summary>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		internal static bool ContainsOrdinal(this string str, char value) =>
+#if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
+			str.Contains(value, StringComparison.Ordinal)
+#else
+			str.IndexOf(value) >= 0
+#endif
+			;
+
+		#endregion
 	}
 }

@@ -31,9 +31,11 @@ namespace CodeJam.IO
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static string CreateAndLeakTempDir(string s)
 		{
+#pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable CA2000 // Dispose objects before losing scope
 			var dir2 = TempData.CreateDirectory();
 #pragma warning restore CA2000 // Dispose objects before losing scope
+#pragma warning restore IDE0079 // Remove unnecessary suppression
 			var dir2Path = dir2.Path;
 			Assert.AreNotEqual(s, dir2Path, "Path should not match");
 			NAssert.NotNull(dir2.Info, "Info is null");
@@ -180,9 +182,11 @@ namespace CodeJam.IO
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static string CreateAndLeakTempFile(string filePath)
 		{
+#pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable CA2000 // Dispose objects before losing scope
 			var file2 = TempData.CreateFile();
 #pragma warning restore CA2000 // Dispose objects before losing scope
+#pragma warning restore IDE0079 // Remove unnecessary suppression
 			var file2Path = file2.Path;
 			Assert.AreNotEqual(filePath, file2Path, "Path should not match");
 			NAssert.NotNull(file2.Info, "Info is null");
@@ -339,9 +343,11 @@ namespace CodeJam.IO
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static string CreateAndLeakTempStream(string filePath)
 		{
+#pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable CA2000 // Dispose objects before losing scope
 			var file2 = TempData.CreateFileStream();
 #pragma warning restore CA2000 // Dispose objects before losing scope
+#pragma warning restore IDE0079 // Remove unnecessary suppression
 			var file2Path = file2.Name;
 			Assert.AreNotEqual(filePath, file2Path, "Path should not match");
 			Assert.IsTrue(File.Exists(file2.Name), "FileStream should exist");
@@ -390,7 +396,7 @@ namespace CodeJam.IO
 				using (var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096, true))
 					textWriter.Write("O La La");
 #else
-				var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096);
+				using var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096);
 				textWriter.Write("O La La");
 				textWriter.Flush();
 #endif
@@ -401,7 +407,7 @@ namespace CodeJam.IO
 				using (var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096, true))
 					content = textReader.ReadToEnd();
 #else
-				var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096);
+				using var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096);
 				content = textReader.ReadToEnd();
 #endif
 				Assert.AreEqual(content, "O La La");

@@ -9,6 +9,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 using CodeJam.Expressions;
+using CodeJam.Strings;
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
@@ -27,7 +28,7 @@ namespace CodeJam.Reflection
 		{
 			TypeAccessor = typeAccessor;
 
-			if (memberName.IndexOf('.', StringComparison.Ordinal) < 0)
+			if (!memberName.ContainsOrdinal('.'))
 			{
 				SetSimple(Expression.PropertyOrField(Expression.Constant(null, typeAccessor.Type), memberName).Member);
 			}
