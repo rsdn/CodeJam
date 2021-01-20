@@ -221,7 +221,7 @@ namespace CodeJam.Ranges
 		/// <summary>The kind of the boundary.</summary>
 		/// <value>The kind of the boundary.</value>
 		// ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
-			public RangeBoundaryToKind Kind => _kind;
+		public RangeBoundaryToKind Kind => _kind;
 
 		/// <summary>The boundary == ∅.</summary>
 		/// <value><c>true</c> if the boundary is empty; otherwise, <c>false</c>.</value>

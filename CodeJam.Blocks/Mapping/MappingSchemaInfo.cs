@@ -32,7 +32,7 @@ namespace CodeJam.Mapping
 		public void SetDefaultValue(Type type, object value)
 		{
 			if (_defaultValues == null)
-				lock (this)
+				lock (_lock)
 					if (_defaultValues == null)
 						_defaultValues = new ConcurrentDictionary<Type, object>();
 
@@ -77,7 +77,7 @@ namespace CodeJam.Mapping
 		public void SetGenericConvertProvider(Type type)
 		{
 			if (_genericConvertProviders == null)
-				lock (this)
+				lock (_lock)
 					if (_genericConvertProviders == null)
 						_genericConvertProviders = new ConcurrentDictionary<Type, List<Type[]>>();
 
@@ -108,6 +108,7 @@ namespace CodeJam.Mapping
 
 		#region Scalar Types
 		private volatile ConcurrentDictionary<Type, bool>? _scalarTypes;
+		private readonly object _lock = new();
 
 		public Option<bool> GetScalarType(Type type)
 		{
@@ -123,7 +124,7 @@ namespace CodeJam.Mapping
 		public void SetScalarType(Type type, bool isScalarType = true)
 		{
 			if (_scalarTypes == null)
-				lock (this)
+				lock (_lock)
 					if (_scalarTypes == null)
 						_scalarTypes = new ConcurrentDictionary<Type, bool>();
 

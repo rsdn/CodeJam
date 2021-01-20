@@ -9,9 +9,11 @@ namespace CodeJam.Mapping
 	/// <summary>
 	/// Uses to define <seealso cref="MapValue"/> for enumtype.
 	/// </summary>
+#pragma warning disable CA1813 // Avoid unsealed attributes
 	[AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 	[PublicAPI]
 	public class MapValueAttribute : Attribute
+#pragma warning restore CA1813 // Avoid unsealed attributes
 	{
 		/// <summary>
 		/// Creates an instance of <see cref="MapValueAttribute"/> attribute.

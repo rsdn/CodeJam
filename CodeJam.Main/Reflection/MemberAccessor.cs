@@ -27,7 +27,7 @@ namespace CodeJam.Reflection
 		{
 			TypeAccessor = typeAccessor;
 
-			if (memberName.IndexOf('.') < 0)
+			if (memberName.IndexOf('.', StringComparison.Ordinal) < 0)
 			{
 				SetSimple(Expression.PropertyOrField(Expression.Constant(null, typeAccessor.Type), memberName).Member);
 			}

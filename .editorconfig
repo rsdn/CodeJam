@@ -34,6 +34,8 @@ dotnet_diagnostic.CA1034.severity = none
 dotnet_diagnostic.CA1051.severity = none
 # Change the type of parameter to System.Uri
 dotnet_diagnostic.CA1054.severity = none
+# Remove or refactor the condition(s) to avoid dead code.
+dotnet_diagnostic.CA1508.severity = none
 # Rename type name to end in ''
 dotnet_diagnostic.CA1710.severity = none
 # Rename type name so that it does not end in ''
@@ -44,6 +46,10 @@ dotnet_diagnostic.CA1716.severity = none
 dotnet_diagnostic.CA1720.severity = none
 # The property is confusing given the existence of method. Rename or remove one of these members.
 dotnet_diagnostic.CA1721.severity = none
+# The type name in whole or in part with the namesapce defined in the .NET Framework.
+dotnet_diagnostic.CA1724.severity = none
+# Comparable should override Equals
+dotnet_diagnostic.CA1815.severity = none
 # Avoid using cref tags with a prefix
 dotnet_diagnostic.CA1200.severity = none
 # Internal class that is never instatiated.
@@ -260,16 +266,12 @@ resharper_use_nameof_expression_highlighting = warning
 dotnet_diagnostic.CA1036.severity = none
 # In externally visible method, validate parameter is non-null before using it.
 dotnet_diagnostic.CA1062.severity = none
-# Remove or refactor the condition(s) to avoid dead code.
-dotnet_diagnostic.CA1508.severity = none
 # Remove the underscors from member name.
 dotnet_diagnostic.CA1707.severity = none
 # Parameter is neer used.
 dotnet_diagnostic.CA1801.severity = none
 # Avoid unsealed attributes
 dotnet_diagnostic.CA1813.severity = none
-# Comparable should override Equals
-dotnet_diagnostic.CA1815.severity = none
 
 ### IDE Diagnostic ###
 

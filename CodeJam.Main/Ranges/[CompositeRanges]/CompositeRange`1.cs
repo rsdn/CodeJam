@@ -232,8 +232,9 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region ToString
-		/// <summary>Returns string representation of the range.</summary>
+		/// <summary>Returns string representation of the range using current culture.</summary>
 		/// <returns>The string representation of the range.</returns>
+#pragma warning disable CA1305 // Specify IFormatProvider
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public override string ToString()
 		{
@@ -251,6 +252,7 @@ namespace CodeJam.Ranges
 				subRangesPart +
 				SuffixString;
 		}
+#pragma warning restore CA1305 // Specify IFormatProvider
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.

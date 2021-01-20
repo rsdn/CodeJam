@@ -178,6 +178,7 @@ namespace CodeJam.Reflection
 		public static bool IsInstantiable(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
+
 			return !(type.GetIsAbstract() || type.GetIsInterface() || type.IsArray || type.GetContainsGenericParameters());
 		}
 
@@ -192,6 +193,7 @@ namespace CodeJam.Reflection
 		public static bool IsStatic(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
+
 			return type.GetIsClass() && type.GetIsAbstract() && type.GetIsSealed();
 		}
 
@@ -206,6 +208,7 @@ namespace CodeJam.Reflection
 		public static bool IsNullable(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
+
 			return type.GetIsGenericType() && type.GetGenericTypeDefinition() == typeof(Nullable<>);
 		}
 
@@ -218,6 +221,7 @@ namespace CodeJam.Reflection
 		public static bool IsNumeric(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
+
 			while (true) // tail recursion expanded
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
 				switch (Type.GetTypeCode(type))
@@ -278,6 +282,7 @@ namespace CodeJam.Reflection
 		public static bool IsInteger(this Type type)
 		{
 			Code.NotNull(type, nameof(type));
+
 			while (true) // tail recursion expanded
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
 				switch (Type.GetTypeCode(type))
@@ -331,6 +336,8 @@ namespace CodeJam.Reflection
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool IsNullableNumeric(this Type type)
 		{
+			Code.NotNull(type, nameof(type));
+
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.IsNumeric();
 		}
@@ -343,6 +350,8 @@ namespace CodeJam.Reflection
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool IsNullableInteger(this Type type)
 		{
+			Code.NotNull(type, nameof(type));
+
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.IsInteger();
 		}
@@ -355,6 +364,8 @@ namespace CodeJam.Reflection
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool IsNullableEnum(this Type type)
 		{
+			Code.NotNull(type, nameof(type));
+
 			var arg = Nullable.GetUnderlyingType(type);
 			return arg != null && arg.GetIsEnum();
 		}
@@ -676,7 +687,12 @@ namespace CodeJam.Reflection
 		///   <c>true</c> if instance of <typeparamref name="T"/> can be assigned to instance of current type; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static bool IsAssignableFrom<T>(this Type type) => type.IsAssignableFrom(typeof(T));
+		public static bool IsAssignableFrom<T>(this Type type)
+		{
+			Code.NotNull(type, nameof(type));
+
+			return type.IsAssignableFrom(typeof(T));
+		}
 
 		/// <summary>
 		/// Determines whether instance of current type can be assigned to instance of <typeparamref name="T"/>.
@@ -687,7 +703,7 @@ namespace CodeJam.Reflection
 		///   <c>true</c> if instance of current type can be assigned to instance of <typeparamref name="T"/>; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static bool IsAssignableTo<T>(this Type type) => typeof(T).IsAssignableFrom(type);
+		public static bool IsAssignableTo<T>(this Type? type) => typeof(T).IsAssignableFrom(type);
 
 		/// <summary>
 		/// Determines whether instance of current type can be assigned to instance of <paramref name="targetType"/>.
@@ -698,9 +714,10 @@ namespace CodeJam.Reflection
 		///   <c>true</c> if instance of current type can be assigned to instance of <paramref name="targetType"/>; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static bool IsAssignableTo(this Type type, Type targetType)
+		public static bool IsAssignableTo(this Type? type, Type targetType)
 		{
 			Code.NotNull(targetType, nameof(targetType));
+
 			return targetType.IsAssignableFrom(type);
 		}
 	}

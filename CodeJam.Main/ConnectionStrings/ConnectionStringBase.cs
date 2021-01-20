@@ -60,9 +60,7 @@ namespace CodeJam.ConnectionStrings
 		/// <summary>Initializes a new instance of the <see cref="ConnectionStringBase" /> class.</summary>
 		/// <param name="connectionString">The connection string.</param>
 		protected ConnectionStringBase(string? connectionString)
-		{
-			_wrapper = new StringBuilderWrapper(connectionString, GetType());
-		}
+			=> _wrapper = new StringBuilderWrapper(connectionString, GetType());
 
 		/// <summary>
 		/// Gets all supported keywords for current connection.

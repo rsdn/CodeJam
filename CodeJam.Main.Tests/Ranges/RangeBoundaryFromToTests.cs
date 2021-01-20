@@ -4,6 +4,8 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
+#pragma warning disable CA1305 // Specify IFormatProvider
+
 namespace CodeJam.Ranges
 {
 	[TestFixture(Category = "Ranges")]

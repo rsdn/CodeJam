@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 
@@ -334,5 +335,27 @@ namespace CodeJam.Strings
 			=> str.LastIndexOfOrdinal(prefix, str.Length - 1, str.Length - 1);
 
 #endif
+
+		[TestCase("abcxyzdzxyzabc", "dz", "abc", ExpectedResult = "xyzxyz")]
+		[TestCase("abcxyzdzxyzabc", "z", "abc", ExpectedResult = "xydxy")]
+		[TestCase("abcxyzdzxyzabc", "d", "abc", ExpectedResult = "xyzzxyz")]
+		public string Remove(string str, string remove1, string remove2) => str.Remove(remove1, remove2);
+
+		[TestCase("abcxyzdzxyzabc", "dz", "abc", ExpectedResult = "xyzxyz")]
+		[TestCase("abcxyzdzxyzabc", "z", "abc", ExpectedResult = "xydxy")]
+		[TestCase("abcxyzdzxyzabc", "d", "abc", ExpectedResult = "xyzzxyz")]
+		public string RemoveOrdinal(string str, string remove1, string remove2) => str.Remove(StringComparison.Ordinal, remove1, remove2);
+
+		[TestCase("abcxyzdzxyzAbc", "dz", "abc", ExpectedResult = "xyzxyz")]
+		[TestCase("abcxyzdzxyzaBc", "z", "abc", ExpectedResult = "xydzxy")]
+		[TestCase("abcxyzdzxyzabC", "d", "abc", ExpectedResult = "xyzdzxyz")]
+		public string RemoveCurrentCultureCaseInsensitive(string str, string remove1, string remove2)
+			=> str.Remove(true, CultureInfo.CurrentCulture, remove1, remove2);
+
+		[TestCase("abcxyzdzxyzAbc", "dz", "abc", ExpectedResult = "xyzxyz")]
+		[TestCase("abcxyzdzxyzaBc", "z", "abc", ExpectedResult = "xydxy")]
+		[TestCase("abcxyzdzxyzabC", "d", "abc", ExpectedResult = "xyzzxyz")]
+		public string RemoveInvariantCultureCaseInsensitive(string str, string remove1, string remove2)
+			=> str.Remove(true, CultureInfo.GetCultureInfo(""), remove1, remove2);
 	}
 }

@@ -46,7 +46,7 @@ namespace CodeJam.Threading
 						Thread.Sleep(300);
 					}
 				});
-			
+
 			Assert.That(Volatile.Read(ref _providerCount), Is.EqualTo(5));
 			Assert.That(Volatile.Read(ref _consumerCount), Is.EqualTo(2));
 		}

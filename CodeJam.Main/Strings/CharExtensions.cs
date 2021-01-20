@@ -9,6 +9,8 @@ using CharEx = System.Char;
 using CharEx = System.CharEx;
 #endif
 
+#pragma warning disable CA1304 // Specify CultureInfo
+
 namespace CodeJam.Strings
 {
 	/// <summary>

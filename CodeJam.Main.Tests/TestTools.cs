@@ -71,6 +71,8 @@ namespace CodeJam
 
 		public static void WaitForResult(this Task source)
 		{
+			Code.NotNull(source, nameof(source));
+
 #if NET45_OR_GREATER || TARGETS_NETCOREAPP
 			source.GetAwaiter().GetResult();
 #else
@@ -88,6 +90,8 @@ namespace CodeJam
 
 		public static T WaitForResult<T>(this Task<T> source)
 		{
+			Code.NotNull(source, nameof(source));
+
 #if NET45_OR_GREATER || TARGETS_NETCOREAPP
 			return source.GetAwaiter().GetResult();
 #else
