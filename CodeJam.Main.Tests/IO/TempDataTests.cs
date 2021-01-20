@@ -396,7 +396,13 @@ namespace CodeJam.IO
 				using (var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096, true))
 					textWriter.Write("O La La");
 #else
-				using var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096);
+
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA2000 // Dispose objects before losing scope
+				var textWriter = new StreamWriter(fileStream, Encoding.UTF8, 4096);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+#pragma warning restore IDE0079 // Remove unnecessary suppression
+
 				textWriter.Write("O La La");
 				textWriter.Flush();
 #endif
@@ -407,7 +413,13 @@ namespace CodeJam.IO
 				using (var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096, true))
 					content = textReader.ReadToEnd();
 #else
-				using var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096);
+
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA2000 // Dispose objects before losing scope
+				var textReader = new StreamReader(fileStream, Encoding.UTF8, true, 4096);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+#pragma warning restore IDE0079 // Remove unnecessary suppression
+
 				content = textReader.ReadToEnd();
 #endif
 				Assert.AreEqual(content, "O La La");
