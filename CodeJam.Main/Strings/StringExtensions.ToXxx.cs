@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Strings
 {
-	partial class StringExtensions
+	public partial class StringExtensions
 	{
 		/// <summary>
 		/// Culture invariant version of <see cref="IFormattable.ToString(string,System.IFormatProvider)"/>
@@ -144,10 +144,10 @@ namespace CodeJam.Strings
 					: null;
 
 		/// <summary>
-		/// Creates a new <see cref="T:System.Uri" /> using the specified <see cref="System.String" /> instance
+		/// Creates a new <see cref="T:System.Uri" /> using the specified <see cref="string" /> instance
 		/// and a <see cref="T:System.UriKind" />.
 		/// </summary>
-		/// <param name="str">The <see cref="System.String" /> representing the <see cref="T:System.Uri" />.</param>
+		/// <param name="str">The <see cref="string" /> representing the <see cref="T:System.Uri" />.</param>
 		/// <param name="uriKind">The type of the Uri. DefaultValue is <see cref="UriKind.RelativeOrAbsolute"/>.</param>
 		/// <returns>Constructed <see cref="T:System.Uri" />.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]

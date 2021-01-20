@@ -244,7 +244,7 @@ namespace CodeJam.Collections
 		[Test]
 		public void DistinctByMember3Test()
 		{
-			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(ta => ta.Members.Where(m => m.Name.EndsWith("1")));
+			var eq = ComparerBuilder<TestClass>.GetEqualityComparer(ta => ta.Members.Where(m => m.Name.EndsWith("1", StringComparison.Ordinal)));
 			var arr = new[]
 			{
 				new TestClass { Field1 = 1, Prop2 = "2"  },

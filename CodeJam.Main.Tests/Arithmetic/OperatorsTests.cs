@@ -444,9 +444,9 @@ namespace CodeJam.Arithmetic
 			Assert.AreEqual(Operators<float>.NegativeInfinity, float.NegativeInfinity);
 			Assert.AreEqual(Operators<float>.PositiveInfinity, float.PositiveInfinity);
 			Assert.AreEqual(Operators<float>.NaN, float.NaN);
-			Assert.Throws<NotSupportedException>(() => Operators<int>.NaN.ToString());
-			Assert.Throws<NotSupportedException>(() => Operators<int>.NegativeInfinity.ToString());
-			Assert.Throws<NotSupportedException>(() => Operators<int>.PositiveInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<int>.NaN.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<int>.NegativeInfinity.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<int>.PositiveInfinity.ToString(CultureInfo.InvariantCulture));
 
 			Assert.AreEqual(Operators<double?>.NaN, double.NaN);
 			Assert.AreEqual(Operators<double?>.NegativeInfinity, double.NegativeInfinity);
@@ -454,16 +454,16 @@ namespace CodeJam.Arithmetic
 			Assert.AreEqual(Operators<float?>.NaN, float.NaN);
 			Assert.AreEqual(Operators<float?>.NegativeInfinity, float.NegativeInfinity);
 			Assert.AreEqual(Operators<float?>.PositiveInfinity, float.PositiveInfinity);
-			Assert.Throws<NotSupportedException>(() => Operators<int?>.NaN.ToString());
-			Assert.Throws<NotSupportedException>(() => Operators<int?>.NegativeInfinity.ToString());
-			Assert.Throws<NotSupportedException>(() => Operators<int?>.PositiveInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.NaN.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.NegativeInfinity.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.PositiveInfinity.ToString(CultureInfo.InvariantCulture));
 
 			Assert.AreEqual(Operators<ClassNoComparable>.NegativeInfinity, ClassNoComparable.NegativeInfinity);
-			Assert.Throws<NotSupportedException>(() => Operators<ClassNoComparable>.PositiveInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<ClassNoComparable>.PositiveInfinity.ToString(CultureInfo.InvariantCulture));
 			Assert.AreEqual(Operators<StructComparable>.NaN, StructComparable.NaN);
-			Assert.Throws<NotSupportedException>(() => Operators<StructComparable>.NegativeInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<StructComparable>.NegativeInfinity.ToString(CultureInfo.InvariantCulture));
 			Assert.AreEqual(Operators<StructComparable>.PositiveInfinity, StructComparable.PositiveInfinity);
-			Assert.Throws<NotSupportedException>(() => Operators<StructComparable?>.NegativeInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<StructComparable?>.NegativeInfinity.ToString(CultureInfo.InvariantCulture));
 			Assert.AreEqual(Operators<StructComparable?>.PositiveInfinity, StructComparable.PositiveInfinity);
 		}
 	}

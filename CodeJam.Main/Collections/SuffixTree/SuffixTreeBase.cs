@@ -287,7 +287,7 @@ namespace CodeJam.Collections
 				var edgeLength = edge.Length;
 				var compareLength = Math.Min(s.Length - offset, edgeLength);
 				if (compareLength > 1
-					&& string.Compare(s, offset + 1, InternalData, edge.Begin + 1, compareLength - 1) != 0)
+					&& string.Compare(s, offset + 1, InternalData, edge.Begin + 1, compareLength - 1, StringComparison.Ordinal) != 0)
 					return ValueOption.None<FindResult>();
 				offset += compareLength;
 				if (offset == s.Length)

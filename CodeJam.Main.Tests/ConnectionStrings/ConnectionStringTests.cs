@@ -177,7 +177,7 @@ BooleanValue=true;
 				DateTimeOffsetValue = _defaultDateTimeOffset
 			};
 
-			var s = x.ToString();
+			var s = x.ToString(CultureInfo.InvariantCulture);
 			AreEqual(
 				s,
 				@"RequiredValue=""A; B=C'"""""";BooleanValue=True;Int32Value=-1024;DateTimeOffsetValue=""11/12/2010 00:00:00 +00:00""");
@@ -188,7 +188,7 @@ BooleanValue=true;
 			AreEqual(x2.Int32Value, x.Int32Value);
 			AreEqual(x2.DateTimeOffsetValue, x.DateTimeOffsetValue);
 
-			AreEqual(s, x2.ToString());
+			AreEqual(s, x2.ToString(CultureInfo.InvariantCulture));
 			IsTrue(x.EquivalentTo(x2));
 			AreEqual(x.OrderBy(p => p.Key), x2.OrderBy(p => p.Key));
 		}
@@ -200,14 +200,14 @@ BooleanValue=true;
 			IsFalse(x.ContainsKey("IgnoredValue"));
 			IsFalse(x.TryGetValue("IgnoredValue", out var ignored));
 			IsNull(ignored);
-			var ex = Throws<ArgumentException>(() => x["IgnoredValue"].ToString());
+			var ex = Throws<ArgumentException>(() => x["IgnoredValue"].ToString(CultureInfo.InvariantCulture));
 			That(ex.Message, Does.Contain("IgnoredValue"));
 
 			x = new DerivedConnectionString("IgnoredValue=123");
 			IsFalse(x.ContainsKey("IgnoredValue"));
 			IsFalse(x.TryGetValue("IgnoredValue", out ignored));
 			IsNull(ignored);
-			ex = Throws<ArgumentException>(() => x["IgnoredValue"].ToString());
+			ex = Throws<ArgumentException>(() => x["IgnoredValue"].ToString(CultureInfo.InvariantCulture));
 			That(ex.Message, Does.Contain("IgnoredValue"));
 		}
 
@@ -215,9 +215,9 @@ BooleanValue=true;
 		public void TestInvalidProperties()
 		{
 			var x = new DerivedConnectionString(@"BooleanValue=aaa;Int32Value=bbb;DateTimeOffsetValue=ccc");
-			Throws<FormatException>(() => x.BooleanValue.ToString());
-			Throws<FormatException>(() => x.Int32Value?.ToString());
-			Throws<FormatException>(() => x.DateTimeOffsetValue?.ToString());
+			Throws<FormatException>(() => x.BooleanValue.ToString(CultureInfo.InvariantCulture));
+			Throws<FormatException>(() => x.Int32Value?.ToString(CultureInfo.InvariantCulture));
+			Throws<FormatException>(() => x.DateTimeOffsetValue?.ToString(CultureInfo.InvariantCulture));
 		}
 
 		[Test]
@@ -237,7 +237,7 @@ BooleanValue=true;
 			AreEqual(x2.RequiredValue, "...");
 			AreEqual(x2.BooleanValue, x.BooleanValue);
 			AreEqual(x2.Int32Value, x.Int32Value);
-			AreEqual(s, x2.ToString());
+			AreEqual(s, x2.ToString(CultureInfo.InvariantCulture));
 			IsFalse(x.EquivalentTo(x2));
 			AreNotEqual(x.ToArray(), x2.ToArray());
 
@@ -248,7 +248,7 @@ BooleanValue=true;
 			AreEqual(x2.RequiredValue, null);
 			AreEqual(x2.BooleanValue, x.BooleanValue);
 			AreEqual(x2.Int32Value, x.Int32Value);
-			AreEqual(s, x2.ToString());
+			AreEqual(s, x2.ToString(CultureInfo.InvariantCulture));
 			IsFalse(x.EquivalentTo(x2));
 			AreNotEqual(x.ToArray(), x2.ToArray());
 		}

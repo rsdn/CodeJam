@@ -91,8 +91,7 @@ namespace CodeJam.Ranges
 		/// <summary>Returns string representation of the range.</summary>
 		/// <returns>The string representation of the range.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public override string ToString() =>
-			IsEmpty ? EmptyString : (_from + SeparatorString + _to);
+		public override string ToString() => ToString(null, null);
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.

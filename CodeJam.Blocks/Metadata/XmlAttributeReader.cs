@@ -63,7 +63,7 @@ namespace CodeJam.Metadata
 				if (embedded && stream == null)
 				{
 					var names = assembly.GetManifestResourceNames();
-					var name = names.FirstOrDefault(n => n.EndsWith("." + xmlFile));
+					var name = names.FirstOrDefault(n => n.EndsWith("." + xmlFile, StringComparison.CurrentCulture));
 
 					stream = name != null ? assembly.GetManifestResourceStream(name) : null;
 				}

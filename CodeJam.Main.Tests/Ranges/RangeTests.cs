@@ -19,8 +19,8 @@ namespace CodeJam.Ranges
 	[SuppressMessage("ReSharper", "HeapView.DelegateAllocation")]
 	public static partial class RangeTests
 	{
-		private const char RangeKey = '_';
-		private const string RangeKey2 = ">";
+		private const char _rangeKey = '_';
+		private const string _rangeKey2 = ">";
 
 		[Test]
 		public static void TestRangeCreate()

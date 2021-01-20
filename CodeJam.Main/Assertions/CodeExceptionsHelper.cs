@@ -7,8 +7,6 @@ using JetBrains.Annotations;
 
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
-using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
-
 // ReSharper disable once CheckNamespace
 
 namespace CodeJam.Internal
@@ -34,7 +32,6 @@ namespace CodeJam.Internal
 		/// <param name="messageFormat">The message format.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns>Formatted string.</returns>
-		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static string InvariantFormat(string messageFormat, params object[]? args) =>
@@ -47,7 +44,6 @@ namespace CodeJam.Internal
 		/// </summary>
 		/// <param name="messageFormat">The message format.</param>
 		/// <returns>Formatted string.</returns>
-		[SuppressMessage("ReSharper", "ArrangeRedundantParentheses")]
 		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		internal static string Invariant(FormattableString messageFormat) =>

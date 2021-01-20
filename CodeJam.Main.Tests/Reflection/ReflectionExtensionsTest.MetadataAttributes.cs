@@ -149,10 +149,10 @@ namespace CodeJam.Reflection
 				if (searchMode != SearchMode.Attributes) // default do not honor inherit flag for properties / events
 				{
 					result = GetAttributesString<TAttribute>(type.GetProperty("P", bf)!, searchMode);
-					AreEqual(result, expected.Replace(".M", ".P"));
+					AreEqual(result, expected.Replace(".M", ".P", StringComparison.Ordinal));
 
 					result = GetAttributesString<TAttribute>(type.GetEvent("E", bf)!, searchMode);
-					AreEqual(result, expected.Replace(".M", ".E"));
+					AreEqual(result, expected.Replace(".M", ".E", StringComparison.Ordinal));
 				}
 			}
 		}
@@ -172,7 +172,7 @@ namespace CodeJam.Reflection
 			return attributes
 				.GroupWhileEquals(
 					a => a.Origin,
-					a => a.GetType().Name.Split('+').Last().Replace("Attribute", ""))
+					a => a.GetType().Name.Split('+').Last().Replace("Attribute", "", StringComparison.Ordinal))
 				.Select(g => g.Key + ":" + g.Join(","))
 				.Join("; ");
 		}
@@ -192,7 +192,7 @@ namespace CodeJam.Reflection
 			return attributes
 				.GroupWhileEquals(
 					a => a.Origin,
-					a => a.GetType().Name.Split('+').Last().Replace("Attribute", ""))
+					a => a.GetType().Name.Split('+').Last().Replace("Attribute", "", StringComparison.Ordinal))
 				.Select(g => g.Key + ":" + g.Join(","))
 				.Join("; ");
 		}

@@ -48,6 +48,8 @@ dotnet_diagnostic.CA1720.severity = none
 dotnet_diagnostic.CA1721.severity = none
 # The type name in whole or in part with the namesapce defined in the .NET Framework.
 dotnet_diagnostic.CA1724.severity = none
+# Initialize reference type static fields inline
+dotnet_diagnostic.CA1810.severity = none
 # Comparable should override Equals
 dotnet_diagnostic.CA1815.severity = none
 # Avoid using cref tags with a prefix
@@ -175,9 +177,8 @@ dotnet_naming_symbols.private_static_readonly_symbols.applicable_kinds = field
 dotnet_naming_symbols.private_static_readonly_symbols.required_modifiers = static,readonly
 dotnet_separate_import_directive_groups = true
 dotnet_style_parentheses_in_arithmetic_binary_operators = never_if_unnecessary:suggestion
-dotnet_style_parentheses_in_other_binary_operators = never_if_unnecessary:suggestion
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:suggestion
 dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:suggestion
-dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggestion
 
 ### ReSharper ###
 resharper_align_multiline_binary_expressions_chain = false
@@ -277,8 +278,6 @@ dotnet_diagnostic.CA1813.severity = none
 
 # IDE0018: Inline variable declaration
 dotnet_diagnostic.IDE0018.severity = none
-# IDE0047: Remove unnecessary parentheses
-dotnet_diagnostic.IDE0047.severity = none
 
 [*.ttinclude]
 insert_final_newline = false

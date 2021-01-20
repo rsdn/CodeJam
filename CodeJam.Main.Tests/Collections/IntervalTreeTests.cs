@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 using CodeJam.Collections;
@@ -28,7 +29,7 @@ namespace CodeJam.Ranges
 			return result;
 		}
 
-		private const int Count = 1000;
+		private const int _count = 1000;
 
 		private static readonly CompositeRange<int, string> _sameStartRanges;
 		private static readonly CompositeRange<int, string> _sameEndRanges;
@@ -37,14 +38,14 @@ namespace CodeJam.Ranges
 
 		static IntervalTreeTests()
 		{
-			_sameStartRanges = Enumerable.Range(0, Count)
-				.ToCompositeRange(i => 0, i => 2 * i, i => i.ToString());
-			_sameEndRanges = Enumerable.Range(0, Count)
-				.ToCompositeRange(i => 0, i => 2 * i, i => i.ToString());
-			_nonOverlappingRanges = Enumerable.Range(0, Count)
-				.ToCompositeRange(i => 4 * i - 2, i => 4 * i + 2, i => i.ToString());
-			_overlappingRanges = Enumerable.Range(0, Count)
-				.ToCompositeRange(i => 4 * i - 2 * (i % 4), i => 4 * i + 2 * (i % 4), i => i.ToString());
+			_sameStartRanges = Enumerable.Range(0, _count)
+				.ToCompositeRange(i => 0, i => 2 * i, i => i.ToString(CultureInfo.InvariantCulture));
+			_sameEndRanges = Enumerable.Range(0, _count)
+				.ToCompositeRange(i => 0, i => 2 * i, i => i.ToString(CultureInfo.InvariantCulture));
+			_nonOverlappingRanges = Enumerable.Range(0, _count)
+				.ToCompositeRange(i => 4 * i - 2, i => 4 * i + 2, i => i.ToString(CultureInfo.InvariantCulture));
+			_overlappingRanges = Enumerable.Range(0, _count)
+				.ToCompositeRange(i => 4 * i - 2 * (i % 4), i => 4 * i + 2 * (i % 4), i => i.ToString(CultureInfo.InvariantCulture));
 		}
 
 		[Test]

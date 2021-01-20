@@ -129,8 +129,8 @@ namespace CodeJam.Mapping
 		[return: MaybeNull]
 		private static Expression? GetConversion(Type from, Type to, Expression p)
 		{
-			if (IsConvertible(from) && IsConvertible(to) && to != typeof(bool) ||
-				from.IsAssignableFrom(to) && to.IsAssignableFrom(from))
+			if ((IsConvertible(from) && IsConvertible(to) && to != typeof(bool)) ||
+				(from.IsAssignableFrom(to) && to.IsAssignableFrom(from)))
 				return Expression.ConvertChecked(p, to);
 
 			return null;
@@ -194,21 +194,21 @@ namespace CodeJam.Mapping
 				{
 					var val = values.GetValue(i)!;
 					var lv =
-						// enum values always can be casted to long
+						// enum values always can be cast to long
 						// ReSharper disable once PossibleNullReferenceException
 						(long)Convert.ChangeType(
 							val,
 							typeof(long),
 							CultureInfo.CurrentCulture);
 
-					dic[lv.ToString()] = val;
+					dic[lv.ToString(CultureInfo.CurrentCulture)] = val;
 
 					if (lv > 0)
 						dic["+" + lv] = val;
 				}
 
 				for (var i = 0; i < values.Length; i++)
-					dic[names[i].ToLowerInvariant()] = values.GetValue(i);
+					dic[names[i].ToUpperInvariant()] = values.GetValue(i);
 
 				for (var i = 0; i < values.Length; i++)
 					dic[names[i]] = values.GetValue(i);

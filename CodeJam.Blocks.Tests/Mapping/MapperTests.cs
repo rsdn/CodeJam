@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 
 using CodeJam.Targeting;
@@ -180,7 +181,7 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Source,Dest>().Map(useAction, m => m
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
-				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
+				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12, CultureInfo.InvariantCulture) : 12)
 				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
 				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14));
 
@@ -191,8 +192,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To!.Field7,             Is.EqualTo(map.From!.Field7));
 			Assert.That(map.To!.Field8,             Is.EqualTo(map.From!.Field8 ?? 0));
 			Assert.That(map.To!.Field9,             Is.EqualTo(map.From!.Field9 ?? 0));
-			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString()));
-			Assert.That(map.To!.Field11.ToString(), Is.EqualTo(map.From!.Field11));
+			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString(CultureInfo.InvariantCulture)));
+			Assert.That(map.To!.Field11.ToString(CultureInfo.InvariantCulture), Is.EqualTo(map.From!.Field11));
 			Assert.That(map.To!.Field12,            Is.EqualTo(12));
 			Assert.That(map.To!.Field13,            Is.EqualTo(13));
 			Assert.That(map.To!.Field14,            Is.EqualTo(14));
@@ -207,7 +208,7 @@ namespace CodeJam.Mapping
 			var map = new MapperBuilder<Source,Dest>()
 				.MapMember(_ => _.Field3,  _ => _.Field2)
 				.MapMember(_ => _.Field4,  _ => _.Field5)
-				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12) : 12)
+				.MapMember(_ => _.Field12, _ => _.Field12 != null ? int.Parse(_.Field12, CultureInfo.InvariantCulture) : 12)
 				.MapMember(_ => _.Field13, _ => _.Field13 ?? 13)
 				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14)
 				.GetMapper();
@@ -289,8 +290,8 @@ namespace CodeJam.Mapping
 			Assert.That(map.To!.Field7,             Is.EqualTo(map.From!.Field7));
 			Assert.That(map.To!.Field8,             Is.EqualTo(map.From!.Field8 ?? 0));
 			Assert.That(map.To!.Field9,             Is.EqualTo(map.From!.Field9 ?? 0));
-			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString()));
-			Assert.That(map.To!.Field11.ToString(), Is.EqualTo(map.From!.Field11));
+			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString(CultureInfo.InvariantCulture)));
+			Assert.That(map.To!.Field11.ToString(CultureInfo.InvariantCulture), Is.EqualTo(map.From!.Field11));
 			Assert.That(map.To!.Field15,            Is.EqualTo(Gender.Female));
 			Assert.That(map.To!.Field16,            Is.EqualTo("M"));
 			Assert.That(map.To!.Field17,            Is.EqualTo(Enum2.Value2));

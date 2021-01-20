@@ -1,5 +1,9 @@
 ﻿
+using System;
+
 using NUnit.Framework;
+
+#pragma warning disable CA1307 // Specify StringComparison for clarity
 
 namespace CodeJam.Collections
 {
@@ -22,6 +26,7 @@ namespace CodeJam.Collections
 			Assert.IsTrue(new int? [] { 1, null, 3, 4 }.         EqualsTo(new int? [] { 1, null, 3, 4 }));
 			Assert.IsTrue(new byte?[] { 1, null, 3, 4 }.         EqualsTo(new byte?[] { 1, null, 3, 4 }));
 			Assert.IsTrue(new      [] { "1", "2", "3", "4" }.    EqualsTo(new      [] { "1", "2", "3", "4" }));
+			Assert.IsTrue(new      [] { "1", "2", "3", "4" }.    EqualsTo(new      [] { "1", "2", "3", "4" }, StringComparison.Ordinal));
 		}
 	}
 }

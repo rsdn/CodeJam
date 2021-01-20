@@ -33,7 +33,7 @@ namespace CodeJam.Collections
 
 			for (var i = 0; i < a.Length; i++)
 			{
-				if (!string.Equals(a[i], b[i]))
+				if (a[i] != b[i])
 					return false;
 			}
 
@@ -54,7 +54,9 @@ namespace CodeJam.Collections
 		public static bool EqualsTo(this string[]? a, string[]? b, StringComparison comparison)
 		{
 			if (comparison == StringComparison.Ordinal)
+#pragma warning disable CA1307 // Specify StringComparison for clarity
 				return EqualsTo(a, b);
+#pragma warning restore CA1307 // Specify StringComparison for clarity
 
 			if (a == b)
 				return true;
