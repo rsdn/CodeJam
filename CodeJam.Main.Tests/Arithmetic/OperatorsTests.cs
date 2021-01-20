@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 using JetBrains.Annotations;
 
@@ -454,16 +455,16 @@ namespace CodeJam.Arithmetic
 			Assert.AreEqual(Operators<float?>.NaN, float.NaN);
 			Assert.AreEqual(Operators<float?>.NegativeInfinity, float.NegativeInfinity);
 			Assert.AreEqual(Operators<float?>.PositiveInfinity, float.PositiveInfinity);
-			Assert.Throws<NotSupportedException>(() => Operators<int?>.NaN.ToString(CultureInfo.InvariantCulture));
-			Assert.Throws<NotSupportedException>(() => Operators<int?>.NegativeInfinity.ToString(CultureInfo.InvariantCulture));
-			Assert.Throws<NotSupportedException>(() => Operators<int?>.PositiveInfinity.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.NaN.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.NegativeInfinity.ToString());
+			Assert.Throws<NotSupportedException>(() => Operators<int?>.PositiveInfinity.ToString());
 
 			Assert.AreEqual(Operators<ClassNoComparable>.NegativeInfinity, ClassNoComparable.NegativeInfinity);
-			Assert.Throws<NotSupportedException>(() => Operators<ClassNoComparable>.PositiveInfinity.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<ClassNoComparable>.PositiveInfinity.ToString());
 			Assert.AreEqual(Operators<StructComparable>.NaN, StructComparable.NaN);
-			Assert.Throws<NotSupportedException>(() => Operators<StructComparable>.NegativeInfinity.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<StructComparable>.NegativeInfinity.ToString());
 			Assert.AreEqual(Operators<StructComparable>.PositiveInfinity, StructComparable.PositiveInfinity);
-			Assert.Throws<NotSupportedException>(() => Operators<StructComparable?>.NegativeInfinity.ToString(CultureInfo.InvariantCulture));
+			Assert.Throws<NotSupportedException>(() => Operators<StructComparable?>.NegativeInfinity.ToString());
 			Assert.AreEqual(Operators<StructComparable?>.PositiveInfinity, StructComparable.PositiveInfinity);
 		}
 	}
