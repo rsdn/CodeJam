@@ -38,25 +38,25 @@ CodeJam.PerfTests is performance testing framework for .Net projects.
 It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods
 with timing limits and to check the limits each time the test is run.
 
-### .NET Standard 1.6, 1.5 support
+### .NET Standard 1.6, 1.5 support (supported dropped in 4.0)
 
 Almost all features are supported. Functionality not supported:
 
 * XmlAttributeReader
 
-### .NET Core 1.1, 1.0 support
+### .NET Core 1.1, 1.0 support (supported dropped in 4.0)
 
 Almost all features are supported. Functionality not supported:
 
 * XmlAttributeReader
 
-### .NET Framework 2.0 support
+### .NET Framework 2.0 support (supported dropped in 4.0)
 
 .NET Framework 2.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:
 
 * LINQ to XML extensions - .NET 2.0 doesn't have LINQ XML related classes
 
-### .NET Framework 3.0 support
+### .NET Framework 3.0 support (supported dropped in 4.0)
 
 .NET Framework 3.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:
 
