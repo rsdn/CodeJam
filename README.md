@@ -14,10 +14,6 @@ The CodeJam project includes three parts:
 * Experimental - A workspace for code development. Contains incomplete and/or unstable parts.
 * [CodeJam.PerfTests](https://github.com/rsdn/CodeJam/tree/master/PerfTests) - a performance testing framework for .Net projects.
 
-### Main
-
-[Main doc](CodeJam.Main/Readme.md)
-
 CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam main package is a place for
 collaboration and sharing, where developers community can work together on code to be shared by the CodeJam.
 
@@ -29,6 +25,12 @@ We welcome participation from all who are interested, at all skill levels. Codin
 development process itself are all critical parts of the software development process. If you are interested in
 contribute in any of these aspects, please join us!
 
+### Main
+
+[Main doc](CodeJam.Main/Readme.md)
+
+The main library containing feature complete and stable code of production quality.
+
 ### Blocks
 
 ### PerfTests
@@ -38,25 +40,25 @@ CodeJam.PerfTests is performance testing framework for .Net projects.
 It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods
 with timing limits and to check the limits each time the test is run.
 
-### .NET Standard 1.6, 1.5 support (supported dropped in 4.0)
+### .NET Standard 1.6, 1.5 support (dropped in 4.0)
 
 Almost all features are supported. Functionality not supported:
 
 * XmlAttributeReader
 
-### .NET Core 1.1, 1.0 support (supported dropped in 4.0)
+### .NET Core 1.1, 1.0 support (dropped in 4.0)
 
 Almost all features are supported. Functionality not supported:
 
 * XmlAttributeReader
 
-### .NET Framework 2.0 support (supported dropped in 4.0)
+### .NET Framework 2.0 support (dropped in 4.0)
 
 .NET Framework 2.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:
 
 * LINQ to XML extensions - .NET 2.0 doesn't have LINQ XML related classes
 
-### .NET Framework 3.0 support (supported dropped in 4.0)
+### .NET Framework 3.0 support (dropped in 4.0)
 
 .NET Framework 3.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:
 
