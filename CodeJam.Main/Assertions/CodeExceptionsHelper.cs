@@ -35,7 +35,7 @@ namespace CodeJam.Internal
 		[DebuggerHidden, MustUseReturnValue]
 		[StringFormatMethod("messageFormat")]
 		public static string InvariantFormat(string messageFormat, params object[]? args) =>
-			(args == null || args.Length == 0)
+			args == null || args.Length == 0
 				? messageFormat
 				: string.Format(CultureInfo.InvariantCulture, messageFormat, args);
 

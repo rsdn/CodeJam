@@ -6,6 +6,7 @@ using System.Text;
 using JetBrains.Annotations;
 #if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using StringEx = System.String;
+// ReSharper disable BuiltInTypeReferenceStyleForMemberAccess
 
 #else
 using StringEx = System.StringEx;

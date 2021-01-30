@@ -336,7 +336,10 @@ namespace CodeJam.Threading
 		private static async Task WaitTaskAsyncImplCore(Task task, CancellationToken cancellation)
 		{
 			var tcs = new TaskCompletionSource<object>();
-			using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
+#if TARGETS_NETCOREAPP
+			await
+#endif
+				using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
 			{
 				await (await TaskEx.WhenAny(task, tcs.Task).ConfigureAwait(false)).ConfigureAwait(false);
 			}
@@ -346,7 +349,10 @@ namespace CodeJam.Threading
 			Task<TResult> task, CancellationToken cancellation)
 		{
 			var tcs = new TaskCompletionSource<TResult>();
-			using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
+#if TARGETS_NETCOREAPP
+			await
+#endif
+				using (cancellation.Register(() => tcs.TrySetCanceled(cancellation), false))
 			{
 				return await (await TaskEx.WhenAny(task, tcs.Task).ConfigureAwait(false)).ConfigureAwait(false);
 			}

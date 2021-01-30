@@ -263,7 +263,7 @@ namespace CodeJam
 			[InvokerParameterName] string argName)
 			where T : class
 		{
-			Code.NotNull(arg, argName);
+			NotNull(arg, argName);
 			return arg;
 		}
 		#endregion

@@ -133,22 +133,14 @@ namespace CodeJam.Expressions
 		{
 			var info = GetMemberInfo(expression);
 
-			if (info is PropertyInfo propertyInfo)
-			{
-				if (propertyInfo.GetGetMethod(true) is { } getMethodInfo)
+			return
+				info switch
 				{
-					return getMethodInfo;
-				}
-
-				throw CodeExceptions.Argument(nameof(expression), "Expression is not property get method.");
-			}
-
-			if (info is MethodInfo methodInfo)
-			{
-				return methodInfo;
-			}
-
-			throw CodeExceptions.Argument(nameof(expression), "Expression is not method call.");
+					PropertyInfo propertyInfo when propertyInfo.GetGetMethod(true) is { } getMethodInfo => getMethodInfo,
+					PropertyInfo => throw CodeExceptions.Argument(nameof(expression), "Expression is not property get method."),
+					MethodInfo methodInfo => methodInfo,
+					_ => throw CodeExceptions.Argument(nameof(expression), "Expression is not method call.")
+				};
 		}
 
 		/// <summary>

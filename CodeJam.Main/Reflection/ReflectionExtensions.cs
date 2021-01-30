@@ -224,6 +224,7 @@ namespace CodeJam.Reflection
 
 			while (true) // tail recursion expanded
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
+				// ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 				switch (Type.GetTypeCode(type))
 				{
 					case TypeCode.SByte:
@@ -285,6 +286,7 @@ namespace CodeJam.Reflection
 
 			while (true) // tail recursion expanded
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
+				// ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 				switch (Type.GetTypeCode(type))
 				{
 					case TypeCode.SByte:

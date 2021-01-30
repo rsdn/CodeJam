@@ -116,7 +116,7 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public override string ToString() =>
 			KeyPrefixString + _key + KeySeparatorString +
-				(IsEmpty ? EmptyString : (_from + SeparatorString + _to));
+				(IsEmpty ? EmptyString : _from + SeparatorString + _to);
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.

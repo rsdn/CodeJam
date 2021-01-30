@@ -35,7 +35,6 @@ namespace CodeJam
 			}
 
 			if (exceptions != null)
-				// ReSharper disable once UnthrowableException
 				throw new AggregateException(exceptions);
 		}
 

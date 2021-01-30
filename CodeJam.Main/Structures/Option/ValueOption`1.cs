@@ -79,8 +79,8 @@ namespace CodeJam
 		/// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
 		/// <param name="other">An object to compare with this object.</param>
 		public bool Equals(ValueOption<T> other) =>
-			!HasValue && !other.HasValue
-				|| HasValue && other.HasValue && EqualityComparer<T>.Default.Equals(_value, other._value);
+			(!HasValue && !other.HasValue)
+				|| (HasValue && other.HasValue && EqualityComparer<T>.Default.Equals(_value, other._value));
 
 		/// <summary>Indicates whether this instance and a specified object are equal.</summary>
 		/// <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false. </returns>

@@ -387,6 +387,7 @@ namespace CodeJam.Arithmetic
 		/// <returns>Callback for the compare operator</returns>
 		public static Func<T?, T?, bool> ComparisonOperator<T>(ExpressionType comparisonType)
 		{
+			// ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 			switch (comparisonType)
 			{
 				case ExpressionType.Equal:

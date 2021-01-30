@@ -184,6 +184,7 @@ namespace CodeJam.Expressions
 				{
 					void Action(MemberBinding b)
 					{
+						// ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 						switch (b.BindingType)
 						{
 							case MemberBindingType.Assignment:
@@ -497,6 +498,7 @@ namespace CodeJam.Expressions
 				{
 					bool Modify(MemberBinding b)
 					{
+						// ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 						switch (b.BindingType)
 						{
 							case MemberBindingType.Assignment:
@@ -1072,6 +1074,7 @@ namespace CodeJam.Expressions
 					return ex;
 			}
 
+			// ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 			switch (expr.NodeType)
 			{
 				case ExpressionType.Add:
@@ -1204,6 +1207,7 @@ namespace CodeJam.Expressions
 				{
 					MemberBinding Modify(MemberBinding b)
 					{
+						// ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 						switch (b.BindingType)
 						{
 							case MemberBindingType.Assignment:

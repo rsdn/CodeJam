@@ -176,7 +176,7 @@ namespace CodeJam.Reflection
 			this Type type)
 			where TAttribute : class
 		{
-			var inheritanceTypes = Sequence.CreateWhileNotNull(type, t => t?.GetBaseType())
+			var inheritanceTypes = Sequence.CreateWhileNotNull(type, t => t.GetBaseType())
 				.ToArray();
 
 			// ReSharper disable once CoVariantArrayConversion
@@ -192,7 +192,7 @@ namespace CodeJam.Reflection
 			where TAttribute : class
 		{
 			var visited = new HashSet<Type>(_typeComparer);
-			var typesToCheck = Sequence.CreateWhileNotNull(type, t => t?.DeclaringType);
+			var typesToCheck = Sequence.CreateWhileNotNull(type, t => t.DeclaringType);
 			foreach (var typeToCheck in typesToCheck)
 			{
 #pragma warning disable IDE0007 // use 'var' instead of explicit type
@@ -298,7 +298,7 @@ namespace CodeJam.Reflection
 			var result = new List<MemberInfo>();
 			var implMethod = accessorGetter(member);
 			var baseDefinition = implMethod.GetBaseDefinition();
-			var typesToCheck = Sequence.CreateWhileNotNull(implMethod.DeclaringType, t => t?.GetBaseType());
+			var typesToCheck = Sequence.CreateWhileNotNull(implMethod.DeclaringType, t => t.GetBaseType());
 			foreach (var type in typesToCheck)
 			{
 				foreach (var candidate in membersGetter(type))
