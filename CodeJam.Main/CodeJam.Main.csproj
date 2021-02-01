@@ -17,7 +17,7 @@
 
 		<PackageId>CodeJam</PackageId>
 		<Title>CodeJam library</Title>
-		<Authors>Andrew Koryavchenko, Igor Sinicyn, Igor Tkachev, rameel</Authors>
+		<Authors>Andrew Koryavchenko, Igor Sinicyn, Igor Tkachev, rameel, NN</Authors>
 		<Product>CodeJam</Product>
 		<Description>CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.</Description>
 		<PackageProjectUrl>https://github.com/rsdn/CodeJam</PackageProjectUrl>
