@@ -1,5 +1,9 @@
-﻿CodeJam 3.3.0 Release Notes
+﻿CodeJam 3.3.1 Release Notes
 ---------------------------
+
+What's new in 3.3.1
+-------------------
+	* Fix StreamExtensions.ReadAsByteArray (non-seekable stream support)
 
 What's new in 3.3.0
 -------------------
