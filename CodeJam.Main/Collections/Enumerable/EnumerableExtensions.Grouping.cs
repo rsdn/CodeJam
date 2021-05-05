@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		/// <summary>Implements <see cref="IGrouping{TKey,TElement}"/>.</summary>
 		/// <typeparam name="TKey">The type of the key.</typeparam>

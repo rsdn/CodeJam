@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		/// <summary>
 		/// Splits the input sequence into a sequence of chunks of the specified size.

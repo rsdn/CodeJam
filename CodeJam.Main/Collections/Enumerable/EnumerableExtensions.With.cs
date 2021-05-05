@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		/// <summary>
 		/// Associates an index to each element of the source sequence.

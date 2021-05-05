@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 <#
 	foreach (var info in new[]

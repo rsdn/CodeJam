@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 		LastWins
 	}
 
-	partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		/// <summary>
 		/// Creates a <see cref="Dictionary{TKey,TValue}"/> from an <see cref="IEnumerable{T}"/>

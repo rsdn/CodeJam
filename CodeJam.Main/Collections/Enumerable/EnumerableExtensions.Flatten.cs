@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		/// <summary>
 		/// Returns a flattened sequence from a graph or hierarchy of elements by using the specified children selector.

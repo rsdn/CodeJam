@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		#region While<TKey>
 		/// <summary>Groups items in the sequence while they have same grouping key.</summary>

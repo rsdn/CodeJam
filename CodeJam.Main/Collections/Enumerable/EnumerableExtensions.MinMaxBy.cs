@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	public partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		private static InvalidOperationException NoElementsException() => new("Collection has no elements");
 

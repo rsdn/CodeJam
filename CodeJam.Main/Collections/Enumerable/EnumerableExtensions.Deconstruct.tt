@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		private const string _arrayTooShortMsg = "The array is too short.";
 		private const string _listTooShortMsg = "The list is too short.";

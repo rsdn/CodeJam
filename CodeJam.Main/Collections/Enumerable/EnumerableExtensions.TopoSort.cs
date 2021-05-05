@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Collections
 {
-	static partial class EnumerableExtensions
+	public static partial class EnumerableExtensions
 	{
 		#region TopoSort
 		/// <summary>
