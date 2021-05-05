@@ -9,7 +9,6 @@
 
 #nullable enable
 
-
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -144,10 +143,14 @@ namespace CodeJam.Ranges
 
 		#region Fields & .ctor
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
+#pragma warning disable IDE0044
+
 		[AllowNull]
 		private T _value;
 
 		private RangeBoundaryToKind _kind;
+
+#pragma warning restore IDE0044
 
 		/// <summary>Creates a new range boundary.</summary>
 		/// <param name="value">
@@ -155,7 +158,7 @@ namespace CodeJam.Ranges
 		/// Infinite (or empty) boundaries should use default(T) or PositiveInfinity(T) (if the type has one) as the value.
 		/// </param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
-		public RangeBoundaryTo([AllowNull] T value, RangeBoundaryToKind boundaryKind)
+		public RangeBoundaryTo(T? value, RangeBoundaryToKind boundaryKind)
 		{
 			if (_hasNaN && !_equalsFunc(value, value))
 			{
@@ -231,6 +234,8 @@ namespace CodeJam.Ranges
 		/// <value>
 		/// <c>true</c> if the boundary is not empty; otherwise, <c>false</c>.
 		/// </value>
+		[MemberNotNullWhen(true, nameof(_value))]
+		[MemberNotNullWhen(true, nameof(Value))]
 		public bool IsNotEmpty => _kind != RangeBoundaryToKind.Empty;
 
 		/// <summary>The boundary == +∞.</summary>
@@ -243,16 +248,22 @@ namespace CodeJam.Ranges
 		/// <value>
 		/// <c>true</c> if the boundary is inclusive boundary; otherwise, <c>false</c>.
 		/// </value>
+		[MemberNotNullWhen(true, nameof(_value))]
+		[MemberNotNullWhen(true, nameof(Value))]
 		public bool IsInclusiveBoundary => _kind == RangeBoundaryToKind.Inclusive;
 
 		/// <summary>The boundary has value (is not an infinite boundary) but does not include the value.</summary>
 		/// <value>
 		/// <c>true</c> if the boundary is exclusive boundary; otherwise, <c>false</c>.
 		/// </value>
+		[MemberNotNullWhen(true, nameof(_value))]
+		[MemberNotNullWhen(true, nameof(Value))]
 		public bool IsExclusiveBoundary => _kind == RangeBoundaryToKind.Exclusive;
 
 		/// <summary>The boundary has a value (is not an infinite boundary).</summary>
 		/// <value><c>true</c> if the boundary has a value; otherwise, <c>false</c>.</value>
+		[MemberNotNullWhen(true, nameof(_value))]
+		[MemberNotNullWhen(true, nameof(Value))]
 		public bool HasValue => _kind == RangeBoundaryToKind.Inclusive || _kind == RangeBoundaryToKind.Exclusive;
 
 		/// <summary>The value of the boundary.</summary>
@@ -263,6 +274,7 @@ namespace CodeJam.Ranges
 		public T Value
 		{
 			[DebuggerHidden]
+			[MemberNotNullWhen(true, nameof(_value))]
 			get
 			{
 				if (!HasValue)
@@ -331,6 +343,8 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryTo<T> WithValue([InstantHandle] Func<T, T> newValueSelector)
 		{
+			Code.NotNull(newValueSelector, nameof(newValueSelector));
+
 			if (HasValue)
 			{
 				var newValue = newValueSelector(_value);
@@ -351,6 +365,8 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public RangeBoundaryTo<T2> WithValue<T2>([InstantHandle] Func<T, T2> newValueSelector)
 		{
+			Code.NotNull(newValueSelector, nameof(newValueSelector));
+
 			if (HasValue)
 			{
 				var newValue = newValueSelector(_value);

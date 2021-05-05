@@ -92,11 +92,11 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<TResult?> Create<T, TResult>(
+		public static IEnumerable<TResult> Create<T, TResult>(
 			T start,
-			Func<T?, bool> predicate,
-			Func<T?, T?> next,
-			Func<T?, TResult?> resultSelector)
+			Func<T, bool> predicate,
+			Func<T, T> next,
+			Func<T, TResult> resultSelector)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof(predicate));

@@ -556,7 +556,7 @@ namespace CodeJam.Mapping
 
 					_builder._data.Expressions.Add(Assign(nullPrm!, lex));
 
-					expr = Invoke(nullPrm, getValue, toObj);
+					expr = Invoke(nullPrm!, getValue, toObj);
 				}
 
 				return expr;

@@ -147,7 +147,7 @@ namespace CodeJam.Ranges
 		/// Infinite (or empty) boundaries should use default(T) or NegativeInfinity(T) (if the type has one) as the value.
 		/// </param>
 		/// <param name="boundaryKind">The kind of the boundary.</param>
-		public RangeBoundaryFrom([AllowNull] T value, RangeBoundaryFromKind boundaryKind)
+		public RangeBoundaryFrom(T? value, RangeBoundaryFromKind boundaryKind)
 		{
 			if (_hasNaN && !_equalsFunc(value, value))
 			{
@@ -223,6 +223,8 @@ namespace CodeJam.Ranges
 		/// <value>
 		/// <c>true</c> if the boundary is not empty; otherwise, <c>false</c>.
 		/// </value>
+		[MemberNotNullWhen(true, nameof(_value))]
+		[MemberNotNullWhen(true, nameof(Value))]
 		public bool IsNotEmpty => _kind != RangeBoundaryFromKind.Empty;
 
 		/// <summary>The boundary == -∞.</summary>
@@ -235,16 +237,22 @@ namespace CodeJam.Ranges
 		/// <value>
 		/// <c>true</c> if the boundary is inclusive boundary; otherwise, <c>false</c>.
 		/// </value>
+		[MemberNotNullWhen(true, nameof(_value))]
+		[MemberNotNullWhen(true, nameof(Value))]
 		public bool IsInclusiveBoundary => _kind == RangeBoundaryFromKind.Inclusive;
 
 		/// <summary>The boundary has value (is not an infinite boundary) but does not include the value.</summary>
 		/// <value>
 		/// <c>true</c> if the boundary is exclusive boundary; otherwise, <c>false</c>.
 		/// </value>
+		[MemberNotNullWhen(true, nameof(_value))]
+		[MemberNotNullWhen(true, nameof(Value))]
 		public bool IsExclusiveBoundary => _kind == RangeBoundaryFromKind.Exclusive;
 
 		/// <summary>The boundary has a value (is not an infinite boundary).</summary>
 		/// <value><c>true</c> if the boundary has a value; otherwise, <c>false</c>.</value>
+		[MemberNotNullWhen(true, nameof(_value))]
+		[MemberNotNullWhen(true, nameof(Value))]
 		public bool HasValue => _kind == RangeBoundaryFromKind.Inclusive || _kind == RangeBoundaryFromKind.Exclusive;
 
 		/// <summary>The value of the boundary.</summary>
@@ -255,6 +263,7 @@ namespace CodeJam.Ranges
 		public T Value
 		{
 			[DebuggerHidden]
+			[MemberNotNullWhen(true, nameof(_value))]
 			get
 			{
 				if (!HasValue)

@@ -19,7 +19,7 @@ namespace CodeJam.Collections
 		public static TSource? AggregateOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TSource, TSource> func,
-			TSource defaultValue = default)
+			TSource? defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(func, nameof(func));
@@ -51,7 +51,7 @@ namespace CodeJam.Collections
 			[InstantHandle] this IEnumerable<TSource> source,
 			TAccumulate seed,
 			[InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
-			TAccumulate defaultValue = default)
+			TAccumulate? defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(func, nameof(func));
@@ -86,7 +86,7 @@ namespace CodeJam.Collections
 			TAccumulate seed,
 			[InstantHandle] Func<TAccumulate, TSource, TAccumulate> func,
 			[InstantHandle] Func<TAccumulate, TResult> resultSelector,
-			TResult defaultValue = default)
+			TResult? defaultValue = default)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(func, nameof(func));

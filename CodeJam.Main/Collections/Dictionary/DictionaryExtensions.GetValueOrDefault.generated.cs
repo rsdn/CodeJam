@@ -76,7 +76,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -106,11 +106,11 @@ namespace CodeJam.Collections
 			where TKey: notnull
 #endif
 		
- 		{
+		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -148,7 +148,7 @@ namespace CodeJam.Collections
 			Code.NotNull(resultSelector, nameof(resultSelector));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -213,7 +213,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -243,11 +243,11 @@ namespace CodeJam.Collections
 			where TKey: notnull
 #endif
 		
- 		{
+		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -285,7 +285,7 @@ namespace CodeJam.Collections
 			Code.NotNull(resultSelector, nameof(resultSelector));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -344,7 +344,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -371,11 +371,11 @@ namespace CodeJam.Collections
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> defaultValueFactory)
 			where TKey : notnull
- 		{
+		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -410,7 +410,7 @@ namespace CodeJam.Collections
 			Code.NotNull(resultSelector, nameof(resultSelector));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -469,7 +469,7 @@ namespace CodeJam.Collections
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -496,11 +496,11 @@ namespace CodeJam.Collections
 			TKey key,
 			[InstantHandle] Func<TKey, TValue> defaultValueFactory)
 			where TKey : notnull
- 		{
+		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -535,7 +535,7 @@ namespace CodeJam.Collections
 			Code.NotNull(resultSelector, nameof(resultSelector));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -604,7 +604,7 @@ namespace CodeJam.Collections.Backported
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -663,7 +663,7 @@ namespace CodeJam.Collections.Backported
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -716,7 +716,7 @@ namespace CodeJam.Collections.Backported
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -769,7 +769,7 @@ namespace CodeJam.Collections.Backported
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result

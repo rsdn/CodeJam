@@ -9,6 +9,10 @@ using CodeJam.Collections;
 
 using JetBrains.Annotations;
 
+#if NET30_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#endif
+
 namespace CodeJam.Threading
 {
 	/// <summary>
@@ -86,20 +90,20 @@ namespace CodeJam.Threading
 		/// </summary>
 		public void Clear() => _map.Clear();
 
-		#region Implementation of IEnumerable
+#region Implementation of IEnumerable
 		IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() =>
 			_map
 				.Select(v => new KeyValuePair<TKey, TValue>(v.Key, v.Value.Value))
 				.GetEnumerator();
 
 		IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<KeyValuePair<TKey, TValue>>)this).GetEnumerator();
-		#endregion
+#endregion
 
-		#region Implementation of IReadOnlyCollection<out KeyValuePair<TKey,TValue>>
+#region Implementation of IReadOnlyCollection<out KeyValuePair<TKey,TValue>>
 		int IReadOnlyCollection<KeyValuePair<TKey, TValue>>.Count => _map.Count;
-		#endregion
+#endregion
 
-		#region Implementation of IReadOnlyDictionary<TKey,TValue>
+#region Implementation of IReadOnlyDictionary<TKey,TValue>
 		/// <summary>Determines whether the read-only dictionary contains an element that has the specified key.</summary>
 		/// <returns>true if the read-only dictionary contains an element that has the specified key; otherwise, false.</returns>
 		/// <param name="key">The key to locate.</param>
@@ -113,11 +117,13 @@ namespace CodeJam.Threading
 		/// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
 		/// <exception cref="T:System.ArgumentNullException">
 		/// <paramref name="key" /> is null.</exception>
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 		public bool TryGetValue(TKey key,
 #if NET30_OR_GREATER
 			[MaybeNullWhen(false)]
 #endif
 			out TValue value)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 		{
 			var res = _map.TryGetValue(key, out var lv);
 			if (res)
@@ -153,6 +159,6 @@ namespace CodeJam.Threading
 		/// <summary>Gets an enumerable collection that contains the values in the read-only dictionary.</summary>
 		/// <returns>An enumerable collection that contains the values in the read-only dictionary.</returns>
 		public IEnumerable<TValue> Values => _map.Values.Select(lv => lv.Value);
-		#endregion
+#endregion
 	}
 }

@@ -171,7 +171,7 @@ namespace CodeJam.Collections.Backported
 		{
 			Code.NotNull(dictionary, nameof(dictionary));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -273,7 +273,7 @@ namespace CodeJam.Collections.Backported
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(resultSelector, nameof(resultSelector));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
@@ -324,11 +324,11 @@ namespace CodeJam.Collections.Backported
 	private void Body3()
 	{
 #>
- 		{
+		{
 			Code.NotNull(dictionary, nameof(dictionary));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? result
@@ -387,7 +387,7 @@ namespace CodeJam.Collections.Backported
 			Code.NotNull(resultSelector, nameof(resultSelector));
 			Code.NotNull(defaultValueFactory, nameof(defaultValueFactory));
 
-			TValue result;
+			TValue? result;
 			return
 				dictionary.TryGetValue(key, out result)
 					? resultSelector(key, result)
