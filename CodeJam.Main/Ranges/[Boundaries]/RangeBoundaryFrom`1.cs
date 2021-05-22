@@ -235,11 +235,13 @@ namespace CodeJam.Ranges
 		[MemberNotNullWhen(true, nameof(Value))]
 		public bool IsExclusiveBoundary => _kind == RangeBoundaryFromKind.Exclusive;
 
+#pragma warning disable CS8775
 		/// <summary>The boundary has a value (is not an infinite boundary).</summary>
 		/// <value><c>true</c> if the boundary has a value; otherwise, <c>false</c>.</value>
 		[MemberNotNullWhen(true, nameof(_value))]
 		[MemberNotNullWhen(true, nameof(Value))]
-		public bool HasValue => _kind == RangeBoundaryFromKind.Inclusive || _kind == RangeBoundaryFromKind.Exclusive;
+		public bool HasValue => _kind is RangeBoundaryFromKind.Inclusive or RangeBoundaryFromKind.Exclusive;
+#pragma warning restore CS8775
 
 		/// <summary>The value of the boundary.</summary>
 		/// <value>
