@@ -9,6 +9,7 @@
 
 #nullable enable
 
+
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -145,8 +146,7 @@ namespace CodeJam.Ranges
 		// DONTTOUCH: DO NOT mark fields as readonly. See NestedStructAccessPerfTests as a proof WHY.
 #pragma warning disable IDE0044
 
-		[AllowNull]
-		private T _value;
+		private T? _value;
 
 		private RangeBoundaryToKind _kind;
 
@@ -164,40 +164,27 @@ namespace CodeJam.Ranges
 			{
 				value = default;
 				if (boundaryKind != RangeBoundaryToKind.Empty)
-				{
 					throw CodeExceptions.Argument(nameof(value), "The NaN value should be used only for Empty boundaries.");
-				}
 			}
 			if (_hasPositiveInfinity && _equalsFunc(value, _positiveInfinity))
 			{
 				value = default;
 				if (boundaryKind != RangeBoundaryToKind.Infinite)
-				{
 					throw CodeExceptions.Argument(
 						nameof(value), "The positive infinity value should be used only for Infinite boundaries.");
-				}
 			}
 			if (_hasNegativeInfinity && _equalsFunc(value, _negativeInfinity))
-			{
 				throw CodeExceptions.Argument(nameof(value), "The negative infinity value should not be used for To boundaries.");
-			}
 
 			if (boundaryKind != RangeBoundaryToKind.Inclusive && boundaryKind != RangeBoundaryToKind.Exclusive)
 			{
 				if (_compareFunc(value, default) != _equalResult)
-				{
 					throw CodeExceptions.Argument(nameof(value), "Value of the infinite/empty boundary should be equal to default(T).");
-				}
 			}
-			else
-			{
-				if (value == null)
-				{
-					throw CodeExceptions.Argument(
-						nameof(boundaryKind),
-						"BoundaryKind for the null values should be either RangeBoundaryToKind.Infinite or RangeBoundaryToKind.Empty.");
-				}
-			}
+			else if (value == null)
+				throw CodeExceptions.Argument(
+					nameof(boundaryKind),
+					"BoundaryKind for the null values should be either RangeBoundaryToKind.Infinite or RangeBoundaryToKind.Empty.");
 			_value = value;
 			_kind = boundaryKind;
 		}

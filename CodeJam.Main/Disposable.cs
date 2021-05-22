@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 
 using JetBrains.Annotations;
@@ -67,15 +66,14 @@ namespace CodeJam
 		/// SEEALSO: https://blogs.msdn.microsoft.com/ericlippert/2011/03/14/to-box-or-not-to-box-that-is-the-question/
 		private sealed class AnonymousDisposable<T> : IDisposable
 		{
-			private Action<T>? _disposeAction;
+			private Action<T?>? _disposeAction;
 
-			[AllowNull]
-			private T _state;
+			private T? _state;
 
 			/// <summary>Initialize instance.</summary>
 			/// <param name="disposeAction">The dispose action.</param>
 			/// <param name="state">A value that contains data for the disposal action.</param>
-			public AnonymousDisposable(Action<T> disposeAction, T? state)
+			public AnonymousDisposable(Action<T?> disposeAction, T? state)
 			{
 				_disposeAction = disposeAction;
 				_state = state;
@@ -98,7 +96,7 @@ namespace CodeJam
 				}
 			}
 
-			private bool OnException(Action<T> disposeAction)
+			private bool OnException(Action<T?> disposeAction)
 			{
 				Interlocked.Exchange(ref _disposeAction, disposeAction);
 				return false;
@@ -129,7 +127,7 @@ namespace CodeJam
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Create<T>(Action<T> disposeAction, T? state) =>
+		public static IDisposable Create<T>(Action<T?> disposeAction, T? state) =>
 			new AnonymousDisposable<T>(disposeAction, state);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>

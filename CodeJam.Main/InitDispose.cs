@@ -38,7 +38,7 @@ namespace CodeJam
 		/// Instance of <see cref="IDisposable"/> that calls <paramref name="disposeAction"/> on disposing.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IDisposable Create<T>(Func<T> initAction, Action<T> disposeAction)
+		public static IDisposable Create<T>(Func<T> initAction, Action<T?> disposeAction)
 		{
 			Code.NotNull(initAction, nameof(initAction));
 			Code.NotNull(disposeAction, nameof(disposeAction));
