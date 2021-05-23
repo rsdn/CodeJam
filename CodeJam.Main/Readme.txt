@@ -1,5 +1,5 @@
-﻿CodeJam 4.0.0-beta1 Release Notes
----------------------------------
+﻿CodeJam 3.3.1 Release Notes
+---------------------------
 
 What's new in 4.0.0-beta1
 -------------------------

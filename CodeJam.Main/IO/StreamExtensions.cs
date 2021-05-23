@@ -1,4 +1,5 @@
-﻿#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
+﻿
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 using System;
 using System.IO;
 using System.Text;
@@ -78,9 +79,7 @@ namespace CodeJam.IO
 		{
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))
-			{
 				return reader.ReadToEnd();
-			}
 		}
 
 		/// <summary>
@@ -94,9 +93,7 @@ namespace CodeJam.IO
 		{
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))
-			{
 				return await reader.ReadToEndAsync().ConfigureAwait(false);
-			}
 		}
 
 		/// <summary>
@@ -105,13 +102,17 @@ namespace CodeJam.IO
 		/// <param name="stream">The stream to read.</param>
 		public static byte[] ReadAsByteArray(this Stream stream)
 		{
-			Code.NotNull(stream, nameof(stream));
-
-			// DO NOT dispose the reader
-			using (var reader = stream.ToBinaryReader(null, true))
+			if (stream.CanSeek)
+				// DO NOT dispose underlying stream
+				using (var reader = stream.ToBinaryReader(null, true))
+				{
+					var readCount = checked((int)(stream.Length - stream.Position));
+					return reader.ReadBytes(readCount);
+				}
+			using (var tempStream = new MemoryStream())
 			{
-				var readCount = checked((int)(stream.Length - stream.Position));
-				return reader.ReadBytes(readCount);
+				stream.CopyTo(tempStream);
+				return tempStream.ToArray();
 			}
 		}
 	}
