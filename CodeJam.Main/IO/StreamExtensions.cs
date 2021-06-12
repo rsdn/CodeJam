@@ -1,5 +1,4 @@
-﻿
-#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
+﻿#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 using System;
 using System.IO;
 using System.Text;
@@ -26,13 +25,12 @@ namespace CodeJam.IO
 		public static StreamReader ToStreamReader(
 			this Stream stream,
 			Encoding? encoding = null,
-			bool leaveOpen = false) =>
-				new(
-					stream,
-					encoding ?? Encoding.UTF8,
-					true,
-					_defaultBufferSize,
-					leaveOpen);
+			bool leaveOpen = false)
+		{
+			Code.NotNull(stream, nameof(stream));
+
+			return new(stream, encoding ?? Encoding.UTF8, true, _defaultBufferSize, leaveOpen);
+		}
 
 		/// <summary>
 		/// Wraps <paramref name="stream"/> with <see cref="BinaryReader"/>.
@@ -43,8 +41,12 @@ namespace CodeJam.IO
 		public static BinaryReader ToBinaryReader(
 			this Stream stream,
 			Encoding? encoding = null,
-			bool leaveOpen = false) =>
-				new(stream, encoding ?? Encoding.UTF8, leaveOpen);
+			bool leaveOpen = false)
+		{
+			Code.NotNull(stream, nameof(stream));
+
+			return new(stream, encoding ?? Encoding.UTF8, leaveOpen);
+		}
 
 		/// <summary>
 		/// Wraps <paramref name="stream"/> with <see cref="StreamWriter"/>.
@@ -55,8 +57,12 @@ namespace CodeJam.IO
 		public static StreamWriter ToStreamWriter(
 			this Stream stream,
 			Encoding? encoding = null,
-			bool leaveOpen = false) =>
-				new(stream, encoding ?? Encoding.UTF8, _defaultBufferSize, leaveOpen);
+			bool leaveOpen = false)
+		{
+			Code.NotNull(stream, nameof(stream));
+
+			return new(stream, encoding ?? Encoding.UTF8, _defaultBufferSize, leaveOpen);
+		}
 
 		/// <summary>
 		/// Wraps <paramref name="stream"/> with <see cref="BinaryWriter"/>.
@@ -67,8 +73,12 @@ namespace CodeJam.IO
 		public static BinaryWriter ToBinaryWriter(
 			this Stream stream,
 			Encoding? encoding = null,
-			bool leaveOpen = false) =>
-				new(stream, encoding ?? Encoding.UTF8, leaveOpen);
+			bool leaveOpen = false)
+		{
+			Code.NotNull(stream, nameof(stream));
+
+			return new(stream, encoding ?? Encoding.UTF8, leaveOpen);
+		}
 
 		/// <summary>
 		/// Returns content of the stream as a byte array.
@@ -77,6 +87,8 @@ namespace CodeJam.IO
 		/// <param name="encoding">The character encoding to use.</param>
 		public static string ReadAsString(this Stream stream, Encoding? encoding = null)
 		{
+			Code.NotNull(stream, nameof(stream));
+
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))
 				return reader.ReadToEnd();
@@ -91,6 +103,8 @@ namespace CodeJam.IO
 			this Stream stream,
 			Encoding? encoding = null)
 		{
+			Code.NotNull(stream, nameof(stream));
+
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))
 				return await reader.ReadToEndAsync().ConfigureAwait(false);
@@ -102,6 +116,8 @@ namespace CodeJam.IO
 		/// <param name="stream">The stream to read.</param>
 		public static byte[] ReadAsByteArray(this Stream stream)
 		{
+			Code.NotNull(stream, nameof(stream));
+
 			if (stream.CanSeek)
 				// DO NOT dispose underlying stream
 				using (var reader = stream.ToBinaryReader(null, true))
