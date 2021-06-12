@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable once RedundantUsingDirective
 using JetBrains.Annotations;
@@ -276,6 +277,7 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
 		[Pure, System.Diagnostics.Contracts.Pure]
+		[SuppressMessage("ReSharper", "ReturnTypeCanBeNotNullable")]
 		public static T? Find<T>(this T[] array, [InstantHandle] Predicate<T> match) =>
 			Array.Find(array, match);
 
@@ -347,6 +349,7 @@ namespace CodeJam.Collections
 		/// <exception cref="ArgumentNullException">
 		/// <paramref name="array" /> is null.-or-<paramref name="match" /> is null.</exception>
 		[Pure, System.Diagnostics.Contracts.Pure]
+		[SuppressMessage("ReSharper", "ReturnTypeCanBeNotNullable")]
 		public static T? FindLast<T>(this T[] array, [InstantHandle] Predicate<T> match) =>
 			Array.FindLast(array, match);
 

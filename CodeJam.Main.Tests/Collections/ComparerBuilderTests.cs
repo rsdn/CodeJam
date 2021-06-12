@@ -1,6 +1,7 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -276,6 +277,7 @@ namespace CodeJam.Collections
 			public string? Name { get; set; }
 		}
 
+		[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
 		private static IEnumerable<MemberAccessor> GetIdentifiers(TypeAccessor typeAccessor)
 		{
 			foreach (var member in typeAccessor.Members)

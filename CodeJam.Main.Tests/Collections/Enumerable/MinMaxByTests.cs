@@ -54,7 +54,7 @@ namespace CodeJam.Collections
 		#region Max
 		[TestCase(new[] { 3, 1, 8, 0, 6 }, ExpectedResult = "8")]
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
-		public string? MaxByString(int[] source) =>
+		public string MaxByString(int[] source) =>
 			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MaxBy(i => i.Value)!.Value;
 
 		[TestCase(arg: new string[0])]
