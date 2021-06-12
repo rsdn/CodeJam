@@ -1,6 +1,11 @@
 ﻿CodeJam 3.3.1 Release Notes
 ---------------------------
 
+What's new in 4.0.0-beta2
+-------------------------
+* Nullability improvements
+* Added Code.NotNullNorEmptyAndItemNotNull
+
 What's new in 4.0.0-beta1
 -------------------------
 * Add C# nullability markup.
