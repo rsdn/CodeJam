@@ -25,6 +25,7 @@ namespace CodeJam.Reflection
 		{
 			var inst = type.CreateInstance(ParseParams(paramStrs));
 			NAssert.NotNull(inst);
+			// ReSharper disable once RedundantSuppressNullableWarningExpression
 			return inst.ToString()!;
 		}
 

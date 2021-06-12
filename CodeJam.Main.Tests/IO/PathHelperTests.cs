@@ -128,11 +128,11 @@ namespace CodeJam.IO
 			switch (pathState)
 			{
 				case PathKind.Throws:
-					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedPath(path));
-					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedAbsolutePath(path));
-					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedRelativePath(path));
-					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedContainerPath(path));
-					Assert.Throws<ArgumentException>(() => PathHelper.IsWellFormedFileName(path));
+					Assert.Throws<ArgumentException>(() => _ = PathHelper.IsWellFormedPath(path));
+					Assert.Throws<ArgumentException>(() => _ = PathHelper.IsWellFormedAbsolutePath(path));
+					Assert.Throws<ArgumentException>(() => _ = PathHelper.IsWellFormedRelativePath(path));
+					Assert.Throws<ArgumentException>(() => _ = PathHelper.IsWellFormedContainerPath(path));
+					Assert.Throws<ArgumentException>(() => _ = PathHelper.IsWellFormedFileName(path));
 					break;
 				case PathKind.Invalid:
 					Assert.AreEqual(PathHelper.IsWellFormedPath(path), false);
@@ -197,7 +197,7 @@ namespace CodeJam.IO
 			switch (state)
 			{
 				case null:
-					Assert.Throws<ArgumentException>(() => PathHelper.IsContainerPath(path));
+					Assert.Throws<ArgumentException>(() => _ = PathHelper.IsContainerPath(path));
 					break;
 				case true:
 					Assert.AreEqual(PathHelper.IsContainerPath(path), true);
@@ -205,8 +205,6 @@ namespace CodeJam.IO
 				case false:
 					Assert.AreEqual(PathHelper.IsContainerPath(path), false);
 					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(state), state, null);
 			}
 		}
 
@@ -221,10 +219,10 @@ namespace CodeJam.IO
 		[TestCase(@"a::a", @"a::a\")]
 		[TestCase(@"a:\a", @"a:\a\")]
 		[TestCase(@"a:/a", @"a:/a\")]
-		public void TestEnsureContainerPath(string path, string result)
+		public void TestEnsureContainerPath(string path, string? result)
 		{
 			if (result == null)
-				Assert.Throws<ArgumentException>(() => PathHelper.IsContainerPath(path));
+				Assert.Throws<ArgumentException>(() => _ = PathHelper.IsContainerPath(path));
 			else
 				Assert.AreEqual(PathHelper.EnsureContainerPath(path), result);
 		}
@@ -250,7 +248,7 @@ namespace CodeJam.IO
 			switch (state)
 			{
 				case null:
-					Assert.Throws<ArgumentException>(() => PathHelper.IsFileName(path));
+					Assert.Throws<ArgumentException>(() => _ = PathHelper.IsFileName(path));
 					break;
 				case true:
 					Assert.AreEqual(PathHelper.IsFileName(path), true);
@@ -258,8 +256,6 @@ namespace CodeJam.IO
 				case false:
 					Assert.AreEqual(PathHelper.IsFileName(path), false);
 					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(state), state, null);
 			}
 		}
 	}

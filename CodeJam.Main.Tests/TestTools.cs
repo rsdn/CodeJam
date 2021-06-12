@@ -22,8 +22,10 @@ namespace CodeJam
 		public static Random GetTestRandom(int seed, [CallerMemberName] string? memberName = "")
 		{
 #if TARGETS_NET || NETCOREAPP20_OR_GREATER
+			// ReSharper disable RedundantSuppressNullableWarningExpression
 			if (memberName.IsNullOrEmpty())
 				memberName = new StackTrace(1).GetFrame(0)!.GetMethod()!.Name;
+			// ReSharper restore RedundantSuppressNullableWarningExpression
 #endif
 			Console.WriteLine(
 				$"{memberName}: Rnd seed: {seed} (use the seed to reproduce test results).");

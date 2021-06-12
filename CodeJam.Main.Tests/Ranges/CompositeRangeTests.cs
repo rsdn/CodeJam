@@ -88,7 +88,7 @@ namespace CodeJam.Ranges
 
 			AreEqual(range.ToInvariantString(), "[2..9]: { 'Key1':[2..2]; 'Key2':[5..7); 'Key2':(8..9] }");
 			AreEqual(
-				range.SubRanges.Select(r => r.Key!).Distinct().Join(";"),
+				range.SubRanges.Select(r => r.Key).Distinct().Join(";"),
 				"Key1;Key2");
 
 			AreEqual(
@@ -270,7 +270,7 @@ namespace CodeJam.Ranges
 			IsTrue(a.IsNotEmpty);
 			IsTrue(a.IsMerged);
 
-			a = CompositeRange.Create(range1A)!;
+			a = CompositeRange.Create(range1A);
 			AreNotEqual(a, new CompositeRange<int, string>());
 			AreNotEqual(a, new CompositeRange<int, string>(infinite!));
 			AreNotEqual(a, CompositeRange.Create(range1A, range1A));
@@ -283,7 +283,7 @@ namespace CodeJam.Ranges
 			IsTrue(a.IsNotEmpty);
 			IsTrue(a.IsMerged);
 
-			a = CompositeRange.Create(range1A, range1B)!;
+			a = CompositeRange.Create(range1A, range1B);
 			AreNotEqual(a, CompositeRange<int>.Empty);
 			AreNotEqual(a, CompositeRange<int>.Infinite);
 			AreEqual(a, CompositeRange.Create(range1B, range1A));
@@ -295,7 +295,7 @@ namespace CodeJam.Ranges
 			IsTrue(a.IsNotEmpty);
 			IsFalse(a.IsMerged);
 
-			a = CompositeRange.Create(range1A, range2C)!;
+			a = CompositeRange.Create(range1A, range2C);
 			AreNotEqual(a, CompositeRange<int>.Empty);
 			AreNotEqual(a, CompositeRange<int>.Infinite);
 			AreEqual(a, CompositeRange.Create(range2C, range1A));
@@ -309,7 +309,7 @@ namespace CodeJam.Ranges
 			IsFalse(a.SubRanges[0].HasIntersection(a.SubRanges[1]));
 			IsTrue(a.SubRanges[0].To.GetComplementation() == a.SubRanges[1].From);
 
-			a = CompositeRange.Create(range1A, range3A)!;
+			a = CompositeRange.Create(range1A, range3A);
 			AreNotEqual(a, CompositeRange<int>.Empty);
 			AreNotEqual(a, CompositeRange<int>.Infinite);
 			AreEqual(a, CompositeRange.Create(range3A, range1A));

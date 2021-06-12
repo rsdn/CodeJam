@@ -35,7 +35,7 @@ namespace CodeJam.Mapping
 			_lambda = rexpr.Compile();
 		}
 
-		private static Expression<Func<TFrom, TTo>> _expression;
+		private static Expression<Func<TFrom, TTo>>? _expression;
 
 		/// <summary>
 		/// Represents an expression that converts a value of <i>TFrom</i> type to <i>TTo</i> type.
@@ -43,7 +43,7 @@ namespace CodeJam.Mapping
 		[AllowNull]
 		public static Expression<Func<TFrom, TTo>> Expression
 		{
-			get => _expression;
+			get => _expression!;
 			set
 			{
 				var setDefault = _expression != null;

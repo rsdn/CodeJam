@@ -11,6 +11,9 @@ using CodeJam.Targeting;
 using NUnit.Framework;
 
 // ReSharper disable NUnit.IncorrectArgumentType
+// ReSharper disable MemberHidesStaticFromOuterClass
+// ReSharper disable UnusedTypeParameter
+// ReSharper disable UnusedTypeParameter
 
 namespace CodeJam.Reflection
 {

@@ -188,21 +188,21 @@ namespace CodeJam.Mapping
 				.MapMember(_ => _.Field14, _ => _.Field14 ?? 14));
 #pragma warning restore CA1305 // Specify IFormatProvider
 
-			Assert.That(map.To!.Field1,             Is.EqualTo(1));
-			Assert.That(map.To!.Field3,             Is.EqualTo(2));
-			Assert.That(map.To!.Field4,             Is.EqualTo(map.From!.Field5));
-			Assert.That(map.To!.Field6,             Is.EqualTo(map.From!.Field6));
-			Assert.That(map.To!.Field7,             Is.EqualTo(map.From!.Field7));
-			Assert.That(map.To!.Field8,             Is.EqualTo(map.From!.Field8 ?? 0));
-			Assert.That(map.To!.Field9,             Is.EqualTo(map.From!.Field9 ?? 0));
-			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString(CultureInfo.InvariantCulture)));
-			Assert.That(map.To!.Field11.ToString(CultureInfo.InvariantCulture), Is.EqualTo(map.From!.Field11));
-			Assert.That(map.To!.Field12,            Is.EqualTo(12));
-			Assert.That(map.To!.Field13,            Is.EqualTo(13));
-			Assert.That(map.To!.Field14,            Is.EqualTo(14));
-			Assert.That(map.To!.Field15,            Is.EqualTo(Gender.Female));
-			Assert.That(map.To!.Field16,            Is.EqualTo("M"));
-			Assert.That(map.To!.Field17,            Is.EqualTo(Enum2.Value2));
+			Assert.That(map.To.Field1,             Is.EqualTo(1));
+			Assert.That(map.To.Field3,             Is.EqualTo(2));
+			Assert.That(map.To.Field4,             Is.EqualTo(map.From.Field5));
+			Assert.That(map.To.Field6,             Is.EqualTo(map.From.Field6));
+			Assert.That(map.To.Field7,             Is.EqualTo(map.From.Field7));
+			Assert.That(map.To.Field8,             Is.EqualTo(map.From.Field8 ?? 0));
+			Assert.That(map.To.Field9,             Is.EqualTo(map.From.Field9 ?? 0));
+			Assert.That(map.To.Field10,            Is.EqualTo(map.From.Field10.ToString(CultureInfo.InvariantCulture)));
+			Assert.That(map.To.Field11.ToString(CultureInfo.InvariantCulture), Is.EqualTo(map.From.Field11));
+			Assert.That(map.To.Field12,            Is.EqualTo(12));
+			Assert.That(map.To.Field13,            Is.EqualTo(13));
+			Assert.That(map.To.Field14,            Is.EqualTo(14));
+			Assert.That(map.To.Field15,            Is.EqualTo(Gender.Female));
+			Assert.That(map.To.Field16,            Is.EqualTo("M"));
+			Assert.That(map.To.Field17,            Is.EqualTo(Enum2.Value2));
 		}
 
 		[Explicit, Test]
@@ -286,18 +286,18 @@ namespace CodeJam.Mapping
 #else
 				.FromMapping(new DictionaryEx<string,string> { ["Field5"] = "Field4" }));
 #endif
-			Assert.That(map.To!.Field1,             Is.EqualTo(1));
-			Assert.That(map.To!.Field3,             Is.EqualTo(2));
-			Assert.That(map.To!.Field4,             Is.EqualTo(map.From!.Field5));
-			Assert.That(map.To!.Field6,             Is.EqualTo(7));
-			Assert.That(map.To!.Field7,             Is.EqualTo(map.From!.Field7));
-			Assert.That(map.To!.Field8,             Is.EqualTo(map.From!.Field8 ?? 0));
-			Assert.That(map.To!.Field9,             Is.EqualTo(map.From!.Field9 ?? 0));
-			Assert.That(map.To!.Field10,            Is.EqualTo(map.From!.Field10.ToString(CultureInfo.InvariantCulture)));
-			Assert.That(map.To!.Field11.ToString(CultureInfo.InvariantCulture), Is.EqualTo(map.From!.Field11));
-			Assert.That(map.To!.Field15,            Is.EqualTo(Gender.Female));
-			Assert.That(map.To!.Field16,            Is.EqualTo("M"));
-			Assert.That(map.To!.Field17,            Is.EqualTo(Enum2.Value2));
+			Assert.That(map.To.Field1,             Is.EqualTo(1));
+			Assert.That(map.To.Field3,             Is.EqualTo(2));
+			Assert.That(map.To.Field4,             Is.EqualTo(map.From.Field5));
+			Assert.That(map.To.Field6,             Is.EqualTo(7));
+			Assert.That(map.To.Field7,             Is.EqualTo(map.From.Field7));
+			Assert.That(map.To.Field8,             Is.EqualTo(map.From.Field8 ?? 0));
+			Assert.That(map.To.Field9,             Is.EqualTo(map.From.Field9 ?? 0));
+			Assert.That(map.To.Field10,            Is.EqualTo(map.From.Field10.ToString(CultureInfo.InvariantCulture)));
+			Assert.That(map.To.Field11.ToString(CultureInfo.InvariantCulture), Is.EqualTo(map.From.Field11));
+			Assert.That(map.To.Field15,            Is.EqualTo(Gender.Female));
+			Assert.That(map.To.Field16,            Is.EqualTo("M"));
+			Assert.That(map.To.Field17,            Is.EqualTo(Enum2.Value2));
 		}
 
 		[Test]
@@ -306,21 +306,21 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Source,Source>().Map(useAction, m => m);
 
 			Assert.That(map.To,         Is.Not.SameAs(map.From));
-			Assert.That(map.To!.Field1,  Is.EqualTo(map.From!.Field1));
-			Assert.That(map.To!.Field2,  Is.EqualTo(map.From!.Field2));
-			Assert.That(map.To!.Field5,  Is.EqualTo(map.From!.Field5));
-			Assert.That(map.To!.Field6,  Is.EqualTo(map.From!.Field6));
-			Assert.That(map.To!.Field7,  Is.EqualTo(map.From!.Field7));
-			Assert.That(map.To!.Field8,  Is.EqualTo(map.From!.Field8));
-			Assert.That(map.To!.Field9,  Is.EqualTo(map.From!.Field9));
-			Assert.That(map.To!.Field10, Is.EqualTo(map.From!.Field10));
-			Assert.That(map.To!.Field11, Is.EqualTo(map.From!.Field11));
-			Assert.That(map.To!.Field12, Is.EqualTo(map.From!.Field12));
-			Assert.That(map.To!.Field13, Is.EqualTo(map.From!.Field13));
-			Assert.That(map.To!.Field14, Is.EqualTo(map.From!.Field14));
-			Assert.That(map.To!.Field15, Is.EqualTo(map.From!.Field15));
-			Assert.That(map.To!.Field16, Is.EqualTo(map.From!.Field16));
-			Assert.That(map.To!.Field17, Is.EqualTo(map.From!.Field17));
+			Assert.That(map.To.Field1,  Is.EqualTo(map.From.Field1));
+			Assert.That(map.To.Field2,  Is.EqualTo(map.From.Field2));
+			Assert.That(map.To.Field5,  Is.EqualTo(map.From.Field5));
+			Assert.That(map.To.Field6,  Is.EqualTo(map.From.Field6));
+			Assert.That(map.To.Field7,  Is.EqualTo(map.From.Field7));
+			Assert.That(map.To.Field8,  Is.EqualTo(map.From.Field8));
+			Assert.That(map.To.Field9,  Is.EqualTo(map.From.Field9));
+			Assert.That(map.To.Field10, Is.EqualTo(map.From.Field10));
+			Assert.That(map.To.Field11, Is.EqualTo(map.From.Field11));
+			Assert.That(map.To.Field12, Is.EqualTo(map.From.Field12));
+			Assert.That(map.To.Field13, Is.EqualTo(map.From.Field13));
+			Assert.That(map.To.Field14, Is.EqualTo(map.From.Field14));
+			Assert.That(map.To.Field15, Is.EqualTo(map.From.Field15));
+			Assert.That(map.To.Field16, Is.EqualTo(map.From.Field16));
+			Assert.That(map.To.Field17, Is.EqualTo(map.From.Field17));
 		}
 
 		[Test]
@@ -329,7 +329,7 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Source,Dest>().Map(useAction, mm => mm
 				.SetMemberFilter(m => m.Name != nameof(Source.Field7)));
 
-			Assert.That(map.To!.Field7, Is.Not.EqualTo(map.From!.Field7));
+			Assert.That(map.To.Field7, Is.Not.EqualTo(map.From.Field7));
 		}
 
 		private class Class1 { public int Field = 1; }
@@ -342,7 +342,7 @@ namespace CodeJam.Mapping
 		{
 			var map = new MapHelper<Class3,Class4>().Map(useAction, m => m);
 
-			Assert.That(map.To!.Class.Field, Is.EqualTo(map.From!.Class.Field));
+			Assert.That(map.To.Class.Field, Is.EqualTo(map.From.Class.Field));
 		}
 
 		private class Class5 { public Class1 Class1 = new(); public Class1? Class2; }
@@ -358,8 +358,8 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Class5,Class6>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
-			Assert.That(map.To!.Class1, Is.Not.Null);
-			Assert.That(map.To!.Class2, Is.SameAs(map.To!.Class1));
+			Assert.That(map.To.Class1, Is.Not.Null);
+			Assert.That(map.To.Class2, Is.SameAs(map.To.Class1));
 		}
 
 		[Test]
@@ -372,8 +372,8 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Class5,Class6>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(false));
 
-			Assert.That(map.To!.Class1, Is.Not.Null);
-			Assert.That(map.To!.Class2, Is.Not.SameAs(map.To!.Class1));
+			Assert.That(map.To.Class1, Is.Not.Null);
+			Assert.That(map.To.Class2, Is.Not.SameAs(map.To.Class1));
 		}
 
 		private class Class7  { public Class9?  Class; }
@@ -391,7 +391,7 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Class9,Class10>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
-			Assert.That(map.To, Is.SameAs(map.To!.Class.Class));
+			Assert.That(map.To, Is.SameAs(map.To.Class.Class));
 		}
 
 		private class Class11 { public Class9  Class = new();  }
@@ -407,7 +407,7 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Class11,Class12>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
-			Assert.That(map.To!.Class, Is.SameAs(map.To!.Class.Class.Class));
+			Assert.That(map.To.Class, Is.SameAs(map.To.Class.Class.Class));
 		}
 
 		private class Cl1 {}
@@ -435,7 +435,7 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Cl4,Cl41>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
-			Assert.That(map.To!.Class2, Is.Null);
+			Assert.That(map.To.Class2, Is.Null);
 		}
 
 		private class Class13 { public Class1 Class = new();  }
@@ -448,7 +448,7 @@ namespace CodeJam.Mapping
 
 			var map = new MapHelper<Class13,Class14>().Map(useAction, src, m => m);
 
-			Assert.That(map.To!.Class, Is.Not.SameAs(src.Class));
+			Assert.That(map.To.Class, Is.Not.SameAs(src.Class));
 		}
 
 		[Test]
@@ -459,7 +459,7 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Class13,Class14>().Map(useAction, src, m => m
 				.SetDeepCopy(false));
 
-			Assert.That(map.To!.Class, Is.SameAs(src.Class));
+			Assert.That(map.To.Class, Is.SameAs(src.Class));
 		}
 
 		private class Class15 { public List<Class1> List = new() { new Class1(), new Class1() }; }
@@ -475,12 +475,12 @@ namespace CodeJam.Mapping
 			var map = new MapHelper<Class15,Class16>().Map(useAction, src, m => m
 				.SetProcessCrossReferences(true));
 
-			Assert.That(map.To!.List!.Count, Is.EqualTo(3));
-			Assert.That(map.To!.List![0],    Is.Not.Null);
-			Assert.That(map.To!.List![1],    Is.Not.Null);
-			Assert.That(map.To!.List![2],    Is.Not.Null);
-			Assert.That(map.To!.List![0],    Is.Not.SameAs(map.To!.List[1]));
-			Assert.That(map.To!.List![0],    Is.    SameAs(map.To!.List[2]));
+			Assert.That(map.To.List!.Count, Is.EqualTo(3));
+			Assert.That(map.To.List![0],    Is.Not.Null);
+			Assert.That(map.To.List![1],    Is.Not.Null);
+			Assert.That(map.To.List![2],    Is.Not.Null);
+			Assert.That(map.To.List![0],    Is.Not.SameAs(map.To.List[1]));
+			Assert.That(map.To.List![0],    Is.    SameAs(map.To.List[2]));
 		}
 
 		[Test]
@@ -539,12 +539,12 @@ namespace CodeJam.Mapping
 			var mapper = new MapHelper<Class17,Class18>().Map(useAction, new Class17(), m =>
 				m.SetProcessCrossReferences(true));
 
-			Assert.That(mapper.To!.Arr!.Length, Is.EqualTo(3));
-			Assert.That(mapper.To!.Arr![0], Is.Not.Null);
-			Assert.That(mapper.To!.Arr![1], Is.Not.Null);
-			Assert.That(mapper.To!.Arr![2], Is.Not.Null);
-			Assert.That(mapper.To!.Arr![0], Is.Not.SameAs(mapper.To!.Arr[1]));
-			Assert.That(mapper.To!.Arr![0], Is.SameAs(mapper.To!.Arr[2]));
+			Assert.That(mapper.To.Arr!.Length, Is.EqualTo(3));
+			Assert.That(mapper.To.Arr![0], Is.Not.Null);
+			Assert.That(mapper.To.Arr![1], Is.Not.Null);
+			Assert.That(mapper.To.Arr![2], Is.Not.Null);
+			Assert.That(mapper.To.Arr![0], Is.Not.SameAs(mapper.To.Arr[1]));
+			Assert.That(mapper.To.Arr![0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
 		private class Class19
@@ -558,12 +558,12 @@ namespace CodeJam.Mapping
 			var mapper = new MapHelper<Class19,Class18>().Map(useAction, new Class19(), m =>
 				m.SetProcessCrossReferences(true));
 
-			Assert.That(mapper.To!.Arr!.Length, Is.EqualTo(3));
-			Assert.That(mapper.To!.Arr![0], Is.Not.Null);
-			Assert.That(mapper.To!.Arr![1], Is.Not.Null);
-			Assert.That(mapper.To!.Arr![2], Is.Not.Null);
-			Assert.That(mapper.To!.Arr![0], Is.Not.SameAs(mapper.To!.Arr[1]));
-			Assert.That(mapper.To!.Arr![0], Is.SameAs(mapper.To!.Arr[2]));
+			Assert.That(mapper.To.Arr!.Length, Is.EqualTo(3));
+			Assert.That(mapper.To.Arr![0], Is.Not.Null);
+			Assert.That(mapper.To.Arr![1], Is.Not.Null);
+			Assert.That(mapper.To.Arr![2], Is.Not.Null);
+			Assert.That(mapper.To.Arr![0], Is.Not.SameAs(mapper.To.Arr[1]));
+			Assert.That(mapper.To.Arr![0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
 		private class Class20 { public Source Class1 = new(); public Source? Class2; }
@@ -580,9 +580,9 @@ namespace CodeJam.Mapping
 				m.SetProcessCrossReferences(false));
 
 
-			Assert.That(mapper.To!.Class1, Is.Not.Null);
-			Assert.That(mapper.To!.Class2, Is.Not.Null);
-			Assert.That(mapper.To!.Class1, Is.Not.SameAs(mapper.To!.Class2));
+			Assert.That(mapper.To.Class1, Is.Not.Null);
+			Assert.That(mapper.To.Class2, Is.Not.Null);
+			Assert.That(mapper.To.Class1, Is.Not.SameAs(mapper.To.Class2));
 		}
 
 		private class Object3
@@ -603,7 +603,7 @@ namespace CodeJam.Mapping
 
 			foreach (var str in src.HashSet)
 			{
-				Assert.That(mapper.To!.HashSet.Contains(str));
+				Assert.That(mapper.To.HashSet.Contains(str));
 			}
 		}
 
@@ -682,14 +682,14 @@ namespace CodeJam.Mapping
 			var mapper = new MapHelper<RClass1,RClass1>().Map(useAction, src, m => m.SetDeepCopy(true));
 
 			Assert.That(mapper.To,                       Is.Not.Null);
-			Assert.That(mapper.To!.Class2,                Is.Not.Null);
-			Assert.That(mapper.To!.Class2!.List!.Count,     Is.EqualTo(2));
-			Assert.That(mapper.To!.Class2!.List![0],        Is.Not.Null);
-			Assert.That(mapper.To!.Class2!.List![1],        Is.Not.Null);
-			Assert.That(mapper.To!.Class2!.List![0].Class1, Is.Not.Null);
-			Assert.That(mapper.To!.Class2!.List![0].Class2, Is.Not.Null);
-			Assert.That(mapper.To!.Class2!.List![1].Class1, Is.Not.Null);
-			Assert.That(mapper.To!.Class2!.List![1].Class2, Is.Not.Null);
+			Assert.That(mapper.To.Class2,                Is.Not.Null);
+			Assert.That(mapper.To.Class2!.List!.Count,     Is.EqualTo(2));
+			Assert.That(mapper.To.Class2!.List![0],        Is.Not.Null);
+			Assert.That(mapper.To.Class2!.List![1],        Is.Not.Null);
+			Assert.That(mapper.To.Class2!.List![0].Class1, Is.Not.Null);
+			Assert.That(mapper.To.Class2!.List![0].Class2, Is.Not.Null);
+			Assert.That(mapper.To.Class2!.List![1].Class1, Is.Not.Null);
+			Assert.That(mapper.To.Class2!.List![1].Class2, Is.Not.Null);
 		}
 	}
 }

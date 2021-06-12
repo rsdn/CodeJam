@@ -68,6 +68,7 @@ namespace CodeJam.Expressions
 				{
 					if (ce.Value is byte) return ex1;
 					if (ce.Value is int) return ex2;
+					// ReSharper disable once RedundantSuppressNullableWarningExpression
 					if (ce.Value!.ToString() == "$3$") return ex3;
 				}
 

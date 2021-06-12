@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
+using CodeJam.Strings;
 using CodeJam.Targeting;
 
 using JetBrains.Annotations;
@@ -766,11 +766,13 @@ namespace CodeJam.Mapping
 		#endregion
 
 		#region Configuration
+		// ReSharper disable once InconsistentNaming
 		private string? _configurationID;
 
 		/// <summary>
 		/// Gets configuration ID.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		public string ConfigurationID => _configurationID ??= string.Join(".", ConfigurationList);
 
 		private string[]? _configurationList;
@@ -788,8 +790,13 @@ namespace CodeJam.Mapping
 					var list = new List<string>();
 
 					foreach (var s in Schemas)
-						if (!string.IsNullOrEmpty(s.Configuration) && hash.Add(s.Configuration!))
-							list.Add(s.Configuration!);
+					{
+						var configuration = s.Configuration;
+						if (configuration.NotNullNorEmpty() && hash.Add(configuration))
+						{
+							list.Add(configuration);
+						}
+					}
 
 					_configurationList = list.ToArray();
 				}
