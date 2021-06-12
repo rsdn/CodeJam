@@ -312,7 +312,7 @@ namespace CodeJam.Arithmetic
 
 			Assert.AreEqual(
 #pragma warning disable CS0464 // Comparing with null of struct type always produces 'false'
-				(int?)1 > null,
+				1 > null,
 #pragma warning restore CS0464 // Comparing with null of struct type always produces 'false'
 				Operators<int?>.GreaterThan(1, null));
 		}

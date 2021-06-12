@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -12,6 +13,7 @@ namespace CodeJam.Collections
 		private static readonly Func<SuffixTreeBase, int, Node> _getNode;
 		private static readonly Func<SuffixTreeBase, string> _getData;
 
+		[SuppressMessage("ReSharper", "RedundantSuppressNullableWarningExpression")]
 		static SuffixTreeEncoder()
 		{
 			var typeInfo = typeof(SuffixTreeBase);

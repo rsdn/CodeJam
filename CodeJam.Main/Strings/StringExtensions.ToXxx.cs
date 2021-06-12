@@ -35,7 +35,7 @@ namespace CodeJam.Strings
 		/// <returns>A structure that contains the value that was parsed.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static bool? ToBoolean(this string? str) =>
-			bool.TryParse(str, out var result) ? (bool?)result : null;
+			bool.TryParse(str, out var result) ? result : null;
 
 		/// <summary>
 		/// Converts the string representation of a date in a specified style and culture-invariant format to its
@@ -63,7 +63,7 @@ namespace CodeJam.Strings
 			this string? str,
 			DateTimeStyles dateStyle = DateTimeStyles.None,
 			IFormatProvider? provider = null) =>
-				DateTime.TryParse(str, provider, dateStyle, out var result) ? (DateTime?)result : null;
+				DateTime.TryParse(str, provider, dateStyle, out var result) ? result : null;
 
 		/// <summary>
 		/// Converts the string representation of a date in a specified style and culture-invariant format to its
@@ -87,7 +87,7 @@ namespace CodeJam.Strings
 		public static DateTime? ToDateTimeInvariant(
 			this string? str,
 			DateTimeStyles dateStyle = DateTimeStyles.None) =>
-				DateTime.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out var result) ? (DateTime?)result : null;
+				DateTime.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out var result) ? result : null;
 
 		/// <summary>
 		/// Converts the string representation of a date in a specified style and culture-invariant format to its
@@ -115,7 +115,7 @@ namespace CodeJam.Strings
 			this string? str,
 			DateTimeStyles dateStyle = DateTimeStyles.None,
 			IFormatProvider? provider = null) =>
-				DateTimeOffset.TryParse(str, provider, dateStyle, out var result) ? (DateTimeOffset?)result : null;
+				DateTimeOffset.TryParse(str, provider, dateStyle, out var result) ? result : null;
 
 		/// <summary>
 		/// Converts the string representation of a date in a specified style and culture-invariant format to its
@@ -140,7 +140,7 @@ namespace CodeJam.Strings
 			this string? str,
 			DateTimeStyles dateStyle = DateTimeStyles.None) =>
 				DateTimeOffset.TryParse(str, CultureInfo.InvariantCulture, dateStyle, out var result)
-					? (DateTimeOffset?)result
+					? result
 					: null;
 
 		/// <summary>
@@ -162,7 +162,7 @@ namespace CodeJam.Strings
 		/// <returns>A structure that contains the value that was parsed.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Guid? ToGuid(this string? str) =>
-			Guid.TryParse(str, out var result) ? (Guid?)result : null;
+			Guid.TryParse(str, out var result) ? result : null;
 
 		/// <summary>
 		/// Converts the string representation of a time interval to its <see cref="T:System.TimeSpan" /> equivalent
@@ -172,7 +172,7 @@ namespace CodeJam.Strings
 		/// <returns>A time interval that corresponds to <paramref name="str" />, as specified by <paramref name="formatProvider" />.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TimeSpan? ToTimeSpan(this string? str, IFormatProvider formatProvider) =>
-			TimeSpan.TryParse(str, formatProvider, out var result) ? (TimeSpan?)result : null;
+			TimeSpan.TryParse(str, formatProvider, out var result) ? result : null;
 
 		/// <summary>
 		/// Converts the string representation of a time interval to its <see cref="T:System.TimeSpan" /> equivalent
@@ -181,7 +181,7 @@ namespace CodeJam.Strings
 		/// <returns>A time interval that corresponds to <paramref name="str" />.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TimeSpan? ToTimeSpanInvariant(this string? str) =>
-			TimeSpan.TryParse(str, CultureInfo.InvariantCulture, out var result) ? (TimeSpan?)result : null;
+			TimeSpan.TryParse(str, CultureInfo.InvariantCulture, out var result) ? result : null;
 #endif
 	}
 }

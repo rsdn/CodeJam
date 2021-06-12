@@ -173,7 +173,7 @@ namespace CodeJam
 		[MethodImpl(AggressiveInlining)]
 		public static TEnum? TryParse<TEnum>(string name, bool ignoreCase = false)
 			where TEnum : struct, Enum =>
-				TryParse(name, ignoreCase, out TEnum result) ? result : (TEnum?)null;
+				TryParse(name, ignoreCase, out TEnum result) ? result : null;
 
 		/// <summary>Parse the enum value.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>

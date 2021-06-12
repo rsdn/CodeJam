@@ -1,7 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
+
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
 using System.Threading.Tasks;
+using System.IO;
+#endif
 
 using NUnit.Framework;
 

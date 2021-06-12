@@ -44,7 +44,7 @@ namespace CodeJam.Assertions
 		{
 			var allDefinedFlags = EnumHelper.GetValuesMask<BindingFlags>();
 			// ReSharper disable once RedundantCast
-			var allFlags = (BindingFlags)(int)-1;
+			var allFlags = (BindingFlags)(-1);
 			var ex = Assert.Throws<ArgumentOutOfRangeException>(() => EnumCode.FlagsDefined(allFlags, "arg00"));
 			Assert.That(ex.Message, Does.Contain("arg00"));
 			Assert.That(ex.Message, Does.Contain("Unexpected value"));

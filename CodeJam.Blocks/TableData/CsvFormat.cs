@@ -53,7 +53,7 @@ namespace CodeJam.TableData
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static Parser CreateParser(bool allowEscaping = true, char columnSeparator = ',') =>
 			allowEscaping
-				? (Parser)((TextReader rdr, ref int ln) => ParseCsv(rdr, ref ln, columnSeparator))
+				? (TextReader rdr, ref int ln) => ParseCsv(rdr, ref ln, columnSeparator)
 				: (TextReader rdr, ref int ln) => ParseCsvNoEscape(rdr, ref ln, columnSeparator);
 
 		/// <summary>Parses CSV data.</summary>

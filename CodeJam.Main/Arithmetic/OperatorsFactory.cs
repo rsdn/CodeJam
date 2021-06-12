@@ -52,7 +52,7 @@ namespace CodeJam.Arithmetic
 			var operandType = GetOperandType(argType);
 
 			return arg.Type == operandType
-				? (Expression)arg
+				? arg
 				: Convert(arg, operandType);
 		}
 

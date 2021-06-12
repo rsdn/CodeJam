@@ -1,19 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
-using CodeJam.Collections;
+using CodeJam.Ranges;
 using CodeJam.Strings;
 
 using NUnit.Framework;
 
 #pragma warning disable CA1810 // Initialize reference type static fields inline
 
-namespace CodeJam.Ranges
+namespace CodeJam.Collections
 {
 	public class IntervalTreeTests
 	{
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+		[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+		[SuppressMessage("ReSharper", "UnusedMember.Local")]
 		private static List<Range<int, string>> IntersectNaive(CompositeRange<int, string> rangeA, Range<int> overlap)
 		{
 			var result = new List<Range<int, string>>();

@@ -8,6 +8,7 @@ using NUnit.Framework;
 
 namespace CodeJam.Collections
 {
+	// ReSharper disable once PartialTypeWithSinglePart
 	public partial class QueryableExtensionsTests
 	{
 		[Test]

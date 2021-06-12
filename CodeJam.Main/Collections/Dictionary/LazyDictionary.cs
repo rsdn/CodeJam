@@ -34,7 +34,7 @@ namespace CodeJam.Collections
 			where TKey : notnull =>
 				threadSafe
 					? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, comparer)
-					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, comparer);
+					: new LazyDictionary<TKey, TValue>(valueFactory, comparer);
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -58,7 +58,7 @@ namespace CodeJam.Collections
 			where TKey : notnull =>
 				threadSafe
 					? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection, comparer)
-					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer);
+					: new LazyDictionary<TKey, TValue>(valueFactory, collection, comparer);
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -78,7 +78,7 @@ namespace CodeJam.Collections
 			where TKey : notnull =>
 				threadSafe
 					? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory)
-					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory);
+					: new LazyDictionary<TKey, TValue>(valueFactory);
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
@@ -100,7 +100,7 @@ namespace CodeJam.Collections
 			where TKey : notnull =>
 				threadSafe
 					? new ExecSyncConcurrentLazyDictionary<TKey, TValue>(valueFactory, collection)
-					: (ILazyDictionary<TKey, TValue>)new LazyDictionary<TKey, TValue>(valueFactory, collection);
+					: new LazyDictionary<TKey, TValue>(valueFactory, collection);
 
 		/// <summary>
 		/// Creates implementation of <see cref="ILazyDictionary{TKey,TValue}"/>.
