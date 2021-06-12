@@ -242,7 +242,6 @@ namespace CodeJam.Mapping
 		/// <param name="checkNull">If <i>true</i>, created expression checks input value for <i>null</i>.</param>
 		/// <param name="createDefault">If <i>true</i>, new expression is created.</param>
 		/// <returns>Convert expression.</returns>
-		[return: MaybeNull]
 		public LambdaExpression? GetConvertExpression(
 			Type from,
 			Type to,

@@ -84,6 +84,7 @@ namespace CodeJam.Mapping
 				return false;
 
 #if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP
+#pragma warning disable IDE0066 // Use 'switch' expression
 			switch (Type.GetTypeCode(type))
 			{
 				case TypeCode.Boolean:
@@ -103,6 +104,7 @@ namespace CodeJam.Mapping
 				default:
 					return false;
 			}
+#pragma warning restore IDE0066
 #else
 			switch (type)
 			{

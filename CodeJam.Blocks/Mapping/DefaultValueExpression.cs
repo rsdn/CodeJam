@@ -7,7 +7,7 @@ namespace CodeJam.Mapping
 {
 	internal class DefaultValueExpression : Expression
 	{
-		public DefaultValueExpression([AllowNull] MappingSchema? mappingSchema, Type type)
+		public DefaultValueExpression(MappingSchema? mappingSchema, Type type)
 		{
 			_mappingSchema = mappingSchema;
 			Type = type;

@@ -216,9 +216,9 @@ BooleanValue=true;
 		public void TestInvalidProperties()
 		{
 			var x = new DerivedConnectionString(@"BooleanValue=aaa;Int32Value=bbb;DateTimeOffsetValue=ccc");
-			Throws<FormatException>(() => x.BooleanValue.ToString(CultureInfo.InvariantCulture));
-			Throws<FormatException>(() => x.Int32Value?.ToString(CultureInfo.InvariantCulture));
-			Throws<FormatException>(() => x.DateTimeOffsetValue?.ToString(CultureInfo.InvariantCulture));
+			Throws<FormatException>(() => _ = x.BooleanValue.ToString(CultureInfo.InvariantCulture));
+			Throws<FormatException>(() => _ = x.Int32Value?.ToString(CultureInfo.InvariantCulture));
+			Throws<FormatException>(() => _ = x.DateTimeOffsetValue?.ToString(CultureInfo.InvariantCulture));
 		}
 
 		[Test]

@@ -324,7 +324,7 @@ namespace CodeJam.TableData
 
 		private class CsvFormatter : ITableDataFormatter
 		{
-			public int GetValueLength([AllowNull] string? value)
+			public int GetValueLength(string? value)
 			{
 				var len = value?.Length;
 				if (!len.HasValue || len == 0)

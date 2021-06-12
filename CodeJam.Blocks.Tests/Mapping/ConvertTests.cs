@@ -4,6 +4,7 @@ using System.Globalization;
 
 using NUnit.Framework;
 // ReSharper disable UnusedMember.Local
+// ReSharper disable InconsistentNaming
 
 namespace CodeJam.Mapping
 {
@@ -74,20 +75,14 @@ namespace CodeJam.Mapping
 		{
 			public int Value;
 
-			public static implicit operator TestData1(int i)
-			{
-				return new() { Value = i };
-			}
+			public static implicit operator TestData1(int i) => new() { Value = i };
 		}
 
 		private class TestData2
 		{
 			public int Value;
 
-			public static explicit operator TestData2(int i)
-			{
-				return new() { Value = i };
-			}
+			public static explicit operator TestData2(int i) => new() { Value = i };
 		}
 
 		[Test]
@@ -414,7 +409,7 @@ namespace CodeJam.Mapping
 		{
 			Assert.Throws(
 				typeof(CodeJamConvertException),
-				() => ConvertTo<Enum13>.From(Enum12.Value2),
+				() => _ = ConvertTo<Enum13>.From(Enum12.Value2),
 				"Mapping ambiguity. 'Tests.Common.ConvertTest+Enum12.Value2' can be mapped to either 'Tests.Common.ConvertTest+Enum13.Value1' or 'Tests.Common.ConvertTest+Enum13.Value3'.");
 		}
 

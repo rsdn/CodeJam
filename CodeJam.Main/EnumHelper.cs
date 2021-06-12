@@ -236,7 +236,7 @@ namespace CodeJam
 		public static bool AreFlagsDefined<TEnum>(TEnum flags)
 			where TEnum : struct, Enum =>
 				IsDefined(flags)
-					|| MetaHolder<TEnum>.IsFlagsEnum && OpHolder<TEnum>.IsFlagSetCallback(MetaHolder<TEnum>.ValuesMask, flags);
+					|| (MetaHolder<TEnum>.IsFlagsEnum && OpHolder<TEnum>.IsFlagSetCallback(MetaHolder<TEnum>.ValuesMask, flags));
 
 		/// <summary>Determines whether all bits of the flags combination are defined.</summary>
 		/// <typeparam name="TEnum">The type of the enum.</typeparam>

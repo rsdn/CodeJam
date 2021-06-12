@@ -38,7 +38,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
-			[AllowNull, SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
+			[SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
 			[InvokerParameterName] string argName)
 			where T : class
 		{
@@ -58,7 +58,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void GenericNotNull<T>(
-			[AllowNull, SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
+			[SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg == null)
@@ -117,7 +117,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T>? arg,
+			[SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T>? arg,
 			[InvokerParameterName] string argName)
 		{
 			NotNull(arg, argName);
@@ -134,7 +134,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, SDC.NotNull, ValidatedNotNull] ICollection<T>? arg,
+			[SDC.NotNull, ValidatedNotNull] ICollection<T>? arg,
 			[InvokerParameterName] string argName)
 		{
 			NotNull(arg, argName);
@@ -151,7 +151,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
-			[AllowNull, SDC.NotNull, ValidatedNotNull] T?[]? arg,
+			[SDC.NotNull, ValidatedNotNull] T?[]? arg,
 			[InvokerParameterName] string argName)
 		{
 			NotNull(arg, argName);
@@ -165,7 +165,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty(
-			[AllowNull, SDC.NotNull, ValidatedNotNull] string? arg,
+			[SDC.NotNull, ValidatedNotNull] string? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrEmpty())
@@ -178,7 +178,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorWhiteSpace(
-			[AllowNull, SDC.NotNull, ValidatedNotNull] string? arg,
+			[SDC.NotNull, ValidatedNotNull] string? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (arg.IsNullOrWhiteSpace())
@@ -192,7 +192,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullAndItemNotNull<T>(
-			[AllowNull, SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
+			[SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
 			[InvokerParameterName] string argName) where T : class
 		{
 			NotNull(arg, argName);
@@ -208,7 +208,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmptyAndItemNotNull<T>(
-			[AllowNull, SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
+			[SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
 			[InvokerParameterName] string argName)
 			where T : class
 		{
@@ -236,7 +236,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmptyAndItemNotNull<T>(
-			[AllowNull, SDC.NotNull, ValidatedNotNull] ICollection<T?>? arg,
+			[SDC.NotNull, ValidatedNotNull] ICollection<T?>? arg,
 			[InvokerParameterName] string argName)
 			where T : class
 		{
@@ -253,7 +253,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmptyAndItemNotNull<T>(
-			[AllowNull, SDC.NotNull, ValidatedNotNull] T?[]? arg,
+			[SDC.NotNull, ValidatedNotNull] T?[]? arg,
 			[InvokerParameterName] string argName)
 			where T : class
 		{
@@ -317,7 +317,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static T ReturnIfNotNull<T>(
-			[AllowNull, SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
+			[SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
 			[InvokerParameterName] string argName)
 			where T : class
 		{
@@ -372,7 +372,7 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void InRange<T>(
 			[DisallowNull] T value,
-			[DisallowNull, InvokerParameterName] string argName,
+			[InvokerParameterName] string argName,
 			[DisallowNull] T fromValue,
 			[DisallowNull] T toValue)
 		{

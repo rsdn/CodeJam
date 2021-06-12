@@ -66,7 +66,6 @@ namespace CodeJam.Mapping
 		private readonly bool _processCrossReferences;
 
 		#region GetExpressionEx
-		[return: MaybeNull]
 		public LambdaExpression? GetExpressionEx()
 		{
 			if (_mapperBuilder.MappingSchema.IsScalarType(_fromType) || _mapperBuilder.MappingSchema.IsScalarType(_toType))
@@ -700,7 +699,6 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr!);
 		}
 
-		[return: MaybeNull]
 		private static Expression? ToArray(
 			ExpressionBuilder builder,
 			Expression fromExpression,

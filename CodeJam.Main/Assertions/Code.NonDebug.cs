@@ -10,7 +10,7 @@ namespace CodeJam
 {
 	/// <summary>Assertions class.</summary>
 	// Part that excluded from debug assertions generation.
-	partial class Code
+	public partial class Code
 	{
 		#region Argument validation (DO NOT copy into DebugCode)
 		// NB: Conditional methods cannot have a return type.
