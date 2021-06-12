@@ -59,6 +59,7 @@ namespace CodeJam.Mapping
 								continue;
 
 							var gtype = type.Key.MakeGenericType(types);
+							// ReSharper disable once RedundantSuppressNullableWarningExpression
 							var provider = (IGenericInfoProvider)Activator.CreateInstance(gtype)!;
 
 							provider.SetInfo(new MappingSchema(this));

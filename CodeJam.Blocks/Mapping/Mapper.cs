@@ -66,6 +66,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <returns>Mapping expression.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
+		[SuppressMessage("ReSharper", "RedundantSuppressNullableWarningExpression")]
 		public Func<TFrom, TTo, IDictionary<object, object>?, TTo> GetMapper()
 			=> _mapper ??= GetMapperExpression().Compile()!;
 

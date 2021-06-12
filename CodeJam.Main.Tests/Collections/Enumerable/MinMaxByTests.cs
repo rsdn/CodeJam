@@ -60,8 +60,7 @@ namespace CodeJam.Collections
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string?[] { null, null })]
 		public void MaxByStringNoElements(string[] source) =>
-			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-			Assert.Throws<InvalidOperationException>(() => source.MaxBy(s => s));
+			Assert.Throws<InvalidOperationException>(() => _ = source.MaxBy(s => s));
 
 		[TestCase(new[] { 3, 1, 0, 4, 6 }, ExpectedResult = "6")]
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
@@ -73,10 +72,7 @@ namespace CodeJam.Collections
 		#region Item class
 		private class Item<T>
 		{
-			public Item(T value)
-			{
-				Value = value;
-			}
+			public Item(T value) => Value = value;
 
 			public T Value { get; }
 		}
