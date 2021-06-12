@@ -69,8 +69,7 @@ namespace CodeJam.TableData
 			char columnSeparator = ',') =>
 				CreateParser(allowEscaping, columnSeparator).Parse(reader);
 
-		[return: MaybeNull]
-		private static string[] ParseCsv(TextReader reader, ref int lineNum, char separator)
+		private static string[]? ParseCsv(TextReader reader, ref int lineNum, char separator)
 		{
 			var curChar = CharReader.Create(reader);
 			if (curChar.IsEof)
@@ -192,8 +191,7 @@ namespace CodeJam.TableData
 			}
 		}
 
-		[return: MaybeNull]
-		private static string[] ParseCsvNoEscape(TextReader reader, ref int lineNum, char separator)
+		private static string[]? ParseCsvNoEscape(TextReader reader, ref int lineNum, char separator)
 		{
 			var line = reader.ReadLine();
 			if (line == null)
@@ -313,7 +311,7 @@ namespace CodeJam.TableData
 		/// </summary>
 		private interface ITableDataFormatter
 		{
-			int GetValueLength([AllowNull] string value);
+			int GetValueLength(string? value);
 
 			/// <summary>
 			/// Prints line of table data.
@@ -373,7 +371,7 @@ namespace CodeJam.TableData
 			/// </summary>
 			/// <param name="value">Value.</param>
 			/// <returns>Length of formatted value representation.</returns>
-			public int GetValueLength([AllowNull] string value) => (value?.Length).GetValueOrDefault();
+			public int GetValueLength(string? value) => (value?.Length).GetValueOrDefault();
 
 			/// <summary>
 			/// Prints line of table data.

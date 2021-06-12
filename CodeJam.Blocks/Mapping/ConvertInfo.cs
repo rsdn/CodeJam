@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace CodeJam.Mapping
@@ -15,8 +14,8 @@ namespace CodeJam.Mapping
 		{
 			public LambdaInfo(
 				LambdaExpression checkNullLambda,
-				[AllowNull] LambdaExpression lambda,
-				[AllowNull] Delegate @delegate,
+				LambdaExpression? lambda,
+				Delegate? @delegate,
 				bool isSchemaSpecific)
 			{
 				CheckNullLambda = checkNullLambda;
@@ -50,11 +49,10 @@ namespace CodeJam.Mapping
 			dic[to] = expr;
 		}
 
-		[return: MaybeNull]
-		public LambdaInfo Get(Type from, Type to) =>
+		public LambdaInfo? Get(Type from, Type to) =>
 			_expressions.TryGetValue(from, out var dic) && dic.TryGetValue(to, out var li) ? li : null;
 
-		public LambdaInfo Create([AllowNull] MappingSchema mappingSchema, Type from, Type to)
+		public LambdaInfo Create(MappingSchema? mappingSchema, Type from, Type to)
 		{
 			var ex = ConvertBuilder.GetConverter(mappingSchema, from, to);
 			var lm = ex.Item1.Compile();

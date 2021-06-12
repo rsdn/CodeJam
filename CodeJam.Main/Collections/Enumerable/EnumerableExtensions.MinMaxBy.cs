@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using JetBrains.Annotations;
 
@@ -22,8 +21,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		[return: MaybeNull]
-		public static TSource MinBy<TSource, TValue>(
+		public static TSource? MinBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector) =>
 				MinBy(source, selector, Comparer<TValue>.Default);
@@ -43,8 +41,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		[return: MaybeNull]
-		public static TSource MinByOrDefault<TSource, TValue>(
+		public static TSource? MinByOrDefault<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector,
 			TSource? defaultValue = default) =>
@@ -63,8 +60,7 @@ namespace CodeJam.Collections
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
 #pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
-		[return: MaybeNull]
-		public static TSource MinBy<TSource, TValue>(
+		public static TSource? MinBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer)
@@ -139,8 +135,7 @@ namespace CodeJam.Collections
 		/// </returns>
 #pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
-		[return: MaybeNull]
-		public static TSource MinByOrDefault<TSource, TValue>(
+		public static TSource? MinByOrDefault<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer,
@@ -213,8 +208,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		[return: MaybeNull]
-		public static TSource MaxBy<TSource, TValue>(
+		public static TSource? MaxBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector) => MaxBy(source, selector, Comparer<TValue>.Default);
 
@@ -232,8 +226,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		[return: MaybeNull]
-		public static TSource MaxByOrDefault<TSource, TValue>(
+		public static TSource? MaxByOrDefault<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector,
 			TSource? defaultValue = default) =>
@@ -251,8 +244,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with maximum value in the sequence.</returns>
 #pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
-		[return: MaybeNull]
-		public static TSource MaxBy<TSource, TValue>(
+		public static TSource? MaxBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer)
@@ -325,8 +317,7 @@ namespace CodeJam.Collections
 		/// </returns>
 #pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
-		[return: MaybeNull]
-		public static TSource MaxByOrDefault<TSource, TValue>(
+		public static TSource? MaxByOrDefault<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer,

@@ -35,6 +35,7 @@ namespace CodeJam.Threading
 				using (await asyncLock.AcquireAsync(holdTime, cancellation))
 				{
 					callback?.Invoke();
+					// ReSharper disable once MethodSupportsCancellation
 					await TaskEx.Delay(holdTime).ConfigureAwait(false);
 				}
 				return true;
@@ -66,6 +67,7 @@ namespace CodeJam.Threading
 
 			using var lock1Started = new ManualResetEventSlim(false);
 
+			// ReSharper disable once AccessToDisposedClosure
 			var lock1 = TryTakeAndHold(asyncLock, holdTime, callback: () => lock1Started.Set());
 			lock1Started.Wait();
 

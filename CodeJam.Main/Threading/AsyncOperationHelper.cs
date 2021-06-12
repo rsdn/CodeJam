@@ -76,8 +76,7 @@ namespace CodeJam.Threading
 		/// A <see cref="Func{TResult}"/> that wraps the delegate to be called when the operation ends.
 		/// </param>
 		/// <returns>Result of <paramref name="runner"/> execution.</returns>
-		[return: MaybeNull]
-		public static T Send<T>(this AsyncOperation asyncOp, [InstantHandle] Func<T> runner)
+		public static T? Send<T>(this AsyncOperation asyncOp, [InstantHandle] Func<T> runner)
 		{
 			Code.NotNull(asyncOp, nameof(asyncOp));
 			Code.NotNull(runner, nameof(runner));

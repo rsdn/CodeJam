@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 using JetBrains.Annotations;
@@ -40,12 +39,12 @@ namespace CodeJam.Arithmetic
 			// ReSharper disable once RedundantDefaultMemberInitializer
 			public static readonly StructComparable PositiveInfinity = new();
 
-			public int CompareTo([AllowNull] object obj) => 0;
+			public int CompareTo(object? obj) => 0;
 		}
 
 		private class ClassGenericComparable : IComparable<ClassGenericComparable>
 		{
-			public int CompareTo([AllowNull] ClassGenericComparable other) => 0;
+			public int CompareTo(ClassGenericComparable? other) => 0;
 		}
 
 		private class ClassComparable2 : IComparable, IComparable<ClassComparable2>
@@ -53,13 +52,13 @@ namespace CodeJam.Arithmetic
 			public bool NonGenericCalled { get; set; }
 			public bool GenericCalled { get; set; }
 
-			public int CompareTo([AllowNull] object obj)
+			public int CompareTo(object? obj)
 			{
 				NonGenericCalled = true;
 				return 0;
 			}
 
-			public int CompareTo([AllowNull] ClassComparable2 other)
+			public int CompareTo(ClassComparable2? other)
 			{
 				GenericCalled = true;
 				return 0;
@@ -83,7 +82,7 @@ namespace CodeJam.Arithmetic
 			public static bool OpCalled { get; set; }
 			public static bool GenericCalled { get; set; }
 
-			public int CompareTo([AllowNull] ClassOperatorsComparable other)
+			public int CompareTo(ClassOperatorsComparable? other)
 			{
 				GenericCalled = true;
 				return 0;

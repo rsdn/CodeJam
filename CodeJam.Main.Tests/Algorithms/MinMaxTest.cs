@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 using NUnit.Framework;
+
+// ReSharper disable StructCanBeMadeReadOnly
 
 namespace CodeJam
 {
@@ -10,15 +11,12 @@ namespace CodeJam
 	{
 		public struct Comparable : IComparable
 		{
-			public Comparable(int value)
-			{
-				Value = value;
-			}
+			public Comparable(int value) => Value = value;
 
 			public int Value { get; }
 
 			#region Implementation of IComparable
-			public int CompareTo([AllowNull] object obj)
+			public int CompareTo(object? obj)
 			{
 				if (obj is not Comparable other) return 1;
 

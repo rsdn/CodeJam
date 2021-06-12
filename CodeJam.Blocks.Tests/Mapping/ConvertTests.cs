@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 
 using NUnit.Framework;
+// ReSharper disable UnusedMember.Local
 
 namespace CodeJam.Mapping
 {
@@ -46,7 +47,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual(1, ConvertTo<object>.From(1));
 		}
 
-		enum Enum1
+		private enum Enum1
 		{
 			Value1,
 			Value2
@@ -69,7 +70,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual(10m, Convert<int,decimal>.From(10));
 		}
 
-		class TestData1
+		private class TestData1
 		{
 			public int Value;
 
@@ -79,7 +80,7 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		class TestData2
+		private class TestData2
 		{
 			public int Value;
 
@@ -145,13 +146,13 @@ namespace CodeJam.Mapping
 //			Assert.AreEqual(Convert.FromBase64String(data), ConvertTo<Binary>.From(data).ToArray());
 //		}
 
-		enum Enum2
+		private enum Enum2
 		{
 			Value1 = 1,
 			Value2 = 2,
 		}
 
-		enum Enum3
+		private enum Enum3
 		{
 			Value1 = 1,
 			Value2 = 2,
@@ -177,7 +178,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual(Enum2.Value2, ConvertTo<Enum2>. From("value2"));
 		}
 
-		enum Enum4
+		private enum Enum4
 		{
 			[MapValue(15)]
 			[MapValue("115")]
@@ -242,13 +243,13 @@ namespace CodeJam.Mapping
 			Assert.AreEqual(Enum4.Value2, ConvertTo<Enum4>.From(25));
 		}
 
-		enum Enum5
+		private enum Enum5
 		{
 			[MapValue(Enum6.Value2)] Value1,
 			[MapValue(Enum6.Value1)] Value2,
 		}
 
-		enum Enum6
+		private enum Enum6
 		{
 			Value1,
 			Value2,
@@ -272,13 +273,13 @@ namespace CodeJam.Mapping
 			Assert.AreEqual(Enum5.Value2, ConvertTo<Enum5>.From((Enum6?)Enum6.Value1));
 		}
 
-		enum Enum7
+		private enum Enum7
 		{
 			[MapValue(1)]   Value1,
 			[MapValue("2")] Value2,
 		}
 
-		enum Enum8
+		private enum Enum8
 		{
 			[MapValue("2")] Value1,
 			[MapValue(1)]   Value2,
@@ -296,7 +297,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual(Enum7.Value2, ConvertTo<Enum7>.From(Enum8.Value1));
 		}
 
-		enum Enum9
+		private enum Enum9
 		{
 			[MapValue(1)]
 			[MapValue(10, true)]
@@ -321,7 +322,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual( 2, ConvertTo<int>.From(Enum9.Value2));
 		}
 
-		enum Enum10
+		private enum Enum10
 		{
 			[MapValue(1)]
 			[MapValue(3)]
@@ -337,7 +338,7 @@ namespace CodeJam.Mapping
 			Value4,
 		}
 
-		enum Enum11
+		private enum Enum11
 		{
 			[MapValue("2")]
 			Value1,
@@ -384,7 +385,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual(Enum11.Value3, cf(Enum10.Value4));
 		}
 
-		enum Enum12
+		private enum Enum12
 		{
 			[MapValue(1)]
 			[MapValue(3)]
@@ -395,7 +396,7 @@ namespace CodeJam.Mapping
 			Value2,
 		}
 
-		enum Enum13
+		private enum Enum13
 		{
 			[MapValue("2")]
 			Value1,
@@ -417,7 +418,7 @@ namespace CodeJam.Mapping
 				"Mapping ambiguity. 'Tests.Common.ConvertTest+Enum12.Value2' can be mapped to either 'Tests.Common.ConvertTest+Enum13.Value1' or 'Tests.Common.ConvertTest+Enum13.Value3'.");
 		}
 
-		enum Enum14
+		private enum Enum14
 		{
 			[MapValue("A")] AA,
 			[MapValue("1", "C")]
@@ -443,7 +444,7 @@ namespace CodeJam.Mapping
 			Assert.AreEqual(Enum14.BB,  new MappingSchema("1").GetConverter<string,Enum14?>()("C"));
 		}
 
-		enum Enum15
+		private enum Enum15
 		{
 			[MapValue(10)] AA,
 			[MapValue(20)] BB,

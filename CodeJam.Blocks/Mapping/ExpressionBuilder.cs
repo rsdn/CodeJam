@@ -128,8 +128,7 @@ namespace CodeJam.Mapping
 			return l;
 		}
 
-		[return: MaybeNull]
-		private Expression GetExpressionExImpl(Expression fromExpression, Type toType)
+		private Expression? GetExpressionExImpl(Expression fromExpression, Type toType)
 		{
 			var fromAccessor = TypeAccessor.GetAccessor(fromExpression.Type);
 			var toAccessor = TypeAccessor.GetAccessor(toType);
@@ -257,14 +256,11 @@ namespace CodeJam.Mapping
 			return New(type);
 		}
 
-		[return: MaybeNull]
-		[return: NotNullIfNotNull("expr")]
 		[ContractAnnotation("expr:null => null; expr:notnull => notnull")]
-		private static Expression Convert([AllowNull] Expression expr, Type toType) =>
+		private static Expression? Convert(Expression? expr, Type toType) =>
 			expr == null ? null : expr.Type == toType ? expr : Expression.Convert(expr, toType);
 
-		[return: MaybeNull]
-		private Expression BuildCollectionMapper(Expression fromExpression, Type toType)
+		private Expression? BuildCollectionMapper(Expression fromExpression, Type toType)
 		{
 			var fromType = fromExpression.Type;
 
@@ -274,8 +270,7 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[return: MaybeNull]
-		private Expression ConvertCollection(Expression fromExpression, Type toType)
+		private Expression? ConvertCollection(Expression fromExpression, Type toType)
 		{
 			var fromType = fromExpression.Type;
 			var fromItemType = fromType.GetItemType()!;
@@ -675,8 +670,7 @@ namespace CodeJam.Mapping
 				DeepCopy = builder.DeepCopy
 			};
 
-		[return: MaybeNull]
-		private static Expression ToList(
+		private static Expression? ToList(
 			ExpressionBuilder builder,
 			Expression fromExpression,
 			Type fromItemType,
@@ -691,8 +685,7 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr!);
 		}
 
-		[return: MaybeNull]
-		private static Expression ToHashSet(
+		private static Expression? ToHashSet(
 			ExpressionBuilder builder,
 			Expression fromExpression,
 			Type fromItemType,
@@ -723,8 +716,7 @@ namespace CodeJam.Mapping
 			return Call(toListInfo.MakeGenericMethod(toItemType), expr!);
 		}
 
-		[return: MaybeNull]
-		private static Expression Select(
+		private static Expression? Select(
 			ExpressionBuilder builder,
 			Expression getValue,
 			Type fromItemType,

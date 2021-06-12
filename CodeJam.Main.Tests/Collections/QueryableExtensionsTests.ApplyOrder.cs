@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace CodeJam.Collections
 {
-	partial class QueryableExtensionsTests
+	public partial class QueryableExtensionsTests
 	{
 		[Test]
 		public void OrderByTest()

@@ -96,8 +96,7 @@ namespace CodeJam.Mapping
 			_convertInfo.Set(from, to, expr);
 		}
 
-		[return: MaybeNull]
-		public ConvertInfo.LambdaInfo GetConvertInfo(Type from, Type to)
+		public ConvertInfo.LambdaInfo? GetConvertInfo(Type from, Type to)
 			=> _convertInfo?.Get(from, to);
 
 		private ConcurrentDictionary<object, Func<object, object>>? _converters;

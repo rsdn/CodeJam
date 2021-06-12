@@ -281,8 +281,7 @@ namespace CodeJam.Reflection
 			return value;
 		}
 
-		[return: MaybeNull]
-		private static T GetDefaultValue<T>()
+		private static T? GetDefaultValue<T>()
 		{
 			if (_defaultValues.TryGetValue(typeof(T), out var value))
 				return value == null ? default : (T)value;

@@ -1,10 +1,12 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
 using System;
-using System.Globalization;
 
 using NUnit.Framework;
 
 #pragma warning disable 649
+
+// ReSharper disable ClassNeverInstantiated.Local
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace CodeJam.Mapping.Examples
 {

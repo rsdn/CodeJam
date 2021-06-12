@@ -209,8 +209,7 @@ namespace CodeJam.Mapping
 		/// <param name="to">Type to convert to.</param>
 		/// <returns>Convert expression.</returns>
 		// ReSharper disable once VirtualMemberNeverOverridden.Global
-		[return: MaybeNull]
-		protected internal virtual LambdaExpression TryGetConvertExpression(
+		protected internal virtual LambdaExpression? TryGetConvertExpression(
 			Type from, Type to)
 		{
 			Code.NotNull(from, nameof(from));
@@ -380,9 +379,8 @@ namespace CodeJam.Mapping
 			return expr;
 		}
 
-		[return: MaybeNull]
 		[ContractAnnotation("create:true => notnull")]
-		private ConvertInfo.LambdaInfo GetConverter(Type from, Type to, bool create)
+		private ConvertInfo.LambdaInfo? GetConverter(Type from, Type to, bool create)
 		{
 			for (var i = 0; i < Schemas.Length; i++)
 			{
@@ -668,8 +666,7 @@ namespace CodeJam.Mapping
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
-		[return: MaybeNull]
-		public T GetAttribute<T>(Type type, bool inherit = true)
+		public T? GetAttribute<T>(Type type, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes<T>(type, inherit);
@@ -683,8 +680,7 @@ namespace CodeJam.Mapping
 		/// <param name="inherit"><b>true</b> to search this member's inheritance chain to find the attributes; otherwise, <b>false</b>.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
-		[return: MaybeNull]
-		public T GetAttribute<T>(MemberInfo memberInfo, bool inherit = true)
+		public T? GetAttribute<T>(MemberInfo memberInfo, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes<T>(memberInfo, inherit);
@@ -747,8 +743,7 @@ namespace CodeJam.Mapping
 		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this type are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
-		[return: MaybeNull]
-		public T GetAttribute<T>(Type type, Func<T, string?> configGetter, bool inherit = true)
+		public T? GetAttribute<T>(Type type, Func<T, string?> configGetter, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes(type, configGetter, inherit);
@@ -763,8 +758,7 @@ namespace CodeJam.Mapping
 		/// <param name="configGetter">A function that returns configuration value is supported by the attribute.</param>
 		/// <typeparam name="T">The type of attribute to search for. Only attributes that are assignable to this member are returned.</typeparam>
 		/// <returns>A custom attribute or <i>null</i>.</returns>
-		[return: MaybeNull]
-		public T GetAttribute<T>(MemberInfo memberInfo, Func<T, string?> configGetter, bool inherit = true)
+		public T? GetAttribute<T>(MemberInfo memberInfo, Func<T, string?> configGetter, bool inherit = true)
 			where T : Attribute
 		{
 			var attrs = GetAttributes(memberInfo, configGetter, inherit);
@@ -855,7 +849,7 @@ namespace CodeJam.Mapping
 			{
 				type = type.ToNullableUnderlying();
 
-				if (type.GetIsEnum() || type.GetIsPrimitive() || IsStructIsScalarType && type.GetIsValueType())
+				if (type.GetIsEnum() || type.GetIsPrimitive() || (IsStructIsScalarType && type.GetIsValueType()))
 					ret = true;
 			}
 

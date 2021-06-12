@@ -68,8 +68,7 @@ namespace CodeJam.Mapping
 		public static void SetConverter<TFrom, TTo>(Expression<Func<TFrom, TTo>> expr)
 			=> _expressions[new { from = typeof(TFrom), to = typeof(TTo) }] = expr;
 
-		[return: MaybeNull]
-		internal static LambdaExpression GetConverter(Type from, Type to)
+		internal static LambdaExpression? GetConverter(Type from, Type to)
 		{
 			_expressions.TryGetValue(new { from, to }, out var l);
 			return l;
@@ -86,7 +85,7 @@ namespace CodeJam.Mapping
 		/// <param name="mappingSchema">A mapping schema that defines custom converters.</param>
 		/// <returns>An object whose type is <i>conversionType</i> and whose value is equivalent to <i>value</i>.</returns>
 		[return: NotNullIfNotNull("value")]
-		public static object? ChangeType([AllowNull] object? value, Type conversionType, MappingSchema? mappingSchema = null)
+		public static object? ChangeType(object? value, Type conversionType, MappingSchema? mappingSchema = null)
 		{
 			Code.NotNull(conversionType, nameof(conversionType));
 

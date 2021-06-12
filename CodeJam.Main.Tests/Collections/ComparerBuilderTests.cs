@@ -9,6 +9,7 @@ using CodeJam.Reflection;
 using JetBrains.Annotations;
 
 using NUnit.Framework;
+// ReSharper disable InconsistentNaming
 
 namespace CodeJam.Collections
 {

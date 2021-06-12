@@ -30,7 +30,7 @@ namespace CodeJam.Mapping
 		/// Defines target type as scalar type.
 		/// </summary>
 		/// <param name="configuration">Configuration name.</param>
-		public ScalarTypeAttribute([AllowNull] string configuration)
+		public ScalarTypeAttribute(string? configuration)
 		{
 			Configuration = configuration;
 			IsScalar = true;
@@ -41,7 +41,7 @@ namespace CodeJam.Mapping
 		/// </summary>
 		/// <param name="configuration">Configuration name.</param>
 		/// <param name="isScalar"><i>true</i> if target type is a scalar type.</param>
-		public ScalarTypeAttribute([AllowNull] string configuration, bool isScalar)
+		public ScalarTypeAttribute(string? configuration, bool isScalar)
 		{
 			Configuration = configuration;
 			IsScalar = isScalar;

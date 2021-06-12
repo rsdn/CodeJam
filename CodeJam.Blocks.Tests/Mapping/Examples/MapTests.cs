@@ -8,6 +8,10 @@ using NUnit.Framework;
 
 #pragma warning disable 649
 
+// ReSharper disable ClassNeverInstantiated.Local
+// ReSharper disable NotAccessedField.Local
+// ReSharper disable UnusedAutoPropertyAccessor.Local
+
 namespace CodeJam.Mapping.Examples
 {
 

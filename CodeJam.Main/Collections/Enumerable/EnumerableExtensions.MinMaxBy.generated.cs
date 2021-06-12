@@ -171,7 +171,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, byte?> selector,
@@ -368,7 +368,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, sbyte?> selector,
@@ -565,7 +565,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, short?> selector,
@@ -762,7 +762,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, ushort?> selector,
@@ -959,7 +959,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, int?> selector,
@@ -1156,7 +1156,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, uint?> selector,
@@ -1353,7 +1353,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, long?> selector,
@@ -1550,7 +1550,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, ulong?> selector,
@@ -1757,7 +1757,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, float?> selector,
@@ -1964,7 +1964,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, double?> selector,
@@ -2161,7 +2161,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MinByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, decimal?> selector,
@@ -2362,7 +2362,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, byte?> selector,
@@ -2559,7 +2559,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, sbyte?> selector,
@@ -2756,7 +2756,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, short?> selector,
@@ -2953,7 +2953,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, ushort?> selector,
@@ -3150,7 +3150,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, int?> selector,
@@ -3347,7 +3347,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, uint?> selector,
@@ -3544,7 +3544,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, long?> selector,
@@ -3741,7 +3741,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, ulong?> selector,
@@ -3948,7 +3948,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, float?> selector,
@@ -4155,7 +4155,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, double?> selector,
@@ -4352,7 +4352,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource MaxByOrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, decimal?> selector,

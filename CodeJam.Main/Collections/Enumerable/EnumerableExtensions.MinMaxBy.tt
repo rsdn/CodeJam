@@ -236,7 +236,7 @@ namespace CodeJam.Collections
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-        [return:MaybeNull]
+		[return:MaybeNull]
 		public static TSource <#= info.Method #>OrDefault<TSource>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, <#= type #>?> selector,

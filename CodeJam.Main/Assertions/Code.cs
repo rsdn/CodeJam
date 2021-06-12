@@ -87,7 +87,7 @@ namespace CodeJam
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void GenericNotDefault<T>(
-			[NoEnumeration, AllowNull] T arg,
+			[NoEnumeration] T? arg,
 			[InvokerParameterName] string argName)
 		{
 			if (Operators<T>.AreEqual(arg, default))

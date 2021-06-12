@@ -11,8 +11,6 @@
 
 using System;
 
-using JetBrains.Annotations;
-
 namespace CodeJam
 {
 	/// <summary>

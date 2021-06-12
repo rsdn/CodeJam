@@ -3,8 +3,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-using JetBrains.Annotations;
-
 namespace CodeJam
 {
 <#
@@ -60,8 +58,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{<#= types #>}"/>.</returns>
 		public static ValueOneOf<<#= types #>> Create(T<#= k #> value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<<#= types #>>(value, Cases.Case<#= k #>);
 		}
 
@@ -100,7 +97,7 @@ namespace CodeJam
 		for (var k = 1; k <= i; k++)
 		{
 #>
-			Code.NotNull(case<#= k #>Action, nameof (case<#= k #>Action));
+			Code.NotNull(case<#= k #>Action, nameof(case<#= k #>Action));
 <#
 		}
 #>

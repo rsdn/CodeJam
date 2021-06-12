@@ -34,7 +34,6 @@ namespace CodeJam.Mapping
 			}
 		}
 
-		[return: MaybeNull]
 		private static Expression? GetCtor(Type from, Type to, Expression p)
 		{
 			var ctor = to.GetConstructor(new[] { from });
@@ -50,7 +49,6 @@ namespace CodeJam.Mapping
 			return Expression.New(ctor, p);
 		}
 
-		[return: MaybeNull]
 		private static Expression? GetValue(Type from, Type to, Expression p)
 		{
 			var pi = from.GetProperty("Value");
@@ -126,7 +124,6 @@ namespace CodeJam.Mapping
 #endif
 		}
 
-		[return: MaybeNull]
 		private static Expression? GetConversion(Type from, Type to, Expression p)
 		{
 			if ((IsConvertible(from) && IsConvertible(to) && to != typeof(bool)) ||
@@ -136,7 +133,6 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[return: MaybeNull]
 		private static Expression? GetParse(Type from, Type to, Expression p)
 		{
 			if (from == typeof(string))
@@ -162,7 +158,6 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[return: MaybeNull]
 		private static Expression? GetToString(Type from, Type to, Expression p)
 		{
 			if (to == typeof(string) && !from.IsNullable())
@@ -180,7 +175,6 @@ namespace CodeJam.Mapping
 			return null;
 		}
 
-		[return: MaybeNull]
 		private static Expression? GetParseEnum(Type from, Type to, Expression p)
 		{
 			if (from == typeof(string) && to.GetIsEnum())
@@ -245,7 +239,6 @@ namespace CodeJam.Mapping
 
 		private static readonly MethodInfo _throwLinqToDBConvertException = InfoOf.Method(() => ThrowLinqToDBException(null));
 
-		[return: MaybeNull]
 		private static Expression? GetToEnum(
 			Type from,
 			Type to,
@@ -341,7 +334,6 @@ namespace CodeJam.Mapping
 			public MapValueAttribute[]? Attrs;
 		}
 
-		[return: MaybeNull]
 		private static Expression? GetFromEnum(
 			Type from,
 			Type to,
@@ -542,7 +534,6 @@ namespace CodeJam.Mapping
 			return ex != null ? ValueTuple.Create(ex, false) : null;
 		}
 
-		[return: MaybeNull]
 		private static ValueTuple<Expression, bool>? ConvertUnderlying(
 			MappingSchema mappingSchema,
 			Expression expr,
@@ -580,7 +571,7 @@ namespace CodeJam.Mapping
 		}
 
 		public static ValueTuple<LambdaExpression, LambdaExpression?, bool> GetConverter(
-			[AllowNull] MappingSchema mappingSchema,
+			MappingSchema? mappingSchema,
 			Type from,
 			Type to)
 		{
@@ -649,7 +640,6 @@ namespace CodeJam.Mapping
 		}
 
 		#region Default Enum Mapping Type
-		[return: MaybeNull]
 		public static Type? GetDefaultMappingFromEnumType(MappingSchema mappingSchema, Type enumType)
 		{
 			var type = enumType.ToNullableUnderlying();

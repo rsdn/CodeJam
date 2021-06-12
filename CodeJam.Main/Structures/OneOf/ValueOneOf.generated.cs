@@ -12,8 +12,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-using JetBrains.Annotations;
-
 namespace CodeJam
 {
 	/// <summary>
@@ -48,8 +46,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2}"/>.</returns>
 		public static ValueOneOf<T1, T2> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2>(value, Cases.Case1);
 		}
 
@@ -70,8 +67,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2}"/>.</returns>
 		public static ValueOneOf<T1, T2> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2>(value, Cases.Case2);
 		}
 
@@ -97,8 +93,8 @@ namespace CodeJam
 		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action)
 		{
-			Code.NotNull(case1Action, nameof (case1Action));
-			Code.NotNull(case2Action, nameof (case2Action));
+			Code.NotNull(case1Action, nameof(case1Action));
+			Code.NotNull(case2Action, nameof(case2Action));
 			switch (_curCase)
 			{
 				case Cases.Case1 : case1Action((T1)_value); break;
@@ -180,8 +176,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3>(value, Cases.Case1);
 		}
 
@@ -202,8 +197,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3>(value, Cases.Case2);
 		}
 
@@ -224,8 +218,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3>(value, Cases.Case3);
 		}
 
@@ -252,9 +245,9 @@ namespace CodeJam
 		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action)
 		{
-			Code.NotNull(case1Action, nameof (case1Action));
-			Code.NotNull(case2Action, nameof (case2Action));
-			Code.NotNull(case3Action, nameof (case3Action));
+			Code.NotNull(case1Action, nameof(case1Action));
+			Code.NotNull(case2Action, nameof(case2Action));
+			Code.NotNull(case3Action, nameof(case3Action));
 			switch (_curCase)
 			{
 				case Cases.Case1 : case1Action((T1)_value); break;
@@ -339,8 +332,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4>(value, Cases.Case1);
 		}
 
@@ -361,8 +353,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4>(value, Cases.Case2);
 		}
 
@@ -383,8 +374,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4>(value, Cases.Case3);
 		}
 
@@ -405,8 +395,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4>(value, Cases.Case4);
 		}
 
@@ -434,10 +423,10 @@ namespace CodeJam
 		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action)
 		{
-			Code.NotNull(case1Action, nameof (case1Action));
-			Code.NotNull(case2Action, nameof (case2Action));
-			Code.NotNull(case3Action, nameof (case3Action));
-			Code.NotNull(case4Action, nameof (case4Action));
+			Code.NotNull(case1Action, nameof(case1Action));
+			Code.NotNull(case2Action, nameof(case2Action));
+			Code.NotNull(case3Action, nameof(case3Action));
+			Code.NotNull(case4Action, nameof(case4Action));
 			switch (_curCase)
 			{
 				case Cases.Case1 : case1Action((T1)_value); break;
@@ -525,8 +514,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case1);
 		}
 
@@ -547,8 +535,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case2);
 		}
 
@@ -569,8 +556,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case3);
 		}
 
@@ -591,8 +577,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case4);
 		}
 
@@ -613,8 +598,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5>(value, Cases.Case5);
 		}
 
@@ -643,11 +627,11 @@ namespace CodeJam
 		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action)
 		{
-			Code.NotNull(case1Action, nameof (case1Action));
-			Code.NotNull(case2Action, nameof (case2Action));
-			Code.NotNull(case3Action, nameof (case3Action));
-			Code.NotNull(case4Action, nameof (case4Action));
-			Code.NotNull(case5Action, nameof (case5Action));
+			Code.NotNull(case1Action, nameof(case1Action));
+			Code.NotNull(case2Action, nameof(case2Action));
+			Code.NotNull(case3Action, nameof(case3Action));
+			Code.NotNull(case4Action, nameof(case4Action));
+			Code.NotNull(case5Action, nameof(case5Action));
 			switch (_curCase)
 			{
 				case Cases.Case1 : case1Action((T1)_value); break;
@@ -738,8 +722,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case1);
 		}
 
@@ -760,8 +743,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case2);
 		}
 
@@ -782,8 +764,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case3);
 		}
 
@@ -804,8 +785,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case4);
 		}
 
@@ -826,8 +806,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case5);
 		}
 
@@ -848,8 +827,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6>(value, Cases.Case6);
 		}
 
@@ -879,12 +857,12 @@ namespace CodeJam
 		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action)
 		{
-			Code.NotNull(case1Action, nameof (case1Action));
-			Code.NotNull(case2Action, nameof (case2Action));
-			Code.NotNull(case3Action, nameof (case3Action));
-			Code.NotNull(case4Action, nameof (case4Action));
-			Code.NotNull(case5Action, nameof (case5Action));
-			Code.NotNull(case6Action, nameof (case6Action));
+			Code.NotNull(case1Action, nameof(case1Action));
+			Code.NotNull(case2Action, nameof(case2Action));
+			Code.NotNull(case3Action, nameof(case3Action));
+			Code.NotNull(case4Action, nameof(case4Action));
+			Code.NotNull(case5Action, nameof(case5Action));
+			Code.NotNull(case6Action, nameof(case6Action));
 			switch (_curCase)
 			{
 				case Cases.Case1 : case1Action((T1)_value); break;
@@ -978,8 +956,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case1);
 		}
 
@@ -1000,8 +977,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case2);
 		}
 
@@ -1022,8 +998,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case3);
 		}
 
@@ -1044,8 +1019,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case4);
 		}
 
@@ -1066,8 +1040,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case5);
 		}
 
@@ -1088,8 +1061,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case6);
 		}
 
@@ -1110,8 +1082,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7> Create(T7 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7>(value, Cases.Case7);
 		}
 
@@ -1142,13 +1113,13 @@ namespace CodeJam
 		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action)
 		{
-			Code.NotNull(case1Action, nameof (case1Action));
-			Code.NotNull(case2Action, nameof (case2Action));
-			Code.NotNull(case3Action, nameof (case3Action));
-			Code.NotNull(case4Action, nameof (case4Action));
-			Code.NotNull(case5Action, nameof (case5Action));
-			Code.NotNull(case6Action, nameof (case6Action));
-			Code.NotNull(case7Action, nameof (case7Action));
+			Code.NotNull(case1Action, nameof(case1Action));
+			Code.NotNull(case2Action, nameof(case2Action));
+			Code.NotNull(case3Action, nameof(case3Action));
+			Code.NotNull(case4Action, nameof(case4Action));
+			Code.NotNull(case5Action, nameof(case5Action));
+			Code.NotNull(case6Action, nameof(case6Action));
+			Code.NotNull(case7Action, nameof(case7Action));
 			switch (_curCase)
 			{
 				case Cases.Case1 : case1Action((T1)_value); break;
@@ -1245,8 +1216,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T1 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case1);
 		}
 
@@ -1267,8 +1237,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T2 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case2);
 		}
 
@@ -1289,8 +1258,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T3 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case3);
 		}
 
@@ -1311,8 +1279,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T4 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case4);
 		}
 
@@ -1333,8 +1300,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T5 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case5);
 		}
 
@@ -1355,8 +1321,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T6 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case6);
 		}
 
@@ -1377,8 +1342,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T7 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case7);
 		}
 
@@ -1399,8 +1363,7 @@ namespace CodeJam
 		/// <returns>Value of <see cref="ValueOneOf{T1, T2, T3, T4, T5, T6, T7, T8}"/>.</returns>
 		public static ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8> Create(T8 value)
 		{
-			if (value == null)
-				throw CodeExceptions.ArgumentNull(nameof (value));
+			Code.GenericNotNull(value, nameof(value));
 			return new ValueOneOf<T1, T2, T3, T4, T5, T6, T7, T8>(value, Cases.Case8);
 		}
 
@@ -1432,14 +1395,14 @@ namespace CodeJam
 		/// <inheritdoc />
 		public void Do(Action<T1> case1Action, Action<T2> case2Action, Action<T3> case3Action, Action<T4> case4Action, Action<T5> case5Action, Action<T6> case6Action, Action<T7> case7Action, Action<T8> case8Action)
 		{
-			Code.NotNull(case1Action, nameof (case1Action));
-			Code.NotNull(case2Action, nameof (case2Action));
-			Code.NotNull(case3Action, nameof (case3Action));
-			Code.NotNull(case4Action, nameof (case4Action));
-			Code.NotNull(case5Action, nameof (case5Action));
-			Code.NotNull(case6Action, nameof (case6Action));
-			Code.NotNull(case7Action, nameof (case7Action));
-			Code.NotNull(case8Action, nameof (case8Action));
+			Code.NotNull(case1Action, nameof(case1Action));
+			Code.NotNull(case2Action, nameof(case2Action));
+			Code.NotNull(case3Action, nameof(case3Action));
+			Code.NotNull(case4Action, nameof(case4Action));
+			Code.NotNull(case5Action, nameof(case5Action));
+			Code.NotNull(case6Action, nameof(case6Action));
+			Code.NotNull(case7Action, nameof(case7Action));
+			Code.NotNull(case8Action, nameof(case8Action));
 			switch (_curCase)
 			{
 				case Cases.Case1 : case1Action((T1)_value); break;

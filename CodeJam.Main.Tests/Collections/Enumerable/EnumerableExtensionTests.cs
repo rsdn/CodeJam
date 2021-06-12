@@ -7,6 +7,7 @@ using CodeJam.Strings;
 using NUnit.Framework;
 
 using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessageAttribute;
+// ReSharper disable UnusedVariable
 
 namespace CodeJam.Collections
 {

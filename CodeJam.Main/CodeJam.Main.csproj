@@ -204,6 +204,7 @@
 		<Compile Update="Collections\Enumerable\EnumerableExtensions.MinMaxBy.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>EnumerableExtensions.MinMaxBy.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Collections\Enumerable\EnumerableExtensions.MinMaxBy.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -348,6 +349,7 @@
 		<Compile Update="Structures\OneOf\IOneOf.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>IOneOf.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Structures\OneOf\IOneOf.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -356,6 +358,7 @@
 		<Compile Update="Structures\OneOf\OneOf.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>OneOf.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Structures\OneOf\OneOf.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -364,6 +367,7 @@
 		<Compile Update="Structures\OneOf\ValueOneOf.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>ValueOneOf.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Structures\OneOf\ValueOneOf.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>

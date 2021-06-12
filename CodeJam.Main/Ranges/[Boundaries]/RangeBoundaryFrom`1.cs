@@ -184,7 +184,7 @@ namespace CodeJam.Ranges
 		/// <param name="boundaryKind">The kind of the boundary.</param>
 		/// <param name="skipsArgValidation">Stub argument to mark unsafe (no validation) constructor overload.</param>
 		[Obsolete(SkipsArgValidationObsolete)]
-		internal RangeBoundaryFrom([AllowNull] T value, RangeBoundaryFromKind boundaryKind, UnsafeOverload skipsArgValidation)
+		internal RangeBoundaryFrom(T? value, RangeBoundaryFromKind boundaryKind, UnsafeOverload skipsArgValidation)
 #if DEBUG
 			: this(value, boundaryKind) { }
 #else
@@ -499,7 +499,7 @@ namespace CodeJam.Ranges
 		//   Please create issue at first
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public int CompareTo([AllowNull] T other) => CompareTo(Range.GetCompareToBoundary(other));
+		public int CompareTo(T? other) => CompareTo(Range.GetCompareToBoundary(other));
 		#endregion
 
 		#region IComparable

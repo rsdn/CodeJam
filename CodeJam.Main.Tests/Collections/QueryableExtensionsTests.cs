@@ -1,5 +1,4 @@
 ﻿#if NET40_OR_GREATER || TARGETS_NETCOREAPP // TODO: update after fixes in Theraot.Core
-using System;
 using System.Linq;
 
 using CodeJam.Ranges;
