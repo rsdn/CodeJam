@@ -144,6 +144,105 @@ namespace CodeJam.Assertions
 		}
 
 		[Test]
+		public void TestEnumerableNotNullNorEmpty()
+		{
+			IEnumerable<int> empty = new HashSet<int>();
+			IEnumerable<int> nonEmpty = new List<int> { 1 };
+			Assert.Throws<ArgumentNullException>(() => Code.NotNullNorEmpty(default(IList<int>), "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmpty(empty, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(ex.Message, Does.Contain("Collection 'arg00' must not be empty"));
+
+			Assert.DoesNotThrow(() => Code.NotNullNorEmpty(nonEmpty, "arg00"));
+		}
+
+		[Test]
+		public void TestArrayNotNullNorEmpty()
+		{
+			string[] empty = { };
+			var nonEmpty = new[] { 1 };
+			Assert.Throws<ArgumentNullException>(() => Code.NotNullNorEmpty(default(IList<string>), "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmpty(empty, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(ex.Message, Does.Contain("Collection 'arg00' must not be empty"));
+
+			Assert.DoesNotThrow(() => Code.NotNullNorEmpty(nonEmpty, "arg00"));
+		}
+
+		[Test]
+		public void TestCollectionNotNullNorEmptyAndItemNotNull()
+		{
+			var empty = new HashSet<string?>();
+#if NET45_OR_GREATER || TARGETS_NETCOREAPP
+			var nonEmpty = (IList<string?>)new List<string?> { "" };
+#else
+			var nonEmpty = (IList<string?>)new ListEx<string?> { "" };
+#endif
+			var nonEmpty2 = (IReadOnlyCollection<string?>)nonEmpty;
+
+			Assert.Throws<ArgumentNullException>(() => Code.NotNullNorEmptyAndItemNotNull(default(IList<string?>), "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmptyAndItemNotNull(empty, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(ex.Message, Does.Contain("Collection 'arg00' must not be empty"));
+
+			Assert.DoesNotThrow(() => Code.NotNullNorEmptyAndItemNotNull(nonEmpty, "arg00"));
+			Assert.DoesNotThrow(() => Code.NotNullNorEmptyAndItemNotNull(nonEmpty2, "arg00"));
+
+			var itemNull = new List<string?> { "", null };
+			var ex2 = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmptyAndItemNotNull(itemNull, "arg00"));
+			Assert.That(ex2.Message, Does.Contain("arg00"));
+			Assert.That(ex2.Message, Does.Contain("should not be null"));
+		}
+
+		[Test]
+		public void TestEnumerableNotNullNorEmptyAndItemNotNull()
+		{
+			IEnumerable<string?> empty = new HashSet<string?>();
+			IEnumerable<string?> nonEmpty = new List<string?> { "" };
+			Assert.Throws<ArgumentNullException>(() => Code.NotNullNorEmptyAndItemNotNull(default(IEnumerable<string?>), "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmptyAndItemNotNull(empty, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(ex.Message, Does.Contain("Collection 'arg00' must not be empty"));
+
+			Assert.DoesNotThrow(() => Code.NotNullNorEmptyAndItemNotNull(nonEmpty, "arg00"));
+
+			IEnumerable<string?> itemNull = new List<string?> { "", null };
+			var ex2 = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmptyAndItemNotNull(itemNull, "arg00"));
+			Assert.That(ex2.Message, Does.Contain("arg00"));
+			Assert.That(ex2.Message, Does.Contain("should not be null"));
+		}
+
+		[Test]
+		public void TestArrayNotNullNorEmptyAndItemNotNull()
+		{
+			string?[] empty = { };
+			string?[] nonEmpty = { "" };
+			Assert.Throws<ArgumentNullException>(() => Code.NotNullNorEmpty(default(string?[]), "arg00"));
+			var ex = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmpty(empty, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(ex.Message, Does.Contain("Collection 'arg00' must not be empty"));
+
+			Assert.DoesNotThrow(() => Code.NotNullNorEmpty(nonEmpty, "arg00"));
+
+			string?[] itemNull = { "", null };
+			var ex2 = Assert.Throws<ArgumentException>(() => Code.NotNullNorEmptyAndItemNotNull(itemNull, "arg00"));
+			Assert.That(ex2.Message, Does.Contain("arg00"));
+			Assert.That(ex2.Message, Does.Contain("should not be null"));
+		}
+
+		[Test]
+		public void TestItemNotNull()
+		{
+			Code.ItemNotNull(new string[] { }, "arg00");
+			Code.ItemNotNull(new[] { "" }, "arg00");
+
+			var ex = Assert.Throws<ArgumentException>(() => Code.ItemNotNull(new[] { "", null }, "arg00"));
+			Assert.That(ex.Message, Does.Contain("arg00"));
+			Assert.That(ex.Message, Does.Contain("should not be null"));
+
+		}
+
+		[Test]
 		public void TestNotNullNorWhiteSpace()
 		{
 			Assert.Throws<ArgumentException>(() => Code.NotNullNorWhiteSpace(null, "arg00"));

@@ -120,8 +120,7 @@ namespace CodeJam
 			[AllowNull, SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T>? arg,
 			[InvokerParameterName] string argName)
 		{
-			if (arg == null)
-				throw CodeExceptions.ArgumentNull(argName);
+			NotNull(arg, argName);
 			if (!arg.Any())
 				throw CodeExceptions.ArgumentEmpty(argName);
 		}
@@ -138,8 +137,7 @@ namespace CodeJam
 			[AllowNull, SDC.NotNull, ValidatedNotNull] ICollection<T>? arg,
 			[InvokerParameterName] string argName)
 		{
-			if (arg == null)
-				throw CodeExceptions.ArgumentNull(argName);
+			NotNull(arg, argName);
 			if (arg.Count == 0)
 				throw CodeExceptions.ArgumentEmpty(argName);
 		}
@@ -156,8 +154,7 @@ namespace CodeJam
 			[AllowNull, SDC.NotNull, ValidatedNotNull] T?[]? arg,
 			[InvokerParameterName] string argName)
 		{
-			if (arg == null)
-				throw CodeExceptions.ArgumentNull(argName);
+			NotNull(arg, argName);
 			if (arg.Length == 0)
 				throw CodeExceptions.ArgumentEmpty(argName);
 		}
@@ -198,8 +195,69 @@ namespace CodeJam
 			[AllowNull, SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
 			[InvokerParameterName] string argName) where T : class
 		{
-			if (arg == null)
-				throw CodeExceptions.ArgumentNull(argName);
+			NotNull(arg, argName);
+			ItemNotNull(arg, argName);
+		}
+
+		/// <summary>
+		/// Ensures that supplied enumerable is not null nor empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Enumerable.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotNullNorEmptyAndItemNotNull<T>(
+			[AllowNull, SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
+			[InvokerParameterName] string argName)
+			where T : class
+		{
+			NotNull(arg, argName);
+
+			var hasItems = false;
+
+			foreach (var item in arg)
+			{
+				if (item == null)
+					throw CodeExceptions.ArgumentItemNull(argName);
+				hasItems = true;
+			}
+
+			if (!hasItems)
+				throw CodeExceptions.ArgumentEmpty(argName);
+		}
+
+		/// <summary>
+		/// Ensures that supplied collection is not null nor empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Collection.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotNullNorEmptyAndItemNotNull<T>(
+			[AllowNull, SDC.NotNull, ValidatedNotNull] ICollection<T?>? arg,
+			[InvokerParameterName] string argName)
+			where T : class
+		{
+			NotNullNorEmpty(arg, argName);
+			ItemNotNull(arg, argName);
+		}
+
+		/// <summary>
+		/// Ensures that supplied array is not null nor empty.
+		/// </summary>
+		/// <typeparam name="T">Type of item.</typeparam>
+		/// <param name="arg">Array.</param>
+		/// <param name="argName">Name of the argument.</param>
+		[DebuggerHidden, MethodImpl(AggressiveInlining)]
+		[AssertionMethod]
+		public static void NotNullNorEmptyAndItemNotNull<T>(
+			[AllowNull, SDC.NotNull, ValidatedNotNull] T?[]? arg,
+			[InvokerParameterName] string argName)
+			where T : class
+		{
+			NotNullNorEmpty(arg, argName);
 			ItemNotNull(arg, argName);
 		}
 
@@ -213,7 +271,7 @@ namespace CodeJam
 			[InstantHandle] IEnumerable<T?> arg,
 			[InvokerParameterName] string argName) where T : class
 		{
-			NotNull(arg, nameof(arg));
+			NotNull(arg, argName);
 
 			foreach (var item in arg)
 				if (item == null)
