@@ -374,12 +374,12 @@ namespace CodeJam.Ranges
 		public static void TestRangeNullKey()
 		{
 			var range = Range.Create<string?, string?>("a", "b", null);
-			IsTrue(range.IsEmpty);
+			IsTrue(range.IsNotEmpty);
 			IsNull(range.Key);
 			IsTrue(range.Equals(Range.Create<string?, string?>("a", "b", null)));
 
 			var range2 = range.WithKey((string?)null);
-			IsTrue(range2.IsEmpty);
+			IsTrue(range2.IsNotEmpty);
 		}
 	}
 }

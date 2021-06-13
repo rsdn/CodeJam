@@ -960,7 +960,7 @@ namespace CodeJam.Ranges
 			IsTrue(range.Equals(CompositeRange.Create(Range.Create<string?, string?>("a", "b", null))));
 
 			var range2 = range.WithKeys(x => (string?)null);
-			IsTrue(range2.IsEmpty);
+			IsTrue(range2.IsNotEmpty);
 		}
 	}
 }
