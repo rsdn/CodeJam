@@ -9,7 +9,6 @@
 
 #nullable enable
 
-
 using System;
 using System.Runtime.CompilerServices;
 
@@ -73,6 +72,9 @@ namespace CodeJam.Ranges
 			[InstantHandle] Func<T?, T> fromValueSelector,
 			[InstantHandle] Func<T?, T> toValueSelector)
 		{
+			Code.NotNull(fromValueSelector, nameof(fromValueSelector));
+			Code.NotNull(toValueSelector, nameof(toValueSelector));
+
 			if (IsEmpty || (!From.IsExclusiveBoundary && !To.IsExclusiveBoundary))
 			{
 				return this;
@@ -99,6 +101,9 @@ namespace CodeJam.Ranges
 			[InstantHandle] Func<T?, T> fromValueSelector,
 			[InstantHandle] Func<T?, T> toValueSelector)
 		{
+			Code.NotNull(fromValueSelector, nameof(fromValueSelector));
+			Code.NotNull(toValueSelector, nameof(toValueSelector));
+
 			if (IsEmpty || (!From.IsInclusiveBoundary && !To.IsInclusiveBoundary))
 			{
 				return this;

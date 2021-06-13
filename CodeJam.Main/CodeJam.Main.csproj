@@ -261,6 +261,7 @@
 		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.generated.cs">
 			<DependentUpon>CompositeRange`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Ranges\[CompositeRanges]\CompositeRange`2.Operations.generated.cs">
 			<DependentUpon>CompositeRange`2.Operations.tt</DependentUpon>
@@ -277,6 +278,7 @@
 		<Compile Update="Ranges\[Helper types]\RangeIntersection`2.generated.cs">
 			<DependentUpon>RangeIntersection`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Helper types]\RangeIntersection`2.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -285,6 +287,7 @@
 		<Compile Update="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.generated.cs">
 			<DependentUpon>CompositeRangeExtensions.WithKey.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[RangeExtensions]\CompositeRangeExtensions.WithKey.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
@@ -293,10 +296,12 @@
 		<Compile Update="Ranges\[Ranges]\Range`2.generated.cs">
 			<DependentUpon>Range`2.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<Compile Update="Ranges\[Ranges]\Range`2.Operations.generated.cs">
 			<DependentUpon>Range`2.Operations.tt</DependentUpon>
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Ranges\[Ranges]\Range`2.Operations.tt">
 			<LastGenOutput>Range`2.Operations.generated.cs</LastGenOutput>

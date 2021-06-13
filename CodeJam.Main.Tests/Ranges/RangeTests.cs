@@ -369,5 +369,17 @@ namespace CodeJam.Ranges
 			Throws<ArgumentException>(() => a.Contains(from, to));
 			Throws<ArgumentException>(() => a2.Contains(from, to));
 		}
+
+		[Test]
+		public static void TestRangeNullKey()
+		{
+			var range = Range.Create<string?, string?>("a", "b", null);
+			IsTrue(range.IsEmpty);
+			IsNull(range.Key);
+			IsTrue(range.Equals(Range.Create<string?, string?>("a", "b", null)));
+
+			var range2 = range.WithKey((string?)null);
+			IsTrue(range2.IsEmpty);
+		}
 	}
 }

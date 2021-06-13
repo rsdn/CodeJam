@@ -22,8 +22,7 @@ namespace CodeJam.Ranges
 		public static CompositeRange<T, TKey> ToCompositeRange<T, TKey>(
 			this IEnumerable<TKey> source,
 			[InstantHandle] Func<TKey, T> fromValueSelector,
-			[InstantHandle] Func<TKey, T> toValueSelector)
-			where TKey : notnull =>
+			[InstantHandle] Func<TKey, T> toValueSelector) =>
 				source
 					.Select(s => Range.Create(fromValueSelector(s), toValueSelector(s), s))
 					.ToCompositeRange();
@@ -42,8 +41,7 @@ namespace CodeJam.Ranges
 			this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, T> fromValueSelector,
 			[InstantHandle] Func<TSource, T> toValueSelector,
-			[InstantHandle] Func<TSource, TKey> keySelector)
-			where TKey : notnull =>
+			[InstantHandle] Func<TSource, TKey> keySelector) =>
 				source
 					.Select(s => Range.Create(fromValueSelector(s), toValueSelector(s), keySelector(s)))
 					.ToCompositeRange();
@@ -60,8 +58,7 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TSource> ToCompositeRangeFrom<TSource, T>(
 			this IEnumerable<TSource> source,
-			[InstantHandle] Func<TSource, T> fromValueSelector)
-			where TSource : notnull =>
+			[InstantHandle] Func<TSource, T> fromValueSelector) =>
 				ToCompositeRangeFrom(source, fromValueSelector, t => t);
 
 		/// <summary>
@@ -80,7 +77,6 @@ namespace CodeJam.Ranges
 			this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, T> fromValueSelector,
 			[InstantHandle] Func<TSource, TKey> keySelector)
-			where TKey : notnull
 		{
 			var keyAndFromBoundary = source
 				.Select(s => (From: Range.BoundaryFrom(fromValueSelector(s)), Key: keySelector(s)))
@@ -129,8 +125,7 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static CompositeRange<T, TSource> ToCompositeRangeTo<TSource, T>(
 			this IEnumerable<TSource> source,
-			[InstantHandle] Func<TSource, T> toValueSelector)
-			where TSource : notnull =>
+			[InstantHandle] Func<TSource, T> toValueSelector) =>
 				ToCompositeRangeTo(source, toValueSelector, t => t);
 
 		/// <summary>
@@ -149,7 +144,6 @@ namespace CodeJam.Ranges
 			this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, T> toValueSelector,
 			[InstantHandle] Func<TSource, TKey> keySelector)
-			where TKey : notnull
 		{
 			var keyAndToBoundary = source
 				.Select(s => (Key: keySelector(s), To: Range.BoundaryTo(toValueSelector(s))))
@@ -193,8 +187,7 @@ namespace CodeJam.Ranges
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusive<T, TKey>(
 			this IEnumerable<TKey> source,
 			[InstantHandle] Func<TKey, T> fromValueSelector,
-			[InstantHandle] Func<TKey, T> toValueSelector)
-			where TKey : notnull =>
+			[InstantHandle] Func<TKey, T> toValueSelector) =>
 				source
 					.Select(s => Range.CreateExclusive(fromValueSelector(s), toValueSelector(s), s))
 					.ToCompositeRange();
@@ -213,8 +206,7 @@ namespace CodeJam.Ranges
 			this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, T> fromValueSelector,
 			[InstantHandle] Func<TSource, T> toValueSelector,
-			[InstantHandle] Func<TSource, TKey> keySelector)
-			where TKey : notnull =>
+			[InstantHandle] Func<TSource, TKey> keySelector) =>
 				source
 					.Select(s => Range.CreateExclusive(fromValueSelector(s), toValueSelector(s), keySelector(s)))
 					.ToCompositeRange();
@@ -230,8 +222,7 @@ namespace CodeJam.Ranges
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveFrom<T, TKey>(
 			this IEnumerable<TKey> source,
 			[InstantHandle] Func<TKey, T> fromValueSelector,
-			[InstantHandle] Func<TKey, T> toValueSelector)
-			where TKey : notnull =>
+			[InstantHandle] Func<TKey, T> toValueSelector) =>
 				source
 					.Select(s => Range.CreateExclusiveFrom(fromValueSelector(s), toValueSelector(s), s))
 					.ToCompositeRange();
@@ -250,8 +241,7 @@ namespace CodeJam.Ranges
 			this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, T> fromValueSelector,
 			[InstantHandle] Func<TSource, T> toValueSelector,
-			[InstantHandle] Func<TSource, TKey> keySelector)
-			where TKey : notnull =>
+			[InstantHandle] Func<TSource, TKey> keySelector) =>
 				source
 					.Select(s => Range.CreateExclusiveFrom(fromValueSelector(s), toValueSelector(s), keySelector(s)))
 					.ToCompositeRange();
@@ -267,8 +257,7 @@ namespace CodeJam.Ranges
 		public static CompositeRange<T, TKey> ToCompositeRangeExclusiveTo<T, TKey>(
 			this IEnumerable<TKey> source,
 			[InstantHandle] Func<TKey, T> fromValueSelector,
-			[InstantHandle] Func<TKey, T> toValueSelector)
-			where TKey : notnull =>
+			[InstantHandle] Func<TKey, T> toValueSelector) =>
 				source
 					.Select(s => Range.CreateExclusiveTo(fromValueSelector(s), toValueSelector(s), s))
 					.ToCompositeRange();
@@ -287,8 +276,7 @@ namespace CodeJam.Ranges
 			this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, T> fromValueSelector,
 			[InstantHandle] Func<TSource, T> toValueSelector,
-			[InstantHandle] Func<TSource, TKey> keySelector)
-			where TKey : notnull =>
+			[InstantHandle] Func<TSource, TKey> keySelector) =>
 				source
 					.Select(s => Range.CreateExclusiveTo(fromValueSelector(s), toValueSelector(s), keySelector(s)))
 					.ToCompositeRange();

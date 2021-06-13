@@ -131,7 +131,9 @@ namespace CodeJam.Ranges
 
 		#region Fields & .ctor()
 		// TODO: REMOVE readonly modifier. Same reason as for Range<T>. Proof: NestedStructAccessPerfTests.
-		private readonly ReadOnlyCollection<Range<T>> _ranges; // TODO: own collection?
+#pragma warning disable IDE0044 // Add readonly modifier
+		private ReadOnlyCollection<Range<T>> _ranges; // TODO: own collection?
+#pragma warning restore IDE0044 // Add readonly modifier
 		private readonly bool _hasRangesToMerge;
 
 		#region T4-dont-replace

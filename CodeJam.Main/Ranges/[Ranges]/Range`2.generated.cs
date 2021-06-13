@@ -9,7 +9,6 @@
 
 #nullable enable
 
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
@@ -69,8 +68,8 @@ namespace CodeJam.Ranges
 		/// <param name="key">The value of the range key.</param>
 		public Range(RangeBoundaryFrom<T> from, RangeBoundaryTo<T> to, TKey key)
 		{
-			bool fromEmpty = from.IsEmpty;
-			bool toEmpty = to.IsEmpty;
+			var fromEmpty = from.IsEmpty;
+			var toEmpty = to.IsEmpty;
 			if (fromEmpty != toEmpty)
 			{
 				throw CodeExceptions.Argument(

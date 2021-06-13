@@ -156,12 +156,14 @@ namespace CodeJam.Ranges
 				}
 
 				var key = _ranges[i].Key;
+				// ReSharper disable once ConditionIsAlwaysTrueOrFalse
 				if (key == null)
 					nullKeysCount++;
 				else
 					keys[(key, 0)] = keys.GetValueOrDefault((key, 0)) + 1;
 
 				var otherKey = otherRanges[i].Key;
+				// ReSharper disable once ConditionIsAlwaysTrueOrFalse
 				if (otherKey == null)
 					nullKeysCount--;
 				else

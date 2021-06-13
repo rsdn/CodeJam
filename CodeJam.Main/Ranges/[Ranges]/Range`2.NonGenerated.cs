@@ -28,9 +28,9 @@ namespace CodeJam.Ranges
 		public static readonly Range<T, TKey> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly Range<T, TKey?> Infinite = new(
+		public static readonly Range<T, TKey> Infinite = new(
 			RangeBoundaryFrom<T>.NegativeInfinity, RangeBoundaryTo<T>.PositiveInfinity,
-			default);
+			default!);
 		#endregion
 
 		#endregion

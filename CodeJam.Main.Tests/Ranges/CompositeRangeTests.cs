@@ -46,7 +46,6 @@ namespace CodeJam.Ranges
 			string value,
 			Func<string, T> parseValueCallback,
 			Func<string, TKey> parseKeyCallback)
-			where TKey : notnull
 		{
 			if (value == RangeInternal.EmptyString)
 				return CompositeRange<T, TKey>.Empty;
@@ -952,6 +951,17 @@ namespace CodeJam.Ranges
 			AreEqual(range.ToString(CultureInfo.InvariantCulture), expected);
 		}
 
+		[Test]
+		public static void TestCompositeRangeNullKey()
+		{
+			var range = CompositeRange.Create(Range.Create<string?, string?>("a", "b", null));
+			IsTrue(range.IsNotEmpty);
+			IsNull(range.SubRanges[0].Key);
+			IsTrue(range.Equals(CompositeRange.Create(Range.Create<string?, string?>("a", "b", null))));
+
+			var range2 = range.WithKeys(x => (string?)null);
+			IsTrue(range2.IsEmpty);
+		}
 	}
 }
 

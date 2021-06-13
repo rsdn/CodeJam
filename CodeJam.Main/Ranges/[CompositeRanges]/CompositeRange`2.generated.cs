@@ -9,7 +9,6 @@
 
 #nullable enable
 
-
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -137,14 +136,16 @@ namespace CodeJam.Ranges
 		public static readonly CompositeRange<T, TKey> Empty;
 
 		/// <summary>Infinite range, (-∞..+∞)</summary>
-		public static readonly CompositeRange<T, TKey?> Infinite = new(Range<T, TKey?>.Infinite);
+		public static readonly CompositeRange<T, TKey> Infinite = new(Range<T, TKey>.Infinite);
 		#endregion
 
 		#endregion
 
 		#region Fields & .ctor()
 		// TODO: REMOVE readonly modifier. Same reason as for Range<T, TKey>. Proof: NestedStructAccessPerfTests.
-		private readonly ReadOnlyCollection<Range<T, TKey>> _ranges; // TODO: own collection?
+#pragma warning disable IDE0044 // Add readonly modifier
+		private ReadOnlyCollection<Range<T, TKey>> _ranges; // TODO: own collection?
+#pragma warning restore IDE0044 // Add readonly modifier
 		private readonly bool _hasRangesToMerge;
 
 		#region T4-dont-replace
@@ -245,8 +246,9 @@ namespace CodeJam.Ranges
 		#endregion
 
 		#region ToString
-		/// <summary>Returns string representation of the range.</summary>
+		/// <summary>Returns string representation of the range using current culture.</summary>
 		/// <returns>The string representation of the range.</returns>
+#pragma warning disable CA1305 // Specify IFormatProvider
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public override string ToString()
 		{
@@ -264,6 +266,7 @@ namespace CodeJam.Ranges
 				subRangesPart +
 				SuffixString;
 		}
+#pragma warning restore CA1305 // Specify IFormatProvider
 
 		/// <summary>
 		/// Returns string representation of the range using the specified format string.
