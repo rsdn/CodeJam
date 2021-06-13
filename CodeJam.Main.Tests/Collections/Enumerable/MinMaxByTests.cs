@@ -35,13 +35,12 @@ namespace CodeJam.Collections
 		[TestCase(new[] { 3, 1, 0, 4, 6 }, ExpectedResult = "0")]
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
 		public string MinByString(int[] source) =>
-			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MinBy(i => i.Value)?.Value!;
+			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MinBy(i => i.Value).Value;
 
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string?[] { null, null })]
-		public void MinByStringNoElements(string[] source) =>
-			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-			Assert.Throws<InvalidOperationException>(() => source.MinBy(s => s));
+		public void MinByStringNoElements(string?[] source) =>
+			Assert.Throws<InvalidOperationException>(() => _ = source.MinBy(s => s));
 
 		[TestCase(new[] { 3, 1, 0, 4, 6 }, ExpectedResult = "0")]
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
@@ -55,11 +54,11 @@ namespace CodeJam.Collections
 		[TestCase(new[] { 3, 1, 8, 0, 6 }, ExpectedResult = "8")]
 		[TestCase(new[] { 1 }, ExpectedResult = "1")]
 		public string MaxByString(int[] source) =>
-			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MaxBy(i => i.Value)!.Value;
+			source.Select(v => new Item<string>(v.ToString(CultureInfo.InvariantCulture))).MaxBy(i => i.Value).Value;
 
 		[TestCase(arg: new string[0])]
 		[TestCase(arg: new string?[] { null, null })]
-		public void MaxByStringNoElements(string[] source) =>
+		public void MaxByStringNoElements(string?[] source) =>
 			Assert.Throws<InvalidOperationException>(() => _ = source.MaxBy(s => s));
 
 		[TestCase(new[] { 3, 1, 0, 4, 6 }, ExpectedResult = "6")]

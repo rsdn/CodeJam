@@ -65,9 +65,11 @@ namespace CodeJam.Dates
 		}
 
 		private static int DifferenceInMonths(DateTime startDate, DateTime endDate) =>
+#pragma warning disable IDE0047 // Remove unnecessary parentheses
 			// ReSharper disable once ArrangeRedundantParentheses
 			(endDate.Month - startDate.Month) +
 				(endDate.Year - startDate.Year) * 12;
+#pragma warning restore IDE0047 // Remove unnecessary parentheses
 
 		/// <summary>Returns count of days between two dates.</summary>
 		/// <param name="range">The date range.</param>

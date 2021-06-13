@@ -21,7 +21,7 @@ namespace CodeJam.Threading
 	/// <summary>
 	/// Helper methods for <see cref="Task"/> and <see cref="Task{TResult}"/>.
 	/// </summary>
-	partial class TaskHelper
+	public partial class TaskHelper
 	{
 		/// <summary>
 		/// Awaits passed task or throws <see cref="TimeoutException"/> on timeout.

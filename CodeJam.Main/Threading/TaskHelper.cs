@@ -12,7 +12,7 @@ using JetBrains.Annotations;
 
 namespace CodeJam.Threading
 {
-	partial class TaskHelper
+	public partial class TaskHelper
 	{
 		#region WaitAll
 		/// <summary>

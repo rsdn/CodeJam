@@ -70,7 +70,7 @@ namespace CodeJam.Dates
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"Value of '{argumentName}' argument should be a first day of month.",
+				$"Value of '{argumentName}' ({value}) argument should be a first day of month.",
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
@@ -90,7 +90,7 @@ namespace CodeJam.Dates
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"Value of '{argumentName}' argument should be a first day of year.",
+				$"Value of '{argumentName}' ({value}) argument should be a first day of year.",
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
@@ -110,7 +110,7 @@ namespace CodeJam.Dates
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"Value of '{argumentName}' argument should be a last day of month.",
+				$"Value of '{argumentName}' ({value}) argument should be a last day of month.",
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}
@@ -130,7 +130,7 @@ namespace CodeJam.Dates
 		{
 			BreakIfAttached();
 			return new ArgumentException(
-				$"Value of '{argumentName}' argument should be a last day of year.",
+				$"Value of '{argumentName}' ({value}) argument should be a last day of year.",
 				argumentName)
 				.LogToCodeTraceSourceBeforeThrow();
 		}

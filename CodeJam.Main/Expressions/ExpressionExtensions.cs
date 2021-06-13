@@ -13,7 +13,7 @@ using SuppressMessageAttribute = System.Diagnostics.CodeAnalysis.SuppressMessage
 
 namespace CodeJam.Expressions
 {
-	static partial class ExpressionExtensions
+	public static partial class ExpressionExtensions
 	{
 		#region Visit
 		private static void VisitInternal<T>(IEnumerable<T> source, [InstantHandle] Action<T> func)

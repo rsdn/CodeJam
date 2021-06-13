@@ -16,7 +16,7 @@ namespace CodeJam
 	/// <summary>
 	/// Extension methods for Enum types
 	/// </summary>
-	partial class EnumHelper
+	public partial class EnumHelper
 	{
 		private static class OpHolder<TEnum>
 			where TEnum : struct, Enum

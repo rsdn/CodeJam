@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static TSource? MinBy<TSource, TValue>(
+		public static TSource MinBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector) =>
 				MinBy(source, selector, Comparer<TValue>.Default);
@@ -58,9 +58,8 @@ namespace CodeJam.Collections
 		/// <param name="comparer">The <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>The item with minimum value in the sequence.</returns>
 		/// <exception cref="InvalidOperationException"><paramref name="source"/> has no not null elements</exception>
-#pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static TSource? MinBy<TSource, TValue>(
+		public static TSource MinBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer)
@@ -105,9 +104,7 @@ namespace CodeJam.Collections
 				while (e.MoveNext())
 				{
 					var x = selector(e.Current);
-#pragma warning disable CS8604
 					if (comparer.Compare(x, value) < 0)
-#pragma warning restore CS8604
 					{
 						value = x;
 						item = e.Current;
@@ -117,7 +114,6 @@ namespace CodeJam.Collections
 
 			return item;
 		}
-#pragma warning restore CA1508 // Avoid dead conditional code
 
 		/// <summary>
 		/// Invokes a <paramref name="selector"/> on each element of a <paramref name="source"/>
@@ -133,7 +129,6 @@ namespace CodeJam.Collections
 		/// The item with minimum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-#pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TSource? MinByOrDefault<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -181,9 +176,7 @@ namespace CodeJam.Collections
 				while (e.MoveNext())
 				{
 					var x = selector(e.Current);
-#pragma warning disable CS8604
 					if (comparer.Compare(x, value) < 0)
-#pragma warning restore CS8604
 					{
 						value = x;
 						item = e.Current;
@@ -193,7 +186,6 @@ namespace CodeJam.Collections
 
 			return item;
 		}
-#pragma warning restore CA1508 // Avoid dead conditional code
 
 		#endregion
 
@@ -208,7 +200,7 @@ namespace CodeJam.Collections
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static TSource? MaxBy<TSource, TValue>(
+		public static TSource MaxBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector) => MaxBy(source, selector, Comparer<TValue>.Default);
 
@@ -242,9 +234,8 @@ namespace CodeJam.Collections
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <param name="comparer">The <see cref="IComparer{T}"/> to compare values.</param>
 		/// <returns>The item with maximum value in the sequence.</returns>
-#pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static TSource? MaxBy<TSource, TValue>(
+		public static TSource MaxBy<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
 			[InstantHandle] Func<TSource, TValue> selector,
 			IComparer<TValue>? comparer)
@@ -299,7 +290,6 @@ namespace CodeJam.Collections
 
 			return item;
 		}
-#pragma warning restore CA1508 // Avoid dead conditional code
 
 		/// <summary>
 		/// Invokes a <paramref name="selector"/> on each element of a <paramref name="source"/>
@@ -315,7 +305,6 @@ namespace CodeJam.Collections
 		/// The item with maximum value in the sequence or <typeparamref name="TSource"/> default value if
 		/// <paramref name="source"/> has no not null elements.
 		/// </returns>
-#pragma warning disable CA1508 // Avoid dead conditional code
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static TSource? MaxByOrDefault<TSource, TValue>(
 			[InstantHandle] this IEnumerable<TSource> source,
@@ -363,9 +352,7 @@ namespace CodeJam.Collections
 				while (e.MoveNext())
 				{
 					var x = selector(e.Current);
-#pragma warning disable CS8604
 					if (comparer.Compare(x, value) > 0)
-#pragma warning restore CS8604
 					{
 						value = x;
 						item = e.Current;
@@ -377,5 +364,4 @@ namespace CodeJam.Collections
 		}
 		#endregion
 	}
-#pragma warning restore CA1508 // Avoid dead conditional code
 }
