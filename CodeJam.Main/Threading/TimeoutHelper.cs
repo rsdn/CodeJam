@@ -8,6 +8,7 @@ using CodeJam.Dates;
 
 #if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using System.Threading;
+
 using TaskEx = System.Threading.Tasks.Task;
 #else
 using TaskEx = System.Threading.Tasks.TaskEx;
@@ -38,45 +39,53 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <remarks>
 		/// Use case scenario: methods that accept timeout often accept only <see cref="InfiniteTimeSpan"/>
-		/// but not other negative values. Check <see cref="TaskEx.Delay(int)"/> as example.
+		/// but not other negative values. Check <see cref="TaskEx.Delay(TimeSpan)"/> as example.
 		/// Motivation for <paramref name="infiniteIfDefault"/>:
 		/// default timeout in configs often means 'infinite timeout', not 'do not wait and return immediately'.
 		/// </remarks>
-		public static TimeSpan AdjustTimeout(this TimeSpan timeout, bool infiniteIfDefault = false)
+		public static TimeSpan AdjustTimeout(this TimeSpan timeout, bool infiniteIfDefault = false) =>
+			timeout.AdjustTimeout(InfiniteTimeSpan, infiniteIfDefault);
+
+		/// <summary>
+		/// Replaces negative <paramref name="timeout"/> value with <paramref name="infiniteValue"/>.
+		/// If <paramref name="infiniteIfDefault"/> is <c>true</c>, <see cref="TimeSpan.Zero"/> value is treated as <paramref name="infiniteValue"/>
+		/// </summary>
+		/// <remarks>
+		/// Use case scenario: methods that accept timeout often accept only <see cref="InfiniteTimeSpan"/>
+		/// but not other negative values. Check <see cref="TaskEx.Delay(TimeSpan)"/> as example.
+		/// Motivation for <paramref name="infiniteIfDefault"/>:
+		/// default timeout in configs often means 'infinite timeout', not 'do not wait and return immediately'.
+		/// </remarks>
+		public static TimeSpan AdjustTimeout(this TimeSpan timeout, TimeSpan infiniteValue, bool infiniteIfDefault = false)
 		{
 			if (infiniteIfDefault)
 				return timeout <= TimeSpan.Zero
-					? InfiniteTimeSpan
+					? infiniteValue
 					: timeout;
 
 			return timeout < TimeSpan.Zero
-				? InfiniteTimeSpan
+				? infiniteValue
 				: timeout;
 		}
 
 		/// <summary>
 		/// Limits timeout by upper limit.
-		/// Replaces negative <paramref name="timeout"/> value with <see cref="InfiniteTimeSpan"/>.
-		/// If <paramref name="infiniteIfDefault"/> is <c>true</c>, <see cref="TimeSpan.Zero"/> value is treated as <see cref="InfiniteTimeSpan"/>
+		/// Replaces negative <paramref name="timeout"/> value with <paramref name="maximumValue"/>.
+		/// If <paramref name="infiniteIfDefault"/> is <c>true</c>, <see cref="TimeSpan.Zero"/> value is treated as <paramref name="maximumValue"/>
 		/// </summary>
 		/// <remarks>
-		/// Use case scenario: methods that accept timeout often accept only <see cref="InfiniteTimeSpan"/>
-		/// but not other negative values. Check <see cref="TaskEx.Delay(int)"/> as example.
+		/// Use case scenario: limit too large timeout values.
 		/// Motivation for <paramref name="infiniteIfDefault"/>:
 		/// default timeout in configs often means 'infinite timeout', not 'do not wait and return immediately'.
 		/// </remarks>
-		public static TimeSpan AdjustTimeout(this TimeSpan timeout, TimeSpan upperLimit, bool infiniteIfDefault = false)
+		public static TimeSpan AdjustAndLimitTimeout(this TimeSpan timeout, TimeSpan maximumValue, bool infiniteIfDefault = false)
 		{
 			timeout = timeout.AdjustTimeout(infiniteIfDefault);
-			upperLimit = upperLimit.AdjustTimeout(infiniteIfDefault);
+			maximumValue = maximumValue.AdjustTimeout(infiniteIfDefault);
 
-			// Ignore upper limit if negative
-			if (upperLimit < TimeSpan.Zero)
-				return timeout;
-
-			// Ignore timeout if negative or exceeds upper limit
-			if (timeout < TimeSpan.Zero || timeout > upperLimit)
-				return upperLimit;
+			// Return maximum value if the timeout is negative or exceeds upper limit
+			if (timeout < TimeSpan.Zero || timeout > maximumValue)
+				return maximumValue;
 
 			return timeout;
 		}
