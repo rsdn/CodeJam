@@ -1152,7 +1152,7 @@ namespace CodeJam.Expressions
 				case ExpressionType.Call:
 				{
 					var e = (MethodCallExpression)expr;
-					// ReSharper disable ConstantConditionalAccessQualifier
+					// ReSharper disable once RedundantSuppressNullableWarningExpression
 					return e.Update(
 						TransformInternal(e.Object, func)!,
 						TransformInternal(e.Arguments, func));
