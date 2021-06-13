@@ -1,78 +1,86 @@
-﻿using System;
+﻿using NUnit.Framework;
 
-using NUnit.Framework;
+using System;
 
 namespace CodeJam.Threading
 {
 	[TestFixture]
 	public class TimeoutHelperTests
 	{
-		[Test]
-		public void TestAdjustTimeout()
+		[TestCase(true)]
+		[TestCase(false)]
+		public void TestAdjustTimeout(bool infiniteIfDefault)
 		{
 			var d1 = TimeSpan.FromDays(1);
 			var dMinus1 = TimeSpan.FromDays(-1);
+			var infiniteValue = TimeoutHelper.InfiniteTimeSpan;
+			var adjustedZero = infiniteIfDefault ? infiniteValue : TimeSpan.Zero;
 
-			Assert.AreEqual(TimeSpan.Zero.AdjustTimeout(), TimeSpan.Zero);
-			Assert.AreEqual(d1.AdjustTimeout(), d1);
-			Assert.AreEqual(dMinus1.AdjustTimeout(), TimeoutHelper.InfiniteTimeSpan);
+			Assert.AreEqual(
+				d1.AdjustTimeout(infiniteIfDefault),
+				d1);
+			Assert.AreEqual(
+				dMinus1.AdjustTimeout(infiniteIfDefault),
+				infiniteValue);
+			Assert.AreEqual(
+				TimeSpan.Zero.AdjustTimeout(infiniteIfDefault),
+				adjustedZero);
+			Assert.AreEqual(
+				TimeoutHelper.InfiniteTimeSpan.AdjustTimeout(infiniteIfDefault),
+				infiniteValue);
 		}
 
-		[Test]
-		public void TestAdjustTimeoutInfinite()
+		[TestCase(true)]
+		[TestCase(false)]
+		public void TestAdjustTimeoutDefaultValue(bool infiniteIfDefault)
 		{
-			const bool infiniteIfDefault = true;
 			var d1 = TimeSpan.FromDays(1);
 			var dMinus1 = TimeSpan.FromDays(-1);
+			var infiniteValue = TimeSpan.FromSeconds(60);
+			var adjustedZero = infiniteIfDefault ? infiniteValue : TimeSpan.Zero;
 
-			Assert.AreEqual(TimeSpan.Zero.AdjustTimeout(infiniteIfDefault), TimeoutHelper.InfiniteTimeSpan);
-			Assert.AreEqual(d1.AdjustTimeout(infiniteIfDefault), d1);
-			Assert.AreEqual(dMinus1.AdjustTimeout(infiniteIfDefault), TimeoutHelper.InfiniteTimeSpan);
+			Assert.AreEqual(
+				d1.AdjustTimeout(infiniteValue, infiniteIfDefault),
+				d1);
+			Assert.AreEqual(
+				dMinus1.AdjustTimeout(infiniteValue, infiniteIfDefault),
+				infiniteValue);
+			Assert.AreEqual(
+				TimeSpan.Zero.AdjustTimeout(infiniteValue, infiniteIfDefault),
+				adjustedZero);
+			Assert.AreEqual(
+				TimeoutHelper.InfiniteTimeSpan.AdjustTimeout(infiniteValue, infiniteIfDefault),
+				infiniteValue);
 		}
 
-		[Test]
-		public void TestAdjustTimeoutLimit()
+
+
+		[TestCase(true)]
+		[TestCase(false)]
+		public void TestAdjustAnLimitTimeout(bool infiniteIfDefault)
 		{
 			var d1 = TimeSpan.FromDays(1);
 			var d2 = TimeSpan.FromDays(2);
 			var dMinus1 = TimeSpan.FromDays(-1);
+			var maxValue = TimeSpan.FromHours(36);
+			var infiniteValue = TimeoutHelper.InfiniteTimeSpan;
+			var adjustedZero = infiniteIfDefault ? maxValue : TimeSpan.Zero;
 
-			Assert.AreEqual(TimeSpan.Zero.AdjustTimeout(TimeSpan.Zero), TimeSpan.Zero);
-			Assert.AreEqual(TimeSpan.Zero.AdjustTimeout(d1), TimeSpan.Zero);
-			Assert.AreEqual(TimeSpan.Zero.AdjustTimeout(dMinus1), TimeSpan.Zero);
-
-			Assert.AreEqual(d1.AdjustTimeout(TimeSpan.Zero), TimeSpan.Zero);
-			Assert.AreEqual(d1.AdjustTimeout(d1), d1);
-			Assert.AreEqual(d1.AdjustTimeout(d2), d1);
-			Assert.AreEqual(d2.AdjustTimeout(d1), d1);
-			Assert.AreEqual(d1.AdjustTimeout(dMinus1), d1);
-
-			Assert.AreEqual(dMinus1.AdjustTimeout(TimeSpan.Zero), TimeSpan.Zero);
-			Assert.AreEqual(dMinus1.AdjustTimeout(d1), d1);
-			Assert.AreEqual(dMinus1.AdjustTimeout(dMinus1), TimeoutHelper.InfiniteTimeSpan);
-		}
-
-		[Test]
-		public void TestAdjustTimeoutLimitInfiniteIfDefault()
-		{
-			const bool infiniteIfDefault = true;
-			var d1 = TimeSpan.FromDays(1);
-			var d2 = TimeSpan.FromDays(2);
-			var dMinus1 = TimeSpan.FromDays(-1);
-
-			Assert.AreEqual(TimeSpan.Zero.AdjustTimeout(TimeSpan.Zero, infiniteIfDefault), TimeoutHelper.InfiniteTimeSpan);
-			Assert.AreEqual(TimeSpan.Zero.AdjustTimeout(d1, infiniteIfDefault), d1);
-			Assert.AreEqual(TimeSpan.Zero.AdjustTimeout(dMinus1, infiniteIfDefault), TimeoutHelper.InfiniteTimeSpan);
-
-			Assert.AreEqual(d1.AdjustTimeout(TimeSpan.Zero, infiniteIfDefault), d1);
-			Assert.AreEqual(d1.AdjustTimeout(d1, infiniteIfDefault), d1);
-			Assert.AreEqual(d1.AdjustTimeout(d2, infiniteIfDefault), d1);
-			Assert.AreEqual(d2.AdjustTimeout(d1, infiniteIfDefault), d1);
-			Assert.AreEqual(d1.AdjustTimeout(dMinus1, infiniteIfDefault), d1);
-
-			Assert.AreEqual(dMinus1.AdjustTimeout(TimeSpan.Zero, infiniteIfDefault), TimeoutHelper.InfiniteTimeSpan);
-			Assert.AreEqual(dMinus1.AdjustTimeout(d1, infiniteIfDefault), d1);
-			Assert.AreEqual(dMinus1.AdjustTimeout(dMinus1, infiniteIfDefault), TimeoutHelper.InfiniteTimeSpan);
+			Assert.AreEqual(
+				d1.AdjustAndLimitTimeout(maxValue, infiniteIfDefault),
+				d1);
+			Assert.AreEqual(
+				d2.AdjustAndLimitTimeout(maxValue, infiniteIfDefault),
+				maxValue);
+			Assert.AreEqual(
+				dMinus1.AdjustAndLimitTimeout(maxValue, infiniteIfDefault),
+				maxValue);
+			Assert.AreEqual(
+				TimeSpan.Zero.AdjustAndLimitTimeout(maxValue, infiniteIfDefault),
+				adjustedZero);
+			Assert.AreEqual(
+				TimeoutHelper.InfiniteTimeSpan.AdjustAndLimitTimeout(maxValue, infiniteIfDefault),
+				maxValue);
 		}
 
 		[TestCase(0, 1)]
