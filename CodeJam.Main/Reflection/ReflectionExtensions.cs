@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -666,6 +667,7 @@ namespace CodeJam.Reflection
 		/// <param name="type">Type to check.</param>
 		/// <returns>True, if <paramref name="type"/> is browsable.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
+		[SuppressMessage("ReSharper", "ConstantConditionalAccessQualifier")]
 		public static bool IsBrowsable(this Type type) =>
 			type.GetCustomAttribute<BrowsableAttribute>()?.Browsable ?? true;
 
@@ -677,6 +679,7 @@ namespace CodeJam.Reflection
 		/// <param name="member">Member to check.</param>
 		/// <returns>True, if <paramref name="member"/> is browsable.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
+		[SuppressMessage("ReSharper", "ConstantConditionalAccessQualifier")]
 		public static bool IsBrowsable(this MemberInfo member) =>
 			member.GetCustomAttribute<BrowsableAttribute>()?.Browsable ?? true;
 

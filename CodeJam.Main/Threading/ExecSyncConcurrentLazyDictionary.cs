@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+
+#if !NET20 && !NET30 && !NET35
 using System.Threading;
+#endif
 
 using CodeJam.Collections;
 
@@ -128,6 +131,7 @@ namespace CodeJam.Threading
 			var res = _map.TryGetValue(key, out var lv);
 			if (res)
 			{
+				// ReSharper disable once RedundantSuppressNullableWarningExpression
 				value = lv!.Value;
 				return true;
 			}

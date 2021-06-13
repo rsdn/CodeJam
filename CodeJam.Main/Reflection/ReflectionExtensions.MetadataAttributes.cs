@@ -1,6 +1,7 @@
 ﻿#if TARGETS_NET || NETSTANDARD15_OR_GREATER || TARGETS_NETCOREAPP // PUBLIC_API_CHANGES
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -209,7 +210,7 @@ namespace CodeJam.Reflection
 				visited.AddRange(inheritanceTypes);
 
 				// ReSharper disable once CoVariantArrayConversion
-				var attributes = GetAttributesFromCandidates<TAttribute>(false, inheritanceTypes!);
+				var attributes = GetAttributesFromCandidates<TAttribute>(false, inheritanceTypes);
 				foreach (var attribute in attributes)
 					yield return attribute;
 			}
@@ -320,6 +321,7 @@ namespace CodeJam.Reflection
 		#region GetAttributesFromCandidates
 		private static readonly AttributeUsageAttribute _defaultUsage = new(AttributeTargets.All);
 
+		[SuppressMessage("ReSharper", "ConstantNullCoalescingCondition")]
 		private static readonly Func<Type, AttributeUsageAttribute> _attributeUsages = Algorithms.Memoize(
 			(Type t) => t.GetTypeInfo().GetCustomAttribute<AttributeUsageAttribute>(true) ?? _defaultUsage,
 			true);

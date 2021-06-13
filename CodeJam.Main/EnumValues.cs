@@ -34,6 +34,7 @@ namespace CodeJam
 				var field = fields[name];
 				var displayAttribute = field.GetCustomAttribute<DisplayAttribute>();
 
+				// ReSharper disable ConstantConditionalAccessQualifier
 				result.Add(
 					new EnumValue(
 						name,
@@ -41,6 +42,7 @@ namespace CodeJam
 						field,
 						displayAttribute?.GetName(),
 						displayAttribute?.GetDescription()));
+				// ReSharper restore ConstantConditionalAccessQualifier
 			}
 
 			return result.ToArray();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -37,6 +38,8 @@ namespace CodeJam
 			where TEnum : struct, Enum
 		{
 			#region Init helpers
+
+			[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
 			private static bool IsFlagsEnumCore() => typeof(TEnum).GetTypeInfo().GetCustomAttribute<FlagsAttribute>() != null;
 
 			private static TEnum[] GetValuesCore() => (TEnum[])Enum.GetValues(typeof(TEnum));

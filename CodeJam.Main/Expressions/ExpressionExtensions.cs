@@ -1152,8 +1152,9 @@ namespace CodeJam.Expressions
 				case ExpressionType.Call:
 				{
 					var e = (MethodCallExpression)expr;
+					// ReSharper disable ConstantConditionalAccessQualifier
 					return e.Update(
-						TransformInternal(e.Object, func)!, // Bug in NRT markup, fixed after .NET 5.0
+						TransformInternal(e.Object, func)!,
 						TransformInternal(e.Arguments, func));
 				}
 

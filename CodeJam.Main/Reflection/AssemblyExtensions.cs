@@ -26,6 +26,7 @@ namespace CodeJam.Reflection
 		public static bool IsDebugAssembly(this Assembly assembly)
 		{
 			Code.NotNull(assembly, nameof(assembly));
+			// ReSharper disable once ConstantConditionalAccessQualifier
 			return assembly.GetCustomAttribute<DebuggableAttribute>()?.IsJITOptimizerDisabled ?? false;
 		}
 #endif

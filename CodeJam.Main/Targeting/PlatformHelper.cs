@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Runtime.Versioning;
 
 namespace CodeJam.Targeting
@@ -7,6 +8,7 @@ namespace CodeJam.Targeting
 	{
 		/// <summary>Target platform the assembly was built for.</summary>
 		// ReSharper disable once ConstantConditionalAccessQualifier
+		[SuppressMessage("ReSharper", "ConstantConditionalAccessQualifier")]
 		public static readonly string? TargetPlatform =
 			typeof(PlatformHelper).GetAssembly().GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName;
 	}

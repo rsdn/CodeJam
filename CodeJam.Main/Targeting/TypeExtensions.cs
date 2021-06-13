@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Linq;
@@ -140,6 +141,7 @@ namespace CodeJam.Targeting
 #endif
 
 		[MethodImpl(AggressiveInlining)]
+		[SuppressMessage("ReSharper", "ReturnTypeCanBeNotNullable")]
 		private static object? GetCustomAttributeWithInterfaceSupport(
 			this Type type, Type attributeType, bool inherit)
 		{

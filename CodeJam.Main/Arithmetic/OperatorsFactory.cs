@@ -168,6 +168,7 @@ namespace CodeJam.Arithmetic
 			if (field == null)
 				throw FieldNotSupported(typeof(T), nameof(double.NaN), null);
 
+			// ReSharper disable once RedundantSuppressNullableWarningExpression
 			return (T)field.GetValue(null)!;
 		}
 
@@ -193,6 +194,7 @@ namespace CodeJam.Arithmetic
 			if (field == null)
 				throw FieldNotSupported(typeof(T), nameof(double.NegativeInfinity), null);
 
+			// ReSharper disable RedundantSuppressNullableWarningExpression
 			return (T)field.GetValue(null)!;
 		}
 

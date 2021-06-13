@@ -51,6 +51,7 @@ namespace CodeJam.Metadata
 				}
 				else
 				{
+					// ReSharper disable once RedundantSuppressNullableWarningExpression
 					var combinePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, xmlFile);
 
 					if (File.Exists(combinePath))
@@ -119,6 +120,7 @@ namespace CodeJam.Metadata
 										? $"'{fileName}': Element <Type Name='{typeName}'><Member Name='{memberName}'><'{aName}'><{name} /> has to have 'Value' attribute."
 										: $"'{fileName}': Element <Type Name='{typeName}'><'{aName}'><{name} /> has to have 'Value' attribute.");
 
+							// ReSharper disable once RedundantSuppressNullableWarningExpression
 							var val =
 								type != null
 									? Converter.ChangeType(value.Value, Type.GetType(type.Value, true)!)

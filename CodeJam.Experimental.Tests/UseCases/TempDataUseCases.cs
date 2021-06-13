@@ -79,7 +79,7 @@ namespace CodeJam.UseCases.TempDataSamples
 
 				if (!tempFile.TryClose())
 				{
-					HandleDeleteFailure(tempFile.FileName!, null); // no exception info available.
+					HandleDeleteFailure(tempFile.FileName, null); // no exception info available.
 				}
 			}
 		}

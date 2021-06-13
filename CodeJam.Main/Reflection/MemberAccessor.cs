@@ -3,7 +3,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -81,7 +80,7 @@ namespace CodeJam.Reflection
 									var local = Expression.Variable(next.Type);
 
 									return Expression.Block(
-										new[] { local }, Expression.Assign(local, next) as Expression,
+										new[] { local }, Expression.Assign(local, next),
 										Expression.IfThen(Expression.NotEqual(local, Expression.Constant(null)), MakeGetter(local, i + 1)));
 								}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Security;
 #if LESSTHAN_NET50
@@ -36,6 +37,7 @@ namespace CodeJam
 		/// <summary>
 		/// Value
 		/// </summary>
+		[SuppressMessage("ReSharper", "RedundantSuppressNullableWarningExpression")]
 		public T Value => (T)Marshal.PtrToStructure(Data, typeof(T))!;
 
 		/// <summary>

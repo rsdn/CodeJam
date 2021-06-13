@@ -188,6 +188,7 @@ namespace CodeJam.Mapping
 
 				for (var i = 0; i < values.Length; i++)
 				{
+					// ReSharper disable once RedundantSuppressNullableWarningExpression
 					var val = values.GetValue(i)!;
 					var lv =
 						// enum values always can be cast to long
@@ -671,11 +672,13 @@ namespace CodeJam.Mapping
 
 				if (attr != null)
 				{
+					// ReSharper disable RedundantSuppressNullableWarningExpression
 					DebugCode.AssertState(attr[0]!.Value != null, "attr[0].Value != null");
 					var valueType = attr[0]!.Value!.GetType();
 
 					if (fields.All(attrs => attrs![0]!.Value == null || attrs![0]!.Value!.GetType() == valueType))
 						defaultType = valueType;
+					// ReSharper restore RedundantSuppressNullableWarningExpression
 				}
 			}
 

@@ -475,11 +475,11 @@ namespace CodeJam.Mapping
 				.SetProcessCrossReferences(true));
 
 			Assert.That(map.To.List!.Count, Is.EqualTo(3));
-			Assert.That(map.To.List![0],    Is.Not.Null);
-			Assert.That(map.To.List![1],    Is.Not.Null);
-			Assert.That(map.To.List![2],    Is.Not.Null);
-			Assert.That(map.To.List![0],    Is.Not.SameAs(map.To.List[1]));
-			Assert.That(map.To.List![0],    Is.    SameAs(map.To.List[2]));
+			Assert.That(map.To.List[0],    Is.Not.Null);
+			Assert.That(map.To.List[1],    Is.Not.Null);
+			Assert.That(map.To.List[2],    Is.Not.Null);
+			Assert.That(map.To.List[0],    Is.Not.SameAs(map.To.List[1]));
+			Assert.That(map.To.List[0],    Is.    SameAs(map.To.List[2]));
 		}
 
 		[Test]
@@ -539,11 +539,11 @@ namespace CodeJam.Mapping
 				m.SetProcessCrossReferences(true));
 
 			Assert.That(mapper.To.Arr!.Length, Is.EqualTo(3));
-			Assert.That(mapper.To.Arr![0], Is.Not.Null);
-			Assert.That(mapper.To.Arr![1], Is.Not.Null);
-			Assert.That(mapper.To.Arr![2], Is.Not.Null);
-			Assert.That(mapper.To.Arr![0], Is.Not.SameAs(mapper.To.Arr[1]));
-			Assert.That(mapper.To.Arr![0], Is.SameAs(mapper.To.Arr[2]));
+			Assert.That(mapper.To.Arr[0], Is.Not.Null);
+			Assert.That(mapper.To.Arr[1], Is.Not.Null);
+			Assert.That(mapper.To.Arr[2], Is.Not.Null);
+			Assert.That(mapper.To.Arr[0], Is.Not.SameAs(mapper.To.Arr[1]));
+			Assert.That(mapper.To.Arr[0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
 		private class Class19
@@ -558,11 +558,11 @@ namespace CodeJam.Mapping
 				m.SetProcessCrossReferences(true));
 
 			Assert.That(mapper.To.Arr!.Length, Is.EqualTo(3));
-			Assert.That(mapper.To.Arr![0], Is.Not.Null);
-			Assert.That(mapper.To.Arr![1], Is.Not.Null);
-			Assert.That(mapper.To.Arr![2], Is.Not.Null);
-			Assert.That(mapper.To.Arr![0], Is.Not.SameAs(mapper.To.Arr[1]));
-			Assert.That(mapper.To.Arr![0], Is.SameAs(mapper.To.Arr[2]));
+			Assert.That(mapper.To.Arr[0], Is.Not.Null);
+			Assert.That(mapper.To.Arr[1], Is.Not.Null);
+			Assert.That(mapper.To.Arr[2], Is.Not.Null);
+			Assert.That(mapper.To.Arr[0], Is.Not.SameAs(mapper.To.Arr[1]));
+			Assert.That(mapper.To.Arr[0], Is.SameAs(mapper.To.Arr[2]));
 		}
 
 		private class Class20 { public Source Class1 = new(); public Source? Class2; }
@@ -680,15 +680,15 @@ namespace CodeJam.Mapping
 
 			var mapper = new MapHelper<RClass1,RClass1>().Map(useAction, src, m => m.SetDeepCopy(true));
 
-			Assert.That(mapper.To,                       Is.Not.Null);
-			Assert.That(mapper.To.Class2,                Is.Not.Null);
-			Assert.That(mapper.To.Class2!.List!.Count,     Is.EqualTo(2));
-			Assert.That(mapper.To.Class2!.List![0],        Is.Not.Null);
-			Assert.That(mapper.To.Class2!.List![1],        Is.Not.Null);
-			Assert.That(mapper.To.Class2!.List![0].Class1, Is.Not.Null);
-			Assert.That(mapper.To.Class2!.List![0].Class2, Is.Not.Null);
-			Assert.That(mapper.To.Class2!.List![1].Class1, Is.Not.Null);
-			Assert.That(mapper.To.Class2!.List![1].Class2, Is.Not.Null);
+			Assert.That(mapper.To,                        Is.Not.Null);
+			Assert.That(mapper.To.Class2,                 Is.Not.Null);
+			Assert.That(mapper.To.Class2!.List!.Count,    Is.EqualTo(2));
+			Assert.That(mapper.To.Class2.List[0],         Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[1],         Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[0].Class1,  Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[0].Class2,  Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[1].Class1,  Is.Not.Null);
+			Assert.That(mapper.To.Class2.List[1].Class2,  Is.Not.Null);
 		}
 	}
 }

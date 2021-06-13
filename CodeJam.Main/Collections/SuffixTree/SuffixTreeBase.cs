@@ -167,6 +167,7 @@ namespace CodeJam.Collections
 			if (edge.IsLeaf) // a terminal edge?
 				return true;
 			DebugCode.BugIf(edge.Children == null, "edge.Children == null");
+			// ReSharper disable once RedundantSuppressNullableWarningExpression
 			return GetNode(edge.Children![0]).Length == 0; // has a child terminal edge of zero length
 		}
 
@@ -219,6 +220,7 @@ namespace CodeJam.Collections
 			for (;;)
 			{
 				DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
+				// ReSharper disable RedundantSuppressNullableWarningExpression
 				var edge = GetNode(branchPoint.Node.Children![branchPoint.EdgeIndex]);
 				var edgeLength = edge.Length;
 				length += edgeLength;
@@ -239,6 +241,7 @@ namespace CodeJam.Collections
 					length -= edgeLength;
 					var nextEdgeIndex = branchPoint.EdgeIndex + 1;
 					DebugCode.BugIf(branchPoint.Node.Children == null, "branchPoint.Node.Children == null");
+					// ReSharper disable once RedundantSuppressNullableWarningExpression
 					if (nextEdgeIndex < branchPoint.Node.Children!.Count)
 					{
 						branchPoint.EdgeIndex = nextEdgeIndex;
@@ -312,6 +315,7 @@ namespace CodeJam.Collections
 				return -1;
 			}
 			DebugCode.BugIf(node.Children == null, "node.Children == null");
+			// ReSharper disable RedundantSuppressNullableWarningExpression
 			var edgeIndex = node.Children!.LowerBound(c, EdgeComparer);
 			if (edgeIndex == node.Children!.Count)
 			{

@@ -2,7 +2,10 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+
+#if NET45_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
 using System.Threading.Tasks;
+#endif
 
 using CodeJam.Strings;
 using CodeJam.Targeting;

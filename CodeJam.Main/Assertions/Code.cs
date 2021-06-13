@@ -15,11 +15,7 @@ using CodeJam.Strings;
 using JetBrains.Annotations;
 
 using Microsoft.VisualStudio;
-#if NET40_OR_GREATER || TARGETS_NETSTANDARD || TARGETS_NETCOREAPP
-using StringEx = System.String;
-#else
-using StringEx = System.StringEx;
-#endif
+
 using static CodeJam.Targeting.MethodImplOptionsEx;
 
 // ReSharper disable BuiltInTypeReferenceStyleForMemberAccess

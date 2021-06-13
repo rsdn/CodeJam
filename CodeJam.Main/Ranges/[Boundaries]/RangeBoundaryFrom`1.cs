@@ -279,7 +279,7 @@ namespace CodeJam.Ranges
 		/// <returns>Value of the boundary or <paramref name="defaultValue"/>.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[MethodImpl(AggressiveInlining)]
-		public T? GetValueOrDefault(T defaultValue) => HasValue ? _value : defaultValue;
+		public T? GetValueOrDefault(T? defaultValue) => HasValue ? _value : defaultValue;
 		#endregion
 
 		#region Methods
@@ -402,7 +402,7 @@ namespace CodeJam.Ranges
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "Read the comment on the fields.")]
 		public override int GetHashCode() =>
-			HasValue ? HashCode.Combine(_value!.GetHashCode(), (int)_kind) : (int)_kind;
+			HasValue ? HashCode.Combine(_value.GetHashCode(), (int)_kind) : (int)_kind;
 		#endregion
 
 		#region IComparable<RangeBoundaryFrom<T>>

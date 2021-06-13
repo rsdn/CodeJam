@@ -10,6 +10,7 @@ using CodeJam.Reflection;
 using JetBrains.Annotations;
 
 using NUnit.Framework;
+
 // ReSharper disable InconsistentNaming
 
 namespace CodeJam.Collections
@@ -128,8 +129,8 @@ namespace CodeJam.Collections
 			private static int _n;
 
 #pragma warning disable CA1823 // Avoid unused private fields
-			[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-			[System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
+			[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+			[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 			[UsedImplicitly]
 			private int _field = ++_n;
 #pragma warning restore CA1823 // Avoid unused private fields

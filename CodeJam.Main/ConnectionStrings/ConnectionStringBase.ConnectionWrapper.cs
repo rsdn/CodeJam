@@ -6,7 +6,11 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+
+// Bug in Theraot.Core which puts LazyThreadSafetyMode in System instead of System.Threading
+#if !(NET20 || NET30 || NET35)
 using System.Threading;
+#endif
 
 using CodeJam.Collections;
 using CodeJam.Reflection;

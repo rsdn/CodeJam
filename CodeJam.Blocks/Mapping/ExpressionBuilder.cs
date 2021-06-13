@@ -121,6 +121,7 @@ namespace CodeJam.Mapping
 				return null;
 
 			Debug.Assert(expr != null);
+			// ReSharper disable once RedundantSuppressNullableWarningExpression
 			var l = Lambda(expr!, pFrom);
 
 			return l;
@@ -721,6 +722,7 @@ namespace CodeJam.Mapping
 		{
 			var getBuilderInfo = InfoOf.Method(() => GetBuilder<int, int>(null!)).GetGenericMethodDefinition();
 			var selectInfo = InfoOf.Method(() => Enumerable.Select<int, int>(null!, _ => _)).GetGenericMethodDefinition();
+			// ReSharper disable once RedundantSuppressNullableWarningExpression
 			var itemBuilder =
 				(IMapperBuilder)getBuilderInfo
 					.MakeGenericMethod(fromItemType, toItemType)

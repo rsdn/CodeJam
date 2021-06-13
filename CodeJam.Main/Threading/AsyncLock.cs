@@ -66,7 +66,7 @@ namespace CodeJam.Threading
 		/// <returns>A task that returns the <see cref="AsyncLockScope"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync([NonNegativeValue] int timeout) =>
+		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(int timeout) =>
 			AcquireAsync(TimeSpan.FromMilliseconds(timeout), CancellationToken.None);
 
 		/// <summary>
@@ -106,7 +106,7 @@ namespace CodeJam.Threading
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
 		public AwaitableNonDisposable<AsyncLockScope> AcquireAsync(
-			[NonNegativeValue] int timeout, CancellationToken cancellation) =>
+			int timeout, CancellationToken cancellation) =>
 				AcquireAsync(TimeSpan.FromMilliseconds(timeout), cancellation);
 
 		/// <summary>
@@ -154,7 +154,7 @@ namespace CodeJam.Threading
 		/// <returns>An <see cref="AsyncLockScope"/> to release the lock.</returns>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AsyncLockScope AcquireSync([NonNegativeValue] int timeout) =>
+		public AsyncLockScope AcquireSync(int timeout) =>
 			AcquireSync(TimeSpan.FromMilliseconds(timeout), CancellationToken.None);
 
 		/// <summary>
@@ -191,7 +191,7 @@ namespace CodeJam.Threading
 		/// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
 		/// <exception cref="TimeoutException">The timeout has expired.</exception>
 		[MustUseReturnValue("Lock should be disposed")]
-		public AsyncLockScope AcquireSync([NonNegativeValue] int timeout, CancellationToken cancellation) =>
+		public AsyncLockScope AcquireSync(int timeout, CancellationToken cancellation) =>
 			AcquireSync(TimeSpan.FromMilliseconds(timeout), cancellation);
 
 		/// <summary>

@@ -36,7 +36,8 @@ namespace CodeJam.Collections
 
 				while (!isLast)
 				{
-					var item = enumerator.Current;
+					// ReSharper disable once RedundantSuppressNullableWarningExpression
+					var item = enumerator.Current!;
 					isLast = !enumerator.MoveNext();
 
 					yield return new IndexedItem<T>(item, index++, isFirst, isLast);
