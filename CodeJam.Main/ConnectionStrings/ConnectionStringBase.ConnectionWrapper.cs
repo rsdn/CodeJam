@@ -6,11 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
-// Bug in Theraot.Core which puts LazyThreadSafetyMode in System instead of System.Threading
-#if !(NET20 || NET30 || NET35)
 using System.Threading;
-#endif
 
 using CodeJam.Collections;
 using CodeJam.Reflection;
@@ -139,6 +135,8 @@ namespace CodeJam.ConnectionStrings
 			public override bool TryGetValue(string keyword,
 #if NETCOREAPP30_OR_GREATER
 				[MaybeNullWhen(false)]
+#elif NET5_0
+				[NotNullWhen(true)]
 #endif
 				out object value) =>
 				base.TryGetValue(keyword, out value);

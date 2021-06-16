@@ -17,6 +17,7 @@ using TaskEx = System.Threading.Tasks.Task;
 using static System.Console;
 
 // ReSharper disable once CheckNamespace
+// ReSharper disable MethodSupportsCancellation
 
 namespace CodeJam
 {

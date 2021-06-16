@@ -8,6 +8,8 @@ using System.IO;
 
 using NUnit.Framework;
 
+// ReSharper disable MethodSupportsCancellation
+
 namespace CodeJam
 {
 	[TestFixture]

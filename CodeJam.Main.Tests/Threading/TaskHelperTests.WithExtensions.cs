@@ -15,6 +15,8 @@ using TaskEx = System.Threading.Tasks.TaskEx;
 using TaskEx = System.Threading.Tasks.Task;
 #endif
 
+// ReSharper disable MethodSupportsCancellation
+
 namespace CodeJam.Threading
 {
 	public partial class TaskHelperTests

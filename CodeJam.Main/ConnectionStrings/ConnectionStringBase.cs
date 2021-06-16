@@ -228,12 +228,9 @@ namespace CodeJam.ConnectionStrings
 		public bool Remove(string key) => _wrapper.Remove(key);
 
 		/// <inheritdoc />
-		public bool TryGetValue(
-			string key,
-#if NETCOREAPP30_OR_GREATER
-			[MaybeNullWhen(false)]
-#endif
-			out object value) =>
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+		public bool TryGetValue(string key, [MaybeNullWhen(false)] out object value) =>
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 			_wrapper.TryGetValue(key, out value);
 
 		/// <inheritdoc />
