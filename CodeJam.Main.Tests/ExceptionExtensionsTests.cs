@@ -10,6 +10,8 @@ using NUnit.Framework;
 
 // ReSharper disable MethodSupportsCancellation
 
+#pragma warning disable AsyncifyInvocation // Use Task Async
+
 namespace CodeJam
 {
 	[TestFixture]

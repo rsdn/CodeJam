@@ -63,7 +63,6 @@ namespace CodeJam.Threading
 			var d2 = TimeSpan.FromDays(2);
 			var dMinus1 = TimeSpan.FromDays(-1);
 			var maxValue = TimeSpan.FromHours(36);
-			var infiniteValue = TimeoutHelper.InfiniteTimeSpan;
 			var adjustedZero = infiniteIfDefault ? maxValue : TimeSpan.Zero;
 
 			Assert.AreEqual(
