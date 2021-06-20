@@ -100,7 +100,7 @@ namespace CodeJam
 
 			var otherSome = other as Some;
 
-			if (!(this is Some))
+			if (this is not Some)
 				return otherSome is null;
 
 			if (otherSome is null)

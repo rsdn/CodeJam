@@ -154,6 +154,20 @@ namespace CodeJam
 				.LogToCodeTraceSourceBeforeThrow();
 		}
 
+		/// <summary>Creates <see cref="ArgumentOutOfRangeException"/> for an argument that must be positive.</summary>
+		/// <param name="argumentName">Name of the argument.</param>
+		/// <returns>Initialized instance of <see cref="ArgumentOutOfRangeException"/>.</returns>
+		[DebuggerHidden, MustUseReturnValue]
+		public static ArgumentOutOfRangeException ArgumentNegative([InvokerParameterName] string argumentName)
+		{
+			BreakIfAttached();
+			return
+				new ArgumentOutOfRangeException(
+					argumentName,
+					$"The value of {argumentName} must be positive")
+				.LogToCodeTraceSourceBeforeThrow();
+		}
+
 		/// <summary>Creates <see cref="IndexOutOfRangeException"/>.</summary>
 		/// <param name="argumentName">Name of the argument.</param>
 		/// <param name="value">The value.</param>

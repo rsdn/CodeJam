@@ -69,7 +69,7 @@ namespace CodeJam.Ranges
 		public static RangeBoundaryFrom<T> AdjustAndCreate(T? value, RangeBoundaryFromKind boundaryKind)
 		{
 			DebugCode.AssertArgument(
-				boundaryKind == RangeBoundaryFromKind.Inclusive || boundaryKind == RangeBoundaryFromKind.Exclusive,
+				boundaryKind is RangeBoundaryFromKind.Inclusive or RangeBoundaryFromKind.Exclusive,
 				nameof(boundaryKind),
 				"The boundary kind should be be either Inclusive or Exclusive");
 

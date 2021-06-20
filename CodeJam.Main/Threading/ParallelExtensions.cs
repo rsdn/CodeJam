@@ -120,13 +120,10 @@ namespace CodeJam.Threading
 			string processName = "ParallelProcess")
 		{
 			Code.NotNull(source, nameof(source));
-			
+
 			using var queue = new ParallelQueue(parallelCount, processName + '_');
 			foreach (var action in source)
-			{
-				var data = action;
-				queue.EnqueueItem(data);
-			}
+				queue.EnqueueItem(action);
 
 			queue.WaitAll();
 		}
