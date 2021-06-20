@@ -3,6 +3,10 @@
 
 What's new in 4.0.0-beta2
 -------------------------
+- Breaking changes:
+  * AdjustTimeout behaves as user would expect.
+  * Original AdjustTimeout renamed to AdjustAndLimitTimeout
+  * Added nullability annotations to serveral methods in old .NET versions even if they don't match the base interfaces
 * Nullability improvements
 * Added Code.NotNullNorEmptyAndItemNotNull
 

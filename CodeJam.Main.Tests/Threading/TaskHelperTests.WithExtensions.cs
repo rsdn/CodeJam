@@ -15,6 +15,10 @@ using TaskEx = System.Threading.Tasks.TaskEx;
 using TaskEx = System.Threading.Tasks.Task;
 #endif
 
+// ReSharper disable MethodSupportsCancellation
+
+#pragma warning disable AsyncifyVariable // Use Task Async
+
 namespace CodeJam.Threading
 {
 	public partial class TaskHelperTests

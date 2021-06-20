@@ -16,7 +16,10 @@ using TaskEx = System.Threading.Tasks.Task;
 
 using static System.Console;
 
+#pragma warning disable AsyncifyVariable // Use Task Async
+
 // ReSharper disable once CheckNamespace
+// ReSharper disable MethodSupportsCancellation
 
 namespace CodeJam
 {

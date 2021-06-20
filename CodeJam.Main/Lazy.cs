@@ -1,9 +1,6 @@
 ﻿using System;
-
-// Bug in Theraot.Core which puts LazyThreadSafetyMode in System instead of System.Threading
-#if !(NET20 || NET30 || NET35)
 using System.Threading;
-#endif
+
 using JetBrains.Annotations;
 
 namespace CodeJam
