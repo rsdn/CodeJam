@@ -50,11 +50,11 @@
 		<PackageReference Include="Theraot.Core" Version="3.2.8" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-		<Reference Include="System.ComponentModel.DataAnnotations" Version="4.0.0" />
+		<Reference Include="System.ComponentModel.DataAnnotations" />
 		<PackageReference Include="Theraot.Core" Version="3.2.8" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
-		<Reference Include="System.ComponentModel.DataAnnotations" Version="4.0.0" />
+		<Reference Include="System.ComponentModel.DataAnnotations" />
 		<PackageReference Include="Theraot.Core" Version="3.2.8" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
