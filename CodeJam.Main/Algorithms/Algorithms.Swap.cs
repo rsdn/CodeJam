@@ -13,7 +13,6 @@ namespace CodeJam
 		/// <typeparam name="T">Type of values</typeparam>
 		/// <param name="value1">First value to swap.</param>
 		/// <param name="value2">Second value to swap.</param>
-		public static void Swap<T>(ref T value1, ref T value2) =>
-			(value1, value2) = (value2, value1);
+		public static void Swap<T>(ref T value1, ref T value2) => (value1, value2) = (value2, value1);
 	}
 }
