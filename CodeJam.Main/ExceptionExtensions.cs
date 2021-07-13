@@ -75,9 +75,7 @@ namespace CodeJam
 
 				switch (ex)
 				{
-					case FileNotFoundException notFoundException:
-						var fex = notFoundException;
-
+					case FileNotFoundException fex:
 						writer.WriteLine($"File Name: {fex.FileName}");
 
 						if (fex.GetFusionLog().IsNullOrEmpty())
@@ -155,9 +153,7 @@ namespace CodeJam
 
 				switch (ex)
 				{
-					case FileNotFoundException notFoundException:
-						var fex = notFoundException;
-
+					case FileNotFoundException fex:
 						await writer.WriteLineAsync($"File Name: {fex.FileName}").ConfigureAwait(false);
 
 						if (fex.GetFusionLog().IsNullOrEmpty())
