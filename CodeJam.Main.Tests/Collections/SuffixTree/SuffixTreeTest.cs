@@ -103,11 +103,11 @@ namespace CodeJam.Collections
 					st.Add(s);
 					for (var i = 0; i < s.Length; ++i)
 					{
-						var suffix = s.Substring(i);
+						var suffix = s[i..];
 						suffixes.Add(suffix);
 						if (suffix.Length != 1)
 						{
-							properSubstrings.Add(suffix.Substring(0, suffix.Length - 1));
+							properSubstrings.Add(suffix[..^1]);
 						}
 					}
 				}
@@ -181,7 +181,7 @@ namespace CodeJam.Collections
 						{
 							break;
 						}
-						var suffix = s.Substring(pos);
+						var suffix = s[pos..];
 						expectedSuffixes.Add(suffix);
 						expectedSources[suffix].Add(i);
 						++pos;
@@ -221,7 +221,7 @@ namespace CodeJam.Collections
 				var s = strings[i];
 				for (var j = 0; j < s.Length; ++j)
 				{
-					var suffix = s.Substring(j);
+					var suffix = s[j..];
 					expectedSuffixes.Add(suffix);
 					expectedSources[suffix].Add(i);
 				}

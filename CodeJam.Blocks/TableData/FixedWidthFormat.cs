@@ -102,7 +102,7 @@ namespace CodeJam.TableData
 					var width = widths[i];
 					writer.Write(
 						val.Length > width
-							? val.Substring(0, width)
+							? val[..width]
 							: val.PadRight(width));
 				}
 			}

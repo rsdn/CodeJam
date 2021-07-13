@@ -20,12 +20,12 @@ namespace CodeJam.Ranges
 			if (value.StartsWith(RangeInternal.FromInclusiveString, StringComparison.Ordinal))
 			{
 				kind = RangeBoundaryFromKind.Inclusive;
-				valuePart = value.Substring(RangeInternal.FromInclusiveString.Length);
+				valuePart = value[RangeInternal.FromInclusiveString.Length..];
 			}
 			else if (value.StartsWith(RangeInternal.FromExclusiveString, StringComparison.Ordinal))
 			{
 				kind = RangeBoundaryFromKind.Exclusive;
-				valuePart = value.Substring(RangeInternal.FromExclusiveString.Length);
+				valuePart = value[RangeInternal.FromExclusiveString.Length..];
 			}
 			else
 			{
@@ -47,12 +47,12 @@ namespace CodeJam.Ranges
 			if (value.EndsWith(RangeInternal.ToInclusiveString, StringComparison.Ordinal))
 			{
 				kind = RangeBoundaryToKind.Inclusive;
-				valuePart = value.Substring(0, value.Length - RangeInternal.ToInclusiveString.Length);
+				valuePart = value[..^RangeInternal.ToInclusiveString.Length];
 			}
 			else if (value.EndsWith(RangeInternal.ToExclusiveString, StringComparison.Ordinal))
 			{
 				kind = RangeBoundaryToKind.Exclusive;
-				valuePart = value.Substring(0, value.Length - RangeInternal.ToExclusiveString.Length);
+				valuePart = value[..^RangeInternal.ToExclusiveString.Length];
 			}
 			else
 			{
@@ -78,8 +78,7 @@ namespace CodeJam.Ranges
 			Func<string, T> parseValueCallback,
 			Func<string, TKey> parseKeyCallback)
 		{
-			var keyAndRange = value
-				.Substring(RangeInternal.KeyPrefixString.Length)
+			var keyAndRange = value[RangeInternal.KeyPrefixString.Length..]
 				.Split(new[] { RangeInternal.KeySeparatorString }, 2, StringSplitOptions.None);
 
 			if (keyAndRange[1] == RangeInternal.EmptyString)

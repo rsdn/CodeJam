@@ -32,8 +32,7 @@ namespace CodeJam.Ranges
 			var boundaryAndRange = value.Split(new[] { CompositeRangeInternal.PrefixString }, 2, StringSplitOptions.None);
 			var boundary = ParseRange(boundaryAndRange[0], parseValueCallback);
 
-			var result = boundaryAndRange[1]
-				.Substring(0, boundaryAndRange[1].Length - CompositeRangeInternal.SuffixString.Length)
+			var result = boundaryAndRange[1][..^CompositeRangeInternal.SuffixString.Length]
 				.Split(new[] { CompositeRangeInternal.SeparatorString }, StringSplitOptions.None)
 				.Select(s => ParseRange(s, parseValueCallback))
 				.ToCompositeRange();
@@ -53,8 +52,7 @@ namespace CodeJam.Ranges
 			var boundaryAndRange = value.Split(new[] { CompositeRangeInternal.PrefixString }, 2, StringSplitOptions.None);
 			var boundary = ParseRange(boundaryAndRange[0], parseValueCallback);
 
-			var result = boundaryAndRange[1]
-				.Substring(0, boundaryAndRange[1].Length - CompositeRangeInternal.SuffixString.Length)
+			var result = boundaryAndRange[1][..^CompositeRangeInternal.SuffixString.Length]
 				.Split(new[] { CompositeRangeInternal.SeparatorString }, StringSplitOptions.None)
 				.Select(s => ParseRange(s, parseValueCallback, parseKeyCallback))
 				.ToCompositeRange();
@@ -454,11 +452,11 @@ namespace CodeJam.Ranges
 			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
 			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "[A0..A3]: { '1':[A0..A2]; '2':[A1..A3] }");
 
-			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
+			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i[1..]);
 			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "[A0..B3]: { '1':[A0..B2]; '2':[A1..B3] }");
 
 			var compositeRange4 =
-				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1), CultureInfo.InvariantCulture));
+				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i[1..], CultureInfo.InvariantCulture));
 			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "[0..3]: { [0..2]; [1..3] }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
@@ -492,11 +490,11 @@ namespace CodeJam.Ranges
 			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
 			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "(A0..A3): { '1':(A0..A2); '2':(A1..A3) }");
 
-			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
+			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i[1..]);
 			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "(A0..B3): { '1':(A0..B2); '2':(A1..B3) }");
 
 			var compositeRange4 =
-				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1), CultureInfo.InvariantCulture));
+				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i[1..], CultureInfo.InvariantCulture));
 			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "(0..3): { (0..2); (1..3) }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
@@ -530,11 +528,11 @@ namespace CodeJam.Ranges
 			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
 			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "(A0..A3]: { '1':(A0..A2]; '2':(A1..A3] }");
 
-			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
+			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i[1..]);
 			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "(A0..B3]: { '1':(A0..B2]; '2':(A1..B3] }");
 
 			var compositeRange4 =
-				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1), CultureInfo.InvariantCulture));
+				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i[1..], CultureInfo.InvariantCulture));
 			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "(0..3]: { (0..2]; (1..3] }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
@@ -568,11 +566,11 @@ namespace CodeJam.Ranges
 			var compositeRange2 = compositeRange.WithValues(i => "A" + i);
 			AreEqual(compositeRange2.ToString(CultureInfo.InvariantCulture), "[A0..A3): { '1':[A0..A2); '2':[A1..A3) }");
 
-			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i.Substring(1));
+			var compositeRange3 = compositeRange2.WithValues(i => i, i => "B" + i[1..]);
 			AreEqual(compositeRange3.ToString(CultureInfo.InvariantCulture), "[A0..B3): { '1':[A0..B2); '2':[A1..B3) }");
 
 			var compositeRange4 =
-				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i.Substring(1), CultureInfo.InvariantCulture));
+				compositeRange3.WithoutKeys().WithValues(i => int.Parse(i[1..], CultureInfo.InvariantCulture));
 			AreEqual(compositeRange4.ToString(CultureInfo.InvariantCulture), "[0..3): { [0..2); [1..3) }");
 
 			AreEqual(compositeRange4, compositeRange.WithoutKeys());
