@@ -1,7 +1,7 @@
 ﻿CodeJam 3.3.1 Release Notes
 ---------------------------
 
-What's new in 4.0.0-beta2
+What's new in 4.0.0
 -------------------------
 - Breaking changes:
   * AdjustTimeout behaves as user would expect.
