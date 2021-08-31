@@ -1,8 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\Build\Props\CodeJam.Default.props" />
-	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
-
 	<PropertyGroup>
 		<AssemblyName>CodeJam.Tests</AssemblyName>
 		<RootNamespace>CodeJam</RootNamespace>
@@ -11,7 +8,6 @@
 		<TargetFrameworks>net5.0;net48;net472;net471;net47;net461;net45;net40;net35;netcoreapp3.1</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
-		<LangVersion>9.0</LangVersion>
 	</PropertyGroup>
 
 	<!-- #region Targeting -->

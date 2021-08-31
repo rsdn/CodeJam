@@ -1,11 +1,33 @@
 ﻿<Project>
+	<Import Project="Build\Props\CodeJam.Targeting.props" />
+	<Import Project="Build\Props\CodeJam.Nuspec.props" Condition=" !$(MSBuildProjectName.EndsWith('.Tests'))" />
+
 	<PropertyGroup>
-		<!-- Compile Include="x.cs" doesn't use properties defined in the PropertyGroup -->
-		<LangVersion>9.0</LangVersion>
+		<Configurations>Debug;Release</Configurations>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<SignAssembly>True</SignAssembly>
+		<DelaySign>False</DelaySign>
+		<AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
+		<NoWarn>$(NoWarn);CA1014</NoWarn>
+
+		<Version>4.0.0.0</Version>
+		<PackageVersion>4.0.0</PackageVersion>
+		<PackageOutputPath>..\_Results</PackageOutputPath>
+
+		<Company>RSDN</Company>
+
+		<Copyright>RSDN, 2021</Copyright>
+		<RepositoryUrl>https://github.com/rsdn/CodeJam</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<LangVersion Condition=" '$(TargetFramework)' != 'net6.0' ">9.0</LangVersion>
+		<LangVersion Condition=" '$(TargetFramework)' == 'net6.0' ">10.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<RunAnalyzers>False</RunAnalyzers>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
-		<NoWarn>$(NoWarn);CA1014</NoWarn>
+		<DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
 	</PropertyGroup>
 </Project>

@@ -1,9 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\Build\Props\CodeJam.Default.props" />
-	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
-	<Import Project="..\Build\Props\CodeJam.Nuspec.props" />
-
 	<PropertyGroup>
 		<AssemblyName>CodeJam.Experimental</AssemblyName>
 		<RootNamespace>CodeJam</RootNamespace>

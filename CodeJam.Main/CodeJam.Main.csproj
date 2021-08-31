@@ -1,9 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\Build\Props\CodeJam.Default.props" />
-	<Import Project="..\Build\Props\CodeJam.Targeting.props" />
-	<Import Project="..\Build\Props\CodeJam.Nuspec.props" />
-
 	<PropertyGroup>
 		<AssemblyName>CodeJam</AssemblyName>
 		<RootNamespace>CodeJam</RootNamespace>
@@ -12,9 +8,7 @@
 		<TargetFrameworks>net5.0;net472;net461;net45;net40;net35;netstandard2.1;netstandard2.0;netcoreapp3.1</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
-		<LangVersion>9</LangVersion>
-		<Nullable>enable</Nullable>
-
+		
 		<PackageId>CodeJam</PackageId>
 		<Title>CodeJam library</Title>
 		<Authors>Andrew Koryavchenko, Igor Sinicyn, Igor Tkachev, rameel, NN</Authors>
