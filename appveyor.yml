@@ -25,7 +25,7 @@ assembly_info:
 
 dotnet_csproj:
   patch: true
-  file: 'Build\Props\CodeJam.Default.props'
+  file: 'Directory.Build.props'
   version: '{version}'
   package_version: '{version}'
 

@@ -60,6 +60,8 @@ namespace CodeJam
 			".NETFramework,Version=v4.7.2";
 #elif NET5_0 || NETCOREAPP5_0
 			".NETCoreApp,Version=v5.0";
+#elif NET6_0
+			".NETCoreApp,Version=v6.0";
 #elif NETCOREAPP1_0
 			".NETCoreApp,Version=v1.0";
 #elif NETCOREAPP1_1
@@ -96,7 +98,8 @@ namespace CodeJam
 			netcoreapp2.2
 			netcoreapp3.0
 			netcoreapp3.1
-			net5.0";
+			net5.0
+			net6.0";
 
 		/// <summary> The net framework monikers. See https://docs.microsoft.com/en-us/dotnet/standard/frameworks </summary>
 		private const string _netFrameworkMonikers = @"
@@ -122,6 +125,7 @@ namespace CodeJam
 		/// <summary> Full list of monikers for FW versions we do publish our packages </summary>
 		private const string _packageFrameworkMonikers = @"
 			netcoreapp3.0
+			net6.0
 			net5.0
 			netcoreapp2.0
 			netcoreapp1.0
@@ -140,6 +144,7 @@ namespace CodeJam
 		// DONTTOUCH: the first one is a
 		private const string _testFrameworkMonikers = @"
 			netcoreapp3.0
+			net6.0
 			net5.0
 			netcoreapp2.1
 			netcoreapp1.1
