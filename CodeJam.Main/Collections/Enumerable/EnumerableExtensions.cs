@@ -96,6 +96,21 @@ namespace CodeJam.Collections
 				yield return item;
 		}
 
+#if LESSTHAN_NETSTANDARD21
+
+	/// <summary>
+	/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of the elements of source.</typeparam>
+	/// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="HashSet{T}"/> from.</param>
+	/// <returns>
+	/// A <see cref="HashSet{T}"/> that contains keys from the input sequence.
+	/// </returns>
+	[Pure, System.Diagnostics.Contracts.Pure]
+	public static HashSet<T> ToHashSet<T>([InstantHandle] this IEnumerable<T> source) => new(source);
+
+#endif
+
 		/// <summary>
 		/// Creates a <see cref="HashSet{T}"/> from an <see cref="IEnumerable{T}"/>.
 		/// </summary>

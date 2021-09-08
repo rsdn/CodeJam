@@ -3,6 +3,8 @@ using System.Linq;
 
 using NUnit.Framework;
 
+using CodeJam.Collections;
+
 namespace CodeJam.Collections
 {
 	[TestFixture]
@@ -91,7 +93,7 @@ namespace CodeJam.Collections
 			d.AddOrCreateHashSet("a", 1);
 			Assert.AreEqual(1, d["a"].First());
 
-			d["b"] = new HashSet<int> { 2 };
+			d["b"] = new[] { 2 }.ToHashSet();
 			d.AddOrCreateHashSet("b", 3);
 			Assert.AreEqual(2, d["b"].First());
 			Assert.AreEqual(3, d["b"].Last());
