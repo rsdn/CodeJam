@@ -38,7 +38,7 @@ namespace CodeJam.TableData
 					else
 						escaped.Append(chr);
 				else if (IsEscapeRequired(chr))
-					escaped = new StringBuilder(chr == '"' ? value[..i] + "\"\"" : value[..(i + 1)]);
+					escaped = new StringBuilder(chr == '"' ? value.Substring(0, i) + "\"\"" : value.Substring(0, i + 1));
 			}
 			return escaped?.ToString() ?? value;
 		}

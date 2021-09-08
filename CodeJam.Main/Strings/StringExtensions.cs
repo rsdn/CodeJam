@@ -101,7 +101,7 @@ namespace CodeJam.Strings
 			return
 				origin switch
 				{
-					StringOrigin.Begin => str[..length],
+					StringOrigin.Begin => str.Substring(0, length),
 					StringOrigin.End => str.Substring(strLen - length, length),
 					_ => throw CodeExceptions.Argument(nameof(origin), $"Invalid {nameof(StringOrigin)} value.")
 					};
@@ -175,7 +175,7 @@ namespace CodeJam.Strings
 				return str;
 
 			var actPrefix = str.Prefix(prefixLen);
-			return !comparer.Equals(prefix, actPrefix) ? str : str[prefixLen..];
+			return !comparer.Equals(prefix, actPrefix) ? str : str.Substring(prefixLen);
 		}
 
 		/// <summary>
@@ -203,7 +203,7 @@ namespace CodeJam.Strings
 				return str;
 
 			var actPrefix = str.Suffix(suffixLen);
-			return !comparer.Equals(suffix, actPrefix) ? str : str[..(strLen - suffixLen)];
+			return !comparer.Equals(suffix, actPrefix) ? str : str.Substring(0, strLen - suffixLen);
 		}
 
 		/// <summary>

@@ -203,7 +203,8 @@ namespace CodeJam.ConnectionStrings
 		/// <inheritdoc />
 		bool ICollection<KeyValuePair<string, object>>.Remove(KeyValuePair<string, object> item)
 		{
-			var (key, o) = item;
+			var key = item.Key;
+			var o = item.Value;
 			if (_wrapper.TryGetValue(key, out var value) && Equals(o, value))
 				return _wrapper.Remove(key);
 

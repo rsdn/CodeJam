@@ -26,7 +26,7 @@ namespace CodeJam.Metadata
 			_attributes.Where(a => a.Name == type.FullName).Concat(
 				_attributes.Where(a => a.Name == type.Name).Concat(
 					type.Name.EndsWith("Attribute", StringComparison.Ordinal)
-						? _attributes.Where(a => a.Name == type.Name[..^"Attribute".Length])
+						? _attributes.Where(a => a.Name == type.Name.Substring(0, type.Name.Length - "Attribute".Length))
 						: Enumerable.Empty<AttributeInfo>())
 				).ToArray();
 	}

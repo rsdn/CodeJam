@@ -86,8 +86,9 @@ namespace CodeJam.ConnectionStrings
 					base.ConnectionString = value;
 					if (value.NotNullNorEmpty())
 					{
-						foreach (var (key, _) in Keywords.Where(p => p.Value.IsRequired))
+						foreach (var kv in Keywords.Where(p => p.Value.IsRequired))
 						{
+							var key = kv.Key;
 							if (!ContainsKey(key))
 								throw CodeExceptions.Argument(
 									nameof(ConnectionString),
@@ -102,8 +103,11 @@ namespace CodeJam.ConnectionStrings
 			public string GetBrowsableConnectionString(bool includeNonBrowsable = false)
 			{
 				var builder = new StringBuilder();
-				foreach (var (key, val) in Keywords)
+				foreach (var kv in Keywords)
 				{
+					var key = kv.Key;
+					var val = kv.Value;
+
 					if (!val.IsBrowsable && !includeNonBrowsable)
 						continue;
 
