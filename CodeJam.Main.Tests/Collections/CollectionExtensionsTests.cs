@@ -59,6 +59,35 @@ namespace CodeJam.Collections
 		}
 
 		[Test]
+		public void TestNullOrEmptyNullable()
+		{
+			var dic = GetNullableDict();
+			Assert.IsFalse(dic.IsNullOrEmpty());
+			if (dic.IsNullOrEmpty()) throw new Exception();
+			Dictionary<int, string> dic2 = dic;
+			Assert.NotNull(dic2);
+
+			var arr = GetNullableArray();
+			Assert.IsFalse(arr.IsNullOrEmpty());
+			if (arr.IsNullOrEmpty()) throw new Exception();
+			string[] arr2 = arr;
+			Assert.NotNull(arr2);
+
+			var str = GetNullableString();
+			Assert.IsFalse(str.IsNullOrEmpty());
+			if (str.IsNullOrEmpty()) throw new Exception();
+			string str2 = str;
+			Assert.NotNull(str2);
+		}
+
+		// ReSharper disable once ReturnTypeCanBeNotNullable
+		private static Dictionary<int, string>? GetNullableDict() => new() { { 1, "a" } };
+		// ReSharper disable once ReturnTypeCanBeNotNullable
+		private static string[]? GetNullableArray() => new[] { "a" };
+		// ReSharper disable once ReturnTypeCanBeNotNullable
+		private static string? GetNullableString() => "a";
+
+		[Test]
 		public void TestEmptyIfNull()
 		{
 			var arr = Array<int>.Empty;

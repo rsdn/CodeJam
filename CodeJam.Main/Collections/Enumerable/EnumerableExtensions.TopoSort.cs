@@ -50,7 +50,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<T> TopoSort<T, TKey>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[InstantHandle] Func<T?, TKey> keySelector)
+			[InstantHandle] Func<T, TKey> keySelector)
 			where T : notnull
 			where TKey : notnull
 		{
@@ -71,7 +71,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<T> TopoSort<T, TKey>(
 			this ICollection<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[InstantHandle] Func<T?, TKey> keySelector)
+			[InstantHandle] Func<T, TKey> keySelector)
 			where T : notnull
 			where TKey : notnull =>
 				TopoSort(source, dependsOnGetter, KeyEqualityComparer.Create(keySelector));
@@ -90,7 +90,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<T> TopoSort<T, TKey>(
 			[InstantHandle] this IEnumerable<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[InstantHandle] Func<T?, TKey> keySelector,
+			[InstantHandle] Func<T, TKey> keySelector,
 			IEqualityComparer<TKey> keyComparer)
 			where T : notnull
 			where TKey : notnull =>
@@ -110,7 +110,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<T> TopoSort<T, TKey>(
 			this ICollection<T> source,
 			[InstantHandle] Func<T, IEnumerable<T>> dependsOnGetter,
-			[InstantHandle] Func<T?, TKey> keySelector,
+			[InstantHandle] Func<T, TKey> keySelector,
 			IEqualityComparer<TKey> keyComparer)
 			where T : notnull
 			where TKey : notnull =>

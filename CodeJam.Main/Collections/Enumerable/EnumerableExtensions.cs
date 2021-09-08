@@ -183,7 +183,7 @@ namespace CodeJam.Collections
 		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
 			this IEnumerable<TSource> source,
-			Func<TSource?, TKey> keySelector)
+			Func<TSource, TKey> keySelector)
 			where TKey : notnull =>
 				source.Distinct(KeyEqualityComparer.Create(keySelector));
 
@@ -201,7 +201,7 @@ namespace CodeJam.Collections
 		[Pure, System.Diagnostics.Contracts.Pure, LinqTunnel]
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
 			this IEnumerable<TSource> source,
-			Func<TSource?, TKey> keySelector,
+			Func<TSource, TKey> keySelector,
 			IEqualityComparer<TKey> comparer)
 			where TKey : notnull =>
 				source.Distinct(KeyEqualityComparer.Create(keySelector, comparer));
@@ -221,7 +221,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> ExceptBy<TSource, TKey>(
 			this IEnumerable<TSource> first,
 			IEnumerable<TSource> second,
-			Func<TSource?, TKey> keySelector)
+			Func<TSource, TKey> keySelector)
 			where TKey : notnull =>
 				first.Except(second, KeyEqualityComparer.Create(keySelector));
 
@@ -241,7 +241,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> ExceptBy<TSource, TKey>(
 			this IEnumerable<TSource> first,
 			IEnumerable<TSource> second,
-			Func<TSource?, TKey> keySelector,
+			Func<TSource, TKey> keySelector,
 			IEqualityComparer<TKey> comparer)
 			where TKey : notnull =>
 				first.Except(second, KeyEqualityComparer.Create(keySelector, comparer));
@@ -261,7 +261,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> IntersectBy<TSource, TKey>(
 			this IEnumerable<TSource> first,
 			IEnumerable<TSource> second,
-			Func<TSource?, TKey> keySelector)
+			Func<TSource, TKey> keySelector)
 			where TKey : notnull =>
 				first.Intersect(second, KeyEqualityComparer.Create(keySelector));
 
@@ -281,7 +281,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> IntersectBy<TSource, TKey>(
 			this IEnumerable<TSource> first,
 			IEnumerable<TSource> second,
-			Func<TSource?, TKey> keySelector,
+			Func<TSource, TKey> keySelector,
 			IEqualityComparer<TKey> comparer)
 			where TKey : notnull =>
 				first.Intersect(second, KeyEqualityComparer.Create(keySelector, comparer));
@@ -301,7 +301,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> UnionBy<TSource, TKey>(
 			this IEnumerable<TSource> first,
 			IEnumerable<TSource> second,
-			Func<TSource?, TKey> keySelector)
+			Func<TSource, TKey> keySelector)
 			where TKey : notnull =>
 				first.Union(second, KeyEqualityComparer.Create(keySelector));
 
@@ -321,7 +321,7 @@ namespace CodeJam.Collections
 		public static IEnumerable<TSource> UnionBy<TSource, TKey>(
 			this IEnumerable<TSource> first,
 			IEnumerable<TSource> second,
-			Func<TSource?, TKey> keySelector,
+			Func<TSource, TKey> keySelector,
 			IEqualityComparer<TKey> comparer)
 			where TKey : notnull =>
 				first.Union(second, KeyEqualityComparer.Create(keySelector, comparer));

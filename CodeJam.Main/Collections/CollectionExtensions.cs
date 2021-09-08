@@ -23,7 +23,7 @@ namespace CodeJam.Collections
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		[ContractAnnotation("collection:null => true")]
-		public static bool IsNullOrEmpty<T>(this ICollection<T>? collection) =>
+		public static bool IsNullOrEmpty<T>([NotNullWhen(false)] this ICollection<T>? collection) =>
 			collection == null || collection.Count == 0;
 
 		/// <summary>

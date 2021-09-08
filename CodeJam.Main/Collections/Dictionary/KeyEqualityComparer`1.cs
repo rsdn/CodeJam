@@ -21,7 +21,7 @@ namespace CodeJam.Collections
 		/// <returns>
 		/// The function to extract the key for each element.
 		/// </returns>
-		public Func<T?, TKey> KeySelector { get; }
+		public Func<T, TKey> KeySelector { get; }
 
 		/// <summary>
 		/// Gets the equality comparer to use to compare the keys.
@@ -35,7 +35,7 @@ namespace CodeJam.Collections
 		/// Initializes a new instance of the <see cref="KeyEqualityComparer{T,TKey}"/>.
 		/// </summary>
 		/// <param name="keySelector">The function to extract the key for each element.</param>
-		public KeyEqualityComparer(Func<T?, TKey> keySelector)
+		public KeyEqualityComparer(Func<T, TKey> keySelector)
 		{
 			Code.NotNull(keySelector, nameof(keySelector));
 
@@ -48,7 +48,7 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <param name="keySelector">The function to extract the key for each element.</param>
 		/// <param name="comparer">The equality comparer to use to compare the keys.</param>
-		public KeyEqualityComparer(Func<T?, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+		public KeyEqualityComparer(Func<T, TKey> keySelector, IEqualityComparer<TKey>? comparer)
 		{
 			Code.NotNull(keySelector, nameof(keySelector));
 
@@ -65,7 +65,7 @@ namespace CodeJam.Collections
 		/// true if the specified objects are equal; otherwise, false.
 		/// </returns>
 		public bool Equals(T? x, T? y) =>
-			Comparer.Equals(KeySelector(x), KeySelector(y));
+			Comparer.Equals(KeySelector(x!), KeySelector(y!));
 
 		/// <summary>
 		/// Returns a hash code for the specified object.
