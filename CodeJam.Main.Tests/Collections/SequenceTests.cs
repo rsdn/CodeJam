@@ -13,6 +13,9 @@ namespace CodeJam.Collections
 		{
 			var res = Sequence.Create((int?)1, x => x == null ? 0 : x + 1).Take(2);
 			CollectionAssert.AreEquivalent(new[]{ 1, 2 }, res);
+
+			var res2 = Sequence.Create((object?)1, x => x == null ? 0 : (int)x + 1).Take(2);
+			CollectionAssert.AreEquivalent(new[] { 1, 2 }, res2);
 		}
 
 		[Test]
@@ -20,6 +23,9 @@ namespace CodeJam.Collections
 		{
 			var res = Sequence.Create("a", x =>  x + "1").Take(2);
 			CollectionAssert.AreEquivalent(new[] { "a", "a1" }, res);
+
+			var res2 = Sequence.Create((object)"a", x => x + "1").Take(2);
+			CollectionAssert.AreEquivalent(new[] { "a", "a1" }, res2);
 		}
 
 		[Test]
@@ -31,6 +37,13 @@ namespace CodeJam.Collections
 				x => x!.Value
 				).Take(2);
 			CollectionAssert.AreEquivalent(new[] { 1, 2 }, res);
+
+			var res2 = Sequence.Create(
+				(object?)1,
+				x => x == null ? 0 : (int)x + 1,
+				x => x!
+				).Take(2);
+			CollectionAssert.AreEquivalent(new[] { 1, 2 }, res2);
 		}
 
 		[Test]
@@ -42,6 +55,13 @@ namespace CodeJam.Collections
 				x => x.ToString()
 				).Take(2);
 			CollectionAssert.AreEquivalent(new[] { "a", "a1" }, res);
+
+			var res2 = Sequence.Create(
+				(object)"a",
+				x => x + "1",
+				x => x.ToString()
+				).Take(2);
+			CollectionAssert.AreEquivalent(new[] { "a", "a1" }, res2);
 		}
 
 		[Test]
