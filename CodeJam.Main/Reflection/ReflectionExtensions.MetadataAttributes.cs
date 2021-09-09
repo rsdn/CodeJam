@@ -198,7 +198,7 @@ namespace CodeJam.Reflection
 			{
 #pragma warning disable IDE0007 // use 'var' instead of explicit type
 				Type[] inheritanceTypes = Sequence.Create(
-					typeToCheck,
+					(Type?)typeToCheck,
 					t => t != null && !visited.Contains(t),
 					t => t?.GetBaseType())
 					.ToArray()!; // Always contains no nulls due to predicate

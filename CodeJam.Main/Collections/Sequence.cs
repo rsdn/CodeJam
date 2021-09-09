@@ -19,7 +19,7 @@ namespace CodeJam.Collections
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<T?> Create<T>(T? start, Func<T?, T?> next)
+		public static IEnumerable<T> Create<T>(T start, Func<T, T> next)
 		{
 			Code.NotNull(next, nameof(next));
 
@@ -42,10 +42,10 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<TResult?> Create<T, TResult>(
-			T? start,
-			Func<T?, T?> next,
-			Func<T?, TResult?> resultSelector)
+		public static IEnumerable<TResult> Create<T, TResult>(
+			T start,
+			Func<T, T> next,
+			Func<T, TResult> resultSelector)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -68,7 +68,7 @@ namespace CodeJam.Collections
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<T?> Create<T>(T? start, Func<T?, bool> predicate, Func<T?, T?> next)
+		public static IEnumerable<T> Create<T>(T start, Func<T, bool> predicate, Func<T, T> next)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof(predicate));
@@ -141,11 +141,11 @@ namespace CodeJam.Collections
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<TResult?> CreateWhileNotNull<T, TResult>(
-			T start,
-			Func<T?, T?> next,
-			Func<T?, TResult?> resultSelector)
-			where T : class
+		public static IEnumerable<TResult> CreateWhileNotNull<T, TResult>(
+			T? start,
+			Func<T, T?> next,
+			Func<T, TResult> resultSelector)
+			where T : class?
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -165,7 +165,7 @@ namespace CodeJam.Collections
 		/// <param name="element">Element instance to create sequence from.</param>
 		/// <returns>Single element sequence</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<T?> CreateSingle<T>(T? element)
+		public static IEnumerable<T> CreateSingle<T>(T element)
 		{
 			return new[] { element };
 		}
@@ -177,7 +177,7 @@ namespace CodeJam.Collections
 		/// <param name="elementFactory">Element factory.</param>
 		/// <returns>Single element sequence</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<T?> CreateSingle<T>(Func<T?> elementFactory)
+		public static IEnumerable<T> CreateSingle<T>(Func<T> elementFactory)
 		{
 			Code.NotNull(elementFactory, nameof(elementFactory));
 
