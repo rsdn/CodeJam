@@ -87,12 +87,12 @@ namespace CodeJam.Collections
 		[Test]
 		public void CreateWhileNotNull()
 		{
-			var typeofObject = new[] { typeof(object) };
+			var typeofObject = new[] { typeof(string), typeof(object) };
 			CollectionAssert.AreEquivalent(typeofObject, Sequence.CreateWhileNotNull(typeof(string), t => t.BaseType));
 			CollectionAssert.AreEquivalent(typeofObject, Sequence.CreateWhileNotNull((Type?)typeof(string), t => t?.BaseType));
 
 			// ReSharper disable once UseNameOfInsteadOfTypeOf
-			var objectName = new[] { typeof(object).Name };
+			var objectName = new[] { typeof(string).Name, typeof(object).Name };
 			CollectionAssert.AreEquivalent(objectName, Sequence.CreateWhileNotNull(typeof(string), t => t.BaseType, t => t.Name  ));
 			CollectionAssert.AreEquivalent(objectName, Sequence.CreateWhileNotNull((Type?)typeof(string), t => t?.BaseType, t => t.Name));
 
