@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
@@ -361,5 +362,40 @@ namespace CodeJam.Strings
 			=> str.Remove(true, CultureInfo.GetCultureInfo(""), remove1, remove2);
 #endif
 
+		[Test]
+		public void JoinArray()
+		{
+			string[] strs = { "a", "b" };
+			Assert.Equals("a,b", strs.Join(","));
+			Assert.Equals("ab", strs.Join(null));
+
+			string?[] nullstrs = { "a", "b", null };
+			Assert.Equals("a,b", nullstrs.Join(","));
+			Assert.Equals("ab", nullstrs.Join(null));
+		}
+
+		[Test]
+		public void JoinEnumerableString()
+		{
+			IEnumerable<string> strs = new[] { "a", "b" };
+			Assert.Equals("a,b", strs.Join(","));
+			Assert.Equals("ab", strs.Join(null));
+
+			IEnumerable<string?> nullstrs = new[] { "a", "b", null };
+			Assert.Equals("a,b", nullstrs.Join(","));
+			Assert.Equals("ab", nullstrs.Join(null));
+		}
+
+		[Test]
+		public void JoinEnumerableGeneric()
+		{
+			IEnumerable<int> strs = new[] { 1, 2 };
+			Assert.Equals("1,2", strs.Join(","));
+			Assert.Equals("12", strs.Join(null));
+
+			IEnumerable<int?> nullstrs = new int?[] { 1, 2, null };
+			Assert.Equals("1,2", nullstrs.Join(","));
+			Assert.Equals("12", nullstrs.Join(null));
+		}
 	}
 }

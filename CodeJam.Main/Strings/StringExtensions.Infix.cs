@@ -180,8 +180,10 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string Join(this string[] values, string? separator) =>
+		public static string Join(this string?[] values, string? separator) =>
 			string.Join(separator, values);
+
+#if !(NET20 || NET30 || NET35)
 
 		/// <summary>
 		/// Concatenates the members of a constructed <see cref="IEnumerable{T}"/> collection of type <see cref="string"/>,
@@ -201,7 +203,7 @@ namespace CodeJam.Strings
 		/// If <paramref name="values"/> has no members, the method returns <see cref="string.Empty"/>.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static string Join([InstantHandle] this IEnumerable<string> values, string? separator) =>
+		public static string Join([InstantHandle] this IEnumerable<string?> values, string? separator) =>
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join(
 				separator
@@ -209,7 +211,13 @@ namespace CodeJam.Strings
 					!
 #endif
 				,
-				values);
+				values
+#if LESSTHAN_NET47
+					!
+#endif
+				);
+
+#endif
 
 		/// <summary>
 		/// Concatenates the members of a collection, using the specified separator between each member.
@@ -227,6 +235,7 @@ namespace CodeJam.Strings
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static string Join<T>([InstantHandle] this IEnumerable<T> values, string? separator) =>
+#if !(NET20 || NET30 || NET35)
 			// ReSharper disable once BuiltInTypeReferenceStyle
 			StringEx.Join(
 				separator
@@ -235,6 +244,9 @@ namespace CodeJam.Strings
 #endif
 				,
 				values);
+#else // No covariant IEnumerable
+			values is IEnumerable<string> strValues ? StringEx.Join(separator!, strValues) : StringEx.Join(separator!, values);
+#endif
 
 		/// <summary>
 		/// Concatenates the members of a collection.
