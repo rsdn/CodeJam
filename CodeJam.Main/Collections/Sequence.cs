@@ -15,12 +15,11 @@ namespace CodeJam.Collections
 		/// Creates a sequence from start value and next element factory.
 		/// </summary>
 		/// <typeparam name="T">The type of element.</typeparam>
-		/// <typeparam name="TNext">The type of <paramref name="next"/> result.</typeparam>
 		/// <param name="start">Start value.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<T> Create<T, TNext>(T start, Func<T, TNext> next) where TNext : T
+		public static IEnumerable<T> Create<T>(T start, Func<T, T> next)
 		{
 			Code.NotNull(next, nameof(next));
 
@@ -38,17 +37,15 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="T">The type of source element.</typeparam>
 		/// <typeparam name="TResult">The type of result element</typeparam>
-		/// <typeparam name="TNext">The type of <paramref name="next"/> result.</typeparam>
 		/// <param name="start">Start value.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<TResult> Create<T, TResult, TNext>(
+		public static IEnumerable<TResult> Create<T, TResult>(
 			T start,
-			Func<T, TNext> next,
+			Func<T, T> next,
 			Func<T, TResult> resultSelector)
-			where TNext : T
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(resultSelector, nameof(resultSelector));
@@ -66,13 +63,12 @@ namespace CodeJam.Collections
 		/// Creates a sequence from start value and next element factory.
 		/// </summary>
 		/// <typeparam name="T">The type of element.</typeparam>
-		/// <typeparam name="TNext">The type of <paramref name="next"/> result.</typeparam>
 		/// <param name="start">Start value.</param>
 		/// <param name="predicate">A function to test each element for a condition.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<T> Create<T, TNext>(T start, Func<T, bool> predicate, Func<T, TNext> next) where TNext : T
+		public static IEnumerable<T> Create<T>(T start, Func<T, bool> predicate, Func<T, T> next)
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof(predicate));
@@ -90,19 +86,17 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="T">The type of source element.</typeparam>
 		/// <typeparam name="TResult">The type of result element</typeparam>
-		/// <typeparam name="TNext">The type of <paramref name="next"/> result.</typeparam>
 		/// <param name="start">Start value.</param>
 		/// <param name="predicate">A function to test each element for a condition.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<TResult> Create<T, TResult, TNext>(
+		public static IEnumerable<TResult> Create<T, TResult>(
 			T start,
 			Func<T, bool> predicate,
-			Func<T, TNext> next,
+			Func<T, T> next,
 			Func<T, TResult> resultSelector)
-			where TNext : T
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(predicate, nameof(predicate));
@@ -120,14 +114,12 @@ namespace CodeJam.Collections
 		/// Creates a sequence from start value and next element factory till factory returns null.
 		/// </summary>
 		/// <typeparam name="T">The type of element.</typeparam>
-		/// <typeparam name="TNext">The type of <paramref name="next"/> result.</typeparam>
 		/// <param name="start">Start value.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<T> CreateWhileNotNull<T, TNext>(T? start, Func<T, TNext?> next)
+		public static IEnumerable<T> CreateWhileNotNull<T>(T? start, Func<T, T?> next)
 			where T : class
-			where TNext : T
 		{
 			Code.NotNull(next, nameof(next));
 
@@ -144,18 +136,16 @@ namespace CodeJam.Collections
 		/// </summary>
 		/// <typeparam name="T">The type of source element.</typeparam>
 		/// <typeparam name="TResult">The type of result element</typeparam>
-		/// <typeparam name="TNext">The type of <paramref name="next"/> result.</typeparam>
 		/// <param name="start">Start value.</param>
 		/// <param name="next">Next element factory.</param>
 		/// <param name="resultSelector">A transform function to apply to each element.</param>
 		/// <returns>Generated sequence.</returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static IEnumerable<TResult> CreateWhileNotNull<T, TResult, TNext>(
+		public static IEnumerable<TResult> CreateWhileNotNull<T, TResult>(
 			T? start,
-			Func<T, TNext?> next,
+			Func<T, T?> next,
 			Func<T, TResult> resultSelector)
-			where T : class?
-			where TNext : T
+			where T : class
 		{
 			Code.NotNull(next, nameof(next));
 			Code.NotNull(resultSelector, nameof(resultSelector));
