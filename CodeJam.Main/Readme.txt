@@ -1,5 +1,10 @@
-﻿CodeJam 3.3.1 Release Notes
+﻿CodeJam 4.0.1 Release Notes
 ---------------------------
+
+What's new in 4.0.1
+-------------------------
+* Fix various nullability issues
+* Remove Theraot dependency for .NET Core 3.1 and .NET Standard 2.0, 2.1
 
 What's new in 4.0.0
 -------------------------
