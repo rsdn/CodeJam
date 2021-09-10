@@ -384,6 +384,8 @@ namespace CodeJam.Strings
 			IEnumerable<string?> nullstrs = new[] { "a", "b", null };
 #if !(NET20 || NET30 || NET35) // Theraot 3.2.8 bug
 			Assert.AreEqual("a,b,", nullstrs.Join(","));
+#else
+			Assert.AreEqual("a,b", nullstrs.Join(","));
 #endif
 			Assert.AreEqual("ab", nullstrs.Join(null));
 		}
@@ -398,6 +400,8 @@ namespace CodeJam.Strings
 			IEnumerable<int?> nullstrs = new int?[] { 1, 2, null };
 #if !(NET20 || NET30 || NET35) // Theraot 3.2.8 bug
 			Assert.AreEqual("1,2,", nullstrs.Join(","));
+#else
+			Assert.AreEqual("1,2", nullstrs.Join(","));
 #endif
 			Assert.AreEqual("12", nullstrs.Join(null));
 		}
