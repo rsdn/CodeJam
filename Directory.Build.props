@@ -11,8 +11,8 @@
 		<AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 		<NoWarn>$(NoWarn);CA1014</NoWarn>
 
-		<Version>4.0.1.0</Version>
-		<PackageVersion>4.0.1</PackageVersion>
+		<Version>4.0.2.0</Version>
+		<PackageVersion>4.0.2</PackageVersion>
 		<PackageOutputPath>..\_Results</PackageOutputPath>
 
 		<Company>RSDN</Company>

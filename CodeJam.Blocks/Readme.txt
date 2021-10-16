@@ -1,4 +1,4 @@
-﻿CodeJam.Blocks 4.0.1 Release Notes
+﻿CodeJam.Blocks 4.0.2 Release Notes
 ----------------------------------
 
 What's new in 4.0.0
