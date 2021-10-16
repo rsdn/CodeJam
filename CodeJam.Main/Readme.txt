@@ -1,5 +1,10 @@
-﻿CodeJam 4.0.1 Release Notes
+﻿CodeJam 4.0.2 Release Notes
 ---------------------------
+
+What's new in 4.0.2
+-------------------
+* Optimize QueryableExtensions.Intersect
+
 
 What's new in 4.0.1
 -------------------
