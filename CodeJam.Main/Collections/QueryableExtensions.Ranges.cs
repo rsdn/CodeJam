@@ -189,7 +189,7 @@ namespace CodeJam.Collections
 			}
 
 			var predicate = left != null && right != null
-				? And(left, right)
+				? AndAlso(left, right)
 				: left ?? right ?? FalseExpression();
 
 			// DbEnd >= @from AND DbStart <= @to
