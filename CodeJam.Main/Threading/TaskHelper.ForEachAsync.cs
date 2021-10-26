@@ -53,7 +53,7 @@ namespace CodeJam.Threading
 		/// Otherwise, uses <see cref="Environment.ProcessorCount"/> as fallback value.
 		/// </summary>
 #endif
-			public static int GetMaxDegreeOfParallelism(this TaskScheduler scheduler, int value)
+		public static int GetMaxDegreeOfParallelism(this TaskScheduler scheduler, int value)
 		{
 			Code.NotNull(scheduler, nameof(scheduler));
 
@@ -77,7 +77,7 @@ namespace CodeJam.Threading
 		/// </param>
 		/// <param name="cancellation">The cancellation.</param>
 		// BASEDON https://stackoverflow.com/a/25877042
-			public static async Task ForEachAsync<T>(
+		public static async Task ForEachAsync<T>(
 			this IEnumerable<T> source,
 			Func<T, CancellationToken, Task> callback,
 			int maxDegreeOfParallelism = 0,
@@ -190,7 +190,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="source">The task that may throw <see cref="AggregateException"/>.</param>
 		// BASEDON https://stackoverflow.com/a/18315625
-			public static async Task<T> WithAggregateException<T>(this Task<T> source)
+		public static async Task<T> WithAggregateException<T>(this Task<T> source)
 		{
 			Code.NotNull(source, nameof(source));
 			try
