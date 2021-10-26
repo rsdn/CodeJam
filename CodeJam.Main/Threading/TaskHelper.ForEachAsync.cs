@@ -77,9 +77,28 @@ namespace CodeJam.Threading
 		/// </param>
 		/// <param name="cancellation">The cancellation.</param>
 		// BASEDON https://stackoverflow.com/a/25877042
-		public static async Task ForEachAsync<T>(
+		public static Task ForEachAsync<T>(
 			this IEnumerable<T> source,
 			Func<T, CancellationToken, Task> callback,
+			int maxDegreeOfParallelism = 0,
+			CancellationToken cancellation = default) =>
+			ForEachAsync(source, (t, _, ct) => callback(t, ct), maxDegreeOfParallelism, cancellation);
+
+		/// <summary>
+		/// Runs actions over source items concurrently and asynchronously.
+		/// </summary>
+		/// <typeparam name="T">Type of items to process</typeparam>
+		/// <param name="source">The source.</param>
+		/// <param name="callback">The callback.</param>
+		/// <param name="maxDegreeOfParallelism">
+		/// The maximum degree of parallelism. If zero or negative, default scheduler value is used.
+		/// See <see cref="GetMaxDegreeOfParallelism"/> documentation for more details.
+		/// </param>
+		/// <param name="cancellation">The cancellation.</param>
+		// BASEDON https://stackoverflow.com/a/25877042
+		public static async Task ForEachAsync<T>(
+			this IEnumerable<T> source,
+			Func<T, long, CancellationToken, Task> callback,
 			int maxDegreeOfParallelism = 0,
 			CancellationToken cancellation = default)
 		{
@@ -94,19 +113,20 @@ namespace CodeJam.Threading
 				var combinedToken = customCancellation.Token;
 
 				await Partitioner.Create(source)
-					.GetPartitions(maxDegreeOfParallelism)
+					.GetOrderablePartitions(maxDegreeOfParallelism)
 					.Select(
-						partition => TaskEx.Run(
+						kvPartition => Task.Run(
 							async () =>
 							{
 								try
 								{
-									using (partition)
+									using (kvPartition)
 									{
-										while (partition.MoveNext() && !combinedToken.IsCancellationRequested)
+										while (kvPartition.MoveNext() && !combinedToken.IsCancellationRequested)
 										{
 											cancellation.ThrowIfCancellationRequested();
-											await callback(partition.Current, combinedToken).ConfigureAwait(false);
+											var current = kvPartition.Current;
+											await callback(current.Value, current.Key, combinedToken).ConfigureAwait(false);
 										}
 									}
 								}
@@ -128,6 +148,25 @@ namespace CodeJam.Threading
 
 		/// <summary>
 		/// Runs actions over source items concurrently and asynchronously.
+		/// The result array is ordered correspondingly to tasks order.
+		/// </summary>
+		/// <typeparam name="T">Type of items to process</typeparam>
+		/// <typeparam name="TResult">The type of the result.</typeparam>
+		/// <param name="source">The source.</param>
+		/// <param name="callback">The callback.</param>
+		/// <param name="maxDegreeOfParallelism">The maximum degree of parallelism. If zero or negative, default scheduler value is used.
+		/// See <see cref="GetMaxDegreeOfParallelism" /> documentation for more details.</param>
+		/// <param name="cancellation">The cancellation.</param>
+		public static Task<TResult[]> ForEachAsync<T, TResult>(
+			this IEnumerable<T> source,
+			Func<T, CancellationToken, Task<TResult>> callback,
+			int maxDegreeOfParallelism = 0,
+			CancellationToken cancellation = default) =>
+			ForEachAsync(source, (t, _, ct) => callback(t, ct), maxDegreeOfParallelism, cancellation);
+
+		/// <summary>
+		/// Runs actions over source items concurrently and asynchronously.
+		/// The result array is ordered correspondingly to tasks order.
 		/// </summary>
 		/// <typeparam name="T">Type of items to process</typeparam>
 		/// <typeparam name="TResult">The type of the result.</typeparam>
@@ -138,27 +177,27 @@ namespace CodeJam.Threading
 		/// <param name="cancellation">The cancellation.</param>
 		public static async Task<TResult[]> ForEachAsync<T, TResult>(
 			this IEnumerable<T> source,
-			Func<T, CancellationToken, Task<TResult>> callback,
+			Func<T, long, CancellationToken, Task<TResult>> callback,
 			int maxDegreeOfParallelism = 0,
 			CancellationToken cancellation = default)
 		{
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(callback, nameof(callback));
 
-			var queue = new ConcurrentQueue<TResult>();
+			var dict = new ConcurrentDictionary<long, TResult>();
 
 			await source
 				.ForEachAsync(
-					async (t, ct) =>
+					async (t, i, ct) =>
 					{
-						var x = await callback(t, ct).ConfigureAwait(false);
-						queue.Enqueue(x);
+						var x = await callback(t, i, ct).ConfigureAwait(false);
+						dict.TryAdd(i, x);
 					},
 					maxDegreeOfParallelism,
 					cancellation)
 				.ConfigureAwait(false);
 
-			return queue.ToArray();
+			return dict.OrderBy(kv => kv.Key).Select(kv => kv.Value).ToArray();
 		}
 
 		/// <summary>
@@ -168,7 +207,7 @@ namespace CodeJam.Threading
 		/// </summary>
 		/// <param name="source">The task that may throw <see cref="AggregateException"/>.</param>
 		// BASEDON https://stackoverflow.com/a/18315625
-			public static async Task WithAggregateException(this Task source)
+		public static async Task WithAggregateException(this Task source)
 		{
 			Code.NotNull(source, nameof(source));
 			try
