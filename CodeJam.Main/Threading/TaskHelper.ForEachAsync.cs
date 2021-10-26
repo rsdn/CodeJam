@@ -115,7 +115,7 @@ namespace CodeJam.Threading
 				await Partitioner.Create(source)
 					.GetOrderablePartitions(maxDegreeOfParallelism)
 					.Select(
-						kvPartition => Task.Run(
+						kvPartition => TaskEx.Run(
 							async () =>
 							{
 								try
