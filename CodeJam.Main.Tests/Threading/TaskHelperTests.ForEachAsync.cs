@@ -81,6 +81,23 @@ namespace CodeJam.Threading
 			CollectionAssert.AreEquivalent(result, tasks.Select(t => t.ToString(CultureInfo.InvariantCulture)));
 		}
 
+		public static async Task TestForEachOrderAsyncCore()
+		{
+			var tasks = Enumerable.Range(0, 20).Reverse().ToArray();
+
+			var result = await tasks
+				.ForEachAsync(
+					(i, order, ct) =>
+						TaskEx.FromResult<string>(
+							i.ToString(CultureInfo.InvariantCulture) +
+							order.ToString(CultureInfo.InvariantCulture)),
+					4)
+				.ConfigureAwait(false);
+
+			CollectionAssert.AreEquivalent(result, tasks.Select(t =>
+				t.ToString(CultureInfo.InvariantCulture) + (20 - t - 1).ToString(CultureInfo.InvariantCulture)));
+		}
+
 		[Test]
 		public void TestForEachAsyncThrows()
 		{
@@ -135,6 +152,12 @@ namespace CodeJam.Threading
 
 			Assert.Throws<TaskCanceledException>(() => forEachTask.GetAwaiter().GetResult());
 			Assert.AreEqual(results.Count, 4);
+		}
+
+		[Test]
+		public void TestForEachAsyncOrder()
+		{
+			TaskEx.Run(() => TestForEachOrderAsyncCore()).Wait();
 		}
 	}
 }

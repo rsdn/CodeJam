@@ -3,6 +3,7 @@
 
 What's new in 4.0.2
 -------------------
+* Return ordered result in TaskHelper.ForEachAsync
 * Optimize QueryableExtensions.Intersect
 
 
