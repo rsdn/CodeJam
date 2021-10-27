@@ -187,11 +187,12 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net5.0' ">
 		<DefineConstants>$(DefineConstants);TARGETS_NETCOREAPP</DefineConstants>
+		<DefineConstants>$(DefineConstants);LESSTHAN_NET60</DefineConstants>
 		<DefineConstants>$(DefineConstants);NETCOREAPP10_OR_GREATER;NETCOREAPP11_OR_GREATER;NETCOREAPP20_OR_GREATER;NETCOREAPP21_OR_GREATER;NETCOREAPP22_OR_GREATER;NETCOREAPP30_OR_GREATER;NETCOREAPP31_OR_GREATER;</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0' ">
 		<DefineConstants>$(DefineConstants);TARGETS_NETCOREAPP</DefineConstants>
-		<DefineConstants>$(DefineConstants);LESSTHAN_NET60</DefineConstants>
+		<DefineConstants>$(DefineConstants);</DefineConstants>
 		<DefineConstants>$(DefineConstants);NETCOREAPP10_OR_GREATER;NETCOREAPP11_OR_GREATER;NETCOREAPP20_OR_GREATER;NETCOREAPP21_OR_GREATER;NETCOREAPP22_OR_GREATER;NETCOREAPP30_OR_GREATER;NETCOREAPP31_OR_GREATER</DefineConstants>
 	</PropertyGroup>
 </Project>
