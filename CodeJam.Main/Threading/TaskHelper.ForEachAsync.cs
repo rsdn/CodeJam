@@ -175,7 +175,7 @@ namespace CodeJam.Threading
 		/// <param name="maxDegreeOfParallelism">The maximum degree of parallelism. If zero or negative, default scheduler value is used.
 		/// See <see cref="GetMaxDegreeOfParallelism" /> documentation for more details.</param>
 		/// <param name="cancellation">The cancellation.</param>
-		public static async Task<TResult[]> ForEachAsync<T, TResult>(
+		public static Task<TResult[]> ForEachAsync<T, TResult>(
 			this IEnumerable<T> source,
 			Func<T, long, CancellationToken, Task<TResult>> callback,
 			int maxDegreeOfParallelism = 0,
@@ -184,6 +184,17 @@ namespace CodeJam.Threading
 			Code.NotNull(source, nameof(source));
 			Code.NotNull(callback, nameof(callback));
 
+			return Collections.Backported.EnumerableExtensions.TryGetNonEnumeratedCount(source, out int count)
+				? ForEachEnumerableWithCountAsync(source, count, callback, maxDegreeOfParallelism, cancellation)
+				: ForEachEnumerableAsync(source, callback, maxDegreeOfParallelism, cancellation);
+		}
+
+		private static async Task<TResult[]> ForEachEnumerableAsync<T, TResult>(
+			IEnumerable<T> source,
+			Func<T, long, CancellationToken, Task<TResult>> callback,
+			int maxDegreeOfParallelism,
+			CancellationToken cancellation)
+		{
 			var dict = new ConcurrentDictionary<long, TResult>();
 
 			await source
@@ -198,6 +209,31 @@ namespace CodeJam.Threading
 				.ConfigureAwait(false);
 
 			return dict.OrderBy(kv => kv.Key).Select(kv => kv.Value).ToArray();
+		}
+
+		private static async Task<TResult[]> ForEachEnumerableWithCountAsync<T, TResult>(
+			IEnumerable<T> source,
+			int count,
+			Func<T, long, CancellationToken, Task<TResult>> callback,
+			int maxDegreeOfParallelism,
+			CancellationToken cancellation)
+		{
+			var array = new TResult[count];
+
+			await source
+				.ForEachAsync(
+					async (t, i, ct) =>
+					{
+						var x = await callback(t, i, ct).ConfigureAwait(false);
+						array[i] = x;
+					},
+					maxDegreeOfParallelism,
+					cancellation)
+				.ConfigureAwait(false);
+
+			Thread.MemoryBarrier();
+
+			return array;
 		}
 
 		/// <summary>
