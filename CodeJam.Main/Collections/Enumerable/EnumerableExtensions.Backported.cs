@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 using JetBrains.Annotations;
@@ -83,10 +84,8 @@ namespace CodeJam.Collections.Backported
 			if (count <= 0)
 				return Enumerable.Empty<T>();
 
-			if (source is ICollection<T> collection)
-				return count < collection.Count
-					? source.Take(collection.Count - count)
-					: Enumerable.Empty<T>();
+			if (source.TryGetNonEnumeratedCount(out var collectionCount))
+				return count < collectionCount ? source.Take(collectionCount - count) : Enumerable.Empty<T>();
 
 			return SkipLastImpl(source, count);
 		}
@@ -102,6 +101,36 @@ namespace CodeJam.Collections.Backported
 
 				queue.Enqueue(item);
 			}
+		}
+
+		/// <summary>
+		/// Returns number of elements in <paramref name="source"/> without enumeration if possible.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+		/// <param name="source">An <see cref="IEnumerable{T}"/> to check.</param>
+		/// <param name="count">Number of elements in <paramref name="source"/>.</param>
+		/// <returns><c>true</c>, if it is possible to get number of elements without enumeration, otherwise <c>false</c>.</returns>
+		[Pure, System.Diagnostics.Contracts.Pure]
+		public static bool TryGetNonEnumeratedCount<TSource>(
+			[InstantHandle, NoEnumeration] this IEnumerable<TSource> source,
+			out int count)
+		{
+#if NET6_0
+			return Enumerable.TryGetNonEnumeratedCount(source, out count);
+#else
+			switch (source)
+			{
+				case ICollection<TSource> col:
+					count = col.Count;
+					return true;
+				case ICollection col:
+					count = col.Count;
+					return true;
+				default:
+					count = 0;
+					return false;
+			}
+#endif
 		}
 	}
 }
