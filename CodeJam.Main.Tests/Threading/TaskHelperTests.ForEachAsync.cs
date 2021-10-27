@@ -72,30 +72,38 @@ namespace CodeJam.Threading
 
 		public static async Task TestForEachAsyncCore()
 		{
-			var tasks = Enumerable.Range(0, 20).ToArray();
+			int count = 20;
+			var tasks = Enumerable.Range(0, count);
 
 			var result = await tasks
 				.ForEachAsync((i, ct) => TaskEx.FromResult(i.ToString(CultureInfo.InvariantCulture)), 4)
 				.ConfigureAwait(false);
 
-			CollectionAssert.AreEquivalent(result, tasks.Select(t => t.ToString(CultureInfo.InvariantCulture)));
+			CollectionAssert.AreEquivalent(result, Enumerable.Range(0, count).Select(t => t.ToString(CultureInfo.InvariantCulture)));
 		}
 
-		public static async Task TestForEachOrderAsyncCore()
+		public static async Task TestForEachOrderAsyncCore(bool asCollection)
 		{
-			var tasks = Enumerable.Range(0, 20).Reverse().ToArray();
+			var count = 20;
+			var tasks = Enumerable.Range(0, count).Reverse();
+			if (asCollection)
+				tasks = tasks.ToArray();
+
+			var orders = new ConcurrentDictionary<long, string>();
 
 			var result = await tasks
 				.ForEachAsync(
 					(i, order, ct) =>
-						TaskEx.FromResult<string>(
-							i.ToString(CultureInfo.InvariantCulture) +
-							order.ToString(CultureInfo.InvariantCulture)),
+					{
+						var r = i.ToString(CultureInfo.InvariantCulture);
+						orders.TryAdd(order, r);
+						return TaskEx.FromResult<string>(r);
+					},
 					4)
 				.ConfigureAwait(false);
 
-			CollectionAssert.AreEquivalent(result, tasks.Select(t =>
-				t.ToString(CultureInfo.InvariantCulture) + (20 - t - 1).ToString(CultureInfo.InvariantCulture)));
+			Assert.AreEqual(orders.Count, count);
+			CollectionAssert.AreEquivalent(result, orders.Values);
 		}
 
 		[Test]
@@ -157,7 +165,13 @@ namespace CodeJam.Threading
 		[Test]
 		public void TestForEachAsyncOrder()
 		{
-			TaskEx.Run(() => TestForEachOrderAsyncCore()).Wait();
+			TaskEx.Run(() => TestForEachOrderAsyncCore(false)).Wait();
+		}
+
+		[Test]
+		public void TestForEachCollectionAsyncOrder()
+		{
+			TaskEx.Run(() => TestForEachOrderAsyncCore(true)).Wait();
 		}
 	}
 }
