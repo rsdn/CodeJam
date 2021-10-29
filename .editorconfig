@@ -208,7 +208,6 @@ resharper_keep_existing_initializer_arrangement = false
 resharper_keep_existing_linebreaks = false
 resharper_local_function_body = expression_body
 resharper_method_or_operator_body = expression_body
-resharper_old_engine = true
 resharper_parentheses_non_obvious_operations = none, bitwise, bitwise_inclusive_or, range, bitwise_exclusive_or, shift, bitwise_and
 resharper_place_attribute_on_same_line = false
 resharper_place_simple_accessor_on_single_line = false
