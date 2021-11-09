@@ -1,0 +1,22 @@
+﻿{
+  "version": "1.0",
+  "components": [
+    "Microsoft.Component.MSBuild",
+    "Microsoft.Net.Component.3.5.DeveloperTools",
+    "Microsoft.Net.Component.4.6.1.SDK",
+    "Microsoft.Net.Component.4.6.1.TargetingPack",
+    "Microsoft.Net.Component.4.7.1.SDK",
+    "Microsoft.Net.Component.4.7.1.TargetingPack",
+    "Microsoft.Net.Component.4.7.2.SDK",
+    "Microsoft.Net.Component.4.7.2.TargetingPack",
+    "Microsoft.Net.Component.4.7.SDK",
+    "Microsoft.Net.Component.4.7.TargetingPack",
+    "Microsoft.Net.Component.4.8.SDK",
+    "Microsoft.Net.Component.4.8.TargetingPack",
+    "Microsoft.Net.Core.Component.SDK.2.1",
+    "Microsoft.NetCore.Component.Runtime.3.1",
+    "Microsoft.NetCore.Component.Runtime.5.0",
+    "Microsoft.VisualStudio.Component.NuGet",
+    "Microsoft.VisualStudio.Component.Roslyn.Compiler"
+  ]
+}
