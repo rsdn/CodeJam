@@ -29,5 +29,6 @@
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 		<DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
 	</PropertyGroup>
 </Project>

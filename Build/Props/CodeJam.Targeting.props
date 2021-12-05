@@ -6,7 +6,7 @@
 		* We DO most development and testing on netcoreapp3.0 target
 		* We DO include netstandard2.0 as most convenient target
 		* We DO include net461 as recommended by targeting guidelines
-		* We DO support all actual targets (net5.0, netstandard2.1, net472).
+		* We DO support all actual targets (net6.0, net5.0, netstandard2.1, net472).
 		* We DO support some legacy targets (net45 and earlier, netstandard1.x, netcoreapp1.x) with help of Theraot.Core package
 		* For tests we use Net Core v1.1 and v2.1 as earlier versions are not included into AppVeyor build images
 	-->

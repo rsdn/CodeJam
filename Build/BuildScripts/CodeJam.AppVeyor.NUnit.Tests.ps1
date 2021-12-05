@@ -27,7 +27,7 @@ foreach ($target in $targetsDotNet) {
 }
 
 #run .net core tests
-$targetsDotNetCore = "net5.0;netcoreapp3.1" -split ";"
+$targetsDotNetCore = "net6.0;net5.0;netcoreapp3.1" -split ";"
 foreach ($target in $targetsDotNetCore) {
 	$logFileName = "$env:APPVEYOR_BUILD_FOLDER\_Results\$($target)_nunit_results.xml"
 	$testAssemblies = (Get-ChildItem -include $include -r | `
