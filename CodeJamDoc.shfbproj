@@ -47,7 +47,7 @@
     </NamespaceSummaries>
     <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
     <VisibleItems>Attributes, InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, EditorBrowsableNever, NonBrowsable</VisibleItems>
-    <CopyrightText>RSDN, 2016-2018</CopyrightText>
+    <CopyrightText>RSDN, 2016-2021</CopyrightText>
     <PlugInConfigurations />
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
