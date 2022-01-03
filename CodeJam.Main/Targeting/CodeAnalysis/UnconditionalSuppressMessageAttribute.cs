@@ -8,7 +8,7 @@ using System;
 namespace System.Diagnostics.CodeAnalysis
 {
 	/// <summary>
-	/// Suppresses reporting of a specific rule violation, allowing multiple suppressions on a
+	/// Suppresses reporting of a specific rule violation, allowing multiple suppression on a
 	/// single code artifact.
 	/// </summary>
 	/// <remarks>
