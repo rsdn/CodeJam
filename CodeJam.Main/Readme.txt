@@ -1,5 +1,9 @@
-﻿CodeJam 4.0.2 Release Notes
+﻿CodeJam 4.0.3 Release Notes
 ---------------------------
+What's new in 4.0.3
+-------------------
+* Add TypeConverter with ability to convert from string to ConnectionStringBase
+* Remove the IsAssignableTo method from .NET 5+, since a full analogue appeared there
 
 What's new in 4.0.2
 -------------------
