@@ -708,8 +708,14 @@ namespace CodeJam.Reflection
 		///   <c>true</c> if instance of current type can be assigned to instance of <typeparamref name="T"/>; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static bool IsAssignableTo<T>(this Type? type) => typeof(T).IsAssignableFrom(type);
+		public static bool IsAssignableTo<T>([NotNullWhen(true)] this Type? type) =>
+#if NET5_0_OR_GREATER
+			type != null && type.IsAssignableTo(typeof (T)); // IsAssignableTo is intrinsic in .NET 5+
+#else
+			typeof(T).IsAssignableFrom(type);
+#endif
 
+#if !NET5_0_OR_GREATER
 		/// <summary>
 		/// Determines whether instance of current type can be assigned to instance of <paramref name="targetType"/>.
 		/// </summary>
@@ -719,11 +725,12 @@ namespace CodeJam.Reflection
 		///   <c>true</c> if instance of current type can be assigned to instance of <paramref name="targetType"/>; otherwise, <c>false</c>.
 		/// </returns>
 		[Pure, System.Diagnostics.Contracts.Pure]
-		public static bool IsAssignableTo(this Type? type, Type targetType)
+		public static bool IsAssignableTo([NotNullWhen(true)] this Type? type, Type targetType)
 		{
 			Code.NotNull(targetType, nameof(targetType));
 
 			return targetType.IsAssignableFrom(type);
 		}
+#endif
 	}
 }

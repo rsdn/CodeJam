@@ -253,5 +253,20 @@ BooleanValue=true;
 			IsFalse(x.EquivalentTo(x2));
 			AreNotEqual(x.ToArray(), x2.ToArray());
 		}
+
+		[Test]
+		public void TypeConverter_Ok()
+		{
+			var converter = TypeDescriptor.GetConverter(typeof (DerivedConnectionString));
+
+			// The test simulates the behavior of the
+			// Microsoft.Extensions.Configuration.ConfigurationBinder.TryConvertValue method
+			IsTrue(converter.CanConvertFrom(typeof(string)));
+			var cs = converter.ConvertFromInvariantString("RequiredValue=Req;OptionalValue=Opt") as DerivedConnectionString;
+
+			IsNotNull(cs);
+			AreEqual("Req", cs?.RequiredValue);
+			AreEqual("Opt", cs?.OptionalValue);
+		}
 	}
 }

@@ -17,50 +17,11 @@ namespace CodeJam.ConnectionStrings
 	[PublicAPI]
 	public abstract partial class ConnectionStringBase : IDictionary<string, object>
 	{
-		/// <summary>
-		/// Descriptor for connection string keyword
-		/// </summary>
-		[PublicAPI]
-		protected class KeywordDescriptor
-		{
-			/// <summary>
-			/// Initializes a new instance of the <see cref="KeywordDescriptor"/> class.
-			/// </summary>
-			public KeywordDescriptor(string name, Type valueType, bool isRequired, bool isBrowsable)
-			{
-				Name = name;
-				ValueType = valueType;
-				IsRequired = isRequired;
-				IsBrowsable = isBrowsable;
-			}
-
-			/// <summary>
-			/// Gets the keyword name.
-			/// </summary>
-			public string Name { get; }
-
-			/// <summary>
-			/// Gets expected type of the keyword value.
-			/// </summary>
-			public Type ValueType { get; }
-
-			/// <summary>
-			/// Gets a value indicating whether this keyword is a mandatory keyword.
-			/// </summary>
-			public bool IsRequired { get; }
-
-			/// <summary>
-			/// Gets a value indicating whether this keyword is browsable (safe to log / display).
-			/// </summary>
-			public bool IsBrowsable { get; }
-		}
-
 		private readonly StringBuilderWrapper _wrapper;
 
 		/// <summary>Initializes a new instance of the <see cref="ConnectionStringBase" /> class.</summary>
 		/// <param name="connectionString">The connection string.</param>
-		protected ConnectionStringBase(string? connectionString)
-			=> _wrapper = new StringBuilderWrapper(connectionString, GetType());
+		protected ConnectionStringBase(string? connectionString) => _wrapper = new(connectionString, GetType());
 
 		/// <summary>
 		/// Gets all supported keywords for current connection.
@@ -259,6 +220,46 @@ namespace CodeJam.ConnectionStrings
 		#region Overrides of Object
 		/// <inheritdoc />
 		public override string ToString() => _wrapper.ToString();
+		#endregion
+
+		#region KeywordDescriptor class
+		/// <summary>
+		/// Descriptor for connection string keyword
+		/// </summary>
+		[PublicAPI]
+		protected class KeywordDescriptor
+		{
+			/// <summary>
+			/// Initializes a new instance of the <see cref="KeywordDescriptor"/> class.
+			/// </summary>
+			public KeywordDescriptor(string name, Type valueType, bool isRequired, bool isBrowsable)
+			{
+				Name = name;
+				ValueType = valueType;
+				IsRequired = isRequired;
+				IsBrowsable = isBrowsable;
+			}
+
+			/// <summary>
+			/// Gets the keyword name.
+			/// </summary>
+			public string Name { get; }
+
+			/// <summary>
+			/// Gets expected type of the keyword value.
+			/// </summary>
+			public Type ValueType { get; }
+
+			/// <summary>
+			/// Gets a value indicating whether this keyword is a mandatory keyword.
+			/// </summary>
+			public bool IsRequired { get; }
+
+			/// <summary>
+			/// Gets a value indicating whether this keyword is browsable (safe to log / display).
+			/// </summary>
+			public bool IsBrowsable { get; }
+		}
 		#endregion
 	}
 }
