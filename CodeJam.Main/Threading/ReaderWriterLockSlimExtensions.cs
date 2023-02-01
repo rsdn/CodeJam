@@ -78,11 +78,8 @@ namespace CodeJam.Threading
 			/// </summary>
 			/// <param name="readerWriterLock">The <see cref="ReaderWriterLockSlim"/> instance.</param>
 			[DebuggerStepThrough]
-			internal ReadLockScope(ReaderWriterLockSlim readerWriterLock)
-			{
-				Code.NotNull(readerWriterLock, nameof(readerWriterLock));
+			internal ReadLockScope(ReaderWriterLockSlim readerWriterLock) =>
 				_readerWriterLock = readerWriterLock;
-			}
 
 			/// <summary>
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -90,7 +87,7 @@ namespace CodeJam.Threading
 			[DebuggerStepThrough]
 			public void Dispose()
 			{
-				_readerWriterLock?.EnterReadLock();
+				_readerWriterLock?.ExitReadLock();
 				_readerWriterLock = null;
 			}
 		}
@@ -110,11 +107,8 @@ namespace CodeJam.Threading
 			/// </summary>
 			/// <param name="readerWriterLock">The <see cref="ReaderWriterLockSlim"/> instance.</param>
 			[DebuggerStepThrough]
-			internal WriteLockScope(ReaderWriterLockSlim readerWriterLock)
-			{
-				Code.NotNull(readerWriterLock, nameof(readerWriterLock));
+			internal WriteLockScope(ReaderWriterLockSlim readerWriterLock) =>
 				_readerWriterLock = readerWriterLock;
-			}
 
 			/// <summary>
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -142,11 +136,8 @@ namespace CodeJam.Threading
 			/// </summary>
 			/// <param name="readerWriterLock">The <see cref="ReaderWriterLockSlim"/> instance.</param>
 			[DebuggerStepThrough]
-			public UpgradeableReadLockScope(ReaderWriterLockSlim readerWriterLock)
-			{
-				Code.NotNull(readerWriterLock, nameof(readerWriterLock));
+			public UpgradeableReadLockScope(ReaderWriterLockSlim readerWriterLock) =>
 				_readerWriterLock = readerWriterLock;
-			}
 
 			/// <summary>
 			/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
