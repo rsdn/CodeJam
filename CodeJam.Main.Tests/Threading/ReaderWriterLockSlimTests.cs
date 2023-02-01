@@ -18,7 +18,7 @@ namespace CodeJam.Threading
 			using (rwl.GetReadLock())
 				Assert.IsTrue(rwl.IsReadLockHeld);
 
-			Assert.That(rwl.IsReadLockHeld, Is.False);
+			Assert.IsFalse(rwl.IsReadLockHeld);
 		}
 
 		[Test]
