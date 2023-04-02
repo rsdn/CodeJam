@@ -10,6 +10,7 @@
 		<DelaySign>False</DelaySign>
 		<AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 		<NoWarn>$(NoWarn);CA1014</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>
 
 		<Version>4.0.2.0</Version>
 		<PackageVersion>4.0.2</PackageVersion>
