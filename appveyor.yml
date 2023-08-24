@@ -1,69 +1,13 @@
-﻿configuration: Release
 image: Visual Studio 2022
+configuration: Release
 version: '4.0.0.{build}'
-
-#environment:
-#  packageVersion: 3.0.0
-#  perfTestsPackageVersion: 0.2.2
-
-init:
-- cmd: git config --global core.autocrlf true
-#- ps: $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
-#- ps: $env:nugetVersion = "$env:packageVersion-alpha$env:appveyor_build_number"
-#- ps: $env:perfTestsBuildVersion = "$env:perfTestsPackageVersion.$env:appveyor_build_number"
-#- ps: $env:perfTestsNugetVersion = "$env:perfTestsPackageVersion-alpha$env:appveyor_build_number"
-#- ps: Update-AppveyorBuild -Version $env:buildVersion
-# to troubleshoot via RDP:
-#- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-
-assembly_info:
-  patch: true
-  file: '**\AssemblyInfo.cs'
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
-
-dotnet_csproj:
-  patch: true
-  file: 'Directory.Build.props'
-  version: '{version}'
-  package_version: '{version}'
 
 nuget:
   account_feed: false
   project_feed: false
-
-#build:
-#  project: CodeJam.sln
-#  publish_nuget: false
-#  verbosity: minimal
-
-before_build:
-- cmd: nuget restore CodeJam.sln
 build_script:
-- msbuild CodeJam.sln /p:Configuration=Release /p:Platform="Any CPU" /t:Restore;Build /v:m
+- ps: dotnet build .\CodeJam.sln -p:Version=$env:APPVEYOR_BUILD_VERSION
 
-#test:
-#  assemblies:
-#    only:
-#      - '**\*.Tests.dll'
-
+test: off #disable auto-tests
 test_script:
-  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.NUnit.Tests.ps1
-#  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.xUnit.Tests.ps1
-#  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.MsTest.Tests.ps1
-
-artifacts:
-  - path: '_Results\*.nupkg'
-
-#after_build:
-# - ps: Get-ChildItem .\_Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-
-on_finish:
-# artifacts for perftests
-  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-  - ps: Get-ChildItem *results.xml -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-  - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-# to troubleshoot via RDP:
-#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-
+  - ps: .\Pipelines\Appveyor.Tests.ps1
