@@ -12,7 +12,6 @@ The CodeJam project includes three parts:
 * Main - stable and feature complete code.
 * Blocks - app building blocks, more specific and feature oriented functionality.
 * Experimental - A workspace for code development. Contains incomplete and/or unstable parts.
-* [CodeJam.PerfTests](https://github.com/rsdn/CodeJam/tree/master/PerfTests) - a performance testing framework for .Net projects.
 
 CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam main package is a place for
 collaboration and sharing, where developers community can work together on code to be shared by the CodeJam.
@@ -32,13 +31,6 @@ contribute in any of these aspects, please join us!
 The main library containing feature complete and stable code of production quality.
 
 ### Blocks
-
-### PerfTests
-
-CodeJam.PerfTests is performance testing framework for .Net projects.
-
-It allows to compare multiple implementations by execution time (*~memory limits coming soon~*), to annotate test methods
-with timing limits and to check the limits each time the test is run.
 
 ### .NET Standard 1.6, 1.5 support (dropped in 4.0)
 

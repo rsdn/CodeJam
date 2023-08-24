@@ -10,8 +10,6 @@ init:
 - cmd: git config --global core.autocrlf true
 #- ps: $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
 #- ps: $env:nugetVersion = "$env:packageVersion-alpha$env:appveyor_build_number"
-#- ps: $env:perfTestsBuildVersion = "$env:perfTestsPackageVersion.$env:appveyor_build_number"
-#- ps: $env:perfTestsNugetVersion = "$env:perfTestsPackageVersion-alpha$env:appveyor_build_number"
 #- ps: Update-AppveyorBuild -Version $env:buildVersion
 # to troubleshoot via RDP:
 #- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
@@ -50,8 +48,6 @@ build_script:
 
 test_script:
   - ps: .\Build\BuildScripts\CodeJam.AppVeyor.NUnit.Tests.ps1
-#  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.xUnit.Tests.ps1
-#  - ps: .\Build\BuildScripts\CodeJam.AppVeyor.MsTest.Tests.ps1
 
 artifacts:
   - path: '_Results\*.nupkg'
@@ -59,11 +55,7 @@ artifacts:
 #after_build:
 # - ps: Get-ChildItem .\_Results\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
-on_finish:
-# artifacts for perftests
-  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-  - ps: Get-ChildItem *results.xml -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-  - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+#on_finish:
 # to troubleshoot via RDP:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
