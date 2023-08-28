@@ -24,7 +24,7 @@ $replacement = 'name="${name} (${tfm})" fullname="${fullname} (${tfm})"'
 
 # Run .Net Core tests
 ## Emits multiple test reports
-dotnet test .\CodeJam.Light.sln -p:NetCoreTests=true --no-build --no-restore `
+dotnet test .\CodeJam.sln -p:NetCoreTests=true --no-build --no-restore `
   --results-directory '.\.artifacts\' `
   --logger 'trx;LogFilePrefix=nunit'
 
