@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
 	<Import Project="Build\Props\CodeJam.Targeting.props" />
 	<Import Project="Build\Props\CodeJam.Nuspec.props" Condition=" !$(MSBuildProjectName.EndsWith('.Tests'))" />
 
@@ -20,7 +20,7 @@
 
 		<Version>4.0.2.0</Version>
 		<PackageVersion>4.0.2</PackageVersion>
-		<PackageOutputPath>$(MSBuildThisFileDirectory)\.Artifacts\.Nuget</PackageOutputPath>
+		<PackageOutputPath>$(MSBuildThisFileDirectory).artifacts\.Nuget</PackageOutputPath>
 
 		<Company>RSDN</Company>
 

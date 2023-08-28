@@ -1,4 +1,4 @@
-<#
+﻿<#
   Feel my pain. Here's incomplete list of issues that prevents us just to use existing tooling:
   * https://github.com/appveyor/ci/issues/1894 - root cause. Test results are overwritten
   * https://github.com/nunit/nunit/issues/3790 - bonus issue: no support for legacy frameforks on dotnet test
@@ -11,7 +11,8 @@
 
 # Run .Net Framework tests using nunit3-console
 ## We use nunit-console here as as dotnet test does not support legacy net frameworks
-$testNetFwDlls = ls -r '.artifacts\*\Debug\*.Tests.dll' | ? FullName -match '\\net\d+\\' ` | % FullName
+$configuration = $env:CONFIGURATION ?? 'Debug'
+$testNetFwDlls = ls -r ".artifacts\*\$configuration\*.Tests.dll" | ? FullName -match '\\net\d+\\' ` | % FullName
 $logFilePath = '.artifacts\nunit_netframework.xml'
 nunit3-console $testNetFwDlls --result=$logFilePath
 
