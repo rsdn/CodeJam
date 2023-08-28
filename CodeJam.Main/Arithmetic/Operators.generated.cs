@@ -9,7 +9,6 @@
 
 #nullable enable
 
-
 using System;
 using System.Linq.Expressions;
 
@@ -22,7 +21,6 @@ namespace CodeJam.Arithmetic
 {
 	/// <summary>
 	/// Callbacks for common arithmetic actions.
-	/// Look at OperatorsPerformanceTest to see why.
 	/// </summary>
 	static partial class Operators<T>
 	{

@@ -10,7 +10,6 @@ namespace CodeJam.Arithmetic
 {
 	/// <summary>
 	/// Callbacks for common arithmetic actions.
-	/// Look at OperatorsPerformanceTest to see why.
 	/// </summary>
 	/// <typeparam name="T">The type of the operands.</typeparam>
 	// IMPORTANT: DO NOT declare static .ctor on the type. The class should be marked as beforefieldinit.
