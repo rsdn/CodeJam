@@ -10,8 +10,9 @@
 
 
 # Run .Net Framework tests using nunit3-console
+## AppVeyor agent image uses PS6 and therefore does not support coalesce operator.
+$configuration = ($env:CONFIGURATION, 'Debug' -ne $null)[0]
 ## We use nunit-console here as as dotnet test does not support legacy net frameworks
-$configuration = $env:CONFIGURATION ?? 'Debug'
 $testNetFwDlls = ls -r ".artifacts\*\$configuration\*.Tests.dll" | ? FullName -match '\\net\d+\\' ` | % FullName
 $logFilePath = '.artifacts\nunit_netframework.xml'
 nunit3-console $testNetFwDlls --result=$logFilePath
