@@ -1,13 +1,13 @@
-image: Visual Studio 2022
+﻿image: Visual Studio 2022
 configuration: Release
 version: '4.0.0.{build}'
 
 nuget:
   account_feed: false
   project_feed: false
+
 build_script:
 - ps: dotnet build .\CodeJam.sln -p:Version=$env:APPVEYOR_BUILD_VERSION
 
-test: off #disable auto-tests
 test_script:
   - ps: .\Pipelines\Appveyor.Tests.ps1

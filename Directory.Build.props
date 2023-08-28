@@ -20,7 +20,7 @@
 
 		<Version>4.0.2.0</Version>
 		<PackageVersion>4.0.2</PackageVersion>
-		<PackageOutputPath>..\_Results</PackageOutputPath>
+		<PackageOutputPath>$(MSBuildThisFileDirectory)\.Artifacts\.Nuget</PackageOutputPath>
 
 		<Company>RSDN</Company>
 

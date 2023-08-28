@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<TargetFramework>net472</TargetFramework>
-	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\appveyor.yml" Link="appveyor.yml" />
+	</ItemGroup>
 </Project>
