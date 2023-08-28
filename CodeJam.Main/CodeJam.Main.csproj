@@ -125,6 +125,7 @@
 		<Compile Update="Arithmetic\Operators.generated.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Operators.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
 		</Compile>
 		<None Update="Arithmetic\Operators.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
