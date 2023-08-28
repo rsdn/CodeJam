@@ -6,6 +6,8 @@
 		<ProjectGuid>{2A52D7F6-AAFC-4AC4-9901-252C13D96E53}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net6.0;net5.0;net48;net472;net471;net47;net461;net45;net40;net35;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks Condition=" '$(NetCoreTests)' == 'true' ">net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks Condition=" '$(NetFrameworkTests)' == 'true' ">net48;net472;net471;net47;net461;net45;net40;net35</TargetFrameworks>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 	</PropertyGroup>
 
@@ -19,7 +21,7 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Include="..\CodeJam.Main.Tests\NAssert.cs" Link="NAssert.cs" />
+		<Compile Include="..\CodeJam.Main.Tests\NAssert.cs" Link="NAssert.cs" />
 	</ItemGroup>
 	<!-- #endregion -->
 

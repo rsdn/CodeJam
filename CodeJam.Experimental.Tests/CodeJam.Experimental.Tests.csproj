@@ -6,6 +6,8 @@
 		<ProjectGuid>{F6F97573-4D26-4217-89F6-819DF96FCB4A}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net6.0;net461;netcoreapp2.1</TargetFrameworks>
+		<TargetFrameworks Condition=" '$(NetCoreTests)' == 'true' ">net6.0;netcoreapp2.1</TargetFrameworks>
+		<TargetFrameworks Condition=" '$(NetFrameworkTests)' == 'true' ">net461</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
