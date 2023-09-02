@@ -2,7 +2,13 @@
 	<Import Project="Build\Props\CodeJam.Targeting.props" />
 	<Import Project="Build\Props\CodeJam.Nuspec.props" Condition=" !$(MSBuildProjectName.EndsWith('.Tests'))" />
 
+	<!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
 	<PropertyGroup>
+		<!-- Redirects everything to '.artifacts\',
+			same as <UseArtifactsOutput>true</UseArtifactsOutput> in .Net 8 -->
+		<BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)' == ''">$(MSBuildThisFileDirectory)\.artifacts\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+		<BaseOutputPath Condition="'$(BaseOutputPath)' == ''">$(MSBuildThisFileDirectory).artifacts\$(MSBuildProjectName)\</BaseOutputPath>
+
 		<Configurations>Debug;Release</Configurations>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -14,7 +20,7 @@
 
 		<Version>4.0.2.0</Version>
 		<PackageVersion>4.0.2</PackageVersion>
-		<PackageOutputPath>..\_Results</PackageOutputPath>
+		<PackageOutputPath>$(MSBuildThisFileDirectory).artifacts\.Nuget</PackageOutputPath>
 
 		<Company>RSDN</Company>
 

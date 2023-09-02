@@ -3,4 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\appveyor.yml" Link="appveyor.yml" />
+	</ItemGroup>
 </Project>
