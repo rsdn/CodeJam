@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using JetBrains.Annotations;
@@ -108,6 +109,32 @@ namespace CodeJam.IO
 			// DO NOT dispose the reader
 			using (var reader = stream.ToStreamReader(encoding, true))
 				return await reader.ReadToEndAsync().ConfigureAwait(false);
+		}
+
+		/// <summary>
+		/// Returns content of the stream as a string.
+		/// </summary>
+		/// <param name="stream">The stream to read.</param>
+		/// <param name="encoding">The character encoding to use.</param>
+		/// <param name="cancellationToken">Token of cancellation of the operation.</param>
+		public static async Task<string> ReadAsStringAsync(
+			this Stream stream,
+			Encoding? encoding = null,
+			CancellationToken cancellationToken = default)
+		{
+			Code.NotNull(stream, nameof(stream));
+			using var register = cancellationToken.Register(() => stream.Close());
+
+			try
+			{
+				using var reader = stream.ToStreamReader(encoding, true);
+				return await reader.ReadToEndAsync().ConfigureAwait(false);
+			}
+			catch
+			{
+				if (!cancellationToken.IsCancellationRequested) throw;
+				throw new OperationCanceledException(cancellationToken);
+			}
 		}
 
 		/// <summary>
