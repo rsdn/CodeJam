@@ -30,7 +30,8 @@ namespace CodeJam
 				}
 				catch (Exception ex)
 				{
-					exceptions = new List<Exception> { ex };
+					if (exceptions != null) exceptions.Add(ex);
+					else exceptions = new List<Exception> { ex };
 				}
 			}
 
@@ -71,9 +72,7 @@ namespace CodeJam
 			Code.NotNull(disposable, nameof(disposable));
 			if (disposable is IAsyncDisposable asyncDisposable)
 				return asyncDisposable.DisposeAsync();
-
-			disposable.Dispose();
-			return new ValueTask();
+			return new ValueTask(Task.Run(() => disposable.Dispose()));
 		}
 #endif
 	}
