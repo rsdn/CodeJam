@@ -61,6 +61,20 @@ public static class DisposableExtensionsTests
 
 #if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
 	[Test]
+	public static async Task DisposeAsyncMustCallDiposeOnce()
+	{
+		const int expectedDisposeCount = 1;
+
+		int actualDisposeCount = 0;
+
+		var objectForDispose = Disposable.Create(() => ++actualDisposeCount);
+
+		await objectForDispose.DisposeAsync();
+
+		Assert.AreEqual(expectedDisposeCount, actualDisposeCount);
+	}
+
+	[Test]
 	public static void DisposeAsyncMustNotBlockThread()
 	{
 		var disposeDuration = new TimeSpan(0, 0, 1);
