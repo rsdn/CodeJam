@@ -71,7 +71,7 @@ namespace CodeJam
 			Code.NotNull(disposable, nameof(disposable));
 			if (disposable is IAsyncDisposable asyncDisposable)
 				await asyncDisposable.DisposeAsync();
-			await new ValueTask(Task.Run(() => disposable.Dispose()));
+			await Task.Run(() => disposable.Dispose());
 		}
 #endif
 	}
