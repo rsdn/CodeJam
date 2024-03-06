@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using JetBrains.Annotations;
 
-using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace CodeJam
 {
@@ -102,6 +103,63 @@ namespace CodeJam
 				return false;
 			}
 		}
+
+		/// <summary>
+		/// Disposable wrapper for single object.
+		/// </summary>
+		/// <typeparam name="T">Type of wrapped object that needed to be deinitialized.</typeparam>
+		public class CustomDisposable<T> : IDisposable
+		{
+			private readonly Action<T> _destroyer;
+
+			private bool _wasDisposed = false;
+
+			private readonly T _entity;
+
+			public T Entity => (_wasDisposed ? throw new ObjectDisposedException(nameof(_entity)) : _entity);
+
+			public CustomDisposable(T entity, Action<T> destroyer)
+			{
+				_entity = entity;
+				_destroyer = destroyer;
+			}
+
+			public void Dispose()
+			{
+				if (_wasDisposed) return; else _wasDisposed = true;
+				_destroyer(_entity);
+			}
+		}
+
+		/// <summary>
+		/// Disposable wrapper for multiple objects.
+		/// </summary>
+		/// <typeparam name="TE">Type of wrapped objects collection, in which each element must be deinitialized.</typeparam>
+		/// <typeparam name="T">Type of element of wrapped objects collection.</typeparam>
+		public class CustomDisposable<TE, T> : IDisposable
+			where TE : IEnumerable<T>
+		{
+
+			private readonly Action<T> _destroyer;
+
+			private bool _wasDisposed = false;
+
+			private readonly TE _entities;
+
+			public TE Entities => (_wasDisposed ? throw new ObjectDisposedException(nameof(_entities)) : _entities);
+
+			public CustomDisposable(TE entities, Action<T> destroyer)
+			{
+				_entities = entities;
+				_destroyer = destroyer;
+			}
+
+			public void Dispose()
+			{
+				if (_wasDisposed) return; else _wasDisposed = true;
+				_entities.Select(e => (IDisposable)new CustomDisposable<T>(e, _destroyer)).DisposeAll();
+			}
+		}
 		#endregion
 
 		/// <summary><see cref="IDisposable"/> instance without any code in <see cref="IDisposable.Dispose"/>.</summary>
@@ -129,6 +187,39 @@ namespace CodeJam
 		[Pure, System.Diagnostics.Contracts.Pure]
 		public static IDisposable Create<T>(Action<T?> disposeAction, T? state) =>
 			new AnonymousDisposable<T>(disposeAction, state);
+
+		/// <summary>
+		/// Creates disposable wrapper for single object.
+		/// </summary>
+		/// <typeparam name="T">Type of wrapped object that needed to be deinitialized.</typeparam>
+		/// <param name="creator">Used at place immediately to initialize internal entity inside returning disposable wrapper.</param>
+		/// <param name="destroyer">Used during internal entity deinitialization as an action of the dispose method.</param>
+		/// <returns>Created disposable wrapper of single object.</returns>
+		public static CustomDisposable<T> Create<T>(Func<T> creator, Action<T> destroyer) =>
+			new(creator(), destroyer);
+
+		/// <summary>
+		/// Creates disposable wrapper for multiple objects.
+		/// </summary>
+		/// <typeparam name="TE">Type of wrapped objects collection, in which each element must be deinitialized.</typeparam>
+		/// <typeparam name="T">Type of element of wrapped objects collection.</typeparam>
+		/// <param name="creator">Used at place immediately to initialize internal entities inside returning disposable wrapper.</param>
+		/// <param name="destroyer">Used during each internal entity deinitialization as an action of the dispose method.</param>
+		/// <returns>Created disposable wrapper of multiple objects.</returns>
+		public static CustomDisposable<TE, T> Create<TE, T>(Func<TE> creator, Action<T> destroyer) where TE : IEnumerable<T> =>
+			new(creator(), destroyer);
+
+		/// <summary>
+		/// Creates disposable wrapper for multiple objects.
+		/// </summary>
+		/// <typeparam name="TTe">Type of wrapped objects collection, in which each element must be deinitialized.</typeparam>
+		/// <typeparam name="T">Type of element of wrapped objects collection.</typeparam>
+		/// <param name="counter">Used at place immediately to get source collection for internal entities initialize enumeration.</param>
+		/// <param name="creator">Used at place immediately to initialize each internal entity inside returning disposable wrapper.</param>
+		/// <param name="destroyer">Used during each internal entity deinitialization as an action of the dispose method.</param>
+		/// <returns>Created disposable wrapper of multiple objects.</returns>
+		public static CustomDisposable<IEnumerable<T>, T> Create<TTe, T>(Func<IEnumerable<TTe>> counter, Func<TTe, T> creator, Action<T> destroyer) =>
+			new(counter().Select(creator).ToArray(), destroyer);
 
 		/// <summary>Combine multiple <see cref="IDisposable"/> instances into single one.</summary>
 		/// <param name="disposables">The disposables.</param>

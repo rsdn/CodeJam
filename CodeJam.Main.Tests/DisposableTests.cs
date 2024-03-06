@@ -115,7 +115,7 @@ namespace CodeJam
 			var state = "";
 			var disposed = false;
 
-			using (Disposable.Create(s => {disposed = true; state = s;}, "state"))
+			using (Disposable.Create(s => { disposed = true; state = s; }, "state"))
 			{
 			}
 
@@ -180,13 +180,90 @@ namespace CodeJam
 				s =>
 				{
 					Assert.That(++i, Is.EqualTo(3));
-					Assert.That(s,   Is.EqualTo("123"));
+					Assert.That(s, Is.EqualTo("123"));
 				}))
 			{
 				Assert.That(++i, Is.EqualTo(2));
 			}
 
 			Assert.That(++i, Is.EqualTo(4));
+		}
+
+		[Test]
+		public static void CustomDisposeMustProcessSingleEntity()
+		{
+			const int expectedInitializeCount = 1;
+			const int expectedUseCount = 1;
+			const int expectedDestroyCount = 1;
+
+			int actualInitializeCount = 0;
+			int actualUseCount = 0;
+			int actualDisposeCount = 0;
+
+			var rawTestObject = new SomeTestableEntity(
+				() => ++actualInitializeCount,
+				() => ++actualUseCount,
+				() => ++actualDisposeCount);
+
+			var wrappedTestObject = Disposable.Create(
+				() => { rawTestObject.Initialize(); return rawTestObject; },
+				innerTestableEntity => innerTestableEntity.Destroy());
+
+			Assert.DoesNotThrow(wrappedTestObject.Entity.Use);
+			Assert.DoesNotThrow(wrappedTestObject.Dispose);
+			Assert.Throws<ObjectDisposedException>(() => wrappedTestObject.Entity.Use());
+
+			Assert.AreEqual(expectedInitializeCount, actualInitializeCount);
+			Assert.AreEqual(expectedUseCount, actualUseCount);
+			Assert.AreEqual(expectedDestroyCount, actualDisposeCount);
+		}
+
+		[Test]
+		public static void CustomDisposeMustProcessMultipleEntities()
+		{
+			const int expectedEntitiesCount = 10;
+			const int expectedInitializeCount = 10;
+			const int expectedDestroyCount = 10;
+
+			int actualEntitiesCount = 0;
+			int actualInitializeCount = 0;
+			int actualDisposeCount = 0;
+
+			var create = () => new SomeTestableEntity(
+				() => ++actualInitializeCount,
+				() => { },
+				() => ++actualDisposeCount);
+
+			var wrappedTestObject = Disposable.Create(
+				() => Enumerable.Range(0, expectedEntitiesCount),
+				index => { var rawTestObject = create(); rawTestObject.Initialize(); return rawTestObject; },
+				innerTestableEntity => innerTestableEntity.Destroy());
+
+			Assert.DoesNotThrow(() => actualEntitiesCount = wrappedTestObject.Entities.Count());
+			Assert.DoesNotThrow(wrappedTestObject.Dispose);
+			Assert.Throws<ObjectDisposedException>(() => actualEntitiesCount = wrappedTestObject.Entities.Count());
+
+			Assert.AreEqual(expectedEntitiesCount, actualEntitiesCount);
+			Assert.AreEqual(expectedInitializeCount, actualInitializeCount);
+			Assert.AreEqual(expectedDestroyCount, actualDisposeCount);
+		}
+
+		private class SomeTestableEntity
+		{
+			private readonly Action _initialize;
+			private readonly Action _use;
+			private readonly Action _destroy;
+
+			public SomeTestableEntity(Action initialize, Action use, Action destroy)
+			{
+				_initialize = initialize;
+				_use = use;
+				_destroy = destroy;
+			}
+
+			public void Initialize() => _initialize();
+			public void Use() => _use();
+			public void Destroy() => _destroy();
 		}
 	}
 }

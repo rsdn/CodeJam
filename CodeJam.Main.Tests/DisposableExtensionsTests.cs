@@ -61,7 +61,7 @@ public static class DisposableExtensionsTests
 
 #if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
 	[Test]
-	public static async Task DisposeAsyncMustCallDiposeOnce()
+	public static async Task DisposeAsyncMustCallDisposeOnce()
 	{
 		const int expectedDisposeCount = 1;
 
