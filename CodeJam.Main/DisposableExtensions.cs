@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-#if NETSTANDARD21_OR_GREATER || NETCOREAPP30_OR_GREATER
 using System.Threading.Tasks;
-#endif
+
 using CodeJam.Internal;
 
 using JetBrains.Annotations;
@@ -30,7 +29,8 @@ namespace CodeJam
 				}
 				catch (Exception ex)
 				{
-					exceptions = new List<Exception> { ex };
+					if (exceptions != null) exceptions.Add(ex);
+					else exceptions = new List<Exception> { ex };
 				}
 			}
 
@@ -66,14 +66,12 @@ namespace CodeJam
 		/// Calls DisposeAsync if <paramref name="disposable"/> implements <see cref="IAsyncDisposable"/>, otherwise
 		/// calls <see cref="IDisposable.Dispose"/>
 		/// </summary>
-		public static ValueTask DisposeAsync(this IDisposable disposable)
+		public static async ValueTask DisposeAsync(this IDisposable disposable)
 		{
 			Code.NotNull(disposable, nameof(disposable));
 			if (disposable is IAsyncDisposable asyncDisposable)
-				return asyncDisposable.DisposeAsync();
-
-			disposable.Dispose();
-			return new ValueTask();
+				await asyncDisposable.DisposeAsync();
+			await new ValueTask(Task.Run(() => disposable.Dispose()));
 		}
 #endif
 	}
