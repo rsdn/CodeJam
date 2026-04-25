@@ -18,6 +18,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageTags>list string collection data-structure threading xml reflection async assertion IO extension algorithms structures utilities suffix-tree range tagged-union discriminated union discriminated-union variant variant-record disjoint-union sum-type</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -396,10 +397,7 @@
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>Fn.generated.cs</LastGenOutput>
 		</None>
-		<Content Include="Readme.txt">
-			<Pack>true</Pack>
-			<PackagePath>Readme.txt</PackagePath>
-		</Content>
+		<None Include="README.md" Pack="true" PackagePath="\"/>
 		<None Include="..\images\nuget\CodeJam.Main.Icon.png">
 			<Pack>true</Pack>
 			<PackagePath>icon.png</PackagePath>

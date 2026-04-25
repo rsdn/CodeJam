@@ -14,44 +14,44 @@ namespace CodeJam
 	{
 		/// <summary>Asserts that specified URI is well-formed absolute or relative URI.</summary>
 		/// <param name="uri">The URI.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedUri(
 			string uri,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(uri))] string? argName = null)
 		{
 			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.RelativeOrAbsolute))
-				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName, uri, UriKind.RelativeOrAbsolute);
+				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName!, uri, UriKind.RelativeOrAbsolute);
 		}
 
 		/// <summary>Asserts that specified URI is well-formed absolute URI.</summary>
 		/// <param name="uri">The URI.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedAbsoluteUri(
 			string uri,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(uri))] string? argName = null)
 		{
 			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute))
-				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName, uri, UriKind.Absolute);
+				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName!, uri, UriKind.Absolute);
 		}
 
 		/// <summary>Asserts that specified URI is well-formed relative URI.</summary>
 		/// <param name="uri">The URI.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedRelativeUri(
 			string uri,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(uri))] string? argName = null)
 		{
 			Code.NotNullNorEmpty(uri, argName);
 			if (!Uri.IsWellFormedUriString(uri, UriKind.Relative))
-				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName, uri, UriKind.Relative);
+				throw UriCodeExceptions.ArgumentNotWellFormedUri(argName!, uri, UriKind.Relative);
 		}
 	}
 }

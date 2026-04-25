@@ -30,22 +30,22 @@ namespace CodeJam
 		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
 			[SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 			where T : class
 		{
 			if (arg == null)
-				throw CodeExceptions.ArgumentNull(argName);
+				throw CodeExceptions.ArgumentNull(argName!);
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		/// <remarks>
 		/// This version enables not-null assertions for generic methods without
 		/// <code>where T : class</code> constraint.
@@ -55,27 +55,27 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void GenericNotNull<T>(
 			[SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 		{
 			if (arg == null)
-				throw CodeExceptions.ArgumentNull(argName);
+				throw CodeExceptions.ArgumentNull(argName!);
 		}
 
 		/// <summary>Ensures that <paramref name="arg" /> != <see cref="Guid.Empty" />.</summary>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">The name of the argument.</param>
+		/// <param name="argName">The name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
-		public static void NotDefault(Guid arg, [InvokerParameterName] string argName)
+		public static void NotDefault(Guid arg, [CallerArgumentExpression(nameof(arg))] string? argName = null)
 		{
 			if (arg == Guid.Empty)
-				throw CodeExceptions.ArgumentDefault(argName, typeof(Guid));
+				throw CodeExceptions.ArgumentDefault(argName!, typeof(Guid));
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> != default(<typeparamref name="T"/>)</summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		/// <remarks>
 		/// This version enables not-default assertions for generic methods
 		/// </remarks>
@@ -84,24 +84,24 @@ namespace CodeJam
 		[AssertionMethod]
 		public static void GenericNotDefault<T>(
 			[NoEnumeration] T? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 		{
 			if (Operators<T>.AreEqual(arg, default))
-				throw CodeExceptions.ArgumentDefault(argName, typeof(T));
+				throw CodeExceptions.ArgumentDefault(argName!, typeof(T));
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNull<T>(
 			[SDC.NotNull, ValidatedNotNull] T? arg,
-			[InvokerParameterName] string argName) where T : struct
+			[CallerArgumentExpression(nameof(arg))] string? argName = null) where T : struct
 		{
 			if (arg == null)
-				throw CodeExceptions.ArgumentNull(argName);
+				throw CodeExceptions.ArgumentNull(argName!);
 		}
 
 		/// <summary>
@@ -109,16 +109,16 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Enumerable.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
 			[SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T>? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 		{
 			NotNull(arg, argName);
 			if (!arg.Any())
-				throw CodeExceptions.ArgumentEmpty(argName);
+				throw CodeExceptions.ArgumentEmpty(argName!);
 		}
 
 		/// <summary>
@@ -126,16 +126,16 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Collection.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
 			[SDC.NotNull, ValidatedNotNull] ICollection<T>? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 		{
 			NotNull(arg, argName);
 			if (arg.Count == 0)
-				throw CodeExceptions.ArgumentEmpty(argName);
+				throw CodeExceptions.ArgumentEmpty(argName!);
 		}
 
 		/// <summary>
@@ -143,53 +143,53 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Array.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty<T>(
 			[SDC.NotNull, ValidatedNotNull] T?[]? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 		{
 			NotNull(arg, argName);
 			if (arg.Length == 0)
-				throw CodeExceptions.ArgumentEmpty(argName);
+				throw CodeExceptions.ArgumentEmpty(argName!);
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> is not null nor empty</summary>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmpty(
 			[SDC.NotNull, ValidatedNotNull] string? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 		{
 			if (arg.IsNullOrEmpty())
-				throw CodeExceptions.ArgumentNullOrEmpty(argName);
+				throw CodeExceptions.ArgumentNullOrEmpty(argName!);
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> is not null nor white space</summary>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorWhiteSpace(
 			[SDC.NotNull, ValidatedNotNull] string? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 		{
 			if (arg.IsNullOrWhiteSpace())
-				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName);
+				throw CodeExceptions.ArgumentNullOrWhiteSpace(argName!);
 		}
 
 		/// <summary>Ensures that <paramref name="arg"/> and its all items != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullAndItemNotNull<T>(
 			[SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
-			[InvokerParameterName] string argName) where T : class
+			[CallerArgumentExpression(nameof(arg))] string? argName = null) where T : class
 		{
 			NotNull(arg, argName);
 			ItemNotNull(arg, argName);
@@ -200,12 +200,12 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Enumerable.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmptyAndItemNotNull<T>(
 			[SDC.NotNull, InstantHandle, ValidatedNotNull] IEnumerable<T?>? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 			where T : class
 		{
 			NotNull(arg, argName);
@@ -215,12 +215,12 @@ namespace CodeJam
 			foreach (var item in arg)
 			{
 				if (item == null)
-					throw CodeExceptions.ArgumentItemNull(argName);
+					throw CodeExceptions.ArgumentItemNull(argName!);
 				hasItems = true;
 			}
 
 			if (!hasItems)
-				throw CodeExceptions.ArgumentEmpty(argName);
+				throw CodeExceptions.ArgumentEmpty(argName!);
 		}
 
 		/// <summary>
@@ -228,12 +228,12 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Collection.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmptyAndItemNotNull<T>(
 			[SDC.NotNull, ValidatedNotNull] ICollection<T?>? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 			where T : class
 		{
 			NotNullNorEmpty(arg, argName);
@@ -245,12 +245,12 @@ namespace CodeJam
 		/// </summary>
 		/// <typeparam name="T">Type of item.</typeparam>
 		/// <param name="arg">Array.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void NotNullNorEmptyAndItemNotNull<T>(
 			[SDC.NotNull, ValidatedNotNull] T?[]? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 			where T : class
 		{
 			NotNullNorEmpty(arg, argName);
@@ -260,18 +260,18 @@ namespace CodeJam
 		/// <summary>Ensures that all items in <paramref name="arg"/> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void ItemNotNull<T>(
 			[InstantHandle] IEnumerable<T?> arg,
-			[InvokerParameterName] string argName) where T : class
+			[CallerArgumentExpression(nameof(arg))] string? argName = null) where T : class
 		{
 			NotNull(arg, argName);
 
 			foreach (var item in arg)
 				if (item == null)
-					throw CodeExceptions.ArgumentItemNull(argName);
+					throw CodeExceptions.ArgumentItemNull(argName!);
 		}
 
 		/// <summary>Assertion for the argument value</summary>
@@ -309,16 +309,16 @@ namespace CodeJam
 		/// <summary>Ensures that <paramref name="arg"/> != <c>null</c></summary>
 		/// <typeparam name="T">Type of the value. Auto-inferred in most cases</typeparam>
 		/// <param name="arg">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static T ReturnIfNotNull<T>(
 			[SDC.NotNull, NoEnumeration, ValidatedNotNull] T? arg,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(arg))] string? argName = null)
 			where T : class
 		{
 			NotNull(arg, argName);
-			return arg;
+			return arg!;
 		}
 		#endregion
 

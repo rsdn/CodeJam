@@ -14,104 +14,104 @@ namespace CodeJam.IO
 	{
 		/// <summary>Asserts that specified path is either absolute or relative not rooted path.</summary>
 		/// <param name="path">The path.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedPath(
 			string path,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(path))] string? argName = null)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsWellFormedPath(path))
-				throw IoCodeExceptions.ArgumentNotWellFormedPath(argName, path);
+				throw IoCodeExceptions.ArgumentNotWellFormedPath(argName!, path);
 		}
 
 		/// <summary>Asserts that specified path is well-formed full path.</summary>
 		/// <param name="path">The path.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedAbsolutePath(
 			string path,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(path))] string? argName = null)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsWellFormedAbsolutePath(path))
-				throw IoCodeExceptions.ArgumentNotWellFormedAbsolutePath(argName, path);
+				throw IoCodeExceptions.ArgumentNotWellFormedAbsolutePath(argName!, path);
 		}
 
 		/// <summary>Asserts that specified path is well-formed relative path.</summary>
 		/// <param name="path">The path.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedRelativePath(
 			string path,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(path))] string? argName = null)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsWellFormedRelativePath(path))
-				throw IoCodeExceptions.ArgumentRootedOrNotRelativePath(argName, path);
+				throw IoCodeExceptions.ArgumentRootedOrNotRelativePath(argName!, path);
 		}
 
 		/// <summary>Asserts that specified path is well formed and ends with directory or volume separator chars.</summary>
 		/// <param name="path">The path.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsWellFormedContainerPath(
 			string path,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(path))] string? argName = null)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsWellFormedContainerPath(path))
-				throw IoCodeExceptions.ArgumentNotVolumeOrDirectoryPath(argName, path);
+				throw IoCodeExceptions.ArgumentNotVolumeOrDirectoryPath(argName!, path);
 		}
 
 		/// <summary>Asserts that specified path is well-formed file name.</summary>
 		/// <param name="path">The path.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void IsFileName(
 			string path,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(path))] string? argName = null)
 		{
 			Code.NotNullNorEmpty(path, argName);
 			if (!PathHelper.IsFileName(path))
-				throw IoCodeExceptions.ArgumentNotFileName(argName, path);
+				throw IoCodeExceptions.ArgumentNotFileName(argName!, path);
 		}
 
 		#region IO path
 		/// <summary>Asserts that specified file does exist.</summary>
 		/// <param name="filePath">Path to the file.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void FileExists(
 			string filePath,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(filePath))] string? argName = null)
 		{
 			Code.NotNull(filePath, argName);
 			if (!File.Exists(filePath))
 				throw Directory.Exists(filePath)
-					? IoCodeExceptions.ArgumentDirectoryExistsFileExpected(argName, filePath)
-					: IoCodeExceptions.ArgumentFileNotFound(argName, filePath);
+					? IoCodeExceptions.ArgumentDirectoryExistsFileExpected(argName!, filePath)
+					: IoCodeExceptions.ArgumentFileNotFound(argName!, filePath);
 		}
 
 		/// <summary>Asserts that specified directory does exist.</summary>
 		/// <param name="directoryPath">Path to the directory.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void DirectoryExists(
 			string directoryPath,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(directoryPath))] string? argName = null)
 		{
 			if (!Directory.Exists(directoryPath))
 				throw File.Exists(directoryPath)
-					? IoCodeExceptions.ArgumentFileExistsDirectoryExpected(argName, directoryPath)
-					: IoCodeExceptions.ArgumentDirectoryNotFound(argName, directoryPath);
+					? IoCodeExceptions.ArgumentFileExistsDirectoryExpected(argName!, directoryPath)
+					: IoCodeExceptions.ArgumentDirectoryNotFound(argName!, directoryPath);
 		}
 
 		/// <summary>Asserts that specified path is not a path to existent file or a directory.</summary>

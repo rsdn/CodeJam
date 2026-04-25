@@ -16,31 +16,31 @@ namespace CodeJam
 		/// <summary>Asserts that specified argument enum value is defined.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="value">The argument.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void Defined<TEnum>(
 			TEnum value,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(value))] string? argName = null)
 			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.IsDefined(value))
-				throw EnumCodeExceptions.ArgumentNotDefined(argName, value);
+				throw EnumCodeExceptions.ArgumentNotDefined(argName!, value);
 		}
 
 		/// <summary>Asserts that all bits of the flags combination are defined.</summary>
 		/// <typeparam name="TEnum">The type of the enum value.</typeparam>
 		/// <param name="argFlags">The bitwise combinations of the flags to check.</param>
-		/// <param name="argName">Name of the argument.</param>
+		/// <param name="argName">Name of the argument (auto-captured).</param>
 		[DebuggerHidden, MethodImpl(AggressiveInlining)]
 		[AssertionMethod]
 		public static void FlagsDefined<TEnum>(
 			TEnum argFlags,
-			[InvokerParameterName] string argName)
+			[CallerArgumentExpression(nameof(argFlags))] string? argName = null)
 			where TEnum : struct, Enum
 		{
 			if (!EnumHelper.AreFlagsDefined(argFlags))
-				throw EnumCodeExceptions.ArgumentNotDefined(argName, argFlags);
+				throw EnumCodeExceptions.ArgumentNotDefined(argName!, argFlags);
 		}
 		#endregion
 
