@@ -1,5 +1,8 @@
 ﻿using System.Linq;
 
+#if !NETCOREAPP20_OR_GREATER
+using CodeJam.Collections.Backported;
+#endif
 using CodeJam.Strings;
 
 using NUnit.Framework;

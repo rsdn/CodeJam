@@ -49,7 +49,7 @@ namespace CodeJam
 #elif NET461
 			".NETFramework,Version=v4.6.1";
 #elif NET462
-			".NETFramework,Version=v4.6.1";
+			".NETFramework,Version=v4.6.2";
 #elif NET47
 			".NETFramework,Version=v4.6.1";
 #elif NET471
@@ -62,6 +62,12 @@ namespace CodeJam
 			".NETCoreApp,Version=v5.0";
 #elif NET6_0
 			".NETCoreApp,Version=v6.0";
+#elif NET8_0
+			".NETCoreApp,Version=v8.0";
+#elif NET9_0
+			".NETCoreApp,Version=v9.0";
+#elif NET10_0
+			".NETCoreApp,Version=v10.0";
 #elif NETCOREAPP1_0
 			".NETCoreApp,Version=v1.0";
 #elif NETCOREAPP1_1
@@ -262,7 +268,7 @@ namespace CodeJam
 		public void TestTargeting()
 		{
 			TestTools.PrintQuirks();
-			Assert.AreEqual(PlatformHelper.TargetPlatform, ExpectedCodeJamTarget);
+			Assert.AreEqual(ExpectedCodeJamTarget, PlatformHelper.TargetPlatform);
 		}
 
 		[Test]

@@ -3,6 +3,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
+#if LESSTHAN_NET472 || LESSTHAN_NETCOREAPP20
+using CodeJam.Collections.Backported;
+#endif
+
 using NUnit.Framework;
 
 namespace CodeJam.Collections

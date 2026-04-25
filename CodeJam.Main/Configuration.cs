@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 // ReSharper disable once RedundantUsingDirective
 using CodeJam.Threading;

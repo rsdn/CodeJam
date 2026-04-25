@@ -5,7 +5,7 @@
 		<RootNamespace>CodeJam</RootNamespace>
 		<ProjectGuid>{7BD77DA2-A731-400C-A88E-215FC592E6E3}</ProjectGuid>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net6.0;net461;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net6.0;netstandard2.0;net10.0;net5.0;net8.0;net9.0</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 
@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\CodeJam.Main\Targeting\**\*.cs">
+		<Compile Include="..\CodeJam.Main\Targeting\**\*.cs" Exclude="..\CodeJam.Main\Targeting\**\DisallowNullAttribute.cs">
 			<Link>Targeting\%(Compile.Filename)</Link>
 		</Compile>
 		<Compile Include="..\Build\JetBrains.Annotations.cs" Link="Properties\JetBrains.Annotations.cs" />

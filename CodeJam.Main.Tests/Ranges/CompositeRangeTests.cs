@@ -29,11 +29,11 @@ namespace CodeJam.Ranges
 			if (value == RangeInternal.EmptyString)
 				return CompositeRange<T>.Empty;
 
-			var boundaryAndRange = value.Split(new[] { CompositeRangeInternal.PrefixString }, 2, StringSplitOptions.None);
+			var boundaryAndRange = value.Split([CompositeRangeInternal.PrefixString], 2, StringSplitOptions.None);
 			var boundary = ParseRange(boundaryAndRange[0], parseValueCallback);
 
 			var result = boundaryAndRange[1][..^CompositeRangeInternal.SuffixString.Length]
-				.Split(new[] { CompositeRangeInternal.SeparatorString }, StringSplitOptions.None)
+				.Split([CompositeRangeInternal.SeparatorString], StringSplitOptions.None)
 				.Select(s => ParseRange(s, parseValueCallback))
 				.ToCompositeRange();
 

@@ -254,8 +254,10 @@ namespace CodeJam.Ranges
 			AreEqual(Range.Create((int?)1, null, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..+∞)");
 			AreEqual(Range.TryCreate((int?)1, null, key).ToString(CultureInfo.InvariantCulture), "'Hello!':[1..+∞)");
 			var cultureRu = new CultureInfo("ru-RU");
+			// Override new .net version dot as number decimal separator
+			cultureRu.NumberFormat.NumberDecimalSeparator = ",";
 			var cultureEn = new CultureInfo("en-US");
-			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureRu), "'1,1':[001,500..002,500]");
+			AreEqual("'1,1':[001,500..002,500]", Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureRu));
 			AreEqual(Range.TryCreate(1.5, 2.5, 1.1).ToString("000.000", cultureRu), "'1,1':[001,500..002,500]");
 			AreEqual(Range.Create(1.5, 2.5, 1.1).ToString("000.000", cultureEn), "'1.1':[001.500..002.500]");
 			AreEqual(Range.TryCreate(1.5, 2.5, 1.1).ToString("000.000", cultureEn), "'1.1':[001.500..002.500]");

@@ -29,7 +29,7 @@
 		<RepositoryType>git</RepositoryType>
 
 		<LangVersion Condition=" '$(TargetFramework)' != 'net6.0' ">9.0</LangVersion>
-		<LangVersion Condition=" '$(TargetFramework)' == 'net6.0' ">10.0</LangVersion>
+		<LangVersion Condition=" '$(TargetFramework)' == 'net6.0' ">14.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<RunAnalyzers>False</RunAnalyzers>

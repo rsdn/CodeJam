@@ -13,12 +13,6 @@ using NUnit.Framework;
 
 using static NUnit.Framework.Assert;
 
-#if NET40_OR_GREATER || TARGETS_NETCOREAPP
-using EnumEx = System.Enum;
-#else
-using EnumEx = System.EnumEx;
-#endif
-
 // ReSharper disable InconsistentNaming
 
 #pragma warning disable IDE1006 // Naming Styles
@@ -159,39 +153,39 @@ namespace CodeJam
 		{
 			AreEqual(
 				EnumHelper.TryParse(nameof(Flags.A), out Flags result1),
-				EnumEx.TryParse(nameof(Flags.A), out Flags result2));
+				Enum.TryParse(nameof(Flags.A), out Flags result2));
 			AreEqual(result1, result2);
 			AreEqual(result1, EnumHelper.TryParse<Flags>(nameof(Flags.A)));
 
 			AreEqual(
 				EnumHelper.TryParse(Undef.ToString(), out result1),
-				EnumEx.TryParse(Undef.ToString(), out result2));
+				Enum.TryParse(Undef.ToString(), out result2));
 			AreEqual(result1, result2);
 			AreEqual(result1, EnumHelper.TryParse<Flags>(Undef.ToString()));
 
 			AreEqual(
 				EnumHelper.TryParse(nameof(Flags.CD), out result1),
-				EnumEx.TryParse(nameof(Flags.CD), out result2));
+				Enum.TryParse(nameof(Flags.CD), out result2));
 			AreEqual(result1, result2);
 
 			AreEqual(
 				EnumHelper.TryParse(Abcd.ToString(), out result1),
-				EnumEx.TryParse(Abcd.ToString(), out result2));
+				Enum.TryParse(Abcd.ToString(), out result2));
 			AreEqual(result1, result2);
 
 			AreEqual(
 				EnumHelper.TryParse(AbU.ToString(), out result1),
-				EnumEx.TryParse(AbU.ToString(), out result2));
+				Enum.TryParse(AbU.ToString(), out result2));
 			AreEqual(result1, result2);
 
 			AreEqual(
 				EnumHelper.TryParse("0", out result1),
-				EnumEx.TryParse("0", out result2));
+				Enum.TryParse("0", out result2));
 			AreEqual(result1, result2);
 
 			AreEqual(
 				EnumHelper.TryParse("1", out result1),
-				EnumEx.TryParse("1", out result2));
+				Enum.TryParse("1", out result2));
 			AreEqual(result1, result2);
 		}
 
