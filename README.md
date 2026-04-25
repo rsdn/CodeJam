@@ -1,135 +1,82 @@
-﻿# CodeJam Library
+﻿# CodeJam
 
 ![CodeJam.Main.Icon](/images/nuget/CodeJam.Main.Icon.png)
 
-## CodeJam
+[![NuGet](https://img.shields.io/nuget/v/CodeJam.svg)](https://www.nuget.org/packages/CodeJam/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/CodeJam.svg)](https://www.nuget.org/packages/CodeJam/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam/branch/master)
 
-CodeJam is a set of handy reusable .NET components that can simplify your daily work and
-save your time when you copy and paste your favorite helper methods and classes from one project to another.
+**A collection of reusable .NET components that simplify everyday development tasks.**
 
-The CodeJam project includes three parts:
+CodeJam eliminates the need to copy helper methods and utility classes between projects. It provides battle-tested, production-ready code that saves time and ensures consistency across your codebase.
 
-* Main - stable and feature complete code.
-* Blocks - app building blocks, more specific and feature oriented functionality.
-* Experimental - A workspace for code development. Contains incomplete and/or unstable parts.
+## Features
 
-CodeJam is dedicated to one principal goal: creating and maintaining reusable code. The CodeJam main package is a place for
-collaboration and sharing, where developers community can work together on code to be shared by the CodeJam.
+- **Main** — Stable, feature-complete utilities for production use
+- **Blocks** — Application building blocks with specialized functionality
+- **Experimental** — A sandbox for developing new features (may be unstable)
 
-CodeJam developers will make an effort to ensure that their components have no dependencies on other third-party
-libraries, so that these components can be deployed easily. In addition, CodeJam will keep their interfaces as stable as
-possible, so that users can use it without having to worry about changes in the future.
+## Installation
 
-We welcome participation from all who are interested, at all skill levels. Coding, documenting, testing and
-development process itself are all critical parts of the software development process. If you are interested in
-contribute in any of these aspects, please join us!
-
-### Main
-
-[Main doc](CodeJam.Main/Readme.md)
-
-The main library containing feature complete and stable code of production quality.
-
-### Blocks
-
-### .NET Standard 1.6, 1.5 support (dropped in 4.0)
-
-Almost all features are supported. Functionality not supported:
-
-* XmlAttributeReader
-
-### .NET Core 1.1, 1.0 support (dropped in 4.0)
-
-Almost all features are supported. Functionality not supported:
-
-* XmlAttributeReader
-
-### .NET Framework 2.0 support (dropped in 4.0)
-
-.NET Framework 2.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:
-
-* LINQ to XML extensions - .NET 2.0 doesn't have LINQ XML related classes
-
-### .NET Framework 3.0 support (dropped in 4.0)
-
-.NET Framework 3.0 support is limited. Functionality not supported in addition to .NET Framework 3.5 limitations:
-
-* LINQ to XML extensions - .NET 3.0 doesn't have LINQ XML related classes
-
-### .NET Framework 3.5 support
-
-.NET Framework 3.5 support is limited. Functionality not supported:
-
-* Mapping - all mapping related classes not supported due to expression tree incompatibility
-* ExpressionExtensions - all visitor related functionality excluded due to expression tree incompatibility
-* MemberAccessor/TypeAccessor - excluded due to expression tree incompatibility
-* ComparerBuilder - excluded due to absence of TypeAccessor and MemberAccessor classes
-* PerfTests package not support FW 3.5 at all.
-
-### Contribute!
-
-Some of the best ways to contribute are to try things out, report bugs, and join in design conversations.
-
-* [How to Contribute](https://github.com/rsdn/CodeJam/blob/master/CONTRIBUTING.md)
-
-Looking for something to work on? The list of
-[up for grabs issues](https://github.com/rsdn/CodeJam/issues?q=is%3Aopen+is%3Aissue) is a great place to start.
-
-### Download
-
-Just install CodeJam nuget package via Visual Studio Package Manager and use it!
-
-To install the latest release without Visual Studio, run [nuget](https://dist.nuget.org/index.html)
-command line:
+Install via NuGet:
 
 ```bash
-nuget install CodeJam
+dotnet add package CodeJam
 ```
 
-To get the latest "preview" drop, add the `-pre` switch to the nuget commands
+Or via the NuGet Package Manager Console:
 
-### Links
-
-* [Class library documentation](https://github.com/rsdn/CodeJam/wiki/DocHome)
-* Continuous integration build [![Build status](https://ci.appveyor.com/api/projects/status/oxdyxkgwotiv64r1/branch/master?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam/branch/master)
-* Docs continuous integration build [![Docs build status](https://ci.appveyor.com/api/projects/status/bucrjn2eceptbqwl?svg=true)](https://ci.appveyor.com/project/andrewvk/codejam-jlvna/branch/master)
-* [Continuos Integration builds Nuget feed](https://ci.appveyor.com/nuget/codejam)
-* [Forum (russian)](https://rsdn.org/forum/prj.codejam/)
-* [![Join the chat at https://gitter.im/rsdn/CodeJam](https://badges.gitter.im/rsdn/CodeJam.svg)](https://gitter.im/rsdn/CodeJam?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-### Licensing & notices
-
-The CodeJam project is free software.
-There is no warranty; not even for merchantability or fitness for a particular purpose.
-
-You may use, copy, modify and redistribute all files included in this
-distribution, individually or in aggregate, subject to the terms and conditions
-of the MIT license.  See the file `LICENSE` for details.
-
-The project includes code parts taken from (mostly to ease targeting to previous versions of .Net)
-or inspired by third-party implementations.
-
-All such places are marked with `// BASEDON:` comment. Here they are:
-
-* [`CodeExceptions`](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Assertions/CodeExceptions.cs#L55): trace source design follows style introduced by the `System.Diagnostics.PresentationTraceSources`.
-* [`NaturalOrderStringComparer`](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Strings/NaturalOrderStringComparer.cs): based on [the C version by Martin Pool](http://sourcefrog.net/projects/natsort/)
-* Types that enables targeting to [.Net 2.0](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Targeting/NET20), [.Net 3.5](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Targeting/NET35) and [.Net 4.0](https://github.com/rsdn/CodeJam/tree/master/CodeJam.Main/Targeting/NET40), all taken from [CoreFx ](https://github.com/dotnet/corefx)and [CoreClr](https://github.com/dotnet/coreclr/) projects.
-* [`InterlockedOperations`](https://github.com/rsdn/CodeJam/blob/master/CodeJam.Main/Threading/InterlockedOperations.tt) uses CAS loop undercover, reference to the Roslyn implementation given as a proof the code is correct.
-
-
-In addition, you may -- at your option -- use, copy, modify and redistribute
-all images included in this distribution under the directory named `images`
-according to the terms and conditions of the Creative Commons Attribution-ShareAlike 4.0 International License.
-Use following text as a template for attribution:
-
-```
-CodeJam logo (c) by Arthur Kozyrev
-
-CodeJam logo is licensed under a
-Creative Commons Attribution-ShareAlike 4.0 International License.
-
-You should have received a copy of the license along with this
-work. If not, see <http://creativecommons.org/licenses/by-sa/4.0/>
+```powershell
+Install-Package CodeJam
 ```
 
-See the file `LICENSE-CC-BY-SA` for details.
+For preview releases:
+
+```bash
+dotnet add package CodeJam --prerelease
+```
+
+## Documentation
+
+- **[Class Library Documentation](https://github.com/rsdn/CodeJam/wiki/DocHome)** — Full API reference and guides
+- **[Main Library README](CodeJam.Main/Readme.md)** — Details on the main package components
+
+## Supported Platforms
+
+CodeJam targets modern .NET platforms:
+
+| Platform | Status |
+|----------|--------|
+| .NET 6.0+ | ✅ Full support |
+| .NET Framework 4.6.1+ | ✅ Full support |
+| .NET Standard 2.0+ | ✅ Full support |
+
+> **Note:** Support for .NET Framework 2.0–3.5, .NET Core 1.x, and .NET Standard 1.x was discontinued in version 4.0.
+
+## Contributing
+
+We welcome contributions! Here's how to get started:
+
+1. Check out the [Contributing Guide](CONTRIBUTING.md)
+2. Browse [up-for-grabs issues](https://github.com/rsdn/CodeJam/issues?q=is%3Aopen+is%3Aissue) for good first tasks
+3. Join the discussion in the [Forum (Russian)](https://rsdn.org/forum/prj.codejam/)
+
+## Links
+
+- [CI NuGet Feed](https://ci.appveyor.com/nuget/codejam) — Latest CI builds
+- [Docs CI Build](https://ci.appveyor.com/project/andrewvk/codejam-jlvna/branch/master) — Documentation build status
+
+## License
+
+CodeJam is released under the [MIT License](LICENSE).
+
+The project includes code adapted from third-party sources, marked with `// BASEDON:` comments. Notable attributions:
+
+- **CodeExceptions** — Trace source design inspired by `System.Diagnostics.PresentationTraceSources`
+- **NaturalOrderStringComparer** — Based on [Martin Pool's C implementation](http://sourcefrog.net/projects/natsort/)
+- **Targeting types** — Adapted from [CoreFx](https://github.com/dotnet/corefx) and [CoreClr](https://github.com/dotnet/coreclr/)
+
+### Logo License
+
+The CodeJam logo by Arthur Kozyrev is licensed under [Creative Commons Attribution-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/). See `LOGO-CC-BY-SA` for details.

@@ -1,25 +1,31 @@
-﻿# [DRAFT] CodeJam test design guidelines
-The document is not finished yet. PLEASE IGNORE it until marked as [DRAFT].
+﻿# CodeJam Test Design Guidelines
 
+This document provides baseline recommendations for writing tests in the CodeJam project.
 
-## _Tests design guidelines_
-**NB:** these are not mandatory and should be threated as a baseline recomendations.
-However,
+> **Note:** These guidelines are not mandatory but serve as best practices for maintaining consistent test code.
 
-* **DO** store tests in a separate project.
+## General Guidelines
 
-### _Test classes design guidelines_
-* **DO** name test classes with the suffix `Tests`. Example: `EnumHelperTests`.
-* **PREFER** to use name of the class being tested as a first part of the test class name.
-Otherwise, use short description of the scope the test class covers.
-* **DO** apply the `[TestFixture]` attribute.
-* **CONSIDER** specifying Category in the `[TestFixture]` attribute if there's more than one test class for the same feature scope.
+- **DO** store tests in a separate project.
 
-### _Test methods design guidelines_
-* **DO** prefix the name of the test method with the prefix `Test`. Example: `TestNotNull()`.
-* **PREFER** to add a number of the test after the `Test` prefix. Example: `Test00IsDefined`.
-* **PREFER** to use the name of the method being tested as a first part of the test method name.
-Otherwise, use short description of the the scenario the test method covers.
-* **DO NOT** place "use case scenario" and "check all args combinations" logic in the same test method.
-The test method should **EITHER** cover the specific use case **OR** test single API point
-(different overloads or logically coupled methods are treated as a same API point).
+## Test Class Guidelines
+
+- **DO** name test classes with the `Tests` suffix. Example: `EnumHelperTests`.
+
+- **PREFER** using the name of the class being tested as the first part of the test class name. Otherwise, use a short description of the scope the test class covers.
+
+- **DO** apply the `[TestFixture]` attribute.
+
+- **CONSIDER** specifying a category in the `[TestFixture]` attribute if there's more than one test class for the same feature scope.
+
+## Test Method Guidelines
+
+- **DO** prefix test method names with `Test`. Example: `TestNotNull()`.
+
+- **PREFER** adding a test number after the `Test` prefix. Example: `Test00IsDefined`.
+
+- **PREFER** using the name of the method being tested as the first part of the test method name. Otherwise, use a short description of the scenario the test method covers.
+
+- **DO NOT** mix "use case scenario" and "check all argument combinations" logic in the same test method.
+
+  The test method should **EITHER** cover a specific use case **OR** test a single API point (different overloads or logically coupled methods are treated as the same API point).

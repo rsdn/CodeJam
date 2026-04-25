@@ -1,91 +1,96 @@
-# [PROPOSAL] CodeJam contributing guidelines
-Please do not remove [PROPOSAL] modifier until the proposal is complete.
-Until this these guidelines are not mandatory.
+# Contributing to CodeJam
 
-## Basics
-### _Discussions_
-Currently the entire CodeJam team are native Russian speakers so almost all discussions are located on [RSDN project forum](http://rsdn.ru/forum/prj.codejam/).
+Thanks for your interest in contributing to CodeJam! This document provides guidelines and instructions for contributing.
 
-For English speakers: please, use the [GitHub issues](https://github.com/rsdn/CodeJam/issues). 
+## Discussions
 
-### _Project artefacts (member naming, documentation, code comments, issues, wiki etc.)_
-All in English.
+The CodeJam team consists primarily of Russian speakers. Most discussions take place on the [RSDN project forum](http://rsdn.ru/forum/prj.codejam/).
 
-### _Correction of the guidelines_
-Feel free to fix all typos, misphrases, obvious errors in text and so on.
-However, please take time to open an issue before making more significant changes. Thanks!
+For English speakers, please use [GitHub issues](https://github.com/rsdn/CodeJam/issues) for discussions.
 
-### _What can you contribute?_
-We are going to accept almost anything until it fits into description of the project:
->CodeJam is a set of handy reusable .NET components that can simplify your daily work and save your time when you copy and paste your favorite helper methods and classes from one project to another.
+## Project Artifacts
 
-Some limitations do apply, however.
+All project artifacts—including member naming, documentation, code comments, issues, and wiki content—should be in English.
 
-* The quality bar. The CodeJam project aims to provide the same level of good API design and same usabilty that the  .Net Framework does. This means that all new additions will be tuned to match common conventions. We trying to keep behavior in line with existing APIs, we often do change the names of the proposed APIs if there's better naming and we're trying to follow the framework design guidelines until there's no explicit reason to violate it. Be prepared:)
- All changes are disputable. So, if you want to keep the original design unmodified your arguments are welcome!
- 
-* No third-party dependencies if possible. We're trying to keep the library small and easy to plug in.
+## Improving the Guidelines
 
-* Specialized and platform-dependent code should be added into separate packages such as [CodeJam.Extensibility](https://github.com/rsdn/CodeJam.Extensibility)  or [CodeJam.Web](https://github.com/rsdn/CodeJam.Web).
+Feel free to fix typos, phrasing errors, or obvious mistakes in the documentation. For more significant changes, please open an issue first to discuss your proposed changes.
 
-## Tooling support
-**The project should support clone, restore packages and build routine.**
-However, there are some third-party tools assumed to be used by the contributors.
+## What Can You Contribute?
 
-### _Tooling support (ReSharper)_
+We welcome contributions that align with CodeJam's mission:
 
-We include ReSharper (8.0 and higher) settings file (`.\CodeJam.sln.DotSettings`) to make it easier to follow the guidelines.
+> CodeJam is a collection of reusable .NET components that simplify everyday development tasks by eliminating the need to copy helper methods and utility classes between projects.
 
-1. If you have ReSharper installed, please try to fix all code issues with severity higher than **Hint** before pushing the changes.
-1. If using the ReSharper is not suitable for you, consider to use the [ReSharper Command Line Tools](https://www.jetbrains.com/resharper/features/command-line.html).
-1. If ReSharper recommendation is **obviously** wrong, please suppress it using the "Disable once with comment" command.
-1. In all other cases please try to follow the ReSharper recommendations. This helps to maintain the same code style over all code files in the project. Thank you in advance for understanding.
-1. If you think that some recommendation is obviously wrong and should be changed, please file an issue first. 
+### Guidelines
 
-#### _ReSharper extensions_
-Please, use the free [ReSpeller extension](https://resharper-plugins.jetbrains.com/packages/ReSpeller/) (installed via ReSharper's extension manager). All words that are not in team-shared dictionary should be added to it (Add custom word to user dictionary > Save To > Solution team-shared).
+- **Quality bar** — CodeJam aims to provide the same level of API design and usability as the .NET Framework. New additions will be reviewed for consistency with existing conventions. We may suggest naming changes or adjustments to follow framework design guidelines. Be prepared for discussion!
 
-As an alternative there's [VS Spell Checker extension](https://visualstudiogallery.msdn.microsoft.com/a23de100-31a1-405c-b4b7-d6be40c3dfff) however it doesn't check typos in code and we do not maintain user dictionary for it. 
+- **No third-party dependencies** — We keep the library lightweight and easy to integrate.
 
-### _Tooling support (NUnit)_
-TBD
+- **Specialized code** — Platform-dependent or specialized functionality should go into separate packages such as [CodeJam.Extensibility](https://github.com/rsdn/CodeJam.Extensibility) or [CodeJam.Web](https://github.com/rsdn/CodeJam.Web).
 
-### _Tooling support (Git)_
-TBD
+## Development Setup
 
-### _Tooling support (Markdown files)_
-You can use any editor or extension (such as [Markdown Mode](https://visualstudiogallery.msdn.microsoft.com/0855e23e-4c4c-4c82-8b39-24ab5c5a7f79) or [Web Extensions](https://visualstudiogallery.msdn.microsoft.com/ee6e6d8c-c837-41fb-886a-6b50ae2d06a2)) to edit .md files.
+### Prerequisites
 
-However, please do not use features that are not supported by [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/) format.
+The project supports standard clone, restore, and build workflows. Ensure you have the following:
 
-## Coding conventions (baseline)
-The coding conventions are based on the guidelines from a [.Net core project](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
-With a few exceptions (most notable one - use **tabs**, not spaces) these should be compatible with each other.
+- [.NET SDK](https://dotnet.microsoft.com/download) (latest version recommended)
+- [Visual Studio](https://visualstudio.microsoft.com/) 2022 or later (optional but recommended)
 
-### _Coding conventions (as in .Net core project)_
-The rules that differs highlighted in bold.
+### ReSharper Integration
 
- **TODO:** Valid authorship/copyright on this section? The following rules based on text from [here](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md) and we are not going to hide the origin:)
+We include ReSharper settings (`.CodeJam.sln.DotSettings`) to help maintain consistent code style.
 
-1. We use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces, where each brace begins on a new line. **Single line blocks should not use braces.**
-2. **Use tabs** for indentation.
-3. We use `_camelCase` for internal and private fields and use `readonly` where possible. **Prefix the fields with `_`**. When used on static fields, `readonly` should come after `static` (i.e. `static readonly` not `readonly static`).
-4. We avoid `this.` unless absolutely necessary. 
-5. We always specify the visibility, even if it's the default (i.e.
-   `private string _foo` not `string _foo`). Visibility should be the first modifier (i.e. 
-   `public abstract` not `abstract public`).
-6. Namespace imports should be specified at the top of the file, *outside* of
-   `namespace` declarations and should be sorted alphabetically.
-7. Avoid more than one empty line at any time. For example, do not have two
-   blank lines between members of a type.
-8. Avoid spurious free spaces.
-   For example avoid `if (someVar == 0)...`, where the dots mark the spurious free spaces.
-   Consider enabling "View White Space (Ctrl+E, S)" if using Visual Studio, to aid detection.
-9. **~~(leave existing style if no reasons to change)~~**. Does not apply.
-10. **Use var when possible.**
-11. We use language keywords instead of BCL types (i.e. `int, string, float` instead of `Int32, String, Single`, etc.) for both type references as well as method calls (i.e. `int.Parse` instead of `Int32.Parse`).
-12. We use **PascalCasing to name constant fields, camelCasing to name constant local variables**. The only exception is for interop code where the constant value should exactly match the name and value of the code you are calling via interop.
-13. We use ```nameof(...)``` instead of ```"..."``` whenever possible and relevant.
+1. If you have ReSharper installed, fix all code issues with severity higher than **Hint** before submitting changes.
+2. If you don't use ReSharper, consider using [ReSharper Command Line Tools](https://www.jetbrains.com/resharper/features/command-line.html).
+3. If a ReSharper recommendation is **obviously** incorrect, suppress it using "Disable once with comment."
+4. For concerns about team-wide settings, please file an issue first.
 
-### _Coding conventions (additional rules)_
-TBD
+#### ReSharper Extensions
+
+We recommend the free [ReSpeller extension](https://resharper-plugins.jetbrains.com/packages/ReSpeller/) for spell checking. Add unrecognized words to the solution team-shared dictionary via **Add custom word to user dictionary > Save To > Solution team-shared**.
+
+Alternatively, you can use the [VS Spell Checker extension](https://visualstudiogallery.msdn.microsoft.com/a23de100-31a1-405c-b4b7-d6be40c3dfff), though it doesn't check typos in code.
+
+### Markdown Files
+
+Use any editor or extension to edit `.md` files. Please ensure your changes are compatible with [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+
+## Coding Conventions
+
+Our coding conventions are based on the [.NET Core project guidelines](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md) with a few exceptions.
+
+### Key Rules
+
+1. **Braces** — Use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces. Each brace begins on a new line. Single-line blocks should not use braces.
+
+2. **Indentation** — Use **tabs**, not spaces.
+
+3. **Fields** — Use `_camelCase` for internal and private fields. Prefix with `_`. Use `readonly` where possible. For static fields, `readonly` should come after `static` (e.g., `static readonly`).
+
+4. **`this.` keyword** — Avoid unless absolutely necessary.
+
+5. **Visibility** — Always specify visibility explicitly (e.g., `private string _foo`, not `string _foo`). Visibility should be the first modifier (e.g., `public abstract`, not `abstract public`).
+
+6. **Using directives** — Place at the top of the file, outside of `namespace` declarations. Sort alphabetically.
+
+7. **Blank lines** — Avoid more than one consecutive blank line.
+
+8. **Trailing spaces** — Avoid spurious trailing spaces. Enable "View White Space" (Ctrl+E, S) in Visual Studio to detect them.
+
+9. **`var` keyword** — Use `var` when the type is obvious.
+
+10. **Language keywords** — Use language keywords instead of BCL types (e.g., `int`, `string`, `float` instead of `Int32`, `String`, `Single`).
+
+11. **Constants** — Use **PascalCasing** for constant fields and **camelCasing** for local constant variables. The only exception is interop code where the name must match exactly.
+
+12. **`nameof()`** — Use `nameof(...)` instead of string literals whenever possible.
+
+## Questions?
+
+If you have questions, feel free to:
+
+- Open a [GitHub issue](https://github.com/rsdn/CodeJam/issues)
+- Visit the [RSDN forum](http://rsdn.ru/forum/prj.codejam/) (Russian)
